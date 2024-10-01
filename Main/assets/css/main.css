@@ -2339,12 +2339,13 @@ ol {
           align-items: center;
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex;
+  display: flex;  
+  /*margin-right: 10px;
   padding-right: 50px;
-
+  cursor: pointer;*/
 }
 
-@media only screen and (min-width: 992px) and (max-width: 1199px) {
+@media only screen and (min-width: 50px) and (max-width: 1199px) {
   .header .mega-category-menu {
     padding-right: 35px;
   }
@@ -2356,7 +2357,7 @@ ol {
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 500px) {
   .header .mega-category-menu {
     display: none;
   }
@@ -2368,6 +2369,7 @@ ol {
   font-size: 15px;
   font-weight: 600;
 }
+
 
 .header .mega-category-menu .cat-button i {
   display: inline-block;

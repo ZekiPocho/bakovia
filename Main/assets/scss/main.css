@@ -2091,7 +2091,7 @@ ol {
   }
 }
 .header .nav-inner {
-  display: flex;
+  /*display: flex;*/
 }
 .header .mega-category-menu {
   position: relative;

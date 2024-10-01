@@ -37,6 +37,10 @@ html {
   scroll-behavior: smooth;
 }
 
+#my{
+  zoom: 125%;
+  }
+
 body {
   font-family: "Montserrat", sans-serif;
   font-weight: 500;

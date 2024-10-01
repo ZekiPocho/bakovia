@@ -2306,11 +2306,10 @@ ol {
           align-items: center;
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex;
-  border-right: 1px solid #393E46;
-  margin-right: 10px;
+  display: flex;  
+  /*margin-right: 10px;
   padding-right: 50px;
-  cursor: pointer;
+  cursor: pointer;*/
 }
 
 @media only screen and (min-width: 50px) and (max-width: 1199px) {

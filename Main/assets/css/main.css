@@ -2339,10 +2339,7 @@ ol {
           align-items: center;
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex;
-  border-right: 1px solid #393E46;
-  margin-right: 40px;
-  padding-right: 112px;
+  padding-right: 50px;
   cursor: pointer;
 }
 

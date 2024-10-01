@@ -2993,7 +2993,7 @@ ol {
     content: "";
     height: 100%;
     width: 100%;
-    background-color: #6E869D;
+    background-color: #fff;
     opacity: 0.5;
   }
 }
@@ -3513,7 +3513,7 @@ ol {
 
 /* End Single Product */
 .trending-product {
-  background-color: #f9f9f9;
+  background-color: #6E869D;
 }
 
 .trending-product .section-title {

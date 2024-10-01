@@ -2325,7 +2325,7 @@ ol {
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 500px) {
   .header .mega-category-menu {
     display: none;
   }

@@ -37,8 +37,8 @@ html {
   scroll-behavior: smooth;
 }
 
-#my{
-  zoom: 125%;
+*{
+  zoom: 100%;
   }
 
 body {

@@ -1554,7 +1554,7 @@ ol {
 }
 
 .header .topbar .top-middle .useful-links li a:hover {
-  color: #CAA12C
+  color: #ECBE00
 ;
 }
 
@@ -1682,7 +1682,7 @@ ol {
 }
 
 .header .nav-hotline i {
-  color: #CAA12C
+  color: #ECBE00
 ;
   font-size: 18px;
   position: absolute;
@@ -1695,7 +1695,7 @@ ol {
   line-height: 40px;
   text-align: center;
   display: block;
-  border: 1px solid #CAA12C
+  border: 1px solid #ECBE00
 ;
   border-radius: 50%;
 }
@@ -1740,9 +1740,9 @@ ol {
   line-height: 40px;
   display: inline-block;
   border-radius: 50%;
-  border: 1px solid #CAA12C
+  border: 1px solid #ECBE00
 ;
-  color: #CAA12C
+  color: #ECBE00
 ;
   font-size: 18px;
   text-align: center;
@@ -1751,7 +1751,7 @@ ol {
 
 .header .navbar-cart .wishlist a:hover {
   color: #4B5A6A;
-  background-color: #CAA12C
+  background-color: #ECBE00
 ;
   border-color: transparent;
 }
@@ -1764,7 +1764,7 @@ ol {
   width: 19px;
   line-height: 19px;
   background-color: #4B5A6A;
-  color: #CAA12C
+  color: #ECBE00
 ;
   font-size: 12px;
   font-weight: 500;
@@ -1778,7 +1778,7 @@ ol {
 
 .header .navbar-cart .cart-items:hover .main-btn {
   color: #fff;
-  background-color: #CAA12C
+  background-color: #ECBE00
 ;
   border-color: transparent;
 }
@@ -1789,9 +1789,9 @@ ol {
   line-height: 40px;
   display: inline-block;
   border-radius: 50%;
-  border: 1px solid #CAA12C
+  border: 1px solid #ECBE00
 ;
-  color: #CAA12C
+  color: #ECBE00
 ;
   font-size: 18px;
   text-align: center;
@@ -1806,7 +1806,7 @@ ol {
   width: 19px;
   line-height: 19px;
   background-color: #4B5A6A;
-  color: #CAA12C
+  color: #ECBE00
 ;
   font-size: 12px;
   font-weight: 500;
@@ -1876,7 +1876,7 @@ ol {
 }
 
 .header .navbar-cart .cart-items .shopping-item .dropdown-cart-header a:hover {
-  color: #CAA12C
+  color: #ECBE00
 ;
 }
 
@@ -1900,11 +1900,11 @@ ol {
   line-height: 18px;
   text-align: center;
   background: #4B5A6A;
-  color: #CAA12C
+  color: #ECBE00
 ;
   border-radius: 50%;
   font-size: 9px;
-  border: 1px solid #CAA12C
+  border: 1px solid #ECBE00
 ;
   padding-left: 1px;
 }
@@ -1973,7 +1973,7 @@ ol {
 }
 
 .header .navbar-cart .cart-items .shopping-item .shopping-list li .content h4 a:hover {
-  color: #CAA12C
+  color: #ECBE00
 ;
 }
 
@@ -2035,9 +2035,9 @@ ol {
 }
 
 .header .main-menu-search .select-position:after {
-  border-bottom: 1.5px solid #CAA12C
+  border-bottom: 1.5px solid #ECBE00
 ;
-  border-right: 1.5px solid #CAA12C
+  border-right: 1.5px solid #ECBE00
 ;
   content: '';
   display: block;
@@ -2058,7 +2058,7 @@ ol {
 
 .header .main-menu-search .select-position select {
   height: 45px;
-  border: 1px solid #CAA12C
+  border: 1px solid #ECBE00
 ;
   border-right: 0px;
   padding: 0 20px;
@@ -2086,10 +2086,10 @@ ol {
 .header .main-menu-search .search-input input {
   width: 100%;
   height: 45px;
-  border: 1px solid #CAA12C
+  border: 1px solid #ECBE00
 ;
   background-color: #EEEEEE;
-  color: #CAA12C
+  color: #ECBE00
 ;
   border-radius: 0;
   padding: 0 15px;
@@ -2100,17 +2100,17 @@ ol {
 
 .header .main-menu-search .search-btn button {
   background-color: #4B5A6A;
-  color: #CAA12C
+  color: #ECBE00
 ;
   width: 45px;
   height: 45px;
   padding: 0;
   border-style: solid;
-  border-top-color: #CAA12C
+  border-top-color: #ECBE00
 ;
-  border-right-color: #CAA12C
+  border-right-color: #ECBE00
 ;
-  border-bottom-color: #CAA12C
+  border-bottom-color: #ECBE00
 ;
   border-left: none;
   border-radius: 0 4px 4px 0;
@@ -2121,9 +2121,9 @@ ol {
 }
 
 .header .main-menu-search .search-btn button:hover {
-  color: #CAA12C
+  color: #ECBE00
 ;
-  background-color: #CAA12C
+  background-color: #ECBE00
 ;
 }
 
@@ -2154,7 +2154,7 @@ ol {
     border-radius: 6px;
   }
   .header .navbar .navbar-nav .nav-item a:hover {
-    color: #CAA12C
+    color: #ECBE00
  !important;
   }
   .header .navbar .navbar-nav .nav-item a.active {
@@ -2188,7 +2188,7 @@ ol {
     padding: 12px 12px;
   }
   .header .navbar-nav .nav-item .sub-menu .nav-item a:hover {
-    color: #CAA12C
+    color: #ECBE00
  !important;
   }
   .header .navbar-nav .nav-item a {
@@ -2207,7 +2207,7 @@ ol {
   }
   .header .navbar-nav .nav-item .sub-menu li.active {
     background: #fff !important;
-    color: #CAA12C
+    color: #ECBE00
  !important;
   }
   .header .navbar-nav .nav-item .sub-menu .nav-item {
@@ -2391,7 +2391,7 @@ ol {
   top: 68px;
   width: 241px;
   height: auto;
-  border-left: 2px solid #CAA12C
+  border-left: 2px solid #ECBE00
 ;
   background-color: #4B5A6A;
   opacity: 0;
@@ -2419,7 +2419,7 @@ ol {
   top: 8px;
   width: 240px;
   height: auto;
-  border-left: 2px solid #CAA12C
+  border-left: 2px solid #ECBE00
 ;
   background-color: #4B5A6A;
   border-radius: 0;
@@ -2449,7 +2449,7 @@ ol {
 }
 
 .header .mega-category-menu .sub-category li .inner-sub-category li a:hover {
-  color: #CAA12C
+  color: #ECBE00
 ;
 }
 
@@ -2474,7 +2474,7 @@ ol {
 }
 
 .header .mega-category-menu .sub-category li a:hover {
-  color: #CAA12C
+  color: #ECBE00
 ;
 }
 
@@ -2524,17 +2524,17 @@ ol {
   line-height: 35px;
   text-align: center;
   display: block;
-  border: 1px solid #CAA12C
+  border: 1px solid #ECBE00
 ;
   border-radius: 50%;
   font-size: 14px;
-  color: #CAA12C
+  color: #ECBE00
 ;
 }
 
 .header .nav-social ul li a:hover {
   color: #000;
-  background-color: #CAA12C
+  background-color: #ECBE00
 ;
   border-color: transparent;
 }
@@ -2607,12 +2607,12 @@ ol {
 }
 
 .header .navbar .navbar-nav .nav-item a.active {
-  color: #CAA12C
+  color: #ECBE00
 ;
 }
 
 .sticky .navbar .navbar-nav .nav-item a.active {
-  color: #CAA12C
+  color: #ECBE00
 ;
 }
 
@@ -2704,12 +2704,12 @@ ol {
 }
 
 .navbar-nav .nav-item:hover a {
-  color: #CAA12C
+  color: #ECBE00
 ;
 }
 
 .sticky .navbar-nav .nav-item:hover a {
-  color: #CAA12C
+  color: #ECBE00
 ;
 }
 
@@ -2733,9 +2733,9 @@ ol {
 }
 
 .navbar-nav .nav-item:hover .dd-menu::before {
-  border-bottom-color: #CAA12C
+  border-bottom-color: #ECBE00
 ;
-  border-right-color: #CAA12C
+  border-right-color: #ECBE00
 ;
 }
 
@@ -2794,7 +2794,7 @@ ol {
   padding: 30px;
   min-width: 240px;
   background: #4B5A6A;
-  border-left: 2px solid #CAA12C
+  border-left: 2px solid #ECBE00
 ;
   position: absolute;
   top: 110% !important;
@@ -2836,7 +2836,7 @@ ol {
 }
 
 .navbar-nav .nav-item .sub-menu .nav-item a:hover {
-  color: #CAA12C
+  color: #ECBE00
 ;
 }
 
@@ -2864,7 +2864,7 @@ ol {
 }
 
 .navbar-nav .nav-item .sub-menu > li.active > a {
-  color: #CAA12C
+  color: #ECBE00
  !important;
 }
 

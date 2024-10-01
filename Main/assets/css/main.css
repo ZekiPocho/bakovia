@@ -2579,13 +2579,13 @@ ol {
 
 .header.sticky .button .btn {
   background-color: #0167F3;
-  color: #fff;
+  color: #ECBE00;
   border-color: transparent;
 }
 
 .header.sticky .button .btn:hover {
   background-color: #081828;
-  color: #fff;
+  color: #ECBE00;
 }
 
 .sticky {

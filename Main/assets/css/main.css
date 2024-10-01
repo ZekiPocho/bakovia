@@ -2313,7 +2313,7 @@ ol {
   cursor: pointer;
 }
 
-@media only screen and (min-width: 992px) and (max-width: 1199px) {
+@media only screen and (min-width: 50px) and (max-width: 1199px) {
   .header .mega-category-menu {
     padding-right: 35px;
   }

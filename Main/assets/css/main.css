@@ -2950,8 +2950,8 @@ ol {
   border: none;
   padding: 2px 5px;
   border-radius: 4px;
-  -webkit-transition: all .3s ease-out 0s;
-  transition: all .3s ease-out 0s;
+  -webkit-transition: all .10s ease-out 0s;
+  transition: all .10s ease-out 0s;
   position: absolute;
   z-index: 99;
   top: 50%;

@@ -1178,7 +1178,7 @@ ol {
   width: 40px;
   height: 40px;
   line-height: 40px;
-  background: #0167F3;
+  background: #ECBE00;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1205,7 +1205,7 @@ ol {
   box-shadow: 0 1rem 3rem rgba(35, 38, 45, 0.15) !important;
   -webkit-transform: translate3d(0, -5px, 0);
   transform: translate3d(0, -5px, 0);
-  background-color: #081828;
+  background-color: #171D25;
 }
 
 /* Overlay */
@@ -7959,7 +7959,7 @@ blockquote span {
   left: 0;
   width: 40px;
   height: 3px;
-  background-color: #0167F3;
+  background-color: #ECBE00;
   content: '';
 }
 

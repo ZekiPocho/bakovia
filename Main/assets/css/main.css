@@ -80,8 +80,8 @@ button:focus,
 }
 
 .form-check-input:checked {
-  background-color: #0167F3;
-  border-color: #0167F3;
+  background-color: #ECBE00;
+  border-color: #ECBE00;
 }
 
 select {
@@ -1042,7 +1042,7 @@ ol {
 }
 
 .breadcrumbs .breadcrumb-nav li a:hover {
-  color: #0167F3;
+  color: #ECBE00;
 }
 
 .section {
@@ -1091,7 +1091,7 @@ ol {
   left: 50%;
   bottom: 0;
   content: "";
-  background-color: #0167F3;
+  background-color: #ECBE00;
   height: 2px;
   width: 50px;
   margin-left: -25px;
@@ -3497,11 +3497,7 @@ ol {
 .single-product .product-info .price span {
   font-size: 17px;
   font-weight: 700;
-<<<<<<< HEAD
   color: #ECBE00;
-=======
-  color: #000;
->>>>>>> 6ca7dd295e532bb0da15744e2b5cb3bca351e953
   display: inline-block;
 }
 

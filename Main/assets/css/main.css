@@ -3466,7 +3466,8 @@ ol {
 }
 
 .single-product .product-info .title a:hover {
-  color: #ECBE00;
+  color: #000000;
+  font-style: italic;
 }
 
 .single-product .product-info .review {

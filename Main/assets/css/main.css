@@ -1333,8 +1333,8 @@ ol {
 }
 
 .button .btn:hover {
-  color: #fff;
-  background-color: #081828;
+  color: #ECBE00;
+  background-color: #171D25;
   -webkit-box-shadow: 0px 4px 4px #0000000f;
           box-shadow: 0px 4px 4px #0000000f;
 }

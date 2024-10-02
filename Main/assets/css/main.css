@@ -1085,17 +1085,6 @@ ol {
   position: relative;
 }
 
-.section-title h2::before {
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  content: "";
-  background-color: #ECBE00;
-  height: 2px;
-  width: 50px;
-  margin-left: -25px;
-  border-radius: 2px;
-}
 
 .section-title p {
   font-size: 14px;
@@ -3516,8 +3505,8 @@ ol {
 }
 
 .trending-product .section-title {
-  margin-bottom: 10px;
-  margin-top: 30px;
+  margin-bottom: -10px;
+  margin-top: 20px;
 }
 
 /*======================================

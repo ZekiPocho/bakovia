@@ -2890,6 +2890,11 @@ ol {
   margin-top: 35px;
 }
 
+/*añadi el borde del hero area*/
+.container-hero{
+  border: 2px solid #ECBE00;
+}
+
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .hero-area .md-custom-padding {
     padding-right: 0 !important;

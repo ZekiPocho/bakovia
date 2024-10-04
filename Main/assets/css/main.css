@@ -3115,6 +3115,7 @@ ol {
 }
 
 .hero-area .hero-small-banner {
+  margin-top: 20px;
   height: 244px;
   position: relative;
   background-repeat: no-repeat;

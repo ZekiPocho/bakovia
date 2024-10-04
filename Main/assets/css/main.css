@@ -7195,7 +7195,7 @@ blockquote span {
   padding: 40px;
   border: 1px solid #e6e6e6;
   border-radius: 4px;
-  background-color: #fff;
+  background-color: #171D25;
   -webkit-box-shadow: 0px 5px 40px #00000008;
           box-shadow: 0px 5px 40px #00000008;
 }
@@ -7213,7 +7213,7 @@ blockquote span {
 .register-form .title h3 {
   font-size: 22px;
   font-weight: 700;
-  color: #081828;
+  color: #eee;
   margin-bottom: 10px;
 }
 
@@ -7256,7 +7256,7 @@ blockquote span {
   display: block;
   font-size: 14px;
   font-weight: 500;
-  color: #081828;
+  color: #aaa;
   margin-top: 30px;
   text-align: center;
 }

@@ -7005,11 +7005,10 @@ blockquote span {
 
 .account-login .login-form {
   padding: 42px;
-  border: 1px solid #e6e6e6;
+  border: 2px solid #ECBE00;
   border-radius: 4px;
-  background-color: #fff;
-  -webkit-box-shadow: 0px 5px 40px #00000008;
-          box-shadow: 0px 5px 40px #00000008;
+  background-color: #171D25;
+  box-shadow: 0px 5px 40px rgba(0, 0, 0, 0.031372549);
 }
 
 @media (max-width: 767px) {
@@ -7029,7 +7028,7 @@ blockquote span {
 .account-login .login-form .title h3 {
   font-size: 22px;
   font-weight: 700;
-  color: #081828;
+  color: #eee;
   margin-bottom: 10px;
 }
 

@@ -930,7 +930,7 @@ ol {
   padding: 30px 0;
   z-index: 2;
   text-align: left;
-  background-color: #fff;
+  background-color: transparent;
   -webkit-box-shadow: 0px 7px 30px rgba(0, 0, 0, 0.075);
           box-shadow: 0px 7px 30px rgba(0, 0, 0, 0.075);
 }
@@ -954,7 +954,7 @@ ol {
 
 .breadcrumbs .breadcrumbs-content .page-title {
   font-size: 18px;
-  color: #081828;
+  color: #ECBE00;
   font-weight: 600;
   position: relative;
   line-height: 28px;
@@ -1023,7 +1023,7 @@ ol {
 
 .breadcrumbs .breadcrumb-nav li,
 .breadcrumbs .breadcrumb-nav li a {
-  color: #888;
+  color: #ffffff;
   font-size: 14px;
   font-weight: 500;
 }

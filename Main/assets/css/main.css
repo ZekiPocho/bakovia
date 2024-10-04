@@ -2587,7 +2587,7 @@ ol {
 
 .navbar-expand-lg .navbar-nav {
   margin: 0;
-  margin-left: 0 !important;
+  margin-left: auto !important;
   margin-right: auto !important;
 }
 

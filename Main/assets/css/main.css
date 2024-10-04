@@ -1715,6 +1715,8 @@ ol {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: end;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .header .navbar-cart .wishlist {

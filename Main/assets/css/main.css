@@ -2885,7 +2885,7 @@ ol {
 ========================================*/
 .hero-area {
   position: relative;
-  background-color: #6E869D;
+  background-color: transparent;
   margin-top: 12px;
 }
 
@@ -3216,7 +3216,7 @@ ol {
     Shipping Info CSS
 ========================================*/
 .shipping-info {
-  background-color: #6E869D;
+  background-color: transparent;
   padding: 50px 0;
 }
 
@@ -3500,7 +3500,7 @@ ol {
 
 /* End Single Product */
 .trending-product {
-  background-color: #6E869D;
+  background-color: transparent;
 }
 
 .trending-product .section-title {
@@ -4176,7 +4176,7 @@ ol {
     Blog CSS
 ========================================*/
 .blog-section {
-  background-color: #6E869D;
+  background-color: transparent;
 }
 
 .blog-section .section-title {

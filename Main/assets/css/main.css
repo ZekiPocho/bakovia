@@ -6994,7 +6994,7 @@ blockquote span {
 	Account Login CSS
 ========================================*/
 .account-login {
-  background-color: #171D25;
+  background-color: transparent;
 }
 
 .account-login .login-form {

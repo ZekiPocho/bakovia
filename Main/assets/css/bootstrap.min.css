@@ -658,6 +658,10 @@ progress {
     border-radius: 4px;
 }
 
+.container-sm-register{
+    background-color: transparent;
+}
+
 
 @media (min-width:576px) {
 

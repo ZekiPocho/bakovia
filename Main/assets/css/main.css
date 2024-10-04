@@ -2095,14 +2095,13 @@ ol {
 ;
   border-left: none;
   border-radius: 0 4px 4px 0;
-  margin-left: -2px;
   -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
   font-size: 18px;
 }
 
 .header  .search-btn button:hover {
-  color: #ECBE00
+  color: #171D25
 ;
   background-color: #ECBE00
 ;

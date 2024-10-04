@@ -654,7 +654,8 @@ progress {
 }
 
 .container-sm{
-    border: 2px solid #ECBE00;
+    border: 1px solid #ECBE00;
+    border-radius: 4px;
 }
 
 

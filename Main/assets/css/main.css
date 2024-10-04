@@ -2109,7 +2109,7 @@ ol {
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .header .mobile-menu-btn .toggler-icon {
-    background-color: #081828;
+    background-color: #ECBE00;
   }
   .header .button {
     margin: 0 !important;
@@ -2123,14 +2123,14 @@ ol {
     top: 46px !important;
     left: 0;
     width: 100%;
-    background-color: #fff;
+    background-color: #171D25 ;
     z-index: 9;
     -webkit-box-shadow: 0px 15px 20px 0px rgba(0, 0, 0, 0.1);
             box-shadow: 0px 15px 20px 0px rgba(0, 0, 0, 0.1);
     padding: 10px 20px;
     max-height: 350px;
     overflow-y: scroll;
-    border-top: 1px solid #eee;
+    border-top: 2px solid #ECBE00;
     border-radius: 6px;
   }
   .header .navbar .navbar-nav .nav-item a:hover {
@@ -2210,7 +2210,7 @@ ol {
 
 @media (max-width: 767px) {
   .header .mobile-menu-btn .toggler-icon {
-    background-color: #ffffff;
+    background-color: #ECBE00;
   }
   .header .button {
     margin: 0 !important;

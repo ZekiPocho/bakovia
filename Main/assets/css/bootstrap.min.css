@@ -710,6 +710,8 @@ progress {
 }
 
 .row {
+    margin-bottom: 14px;
+    padding-top: 11px;
     --bs-gutter-x: 1.5rem;
     --bs-gutter-y: 0;
     display: flex;
@@ -720,8 +722,7 @@ progress {
 }
 
 .row>* {
-    margin-bottom: 14px;
-    padding-top: 11px;
+
     flex-shrink: 0;
     width: 100%;
     max-width: 100%;

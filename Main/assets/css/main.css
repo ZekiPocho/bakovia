@@ -2172,7 +2172,7 @@ ol {
  !important;
   }
   .header .navbar-nav .nav-item a {
-    color: #051441;
+    color: #ECBE00;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -2186,7 +2186,7 @@ ol {
     visibility: visible;
   }
   .header .navbar-nav .nav-item .sub-menu li.active {
-    background: #fff !important;
+    background: #171D25 !important;
     color: #ECBE00
  !important;
   }
@@ -2197,7 +2197,7 @@ ol {
     padding: 10px 12px !important;
   }
   .header .navbar-nav .nav-item .sub-menu li:hover {
-    background: #fff !important;
+    background: #171D25 !important;
     color: #ECBE00 !important;
   }
   .header .navbar-nav .nav-item a {

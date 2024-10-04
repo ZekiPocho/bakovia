@@ -1075,6 +1075,7 @@ ol {
 }
 
 .section-title h2 {
+  padding-top: 20px;
   font-size: 30px;
   line-height: 35px;
   text-transform: capitalize;
@@ -4180,7 +4181,7 @@ ol {
 }
 
 .blog-section .section-title {
-  margin-bottom: 40px;
+  margin-bottom: 1px;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {

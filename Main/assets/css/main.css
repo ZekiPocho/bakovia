@@ -1046,7 +1046,7 @@ ol {
 }
 
 .section {
-  padding-top: 90px;
+  padding-top: 10px;
   position: relative;
 }
 
@@ -4014,7 +4014,7 @@ ol {
 }
 
 .faq .section-title {
-  margin-bottom: 60px;
+  margin-bottom: 10px;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -4113,7 +4113,7 @@ ol {
 }
 
 .accordion-button:not(.collapsed) {
-  color: #fff;
+  color: #171D25;
   background-color: #ECBE00;
   border-radius: 4px 4px 0 0;
 }
@@ -4152,7 +4152,7 @@ ol {
 .accordion-body p {
   margin: 0;
   margin-bottom: 20px;
-  color: #777;
+  color: #171D25;
 }
 
 .accordion-body p:last-child {

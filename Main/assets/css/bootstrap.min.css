@@ -653,6 +653,10 @@ progress {
     
 }
 
+.container-sm{
+    border: 2px solid #ECBE00;
+}
+
 
 @media (min-width:576px) {
 

@@ -2605,9 +2605,9 @@ ol {
   z-index: 99;
   -webkit-transition: all 0.3s ease-out 0s;
   transition: all 0.3s ease-out 0s;
-  padding: 0;
+  padding: 20px;
   background-color: #171D25;
-  border-bottom: 1px solid #393E46;
+  border-bottom: 2px solid #ECBE00;
 }
 
 .navbar-area.sticky {

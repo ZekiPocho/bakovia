@@ -653,6 +653,12 @@ progress {
     
 }
 
+/*añadi el borde del hero area*/
+.container .container-hero{
+    border: 2px solid #ECBE00;
+}
+
+
 @media (min-width:576px) {
 
     .container,

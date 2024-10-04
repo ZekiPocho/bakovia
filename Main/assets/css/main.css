@@ -2001,13 +2001,7 @@ ol {
   width: 100%;
 }
 
-@media (max-width: 767px) {
-  .header .main-menu-search {
-    display: none;
-  }
-}
-
-.header .main-menu-search .navbar-search {
+.header .navbar-search {
   position: relative;
   display: -moz-flex;
   display: -ms-flex;
@@ -2017,11 +2011,11 @@ ol {
   display: flex;
 }
 
-.header .main-menu-search .select-position {
+.header  .select-position {
   position: relative;
 }
 
-.header .main-menu-search .select-position:after {
+.header  .select-position:after {
   border-bottom: 1.5px solid #ECBE00
 ;
   border-right: 1.5px solid #ECBE00
@@ -2043,7 +2037,7 @@ ol {
   width: 8px;
 }
 
-.header .main-menu-search .select-position select {
+.header  .select-position select {
   height: 45px;
   border: 1px solid #ECBE00
 ;
@@ -2059,18 +2053,18 @@ ol {
   font-size: 14px;
 }
 
-.header .main-menu-search .select-position select:focus {
+.header  .select-position select:focus {
   text-decoration: none;
   outline: none;
   -webkit-box-shadow: none;
           box-shadow: none;
 }
 
-.header .main-menu-search .search-input {
+.header  .search-input {
   width: 100%;
 }
 
-.header .main-menu-search .search-input input {
+.header  .search-input input {
   width: 100%;
   height: 45px;
   border: 1px solid #ECBE00
@@ -2085,7 +2079,7 @@ ol {
   font-size: 14px;
 }
 
-.header .main-menu-search .search-btn button {
+.header  .search-btn button {
   background-color: #171D25;
   color: #ECBE00
 ;
@@ -2107,7 +2101,7 @@ ol {
   font-size: 18px;
 }
 
-.header .main-menu-search .search-btn button:hover {
+.header  .search-btn button:hover {
   color: #ECBE00
 ;
   background-color: #ECBE00

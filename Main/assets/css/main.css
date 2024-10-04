@@ -1785,7 +1785,7 @@ ol {
   font-size: 18px;
   text-align: center;
   position: relative;
-  margin-right: 20px;
+  margin-right: 30px;
 }
 
 .header .navbar-cart .cart-items .main-btn .total-items {
@@ -2101,6 +2101,7 @@ ol {
   -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
   font-size: 18px;
+  margin-right: 50px;
 }
 
 .header  .search-btn button:hover {

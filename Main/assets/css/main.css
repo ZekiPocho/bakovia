@@ -6002,7 +6002,7 @@ blockquote span {
 
 /* Product Grids */
 .product-grids {
-  background-color: #f9f9f9;
+  background-color: transparent;
 }
 
 .product-grids .product-grid-topbar {

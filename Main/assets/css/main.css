@@ -4273,7 +4273,7 @@ ol {
 }
 
 .blog-list {
-  background: #f9f9f9;
+  background: transparent;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {

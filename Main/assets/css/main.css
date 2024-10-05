@@ -45,7 +45,7 @@ body {
   font-family: "Montserrat", sans-serif;
   font-weight: 500;
   font-style: normal;
-  color: #eee;
+  color: #171D25;
   overflow-x: hidden;
   font-size: 14px;
 }
@@ -6295,13 +6295,12 @@ blockquote span {
 .cart-list-head {
   border-radius: 4px;
   overflow: hidden;
-  border: 1px solid #eee;
+  border: 2px solid #ECBE00;
 }
 
 .cart-list-title {
-  background-color: #fff;
+  background-color: #081828;
   padding: 18px 20px;
-  border-bottom: 1px solid #eee;
 }
 
 @media (max-width: 767px) {
@@ -6311,9 +6310,9 @@ blockquote span {
 }
 
 .cart-list-title p {
-  color: #081828;
+  color: #ECBE00;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 @media (max-width: 767px) {
@@ -6353,8 +6352,8 @@ blockquote span {
 }
 
 .cart-single-list .remove-item:hover {
-  color: #fff;
-  background-color: #081828;
+  color: #171D25;
+  background-color: #ECBE00;
 }
 
 .cart-single-list .product-name {
@@ -6362,8 +6361,8 @@ blockquote span {
 }
 
 .cart-single-list .product-name a {
-  font-size: 14px;
-  color: #333;
+  font-size: 15px;
+  color: #171D25;
   font-weight: 500;
 }
 
@@ -6379,13 +6378,13 @@ blockquote span {
 
 .cart-single-list .product-des span em {
   font-style: normal;
-  color: #555;
+  color: #171D25;
 }
 
 .cart-single-list {
   padding: 30px 20px;
-  background-color: #fff;
-  border-bottom: 1px solid #eee;
+  background-color: #a6c5e4;
+  border-bottom: 1px solid #171D25;
 }
 
 .cart-single-list:last-child {
@@ -6398,7 +6397,7 @@ blockquote span {
 }
 
 .shopping-cart {
-  background-color: #f9f9f9;
+  background-color: transparent;
 }
 
 .shopping-cart .total-amount .right ul li {

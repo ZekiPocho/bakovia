@@ -6479,10 +6479,10 @@ blockquote span {
 
 .shopping-cart .total-amount .right {
   padding: 40px;
-  border: 1px solid #eee;
-  background-color: #fff;
+  background-color: #6E869D;
   border-radius: 4px;
   margin-top: 40px;
+  text-align: center;
 }
 
 @media (max-width: 767px) {

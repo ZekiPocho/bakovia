@@ -3848,7 +3848,7 @@ ol {
     About Us CSS
 ========================================*/
 .about-us {
-  background-color: #f9f9f9;
+  background-color: transparent;
 }
 
 .about-us .content-left {
@@ -5097,7 +5097,7 @@ blockquote span {
     Team CSS
 ========================================*/
 .team {
-  background-color: #fff;
+  background-color: transparent;
 }
 
 .team .single-team {

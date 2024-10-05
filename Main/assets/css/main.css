@@ -6933,7 +6933,6 @@ blockquote span {
 .checkout-sidebar-price-table {
   background-color: #9fb6cc;
   padding: 25px;
-  border: 1px solid #e6e6e6;
   border-radius: 4px;
 }
 
@@ -6955,13 +6954,23 @@ blockquote span {
 }
 
 .checkout-sidebar-price-table .title {
-  font-weight: 400;
+  font-weight: 500;
   font-size: 15px;
   line-height: 22px;
   color: #081828;
   padding-bottom: 12px;
   margin-bottom: 10px;
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 1px solid #081828;
+}
+
+.checkout-sidebar-price-table .precios {
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 22px;
+  color: #081828;
+  padding-bottom: 12px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #081828;
 }
 
 .checkout-sidebar-price-table .total-payable {

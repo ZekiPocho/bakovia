@@ -6599,7 +6599,6 @@ blockquote span {
   line-height: 40px;
   position: relative;
   cursor: pointer;
-  border: 1px solid #e6e6e6;
   border-radius: 4px 4px 0 0;
   padding: 8px 25px;
   color: #171D25;
@@ -6630,7 +6629,7 @@ blockquote span {
   padding-top: 0;
   border: 1px solid #e6e6e6;
   border-top-color: transparent;
-  background-color: #fff;
+  background-color: #9fb6cc;
   border-radius: 0 0 4px 4px;
 }
 
@@ -6669,7 +6668,7 @@ blockquote span {
 }
 
 .checkout-steps-form-style-1 .form-default label {
-  color: #888;
+  color: #171D25;
   margin-bottom: 8px;
 }
 

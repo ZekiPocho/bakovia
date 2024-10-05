@@ -6094,7 +6094,7 @@ blockquote span {
 .product-grids .product-grid-topbar .nav button.active {
   background-color: #ECBE00;
   border-color: transparent;
-  color: #fff;
+  color: #000;
 }
 
 .product-grids .product-grid-topbar .nav button:last-child {

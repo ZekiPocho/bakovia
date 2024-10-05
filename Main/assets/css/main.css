@@ -1993,6 +1993,7 @@ ol {
 .header .navbar-cart .cart-items .shopping-item .bottom .total .total-amount {
   float: right;
   font-size: 14px;
+  color: white;
 }
 
 .header .navbar-cart .cart-items .shopping-item .bottom .button {

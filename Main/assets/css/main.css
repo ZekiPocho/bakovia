@@ -6581,7 +6581,7 @@ blockquote span {
    Checkout CSS
 ========================================*/
 .checkout-wrapper {
-  background-color: #f9f9f9;
+  background-color: transparent;
 }
 
 .checkout-steps-form-style-1 #accordionExample li {

@@ -1322,7 +1322,7 @@ ol {
 .button .btn:hover {
   color: #ECBE00;
   background-color: #171D25;
-  border: 2px solid #ECBE00;
+  border: 1px solid #ECBE00;
   -webkit-box-shadow: 0px 4px 4px #0000000f;
           box-shadow: 0px 4px 4px #0000000f;
 }

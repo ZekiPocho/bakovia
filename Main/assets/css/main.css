@@ -6293,6 +6293,9 @@ blockquote span {
 /*======================================
    Start Shopping Cart CSS
 ========================================*/
+.precio {
+  color: #171D25;
+}
 .cart-list-head {
   border-radius: 4px;
   overflow: hidden;
@@ -6325,7 +6328,6 @@ blockquote span {
 @media (max-width: 767px) {
   .cart-single-list {
     text-align: center;
-    color: #171D25;
   }
 }
 

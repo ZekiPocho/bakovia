@@ -4292,7 +4292,7 @@ ol {
 
 /* News Details */
 .blog-single {
-  background: #f9f9f9;
+  background: transparent;
 }
 
 .blog-single .single-inner .main-content-head {

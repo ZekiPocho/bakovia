@@ -6102,9 +6102,9 @@ blockquote span {
 
 /* Product Sidebar */
 .product-sidebar .single-widget {
-  background-color: #fff;
+  background-color: #171D25;
   padding: 30px;
-  border: 1px solid #eee;
+  border: 1px solid #6E869D;
   border-radius: 4px;
   margin-bottom: 30px;
 }

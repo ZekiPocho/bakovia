@@ -6300,7 +6300,7 @@ blockquote span {
 }
 
 .cart-list-title {
-  background-color: #081828;
+  background-color: #171D25;
   padding: 18px 20px;
 }
 
@@ -6325,6 +6325,7 @@ blockquote span {
 @media (max-width: 767px) {
   .cart-single-list {
     text-align: center;
+    color: #171D25;
   }
 }
 

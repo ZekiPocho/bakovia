@@ -8199,3 +8199,8 @@ blockquote span {
     display: none;
   }
 }
+
+.profile .card .card-body {
+  background-color: #171D25;
+  color: white;
+}

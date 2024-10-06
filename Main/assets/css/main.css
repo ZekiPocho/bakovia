@@ -7015,6 +7015,7 @@ blockquote span {
   }
   .profile-header .persona-name{
     position: absolute;
+    left: 150px;
     line-height: 40px;
     font-size: 24px;
     color: white;

@@ -7025,7 +7025,9 @@ blockquote span {
   .profile-info {
     flex-grow: 1;
   }
-
+  .profile-info .bio{
+    max-lines: 4;
+  }
   .profile-info h1 {
     font-size: 2rem;
   }

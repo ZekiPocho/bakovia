@@ -7086,13 +7086,66 @@ blockquote span {
     }
   }
 /*======================================
-	PARTDIAS
+	PARTIDAS
 ========================================*/
 .matches-div{
   background-color: #171D25;
   border: solid 2px #6E869D;
   border-radius: 5px;
   padding: 20px;
+}
+.scoreboard {
+  background-color: #666;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  width: 550px;
+  height: 180px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+.team {
+  width: 100px;
+  text-align: center;
+}
+.team img {
+  width: 100px;
+  height: 100px;
+  background-color: #fff;
+}
+.team-name {
+  margin-top: 5px;
+  font-size: 12px;
+}
+.score {
+  font-size: 48px;
+  font-weight: bold;
+  margin: 0 10px;
+  text-align: center;
+  width: 60px;
+}
+.middle-section {
+  text-align: center;
+  width: 150px;
+}
+.middle-section h1 {
+  font-size: 14px;
+  margin: 5px 0;
+}
+.timer {
+  font-size: 16px;
+  margin: 5px 0;
+}
+.points-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+.table-number {
+  font-size: 12px;
+  margin-top: 2px;
 }
 /*======================================
 	Account Login CSS

@@ -7009,6 +7009,7 @@ blockquote span {
   ====================================*/
   .profile-header {
     display: flex;
+    width: auto;
     align-items: center;
     margin-bottom: 20px;
   }
@@ -7017,6 +7018,10 @@ blockquote span {
     font-size: 24px;
     color: white;
     font-weight: 500px;
+  }
+  .profile-header .avatar{
+    float: left;
+    margin-right: 15px;
   }
   .profile-info {
     flex-grow: 1;

@@ -7004,6 +7004,14 @@ blockquote span {
 .checkout-sidebar-banner a img {
   width: 100%;
 }
+/*=======================================
+  PERFIL
+  ====================================*/
+  .profile .card .card-body {
+    background-color: #171D25;
+    color: white;
+    border: none;
+  }
 
 /*======================================
 	Account Login CSS
@@ -8200,7 +8208,3 @@ blockquote span {
   }
 }
 
-.profile .card .card-body {
-  background-color: #171D25;
-  color: white;
-}

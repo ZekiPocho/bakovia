@@ -7055,6 +7055,28 @@ blockquote span {
       text-align: center;
     }
   }
+  /*COLUMNASCUSTOM*/
+  .custom-row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .custom-col {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .custom-col .card {
+    flex-grow: 1;
+    margin-bottom: 20px;
+  }
+
+  /* Espaciado entre columnas en pantallas grandes */
+  @media (min-width: 768px) {
+    .custom-col:first-child {
+      margin-right: 20px;
+    }
+  }
 /*======================================
 	Account Login CSS
 ========================================*/

@@ -7017,6 +7017,9 @@ blockquote span {
     color: white;
     border: none !important;
   }
+  .profile .profile-image{
+    border-radius: 50%;
+  }
   .profile-info {
     margin-top: 20px;
   }

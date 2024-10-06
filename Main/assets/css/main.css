@@ -7097,10 +7097,8 @@ blockquote span {
 .scoreboard {
   background-color: #666;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 5px;
   text-align: center;
-  width: 550px;
-  height: 180px;
   display: flex;
   justify-content: space-between;
   align-items: center;

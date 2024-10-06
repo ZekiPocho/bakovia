@@ -7055,6 +7055,10 @@ blockquote span {
       text-align: center;
     }
   }
+  .profile-cards .card-body{
+    background-color: #171D25;
+
+  }
   /*COLUMNASCUSTOM*/
   .custom-row {
     display: flex;

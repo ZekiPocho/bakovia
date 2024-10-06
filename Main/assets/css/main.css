@@ -7086,6 +7086,14 @@ blockquote span {
     }
   }
 /*======================================
+	PARTDIAS
+========================================*/
+.matches-div{
+  background-color: #171D25;
+  border: solid 2px #ECBE00;
+  border-radius: 30px;
+}
+/*======================================
 	Account Login CSS
 ========================================*/
 .account-login {

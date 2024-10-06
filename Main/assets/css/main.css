@@ -7010,7 +7010,12 @@ blockquote span {
   .profile .card .card-body {
     background-color: #171D25 !important;
     color: white;
-    border: none;
+    border: none !important;
+  }
+  .profile .card{
+    background-color: #171D25 !important;
+    color: white;
+    border: none !important;
   }
 
 /*======================================

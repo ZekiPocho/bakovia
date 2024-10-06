@@ -7091,7 +7091,9 @@ blockquote span {
 .matches-div{
   background-color: #171D25;
   border: solid 2px #ECBE00;
-  border-radius: 30px;
+  border-radius: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 /*======================================
 	Account Login CSS

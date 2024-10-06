@@ -4296,7 +4296,7 @@ ol {
 }
 
 .blog-single .single-inner .main-content-head {
-  border: 1px solid #eee;
+  border: 2px solid #6E869D;
   border-radius: 4px;
   overflow: hidden;
 }
@@ -4622,12 +4622,12 @@ blockquote span {
 
 /*comments*/
 .post-comments {
-  background-color: #fff;
+  background-color: #171D25;
   padding: 40px;
   margin-top: 30px;
   border-radius: 4px;
   overflow: hidden;
-  border: 1px solid #eee;
+  border: 2px solid #6E869D;
 }
 
 .comment-title {

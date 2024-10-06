@@ -7017,6 +7017,9 @@ blockquote span {
     color: white;
     border: none !important;
   }
+  .profile-info {
+    margin-top: 5px;
+  }
 
 /*======================================
 	Account Login CSS

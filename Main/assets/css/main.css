@@ -7018,7 +7018,8 @@ blockquote span {
     border: none !important;
   }
   .profile .profile-image{
-    margin-top: 50px;
+    margin-top: 20px;
+    margin-left: 10px;
   }
   .profile-info {
     margin-top: 20px;

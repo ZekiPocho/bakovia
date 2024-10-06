@@ -7017,8 +7017,8 @@ blockquote span {
     width: 150px;
     height: 150px;
     object-fit: cover;
-    border-radius: 50%;
     margin-right: 20px;
+    margin-top: 20px;
   }
 
   .profile-info {
@@ -7028,7 +7028,7 @@ blockquote span {
   .profile-info h1 {
     font-size: 2rem;
   }
-  
+
 /*======================================
 	Account Login CSS
 ========================================*/

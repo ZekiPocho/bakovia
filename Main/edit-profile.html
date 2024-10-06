@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Perfil    - Bakovia</title>
+    <title>Editar Perfil    - Bakovia</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/logito.png" />
@@ -189,71 +189,113 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
 
     <div class="container-sm px-4">
+        <h1 class="mt-4">Editar Perfil de Usuario</h1>
+      
         <div class="row">
-            <div class="d-flex flex-wrap align-items-start">
-                <div class="col-auto profile-img" >
-                    <img src="https://via.placeholder.com/200" alt="Foto de perfil" class="profile-img">
-                </div> 
-                <div class="col-7 profile-info-name" >
-                  <h2>Nombre de Usuario</h2>
-                  <div class="bio">
-                    <p class="text-muted">Esta es la biografía del usuario. Aquí puedes añadir más detalles sobre ti.
-                        Esta es la biografía del usuario. Aquí puedes añadir más detalles sobre ti.Esta es la biografía del usuario.
-                         Aquí puedes añadir más detalles sobre ti.Esta es la biografía del usuario. Aquí puedes añadir más detalles sobre ti.
-                         Esta es la biografía del usuario. Aquí puedes añadir más detalles sobre ti.Esta es la biografía del usuario.
-                         Aquí puedes añadir más detalles sobre ti.Esta es la biografía del usuario. Aquí puedes añadir más detalles
-                         sobre ti.</p>
-                  </div>
-                </div>
-                <div class="col profile-info mt-3 mt-md-0" style="margin-top: 20px" >
-                    <h5>Información</h5>
-                    <ul>
-                        <li><p class="text-muted">AMOGUS</p></li>
-                        <li><p class="text-muted">AMOGUS</p></li>
-                        <li><p class="text-muted">AMOGUS</p></li>
-                        <li><p class="text-muted">AMOGUS</p></li>
-                        <li><p class="text-muted">AMOGUS</p></li>
-                    </ul>
-                    
-                  </div>
-              </div>
+          <!-- Sección de perfil -->
+          <div class="d-flex flex-wrap align-items-start">
+            <!-- Foto de perfil -->
+            <div class="col-auto profile-img mb-3">
+              <label for="profileImage" class="form-label">Foto de Perfil</label>
+              <input type="text" id="profileImage" class="form-control" placeholder="URL de la foto de perfil" value="https://via.placeholder.com/200">
+              <img src="https://via.placeholder.com/200" alt="Foto de perfil" class="img-fluid rounded-circle mt-3" id="profilePreview">
+            </div>
+            <!-- Nombre de usuario y biografía -->
+            <div class="col-7 profile-info-name mb-3">
+              <label for="username" class="form-label">Nombre de Usuario</label>
+              <input type="text" id="username" class="form-control" value="Nombre de Usuario">
+      
+              <label for="bio" class="form-label mt-3">Biografía</label>
+              <textarea id="bio" class="form-control" rows="4">Esta es la biografía del usuario. Aquí puedes añadir más detalles sobre ti.</textarea>
+            </div>
+            <!-- Información del perfil -->
+            <div class="col profile-info mt-3 mt-md-0">
+              <h5>Información</h5>
+              <ul class="list-unstyled">
+                <li class="mb-2">
+                  <label for="age" class="form-label">Edad</label>
+                  <input type="text" id="age" class="form-control" value="25">
+                </li>
+                <li class="mb-2">
+                  <label for="gender" class="form-label">Género</label>
+                  <input type="text" id="gender" class="form-control" value="Masculino">
+                </li>
+                <li class="mb-2">
+                  <label for="country" class="form-label">País</label>
+                  <input type="text" id="country" class="form-control" value="Bolivia">
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
+      
         <!-- Divisiones personalizadas -->
-  <div class="row mt-4">
-    <!-- Primera columna (2 cuadros) -->
-    <div class="col-md-8">
-        <div class="profile-cards">
-      <div class="card mb-3">
-        <img src="https://via.placeholder.com/400x200" class="card-img-top" alt="Imagen 1">
-        <div class="card-body">
-            <h5 class="card-title">ARMY SHOWCASE</h5>
-            <p class="card-text">Descripción breve de la sección 1.</p>
+        <div class="row mt-4">
+          <h2>Editar Divisiones Personalizadas</h2>
+      
+          <!-- Primera columna (2 cuadros) -->
+          <div class="col-md-8">
+            <div class="card mb-3">
+              <label for="image1" class="form-label">Imagen de la Sección 1</label>
+              <input type="text" id="image1" class="form-control" placeholder="URL de la imagen 1" value="https://via.placeholder.com/400x200">
+              <img src="https://via.placeholder.com/400x200" class="card-img-top mt-3" alt="Imagen 1" id="imagePreview1">
+              <div class="card-body">
+                <h5 class="card-title">ARMY SHOWCASE</h5>
+                <label for="description1" class="form-label">Descripción de la Sección 1</label>
+                <textarea id="description1" class="form-control" rows="2">Descripción breve de la sección 1.</textarea>
+              </div>
+            </div>
+      
+            <div class="card">
+              <label for="image2" class="form-label">Imagen de la Sección 2</label>
+              <input type="text" id="image2" class="form-control" placeholder="URL de la imagen 2" value="https://via.placeholder.com/400x200">
+              <img src="https://via.placeholder.com/400x200" class="card-img-top mt-3" alt="Imagen 2" id="imagePreview2">
+              <div class="card-body">
+                <h5 class="card-title">Título de Sección 2</h5>
+                <label for="description2" class="form-label">Descripción de la Sección 2</label>
+                <textarea id="description2" class="form-control" rows="2">Descripción breve de la sección 2.</textarea>
+              </div>
+            </div>
           </div>
-      </div>
-      <div class="card">
-        
-        <img src="https://via.placeholder.com/400x200" class="card-img-top" alt="Imagen 2">
-        <div class="card-body">
-            <h5 class="card-title">Título de Sección 2</h5>
-            <p class="card-text">Descripción breve de la sección 2.</p>
+      
+          <!-- Segunda columna (1 cuadro más largo) -->
+          <div class="col-md-4">
+            <div class="card">
+              <label for="image3" class="form-label">Imagen de la Sección 3</label>
+              <input type="text" id="image3" class="form-control" placeholder="URL de la imagen 3" value="https://via.placeholder.com/400x400">
+              <img src="https://via.placeholder.com/400x400" class="card-img-top mt-3" alt="Imagen 3" id="imagePreview3">
+              <div class="card-body">
+                <h5 class="card-title">Título de Sección 3</h5>
+                <label for="description3" class="form-label">Descripción de la Sección 3</label>
+                <textarea id="description3" class="form-control" rows="2">Descripción breve de la sección 3.</textarea>
+              </div>
+            </div>
           </div>
-      </div>
-        </div>
-    </div>
-
-    <!-- Segunda columna (1 cuadro más largo) -->
-    <div class="col-md-4">
-      <div class="card">
-        <img src="https://via.placeholder.com/400x400" class="card-img-top" alt="Imagen 3">
-        <div class="card-body">
-          <h5 class="card-title">Título de Sección 3</h5>
-          <p class="card-text">Descripción breve de la sección 3.</p>
         </div>
       </div>
-    </div>
-  </div>
-</div>
-
+      
+      <!-- Bootstrap JS -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+      
+      <script>
+      // Actualizar imagen de perfil
+      document.getElementById('profileImage').addEventListener('input', function() {
+        document.getElementById('profilePreview').src = this.value;
+      });
+      
+      // Actualizar imagenes de divisiones personalizadas
+      document.getElementById('image1').addEventListener('input', function() {
+        document.getElementById('imagePreview1').src = this.value;
+      });
+      
+      document.getElementById('image2').addEventListener('input', function() {
+        document.getElementById('imagePreview2').src = this.value;
+      });
+      
+      document.getElementById('image3').addEventListener('input', function() {
+        document.getElementById('imagePreview3').src = this.value;
+      });
+      </script>
       
 
 

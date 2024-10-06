@@ -5173,20 +5173,20 @@ blockquote span {
     Item Details CSS
 ========================================*/
 .item-details {
-  background-color: #f9f9f9;
+  background-color: transparent;
 }
 
 .item-details .top-area {
-  background-color: #fff;
+  background-color: #171D25;
   padding: 30px;
-  border: 1px solid #eee;
+  border: 2px solid #ECBE00;
   border-radius: 4px;
 }
 
 .item-details .product-images img {
   width: 100%;
   cursor: pointer;
-  border: 1px solid #eee;
+  border: 1px solid #6E869D;
   border-radius: 4px;
   overflow: hidden;
   padding: 5px;
@@ -5269,10 +5269,10 @@ blockquote span {
 }
 
 .item-details .product-info .price {
-  color: #081828;
+  color: white;
   display: block;
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 26px;
+  font-weight: 800;
   margin-bottom: 15px;
 }
 

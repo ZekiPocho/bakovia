@@ -4830,10 +4830,10 @@ blockquote span {
 /* News sidebar */
 .sidebar .widget {
   padding: 35px;
-  background-color: #fff;
+  background-color: #171D25;
   margin-bottom: 30px;
   border-radius: 4px;
-  border: 1px solid #e7e7e7;
+  border: 1px solid #6E869D;
   overflow: hidden;
 }
 

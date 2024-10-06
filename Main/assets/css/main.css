@@ -7011,6 +7011,7 @@ blockquote span {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+    padding: 10px;
   }
 
   .profile-img {

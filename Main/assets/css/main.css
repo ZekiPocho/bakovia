@@ -147,7 +147,7 @@ h5,
 h6 {
   font-weight: 600;
   margin: 0px;
-  color: #eee;
+  color: white;
 }
 
 h1 a,
@@ -7092,7 +7092,7 @@ blockquote span {
   background-color: #171D25;
   border: solid 2px #6E869D;
   border-radius: 5px;
-  padding: px;
+  padding: 20px;
 }
 /*======================================
 	Account Login CSS

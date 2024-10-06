@@ -7008,7 +7008,7 @@ blockquote span {
   PERFIL
   ====================================*/
   .profile .card .card-body {
-    background-color: #171D25;
+    background-color: #171D25; !important
     color: white;
     border: none;
   }

@@ -5687,9 +5687,9 @@ blockquote span {
 
 /* Product Details Info */
 .product-details-info .single-block {
-  background-color: #fff;
+  background-color: #171D25;
   padding: 30px;
-  border: 1px solid #eee;
+  border: 2px solid #ECBE00;
   border-radius: 4px;
   margin-top: 30px;
 }
@@ -5748,7 +5748,7 @@ blockquote span {
 
 .product-details-info .info-body .normal-list li span {
   font-weight: 500;
-  color: #555;
+  color: #ECBE00;
 }
 
 .product-details-info .info-body .normal-list li:last-child {

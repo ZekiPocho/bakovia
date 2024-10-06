@@ -7055,6 +7055,10 @@ blockquote span {
       text-align: center;
     }
   }
+  .profile-cards .card{
+    background-color: #171D25;
+    border: solid 2px #ECBE00;
+  }
   .profile-cards .card-body{
     background-color: #171D25;
 

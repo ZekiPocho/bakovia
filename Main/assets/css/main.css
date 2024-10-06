@@ -7015,7 +7015,9 @@ blockquote span {
   }
 
   .profile-img {
-    object-fit: cover;
+    object-fit:fill;
+    max-height: 200px;
+    max-width: 200px;
   }
 
   .profile-info {

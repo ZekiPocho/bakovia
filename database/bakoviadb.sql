@@ -18,7 +18,7 @@
 --
 -- Table structure for table `comentarios`
 --
-USE bakoviadb
+USE bakoviadb;
 
 DROP TABLE IF EXISTS `comentarios`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;

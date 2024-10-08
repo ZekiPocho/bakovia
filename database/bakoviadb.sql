@@ -18,8 +18,6 @@
 --
 -- Table structure for table `comentarios`
 --
-CREATE DATABASE bakoviadb;
-USE bakoviadb;
 
 DROP TABLE IF EXISTS `comentarios`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -155,12 +153,9 @@ CREATE TABLE `usuarios` (
   `nombre_usuario` varchar(50) NOT NULL,
   `contrasena` varchar(255) NOT NULL,
   `correo` varchar(100) NOT NULL,
-  `foto_perfil` text,
+  `foto_perfil` varchar(255) DEFAULT NULL,
   `biografia` text,
   `fecha_registro` datetime DEFAULT CURRENT_TIMESTAMP,
-  `verificado` BOOLEAN DEFAULT 0,
-  `token` varchar(255),
-  `rol` varchar(10) NOT NULL,
   PRIMARY KEY (`id_usuario`),
   UNIQUE KEY `nombre_usuario` (`nombre_usuario`),
   UNIQUE KEY `correo` (`correo`)

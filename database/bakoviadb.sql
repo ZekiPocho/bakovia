@@ -18,6 +18,7 @@
 --
 -- Table structure for table `comentarios`
 --
+CREATE DATABASE bakoviadb;
 USE bakoviadb;
 
 DROP TABLE IF EXISTS `comentarios`;

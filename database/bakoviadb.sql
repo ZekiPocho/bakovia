@@ -156,6 +156,7 @@ CREATE TABLE `usuarios` (
   `foto_perfil` varchar(255) DEFAULT NULL,
   `biografia` text,
   `fecha_registro` datetime DEFAULT CURRENT_TIMESTAMP,
+  `rol` varchar(10) NOT NULL,
   PRIMARY KEY (`id_usuario`),
   UNIQUE KEY `nombre_usuario` (`nombre_usuario`),
   UNIQUE KEY `correo` (`correo`)

@@ -153,7 +153,7 @@ CREATE TABLE `usuarios` (
   `nombre_usuario` varchar(50) NOT NULL,
   `contrasena` varchar(255) NOT NULL,
   `correo` varchar(100) NOT NULL,
-  `foto_perfil` varchar(255) DEFAULT NULL,
+  `foto_perfil` text,
   `biografia` text,
   `fecha_registro` datetime DEFAULT CURRENT_TIMESTAMP,
   `verificado` BOOLEAN DEFAULT 0,

@@ -1,35 +1,38 @@
-<?php
-// Varios destinatarios
-$para  = 'user@example.com' . ', '; // atención a la coma
+<?php 
+$destinatario = "pepito@desarrolloweb.com"; 
+$asunto = "Este mensaje es de prueba"; 
+$cuerpo = ' 
+<html> 
+<head> 
+   <title>Prueba de correo</title> 
+</head> 
+<body> 
+<h1>Hola amigos!</h1> 
+<p> 
+<b>Bienvenidos a mi correo electrónico de prueba</b>. Estoy encantado de tener tantos lectores. Este cuerpo del mensaje es del artículo de envío de mails por PHP. Habría que cambiarlo para poner tu propio cuerpo. Por cierto, cambia también las cabeceras del mensaje. 
+</p> 
+</body> 
+</html> 
+'; 
 
-//$para .= 'wez@example.com';
+//para el envío en formato HTML 
+$headers = "MIME-Version: 1.0\r\n"; 
+$headers .= "Content-type: text/html; charset=iso-8859-1\r\n"; 
 
-// título
-$título = 'Bakovia Battle Bunker - Verificación de Correo Electrónico';
+//dirección del remitente 
+$headers .= "From: Miguel Angel Alvarez <pepito@desarrolloweb.com>\r\n"; 
 
-// mensaje
-$mensaje = '
-<html>
-<head>
-  <title>Gracias por registrarte en el Bunker!</title>
-</head>
-<body>
-  <p>lorem ipsum</p>
-  <h2></h2>
-</body>
-</html>
-';
+//dirección de respuesta, si queremos que sea distinta que la del remitente 
+$headers .= "Reply-To: mariano@desarrolloweb.com\r\n"; 
 
-// Para enviar un correo HTML, debe establecerse la cabecera Content-type
-$headers =  'MIME-Version: 1.0' . "\r\n"; 
-$headers = 'From: Your name <info@address.com>' . "\r\n";
-$headers = 'Content-type: text/html; charset=iso-8859-1' . "\r\n"; 
-/*
-// Cabeceras adicionales
-$cabeceras .= 'To: Mary <mary@example.com>, Kelly <kelly@example.com>' . "\r\n";
-$cabeceras .= 'From: Recordatorio <cumples@example.com>' . "\r\n";
-$cabeceras .= 'Cc: birthdayarchive@example.com' . "\r\n";
-$cabeceras .= 'Bcc: birthdaycheck@example.com' . "\r\n";*/
+//ruta del mensaje desde origen a destino 
+$headers .= "Return-path: holahola@desarrolloweb.com\r\n"; 
 
-mail($para, $título, $mensaje);
+//direcciones que recibián copia 
+$headers .= "Cc: maria@desarrolloweb.com\r\n"; 
+
+//direcciones que recibirán copia oculta 
+$headers .= "Bcc: pepe@pepe.com,juan@juan.com\r\n"; 
+
+mail($destinatario,$asunto,$cuerpo,$headers) 
 ?>

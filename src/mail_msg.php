@@ -1,15 +1,15 @@
 <?php 
-$destinatario = "pepito@desarrolloweb.com"; 
-$asunto = "Este mensaje es de prueba"; 
+$destinatario = "user@example.com"; 
+$asunto = "Bakovia - Verificación de Correo Electrónico"; 
 $cuerpo = ' 
 <html> 
 <head> 
-   <title>Prueba de correo</title> 
+   <title>Gracias por registrarte!</title> 
 </head> 
 <body> 
-<h1>Hola amigos!</h1> 
+<h1>Aqui está el código para tu verificación:</h1> 
 <p> 
-<b>Bienvenidos a mi correo electrónico de prueba</b>. Estoy encantado de tener tantos lectores. Este cuerpo del mensaje es del artículo de envío de mails por PHP. Habría que cambiarlo para poner tu propio cuerpo. Por cierto, cambia también las cabeceras del mensaje. 
+<b>123123 
 </p> 
 </body> 
 </html> 
@@ -20,9 +20,9 @@ $headers = "MIME-Version: 1.0\r\n";
 $headers .= "Content-type: text/html; charset=iso-8859-1\r\n"; 
 
 //dirección del remitente 
-$headers .= "From: Miguel Angel Alvarez <pepito@desarrolloweb.com>\r\n"; 
+$headers .= "From: Bakovia Battle Bunker <noreply@bakovia.com>\r\n"; 
 
-//dirección de respuesta, si queremos que sea distinta que la del remitente 
+/*//dirección de respuesta, si queremos que sea distinta que la del remitente 
 $headers .= "Reply-To: mariano@desarrolloweb.com\r\n"; 
 
 //ruta del mensaje desde origen a destino 
@@ -32,7 +32,7 @@ $headers .= "Return-path: holahola@desarrolloweb.com\r\n";
 $headers .= "Cc: maria@desarrolloweb.com\r\n"; 
 
 //direcciones que recibirán copia oculta 
-$headers .= "Bcc: pepe@pepe.com,juan@juan.com\r\n"; 
+$headers .= "Bcc: pepe@pepe.com,juan@juan.com\r\n"; */
 
 mail($destinatario,$asunto,$cuerpo,$headers) 
 ?>

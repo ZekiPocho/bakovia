@@ -6,7 +6,7 @@
         where correo='$email' 
         and token='$codigo' 
         ");
-    if( mysqli_num_rows($res) = 1){
+    if( mysqli_num_rows($res) >= 1){
         header('Location:../public/valid.html');
     }else{
         echo "codigo invalido";

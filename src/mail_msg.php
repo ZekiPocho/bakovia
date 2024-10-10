@@ -5,7 +5,7 @@ $asunto = "Bakovia - Verificación de Correo Electrónico";
 $cuerpo = ' 
 <html> 
 <head> 
-    <meta charset="UTF8" />
+        <meta charset="utf-8" />
    <title>Gracias por registrarte!</title> 
 </head> 
 

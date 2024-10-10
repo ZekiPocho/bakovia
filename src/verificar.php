@@ -24,11 +24,6 @@
         } else {
             echo "Código inválido";
         }
-
-        // Cerrar las sentencias y la conexión
-        $stmt->close();
-        $update_stmt->close();
-        $conn->close();
     } else {
         echo "Error: Datos incompletos.";
     }

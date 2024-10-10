@@ -9,10 +9,11 @@ $cuerpo = '
    <title>Gracias por registrarte!</title> 
 </head> 
 
-<body> 
+<body>
 <h1>Aqui está el código para tu verificación:</h1> 
 <p> 
 <h2>'.$codigo.'</h2>
+<p><a href="http://localhost/bakovia/public/confirm.html?email='.$email.'">Verificar cuenta</a></p>
 </p> 
 </body> 
 </html> 
@@ -25,21 +26,8 @@ $headers .= "Content-type: text/html; charset=iso-8859-1\r\n";
 //dirección del remitente 
 $headers .= "From: Bakovia Battle Bunker <noreply@bakovia.com>\r\n"; 
 
-/*//dirección de respuesta, si queremos que sea distinta que la del remitente 
-$headers .= "Reply-To: mariano@desarrolloweb.com\r\n"; 
-
-//ruta del mensaje desde origen a destino 
-$headers .= "Return-path: holahola@desarrolloweb.com\r\n"; 
-
-//direcciones que recibián copia 
-$headers .= "Cc: maria@desarrolloweb.com\r\n"; 
-
-//direcciones que recibirán copia oculta 
-$headers .= "Bcc: pepe@pepe.com,juan@juan.com\r\n"; */
-
+$enviado = false;
 if(mail($destinatario,$asunto,$cuerpo,$headers)){
-    echo "god";
-}else{
-    echo "wbda";
+    $enviado = true;
 }
 ?>

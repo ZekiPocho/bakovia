@@ -5,8 +5,9 @@
     $res = $conn->query("SELECT * FROM usuarios 
         where correo='$email' 
         and token='$codigo' 
-        ")or die($conn->error);
-    if( mysqli_num_rows($res) > 0 ){
+        ");
+    $result = mysqli_query($res);
+    if( !$result){
         header('Location:../public/valid.html');
     }else{
         echo "codigo invalido";

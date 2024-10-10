@@ -13,7 +13,7 @@ $cuerpo = '
 <h1>Aqui está el código para tu verificación:</h1> 
 <p> 
 <h2>'.$codigo.'</h2>
-<p><a href="http://localhost/bakovia/public/confirm.html?email='.$email.'">Verificar cuenta</a></p>
+<p><a href="http://localhost/bakovia/public/confirm.php?email='.$email.'">Verificar cuenta</a></p>
 </p> 
 </body> 
 </html> 

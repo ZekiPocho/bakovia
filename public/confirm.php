@@ -1,3 +1,12 @@
+<?php 
+if(isset($_GET['email'] )){
+    $email = $_GET['email'] ;
+   
+}else{
+    header('Location: ./login.php');
+}
+
+?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 

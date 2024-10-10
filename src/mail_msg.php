@@ -12,7 +12,7 @@ $cuerpo = '
 <body> 
 <h1>Aqui está el código para tu verificación:</h1> 
 <p> 
-<h2>'$codigo'</h2>
+<h2>'.$codigo.'</h2>
 </p> 
 </body> 
 </html> 

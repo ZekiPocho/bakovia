@@ -4,8 +4,10 @@ $asunto = "Bakovia - Verificación de Correo Electrónico";
 $cuerpo = ' 
 <html> 
 <head> 
+    <meta charset="UTF8" />
    <title>Gracias por registrarte!</title> 
 </head> 
+
 <body> 
 <h1>Aqui está el código para tu verificación:</h1> 
 <p> 
@@ -34,5 +36,9 @@ $headers .= "Cc: maria@desarrolloweb.com\r\n";
 //direcciones que recibirán copia oculta 
 $headers .= "Bcc: pepe@pepe.com,juan@juan.com\r\n"; */
 
-mail($destinatario,$asunto,$cuerpo,$headers) 
+if(mail($destinatario,$asunto,$cuerpo,$headers)){
+    echo "god";
+}else{
+    echo "wbda";
+}
 ?>

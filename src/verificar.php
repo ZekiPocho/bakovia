@@ -23,6 +23,7 @@
             header('Location: ../valid.html');
         } else {
             echo "Código inválido";
+            echo "$codigo";
         }
     } else {
         echo "Error: Datos incompletos.";

@@ -9,7 +9,7 @@
             $pass=sha1($_POST['clave']);
             include "./mail_msg.php";
             if($enviado){
-                $conexion->query("insert into usuarios (nombre_usuario, correo, contrasena, verificado , token) 
+                $conn->query("insert into usuarios (nombre_usuario, correo, contrasena, verificado , token) 
                     values('$name','$email','$pass','no','$codigo')  ")or die($conn->error);
                     header('Location: ../sent.html');
             }else{

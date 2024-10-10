@@ -2,7 +2,7 @@
     include "db.php";
     $email =$_POST['email'];
     $codigo =$_POST['codigo'];
-    $res = $conexion->query("select * from usuarios 
+    $res = $conn->query("select * from usuarios 
         where correo='$email' 
         and token='$codigo' 
         ")or die($conn->error);

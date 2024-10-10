@@ -1,18 +1,23 @@
-<?php
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    require 'db.php';
+<?php 
+   include "./db.php";
+   if( isset($_POST['username'] ) && isset($_POST['email']) && isset($_POST['clave'] ) 
+    && isset($_POST['clave2'] )){
 
-    $nombre_usuario = $_POST['username'];
-    $correo = $_POST['email'];
-    $contraseña = password_hash($_POST['clave'], PASSWORD_DEFAULT);
-
-    $sql = "INSERT INTO usuarios (nombre_usuario, correo, contraseña) VALUES (:nombre_usuario, :correo, :contraseña)";
-    $stmt = $pdo->prepare($sql);
-
-    if ($stmt->execute(['nombre_usuario' => $nombre_usuario, 'correo' => $correo, 'contraseña' => $contraseña])) {
-        echo "Usuario registrado exitosamente";
-    } else {
-        echo "Error al registrar el usuario";
+        if($_POST['clave'] == $_POST['clave2'] ){
+            $name=$_POST['username'];
+            $email=$_POST['email'];
+            $pass=sha1($_POST['clave']);
+            include "./mail_msg.php";
+            if($enviado){
+                $conexion->query("insert into usuarios (nombre_usuario, correo, contrasena, verificado , token) 
+                    values('$name','$email','$pass','no','$codigo')  ")or die($conn->error);
+                    echo "Favor de revisar tu email para verificar tu cuenta";
+            }else{
+                echo "no se pudo enviar el email";
+            }
+        }else{
+            echo "Las contraseñas no coinciden";
+        }
     }
-}
+
 ?>

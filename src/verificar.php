@@ -1,7 +1,7 @@
 <?php
     include "db.php";
-    $email =$_POST['email'];
-    $codigo =$_POST['codigo'];
+    $email =$_GET['email'];
+    $codigo =$_GET['codigo'];
     $res = $conn->query("SELECT * FROM usuarios 
         where correo='$email' 
         and token='$codigo' 

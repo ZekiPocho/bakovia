@@ -7,7 +7,7 @@
         and token='$codigo' 
         ");
     if( mysqli_num_rows($res) > 0){
-        $conn->query("update usuarios set verificado = 'si' where email = '$email' ");
+        $conn->query("update usuarios set verificado = 'si' where correo = '$email' ");
         header('Location:../public/valid.html');
     }else{
         echo "codigo invalido";

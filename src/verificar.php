@@ -6,7 +6,7 @@
         where correo='$email' 
         and token='$codigo'
         ")or die($conn->error);
-    if( $conn->query($res) === TRUE ){
+    if( $conn->query($res) = TRUE ){
         $conn->query("update usuarios set verificado = 'si' where correo = '$email' ");
         header('Location: ../valid.html');
     }

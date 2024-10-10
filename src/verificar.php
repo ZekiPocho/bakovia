@@ -7,7 +7,7 @@
         and token='$codigo' 
         ")or die($conn->error);
     if( mysqli_num_rows($res) > 0 ){
-        header('Location:../public/valid.html')
+        header('Location:../public/valid.html');
     }else{
         echo "codigo invalido";
     }

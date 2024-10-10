@@ -5,8 +5,9 @@
     $res = $conn->query("select * from usuarios 
         where correo='$email' 
         and token='$codigo'
-        ")or die($conn->error);
-    if( $conn->query($res) = TRUE ){
+        ");
+    $rta = mysqli_query($conn, $res);
+    if(!$rta){
         $conn->query("update usuarios set verificado = 'si' where correo = '$email' ");
         header('Location: ../valid.html');
     }

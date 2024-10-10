@@ -2,16 +2,13 @@
     include "db.php";
     $email =$_POST['email'];
     $codigo =$_POST['codigo'];
-    $res = $conn->query("select * from usuarios 
+    $res = $conn->query("SELECT * FROM usuarios 
         where correo='$email' 
-        and token='$codigo'
-        ");
-    $rta = mysqli_query($conn, $res);
-    if(!$rta){
-        $conn->query("update usuarios set verificado = 'si' where correo = '$email' ");
-        header('Location: ../valid.html');
-    }
-    else{
+        and token='$codigo' 
+        ")or die($conn->error);
+    if( mysqli_num_rows($res) > 0 ){
+        header('Location:../public/valid.html')
+    }else{
         echo "codigo invalido";
     }
 ?>

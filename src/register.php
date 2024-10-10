@@ -11,7 +11,7 @@
             if($enviado){
                 $conn->query("insert into usuarios (nombre_usuario, correo, contrasena, verificado , token) 
                     values('$name','$email','$pass','no','$codigo')  ")or die($conn->error);
-                    header('Location: ../sent.html');
+                    header('Location: ../public/sent.html');
             }else{
                 echo "no se pudo enviar el email";
             }

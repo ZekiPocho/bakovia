@@ -1,6 +1,6 @@
 <?php
 // Varios destinatarios
-$para  = 'Papercut@user.com' . ', '; // atención a la coma
+$para  = 'user@example.com' . ', '; // atención a la coma
 
 //$para .= 'wez@example.com';
 
@@ -31,5 +31,5 @@ $cabeceras .= 'From: Recordatorio <cumples@example.com>' . "\r\n";
 $cabeceras .= 'Cc: birthdayarchive@example.com' . "\r\n";
 $cabeceras .= 'Bcc: birthdaycheck@example.com' . "\r\n";*/
 
-mail($para, $título, $mensaje, $headers);
+mail($para, $título, $mensaje);
 ?>

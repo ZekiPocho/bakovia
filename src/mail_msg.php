@@ -29,6 +29,5 @@ $cabeceras .= 'From: Recordatorio <cumples@example.com>' . "\r\n";
 $cabeceras .= 'Cc: birthdayarchive@example.com' . "\r\n";
 $cabeceras .= 'Bcc: birthdaycheck@example.com' . "\r\n";*/
 
-// Enviarlo
 mail($para, $título, $mensaje, $cabeceras);
 ?>

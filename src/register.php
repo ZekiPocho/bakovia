@@ -11,7 +11,7 @@
             if($enviado){
                 $conexion->query("insert into usuarios (nombre_usuario, correo, contrasena, verificado , token) 
                     values('$name','$email','$pass','no','$codigo')  ")or die($conn->error);
-                    echo "Favor de revisar tu email para verificar tu cuenta";
+                    header('Location: ../sent.html');
             }else{
                 echo "no se pudo enviar el email";
             }

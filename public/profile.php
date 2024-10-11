@@ -210,7 +210,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                   </div>
                 </div>
                 <div class="col profile-info mt-3 mt-md-0" style="margin-top: 20px" >
-                    <h5>Información</h5>
                     <ul>
                         <center>    
                         <li><p class="text-muted">RANGO</p></li>

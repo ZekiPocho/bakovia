@@ -190,14 +190,14 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     <br>
 
 
-
+    <a href="../src/logout.php">CERRAR SESIÓN</a>
     <div class="container-sm px-4">
         <div class="row">
             <div class="d-flex flex-wrap align-items-start">
                 <div class="col-auto profile-img" >
                     <img src="https://via.placeholder.com/200" alt="Foto de perfil" class="profile-img">
                 </div> 
-                <a href="../src/logout.php">CERRAR SESIÓN</a>
+                
                 <div class="col-7 profile-info-name" >
                   <h2>Nombre de Usuario</h2>
                   <div class="bio">

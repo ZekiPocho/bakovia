@@ -201,7 +201,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                             <p>Llena el formulario para ingresar al Bunker</p>
                         </center>
                         </div>
-                        <form class="row" action="../src/register.php" method="post" enctype="multipart/form-data">
+                        <form class="row" action="register.php" method="post" enctype="multipart/form-data">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="reg-fn">Nombre de Usuario</label>

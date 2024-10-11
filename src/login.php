@@ -8,6 +8,8 @@
         verificado = 'si'
         ")or die($conn->error);
     if( mysqli_num_rows($res) > 0 ){
+        session_start();
+        $_SESSION['user'] = $email;
         header("Location:../public/index.html");
         
     }else{

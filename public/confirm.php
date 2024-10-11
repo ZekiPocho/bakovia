@@ -185,7 +185,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                             <h3>Verificar Cuenta</h3>
                         </center>
                         </div>
-                        <form class="row justify-content-center" action="../src/verificar.php" method="post" enctype="multipart/form-data">
+                        <form class="row justify-content-center" action="verificar.php" method="post" enctype="multipart/form-data">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <center><label for="c">Código de Verificación</label></center>

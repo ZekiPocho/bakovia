@@ -1,5 +1,5 @@
 <?php
-    require_once "../src/validate_session.php";
+    require_once "validate_session.php";
 ?>
 <!DOCTYPE html>
 
@@ -197,7 +197,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <div class="col-auto profile-img" >
                     <img src="https://via.placeholder.com/200" alt="Foto de perfil" class="profile-img">
                 </div> 
-                <a href="../src/logout.php">CERRAR SESIÓN</a>
+                <a href="logout.php">CERRAR SESIÓN</a>
                 <div class="col-7 profile-info-name" >
                   <h2>Nombre de Usuario</h2>
                   <div class="bio">

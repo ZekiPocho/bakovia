@@ -7,7 +7,7 @@
             $name=$_POST['username'];
             $email=$_POST['email'];
             $pass=sha1($_POST['clave']);
-            include "./mail_msg.php";
+            include "mail_msg.php";
             if($enviado){
                 $conn->query("insert into usuarios (nombre_usuario, correo, contrasena, verificado , token) 
                     values('$name','$email','$pass','no','$codigo')  ")or die($conn->error);

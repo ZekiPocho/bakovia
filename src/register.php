@@ -21,3 +21,39 @@
        }
    }
 ?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+</head>
+<body>
+
+    <h2>Formulario de Registro</h2>
+
+    <!-- Mostrar el mensaje de error en la misma página -->
+    <?php if (!empty($error_message)): ?>
+        <p style="color: red;"><?php echo $error_message; ?></p>
+    <?php endif; ?>
+
+    <!-- Formulario de registro -->
+    <form action="register.php" method="POST">
+        <label for="username">Usuario:</label>
+        <input type="text" name="username" required><br>
+
+        <label for="email">Correo electrónico:</label>
+        <input type="email" name="email" required><br>
+
+        <label for="clave">Contraseña:</label>
+        <input type="password" name="clave" required><br>
+
+        <label for="clave2">Repetir contraseña:</label>
+        <input type="password" name="clave2" required><br>
+
+        <input type="submit" value="Registrarse">
+    </form>
+
+</body>
+</html>

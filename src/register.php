@@ -13,7 +13,7 @@
                     values('$name','$email','$pass','no','$codigo')  ")or die($conn->error);
                     header('Location: ../public/sent.html');
             }else{
-                echo "no se pudo enviar el email";
+                echo "Error al enviar el Email, intente nuevamente";
             }
         }else{
             echo "Las contraseñas no coinciden";

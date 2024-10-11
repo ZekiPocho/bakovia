@@ -1,26 +1,3 @@
-<?php 
-   include "db.php";
-   if( isset($_POST['username'] ) && isset($_POST['email']) && isset($_POST['clave'] ) 
-    && isset($_POST['clave2'] )){
-
-        if($_POST['clave'] == $_POST['clave2'] ){
-            $name=$_POST['username'];
-            $email=$_POST['email'];
-            $pass=sha1($_POST['clave']);
-            include "mail_msg.php";
-            if($enviado){
-                $conn->query("insert into usuarios (nombre_usuario, correo, contrasena, verificado , token) 
-                    values('$name','$email','$pass','no','$codigo')  ")or die($conn->error);
-                    header('Location: ../public/sent.html');
-            }else{
-                echo "Error al enviar el Email, intente nuevamente";
-            }
-        }else{
-            echo "<div class='alert alert-danger'>las contraseñas no coinciden</div>";
-        }
-    }
-
-?>
 
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
@@ -199,6 +176,29 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                             <center>
                             <h3>Registro</h3>
                             <p>Llena el formulario para ingresar al Bunker</p>
+                            <?php 
+   include "db.php";
+   if( isset($_POST['username'] ) && isset($_POST['email']) && isset($_POST['clave'] ) 
+    && isset($_POST['clave2'] )){
+
+        if($_POST['clave'] == $_POST['clave2'] ){
+            $name=$_POST['username'];
+            $email=$_POST['email'];
+            $pass=sha1($_POST['clave']);
+            include "mail_msg.php";
+            if($enviado){
+                $conn->query("insert into usuarios (nombre_usuario, correo, contrasena, verificado , token) 
+                    values('$name','$email','$pass','no','$codigo')  ")or die($conn->error);
+                    header('Location: ../public/sent.html');
+            }else{
+                echo "Error al enviar el Email, intente nuevamente";
+            }
+        }else{
+            echo "<div class='alert alert-danger'>las contraseñas no coinciden</div>";
+        }
+    }
+
+?>
                         </center>
                         </div>
                         <form class="row" action="register.php" method="post" enctype="multipart/form-data">

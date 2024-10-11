@@ -190,7 +190,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                 <div class="form-group">
                                     <center><label for="c">Código de Verificación</label></center>
                                     <input class="form-control" type="number" name="codigo" id="c" required>
-                                    <input class="form-control" id="email" name="email" value="<?php echo $email;?>">
+                                    <input class="form-control" type="hidden" id="email" name="email" value="<?php echo $email;?>">
                                 </div>
                             </div>
                             <div class="button">

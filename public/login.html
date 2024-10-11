@@ -170,7 +170,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
             <div class="row">
                 <div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">
-                    <form class="card login-form" method="post">
+                    <form class="card login-form" action="../src/login.php" method="post">
                         <div class="card-body">
                             <div class="title">
                                 <center>
@@ -178,12 +178,12 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                             </center>
                             </div>
                             <div class="form-group input-group">
-                                <label for="reg-fn">Nombre de Usuario</label>
-                                <input class="form-control" type="email" name="username" id="reg-email" required>
+                                <label for="reg-fn">Correo Electrónico</label>
+                                <input class="form-control" type="email" name="email" id="reg-email" required>
                             </div>
                             <div class="form-group input-group">
                                 <label for="reg-fn">Contraseña</label>
-                                <input class="form-control" name=contraseña type="password" id="reg-pass" required>
+                                <input class="form-control" name="clave" type="password" id="reg-pass" required>
                             </div>
                             <div class="d-flex flex-wrap justify-content-between bottom-content">
                                 <div class="form-check">
@@ -193,7 +193,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                             </div>
                             
                                 <div class="button">
-                                    <button class="btn" type="submit" name="iniciar-sesion">Iniciar Sesión</button>
+                                    <button class="btn" type="submit" name="iniciar">Iniciar Sesión</button>
                                 </div>
                                     
                                 <p class="outer-link">¿Eres nuevo por acá? <a href="register.html">Regístrate aquí </a>

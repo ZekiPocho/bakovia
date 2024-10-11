@@ -180,7 +180,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 include "db.php";
 if( isset($_POST['username'] ) && isset($_POST['email']) && isset($_POST['clave'] ) 
     && isset($_POST['clave2'] )){
-
         if($_POST['clave'] == $_POST['clave2'] ){
             $name=$_POST['username'];
             $email=$_POST['email'];
@@ -189,7 +188,7 @@ if( isset($_POST['username'] ) && isset($_POST['email']) && isset($_POST['clave'
             if($enviado){
                 $conn->query("insert into usuarios (nombre_usuario, correo, contrasena, verificado , token) 
                     values('$name','$email','$pass','no','$codigo')  ")or die($conn->error);
-                    header('Location: ../public/sent.html');
+                    header('Location:sent.html');
             }else{
                 echo "Error al enviar el Email, intente nuevamente";
             }

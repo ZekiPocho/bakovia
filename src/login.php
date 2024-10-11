@@ -4,7 +4,7 @@
     $password = sha1($_POST['clave']);
     $res = $conn->query("select * from usuarios 
         where correo='$email' 
-        and password='$password'  and 
+        and contrasena='$password'  and 
         verificado = 'si'
         ")or die($conn->error);
     if( mysqli_num_rows($res) > 0 ){

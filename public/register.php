@@ -16,7 +16,7 @@
                 echo "Error al enviar el Email, intente nuevamente";
             }
         }else{
-            echo <div class="alert alert-danger">LAS CONTRASEÑAS NO COINCIDEN</div>;
+            echo <div>las contraseñas no coinciden</div>;
         }
     }
 

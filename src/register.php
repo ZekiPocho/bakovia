@@ -16,7 +16,7 @@
                 echo "Error al enviar el Email, intente nuevamente";
             }
         }else{
-            echp "ERROR";
+            echo "ERROR";
         }
     }
 

@@ -1,6 +1,8 @@
 <?php 
    include "./db.php";
-   if( isset($_POST['registrar'] )) {
+   if( isset($_POST['username'] ) && isset($_POST['email']) && isset($_POST['clave'] ) 
+    && isset($_POST['clave2'] )){
+
         if($_POST['clave'] == $_POST['clave2'] ){
             $name=$_POST['username'];
             $email=$_POST['email'];

@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-include "./db.php";
+include "src/db.php";
 
 // Verificar si las cookies existen
 if (isset($_COOKIE['email']) && isset($_COOKIE['password'])) {

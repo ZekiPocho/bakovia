@@ -1,5 +1,5 @@
 <?php 
-   include "./db.php";
+   include "src/db.php";
    if( isset($_POST['username'] ) && isset($_POST['email']) && isset($_POST['clave'] ) 
     && isset($_POST['clave2'] )){
 

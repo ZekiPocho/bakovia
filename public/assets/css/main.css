@@ -7094,6 +7094,12 @@ blockquote span {
   border-radius: 5px;
   padding: 20px;
 }
+.matches-div-mini{
+  background-color: #171D25;
+  border: solid 2px #6E869D;
+  border-radius: 5px;
+  padding: 5px;
+}
 .scoreboard {
   background-color: #666;
   padding: 10px;

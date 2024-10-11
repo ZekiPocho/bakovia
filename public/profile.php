@@ -213,7 +213,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                     <ul>
                         <center>    
                         <li><p class="text-muted">RANGO</p></li>
-                        <li><img src="https://via.placeholder.com/500" alt="Foto de perfil" class="profile-img" style="width: 50px; height: 50px;"></li>
+                        <li><img src="https://via.placeholder.com/500" alt="rango" style="width: 70px; height: 70px;"></li>
                         <li><p class="text-muted">NOMBRE RANGO</p></li>
                         <li><p class="text-muted">MIEMBRO DESDE</p></li>
                         <li><p class="text-muted">FECHA</p></li>

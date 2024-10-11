@@ -1,6 +1,6 @@
 <?php
     include "./db.php";
-    $user =$_POST['email'];
+    $email =$_POST['email'];
     $password = sha1($_POST['clave']);
     $res = $conn->query("select * from usuarios 
         where correo='$email' 

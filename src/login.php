@@ -8,7 +8,7 @@
         verificado = 'si'
         ")or die($conn->error);
     if( mysqli_num_rows($res) > 0 ){
-        header("Location:../index.html");
+        header("Location:../public/index.html");
         
     }else{
         echo "login incorrecto";

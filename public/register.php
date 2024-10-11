@@ -176,9 +176,9 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                             <center>
                             <h3>Registro</h3>
                             <p>Llena el formulario para ingresar al Bunker</p>
-                            <?php 
-   include "db.php";
-   if( isset($_POST['username'] ) && isset($_POST['email']) && isset($_POST['clave'] ) 
+<?php 
+include "db.php";
+if( isset($_POST['username'] ) && isset($_POST['email']) && isset($_POST['clave'] ) 
     && isset($_POST['clave2'] )){
 
         if($_POST['clave'] == $_POST['clave2'] ){
@@ -197,7 +197,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             echo "<div class='alert alert-danger'>las contraseñas no coinciden</div>";
         }
     }
-
 ?>
                         </center>
                         </div>

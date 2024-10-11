@@ -212,11 +212,13 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <div class="col profile-info mt-3 mt-md-0" style="margin-top: 20px" >
                     <h5>Información</h5>
                     <ul>
-                        <li><p class="text-muted">AMOGUS</p></li>
-                        <li><p class="text-muted">AMOGUS</p></li>
-                        <li><p class="text-muted">AMOGUS</p></li>
-                        <li><p class="text-muted">AMOGUS</p></li>
-                        <li><p class="text-muted">AMOGUS</p></li>
+                        <center>    
+                        <li><p class="text-muted">RANGO</p></li>
+                        <li><img src="https://via.placeholder.com/500" alt="Foto de perfil" class="profile-img" style="width: 100px; height: 100px;"></li>
+                        <li><p class="text-muted">NOMBRE RANGO</p></li>
+                        <li><p class="text-muted">MIEMBRO DESDE</p></li>
+                        <li><p class="text-muted">FECHA</p></li>
+                        </center>
                     </ul>
                     
                   </div>

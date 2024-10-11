@@ -199,7 +199,9 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 </div> 
                 
                 <div class="col-7 profile-info-name" >
-                  <h2>Nombre de Usuario</h2>
+                  <h2><?php
+                    echo $_SESSION['user'];                  
+                  ?></h2>
                   <div class="bio">
                     <p class="text-muted">Esta es la biografía del usuario. Aquí puedes añadir más detalles sobre ti.
                         Esta es la biografía del usuario. Aquí puedes añadir más detalles sobre ti.Esta es la biografía del usuario.

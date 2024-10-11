@@ -16,7 +16,7 @@
                 echo "Error al enviar el Email, intente nuevamente";
             }
         }else{
-            header(Location: "register.html");
+            echp "ERROR"
         }
     }
 

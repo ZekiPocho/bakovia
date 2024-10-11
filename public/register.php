@@ -165,10 +165,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 </header>
 <!--TERMINA HEADER Y NAVBAR PRO-->
 
-
-    <!-- Start Account Register Area -->
-    <div class="account-login section">
-    <?php 
+<?php 
 include "db.php"; // Asegúrate de que no haya espacios antes de esta línea
 
 if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['clave']) && isset($_POST['clave2'])) {
@@ -195,6 +192,9 @@ if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['clave']
     }
 }
 ?>
+
+    <!-- Start Account Register Area -->
+    <div class="account-login section">
         <div class="container-sm-register-login">
             <div class="row">
                 <div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">

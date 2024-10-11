@@ -188,7 +188,7 @@ if( isset($_POST['username'] ) && isset($_POST['email']) && isset($_POST['clave'
             if($enviado){
                 $conn->query("insert into usuarios (nombre_usuario, correo, contrasena, verificado , token) 
                     values('$name','$email','$pass','no','$codigo')  ")or die($conn->error);
-                    header('Location:sent.html');
+                    header("Location:sent.html");
             }else{
                 echo "Error al enviar el Email, intente nuevamente";
             }

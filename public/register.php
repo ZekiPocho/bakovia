@@ -216,6 +216,10 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     <!-- End Account Register Area -->
 
 
+    <?php
+    include="src/register.php"
+    ?>
+
 
     <!-- ========================= JS here ========================= -->
     <script src="assets/js/bootstrap.min.js"></script>

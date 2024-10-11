@@ -16,7 +16,7 @@
                 echo "Error al enviar el Email, intente nuevamente";
             }
         }else{
-            echo "Las contraseñas no coinciden";
+            header(Location: "register.html");
         }
     }
 

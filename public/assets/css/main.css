@@ -7125,7 +7125,7 @@ blockquote span {
   width: 60px;
 }
 .score-mini {
-  font-size: 20px;
+  font-size: 30px;
   font-weight: bold;
   margin: 0 10px;
   text-align: center;
@@ -7144,6 +7144,11 @@ blockquote span {
 }
 .points-title {
   font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+.points-title-mini {
+  font-size: 10px;
   font-weight: bold;
   margin-top: 10px;
 }

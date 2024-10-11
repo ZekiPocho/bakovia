@@ -215,6 +215,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         <li><p class="text-muted">RANGO</p></li>
                         <li><img src="https://via.placeholder.com/500" alt="rango" style="width: 80px; height: 80px;"></li>
                         <li><p class="text-muted">NOMBRE RANGO</p></li>
+                        <br>
                         <li><p class="text-muted">MIEMBRO DESDE</p></li>
                         <li><p class="text-muted">FECHA</p></li>
                         </center>

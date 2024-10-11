@@ -217,7 +217,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
 
     <?php
-    include="src/register.php"
+    include "src/register.php"
     ?>
 
 

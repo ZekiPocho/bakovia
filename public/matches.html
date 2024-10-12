@@ -186,12 +186,101 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
      <!---->
     <div class="container-sm mt-4">
         <div class="row">
-            <!-- Columna de partidas en progreso -->
+            <?php
+            <?php
+// Conexión a la base de datos
+$servername = "localhost";  // Cambia esto si es necesario
+$username = "tu_usuario";
+$password = "tu_contraseña";
+$dbname = "warhammer";  // Cambia esto por el nombre de tu base de datos
+
+// Crear la conexión
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Verificar la conexión
+if ($conn->connect_error) {
+    die("Conexión fallida: " . $conn->connect_error);
+}
+
+// Consulta para obtener partidas en progreso
+$sql = "
+    SELECT 
+        p.id_partida, p.mesa, p.puntos, p.duración, p.juego, 
+        p.puntaje_jugador1, p.puntaje_jugador2, 
+        u1.nombre_usuario AS usuario1, u1.foto_perfil AS foto1, f1.nombre_faccion AS faccion1,
+        u2.nombre_usuario AS usuario2, u2.foto_perfil AS foto2, f2.nombre_faccion AS faccion2
+    FROM partidas p
+    JOIN usuarios u1 ON p.id_jugador1 = u1.id_usuario
+    JOIN usuarios u2 ON p.id_jugador2 = u2.id_usuario
+    JOIN facciones f1 ON p.faccion_jugador1 = f1.id_faccion
+    JOIN facciones f2 ON p.faccion_jugador2 = f2.id_faccion
+    WHERE p.estado = 'en progreso';
+";
+
+$result = $conn->query($sql);
+
+// Verificar si se encontraron resultados
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        echo '
+        <!-- Partida -->
+        <div class="match-entry mb-2 text-center">
+            <div class="row align-items-center">
+                <div class="col-2">
+                    <img src="' . $row["foto1"] . '" alt="Foto de perfil ' . $row["usuario1"] . '" class="img-fluid">
+                </div>
+                <div class="col-3">
+                    <span>' . $row["usuario1"] . '</span>
+                </div>
+                <div class="col-2">
+                    <img src="assets/images/matches/sword.png" alt="Icono de batalla" class="img-fluid" style="max-width: 25px;">
+                </div>
+                <div class="col-3">
+                    <span>' . $row["usuario2"] . '</span>
+                </div>
+                <div class="col-2">
+                    <img src="' . $row["foto2"] . '" alt="Foto de perfil ' . $row["usuario2"] . '" class="img-fluid">
+                </div>
+            </div>
+            <div class="scoreboard">
+                <!-- Equipo 1 -->
+                <div class="team">
+                    <img src="https://via.placeholder.com/100" alt="Equipo 1">
+                    <div class="team-name">' . $row["faccion1"] . '</div>
+                </div>
+                <!-- Puntaje izquierdo -->
+                <div class="score">' . $row["puntaje_jugador1"] . '</div>
+                <!-- Sección central -->
+                <div class="middle-section">
+                    <h1>' . $row["juego"] . '</h1>
+                    <h1>Duración: ' . $row["duración"] . '</h1>
+                    <h1>' . $row["puntos"] . ' Pts.</h1>
+                    <h1>MESA - ' . $row["mesa"] . '</h1>
+                </div>
+                <!-- Puntaje derecho -->
+                <div class="score">' . $row["puntaje_jugador2"] . '</div>
+                <!-- Equipo 2 -->
+                <div class="team">
+                    <img src="https://via.placeholder.com/100" alt="Equipo 2">
+                    <div class="team-name">' . $row["faccion2"] . '</div>
+                </div>
+            </div>
+        </div>';
+    }
+} else {
+    echo "No hay partidas en progreso.";
+}
+
+// Cerrar la conexión
+$conn->close();
+?>
+
+            ?>
+            <!-- Columna de partidas en progreso
             <div class="col-xxl-6">
                 <div class="matches-div text-center">
                     <h3 style="border-bottom: solid 1px #6E869D;">PARTIDAS EN PROGRESO</h3>
                     <br>
-                    <!-- Partida 1 -->
                     <div class="match-entry mb-2 text-center">
                         <div class="row align-items-center">
                             <div class="col-2">
@@ -211,14 +300,11 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                             </div>
                         </div>
                         <div class="scoreboard">
-                            <!-- Equipo 1 -->
                             <div class="team">
                                 <img src="../public/assets/images/icons/ultras.svg" alt="Equipo 1">
                                 <div class="team-name">Adeptus Astartes<br>Ultramarines</div>
                             </div>
-                            <!-- Puntaje izquierdo -->
-                            <div class="score .sixtyfour-convergence">15</div>
-                            <!-- Sección central -->
+                            <div class="score">15</div>
                             <div class="middle-section">
                                 <h1>Warhammer 40.000</h1>
                                 <h1>1000 Pts.</h1>  
@@ -226,62 +312,16 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                 <h1>Ronda Nº1</h1>
                                 <h1>MESA - 3</h1>
                             </div>
-                            <!-- Puntaje derecho -->
-                            <div class="score .sixtyfour-convergence">15</div>
-                            <!-- Equipo 2 -->
+                            <div class="score">15</div>
                             <div class="team">
                                 <img src="../public/assets/images/icons/ynnari.svg" alt="Equipo 2">
                                 <div class="team-name">Xenos<br>Aeldari</div>
                             </div>
                         </div>
                     </div>
-                    <!-- Partida 2 -->
-                    <div class="match-entry mb-2 text-center">
-                        <div class="row align-items-center">
-                            <div class="col-2">
-                                <img src="https://via.placeholder.com/50x50" alt="Foto de perfil usuario1" class="img-fluid">
-                            </div>
-                            <div class="col-3">
-                                <span>Usuario1</span>
-                            </div>
-                            <div class="col-2">
-                                <img src="assets/images/matches/sword.png" alt="Icono de batalla" class="img-fluid" style="max-width: 25px;">
-                            </div>
-                            <div class="col-3">
-                                <span>Usuario2</span>
-                            </div>
-                            <div class="col-2">
-                                <img src="https://via.placeholder.com/50x50" alt="Foto de perfil usuario2" class="img-fluid">
-                            </div>
-                        </div>
-                        <div class="scoreboard">
-                            <!-- Equipo 1 -->
-                            <div class="team">
-                                <img src="https://via.placeholder.com/100" alt="Equipo 1">
-                                <div class="team-name">Adeptus Astartes<br>Ultramarines</div>
-                            </div>
-                            <!-- Puntaje izquierdo -->
-                            <div class="score">15</div>
-                            <!-- Sección central -->
-                            <div class="middle-section">
-                                <h1>Warhammer 40.000</h1>
-                                <h1>Ronda Nº1</h1>
-                            <div class="timer"><i class="lni lni-hourglass"></i>00:00:00</div>
-                                <div class="points-title">PUNTOS DE VICTORIA</div>
-                                <div class="table-number">MESA - 3</div>
-                            </div>
-                            <!-- Puntaje derecho -->
-                            <div class="score">15</div>
-                            <!-- Equipo 2 -->
-                            <div class="team">
-                                <img src="https://via.placeholder.com/100" alt="Equipo 2">
-                                <div class="team-name">Xenos<br>Aeldari</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </div>        
             </div>
-    
+     -->
             <!-- Columna de partidas abiertas para jugar -->
             <div class="col-xxl-6">
                 <div class="matches-div text-center">

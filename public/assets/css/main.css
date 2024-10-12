@@ -7091,8 +7091,7 @@ blockquote span {
 .match-entry{
   border: solid 2px #6E869D;
   border-radius: 5px;
-  padding-right: 2px;
-  padding-left: 2px;
+  padding: 5px;
 }
 .matches-div{
   background-color: #171D25;
@@ -7149,8 +7148,8 @@ blockquote span {
 }
 .middle-section {
   text-align: center;
-  border-left: solid 1px #ffffff;
-  border-right: solid 1px #ffffff;
+  margin-left: 2px;
+  margin-right: 2px;
 }
 .middle-section h1 {
   font-size: 14px;

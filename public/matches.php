@@ -186,9 +186,83 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
      <!---->
     <div class="container-sm mt-4">
         <div class="row">
-            <?php
-            
-            ?>
+        <?php
+// Conexión a la base de datos
+include "./db.php";
+
+// Consulta para obtener partidas en progreso
+$sql = "
+    SELECT 
+        p.id_partida, p.mesa, p.puntos, p.duración, p.juego, 
+        p.puntaje_jugador1, p.puntaje_jugador2, 
+        u1.nombre_usuario AS usuario1, u1.foto_perfil AS foto1, f1.nombre_faccion AS faccion1,
+        u2.nombre_usuario AS usuario2, u2.foto_perfil AS foto2, f2.nombre_faccion AS faccion2
+    FROM partidas p
+    JOIN usuarios u1 ON p.id_jugador1 = u1.id_usuario
+    JOIN usuarios u2 ON p.id_jugador2 = u2.id_usuario
+    JOIN facciones f1 ON p.faccion_jugador1 = f1.id_faccion
+    JOIN facciones f2 ON p.faccion_jugador2 = f2.id_faccion
+    WHERE p.estado = 'en progreso';
+";
+
+$result = $conn->query($sql);
+
+// Verificar si se encontraron resultados
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        echo '
+        <!-- Partida -->
+        <div class="match-entry mb-2 text-center">
+            <div class="row align-items-center">
+                <div class="col-2">
+                    <img src="' . $row["foto1"] . '" alt="Foto de perfil ' . $row["usuario1"] . '" class="img-fluid">
+                </div>
+                <div class="col-3">
+                    <span>' . $row["usuario1"] . '</span>
+                </div>
+                <div class="col-2">
+                    <img src="assets/images/matches/sword.png" alt="Icono de batalla" class="img-fluid" style="max-width: 25px;">
+                </div>
+                <div class="col-3">
+                    <span>' . $row["usuario2"] . '</span>
+                </div>
+                <div class="col-2">
+                    <img src="' . $row["foto2"] . '" alt="Foto de perfil ' . $row["usuario2"] . '" class="img-fluid">
+                </div>
+            </div>
+            <div class="scoreboard">
+                <!-- Equipo 1 -->
+                <div class="team">
+                    <img src="https://via.placeholder.com/100" alt="Equipo 1">
+                    <div class="team-name">' . $row["faccion1"] . '</div>
+                </div>
+                <!-- Puntaje izquierdo -->
+                <div class="score">' . $row["puntaje_jugador1"] . '</div>
+                <!-- Sección central -->
+                <div class="middle-section">
+                    <h1>' . $row["juego"] . '</h1>
+                    <h1>Duración: ' . $row["duración"] . '</h1>
+                    <h1>' . $row["puntos"] . ' Pts.</h1>
+                    <h1>MESA - ' . $row["mesa"] . '</h1>
+                </div>
+                <!-- Puntaje derecho -->
+                <div class="score">' . $row["puntaje_jugador2"] . '</div>
+                <!-- Equipo 2 -->
+                <div class="team">
+                    <img src="https://via.placeholder.com/100" alt="Equipo 2">
+                    <div class="team-name">' . $row["faccion2"] . '</div>
+                </div>
+            </div>
+        </div>';
+    }
+} else {
+    echo "No hay partidas en progreso.";
+}
+
+// Cerrar la conexión
+$conn->close();
+?>
+
             <!-- Columna de partidas en progreso
             <div class="col-xxl-6">
                 <div class="matches-div text-center">

@@ -188,7 +188,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <div class="row">
         <?php
 // Conexión a la base de datos
-include "./db.php";
+include "../src/db.php";
 // Consulta para obtener partidas en progreso
 $sql = "
     SELECT 

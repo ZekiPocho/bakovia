@@ -7139,6 +7139,17 @@ blockquote span {
   text-align: center;
   width: 60px;
 }
+.sixtyfour-convergence{
+  font-family: "Sixtyfour Convergence", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "BLED" 0,
+    "SCAN" 0,
+    "XELA" 0,
+    "YELA" 0;
+}
 .score-mini {
   font-size: 30px;
   font-weight: bold;

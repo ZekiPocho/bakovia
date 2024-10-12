@@ -7122,8 +7122,7 @@ blockquote span {
 .team img {
   width: 100%;
   height: 100px;
-  -webkit-filter: brightness(100%); /* Safari 6.0 - 9.0 */
-    filter: brightness(100%);
+  filter: invert(100%);
 }
 .team-name-mini {
   margin-top: 5px;

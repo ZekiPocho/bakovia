@@ -207,7 +207,7 @@ $sql = "
 $result = $conn->query($sql);
 
 // Verificar si se encontraron resultados
-if (mysqli_num_rows($result) > 0) {
+if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         echo '
         <!-- Partida -->

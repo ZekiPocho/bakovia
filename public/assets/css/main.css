@@ -7119,9 +7119,13 @@ blockquote span {
   height: 100px;
   background-color: #fff;
 }
-.team-name {
+.team-name-mini {
   margin-top: 5px;
   font-size: 8px;
+}
+.team-name {
+  margin-top: 5px;
+  font-size: 12px;
 }
 .score {
   font-size: 48px;

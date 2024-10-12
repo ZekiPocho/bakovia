@@ -30,7 +30,7 @@
       </p>
     <![endif]-->
 
-    <!-- Preloader -->
+    <!-- Preloader
     <div class="preloader">
         <div class="preloader-inner">
             <div class="preloader-icon">
@@ -39,7 +39,7 @@
             </div>
         </div>
     </div>
-    <!-- /End Preloader -->
+    /End Preloader -->
 
 <!--HEADER Y NAVBAR PRO-->
 <header class="header navbar-area">
@@ -187,6 +187,91 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     <div class="container-sm mt-4">
         <div class="row">
             <!-- Columna de partidas en progreso -->
+            <?php
+            include("../src/db.php");
+            // Verificar conexión
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+            
+            // Consulta para obtener partidas en progreso
+            $sql = "SELECT p.id, p.juego, p.puntos, p.usuario1, p.usuario2, 
+                           f1.nombre AS faccion1, sf1.subfaccion AS subfaccion1, 
+                           f2.nombre AS faccion2, sf2.subfaccion AS subfaccion2, 
+                           p.hora_inicio, p.hora_fin, p.mesa, p.puntaje_usuario1, 
+                           p.puntaje_usuario2,
+                           i1.ruta AS icono1, i2.ruta AS icono2
+                    FROM partidas p
+                    JOIN faccion f1 ON p.faccion_usuario1 = f1.id
+                    JOIN subfaccion sf1 ON p.subfaccion_usuario1 = sf1.id
+                    JOIN faccion f2 ON p.faccion_usuario2 = f2.id
+                    JOIN subfaccion sf2 ON p.subfaccion_usuario2 = sf2.id
+                    JOIN iconos i1 ON f1.id = i1.faccion_id
+                    JOIN iconos i2 ON f2.id = i2.faccion_id
+                    WHERE p.estado = 'en progreso'";
+            
+            $result = $conn->query($sql);
+            
+            // Verificar y procesar los resultados
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    ?>
+                    <!-- Aquí empieza el HTML para mostrar las partidas en progreso -->
+                    <div class="col-xxl-6">
+                        <div class="matches-div text-center">
+                            <h3 style="border-bottom: solid 1px #6E869D;">PARTIDAS EN PROGRESO</h3>
+                            <br>
+                            <div class="match-entry mb-2 text-center">
+                                <div class="row align-items-center">
+                                    <div class="col-2">
+                                        <img src="https://via.placeholder.com/50x50" alt="Foto de perfil <?php echo $row['usuario1']; ?>" class="img-fluid">
+                                    </div>
+                                    <div class="col-3">
+                                        <span><?php echo $row['usuario1']; ?></span>
+                                    </div>
+                                    <div class="col-2">
+                                        <img src="assets/images/matches/sword.png" alt="Icono de batalla" class="img-fluid" style="max-width: 25px;">
+                                    </div>
+                                    <div class="col-3">
+                                        <span><?php echo $row['usuario2']; ?></span>
+                                    </div>
+                                    <div class="col-2">
+                                        <img src="https://via.placeholder.com/50x50" alt="Foto de perfil <?php echo $row['usuario2']; ?>" class="img-fluid">
+                                    </div>
+                                </div>
+                                <div class="scoreboard">
+                                    <div class="team">
+                                        <img src="<?php echo $row['icono1']; ?>" alt="Equipo 1">
+                                        <div class="team-name"><?php echo $row['faccion1']; ?><br><?php echo $row['subfaccion1']; ?></div>
+                                    </div>
+                                    <div class="score"><?php echo $row['puntaje_usuario1']; ?></div>
+                                    <div class="middle-section">
+                                        <h1><?php echo $row['juego']; ?></h1>
+                                        <h1><?php echo $row['puntos']; ?> Pts.</h1>
+                                        <div class="timer"><i class="lni lni-hourglass"></i>00:00:00</div>
+                                        <h1>Ronda Nº1</h1>
+                                        <h1>MESA - <?php echo $row['mesa']; ?></h1>
+                                    </div>
+                                    <div class="score"><?php echo $row['puntaje_usuario2']; ?></div>
+                                    <div class="team">
+                                        <img src="<?php echo $row['icono2']; ?>" alt="Equipo 2">
+                                        <div class="team-name"><?php echo $row['faccion2']; ?><br><?php echo $row['subfaccion2']; ?></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>        
+                    </div>
+                    <!-- Aquí termina el HTML para mostrar las partidas en progreso -->
+                    <?php
+                }
+            } else {
+                echo "No hay partidas en progreso.";
+            }
+            
+            $conn->close();
+            ?>
+            
+             <!--PARTIDA2-->
             <div class="col-xxl-6">
                 <div class="matches-div text-center">
                     <h3 style="border-bottom: solid 1px #6E869D;">PARTIDAS EN PROGRESO</h3>

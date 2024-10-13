@@ -202,7 +202,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
                                     <!-- Puntos (solo visible para Warhammer 40k) -->
                                     <div id="puntos-container" style="display:none;">
-                                        <br>
                                     <span style="font-size: 8px;">Puntos:</span>
                                         <select id="puntos" name="puntos" onchange="validarFormulario()" class="form-control">
                                             <option value="">--Seleccionar Puntos--</option>
@@ -249,7 +248,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                     const faccionSelect = document.getElementById('faccion');
 
                                     // Mostrar puntos solo si se selecciona Warhammer 40k
-                                    if (juego === 'warhammer40k') {
+                                    if (juego === '1') {
                                         puntosContainer.style.display = 'block';
                                     } else {
                                         puntosContainer.style.display = 'none';
@@ -259,7 +258,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                     faccionContainer.style.display = 'block';
                                     faccionSelect.innerHTML = ''; // Limpiar opciones previas
 
-                                    if (juego === 'warhammer40k') {
+                                    if (juego === '1') {
                                         faccionSelect.innerHTML = `
                                             <option value="">--Seleccionar Facción--</option>
                                             <option value="space_marines">Space Marines</option>
@@ -267,21 +266,21 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                             <option value="eldar">Eldar</option>
                                             <!-- Agregar más facciones -->
                                         `;
-                                    } else if (juego === 'ageofsigmar') {
+                                    } else if (juego === '2') {
                                         faccionSelect.innerHTML = `
                                             <option value="">--Seleccionar Facción--</option>
                                             <option value="stormcast_eternals">Stormcast Eternals</option>
                                             <option value="slaves_to_darkness">Slaves to Darkness</option>
                                             <!-- Agregar más facciones -->
                                         `;
-                                    } else if (juego === 'killteam') {
+                                    } else if (juego === '3') {
                                         faccionSelect.innerHTML = `
                                             <option value="">--Seleccionar Facción--</option>
                                             <option value="t'au">T'au</option>
                                             <option value="necrones">Necrones</option>
                                             <!-- Agregar más facciones -->
                                         `;
-                                    } else if (juego === 'warcry') {
+                                    } else if (juego === '4') {
                                         faccionSelect.innerHTML = `
                                             <option value="">--Seleccionar Facción--</option>
                                             <option value="iron_golems">Iron Golems</option>

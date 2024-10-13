@@ -1,4 +1,3 @@
-<<<<<<< HEAD:public/login.php
 <?php
 
 session_start();
@@ -40,13 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 ?>
 
-=======
->>>>>>> parent of 08b779c (Merge branch 'ipn' into aver):public/login.html
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
-<?php
-require_once "../src/validate_session.php";
-?>
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
@@ -112,8 +106,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <ul class="sub-menu collapse" id="submenu-1-2">
             <li class="nav-item"><a href="about-us.html">About Us</a></li>
             <li class="nav-item"><a href="faq.html">Faq</a></li>
-            <li class="nav-item"><a href="login.html">Login</a></li>
-            <li class="nav-item"><a href="register.html">Register</a></li>
+            <li class="nav-item"><a href="login.php">Login</a></li>
+            <li class="nav-item"><a href="register.php">Register</a></li>
             <li class="nav-item"><a href="mail-success.html">Mail Success</a></li>
             <li class="nav-item"><a href="404.html">404 Error</a></li>
         </ul>
@@ -199,7 +193,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 <div class="col-sm-auto"></div>
     <div class="navbar-cart">
         <div class="cart-items">
-            <a href="login.html" class="main-btn">
+            <a href="login.php" class="main-btn">
                 <i class="lni lni-user"></i>
             </a>
         </div>
@@ -216,7 +210,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
             <div class="row">
                 <div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">
-                    <form class="card login-form" action="../src/login.php" method="post">
+                    <form class="card login-form" action="login.php" method="post">
                         <div class="card-body">
                             <div class="title">
                                 <center>
@@ -245,7 +239,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                     <button class="btn" type="submit" name="iniciar">Iniciar Sesión</button>
                                 </div>
                                     
-                                <p class="outer-link">¿Eres nuevo por acá? <a href="register.html">Regístrate aquí </a>
+                                <p class="outer-link">¿Eres nuevo por acá? <a href="register.php">Regístrate aquí </a>
                                 </p>
                             
                         </div>

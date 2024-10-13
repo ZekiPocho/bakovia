@@ -323,7 +323,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         const puntosSelect = document.getElementById('puntos');
 
         if (juego === 'warhammer40k') {
-            faccionSigmarSelect.option = "<option value="" selected disabled>Selecciona una facción</option>";
             faccion40kSelect.style.display = 'block';
             faccionSigmarSelect.style.display = 'none';
             faccion40kSelect.disabled = false;

@@ -181,7 +181,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     <br>
 
 
-    <a href="../src/logout.php">CERRAR SESIÓN</a>
+    <a href="../public/logout.php">CERRAR SESIÓN</a>
     <div class="container-sm px-4">
         <div class="row">
             <div class="d-flex flex-wrap align-items-start">

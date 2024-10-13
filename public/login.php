@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
         $email = $_POST['email'];
         $password = sha1($_POST['clave']); // Encriptar la clave
-        $mensaje = ""
+        
 
         // Consulta SQL para verificar el correo y la contraseña
         $res = $conn->query("SELECT * FROM usuarios 
@@ -29,7 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 setcookie('email', $email, time() + (86400 * 30), "/"); // 86400 = 1 día
                 setcookie('password', $password, time() + (86400 * 30), "/");
             }
-
+            
+            $mensaje = ""
             // Redirigir al usuario a la página principal
             header("Location:../public/index.html");
             exit();

@@ -211,7 +211,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <!-- Selección de Puntos -->
                 <div class="mb-3">
                     <label for="puntos" class="form-label">Puntos</label>
-                    <select id="puntos" class="form-select" disabled>
+                    <select id="puntos" class="form-select" disabled onchange="verificarFormulario()">
                         <option value="" selected disabled>Selecciona los puntos</option>
                         <option value="500">500</option>
                         <option value="1000">1000</option>
@@ -266,11 +266,11 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <!-- Selección de Hora de inicio y finalización -->
                 <div class="mb-3">
                     <label for="hora_inicio" class="form-label">Hora de inicio</label>
-                    <input type="time" id="hora_inicio" class="form-control">
+                    <input type="time" id="hora_inicio" class="form-control" onchange="verificarFormulario()">
                 </div>
                 <div class="mb-3">
                     <label for="hora_final" class="form-label">Hora de finalización</label>
-                    <input type="time" id="hora_final" class="form-control">
+                    <input type="time" id="hora_final" class="form-control" onchange="verificarFormulario()">
                 </div>
 
                 <!-- Selección de Mesa -->

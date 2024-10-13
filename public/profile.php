@@ -199,9 +199,11 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 </div> 
                 
                 <div class="col-7 profile-info-name" >
+                <a href="">
                   <h2><?php
-                    echo $_SESSION['nombre_usuario'];                  
-                  ?></h2>
+                    echo $_SESSION['nombre_usuario']" ";
+                                     
+                  ?><i class="lni lni-pencil-1"></i></h2></a>
                   <div class="bio">
                     <p class="text-muted">Esta es la biografía del usuario. Aquí puedes añadir más detalles sobre ti.
                         Esta es la biografía del usuario. Aquí puedes añadir más detalles sobre ti.Esta es la biografía del usuario.

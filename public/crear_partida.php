@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt === false) {
             die("Error en la consulta SQL: " . $conn->error);
         }
-        $stmt->bind_param("iisssss", $juego, $puntos, $faccion, $hora_inicio, $hora_final, $mesa, $nombre_usuario1);
+        $stmt->bind_param("iissssi", $juego, $puntos, $faccion, $hora_inicio, $hora_final, $mesa, $nombre_usuario1);
 
         if ($stmt->execute()) {
             // Redirigir a matches.php si la inserción es exitosa

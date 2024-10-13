@@ -201,7 +201,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <br>
             <form>
                 <!-- Selección de Juego -->
-                <div>
+                <div class="mb-3">
                     <label for="juego" class="form-label">Juego</label>
                     <select id="juego" class="form-select" onchange="actualizarFormulario()">
                         <option value="" selected disabled>Selecciona un juego</option>
@@ -209,14 +209,27 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         <option value="ageofsigmar">Age of Sigmar</option>
                         <option value="killteam">Kill Team</option>
                         <option value="warcry">WarCry</option>
-                        <!-- Agrega más juegos según sea necesario -->
                     </select>
                 </div>
 
-                <div class="mb-3" id="faccionWarhammer40k" style="display: none;">
-                    <label for="faccion" class="form-label">Facción - Warhammer 40k</label>
-                    <select id="faccion" class="form-select" onchange="mostrarFaccion()">
+                <!-- Selección de Puntos -->
+                <div class="mb-3">
+                    <label for="puntos" class="form-label">Puntos</label>
+                    <select id="puntos" class="form-select" disabled onchange="verificarFormulario()">
+                        <option value="" selected disabled>Selecciona los puntos</option>
+                        <option value="500">500</option>
+                        <option value="1000">1000</option>
+                        <option value="1500">1500</option>
+                        <option value="2000">2000</option>
+                    </select>
+                </div>
+
+                <!-- Selección de Facción -->
+                <div class="mb-3">
+                    <label for="faccion" class="form-label">Facción</label>
+                    <select id="faccion" class="form-select" disabled onchange="mostrarFaccion()">
                         <option value="" selected disabled>Selecciona una facción</option>
+                        <!-- Facciones de Warhammer 40k -->
                         <option value="1" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/templarios.svg">Templarios Negros</option>
                         <option value="2" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/sangrientos.svg">Ángeles Sangrientos</option>
                         <option value="3" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/oscuros.svg">Ángeles Oscuros</option>
@@ -249,16 +262,9 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         <option value="30" data-subfaccion="Xenos" data-icon="../public/assets/images/icons/orcos.svg">Orcos</option>
                         <option value="31" data-subfaccion="Xenos" data-icon="../public/assets/images/icons/tau.svg">Imperio T'au</option>
                         <option value="32" data-subfaccion="Xenos" data-icon="../public/assets/images/icons/tiranidos.svg">Tiranidos</option>
-                    </select>
-                </div>
 
-                <div class="mb-3" id="faccionAgeofSigmar" style="display: none;">
-                    <label for="faccionSigmar" class="form-label">Facción - Sigmar</label>
-                    <select id="faccionSigmar" class="form-select" onchange="mostrarFaccionSigmar()">
-                        <option value="" selected disabled>Selecciona una facción</option>
-                        <option value="7" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/salamandras.svg">Salamandras</option>
-                        <option value="8" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/lobos.svg">Lobos Espaciales</option>
-                        <option value="9" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/ultras.svg">Ultramarines</option>
+
+                        <!-- Agrega el resto de las facciones aquí siguiendo el formato -->
                     </select>
                 </div>
 
@@ -301,94 +307,12 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 </div>
 
 <script>
-    
-    function actualizarFormulario() {
-    const juego = document.getElementById('juego').value;
-    const faccionWarhammer40k = document.getElementById('faccionWarhammer40k');
-    const faccionAgeofSigmar = document.getElementById('faccionAgeofSigmar');
-    const faccionSelect = document.getElementById('faccion');
-    const faccionOtroSelect = document.getElementById('faccionOtro');
-
-    // Limpiar los selects de facciones
-    faccionWarhammer40k.style.display = 'none';
-    faccionOtroJuego.style.display = 'none';
-
-    // Dependiendo del juego seleccionado, mostrar el select correspondiente
-    if (juego === 'warhammer40k') {
-        faccionWarhammer40k.style.display = 'block';
-        // Aquí agrega las facciones de Warhammer 40k dinámicamente
-        actualizarFaccionesWarhammer40k();
-    } else if (juego === 'ageofsigmar') {
-        faccionOtroJuego.style.display = 'block';
-        // Aquí agrega las facciones de otro juego dinámicamente
-        actualizarFaccionesOtroJuego();
-    }
-}
-
-// Función para agregar las facciones de Warhammer 40k
-function actualizarFaccionesWarhammer40k() {
-    const faccionSelect = document.getElementById('faccion');
-    faccionSelect.innerHTML = '<option value="" selected disabled>Selecciona una facción</option>';
-
-    // Suponiendo que 'faccionesPorJuego' es un objeto que contiene las facciones para cada juego
-    faccionesPorJuego['warhammer40k'].forEach(faccion => {
-        const option = document.createElement('option');
-        option.value = faccion.id;
-        option.setAttribute('data-subfaccion', faccion.subfaccion);
-        option.setAttribute('data-icon', faccion.icono);
-        option.textContent = faccion.nombre;
-        faccionSelect.appendChild(option);
-    });
-}
-
-// Función para agregar las facciones de otro juego
-function actualizarFaccionesAgeofSigmar() {
-    const faccionSigmarSelect = document.getElementById('faccionSigmar');
-    faccionSigmarSelect.innerHTML = '<option value="" selected disabled>Selecciona una facción</option>';
-
-    // Agrega las facciones de otro juego aquí
-    // Por ejemplo, podrías tener un arreglo de facciones para el otro juego
-    const otrasFacciones = [
-        { id: 1, nombre: 'Facción 1' },
-        { id: 2, nombre: 'Facción 2' },
-        // Agrega más facciones aquí
-    ];
-
-    otrasFacciones.forEach(faccion => {
-        const option = document.createElement('option');
-        option.value = faccion.id;
-        option.textContent = faccion.nombre;
-        faccionOtroSelect.appendChild(option);
-    });
-}
-
-    
-
-    // La función mostrarFaccion se mantiene igual
-    function mostrarFaccion() {
-        const faccionSelect = document.getElementById('faccion');
-        const selectedOption = faccionSelect.options[faccionSelect.selectedIndex];
-        const subfaccion = selectedOption.getAttribute('data-subfaccion');
-        const icono = selectedOption.getAttribute('data-icon');
-
-        // Mostrar facción y subfacción en la columna de previsualización
-        document.getElementById('nombre-faccion').textContent = subfaccion;
-        document.getElementById('subfaccion-faccion').textContent = selectedOption.text;
-
-        // Mostrar icono de facción
-        const iconoFaccion = document.getElementById('icono-faccion');
-        iconoFaccion.src = icono;
-        iconoFaccion.style.display = 'block';
-
-        // Habilitar botón de crear si todos los campos están llenos
-        verificarFormulario();
-    }
     function actualizarFormulario() {
         const juego = document.getElementById('juego').value;
         const faccionSelect = document.getElementById('faccion');
         const puntosSelect = document.getElementById('puntos');
 
-        if (juego === 'warhammer40k' or 'ageofsigmar') {
+        if (juego === 'warhammer40k') {
             faccionSelect.disabled = false;
             puntosSelect.disabled = false;
         } else {

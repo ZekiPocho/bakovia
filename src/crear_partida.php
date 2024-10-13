@@ -27,6 +27,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 VALUES (?, ?, ?, ?, ?, ?, ?)";
         
         $stmt = $conn->prepare($sql);
+        if ($stmt === false) {
+            die("Error en la consulta SQL: " . $conn->error);
+        }
         $stmt->bind_param("sissssi", $juego, $puntos, $faccion, $hora_inicio, $hora_final, $mesa, $nombre_usuario1);
 
         if ($stmt->execute()) {

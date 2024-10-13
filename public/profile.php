@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="assets/css/tiny-slider.css" />
     <link rel="stylesheet" href="assets/css/glightbox.min.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=logout" />
 
 </head>
 
@@ -155,8 +156,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 <!--PERFIL-->
 <div class="col-sm-auto">
         <div class="nav-item">
-            <a href="logout.php" class="main-btn">
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=logout" /> CERRAR SESIÓN
+            <a aria-label="Toggle navigation" href="logout.php">
+            <span class="material-symbols-outlined">logout</span> CERRAR SESIÓN
             </a>
         </div>
 </div>

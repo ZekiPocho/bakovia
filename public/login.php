@@ -50,7 +50,6 @@ if (mysqli_num_rows($res) > 0) {
     echo "<div class = 'alert alert-danger'> login incorrecto </div>";
 }
 ?>
-
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 <?php

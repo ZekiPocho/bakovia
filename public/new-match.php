@@ -201,10 +201,10 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                     </select>
 
                                     <!-- Puntos (solo visible para Warhammer 40k) -->
-                                     <br>
                                     <div id="puntos-container" style="display:none;">
+                                        <br>
                                     <span style="font-size: 8px;">Puntos:</span>
-                                        <select id="puntos" name="puntos" onchange="validarFormulario()" class="form-contrl">
+                                        <select id="puntos" name="puntos" onchange="validarFormulario()" class="form-control">
                                             <option value="">--Seleccionar Puntos--</option>
                                             <option value="500">500</option>
                                             <option value="1000">1000</option>

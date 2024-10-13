@@ -7007,6 +7007,9 @@ blockquote span {
     width: 200px;
     margin-right: 20px;
   }
+  .profile-img :hover{
+    filter: brightness(50%);
+  }
 
   .profile-info {
     flex-grow: 1;

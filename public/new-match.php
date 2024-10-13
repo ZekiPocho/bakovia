@@ -185,10 +185,10 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     <!-- End Breadcrumbs -->
      <!---->
     <div class="container-sm mt-4">
-        <div class="row">
-            <div class="col-xxl-12">
+        <div class="row justify-content-center">
+            <div class="col-xxl-10">
                 <div class="matches-div text-center">
-                            <h1 style="border-bottom: solid 1px #6E869D;">NUEVA PARTIDA</h1>
+                            <h2 style="border-bottom: solid 1px #6E869D;">NUEVA PARTIDA</h2>
                             <br>
                                 <form id="crear-partida" action="crear_partida.php" method="POST">
                                     <label for="juego">Juego:</label>

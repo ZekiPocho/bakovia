@@ -2,7 +2,33 @@
 
 session_start();
 include "db.php";
-            $mensaje = "";
+
+if (isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
+    $email = $_COOKIE['email'];
+    $password = $_COOKIE['password'];
+    
+    // Verificar si los datos de las cookies son válidos
+    $res = $conn->query("SELECT * FROM usuarios 
+        WHERE correo='$email' 
+        AND contrasena='$password'  
+        AND verificado='si'") or die($conn->error);
+    
+    if (mysqli_num_rows($res) > 0) {
+        // Obtener los datos del usuario
+        $userData = $res->fetch_assoc();
+        
+        // Guardar los datos relevantes en la sesión
+        $_SESSION['user'] = $userData['correo'];
+        $_SESSION['nombre_usuario'] = $userData['nombre_usuario']; // Guardar nombre de usuario
+        $_SESSION['id_usuario'] = $userData['id_usuario']; // Guardar el ID del usuario si lo necesitas
+        
+        // Redirigir a la página principal
+        header("Location:../public/index.html");
+        exit();
+    }
+}
+
+
 // Verificar si el formulario fue enviado
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -18,7 +44,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             AND verificado='si'") or die($conn->error);
         if ($res && mysqli_num_rows($res) > 0) {
             // Iniciar sesión
-            $_SESSION['user'] = $email;
+            $_SESSION['user'] = $userData['correo'];
+            $_SESSION['nombre_usuario'] = $userData['nombre_usuario']; // Guardar nombre de usuario
+            $_SESSION['id_usuario'] = $userData['id_usuario']; // Guardar el ID del usuario si lo necesitas
             // Verificar si la opción de 'remember me' está seleccionada
             if (isset($_POST['remember'])) {
                 // Generar cookies con duración de 30 días
@@ -30,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             header("Location:../public/index.html");
             exit();
         } else {
-            $mensaje="<div class='alert alert-danger'>El email es incorrecto</div>";
+            $mensaje="<div class='alert alert-danger'>El correo o la contraseña es incorrecto</div>";
         }
     } else {
         $mensaje= "<div class='alert alert-danger'>Faltan datos en el formulario</div>";

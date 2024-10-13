@@ -268,7 +268,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="faccion" class="form-label">Facción</label>
                     <select id="faccionSigmar" class="form-select" disabled style="display:none;" onchange="mostrarFaccion()">
                         <option value="" selected disabled>Selecciona una facción</option>
                         <!-- Facciones de Warhammer 40k -->

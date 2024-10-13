@@ -203,7 +203,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <!-- Selección de Juego -->
                 <div class="mb-3">
                     <label for="juego" class="form-label">Juego</label>
-                    <select id="juego" class="form-select" onchange="actualizarFormulario()">
+                    <select id="juego" name="juego" class="form-select" onchange="actualizarFormulario()">
                         <option value="" selected disabled>Selecciona un juego</option>
                         <option value="warhammer40k">Warhammer 40k</option>
                         <option value="ageofsigmar">Age of Sigmar</option>
@@ -215,7 +215,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <!-- Selección de Puntos -->
                 <div class="mb-3">
                     <label for="puntos" class="form-label">Puntos</label>
-                    <select id="puntos" class="form-select" disabled onchange="verificarFormulario()">
+                    <select id="puntos" name="puntos" class="form-select" disabled onchange="verificarFormulario()">
                         <option value="" selected disabled>Selecciona los puntos</option>
                         <option value="500">500</option>
                         <option value="1000">1000</option>
@@ -227,7 +227,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <!-- Selección de Facción -->
                 <div class="mb-3">
                     <label for="faccion" class="form-label">Facción</label>
-                    <select id="faccion40k" class="form-select" disabled style="display:block;" onchange="mostrarFaccion40k()">
+                    <select id="faccion40k" name="faccion" class="form-select" disabled style="display:block;" onchange="mostrarFaccion40k()">
                         <option value="" selected disabled>Selecciona una facción</option>
                         <!-- Facciones de Warhammer 40k -->
                         <option value="1" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/templarios.svg">Templarios Negros</option>
@@ -280,17 +280,17 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <!-- Selección de Hora de inicio y finalización -->
                 <div class="mb-3">
                     <label for="hora_inicio" class="form-label">Hora de inicio</label>
-                    <input type="time" id="hora_inicio" class="form-control" onchange="verificarFormulario()">
+                    <input type="time" name="hora_inicio" id="hora_inicio" class="form-control" onchange="verificarFormulario()">
                 </div>
                 <div class="mb-3">
                     <label for="hora_final" class="form-label">Hora de finalización</label>
-                    <input type="time" id="hora_final" class="form-control" onchange="verificarFormulario()">
+                    <input type="time" name="hora_final" id="hora_final" class="form-control" onchange="verificarFormulario()">
                 </div>
 
                 <!-- Selección de Mesa -->
                 <div class="mb-3">
                     <label for="mesa" class="form-label">Mesa</label>
-                    <select id="mesa" class="form-select">
+                    <select id="mesa" name="mesa" class="form-select">
                         <option value="1">Mesa 1</option>
                         <option value="2">Mesa 2</option>
                         <option value="3">Mesa 3</option>

@@ -7178,7 +7178,10 @@ blockquote span {
 .faccion-preview h4 {
   margin-bottom: 20px;
 }
-
+.faction-icon {
+  width: 100px;
+  height: 100px;
+}
 /*======================================
 	Account Login CSS
 ========================================*/

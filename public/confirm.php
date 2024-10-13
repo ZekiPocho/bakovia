@@ -75,8 +75,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <ul class="sub-menu collapse" id="submenu-1-2">
             <li class="nav-item"><a href="about-us.html">About Us</a></li>
             <li class="nav-item"><a href="faq.html">Faq</a></li>
-            <li class="nav-item"><a href="login.php">Login</a></li>
-            <li class="nav-item"><a href="register.php">Register</a></li>
+            <li class="nav-item"><a href="login.html">Login</a></li>
+            <li class="nav-item"><a href="register.html">Register</a></li>
             <li class="nav-item"><a href="mail-success.html">Mail Success</a></li>
             <li class="nav-item"><a href="404.html">404 Error</a></li>
         </ul>
@@ -162,7 +162,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 <div class="col-sm-auto"></div>
     <div class="navbar-cart">
         <div class="cart-items">
-            <a href="login.php" class="main-btn">
+            <a href="login.html" class="main-btn">
                 <i class="lni lni-user"></i>
             </a>
         </div>
@@ -185,7 +185,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                             <h3>Verificar Cuenta</h3>
                         </center>
                         </div>
-                        <form class="row justify-content-center" action="verificar.php" method="post" enctype="multipart/form-data">
+                        <form class="row justify-content-center" action="../src/verificar.php" method="post" enctype="multipart/form-data">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <center><label for="c">Código de Verificación</label></center>

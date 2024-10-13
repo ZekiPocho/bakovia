@@ -36,14 +36,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['email']) && isset($_POST['clave'])) {
     
         $email = $_POST['email'];
-        $password = sha1($_POST['clave']); // Encriptar la clave
+        $password = sha1($_POST['clave']); 
         // Consulta SQL para verificar el correo y la contraseña
         $res = $conn->query("SELECT * FROM usuarios 
             WHERE correo='$email' 
             AND contrasena='$password'  
             AND verificado='si'") or die($conn->error);
         if ($res && mysqli_num_rows($res) > 0) {
-            $userData = $res->fetch_assoc();S
+            $userData = $res->fetch_assoc();
             // Iniciar sesión
             $_SESSION['user'] = $userData['correo'];
             $_SESSION['nombre_usuario'] = $userData['nombre_usuario']; // Guardar nombre de usuario

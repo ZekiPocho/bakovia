@@ -227,7 +227,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <!-- Selección de Facción -->
                 <div class="mb-3">
                     <label for="faccion" class="form-label">Facción</label>
-                    <select id="faccion40k" class="form-select" disabled style="display:block;" onchange="mostrarFaccion40k()">
+                    <select id="faccion40k" class="form-select" disabled style="display:block;" onchange="mostrarFaccion()">
                         <option value="" selected disabled>Selecciona una facción</option>
                         <!-- Facciones de Warhammer 40k -->
                         <option value="1" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/templarios.svg">Templarios Negros</option>
@@ -340,42 +340,53 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             puntosSelect.disabled = true;
         }
     }
-    function mostrarFaccion() {
-        const faccionSelect = document.getElementById('faccion');
-        const selectedOption = faccionSelect.options[faccionSelect.selectedIndex];
-        const subfaccion = selectedOption.getAttribute('data-subfaccion');
-        const icono = selectedOption.getAttribute('data-icon');
 
-        // Mostrar facción y subfacción en la columna de previsualización
-        document.getElementById('nombre-faccion').textContent = subfaccion;
-        document.getElementById('subfaccion-faccion').textContent = selectedOption.text;
+    function mostrarFaccion(){
+        const icon = document.getElementById('icono-faccion');
+        if (juego === 'warhammer40k') {
+                function mostrarFaccion40k() {
+            const faccion40kSelect = document.getElementById('faccion40k');
+            const selectedOption = faccion40kSelect.options[faccion40kSelect.selectedIndex];
+            const subfaccion = selectedOption.getAttribute('data-subfaccion');
+            const icono = selectedOption.getAttribute('data-icon');
 
-        // Mostrar icono de facción
-        const iconoFaccion = document.getElementById('icono-faccion');
-        iconoFaccion.src = icono;
-        iconoFaccion.style.display = 'block';
+            // Mostrar facción y subfacción en la columna de previsualización
+            document.getElementById('nombre-faccion').textContent = subfaccion;
+            document.getElementById('subfaccion-faccion').textContent = selectedOption.text;
 
-        // Habilitar botón de crear si todos los campos están llenos
-        verificarFormulario();
+            // Mostrar icono de facción
+            const iconoFaccion = document.getElementById('icono-faccion');
+            iconoFaccion.src = icono;
+            iconoFaccion.style.display = 'block';
+
+            // Habilitar botón de crear si todos los campos están llenos
+            verificarFormulario();
+            }
+        } else {
+            if (juego === 'ageofsigmar') {
+                function mostrarFaccionSigmar() {
+            const faccionSigmarSelect = document.getElementById('faccionSigmar');
+            const selectedOption = faccionSigmarSelect.options[faccionSigmarSelect.selectedIndex];
+            const subfaccion = selectedOption.getAttribute('data-subfaccion');
+            const icono = selectedOption.getAttribute('data-icon');
+
+            // Mostrar facción y subfacción en la columna de previsualización
+            document.getElementById('nombre-faccion').textContent = subfaccion;
+            document.getElementById('subfaccion-faccion').textContent = selectedOption.text;
+
+            // Mostrar icono de facción
+            const iconoFaccion = document.getElementById('icono-faccion');
+            iconoFaccion.src = icono;
+            iconoFaccion.style.display = 'block';
+
+            // Habilitar botón de crear si todos los campos están llenos
+            verificarFormulario();
+            }
+        }
+            icon.style.display. = 'none';
+        }
     }
-    function mostrarFaccion40k() {
-        const faccion40kSelect = document.getElementById('faccion40k');
-        const selectedOption = faccion40kSelect.options[faccion40kSelect.selectedIndex];
-        const subfaccion = selectedOption.getAttribute('data-subfaccion');
-        const icono = selectedOption.getAttribute('data-icon');
-
-        // Mostrar facción y subfacción en la columna de previsualización
-        document.getElementById('nombre-faccion').textContent = subfaccion;
-        document.getElementById('subfaccion-faccion').textContent = selectedOption.text;
-
-        // Mostrar icono de facción
-        const iconoFaccion = document.getElementById('icono-faccion');
-        iconoFaccion.src = icono;
-        iconoFaccion.style.display = 'block';
-
-        // Habilitar botón de crear si todos los campos están llenos
-        verificarFormulario();
-    }
+   
 
     function verificarFormulario() {
         const juego = document.getElementById('juego').value;

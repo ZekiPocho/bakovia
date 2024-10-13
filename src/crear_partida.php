@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Insertar datos en la tabla 'partida'
-        $sql = "INSERT INTO partida (id_juego, puntos, id_faccion_usuario1, hora_inicio, hora_final, id_mesa, nombre_jugador1)
+        $sql = "INSERT INTO partida (id_juego, puntos, id_faccion_usuario1, hora_inicio, hora_final, id_mesa, nombre_usuario1)
                 VALUES (?, ?, ?, ?, ?, ?, ?)";
         
         $stmt = $conn->prepare($sql);

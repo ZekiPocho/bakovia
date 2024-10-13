@@ -3157,7 +3157,7 @@ ol {
 .hero-area .hero-small-banner.style2 {
   border: solid 2px #6E869D;
   border-radius: 5px;
-  background-image: "assets/images/hero/imagen-miniblog.jpg";
+  background-image: url("/.assets/images/hero/imagen-miniblog.jpg");
   margin-top: 12px;
 }
 
@@ -7001,14 +7001,11 @@ blockquote span {
   }
 
   .profile-img {
-    max-height: 200px;
-    max-width: 200px;
-    height: 200px;
-    width: 200px;
     margin-right: 20px;
+    background-color: white;
   }
   .profile-img :hover{
-    filter: brightness(150%);
+    filter: opacity(50%);
   }
 
   .profile-info {

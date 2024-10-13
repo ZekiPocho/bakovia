@@ -378,23 +378,30 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     }
 
     function verificarFormulario() {
-        const juego = document.getElementById('juego').value;
-        const puntos = document.getElementById('puntos').value;
-        //const faccion = document.getElementById('faccion').value;
-        const horaInicio = document.getElementById('hora_inicio').value;
-        const horaFinal = document.getElementById('hora_final').value;
-        const mesa = document.getElementById('mesa').value;
+    const juego = document.getElementById('juego').value;
+    const puntos = document.getElementById('puntos').value;
+    const horaInicio = document.getElementById('hora_inicio').value;
+    const horaFinal = document.getElementById('hora_final').value;
+    const mesa = document.getElementById('mesa').value;
 
-        let formValido = juego && faccion && horaInicio && horaFinal && mesa;
+    let faccion = null;
 
-        // Verificar puntos solo si el juego es Warhammer 40k
-        if (juego === 'warhammer40k' && !puntos) {
-            formValido = false;
-        }
-
-        document.getElementById('crear-btn').disabled = !formValido;
+    // Verificar qué select de facciones debe estar habilitado
+    if (juego === 'warhammer40k') {
+        faccion = document.getElementById('faccion40k').value;
+    } else if (juego === 'ageofsigmar') {
+        faccion = document.getElementById('faccionSigmar').value;
     }
-</script>
+
+    let formValido = juego && faccion && horaInicio && horaFinal && mesa;
+
+    // Verificar puntos solo si el juego es Warhammer 40k
+    if (juego === 'warhammer40k' && !puntos) {
+        formValido = false;
+    }
+
+    document.getElementById('crear-partida').disabled = !formValido;
+}>
                 </div>
             </div>
         </div>

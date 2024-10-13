@@ -48,7 +48,7 @@ if (mysqli_num_rows($res) > 0) {
     // Redirigir al usuario a la página principal
     header("Location:../public/index.html");
 } else {
-    $mensaje = "<div class = 'alert alert-danger'> login incorrecto </div>;
+    $mensaje = "<div class = 'alert alert-danger'> login incorrecto </div>";
 }
 ?>
 

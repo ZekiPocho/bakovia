@@ -2,7 +2,7 @@
 
 session_start();
 include "db.php";
-
+$mensaje = "";
 if (isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
     $email = $_COOKIE['email'];
     $password = $_COOKIE['password'];

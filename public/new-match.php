@@ -317,29 +317,34 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
 <script>
     function actualizarFormulario() {
-        const juego = document.getElementById('juego').value;
-        const faccion40kSelect = document.getElementById('faccion40k');
-        const faccionSigmarSelect = document.getElementById('faccionSigmar');
-        const puntosSelect = document.getElementById('puntos');
+    const juego = document.getElementById('juego').value;
+    const faccion40kSelect = document.getElementById('faccion40k');
+    const faccionSigmarSelect = document.getElementById('faccionSigmar');
+    const puntosSelect = document.getElementById('puntos');
 
-        if (juego === 'warhammer40k') {
-            faccion40kSelect.style.display = 'block';
-            faccionSigmarSelect.style.display = 'none';
-            faccion40kSelect.disabled = false;
-            faccionSigmarSelect.disabled = true;
-            puntosSelect.disabled = false;
-        } else {
-            if (juego === 'ageofsigmar') {
-            faccionSigmarSelect.style.display = 'block';
-            faccion40kSelect.style.display = 'none';
-            faccionSigmarSelect.disabled = false;
-            faccion40kSelect.disabled = true;
-            puntosSelect.disabled = false;
-        }
-            faccionSelect.disabled = true;
-            puntosSelect.disabled = true;
-        }
+    if (juego === 'warhammer40k') {
+        faccion40kSelect.style.display = 'block';
+        faccionSigmarSelect.style.display = 'none';
+        faccion40kSelect.disabled = false;
+        puntosSelect.disabled = false;
+        faccionSigmarSelect.disabled = true;  // Desactivar Sigmar
+
+    } else if (juego === 'ageofsigmar') {
+        faccionSigmarSelect.style.display = 'block';
+        faccion40kSelect.style.display = 'none';
+        faccionSigmarSelect.disabled = false;
+        puntosSelect.disabled = true;  // Desactivar puntos para Sigmar
+        faccion40kSelect.disabled = true;  // Desactivar 40k
+    } else {
+        // Para otros juegos como Kill Team o WarCry
+        faccion40kSelect.disabled = true;
+        faccionSigmarSelect.disabled = true;
+        puntosSelect.disabled = true; // Desactivar puntos
+        faccion40kSelect.style.display = 'none';
+        faccionSigmarSelect.style.display = 'none';
     }
+}
+
     function mostrarFaccion40k() {
         const faccion40kSelect = document.getElementById('faccion40k');
         const selectedOption = faccion40kSelect.options[faccion40kSelect.selectedIndex];

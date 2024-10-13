@@ -1,5 +1,5 @@
 <?php
-    require_once "../src/validate_session.php";
+    require_once "validate_session.php";
 ?>
 <!DOCTYPE html>
 
@@ -69,8 +69,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <ul class="sub-menu collapse" id="submenu-1-2">
             <li class="nav-item"><a href="about-us.html">About Us</a></li>
             <li class="nav-item"><a href="faq.html">Faq</a></li>
-            <li class="nav-item"><a href="login.html">Login</a></li>
-            <li class="nav-item"><a href="register.html">Register</a></li>
+            <li class="nav-item"><a href="login.php">Login</a></li>
+            <li class="nav-item"><a href="register.php">Register</a></li>
             <li class="nav-item"><a href="mail-success.html">Mail Success</a></li>
             <li class="nav-item"><a href="404.html">404 Error</a></li>
         </ul>
@@ -156,7 +156,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 <div class="col-sm-auto"></div>
     <div class="navbar-cart">
         <div class="cart-items">
-            <a href="login.html" class="main-btn">
+            <a href="login.php" class="main-btn">
                 <i class="lni lni-user"></i>
             </a>
         </div>
@@ -190,18 +190,16 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     <br>
 
 
-    <a href="../src/logout.php">CERRAR SESIÓN</a>
+
     <div class="container-sm px-4">
         <div class="row">
             <div class="d-flex flex-wrap align-items-start">
                 <div class="col-auto profile-img" >
                     <img src="https://via.placeholder.com/200" alt="Foto de perfil" class="profile-img">
                 </div> 
-                
+                <a href="logout.php">CERRAR SESIÓN</a>
                 <div class="col-7 profile-info-name" >
-                  <h2><?php
-                    echo $_SESSION['nombre_usuario'];                  
-                  ?></h2>
+                  <h2>Nombre de Usuario</h2>
                   <div class="bio">
                     <p class="text-muted">Esta es la biografía del usuario. Aquí puedes añadir más detalles sobre ti.
                         Esta es la biografía del usuario. Aquí puedes añadir más detalles sobre ti.Esta es la biografía del usuario.
@@ -212,15 +210,13 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                   </div>
                 </div>
                 <div class="col profile-info mt-3 mt-md-0" style="margin-top: 20px" >
+                    <h5>Información</h5>
                     <ul>
-                        <center>    
-                        <li><p class="text-muted">RANGO</p></li>
-                        <li><img src="https://via.placeholder.com/500" alt="rango" style="width: 80px; height: 80px;"></li>
-                        <li><p class="text-muted">NOMBRE RANGO</p></li>
-                        <br>
-                        <li><p class="text-muted">MIEMBRO DESDE</p></li>
-                        <li><p class="text-muted">FECHA</p></li>
-                        </center>
+                        <li><p class="text-muted">AMOGUS</p></li>
+                        <li><p class="text-muted">AMOGUS</p></li>
+                        <li><p class="text-muted">AMOGUS</p></li>
+                        <li><p class="text-muted">AMOGUS</p></li>
+                        <li><p class="text-muted">AMOGUS</p></li>
                     </ul>
                     
                   </div>

@@ -1,8 +1,59 @@
+<?php
+
+session_start();
+include "db.php";
+
+// Verificar si las cookies existen
+if (isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
+    $email = $_COOKIE['email'];
+    $password = $_COOKIE['password'];
+
+    // Verificar si los datos de las cookies son válidos
+    $res = $conn->query("SELECT * FROM usuarios 
+        WHERE correo='$email' 
+        AND contrasena='$password'  
+        AND verificado='si'") or die($conn->error);
+
+    if ($res && mysqli_num_rows($res) > 0) {
+        // Si es válido, iniciar la sesión automáticamente
+        $_SESSION['user'] = $email;
+        header("Location:../public/index.html");
+        exit();
+    }
+}
+
+$email = $_POST['email'];
+$password = sha1($_POST['clave']);
+
+$mensaje = ""; // Agregar punto y coma
+
+// Consulta SQL para verificar el correo y la contraseña
+$res = $conn->query("SELECT * FROM usuarios 
+    WHERE correo='$email' 
+    AND contrasena='$password'  
+    AND verificado='si'") or die($conn->error);
+
+if ($res && mysqli_num_rows($res) > 0) {
+    // Iniciar sesión
+    $_SESSION['user'] = $email;
+
+    // Verificar si la opción de 'remember me' está seleccionada
+    if (isset($_POST['remember'])) {
+        // Generar cookies con duración de 30 días
+        setcookie('email', $email, time() + (86400 * 30), "/"); // 86400 = 1 día
+        setcookie('password', $password, time() + (86400 * 30), "/");
+    }
+
+    // Redirigir al usuario a la página principal
+    header("Location:../public/index.html");
+} else {
+    $mensaje = "<div class='alert alert-danger'>Login incorrecto</div>";
+}
+
+?>
+
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
-<?php
-require_once "../src/validate_session.php";
-?>
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
@@ -68,8 +119,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <ul class="sub-menu collapse" id="submenu-1-2">
             <li class="nav-item"><a href="about-us.html">About Us</a></li>
             <li class="nav-item"><a href="faq.html">Faq</a></li>
-            <li class="nav-item"><a href="login.html">Login</a></li>
-            <li class="nav-item"><a href="register.html">Register</a></li>
+            <li class="nav-item"><a href="login.php">Login</a></li>
+            <li class="nav-item"><a href="register.php">Register</a></li>
             <li class="nav-item"><a href="mail-success.html">Mail Success</a></li>
             <li class="nav-item"><a href="404.html">404 Error</a></li>
         </ul>
@@ -155,7 +206,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 <div class="col-sm-auto"></div>
     <div class="navbar-cart">
         <div class="cart-items">
-            <a href="login.html" class="main-btn">
+            <a href="login.php" class="main-btn">
                 <i class="lni lni-user"></i>
             </a>
         </div>
@@ -172,7 +223,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
             <div class="row">
                 <div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">
-                    <form class="card login-form" action="../src/login.php" method="post">
+                    <form class="card login-form" action="login.php" method="post">
                         <div class="card-body">
                             <div class="title">
                                 <center>
@@ -198,7 +249,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                     <button class="btn" type="submit" name="iniciar">Iniciar Sesión</button>
                                 </div>
                                     
-                                <p class="outer-link">¿Eres nuevo por acá? <a href="register.html">Regístrate aquí </a>
+                                <p class="outer-link">¿Eres nuevo por acá? <a href="register.php">Regístrate aquí </a>
                                 </p>
                             
                         </div>

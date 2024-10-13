@@ -205,7 +205,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                     <label for="juego" class="form-label">Juego</label>
                     <select id="juego" name="juego" class="form-select" onchange="actualizarFormulario()">
                         <option value="" selected disabled>Selecciona un juego</option>
-                        <option value="warhammer40k">Warhammer 40k</option>
+                        <option value="1">Warhammer 40k</option>
                         <option value="ageofsigmar">Age of Sigmar</option>
                         <option value="killteam">Kill Team</option>
                         <option value="warcry">WarCry</option>
@@ -323,7 +323,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     const faccionSigmarSelect = document.getElementById('faccionSigmar');
     const puntosSelect = document.getElementById('puntos');
 
-    if (juego === 'warhammer40k') {
+    if (juego === '1') {
         faccion40kSelect.style.display = 'block';
         faccionSigmarSelect.style.display = 'none';
         faccion40kSelect.disabled = false;
@@ -393,7 +393,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     let faccion = null;
 
     // Verificar qué select de facciones debe estar habilitado
-    if (juego === 'warhammer40k') {
+    if (juego === '1') {
         faccion = document.getElementById('faccion40k').value;
     } else if (juego === 'ageofsigmar') {
         faccion = document.getElementById('faccionSigmar').value;
@@ -402,7 +402,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     let formValido = juego && faccion && horaInicio && horaFinal && mesa;
 
     // Verificar puntos solo si el juego es Warhammer 40k
-    if (juego === 'warhammer40k' && !puntos) {
+    if (juego === '1' && !puntos) {
         formValido = false;
     }
 

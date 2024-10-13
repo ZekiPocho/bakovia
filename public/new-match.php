@@ -190,7 +190,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <div class="matches-div text-center">
                             <h2 style="border-bottom: solid 1px #6E869D;">NUEVA PARTIDA</h2>
                             <br>
-                            <div class="container mt-5">
+                            <div class="container mt-1">
     <div class="row">
         <!-- Columna izquierda: Selección -->
         <div class="col-md-6">
@@ -296,7 +296,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <h4 id="subfaccion-faccion"></h4>
             <br><br>
             <div class="button">
-                <button class="btn" id="crear-partida" disabled>UNIRSE</button>
+                <button class="btn" id="crear-partida" disabled>CREAR PARTIDA</button>
             </div>
         </div>
     </div>

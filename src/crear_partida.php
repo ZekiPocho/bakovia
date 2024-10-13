@@ -5,7 +5,7 @@ session_start(); // Inicia la sesión
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Asumiendo que el usuario está autenticado y tienes su id en la sesión
     if (isset($_SESSION['id_usuario'])) {
-        $id_usuario1 = $_SESSION['id_usuario'];
+        $nombre_usuario1 = $_SESSION['nombre_usuario'];
 
         // Recibir datos del formulario
         $juego = $_POST['juego'];
@@ -24,11 +24,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Insertar datos en la tabla 'partida'
-        $sql = "INSERT INTO partida (id_juego, puntos, id_faccion_usuario1, hora_inicio, hora_final, id_mesa, id_jugador1)
+        $sql = "INSERT INTO partida (id_juego, puntos, id_faccion_usuario1, hora_inicio, hora_final, id_mesa, nombre_jugador1)
                 VALUES (?, ?, ?, ?, ?, ?, ?)";
         
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sissssi", $juego, $puntos, $faccion, $hora_inicio, $hora_final, $mesa, $id_usuario1);
+        $stmt->bind_param("sissssi", $juego, $puntos, $faccion, $hora_inicio, $hora_final, $mesa, $nombre_usuario1);
 
         if ($stmt->execute()) {
             // Redirigir a matches.php si la inserción es exitosa

@@ -1,6 +1,5 @@
 <?php
 require_once "../src/validate_session.php";
-session_start(); // Inicia la sesión
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Asumiendo que el usuario está autenticado y tienes su id en la sesión

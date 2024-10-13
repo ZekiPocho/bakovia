@@ -190,59 +190,79 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <div class="matches-div text-center">
                             <h4 style="border-bottom: solid 1px #6E869D;">NUEVA PARTIDA</h4>
                             <br>
-                            <div class="form-container">
-        <h2>Crear Partida</h2>
-        <form id="crear-partida" action="crear_partida.php" method="POST">
-            <label for="juego">Juego:</label>
-            <select id="juego" name="juego" onchange="mostrarOpciones(); validarFormulario()">
-                <option value="">--Seleccionar Juego--</option>
-                <option value="warhammer40k">Warhammer 40k</option>
-                <option value="ageofsigmar">Age of Sigmar</option>
-                <option value="killteam">Kill Team</option>
-                <option value="warcry">WarCry</option>
-            </select>
+                            <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-lg">
+                    <div class="card-body">
+                        <h2 class="card-title text-center mb-4">Crear Partida</h2>
+                        <form id="crear-partida" action="crear_partida.php" method="POST">
+                            <div class="mb-3">
+                                <label for="juego" class="form-label">Juego</label>
+                                <select class="form-select" id="juego" name="juego" onchange="mostrarOpciones(); validarFormulario()">
+                                    <option value="">--Seleccionar Juego--</option>
+                                    <option value="warhammer40k">Warhammer 40k</option>
+                                    <option value="ageofsigmar">Age of Sigmar</option>
+                                    <option value="killteam">Kill Team</option>
+                                    <option value="warcry">WarCry</option>
+                                </select>
+                            </div>
 
-            <!-- Puntos (solo visible para Warhammer 40k) -->
-            <div id="puntos-container">
-                <label for="puntos">Puntos:</label>
-                <select id="puntos" name="puntos" onchange="validarFormulario()">
-                    <option value="">--Seleccionar Puntos--</option>
-                    <option value="500">500</option>
-                    <option value="1000">1000</option>
-                    <option value="1500">1500</option>
-                    <option value="2000">2000</option>
-                </select>
+                            <!-- Puntos (solo visible para Warhammer 40k) -->
+                            <div id="puntos-container" class="mb-3 d-none">
+                                <label for="puntos" class="form-label">Puntos</label>
+                                <select class="form-select" id="puntos" name="puntos" onchange="validarFormulario()">
+                                    <option value="">--Seleccionar Puntos--</option>
+                                    <option value="500">500</option>
+                                    <option value="1000">1000</option>
+                                    <option value="1500">1500</option>
+                                    <option value="2000">2000</option>
+                                </select>
+                            </div>
+
+                            <!-- Facciones -->
+                            <div id="faccion-container" class="mb-3 d-none">
+                                <label for="faccion" class="form-label">Facción</label>
+                                <select class="form-select" id="faccion" name="faccion" onchange="validarFormulario()">
+                                    <option value="">--Seleccionar Facción--</option>
+                                </select>
+                            </div>
+
+                            <!-- Hora de inicio y finalización -->
+                            <div class="mb-3">
+                                <label for="hora_inicio" class="form-label">Hora de inicio</label>
+                                <input type="time" class="form-control" id="hora_inicio" name="hora_inicio" onchange="validarFormulario()">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="hora_final" class="form-label">Hora de finalización</label>
+                                <input type="time" class="form-control" id="hora_final" name="hora_final" onchange="validarFormulario()">
+                            </div>
+
+                            <!-- Mesa -->
+                            <div class="mb-3">
+                                <label for="mesa" class="form-label">Mesa</label>
+                                <select class="form-select" id="mesa" name="mesa" onchange="validarFormulario()">
+                                    <option value="">--Seleccionar Mesa--</option>
+                                    <option value="1">Mesa 1</option>
+                                    <option value="2">Mesa 2</option>
+                                    <option value="3">Mesa 3</option>
+                                </select>
+                            </div>
+
+                            <!-- Botón de crear partida -->
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary" id="crear-btn" disabled>Crear Partida</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-
-            <!-- Facciones (dependiendo del juego seleccionado) -->
-            <div id="faccion-container">
-                <label for="faccion">Facción:</label>
-                <select id="faccion" name="faccion" onchange="validarFormulario()">
-                    <option value="">--Seleccionar Facción--</option>
-                    <!-- Las opciones de facción se generan dinámicamente -->
-                </select>
-            </div>
-
-            <!-- Hora de inicio y finalización -->
-            <label for="hora_inicio">Hora de inicio:</label>
-            <input type="time" id="hora_inicio" name="hora_inicio" onchange="validarFormulario()">
-
-            <label for="hora_final">Hora de finalización:</label>
-            <input type="time" id="hora_final" name="hora_final" onchange="validarFormulario()">
-
-            <!-- Mesa -->
-            <label for="mesa">Mesa:</label>
-            <select id="mesa" name="mesa" onchange="validarFormulario()">
-                <option value="">--Seleccionar Mesa--</option>
-                <option value="1">Mesa 1</option>
-                <option value="2">Mesa 2</option>
-                <option value="3">Mesa 3</option>
-            </select>
-
-            <input type="submit" value="Crear Partida" id="crear-btn" disabled>
-        </form>
+        </div>
     </div>
 
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
     function mostrarOpciones() {
         const juego = document.getElementById('juego').value;
@@ -252,13 +272,13 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
         // Mostrar puntos solo si se selecciona Warhammer 40k
         if (juego === 'warhammer40k') {
-            puntosContainer.style.display = 'block';
+            puntosContainer.classList.remove('d-none');
         } else {
-            puntosContainer.style.display = 'none';
+            puntosContainer.classList.add('d-none');
         }
 
         // Cambiar las facciones dependiendo del juego seleccionado
-        faccionContainer.style.display = 'block';
+        faccionContainer.classList.remove('d-none');
         faccionSelect.innerHTML = ''; // Limpiar opciones previas
 
         if (juego === 'warhammer40k') {
@@ -287,7 +307,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <option value="untamed_beasts">Untamed Beasts</option>
             `;
         } else {
-            faccionContainer.style.display = 'none';
+            faccionContainer.classList.add('d-none');
         }
     }
 
@@ -327,7 +347,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         crearBtn.disabled = !formValido;
     }
     </script>
-
                 </div>
             </div>
         </div>

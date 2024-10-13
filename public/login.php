@@ -54,9 +54,6 @@ if ($res && mysqli_num_rows($res) > 0) {
 
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
-<?php
-require_once "../src/validate_session.php";
-?>
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />

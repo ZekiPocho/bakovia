@@ -227,7 +227,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <!-- Selección de Facción -->
                 <div>
                     <label for="faccion" class="form-label">Facción</label>
-                    <select id="faccion" class="form-select" onchange="actualizarFormulario()">
+                    <select id="faccion" class="form-select" onchange="mostrarFaccion()">
                         <option value="" selected disabled>Selecciona una facción</option>
                         <!-- Aquí se agregarán las opciones dinámicamente -->
                     </select>
@@ -372,7 +372,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         const faccionSelect = document.getElementById('faccion');
         const puntosSelect = document.getElementById('puntos');
 
-        if (juego === 'warhammer40k') {
+        if (juego === 'warhammer40k' or 'ageofsigmar') {
             faccionSelect.disabled = false;
             puntosSelect.disabled = false;
         } else {

@@ -191,7 +191,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     <br>
 
 
-    <div class="container-sm px-4">
+    <div class="container-sm px-4 mt-5">
         <div class="row">
             <div class="d-flex flex-wrap align-items-start">
                 <div class="col-auto profile-img" >

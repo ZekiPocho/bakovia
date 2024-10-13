@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Asegurarse de que las claves 'email' y 'clave' existan en el array $_POST
     if (isset($_POST['email']) && isset($_POST['clave'])) {
-
+        $mensaje = ""
         $email = $_POST['email'];
         $password = sha1($_POST['clave']); // Encriptar la clave
 
@@ -218,6 +218,9 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                             <div class="title">
                                 <center>
                                 <h3>Iniciar Sesión </h3>
+                                <?php
+                                echo $mensaje;
+                                ?>
                             </center>
                             </div>
                             <div class="form-group input-group">

@@ -2,7 +2,7 @@
 
 session_start();
 include "db.php";
-            $mensaje = ""
+            $mensaje = "";
 // Verificar si el formulario fue enviado
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 

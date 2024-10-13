@@ -295,7 +295,9 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <span style="color: gray; font-size: 15px;" id="nombre-faccion"></span>
             <h4 id="subfaccion-faccion"></h4>
             <br><br>
-            <button id="crear-btn" class="btn" disabled>Crear Partida</button>
+            <div class="button">
+                <button class="btn" id="crear-partida" disabled>UNIRSE</button>
+            </div>
         </div>
     </div>
 </div>

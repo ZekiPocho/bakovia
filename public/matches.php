@@ -364,7 +364,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                     <p class="text-muted"><span style="font-size: 15px;">O sino, inicia tu propia partida</span></p>
                     <br>
                     <div class="button">
-                        <button class="btn" href="new-match.php">Nueva Partida</button>
+                        <a href="new-match.php"><button class="btn">Nueva Partida</button></a>
                     </div>
                 </div>
             </div>

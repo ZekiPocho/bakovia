@@ -30,7 +30,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_param("sissssi", $juego, $puntos, $faccion, $hora_inicio, $hora_final, $mesa, $id_usuario1);
 
         if ($stmt->execute()) {
-            echo "Partida creada exitosamente.";
+            // Redirigir a matches.php si la inserción es exitosa
+            header("Location: ../public/matches.php");
+            exit(); // Detener el script para evitar más ejecución
         } else {
             echo "Error al crear la partida: " . $stmt->error;
         }
@@ -44,3 +46,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "Método no permitido.";
 }
 ?>
+

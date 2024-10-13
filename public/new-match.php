@@ -192,7 +192,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                             <br>
                                 <form id="crear-partida" action="crear_partida.php" method="POST">
                                     <span style="font-size: 20px;">Juego:</span>
-                                    <select id="juego" name="juego" onchange="mostrarOpciones(); validarFormulario()" class="seleccionar">
+                                    <select id="juego" name="juego" onchange="mostrarOpciones(); validarFormulario()">
                                         <option value="">--Seleccionar Juego--</option>
                                         <option value="1">Warhammer 40.000</option>
                                         <option value="2">Warhammer Age of Sigmar</option>
@@ -203,7 +203,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                     <!-- Puntos (solo visible para Warhammer 40k) -->
                                     <div id="puntos-container" style="display:none;">
                                     <span style="font-size: 20px;">Puntos:</span>
-                                        <select id="puntos" name="puntos" onchange="validarFormulario()" class="seleccionar">
+                                        <select id="puntos" name="puntos" onchange="validarFormulario()">
                                             <option value="">--Seleccionar Puntos--</option>
                                             <option value="500">500</option>
                                             <option value="1000">1000</option>

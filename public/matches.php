@@ -240,7 +240,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                     </div>
                                     <div class="score"><?php echo $row['puntaje_usuario1']; ?></div>
                                     <div class="middle-section">
-                                        <h1><?php echo $row['juego']; ?></h1>
+                                        <h1><?php echo $row['id_juego']; ?></h1>
                                         <h1><?php echo $row['puntos']; ?> Pts.</h1>
                                         <div class="timer"><i class="lni lni-hourglass"></i>00:00:00</div>
                                         <h1>Ronda Nº1</h1>

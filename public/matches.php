@@ -253,11 +253,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                     </div>
                                 </div>
                             </div>
-                        </div>        
-                    </div>
-                    <!-- Aquí termina el HTML para mostrar las partidas en progreso -->
-                      <!--PARTIDA2-->
-                    <div class="match-entry mb-2 text-center">
+                                                  <!--PARTIDA2-->
+                            <div class="match-entry mb-2 text-center">
                         <div class="row align-items-center">
                             <div class="col-2">
                                 <img src="https://via.placeholder.com/50x50" alt="Foto de perfil usuario1" class="img-fluid">
@@ -295,6 +292,11 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                             </div>
                         </div>
                     </div>
+                        </div>        
+                    </div>
+                    <!-- Aquí termina el HTML para mostrar las partidas en progreso -->
+
+                    
                     <?php
                 }
             } else {

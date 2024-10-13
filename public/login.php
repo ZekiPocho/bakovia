@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             header("Location:../public/index.html");
             exit();
         } else {
-            $mensaje="<div class='alert alert-danger'>Login incorrecto</div>";
+            $mensaje="<div class='alert alert-danger'>El email es incorrecto</div>";
         }
     } else {
         $mensaje= "<div class='alert alert-danger'>Faltan datos en el formulario</div>";

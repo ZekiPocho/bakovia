@@ -7006,9 +7006,10 @@ blockquote span {
     height: 200px;
     width: 200px;
     margin-right: 20px;
+    background-color: white;
   }
   .profile-img :hover{
-    filter: brightness(150%);
+    filter: opacity(50%);
   }
 
   .profile-info {

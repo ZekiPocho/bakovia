@@ -303,7 +303,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <div class="col-md-6 text-center">
             <h3>LISTO PARA DEPLEGAR...</h3>
             <br>
-            <center><img id="icono-faccion" class="faction-icon my-3" src="" alt="Icono de facción" style="display: block;"></center>
+            <center><img id="icono-faccion" class="faction-icon my-3" src="" alt="Icono de facción" style="display: none;"></center>
 
             <span style="color: gray; font-size: 15px;" id="nombre-faccion"></span>
             <h4 id="subfaccion-faccion"></h4>
@@ -358,7 +358,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         // Habilitar botón de crear si todos los campos están llenos
         verificarFormulario();
     }
-    function mostrarFaccion() {
+    function mostrarFaccionSigmar() {
         const faccionSigmarSelect = document.getElementById('faccionSigmar');
         const selectedOption = faccionSigmarSelect.options[faccionSigmarSelect.selectedIndex];
         const subfaccion = selectedOption.getAttribute('data-subfaccion');

@@ -318,36 +318,36 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             { id: 1, subfaccion: 'Chaos', nombre: 'Demonios del Caos', icono: '../public/assets/images/icons/demons.svg' },
             // Agrega aquí las facciones para WarCry
         ]
-        function actualizarFormulario() {
-    const juego = document.getElementById('juego').value;
-    const faccionSelect = document.getElementById('faccion');
-    const puntosSelect = document.getElementById('puntos');
+                function actualizarFormulario() {
+            const juego = document.getElementById('juego').value;
+            const faccionSelect = document.getElementById('faccion');
+            const puntosSelect = document.getElementById('puntos');
 
-    // Limpiar el select de facciones
-    faccionSelect.innerHTML = '<option value="" selected disabled>Selecciona una facción</option>';
+            // Limpiar el select de facciones
+            faccionSelect.innerHTML = '<option value="" selected disabled>Selecciona una facción</option>';
 
-    if (juego) {
-        puntosSelect.disabled = false;
-        faccionSelect.disabled = false;
+            if (juego) {
+                puntosSelect.disabled = false;
+                faccionSelect.disabled = false;
 
-        // Agregar las facciones correspondientes al select
-        if (faccionesPorJuego[juego]) { // Verificar que el juego tenga facciones
-            faccionesPorJuego[juego].forEach(faccion => {
-                const option = document.createElement('option');
-                option.value = faccion.id;
-                option.setAttribute('data-subfaccion', faccion.subfaccion);
-                option.setAttribute('data-icon', faccion.icono);
-                option.textContent = faccion.nombre;
-                faccionSelect.appendChild(option);
-            });
-        } else {
-            console.warn('No se encontraron facciones para el juego seleccionado.');
+                // Agregar las facciones correspondientes al select
+                if (faccionesPorJuego[juego]) { // Verificar que el juego tenga facciones
+                    faccionesPorJuego[juego].forEach(faccion => {
+                        const option = document.createElement('option');
+                        option.value = faccion.id;
+                        option.setAttribute('data-subfaccion', faccion.subfaccion);
+                        option.setAttribute('data-icon', faccion.icono);
+                        option.textContent = faccion.nombre;
+                        faccionSelect.appendChild(option);
+                    });
+                } else {
+                    console.warn('No se encontraron facciones para el juego seleccionado.');
+                }
+            } else {
+                faccionSelect.disabled = true;
+                puntosSelect.disabled = true;
+            }
         }
-    } else {
-        faccionSelect.disabled = true;
-        puntosSelect.disabled = true;
-    }
-}
     };
 
     

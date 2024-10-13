@@ -227,7 +227,49 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <!-- Selección de Facción -->
                 <div class="mb-3">
                     <label for="faccion" class="form-label">Facción</label>
-                    <select id="faccion" class="form-select" disabled onchange="mostrarFaccion()">
+                    <select id="faccion40k" class="form-select" disabled style="display:block;" onchange="mostrarFaccion()">
+                        <option value="" selected disabled>Selecciona una facción</option>
+                        <!-- Facciones de Warhammer 40k -->
+                        <option value="1" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/templarios.svg">Templarios Negros</option>
+                        <option value="2" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/sangrientos.svg">Ángeles Sangrientos</option>
+                        <option value="3" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/oscuros.svg">Ángeles Oscuros</option>
+                        <option value="4" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/puños.svg">Puños Imperiales</option>
+                        <option value="5" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/manos.svg">Manos de Hierro</option>
+                        <option value="6" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/cuervo.svg">Guardia del Cuervo</option>
+                        <option value="7" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/salamandras.svg">Salamandras</option>
+                        <option value="8" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/lobos.svg">Lobos Espaciales</option>
+                        <option value="9" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/ultras.svg">Ultramarines</option>
+                        <option value="10" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/cicatrices.svg">Cicatrices Blancas</option>
+                        <option value="11" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/custodes.svg">Adeptus Custodes</option>
+                        <option value="12" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/sororitas.svg">Hermanas de Batalla</option>
+                        <option value="13" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/mechanicus.svg">Adeptus Mechanicus</option>
+                        <option value="14" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/agentes.svg">Agentes Imperiales</option>
+                        <option value="15" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/guardia.svg">Guardia Imperial</option>
+                        <option value="16" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/grises.svg">Caballeros Grises</option>
+                        <option value="17" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/caballeros.svg">Caballeros Imperiales</option>
+                        <option value="18" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/astartes.svg">Marines Espaciales</option>
+                        <option value="19" data-subfaccion="Aeldari" data-icon="../public/assets/images/icons/drukhari.svg">Drukhari</option>
+                        <option value="20" data-subfaccion="Aeldari" data-icon="../public/assets/images/icons/ynnari.svg">Ynnari</option>
+                        <option value="21" data-subfaccion="Caos" data-icon="../public/assets/images/icons/demons.svg">Demonios del Caos</option>
+                        <option value="22" data-subfaccion="Caos" data-icon="../public/assets/images/icons/caballeroscaos.svg">Caballeros del Caos</option>
+                        <option value="23" data-subfaccion="Caos" data-icon="../public/assets/images/icons/herejes.svg">Marines Espaciales del Caos</option>
+                        <option value="24" data-subfaccion="Heretic Astartes" data-icon="../public/assets/images/icons/nurgle.svg">Guardia de la Muerte</option>
+                        <option value="25" data-subfaccion="Heretic Astartes" data-icon="../public/assets/images/icons/hijos.svg">Mil Hijos</option>
+                        <option value="26" data-subfaccion="Heretic Astartes" data-icon="../public/assets/images/icons/devoradores.svg">Devoradores de Mundos</option>
+                        <option value="27" data-subfaccion="Heretic Astartes" data-icon="../public/assets/images/icons/negra.svg">Legión Negra</option>
+                        <option value="28" data-subfaccion="Xenos" data-icon="../public/assets/images/icons/cultos.svg">Cultos Genestealers</option>
+                        <option value="29" data-subfaccion="Xenos" data-icon="../public/assets/images/icons/necrones.svg">Necrones</option>
+                        <option value="30" data-subfaccion="Xenos" data-icon="../public/assets/images/icons/orcos.svg">Orcos</option>
+                        <option value="31" data-subfaccion="Xenos" data-icon="../public/assets/images/icons/tau.svg">Imperio T'au</option>
+                        <option value="32" data-subfaccion="Xenos" data-icon="../public/assets/images/icons/tiranidos.svg">Tiranidos</option>
+
+
+                        <!-- Agrega el resto de las facciones aquí siguiendo el formato -->
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="faccion" class="form-label">Facción</label>
+                    <select id="faccionSigmar" class="form-select" disabled style="display:none;" onchange="mostrarFaccion()">
                         <option value="" selected disabled>Selecciona una facción</option>
                         <!-- Facciones de Warhammer 40k -->
                         <option value="1" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/templarios.svg">Templarios Negros</option>
@@ -309,13 +351,21 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 <script>
     function actualizarFormulario() {
         const juego = document.getElementById('juego').value;
-        const faccionSelect = document.getElementById('faccion');
+        const faccion40kSelect = document.getElementById('faccion40k');
+        const faccionSigmarSelect = document.getElementById('faccionSigmar');
         const puntosSelect = document.getElementById('puntos');
 
         if (juego === 'warhammer40k') {
-            faccionSelect.disabled = false;
+            faccion40kSelect.disabled = false;
             puntosSelect.disabled = false;
         } else {
+            if (juego === 'ageofsigmar') {
+            faccionSigmarSelect.style.display = 'block';
+            faccion40kSelect.style.display = 'none';
+            faccionSigmarSelect.disabled = false;
+            faccion40kSelect.disabled = true;
+            puntosSelect.disabled = false;
+        }
             faccionSelect.disabled = true;
             puntosSelect.disabled = true;
         }

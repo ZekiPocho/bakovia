@@ -191,19 +191,20 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                             <h2 style="border-bottom: solid 1px #6E869D;">NUEVA PARTIDA</h2>
                             <br>
                                 <form id="crear-partida" action="crear_partida.php" method="POST">
-                                    <label for="juego">Juego:</label>
-                                    <select id="juego" name="juego" onchange="mostrarOpciones(); validarFormulario()">
+                                    <span style="font-size: 8px;">Juego:</span>
+                                    <select id="juego" name="juego" onchange="mostrarOpciones(); validarFormulario()" class="form-control">
                                         <option value="">--Seleccionar Juego--</option>
-                                        <option value="warhammer40k">Warhammer 40k</option>
-                                        <option value="ageofsigmar">Age of Sigmar</option>
-                                        <option value="killteam">Kill Team</option>
-                                        <option value="warcry">WarCry</option>
+                                        <option value="1">Warhammer 40.000</option>
+                                        <option value="2">Warhammer Age of Sigmar</option>
+                                        <option value="3">Kill Team</option>
+                                        <option value="4">WarCry</option>
                                     </select>
 
                                     <!-- Puntos (solo visible para Warhammer 40k) -->
+                                     <br>
                                     <div id="puntos-container" style="display:none;">
-                                        <label for="puntos">Puntos:</label>
-                                        <select id="puntos" name="puntos" onchange="validarFormulario()">
+                                    <span style="font-size: 8px;">Puntos:</span>
+                                        <select id="puntos" name="puntos" onchange="validarFormulario()" class="form-contrl">
                                             <option value="">--Seleccionar Puntos--</option>
                                             <option value="500">500</option>
                                             <option value="1000">1000</option>
@@ -224,7 +225,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                     <!-- Hora de inicio y finalización -->
                                     <label for="hora_inicio">Hora de inicio:</label>
                                     <input type="time" id="hora_inicio" name="hora_inicio" onchange="validarFormulario()">
-
+                                    <br>
                                     <label for="hora_final">Hora de finalización:</label>
                                     <input type="time" id="hora_final" name="hora_final" onchange="validarFormulario()">
 

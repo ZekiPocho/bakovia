@@ -154,13 +154,11 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     </div>
 <!--PERFIL-->
 <div class="col-sm-auto">
-    <div class="navbar-cart">
         <div class="cart-items">
             <a href="logout.php" class="main-btn">
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=logout" /> CERRAR SESIÓN
             </a>
         </div>
-    </div>
 </div>
 </div>
 </nav>

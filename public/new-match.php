@@ -213,20 +213,52 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                     </select>
                 </div>
 
-                <div>
-                    <label for="faccion" class="form-label">Facción</label>
+                <div class="mb-3" id="faccionWarhammer40k" style="display: none;">
+                    <label for="faccion" class="form-label">Facción - Warhammer 40k</label>
                     <select id="faccion" class="form-select" onchange="mostrarFaccion()">
                         <option value="" selected disabled>Selecciona una facción</option>
-                        <!-- Aquí se agregarán las opciones dinámicamente -->
+                        <option value="1" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/templarios.svg">Templarios Negros</option>
+                        <option value="2" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/sangrientos.svg">Ángeles Sangrientos</option>
+                        <option value="3" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/oscuros.svg">Ángeles Oscuros</option>
+                        <option value="4" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/puños.svg">Puños Imperiales</option>
+                        <option value="5" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/manos.svg">Manos de Hierro</option>
+                        <option value="6" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/cuervo.svg">Guardia del Cuervo</option>
+                        <option value="7" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/salamandras.svg">Salamandras</option>
+                        <option value="8" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/lobos.svg">Lobos Espaciales</option>
+                        <option value="9" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/ultras.svg">Ultramarines</option>
+                        <option value="10" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/cicatrices.svg">Cicatrices Blancas</option>
+                        <option value="11" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/custodes.svg">Adeptus Custodes</option>
+                        <option value="12" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/sororitas.svg">Hermanas de Batalla</option>
+                        <option value="13" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/mechanicus.svg">Adeptus Mechanicus</option>
+                        <option value="14" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/agentes.svg">Agentes Imperiales</option>
+                        <option value="15" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/guardia.svg">Guardia Imperial</option>
+                        <option value="16" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/grises.svg">Caballeros Grises</option>
+                        <option value="17" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/caballeros.svg">Caballeros Imperiales</option>
+                        <option value="18" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/astartes.svg">Marines Espaciales</option>
+                        <option value="19" data-subfaccion="Aeldari" data-icon="../public/assets/images/icons/drukhari.svg">Drukhari</option>
+                        <option value="20" data-subfaccion="Aeldari" data-icon="../public/assets/images/icons/ynnari.svg">Ynnari</option>
+                        <option value="21" data-subfaccion="Caos" data-icon="../public/assets/images/icons/demons.svg">Demonios del Caos</option>
+                        <option value="22" data-subfaccion="Caos" data-icon="../public/assets/images/icons/caballeroscaos.svg">Caballeros del Caos</option>
+                        <option value="23" data-subfaccion="Caos" data-icon="../public/assets/images/icons/herejes.svg">Marines Espaciales del Caos</option>
+                        <option value="24" data-subfaccion="Heretic Astartes" data-icon="../public/assets/images/icons/nurgle.svg">Guardia de la Muerte</option>
+                        <option value="25" data-subfaccion="Heretic Astartes" data-icon="../public/assets/images/icons/hijos.svg">Mil Hijos</option>
+                        <option value="26" data-subfaccion="Heretic Astartes" data-icon="../public/assets/images/icons/devoradores.svg">Devoradores de Mundos</option>
+                        <option value="27" data-subfaccion="Heretic Astartes" data-icon="../public/assets/images/icons/negra.svg">Legión Negra</option>
+                        <option value="28" data-subfaccion="Xenos" data-icon="../public/assets/images/icons/cultos.svg">Cultos Genestealers</option>
+                        <option value="29" data-subfaccion="Xenos" data-icon="../public/assets/images/icons/necrones.svg">Necrones</option>
+                        <option value="30" data-subfaccion="Xenos" data-icon="../public/assets/images/icons/orcos.svg">Orcos</option>
+                        <option value="31" data-subfaccion="Xenos" data-icon="../public/assets/images/icons/tau.svg">Imperio T'au</option>
+                        <option value="32" data-subfaccion="Xenos" data-icon="../public/assets/images/icons/tiranidos.svg">Tiranidos</option>
                     </select>
                 </div>
 
-                <!-- Selección de Facción -->
-                <div>
-                    <label for="faccion" class="form-label">Facción</label>
-                    <select id="faccion" class="form-select" onchange="mostrarFaccion()">
+                <div class="mb-3" id="faccionAgeofSigmar" style="display: none;">
+                    <label for="faccionSigmar" class="form-label">Facción - Sigmar</label>
+                    <select id="faccionSigmar" class="form-select" onchange="mostrarFaccionSigmar()">
                         <option value="" selected disabled>Selecciona una facción</option>
-                        <!-- Aquí se agregarán las opciones dinámicamente -->
+                        <option value="7" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/salamandras.svg">Salamandras</option>
+                        <option value="8" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/lobos.svg">Lobos Espaciales</option>
+                        <option value="9" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/ultras.svg">Ultramarines</option>
                     </select>
                 </div>
 
@@ -269,86 +301,66 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 </div>
 
 <script>
-    const faccionesPorJuego = {
-        'warhammer40k': [
-            { id: 1, subfaccion: 'Adeptus Astartes', nombre: 'Templarios Negros', icono: '../public/assets/images/icons/templarios.svg' },
-            { id: 2, subfaccion: 'Adeptus Astartes', nombre: 'Ángeles Sangrientos', icono: '../public/assets/images/icons/sangrientos.svg' },
-            { id: 3, subfaccion: 'Adeptus Astartes', nombre: 'Ángeles Oscuros', icono: '../public/assets/images/icons/oscuros.svg' },
-            { id: 4, subfaccion: 'Adeptus Astartes', nombre: 'Puños Imperiales', icono: '../public/assets/images/icons/puños.svg' },
-            { id: 5, subfaccion: 'Adeptus Astartes', nombre: 'Manos de Hierro', icono: '../public/assets/images/icons/manos.svg' },
-            { id: 6, subfaccion: 'Adeptus Astartes', nombre: 'Guardia del Cuervo', icono: '../public/assets/images/icons/cuervo.svg' },
-            { id: 7, subfaccion: 'Adeptus Astartes', nombre: 'Salamandras', icono: '../public/assets/images/icons/salamandras.svg' },
-            { id: 8, subfaccion: 'Adeptus Astartes', nombre: 'Lobos Espaciales', icono: '../public/assets/images/icons/lobos.svg' },
-            { id: 9, subfaccion: 'Adeptus Astartes', nombre: 'Ultramarines', icono: '../public/assets/images/icons/ultras.svg' },
-            { id: 10, subfaccion: 'Adeptus Astartes', nombre: 'Cicatrices Blancas', icono: '../public/assets/images/icons/cicatrices.svg' },
-            { id: 11, subfaccion: 'Imperium', nombre: 'Adeptus Custodes', icono: '../public/assets/images/icons/custodes.svg' },
-            { id: 12, subfaccion: 'Imperium', nombre: 'Hermanas de Batalla', icono: '../public/assets/images/icons/sororitas.svg' },
-            { id: 13, subfaccion: 'Imperium', nombre: 'Adeptus Mechanicus', icono: '../public/assets/images/icons/mechanicus.svg' },
-            { id: 14, subfaccion: 'Imperium', nombre: 'Agentes Imperiales', icono: '../public/assets/images/icons/agentes.svg' },
-            { id: 15, subfaccion: 'Imperium', nombre: 'Guardia Imperial', icono: '../public/assets/images/icons/guardia.svg' },
-            { id: 16, subfaccion: 'Imperium', nombre: 'Caballeros Grises', icono: '../public/assets/images/icons/grises.svg' },
-            { id: 17, subfaccion: 'Imperium', nombre: 'Caballeros Imperiales', icono: '../public/assets/images/icons/caballeros.svg' },
-            { id: 18, subfaccion: 'Imperium', nombre: 'Marines Espaciales', icono: '../public/assets/images/icons/astartes.svg' },
-            { id: 19, subfaccion: 'Aeldari', nombre: 'Drukhari', icono: '../public/assets/images/icons/drukhari.svg' },
-            { id: 20, subfaccion: 'Aeldari', nombre: 'Ynnari', icono: '../public/assets/images/icons/ynnari.svg' },
-            { id: 21, subfaccion: 'Caos', nombre: 'Demonios del Caos', icono: '../public/assets/images/icons/demons.svg' },
-            { id: 22, subfaccion: 'Caos', nombre: 'Caballeros del Caos', icono: '../public/assets/images/icons/caballeroscaos.svg' },
-            { id: 23, subfaccion: 'Caos', nombre: 'Marines Espaciales del Caos', icono: '../public/assets/images/icons/herejes.svg' },
-            { id: 24, subfaccion: 'Heretic Astartes', nombre: 'Guardia de la Muerte', icono: '../public/assets/images/icons/nurgle.svg' },
-            { id: 25, subfaccion: 'Heretic Astartes', nombre: 'Mil Hijos', icono: '../public/assets/images/icons/hijos.svg' },
-            { id: 26, subfaccion: 'Heretic Astartes', nombre: 'Devoradores de Mundos', icono: '../public/assets/images/icons/devoradores.svg' },
-            { id: 27, subfaccion: 'Heretic Astartes', nombre: 'Legión Negra', icono: '../public/assets/images/icons/negra.svg' },
-            { id: 28, subfaccion: 'Xenos', nombre: 'Cultos Genestealers', icono: '../public/assets/images/icons/cultos.svg' },
-            { id: 29, subfaccion: 'Xenos', nombre: 'Necrones', icono: '../public/assets/images/icons/necrones.svg' },
-            { id: 30, subfaccion: 'Xenos', nombre: 'Orcos', icono: '../public/assets/images/icons/orcos.svg' },
-            { id: 31, subfaccion: 'Xenos', nombre: 'Imperio T\'au', icono: '../public/assets/images/icons/tau.svg' },
-            { id: 32, subfaccion: 'Xenos', nombre: 'Tiranidos', icono: '../public/assets/images/icons/tiranidos.svg' }
-        ],
-        'ageofsigmar': [
-            { id: 1, subfaccion: 'Stormcast Eternals', nombre: 'Stromcast Eternals', icono: '../public/assets/images/icons/stormcast.svg' },
-            { id: 1, subfaccion: 'Stormcast Eternals', nombre: 'Stromcast Eternals', icono: '../public/assets/images/icons/stormcast.svg' },
-            { id: 1, subfaccion: 'Stormcast Eternals', nombre: 'Stromcast Eternals', icono: '../public/assets/images/icons/stormcast.svg' },
-            // Agrega aquí las facciones para Age of Sigmar
-        ],
-        'killteam': [
-            { id: 1, subfaccion: 'Adeptus Astartes', nombre: 'Templarios Negros', icono: '../public/assets/images/icons/templarios.svg' },
-            // Agrega aquí las facciones para Kill Team
-        ],
-        'warcry': [
-            { id: 1, subfaccion: 'Chaos', nombre: 'Demonios del Caos', icono: '../public/assets/images/icons/demons.svg' },
-            // Agrega aquí las facciones para WarCry
-        ]
-                function actualizarFormulario() {
-            const juego = document.getElementById('juego').value;
-            const faccionSelect = document.getElementById('faccion');
-            const puntosSelect = document.getElementById('puntos');
+    
+    function actualizarFormulario() {
+    const juego = document.getElementById('juego').value;
+    const faccionWarhammer40k = document.getElementById('faccionWarhammer40k');
+    const faccionAgeofSigmar = document.getElementById('faccionAgeofSigmar');
+    const faccionSelect = document.getElementById('faccion');
+    const faccionOtroSelect = document.getElementById('faccionOtro');
 
-            // Limpiar el select de facciones
-            faccionSelect.innerHTML = '<option value="" selected disabled>Selecciona una facción</option>';
+    // Limpiar los selects de facciones
+    faccionWarhammer40k.style.display = 'none';
+    faccionOtroJuego.style.display = 'none';
 
-            if (juego) {
-                puntosSelect.disabled = false;
-                faccionSelect.disabled = false;
+    // Dependiendo del juego seleccionado, mostrar el select correspondiente
+    if (juego === 'warhammer40k') {
+        faccionWarhammer40k.style.display = 'block';
+        // Aquí agrega las facciones de Warhammer 40k dinámicamente
+        actualizarFaccionesWarhammer40k();
+    } else if (juego === 'ageofsigmar') {
+        faccionOtroJuego.style.display = 'block';
+        // Aquí agrega las facciones de otro juego dinámicamente
+        actualizarFaccionesOtroJuego();
+    }
+}
 
-                // Agregar las facciones correspondientes al select
-                if (faccionesPorJuego[juego]) { // Verificar que el juego tenga facciones
-                    faccionesPorJuego[juego].forEach(faccion => {
-                        const option = document.createElement('option');
-                        option.value = faccion.id;
-                        option.setAttribute('data-subfaccion', faccion.subfaccion);
-                        option.setAttribute('data-icon', faccion.icono);
-                        option.textContent = faccion.nombre;
-                        faccionSelect.appendChild(option);
-                    });
-                } else {
-                    console.warn('No se encontraron facciones para el juego seleccionado.');
-                }
-            } else {
-                faccionSelect.disabled = true;
-                puntosSelect.disabled = true;
-            }
-        }
-    };
+// Función para agregar las facciones de Warhammer 40k
+function actualizarFaccionesWarhammer40k() {
+    const faccionSelect = document.getElementById('faccion');
+    faccionSelect.innerHTML = '<option value="" selected disabled>Selecciona una facción</option>';
+
+    // Suponiendo que 'faccionesPorJuego' es un objeto que contiene las facciones para cada juego
+    faccionesPorJuego['warhammer40k'].forEach(faccion => {
+        const option = document.createElement('option');
+        option.value = faccion.id;
+        option.setAttribute('data-subfaccion', faccion.subfaccion);
+        option.setAttribute('data-icon', faccion.icono);
+        option.textContent = faccion.nombre;
+        faccionSelect.appendChild(option);
+    });
+}
+
+// Función para agregar las facciones de otro juego
+function actualizarFaccionesAgeofSigmar() {
+    const faccionSigmarSelect = document.getElementById('faccionSigmar');
+    faccionSigmarSelect.innerHTML = '<option value="" selected disabled>Selecciona una facción</option>';
+
+    // Agrega las facciones de otro juego aquí
+    // Por ejemplo, podrías tener un arreglo de facciones para el otro juego
+    const otrasFacciones = [
+        { id: 1, nombre: 'Facción 1' },
+        { id: 2, nombre: 'Facción 2' },
+        // Agrega más facciones aquí
+    ];
+
+    otrasFacciones.forEach(faccion => {
+        const option = document.createElement('option');
+        option.value = faccion.id;
+        option.textContent = faccion.nombre;
+        faccionOtroSelect.appendChild(option);
+    });
+}
 
     
 

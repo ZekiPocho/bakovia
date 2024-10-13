@@ -406,7 +406,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     }
 
     document.getElementById('crear-partida').disabled = !formValido;
-}>
+}
+</script>
                 </div>
             </div>
         </div>

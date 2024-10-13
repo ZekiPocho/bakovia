@@ -341,7 +341,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         }
     }
 
-    function mostrarFaccion(){
+    //function mostrarFaccion(){
         const icon = document.getElementById('icono-faccion');
         if (juego === 'warhammer40k') {
                 function mostrarFaccion40k() {

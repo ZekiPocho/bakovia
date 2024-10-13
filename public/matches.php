@@ -256,11 +256,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                             
                         </div>
                     </div>
-                        </div>        
-                    </div>
                     <!-- Aquí termina el HTML para mostrar las partidas en progreso -->
-
-                    
                     <?php
                 }
             } else {

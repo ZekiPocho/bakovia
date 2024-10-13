@@ -2,7 +2,7 @@
 
 session_start();
 include "db.php";
-
+            $mensaje = ""
 // Verificar si el formulario fue enviado
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -11,18 +11,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
         $email = $_POST['email'];
         $password = sha1($_POST['clave']); // Encriptar la clave
-        
-
         // Consulta SQL para verificar el correo y la contraseña
         $res = $conn->query("SELECT * FROM usuarios 
             WHERE correo='$email' 
             AND contrasena='$password'  
             AND verificado='si'") or die($conn->error);
-
         if ($res && mysqli_num_rows($res) > 0) {
             // Iniciar sesión
             $_SESSION['user'] = $email;
-
             // Verificar si la opción de 'remember me' está seleccionada
             if (isset($_POST['remember'])) {
                 // Generar cookies con duración de 30 días
@@ -30,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 setcookie('password', $password, time() + (86400 * 30), "/");
             }
             
-            $mensaje = ""
             // Redirigir al usuario a la página principal
             header("Location:../public/index.html");
             exit();

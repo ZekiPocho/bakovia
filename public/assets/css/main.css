@@ -3159,6 +3159,7 @@ ol {
   border-radius: 5px;
   background-image: url("../images/hero/imagen-miniblog.jpg");
   margin-top: 12px;
+  filter: contrast(180%);
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {

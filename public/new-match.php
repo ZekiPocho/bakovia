@@ -201,7 +201,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <br>
             <form>
                 <!-- Selección de Juego -->
-                <div class="mb-3">
+                <div>
                     <label for="juego" class="form-label">Juego</label>
                     <select id="juego" class="form-select" onchange="actualizarFormulario()">
                         <option value="" selected disabled>Selecciona un juego</option>
@@ -209,18 +209,15 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         <option value="ageofsigmar">Age of Sigmar</option>
                         <option value="killteam">Kill Team</option>
                         <option value="warcry">WarCry</option>
+                        <!-- Agrega más juegos según sea necesario -->
                     </select>
                 </div>
 
-                <!-- Selección de Puntos -->
-                <div class="mb-3">
-                    <label for="puntos" class="form-label">Puntos</label>
-                    <select id="puntos" class="form-select" disabled onchange="verificarFormulario()">
-                        <option value="" selected disabled>Selecciona los puntos</option>
-                        <option value="500">500</option>
-                        <option value="1000">1000</option>
-                        <option value="1500">1500</option>
-                        <option value="2000">2000</option>
+                <div>
+                    <label for="faccion" class="form-label">Facción</label>
+                    <select id="faccion" class="form-select" onchange="mostrarFaccion()">
+                        <option value="" selected disabled>Selecciona una facción</option>
+                        <!-- Aquí se agregarán las opciones dinámicamente -->
                     </select>
                 </div>
 
@@ -321,12 +318,13 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             { id: 1, subfaccion: 'Chaos', nombre: 'Demonios del Caos', icono: '../public/assets/images/icons/demons.svg' },
             // Agrega aquí las facciones para WarCry
         ]
-    };
-
-    function actualizarFormulario() {
+        function actualizarFormulario() {
     const juego = document.getElementById('juego').value;
     const faccionSelect = document.getElementById('faccion');
     const puntosSelect = document.getElementById('puntos');
+
+    // Limpiar el select de facciones
+    faccionSelect.innerHTML = '<option value="" selected disabled>Selecciona una facción</option>';
 
     if (juego) {
         puntosSelect.disabled = false;
@@ -350,6 +348,9 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         puntosSelect.disabled = true;
     }
 }
+    };
+
+    
 
     // La función mostrarFaccion se mantiene igual
     function mostrarFaccion() {

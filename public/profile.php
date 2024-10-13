@@ -200,8 +200,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 
                 <div class="col-7 profile-info-name" >
                 <a href="edit-profile" style="text-decoration: none;" 
-   onmouseover="this.style.textDecoration='underline';" 
-   onmouseout="this.style.textDecoration='none';">
+                onmouseover="this.style.textDecoration='underline';" 
+                onmouseout="this.style.textDecoration='none';">
                   <h2><?php
                     echo $_SESSION['nombre_usuario']," ";
                                      

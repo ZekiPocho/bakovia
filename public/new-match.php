@@ -360,7 +360,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     }
     function mostrarFaccion40k() {
         const faccion40kSelect = document.getElementById('faccion40k');
-        const selectedOption = faccionSelect.options[faccionSelect.selectedIndex];
+        const selectedOption = faccion40kSelect.options[faccion40kSelect.selectedIndex];
         const subfaccion = selectedOption.getAttribute('data-subfaccion');
         const icono = selectedOption.getAttribute('data-icon');
 

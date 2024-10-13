@@ -8,9 +8,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Asegurarse de que las claves 'email' y 'clave' existan en el array $_POST
     if (isset($_POST['email']) && isset($_POST['clave'])) {
-        $mensaje = ""
+    
         $email = $_POST['email'];
         $password = sha1($_POST['clave']); // Encriptar la clave
+        $mensaje = ""
 
         // Consulta SQL para verificar el correo y la contraseña
         $res = $conn->query("SELECT * FROM usuarios 

@@ -256,11 +256,12 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         <option value="24" data-subfaccion="Heretic Astartes" data-icon="../public/assets/images/icons/nurgle.svg">Guardia de la Muerte</option>
                         <option value="25" data-subfaccion="Heretic Astartes" data-icon="../public/assets/images/icons/hijos.svg">Mil Hijos</option>
                         <option value="26" data-subfaccion="Heretic Astartes" data-icon="../public/assets/images/icons/devoradores.svg">Devoradores de Mundos</option>
-                        <option value="27" data-subfaccion="Xenos" data-icon="../public/assets/images/icons/cultos.svg">Cultos Genestealers</option>
-                        <option value="28" data-subfaccion="Xenos" data-icon="../public/assets/images/icons/necrones.svg">Necrones</option>
-                        <option value="29" data-subfaccion="Xenos" data-icon="../public/assets/images/icons/orcos.svg">Orcos</option>
-                        <option value="30" data-subfaccion="Xenos" data-icon="../public/assets/images/icons/tau.svg">Imperio T'au</option>
-                        <option value="31" data-subfaccion="Xenos" data-icon="../public/assets/images/icons/tiranidos.svg">Tiranidos</option>
+                        <option value="27" data-subfaccion="Heretic Astartes" data-icon="../public/assets/images/icons/negra.svg">Legión Negra</option>
+                        <option value="28" data-subfaccion="Xenos" data-icon="../public/assets/images/icons/cultos.svg">Cultos Genestealers</option>
+                        <option value="29" data-subfaccion="Xenos" data-icon="../public/assets/images/icons/necrones.svg">Necrones</option>
+                        <option value="30" data-subfaccion="Xenos" data-icon="../public/assets/images/icons/orcos.svg">Orcos</option>
+                        <option value="31" data-subfaccion="Xenos" data-icon="../public/assets/images/icons/tau.svg">Imperio T'au</option>
+                        <option value="32" data-subfaccion="Xenos" data-icon="../public/assets/images/icons/tiranidos.svg">Tiranidos</option>
 
 
                         <!-- Agrega el resto de las facciones aquí siguiendo el formato -->

@@ -30,7 +30,7 @@
       </p>
     <![endif]-->
 
-    <!-- Preloader
+<!-- Preloader-->
     <div class="preloader">
         <div class="preloader-inner">
             <div class="preloader-icon">
@@ -39,7 +39,7 @@
             </div>
         </div>
     </div>
-    /End Preloader -->
+<!--/End Preloader -->
 
 <!--HEADER Y NAVBAR PRO-->
 <header class="header navbar-area">

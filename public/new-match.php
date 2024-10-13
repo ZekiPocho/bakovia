@@ -192,7 +192,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                             <br>
                             <form id="crear-partida" action="crear_partida.php" method="POST">
     <label for="juego">Juego:</label>
-    <select id="juego" name="juego" onchange="mostrarOpciones()">
+    <select id="juego" name="juego" onchange="mostrarOpciones(); validarFormulario()">
         <option value="">--Seleccionar Juego--</option>
         <option value="warhammer40k">Warhammer 40k</option>
         <option value="ageofsigmar">Age of Sigmar</option>
@@ -203,7 +203,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     <!-- Puntos (solo visible para Warhammer 40k) -->
     <div id="puntos-container" style="display:none;">
         <label for="puntos">Puntos:</label>
-        <select id="puntos" name="puntos">
+        <select id="puntos" name="puntos" onchange="validarFormulario()">
+            <option value="">--Seleccionar Puntos--</option>
             <option value="500">500</option>
             <option value="1000">1000</option>
             <option value="1500">1500</option>
@@ -214,27 +215,29 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     <!-- Facciones (dependiendo del juego seleccionado) -->
     <div id="faccion-container" style="display:none;">
         <label for="faccion">Facción:</label>
-        <select id="faccion" name="faccion">
-            <!-- Aquí puedes agregar las facciones de cada juego como se muestra abajo -->
+        <select id="faccion" name="faccion" onchange="validarFormulario()">
+            <option value="">--Seleccionar Facción--</option>
+            <!-- Las opciones de facción se generan dinámicamente -->
         </select>
     </div>
 
     <!-- Hora de inicio y finalización -->
     <label for="hora_inicio">Hora de inicio:</label>
-    <input type="time" id="hora_inicio" name="hora_inicio">
+    <input type="time" id="hora_inicio" name="hora_inicio" onchange="validarFormulario()">
 
     <label for="hora_final">Hora de finalización:</label>
-    <input type="time" id="hora_final" name="hora_final">
+    <input type="time" id="hora_final" name="hora_final" onchange="validarFormulario()">
 
     <!-- Mesa -->
     <label for="mesa">Mesa:</label>
-    <select id="mesa" name="mesa">
+    <select id="mesa" name="mesa" onchange="validarFormulario()">
+        <option value="">--Seleccionar Mesa--</option>
         <option value="1">Mesa 1</option>
         <option value="2">Mesa 2</option>
         <option value="3">Mesa 3</option>
     </select>
 
-    <input type="submit" value="Crear Partida">
+    <input type="submit" value="Crear Partida" id="crear-btn" disabled>
 </form>
 
 <script>
@@ -257,6 +260,7 @@ function mostrarOpciones() {
 
     if (juego === 'warhammer40k') {
         faccionSelect.innerHTML = `
+            <option value="">--Seleccionar Facción--</option>
             <option value="space_marines">Space Marines</option>
             <option value="orkos">Orkos</option>
             <option value="eldar">Eldar</option>
@@ -264,18 +268,21 @@ function mostrarOpciones() {
         `;
     } else if (juego === 'ageofsigmar') {
         faccionSelect.innerHTML = `
+            <option value="">--Seleccionar Facción--</option>
             <option value="stormcast_eternals">Stormcast Eternals</option>
             <option value="slaves_to_darkness">Slaves to Darkness</option>
             <!-- Agregar más facciones -->
         `;
     } else if (juego === 'killteam') {
         faccionSelect.innerHTML = `
+            <option value="">--Seleccionar Facción--</option>
             <option value="t'au">T'au</option>
             <option value="necrones">Necrones</option>
             <!-- Agregar más facciones -->
         `;
     } else if (juego === 'warcry') {
         faccionSelect.innerHTML = `
+            <option value="">--Seleccionar Facción--</option>
             <option value="iron_golems">Iron Golems</option>
             <option value="untamed_beasts">Untamed Beasts</option>
             <!-- Agregar más facciones -->
@@ -283,6 +290,42 @@ function mostrarOpciones() {
     } else {
         faccionContainer.style.display = 'none';
     }
+}
+
+function validarFormulario() {
+    const juego = document.getElementById('juego').value;
+    const puntos = document.getElementById('puntos').value;
+    const faccion = document.getElementById('faccion').value;
+    const horaInicio = document.getElementById('hora_inicio').value;
+    const horaFinal = document.getElementById('hora_final').value;
+    const mesa = document.getElementById('mesa').value;
+    const crearBtn = document.getElementById('crear-btn');
+
+    // Validar que todos los campos estén seleccionados
+    let formValido = true;
+
+    if (!juego) {
+        formValido = false;
+    }
+
+    if (juego === 'warhammer40k' && !puntos) {
+        formValido = false;
+    }
+
+    if (!faccion) {
+        formValido = false;
+    }
+
+    if (!horaInicio || !horaFinal) {
+        formValido = false;
+    }
+
+    if (!mesa) {
+        formValido = false;
+    }
+
+    // Habilitar o deshabilitar el botón de crear partida
+    crearBtn.disabled = !formValido;
 }
 </script>
 

@@ -186,12 +186,106 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
      <!---->
     <div class="container-sm mt-4">
         <div class="row">
-            <div class="col-xxl-10">
+            <div class="col-xxl-12">
                 <div class="matches-div text-center">
                             <h4 style="border-bottom: solid 1px #6E869D;">NUEVA PARTIDA</h4>
                             <br>
+                            <form id="crear-partida" action="crear_partida.php" method="POST">
+    <label for="juego">Juego:</label>
+    <select id="juego" name="juego" onchange="mostrarOpciones()">
+        <option value="">--Seleccionar Juego--</option>
+        <option value="warhammer40k">Warhammer 40k</option>
+        <option value="ageofsigmar">Age of Sigmar</option>
+        <option value="killteam">Kill Team</option>
+        <option value="warcry">WarCry</option>
+    </select>
 
-    
+    <!-- Puntos (solo visible para Warhammer 40k) -->
+    <div id="puntos-container" style="display:none;">
+        <label for="puntos">Puntos:</label>
+        <select id="puntos" name="puntos">
+            <option value="500">500</option>
+            <option value="1000">1000</option>
+            <option value="1500">1500</option>
+            <option value="2000">2000</option>
+        </select>
+    </div>
+
+    <!-- Facciones (dependiendo del juego seleccionado) -->
+    <div id="faccion-container" style="display:none;">
+        <label for="faccion">Facción:</label>
+        <select id="faccion" name="faccion">
+            <!-- Aquí puedes agregar las facciones de cada juego como se muestra abajo -->
+        </select>
+    </div>
+
+    <!-- Hora de inicio y finalización -->
+    <label for="hora_inicio">Hora de inicio:</label>
+    <input type="time" id="hora_inicio" name="hora_inicio">
+
+    <label for="hora_final">Hora de finalización:</label>
+    <input type="time" id="hora_final" name="hora_final">
+
+    <!-- Mesa -->
+    <label for="mesa">Mesa:</label>
+    <select id="mesa" name="mesa">
+        <option value="1">Mesa 1</option>
+        <option value="2">Mesa 2</option>
+        <option value="3">Mesa 3</option>
+    </select>
+
+    <input type="submit" value="Crear Partida">
+</form>
+
+<script>
+function mostrarOpciones() {
+    const juego = document.getElementById('juego').value;
+    const puntosContainer = document.getElementById('puntos-container');
+    const faccionContainer = document.getElementById('faccion-container');
+    const faccionSelect = document.getElementById('faccion');
+
+    // Mostrar puntos solo si se selecciona Warhammer 40k
+    if (juego === 'warhammer40k') {
+        puntosContainer.style.display = 'block';
+    } else {
+        puntosContainer.style.display = 'none';
+    }
+
+    // Cambiar las facciones dependiendo del juego seleccionado
+    faccionContainer.style.display = 'block';
+    faccionSelect.innerHTML = ''; // Limpiar opciones previas
+
+    if (juego === 'warhammer40k') {
+        faccionSelect.innerHTML = `
+            <option value="space_marines">Space Marines</option>
+            <option value="orkos">Orkos</option>
+            <option value="eldar">Eldar</option>
+            <!-- Agregar más facciones -->
+        `;
+    } else if (juego === 'ageofsigmar') {
+        faccionSelect.innerHTML = `
+            <option value="stormcast_eternals">Stormcast Eternals</option>
+            <option value="slaves_to_darkness">Slaves to Darkness</option>
+            <!-- Agregar más facciones -->
+        `;
+    } else if (juego === 'killteam') {
+        faccionSelect.innerHTML = `
+            <option value="t'au">T'au</option>
+            <option value="necrones">Necrones</option>
+            <!-- Agregar más facciones -->
+        `;
+    } else if (juego === 'warcry') {
+        faccionSelect.innerHTML = `
+            <option value="iron_golems">Iron Golems</option>
+            <option value="untamed_beasts">Untamed Beasts</option>
+            <!-- Agregar más facciones -->
+        `;
+    } else {
+        faccionContainer.style.display = 'none';
+    }
+}
+</script>
+
                 </div>
             </div>
         </div>

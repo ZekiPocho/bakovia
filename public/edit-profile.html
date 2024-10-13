@@ -191,7 +191,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <span>Foto de Perfil</span>
               <label for="profileImage" class="form-label"></label>
               <input type="file" id="profileImage" class="form-control" accept="image/*" onchange="previewImage(event)" style="display: none;">
-              <img src="https://via.placeholder.com/200" alt="Foto de perfil" class="img-fluid mt-3" id="profilePreview" onclick="document.getElementById('profileImage').click();">
+              <img src="https://via.placeholder.com/200" style="max-height: 200px; max-width: 200px;" alt="Foto de perfil" class="img-fluid" id="profilePreview" onclick="document.getElementById('profileImage').click();">
             </div>
             <!-- Nombre de usuario y biografía -->
             <div class="col profile-info-name mb-3">

@@ -341,49 +341,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         }
     }
 
-    function mostrarFaccion(){
-        const icon = document.getElementById('icono-faccion');
-        if (juego === 'warhammer40k') {
-            const faccion40kSelect = document.getElementById('faccion40k');
-            const selectedOption = faccion40kSelect.options[faccion40kSelect.selectedIndex];
-            const subfaccion = selectedOption.getAttribute('data-subfaccion40k');
-            const icono = selectedOption.getAttribute('data-icon40k');
 
-            // Mostrar facción y subfacción en la columna de previsualización
-            document.getElementById('nombre-faccion').textContent = subfaccion;
-            document.getElementById('subfaccion-faccion').textContent = selectedOption.text;
-
-            // Mostrar icono de facción
-            const iconoFaccion = document.getElementById('icono-faccion');
-            iconoFaccion.src = icono;
-            iconoFaccion.style.display = 'block';
-
-            // Habilitar botón de crear si todos los campos están llenos
-            verificarFormulario();
-        } else {
-            if (juego === 'ageofsigmar') {
-                function mostrarFaccionSigmar() {
-            const faccionSigmarSelect = document.getElementById('faccionSigmar');
-            const selectedOption = faccionSigmarSelect.options[faccionSigmarSelect.selectedIndex];
-            const subfaccion = selectedOption.getAttribute('data-subfaccion');
-            const icono = selectedOption.getAttribute('data-icon');
-
-            // Mostrar facción y subfacción en la columna de previsualización
-            document.getElementById('nombre-faccion').textContent = subfaccion;
-            document.getElementById('subfaccion-faccion').textContent = selectedOption.text;
-
-            // Mostrar icono de facción
-            const iconoFaccion = document.getElementById('icono-faccion');
-            iconoFaccion.src = icono;
-            iconoFaccion.style.display = 'block';
-
-            // Habilitar botón de crear si todos los campos están llenos
-            verificarFormulario();
-            }
-        }
-            icon.style.display. = 'none';
-        }
-    }
    
 
     function verificarFormulario() {

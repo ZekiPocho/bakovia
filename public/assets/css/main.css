@@ -3155,6 +3155,7 @@ ol {
 }
 
 .hero-area .hero-small-banner.style2 {
+  border: solid 2px #6E869D;
   margin-top: 12px;
   background-image: url("../images/hero/small-banner-bg.png");
   background-color: #081828;

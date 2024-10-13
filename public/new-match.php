@@ -273,9 +273,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         <!-- Facciones de Warhammer 40k -->
                         <option value="1" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/templarios.svg">Templarios Negros</option>
                         <option value="2" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/sangrientos.svg">Ángeles Sangrientos</option>
-                        
-
-
                         <!-- Agrega el resto de las facciones aquí siguiendo el formato -->
                     </select>
                 </div>
@@ -326,7 +323,10 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         const puntosSelect = document.getElementById('puntos');
 
         if (juego === 'warhammer40k') {
+            faccion40kSelect.style.display = 'block';
+            faccionSigmarSelect.style.display = 'none';
             faccion40kSelect.disabled = false;
+            faccionSigmarSelect.disabled = true;
             puntosSelect.disabled = false;
         } else {
             if (juego === 'ageofsigmar') {

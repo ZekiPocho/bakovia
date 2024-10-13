@@ -193,17 +193,16 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             }
-            
             // Consulta para obtener partidas en progreso
             $sql = "SELECT p.id_partida, p.id_juego, p.puntos, p.nombre_usuario1, p.nombre_usuario2, 
             f1.nombre AS faccion1, f1.subfaccion AS subfaccion1, f1.icono AS icono1, 
             f2.nombre AS faccion2, f2.subfaccion AS subfaccion2, f2.icono AS icono2,
             p.hora_inicio, p.hora_final, p.id_mesa, p.puntaje_usuario1, 
             p.puntaje_usuario2
-     FROM partida p
-     JOIN faccion f1 ON p.id_faccion_usuario1 = f1.id_faccion
-     JOIN faccion f2 ON p.id_faccion_usuario2 = f2.id_faccion
-     WHERE p.estado = 'en progreso'";
+            FROM partida p
+            JOIN faccion f1 ON p.id_faccion_usuario1 = f1.id_faccion
+            JOIN faccion f2 ON p.id_faccion_usuario2 = f2.id_faccion
+            WHERE p.estado = 'en progreso'";
             
             $result = $conn->query($sql);
             
@@ -257,20 +256,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         </div>        
                     </div>
                     <!-- Aquí termina el HTML para mostrar las partidas en progreso -->
-                    <?php
-                }
-            } else {
-                echo "No hay partidas en progreso.";
-            }
-            
-            $conn->close();
-            ?>
-            
-             <!--PARTIDA2-->
-            <div class="col-xxl-6">
-                <div class="matches-div text-center">
-                    <h3 style="border-bottom: solid 1px #6E869D;">PARTIDAS EN PROGRESO</h3>
-                    <br>
+                      <!--PARTIDA2-->
                     <div class="match-entry mb-2 text-center">
                         <div class="row align-items-center">
                             <div class="col-2">
@@ -309,8 +295,17 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                             </div>
                         </div>
                     </div>
-                </div>        
-            </div>
+                    <?php
+                }
+            } else {
+                echo "No hay partidas en progreso.";
+            }
+            
+            $conn->close();
+            ?>
+            
+            
+
     
             <!-- Columna de partidas abiertas para jugar -->
             <div class="col-xxl-6">

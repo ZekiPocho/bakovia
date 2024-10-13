@@ -343,7 +343,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         faccion40kSelect.style.display = 'none';
         faccionSigmarSelect.style.display = 'none';
     }
-}
+    }
 
     function mostrarFaccion40k() {
         const faccion40kSelect = document.getElementById('faccion40k');
@@ -406,12 +406,13 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     }
 
     document.getElementById('crear-partida').disabled = !formValido;
-}
-</script>
+    }
+    </script>
                 </div>
             </div>
         </div>
     </div>
+
     
 
     

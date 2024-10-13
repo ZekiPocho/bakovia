@@ -153,15 +153,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         </div>
     </div>
 <!--PERFIL-->
-<div class="col-sm-auto"></div>
-    <div class="navbar-cart">
-        <div class="cart-items">
-            <a href="login.html" class="main-btn">
-                <i class="lni lni-user"></i>
-            </a>
-        </div>
-    </div>
-</div>
 </div>
 </nav>
 </header>

@@ -1,9 +1,10 @@
 <?php 
-include "db.php"; // Asegúrate de que no haya espacios antes de esta línea
 session_start();
 if(!isset($_SESSION['user'])){
     header("Location: ../public/profile.php");
 }
+include "db.php"; // Asegúrate de que no haya espacios antes de esta línea
+
 $mensaje = "";
 
 if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['clave']) && isset($_POST['clave2'])) {

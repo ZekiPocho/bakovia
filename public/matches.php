@@ -187,6 +187,10 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     <div class="container-sm mt-4">
         <div class="row">
             <!-- Columna de partidas en progreso -->
+    <div class="col-xxl-6">
+        <div class="matches-div text-center">
+                            <h3 style="border-bottom: solid 1px #6E869D;">PARTIDAS EN PROGRESO</h3>
+                            <br>
             <?php
             include("../src/db.php");
             // Verificar conexión
@@ -211,10 +215,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 while ($row = $result->fetch_assoc()) {
                     ?>
                     <!-- Aquí empieza el HTML para mostrar las partidas en progreso -->
-                    <div class="col-xxl-6">
-                        <div class="matches-div text-center">
-                            <h3 style="border-bottom: solid 1px #6E869D;">PARTIDAS EN PROGRESO</h3>
-                            <br>
+                    
                             <div class="match-entry mb-2 text-center">
                                 <div class="row align-items-center">
                                     <div class="col-2">
@@ -254,8 +255,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                 </div>
                             </div>
                             
-                        </div>
-                    </div>
+                    
                     <!-- Aquí termina el HTML para mostrar las partidas en progreso -->
                     <?php
                 }
@@ -266,7 +266,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             $conn->close();
             ?>
             
-            
+        </div>
+    </div>
 
     
             <!-- Columna de partidas abiertas para jugar -->

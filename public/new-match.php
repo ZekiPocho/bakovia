@@ -199,7 +199,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <div class="col-md-6">
             <h3 class="text-center">SELECCIONA</h3>
             <br>
-            <form>
+    <form action="crear_partida.php" method="POST">
                 <!-- Selección de Juego -->
                 <div class="mb-3">
                     <label for="juego" class="form-label">Juego</label>
@@ -296,7 +296,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         <option value="3">Mesa 3</option>
                     </select>
                 </div>
-            </form>
+            
         </div>
 
         <!-- Columna derecha: Previsualización -->
@@ -309,9 +309,10 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <h4 id="subfaccion-faccion"></h4>
             <br><br>
             <div class="button">
-                <button class="btn" id="crear-partida" disabled>CREAR PARTIDA</button>
+                <button class="btn" id="crear-partida" type="submit" disabled>CREAR PARTIDA</button>
             </div>
         </div>
+    </form>
     </div>
 </div>
 

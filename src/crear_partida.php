@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mesa = $_POST['mesa'];
 
         // Conectar con la base de datos
-        include "./db.php";
+        include "../public/db.php";
 
         // Verificar conexión
         if ($conn->connect_error) {

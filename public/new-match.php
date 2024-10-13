@@ -328,9 +328,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     const faccionSelect = document.getElementById('faccion');
     const puntosSelect = document.getElementById('puntos');
 
-    // Limpiar el select de facciones
-    faccionSelect.innerHTML = '<option value="" selected disabled>Selecciona una facción</option>';
-
     if (juego) {
         puntosSelect.disabled = false;
         faccionSelect.disabled = false;

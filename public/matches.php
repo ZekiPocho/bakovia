@@ -253,43 +253,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                     </div>
                                 </div>
                             </div>
-                                                  <!--PARTIDA2-->
-                            <div class="match-entry mb-2 text-center">
-                        <div class="row align-items-center">
-                            <div class="col-2">
-                                <img src="https://via.placeholder.com/50x50" alt="Foto de perfil usuario1" class="img-fluid">
-                            </div>
-                            <div class="col-3">
-                                <span>Usuario1</span>
-                            </div>
-                            <div class="col-2">
-                                <img src="assets/images/matches/sword.png" alt="Icono de batalla" class="img-fluid" style="max-width: 25px;">
-                            </div>
-                            <div class="col-3">
-                                <span>Usuario2</span>
-                            </div>
-                            <div class="col-2">
-                                <img src="https://via.placeholder.com/50x50" alt="Foto de perfil usuario2" class="img-fluid">
-                            </div>
-                        </div>
-                        <div class="scoreboard">
-                            <div class="team">
-                                <img src="../public/assets/images/icons/ultras.svg" alt="Equipo 1">
-                                <div class="team-name">Adeptus Astartes<br>Ultramarines</div>
-                            </div>
-                            <div class="score">15</div>
-                            <div class="middle-section">
-                                <h1>Warhammer 40.000</h1>
-                                <h1>1000 Pts.</h1>  
-                            <div class="timer"><i class="lni lni-hourglass"></i>00:00:00</div>
-                                <h1>Ronda Nº1</h1>
-                                <h1>MESA - 3</h1>
-                            </div>
-                            <div class="score">15</div>
-                            <div class="team">
-                                <img src="../public/assets/images/icons/ynnari.svg" alt="Equipo 2">
-                                <div class="team-name">Xenos<br>Aeldari</div>
-                            </div>
+                            
                         </div>
                     </div>
                         </div>        

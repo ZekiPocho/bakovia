@@ -1,6 +1,5 @@
 <?php
     require_once "../src/validate_session.php";
-    session_start();
 ?>
 <!DOCTYPE html>
 

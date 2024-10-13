@@ -96,7 +96,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <ul class="sub-menu collapse" id="submenu-1-2">
             <li class="nav-item"><a href="about-us.html">About Us</a></li>
             <li class="nav-item"><a href="faq.html">Faq</a></li>
-            <li class="nav-item"><a href="login.html">Login</a></li>
+            <li class="nav-item"><a href="login.php">Login</a></li>
             <li class="nav-item"><a href="register.php">Register</a></li>
             <li class="nav-item"><a href="mail-success.html">Mail Success</a></li>
             <li class="nav-item"><a href="404.html">404 Error</a></li>
@@ -183,7 +183,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 <div class="col-sm-auto"></div>
     <div class="navbar-cart">
         <div class="cart-items">
-            <a href="login.html" class="main-btn">
+            <a href="login.php" class="main-btn">
                 <i class="lni lni-user"></i>
             </a>
         </div>
@@ -239,7 +239,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                             <div class="button">
                                 <button class="btn" name="registrar "type="submit">Registrarse</button>
                             </div>
-                            <p class="outer-link">¿Ya eres un ciudadano? <a href="login.html"> Inicia Sesión Aquí</a>
+                            <p class="outer-link">¿Ya eres un ciudadano? <a href="login.php"> Inicia Sesión Aquí</a>
                             </p>
                         </form>
                     </div>

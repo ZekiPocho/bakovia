@@ -25,7 +25,6 @@ if (isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
 $email = $_POST['email'];
 $password = sha1($_POST['clave']);
 
-$mensaje = ""
 
 // Consulta SQL para verificar el correo y la contraseña
 $res = $conn->query("SELECT * FROM usuarios 
@@ -48,7 +47,7 @@ if (mysqli_num_rows($res) > 0) {
     // Redirigir al usuario a la página principal
     header("Location:../public/index.html");
 } else {
-    $mensaje = "<div class = 'alert alert-danger'> login incorrecto </div>";
+    echo "<div class = 'alert alert-danger'> login incorrecto </div>";
 }
 ?>
 

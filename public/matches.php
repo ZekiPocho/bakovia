@@ -192,7 +192,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                             <h3 style="border-bottom: solid 1px #6E869D;">PARTIDAS EN PROGRESO</h3>
                             <br>
             <?php
-            include("../src/db.php");
+            include("../public/db.php");
             // Verificar conexión
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);

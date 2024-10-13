@@ -155,11 +155,13 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     </div>
 <!--PERFIL-->
 <div class="col-sm-auto">
+    <div class="navbar-nav">
         <div class="nav-item">
             <a aria-label="Toggle navigation" href="logout.php">
-            <span class="material-symbols-outlined">logout</span> CERRAR SESIÓN
+            CERRAR SESIÓN <span class="material-symbols-outlined">logout</span>
             </a>
         </div>
+    </div>
 </div>
 </div>
 </nav>

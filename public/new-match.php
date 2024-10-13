@@ -199,7 +199,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <div class="col-md-6">
             <h3 class="text-center">SELECCIONA</h3>
             <br>
-    <form action="crear_partida.php" method="POST">
+    <form action="../src/crear_partida.php" method="POST">
                 <!-- Selección de Juego -->
                 <div class="mb-3">
                     <label for="juego" class="form-label">Juego</label>

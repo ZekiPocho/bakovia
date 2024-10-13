@@ -195,6 +195,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <!-- Columna izquierda: Selección -->
         <div class="col-md-6">
             <h3 class="text-center">SELECCIONA</h3>
+            <br>
             <form>
                 <!-- Selección de Juego -->
                 <div class="mb-3">
@@ -287,7 +288,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
         <!-- Columna derecha: Previsualización -->
         <div class="col-md-6 text-center">
-            <h3>PREVISUALIZACIÓN</h3>
+            <h3>LISTO PARA DEPLEGAR...</h3>
+            <br>
             <center><img id="icono-faccion" class="faction-icon my-3" src="" alt="Icono de facción" style="display: none;"></center>
 
             <span style="color: gray; font-size: 15px;" id="nombre-faccion"></span>

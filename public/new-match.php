@@ -188,7 +188,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <div class="row">
             <div class="col-xxl-12">
                 <div class="matches-div text-center">
-                            <h47 style="border-bottom: solid 1px #6E869D;">NUEVA PARTIDA</h7>
+                            <h1 style="border-bottom: solid 1px #6E869D;">NUEVA PARTIDA</h1>
                             <br>
                                 <form id="crear-partida" action="crear_partida.php" method="POST">
                                     <label for="juego">Juego:</label>

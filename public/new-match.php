@@ -290,7 +290,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <h3>PREVISUALIZACIÓN</h3>
             <center><img id="icono-faccion" class="faction-icon my-3" src="" alt="Icono de facción" style="display: none;"></center>
 
-            <h6 id="nombre-faccion" disabled></h6>
+            <span style="color: gray;"><h6 id="nombre-faccion"></h6></span>
             <h4 id="subfaccion-faccion"></h4>
             <button id="crear-btn" class="btn btn-primary mt-3" disabled>Crear Partida</button>
         </div>

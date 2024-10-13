@@ -85,36 +85,21 @@ button:focus,
 }
 
 select {
-  -webkit-writing-mode: horizontal-tb !important;
-  text-rendering: auto;
-  color: #081828;
-  letter-spacing: normal;
-  word-spacing: normal;
-  text-transform: none;
-  text-indent: 0px;
-  text-shadow: none;
-  display: inline-block;
-  text-align: start;
-  -webkit-appearance: menulist;
-     -moz-appearance: menulist;
-          appearance: menulist;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  white-space: pre;
-  -webkit-rtl-ordering: logical;
-  background-color: -internal-light-dark(white, #3b3b3b);
-  cursor: default;
-  margin: 0em;
-  font: 400 14px;
-  border-radius: 0px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: -internal-light-dark(#767676, #858585);
-  -o-border-image: initial;
-     border-image: initial;
+  display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
 }
 
 span,
@@ -7181,23 +7166,7 @@ blockquote span {
 	CREAR PARTIDA
 ========================================*/
 
-.seleccionar{
-  display: block;
-    width: auto;
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #212529;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border-radius: .25rem;
-    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
-}
+
 
 /*======================================
 	Account Login CSS

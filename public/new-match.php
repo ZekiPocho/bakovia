@@ -309,6 +309,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         ],
         'ageofsigmar': [
             { id: 1, subfaccion: 'Stormcast Eternals', nombre: 'Stromcast Eternals', icono: '../public/assets/images/icons/stormcast.svg' },
+            { id: 1, subfaccion: 'Stormcast Eternals', nombre: 'Stromcast Eternals', icono: '../public/assets/images/icons/stormcast.svg' },
+            { id: 1, subfaccion: 'Stormcast Eternals', nombre: 'Stromcast Eternals', icono: '../public/assets/images/icons/stormcast.svg' },
             // Agrega aquí las facciones para Age of Sigmar
         ],
         'killteam': [
@@ -322,18 +324,19 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     };
 
     function actualizarFormulario() {
-        const juego = document.getElementById('juego').value;
-        const faccionSelect = document.getElementById('faccion');
-        const puntosSelect = document.getElementById('puntos');
+    const juego = document.getElementById('juego').value;
+    const faccionSelect = document.getElementById('faccion');
+    const puntosSelect = document.getElementById('puntos');
 
-        // Limpiar el select de facciones
-        faccionSelect.innerHTML = '<option value="" selected disabled>Selecciona una facción</option>';
+    // Limpiar el select de facciones
+    faccionSelect.innerHTML = '<option value="" selected disabled>Selecciona una facción</option>';
 
-        if (juego) {
-            puntosSelect.disabled = false;
-            faccionSelect.disabled = false;
+    if (juego) {
+        puntosSelect.disabled = false;
+        faccionSelect.disabled = false;
 
-            // Agregar las facciones correspondientes al select
+        // Agregar las facciones correspondientes al select
+        if (faccionesPorJuego[juego]) { // Verificar que el juego tenga facciones
             faccionesPorJuego[juego].forEach(faccion => {
                 const option = document.createElement('option');
                 option.value = faccion.id;
@@ -343,10 +346,13 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 faccionSelect.appendChild(option);
             });
         } else {
-            faccionSelect.disabled = true;
-            puntosSelect.disabled = true;
+            console.warn('No se encontraron facciones para el juego seleccionado.');
         }
+    } else {
+        faccionSelect.disabled = true;
+        puntosSelect.disabled = true;
     }
+}
 
     // La función mostrarFaccion se mantiene igual
     function mostrarFaccion() {

@@ -43,6 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             AND contrasena='$password'  
             AND verificado='si'") or die($conn->error);
         if ($res && mysqli_num_rows($res) > 0) {
+            $userData = $res->fetch_assoc();S
             // Iniciar sesión
             $_SESSION['user'] = $userData['correo'];
             $_SESSION['nombre_usuario'] = $userData['nombre_usuario']; // Guardar nombre de usuario

@@ -7179,8 +7179,9 @@ blockquote span {
   margin-bottom: 20px;
 }
 .faction-icon {
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
+  filter: invert(100%);
 }
 /*======================================
 	Account Login CSS

@@ -190,144 +190,188 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <div class="matches-div text-center">
                             <h2 style="border-bottom: solid 1px #6E869D;">NUEVA PARTIDA</h2>
                             <br>
-                                <form id="crear-partida" action="crear_partida.php" method="POST">
-                                    <span style="font-size: 20px;">Juego:</span>
-                                    <select id="juego" name="juego" onchange="mostrarOpciones(); validarFormulario()">
-                                        <option value="">--Seleccionar Juego--</option>
-                                        <option value="1">Warhammer 40.000</option>
-                                        <option value="2">Warhammer Age of Sigmar</option>
-                                        <option value="3">Kill Team</option>
-                                        <option value="4">WarCry</option>
-                                    </select>
+                            <div class="container-sm mt-4">
+        <div class="row justify-content-center">
+            <div class="col-xxl-10">
+                <div class="row">
+                    <!-- Primera columna: Formulario de selección -->
+                    <div class="col-md-6">
+                        <h4 class="text-center">SELECCIONA</h4>
+                        <form id="crear-partida" action="crear_partida.php" method="POST">
+                            <div class="mb-3">
+                                <label for="juego" class="form-label">Juego</label>
+                                <select class="form-select" id="juego" name="juego" onchange="mostrarOpciones(); validarFormulario()">
+                                    <option value="">--Seleccionar Juego--</option>
+                                    <option value="warhammer40k">Warhammer 40k</option>
+                                    <option value="ageofsigmar">Age of Sigmar</option>
+                                    <option value="killteam">Kill Team</option>
+                                    <option value="warcry">WarCry</option>
+                                </select>
+                            </div>
 
-                                    <!-- Puntos (solo visible para Warhammer 40k) -->
-                                    <div id="puntos-container" style="display:none;">
-                                    <span style="font-size: 20px;">Puntos:</span>
-                                        <select id="puntos" name="puntos" onchange="validarFormulario()">
-                                            <option value="">--Seleccionar Puntos--</option>
-                                            <option value="500">500</option>
-                                            <option value="1000">1000</option>
-                                            <option value="1500">1500</option>
-                                            <option value="2000">2000</option>
-                                        </select>
-                                    </div>
+                            <!-- Puntos -->
+                            <div class="mb-3">
+                                <label for="puntos" class="form-label">Puntos</label>
+                                <select class="form-select" id="puntos" name="puntos" onchange="validarFormulario()">
+                                    <option value="">--Seleccionar Puntos--</option>
+                                    <option value="500">500</option>
+                                    <option value="1000">1000</option>
+                                    <option value="1500">1500</option>
+                                    <option value="2000">2000</option>
+                                </select>
+                            </div>
 
-                                    <!-- Facciones (dependiendo del juego seleccionado) -->
-                                    <div id="faccion-container" style="display:none;">
-                                        <label for="faccion">Facción:</label>
-                                        <select id="faccion" name="faccion" onchange="validarFormulario()">
-                                            <option value="">--Seleccionar Facción--</option>
-                                            <!-- Las opciones de facción se generan dinámicamente -->
-                                        </select>
-                                    </div>
+                            <!-- Facciones -->
+                            <div class="mb-3">
+                                <label for="faccion" class="form-label">Facción</label>
+                                <select class="form-select" id="faccion" name="faccion" onchange="mostrarFaccionSeleccionada(); validarFormulario()">
+                                    <option value="">--Seleccionar Facción--</option>
+                                </select>
+                            </div>
 
-                                    <!-- Hora de inicio y finalización -->
-                                    <label for="hora_inicio">Hora de inicio:</label>
-                                    <input type="time" id="hora_inicio" name="hora_inicio" onchange="validarFormulario()">
-                                    <br>
-                                    <label for="hora_final">Hora de finalización:</label>
-                                    <input type="time" id="hora_final" name="hora_final" onchange="validarFormulario()">
+                            <!-- Hora de inicio y finalización -->
+                            <div class="mb-3">
+                                <label for="hora_inicio" class="form-label">Hora de inicio</label>
+                                <input type="time" class="form-control" id="hora_inicio" name="hora_inicio" onchange="validarFormulario()">
+                            </div>
 
-                                    <!-- Mesa -->
-                                    <label for="mesa">Mesa:</label>
-                                    <select id="mesa" name="mesa" onchange="validarFormulario()">
-                                        <option value="">--Seleccionar Mesa--</option>
-                                        <option value="1">Mesa 1</option>
-                                        <option value="2">Mesa 2</option>
-                                        <option value="3">Mesa 3</option>
-                                    </select>
+                            <div class="mb-3">
+                                <label for="hora_final" class="form-label">Hora de finalización</label>
+                                <input type="time" class="form-control" id="hora_final" name="hora_final" onchange="validarFormulario()">
+                            </div>
 
-                                    <input type="submit" value="Crear Partida" id="crear-btn" disabled>
-                                </form>
+                            <!-- Mesa -->
+                            <div class="mb-3">
+                                <label for="mesa" class="form-label">Mesa</label>
+                                <select class="form-select" id="mesa" name="mesa" onchange="validarFormulario()">
+                                    <option value="">--Seleccionar Mesa--</option>
+                                    <option value="1">Mesa 1</option>
+                                    <option value="2">Mesa 2</option>
+                                    <option value="3">Mesa 3</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
 
-                                <script>
-                                function mostrarOpciones() {
-                                    const juego = document.getElementById('juego').value;
-                                    const puntosContainer = document.getElementById('puntos-container');
-                                    const faccionContainer = document.getElementById('faccion-container');
-                                    const faccionSelect = document.getElementById('faccion');
+                    <!-- Segunda columna: Previsualización de la facción y botón -->
+                    <div class="col-md-6 d-flex flex-column justify-content-center">
+                        <div class="faccion-preview" id="faccion-preview">
+                            <h4>Facción Seleccionada</h4>
+                            <img id="faccion-icono" src="" alt="Icono de Facción" class="d-none">
+                            <h4 id="faccion-nombre" class="d-none"></h4>
+                        </div>
 
-                                    // Mostrar puntos solo si se selecciona Warhammer 40k
-                                    if (juego === '1') {
-                                        puntosContainer.style.display = 'block';
-                                    } else {
-                                        puntosContainer.style.display = 'none';
-                                    }
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-primary" id="crear-btn" form="crear-partida" disabled>Crear Partida</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                                    // Cambiar las facciones dependiendo del juego seleccionado
-                                    faccionContainer.style.display = 'block';
-                                    faccionSelect.innerHTML = ''; // Limpiar opciones previas
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    // Mapeo de facciones con sus nombres e iconos
+    const facciones = {
+        'warhammer40k': {
+            'space_marines': { 'nombre': 'Space Marines', 'icono': 'ruta/space_marines_icono.png' },
+            'orkos': { 'nombre': 'Orkos', 'icono': 'ruta/orkos_icono.png' },
+            'eldar': { 'nombre': 'Eldar', 'icono': 'ruta/eldar_icono.png' }
+        },
+        'ageofsigmar': {
+            'stormcast_eternals': { 'nombre': 'Stormcast Eternals', 'icono': 'ruta/stormcast_icono.png' },
+            'slaves_to_darkness': { 'nombre': 'Slaves to Darkness', 'icono': 'ruta/slaves_icono.png' }
+        },
+        'killteam': {
+            'tau': { 'nombre': 'T\'au', 'icono': 'ruta/tau_icono.png' },
+            'necrones': { 'nombre': 'Necrones', 'icono': 'ruta/necrones_icono.png' }
+        },
+        'warcry': {
+            'iron_golems': { 'nombre': 'Iron Golems', 'icono': 'ruta/iron_golems_icono.png' },
+            'untamed_beasts': { 'nombre': 'Untamed Beasts', 'icono': 'ruta/untamed_beasts_icono.png' }
+        }
+    };
 
-                                    if (juego === '1') {
-                                        faccionSelect.innerHTML = `
-                                            <option value="">--Seleccionar Facción--</option>
-                                            <option value="space_marines">Space Marines</option>
-                                            <option value="orkos">Orkos</option>
-                                            <option value="eldar">Eldar</option>
-                                            <!-- Agregar más facciones -->
-                                        `;
-                                    } else if (juego === '2') {
-                                        faccionSelect.innerHTML = `
-                                            <option value="">--Seleccionar Facción--</option>
-                                            <option value="stormcast_eternals">Stormcast Eternals</option>
-                                            <option value="slaves_to_darkness">Slaves to Darkness</option>
-                                            <!-- Agregar más facciones -->
-                                        `;
-                                    } else if (juego === '3') {
-                                        faccionSelect.innerHTML = `
-                                            <option value="">--Seleccionar Facción--</option>
-                                            <option value="t'au">T'au</option>
-                                            <option value="necrones">Necrones</option>
-                                            <!-- Agregar más facciones -->
-                                        `;
-                                    } else if (juego === '4') {
-                                        faccionSelect.innerHTML = `
-                                            <option value="">--Seleccionar Facción--</option>
-                                            <option value="iron_golems">Iron Golems</option>
-                                            <option value="untamed_beasts">Untamed Beasts</option>
-                                            <!-- Agregar más facciones -->
-                                        `;
-                                    } else {
-                                        faccionContainer.style.display = 'none';
-                                    }
-                                }
+    function mostrarOpciones() {
+        const juego = document.getElementById('juego').value;
+        const faccionSelect = document.getElementById('faccion');
 
-                                function validarFormulario() {
-                                    const juego = document.getElementById('juego').value;
-                                    const puntos = document.getElementById('puntos').value;
-                                    const faccion = document.getElementById('faccion').value;
-                                    const horaInicio = document.getElementById('hora_inicio').value;
-                                    const horaFinal = document.getElementById('hora_final').value;
-                                    const mesa = document.getElementById('mesa').value;
-                                    const crearBtn = document.getElementById('crear-btn');
+        // Cambiar las facciones dependiendo del juego seleccionado
+        faccionSelect.innerHTML = ''; // Limpiar opciones previas
 
-                                    // Validar que todos los campos estén seleccionados
-                                    let formValido = true;
+        if (juego && facciones[juego]) {
+            faccionSelect.innerHTML = '<option value="">--Seleccionar Facción--</option>';
+            Object.keys(facciones[juego]).forEach(faccionKey => {
+                const faccion = facciones[juego][faccionKey];
+                faccionSelect.innerHTML += `<option value="${faccionKey}">${faccion.nombre}</option>`;
+            });
+        }
+    }
 
-                                    if (!juego) {
-                                        formValido = false;
-                                    }
+    function mostrarFaccionSeleccionada() {
+        const juego = document.getElementById('juego').value;
+        const faccionKey = document.getElementById('faccion').value;
+        const faccionPreview = document.getElementById('faccion-preview');
+        const faccionIcono = document.getElementById('faccion-icono');
+        const faccionNombre = document.getElementById('faccion-nombre');
 
-                                    if (juego === 'warhammer40k' && !puntos) {
-                                        formValido = false;
-                                    }
+        if (juego && faccionKey && facciones[juego][faccionKey]) {
+            const faccion = facciones[juego][faccionKey];
+            faccionIcono.src = faccion.icono;
+            faccionIcono.classList.remove('d-none');
+            faccionNombre.textContent = faccion.nombre;
+            faccionNombre.classList.remove('d-none');
+        } else {
+            faccionIcono.classList.add('d-none');
+            faccionNombre.classList.add('d-none');
+        }
+    }
 
-                                    if (!faccion) {
-                                        formValido = false;
-                                    }
+    function validarFormulario() {
+        const juego = document.getElementById('juego').value;
+        const puntos = document.getElementById('puntos').value;
+        const faccion = document.getElementById('faccion').value;
+        const horaInicio = document.getElementById('hora_inicio').value;
+        const horaFinal = document.getElementById('hora_final').value;
+        const mesa = document.getElementById('mesa').value;
+        const crearBtn = document.getElementById('crear-btn');
 
-                                    if (!horaInicio || !horaFinal) {
-                                        formValido = false;
-                                    }
+        // Validar que todos los campos estén seleccionados
+        let formValido = true;
 
-                                    if (!mesa) {
-                                        formValido = false;
-                                    }
+        if (!juego) {
+            formValido = false;
+        }
 
-                                    // Habilitar o deshabilitar el botón de crear partida
-                                    crearBtn.disabled = !formValido;
-                                }
-                                </script>
+        if (!faccion) {
+            formValido = false;
+        }
+
+        if (!horaInicio || !horaFinal) {
+            formValido = false;
+        }
+
+        if (!mesa) {
+            formValido = false;
+        }
+
+        // Mostrar puntos solo si es Warhammer 40k
+        const puntosSelect = document.getElementById('puntos');
+        if (juego === 'warhammer40k') {
+            puntosSelect.disabled = false;
+            if (!puntos) {
+                formValido = false;
+            }
+        } else {
+            puntosSelect.disabled = true;
+        }
+
+        // Habilitar o deshabilitar el botón de crear
+        crearBtn.disabled = !formValido;
+    }
+    </script>
 
                 </div>
             </div>

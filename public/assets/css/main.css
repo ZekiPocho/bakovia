@@ -7166,6 +7166,18 @@ blockquote span {
 	CREAR PARTIDA
 ========================================*/
 
+.faccion-preview {
+  text-align: center;
+}
+
+.faccion-preview img {
+  max-width: 150px;
+  margin-bottom: 10px;
+}
+
+.faccion-preview h4 {
+  margin-bottom: 20px;
+}
 
 /*======================================
 	Account Login CSS

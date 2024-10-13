@@ -195,20 +195,15 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             }
             
             // Consulta para obtener partidas en progreso
-            $sql = "SELECT p.id, p.juego, p.puntos, p.usuario1, p.usuario2, 
-                           f1.nombre AS faccion1, sf1.subfaccion AS subfaccion1, 
-                           f2.nombre AS faccion2, sf2.subfaccion AS subfaccion2, 
-                           p.hora_inicio, p.hora_fin, p.mesa, p.puntaje_usuario1, 
-                           p.puntaje_usuario2,
-                           i1.ruta AS icono1, i2.ruta AS icono2
-                    FROM partidas p
-                    JOIN faccion f1 ON p.faccion_usuario1 = f1.id
-                    JOIN subfaccion sf1 ON p.subfaccion_usuario1 = sf1.id
-                    JOIN faccion f2 ON p.faccion_usuario2 = f2.id
-                    JOIN subfaccion sf2 ON p.subfaccion_usuario2 = sf2.id
-                    JOIN iconos i1 ON f1.id = i1.faccion_id
-                    JOIN iconos i2 ON f2.id = i2.faccion_id
-                    WHERE p.estado = 'en progreso'";
+            $sql = "SELECT p.id_partida, p.id_juego, p.puntos, p.nombre_usuario1, p.nombre_usuario2, 
+            f1.nombre AS faccion1, f1.subfaccion AS subfaccion1, f1.icono AS icono1, 
+            f2.nombre AS faccion2, f2.subfaccion AS subfaccion2, f2.icono AS icono2,
+            p.hora_inicio, p.hora_final, p.id_mesa, p.puntaje_usuario1, 
+            p.puntaje_usuario2
+     FROM partida p
+     JOIN faccion f1 ON p.id_faccion_usuario1 = f1.id_faccion
+     JOIN faccion f2 ON p.id_faccion_usuario2 = f2.id_faccion
+     WHERE p.estado = 'en progreso';;
             
             $result = $conn->query($sql);
             

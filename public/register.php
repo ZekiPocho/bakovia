@@ -1,6 +1,6 @@
 <?php 
 session_start();
-if(!isset($_SESSION['user'])){
+if(isset($_SESSION['user'])){
     header("Location: ../public/profile.php");
 }
 include "db.php"; // Asegúrate de que no haya espacios antes de esta línea

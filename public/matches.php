@@ -218,7 +218,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                             <div class="match-entry mb-2 text-center">
                                 <div class="row align-items-center">
                                     <div class="col-2">
-                                        <img src="https://via.placeholder.com/50x50" alt="Foto de perfil <?php echo $row['usuario1']; ?>" class="img-fluid">
+                                        <img src="https://via.placeholder.com/50x50" alt="Foto de perfil" class="img-fluid">
                                     </div>
                                     <div class="col-3">
                                         <span><?php echo $row['nombre_usuario1']; ?></span>
@@ -230,7 +230,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                         <span><?php echo $row['nombre_usuario2']; ?></span>
                                     </div>
                                     <div class="col-2">
-                                        <img src="https://via.placeholder.com/50x50" alt="Foto de perfil <?php echo $row['usuario2']; ?>" class="img-fluid">
+                                        <img src="https://via.placeholder.com/50x50" alt="Foto de perfil" class="img-fluid">
                                     </div>
                                 </div>
                                 <div class="scoreboard">

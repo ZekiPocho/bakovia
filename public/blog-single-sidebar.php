@@ -418,18 +418,25 @@ register.php<div class="col-sm-auto"></div>
                                         </div>
                                         <div class="col-12">
                                             <div class="button">
-                                                <button type="submit" name=comentar class="btn">Post Comment</button>
+                                                <button type="submit" <?php if(isset($_GET['id_usuario'])) { ?>name=reply<?php} else { ?>name="comentar" <?php } ?> class="btn">Post Comment</button>
                                             </div>
                                         </div>
                                     </div>
                                 </form>
                                 <?php
                                 if (isset($_POST['comentar'])) {
-                                    $query = mysql_query("INSERT INTO comentarios (id_publicacion, id_usuario, fecha_comentario) value ('".$_POST['comentario']."','".$_SESSION[]);
-                                } else {
-                                    # code...
-                                }
+                                    $query = mysql_query("INSERT INTO comentarios (comentario, id_usuario, fecha_comentario) value ('".$_POST['comentario']."','".$_SESSION['id_usuario']."',NOW())");
+                                    if ($query) {
+                                    header ("location: blog-single-sidebar.php");
+                                    }
+                                } 
                                 
+                                if (isset($_POST['reply'])) {
+                                    $query = mysql_query("INSERT INTO comentarios (comentario, id_usuario, fecha_comentario, reply) value ('".$_POST['comentario']."','".$_SESSION['id_usuario']."',NOW()),'".$_GET{id_usuario}."')");
+                                    if ($query) {
+                                    header ("location: blog-single-sidebar.php");
+                                    }
+                                } 
                                 ?>
                             </div>
                         </div>

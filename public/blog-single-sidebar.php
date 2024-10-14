@@ -1,3 +1,12 @@
+<?php
+session_start();
+include "db.php";
+
+if(!isset($_SESSION['usuario'])) (
+    header("location: login.php");
+)
+?>
+
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 
@@ -403,17 +412,25 @@ register.php<div class="col-sm-auto"></div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-box form-group">
-                                                <textarea name="#" class="form-control form-control-custom"
+                                                <textarea name="comentario" class="form-control form-control-custom"
                                                     placeholder="Your Comments"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="button">
-                                                <button type="submit" class="btn">Post Comment</button>
+                                                <button type="submit" name=comentar class="btn">Post Comment</button>
                                             </div>
                                         </div>
                                     </div>
                                 </form>
+                                <?php
+                                if (isset($_POST['comentar'])) {
+                                    $query = mysql_query("INSERT INTO comentarios (id_publicacion, id_usuario, fecha_comentario) value ('".$_POST['comentario']."','".$_SESSION[]);
+                                } else {
+                                    # code...
+                                }
+                                
+                                ?>
                             </div>
                         </div>
                     </div>

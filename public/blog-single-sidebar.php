@@ -2,9 +2,11 @@
 session_start();
 include "db.php";
 
-if(!isset($_SESSION['usuario'])) (
-    header("location: login.php")
-)
+if(!isset($_SESSION['usuario'])) {
+    header("location: login.php");
+    exit();
+}
+
 ?>
 
 <!DOCTYPE html>

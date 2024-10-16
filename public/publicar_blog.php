@@ -149,6 +149,9 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
 <section class="hero-area">
     <div class="container-sm">
+        <h1>
+            CREAR POST
+        </h1>
 
     </div>
 </section> 

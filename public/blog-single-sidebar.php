@@ -1,8 +1,5 @@
 <?php
 include 'db.php'; // Conexión a la base de datos
-?>
-<?php
-include 'db.php'; // Conexión a la base de datos
 
 if (isset($_GET['id'])) {
     $id_publicacion = $_GET['id'];  // Captura el ID de la publicación desde la URL

@@ -1,6 +1,5 @@
 <?php
-include("../public/db.php");
-session_start();
+include("../src/validate_session.php");
 $usuario_actual = $_SESSION['nombre_usuario']; // Esto depende de cómo guardes el nombre del usuario en la sesión
 ?>
 <!DOCTYPE html>

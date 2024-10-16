@@ -283,11 +283,14 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         }
 
                         // Consulta para obtener partidas programadas
-                        $sql = "SELECT p.id_partida, p.id_juego, p.puntos, p.nombre_usuario1, 
-                        f1.nombre AS faccion1, f1.subfaccion AS subfaccion1, f1.icono AS icono1,
-                        p.hora_inicio, p.hora_final, p.id_mesa
+                        $sql = "SELECT p.id_partida, p.id_juego, p.puntos, p.nombre_usuario1, p.nombre_usuario2, 
+                        f1.nombre AS faccion1, f1.subfaccion AS subfaccion1, f1.icono AS icono1, 
+                        f2.nombre AS faccion2, f2.subfaccion AS subfaccion2, f2.icono AS icono2,
+                        p.hora_inicio, p.hora_final, p.id_mesa, p.puntaje_usuario1, 
+                        p.puntaje_usuario2
                         FROM partida p
                         JOIN faccion f1 ON p.id_faccion_usuario1 = f1.id_faccion
+                        JOIN faccion f2 ON p.id_faccion_usuario2 = f2.id_faccion
                         WHERE p.estado = 'programado'";
 
                         $result = $conn->query($sql);

@@ -275,48 +275,73 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <div class="matches-div text-center">
                     <h3 style="border-bottom: solid 1px #6E869D;">¡A JUGAR!</h3>
                     <br>
-                    <!-- Partida abierta 1 -->
-                    <div class="match-entry mb-2 text-center">
-                        <div class="row align-items-center">
-                            <div class="col-2">
-                                <img src="https://via.placeholder.com/50x50" alt="Foto de perfil usuario1" class="img-fluid">
-                            </div>
-                            <div class="col-3">
-                                <span>Usuario1</span>
-                            </div>
-                            <div class="col-2">
-                                <h7>PARTIDA ABIERTA</h7>
-                            </div>
-                            <div class="col-5">
-                                <div class="button">
-                                    <button class="btn">UNIRSE</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="scoreboard">
-                            <!-- Equipo 1 -->
-                            <div class="team">
-                                <img src="https://via.placeholder.com/100" alt="Equipo 1">
-                                <div class="team-name">Astartes<br>Ángeles Sangrientos</div>
-                            </div>
-                            <!-- Puntaje izquierdo -->
-                            <div class="score">-</div>
-                            <!-- Sección central -->
-                            <div class="middle-section">
-                                <h1>Warhammer 40.000</h1>
-                                <div class="timer">--:--:--</div>
-                                <div class="points-title">EN ESPERA</div>
-                                <div class="table-number">MESA - 5</div>
-                            </div>
-                            <!-- Puntaje derecho -->
-                            <div class="score">-</div>
-                            <!-- Equipo 2 -->
-                            <div class="team">
-                                <img src="https://via.placeholder.com/100" alt="Equipo 2">
-                                <div class="team-name">N/A</div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php
+include("../public/db.php");
+// Verificar conexión
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Consulta para obtener partidas programadas (pendientes de oponente)
+$sql = "SELECT p.id_partida, p.id_juego, p.puntos, p.nombre_usuario1, 
+f1.nombre AS faccion1, f1.subfaccion AS subfaccion1, f1.icono AS icono1, 
+p.hora_inicio, p.hora_final, p.id_mesa
+FROM partida p
+JOIN faccion f1 ON p.id_faccion_usuario1 = f1.id_faccion
+WHERE p.estado = 'programado' AND p.nombre_usuario2 IS NULL";
+
+$result = $conn->query($sql);
+
+// Verificar y procesar los resultados
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        ?>
+        <!-- Aquí empieza el HTML para mostrar las partidas programadas -->
+        <div class="match-entry mb-2 text-center">
+            <div class="row align-items-center">
+                <div class="col-2">
+                    <img src="https://via.placeholder.com/50x50" alt="Foto de perfil" class="img-fluid">
+                </div>
+                <div class="col-3">
+                    <span><?php echo $row['nombre_usuario1']; ?></span>
+                </div>
+                <div class="col-2">
+                    <img src="assets/images/matches/sword.png" alt="Icono de batalla" class="img-fluid" style="max-width: 25px;">
+                </div>
+                <div class="col-3">
+                    <!-- Botón para unirse al desafío -->
+                    <form action="unirse_partida.php" method="POST">
+                        <input type="hidden" name="id_partida" value="<?php echo $row['id_partida']; ?>">
+                        <button type="submit" class="btn btn-primary">Unirse al desafío</button>
+                    </form>
+                </div>
+                <div class="col-2">
+                    <img src="https://via.placeholder.com/50x50" alt="Foto de perfil" class="img-fluid">
+                </div>
+            </div>
+            <div class="scoreboard">
+                <div class="team">
+                    <img src="<?php echo $row['icono1']; ?>" alt="Equipo 1">
+                    <div class="team-name"><?php echo $row['faccion1']; ?><br><?php echo $row['subfaccion1']; ?></div>
+                </div>
+                <div class="middle-section">
+                    <h1><?php echo $row['id_juego']; ?></h1>
+                    <h1><?php echo $row['puntos']; ?> Pts.</h1>
+                    <div class="timer"><i class="lni lni-hourglass"></i><?php echo $row['hora_inicio']; ?> - <?php echo $row['hora_final']; ?></div>
+                    <h1>MESA - <?php echo $row['id_mesa']; ?></h1>
+                </div>
+            </div>
+        </div>
+        <!-- Aquí termina el HTML para mostrar las partidas programadas -->
+        <?php
+    }
+} else {
+    echo "No hay partidas programadas.";
+}
+
+$conn->close();
+?>
+
                     <!-- Partida abierta 1 -->
                     <div class="match-entry mb-2 text-center">
                         <div class="row align-items-center">

@@ -2282,9 +2282,9 @@ progress {
 }
 
 .form-control:focus {
-    color: #212529;
-    background-color: #fff;
-    border-color: #86b7fe;
+    color: #eee;
+    background-color: #171d25;
+    border-color: #6e869d;
     outline: 0;
     box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .25)
 }

@@ -256,6 +256,7 @@ register.php<div class="col-sm-auto"></div>
     <?php endforeach; ?>
 </div>
 
+
 <div class="comment-form">
     <h3 class="comment-reply-title">Deja un comentario</h3>
     <form action="" method="post" id="commentform" class="comment-form" novalidate="">
@@ -273,48 +274,6 @@ register.php<div class="col-sm-auto"></div>
         </div>
     </form>
 </div>
-                            <div class="comment-form">
-                                <h3 class="comment-reply-title">Leave a comment</h3>
-                                <form action="#" method="POST">
-                                    <div class="row">
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-box form-group">
-                                                <input type="text" name="name" class="form-control form-control-custom"
-                                                    placeholder="Website URL" />
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-box form-group">
-                                                <input type="text" name="email" class="form-control form-control-custom"
-                                                    placeholder="Your Name" />
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-box form-group">
-                                                <input type="email" name="email"
-                                                    class="form-control form-control-custom" placeholder="Your Email" />
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-box form-group">
-                                                <input type="text" name="name" class="form-control form-control-custom"
-                                                    placeholder="Phone Number" />
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-box form-group">
-                                                <textarea name="#" class="form-control form-control-custom"
-                                                    placeholder="Your Comments"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="button">
-                                                <button type="submit" class="btn">Post Comment</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
                         </div>
                     </div>
                 </div>

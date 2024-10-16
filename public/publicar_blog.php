@@ -152,7 +152,11 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <h1>
             CREAR POST
         </h1>
-
+        <form action="POST">
+            <textarea name="" id=""></textarea>
+        <div class="row">
+        </div>
+        </form>
     </div>
 </section> 
 

@@ -153,11 +153,17 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             CREAR POST
         </h1>
         <form action="POST">
+            <div>
             <textarea class="form-control form-control-custom" name="" id="" placeholder="Título"></textarea>
+            </div>
+            <div>
+            <textarea class="form-control form-control-custom" name="" id="" placeholder="Cuerpo"></textarea>
+            </div>
         <div class="row">
         </div>
         </form>
     </div>
+    
 </section> 
 
 

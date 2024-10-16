@@ -1,3 +1,24 @@
+<?php
+include 'db.php';
+
+function obtenerPublicaciones($conexion, $limite = 6, $offset = 0) {
+    $query = "SELECT p.*, u.nombre_usuario 
+              FROM publicaciones p 
+              JOIN usuarios u ON p.id_usuario = u.id_usuario 
+              ORDER BY p.fecha_publicacion DESC
+              LIMIT ? OFFSET ?";
+    
+    $stmt = $conexion->prepare($query);
+    $stmt->bind_param("ii", $limite, $offset);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
+    
+    return $resultado->fetch_all(MYSQLI_ASSOC);
+}
+
+$publicaciones = obtenerPublicaciones($conexion);
+?>
+
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 
@@ -190,131 +211,26 @@ register.php<div class="col-sm-auto"></div>
             <div class="row">
                 <div class="col-lg-8 col-md-12 col-12">
                     <div class="row">
-                        <div class="col-lg-6 col-md-6 col-12">
-                            <!-- Start Single Blog -->
-                            <div class="single-blog">
-                                <div class="blog-img">
-                                    <a href="blog-single-sidebar.html">
-                                        <img src="https://via.placeholder.com/370x215" alt="#">
-                                    </a>
-                                </div>
-                                <div class="blog-content">
-                                    <a class="category" href="javascript:void(0)">eCommerce</a>
-                                    <h4>
-                                        <a href="blog-single-sidebar.html">What information is needed for shipping?</a>
-                                    </h4>
-                                    <div class="button">
-                                        <a href="javascript:void(0)" class="btn">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Blog -->
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-12">
-                            <!-- Start Single Blog -->
-                            <div class="single-blog">
-                                <div class="blog-img">
-                                    <a href="blog-single-sidebar.html">
-                                        <img src="https://via.placeholder.com/370x215" alt="#">
-                                    </a>
-                                </div>
-                                <div class="blog-content">
-                                    <a class="category" href="javascript:void(0)">Gaming</a>
-                                    <h4>
-                                        <a href="blog-single-sidebar.html">Interesting fact about gaming consoles</a>
-                                    </h4>
-                                    <div class="button">
-                                        <a href="javascript:void(0)" class="btn">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Blog -->
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-12">
-                            <!-- Start Single Blog -->
-                            <div class="single-blog">
-                                <div class="blog-img">
-                                    <a href="blog-single-sidebar.html">
-                                        <img src="https://via.placeholder.com/370x215" alt="#">
-                                    </a>
-                                </div>
-                                <div class="blog-content">
-                                    <a class="category" href="javascript:void(0)">Electronic</a>
-                                    <h4>
-                                        <a href="blog-single-sidebar.html">Electronics, instrumentation & control
-                                            engineering
-                                        </a>
-                                    </h4>
-                                    <div class="button">
-                                        <a href="javascript:void(0)" class="btn">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Blog -->
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-12">
-                            <!-- Start Single Blog -->
-                            <div class="single-blog">
-                                <div class="blog-img">
-                                    <a href="blog-single-sidebar.html">
-                                        <img src="https://via.placeholder.com/370x215" alt="#">
-                                    </a>
-                                </div>
-                                <div class="blog-content">
-                                    <a class="category" href="javascript:void(0)">eCommerce</a>
-                                    <h4>
-                                        <a href="blog-single-sidebar.html">What information is needed for shipping?</a>
-                                    </h4>
-                                    <div class="button">
-                                        <a href="javascript:void(0)" class="btn">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Blog -->
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-12">
-                            <!-- Start Single Blog -->
-                            <div class="single-blog">
-                                <div class="blog-img">
-                                    <a href="blog-single-sidebar.html">
-                                        <img src="https://via.placeholder.com/370x215" alt="#">
-                                    </a>
-                                </div>
-                                <div class="blog-content">
-                                    <a class="category" href="javascript:void(0)">Gaming</a>
-                                    <h4>
-                                        <a href="blog-single-sidebar.html">Interesting fact about gaming consoles</a>
-                                    </h4>
-                                    <div class="button">
-                                        <a href="javascript:void(0)" class="btn">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Blog -->
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-12">
-                            <!-- Start Single Blog -->
-                            <div class="single-blog">
-                                <div class="blog-img">
-                                    <a href="blog-single-sidebar.html">
-                                        <img src="https://via.placeholder.com/370x215" alt="#">
-                                    </a>
-                                </div>
-                                <div class="blog-content">
-                                    <a class="category" href="javascript:void(0)">Electronic</a>
-                                    <h4>
-                                        <a href="blog-single-sidebar.html">Electronics, instrumentation & control
-                                            engineering
-                                        </a>
-                                    </h4>
-                                    <div class="button">
-                                        <a href="javascript:void(0)" class="btn">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Blog -->
-                        </div>
-                    </div>
+    <?php foreach ($publicaciones as $publicacion): ?>
+    <div class="col-lg-6 col-md-6 col-12">
+        <div class="single-blog">
+            <div class="blog-img">
+                <a href="blog-single-sidebar.php?id=<?php echo $publicacion['id_publicacion']; ?>">
+                    <img src="<?php echo htmlspecialchars($publicacion['imagen_publicacion']); ?>" alt="Imagen de la publicación">
+                </a>
+            </div>
+            <div class="blog-content">
+                <a class="category" href="javascript:void(0)"><?php echo htmlspecialchars($publicacion['tag']); ?></a>
+                <h4><a href="blog-single-sidebar.php?id=<?php echo $publicacion['id_publicacion']; ?>"><?php echo htmlspecialchars($publicacion['titulo']); ?></a></h4>
+                <p><?php echo substr(htmlspecialchars($publicacion['contenido']), 0, 100) . '...'; ?></p>
+                <div class="button">
+                    <a href="blog-single-sidebar.php?id=<?php echo $publicacion['id_publicacion']; ?>" class="btn">Leer Más</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php endforeach; ?>
+</div>
                     <!-- Pagination -->
                     <div class="pagination left blog-grid-page">
                         <ul class="pagination-list">

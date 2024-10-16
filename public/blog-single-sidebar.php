@@ -1,3 +1,54 @@
+<?php
+include 'db_connection.php';
+
+$id_publicacion = isset($_GET['id']) ? intval($_GET['id']) : 0;
+
+function obtenerPublicacion($conexion, $id_publicacion) {
+    $query = "SELECT p.*, u.nombre_usuario 
+              FROM publicaciones p 
+              JOIN usuarios u ON p.id_usuario = u.id_usuario 
+              WHERE p.id_publicacion = ?";
+    
+    $stmt = $conexion->prepare($query);
+    $stmt->bind_param("i", $id_publicacion);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
+    
+    return $resultado->fetch_assoc();
+}
+
+function obtenerComentarios($conexion, $id_publicacion) {
+    $query = "SELECT c.*, u.nombre_usuario 
+              FROM comentarios c 
+              JOIN usuarios u ON c.id_usuario = u.id_usuario 
+              WHERE c.id_publicacion = ?
+              ORDER BY c.fecha_comentario DESC";
+    
+    $stmt = $conexion->prepare($query);
+    $stmt->bind_param("i", $id_publicacion);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
+    
+    return $resultado->fetch_all(MYSQLI_ASSOC);
+}
+
+$publicacion = obtenerPublicacion($conexion, $id_publicacion);
+$comentarios = obtenerComentarios($conexion, $id_publicacion);
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comentario'])) {
+    $nuevo_comentario = $_POST['comentario'];
+    $id_usuario = 1; // Esto debería ser el ID del usuario logueado
+    
+    $query = "INSERT INTO comentarios (id_publicacion, id_usuario, comentario) VALUES (?, ?, ?)";
+    $stmt = $conexion->prepare($query);
+    $stmt->bind_param("iis", $id_publicacion, $id_usuario, $nuevo_comentario);
+    $stmt->execute();
+    
+    header("Location: " . $_SERVER['PHP_SELF'] . "?id=" . $id_publicacion);
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 

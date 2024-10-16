@@ -1,5 +1,5 @@
 <?php
-include 'db_connection.php';
+include 'db.php';
 
 $id_publicacion = isset($_GET['id']) ? intval($_GET['id']) : 0;
 

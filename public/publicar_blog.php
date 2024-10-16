@@ -157,7 +157,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <textarea class="form-control form-control-custom" name="" id="" placeholder="Título"></textarea>
             </div>
             <div>
-            <textarea class="form-control-cuerpo form-control-custom" name="" id="" placeholder="Cuerpo"></textarea>
+            <textarea class="form-control form-control-cuerpo form-control-custom" name="" id="" placeholder="Cuerpo"></textarea>
             </div>
         <div class="row">
         </div>

@@ -13,6 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $hora_inicio = $_POST['hora_inicio'];
         $hora_final = $_POST['hora_final'];
         $mesa = $_POST['mesa'];
+        $fecha = date('Y-m-d');  // Asume que la reserva es para el mismo día
 
         // Conectar con la base de datos
         include "../public/db.php";

@@ -7192,11 +7192,7 @@ blockquote span {
   height: 200px;
   filter: invert(100%);
 }
-.ocupado { background-color: red; color: white; }
-.disponible { background-color: green; color: white; cursor: pointer; }
-.disponible:hover { background-color: lightgreen; }
-.table { width: 100%; border-collapse: collapse; }
-.td, .th { padding: 10px; text-align: center; border: 1px solid #ddd; }
+
 /*======================================
 	Account Login CSS
 ========================================*/

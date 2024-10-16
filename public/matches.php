@@ -275,16 +275,16 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <div class="matches-div text-center">
                     <h3 style="border-bottom: solid 1px #6E869D;">¡A JUGAR!</h3>
                     <br>
-                    <?php
+                                            <?php
                         include("../public/db.php");
                         // Verificar conexión
                         if ($conn->connect_error) {
                             die("Connection failed: " . $conn->connect_error);
                         }
 
-                        // Consulta para obtener partidas programadas (pendientes de oponente)
+                        // Consulta para obtener partidas programadas
                         $sql = "SELECT p.id_partida, p.id_juego, p.puntos, p.nombre_usuario1, 
-                        f1.nombre AS faccion1, f1.subfaccion AS subfaccion1, f1.icono AS icono1, 
+                        f1.nombre AS faccion1, f1.subfaccion AS subfaccion1, f1.icono AS icono1,
                         p.hora_inicio, p.hora_final, p.id_mesa
                         FROM partida p
                         JOIN faccion f1 ON p.id_faccion_usuario1 = f1.id_faccion
@@ -324,11 +324,17 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                             <img src="<?php echo $row['icono1']; ?>" alt="Equipo 1">
                                             <div class="team-name"><?php echo $row['faccion1']; ?><br><?php echo $row['subfaccion1']; ?></div>
                                         </div>
+                                        <div class="score">-</div>
                                         <div class="middle-section">
                                             <h1><?php echo $row['id_juego']; ?></h1>
                                             <h1><?php echo $row['puntos']; ?> Pts.</h1>
                                             <div class="timer"><i class="lni lni-hourglass"></i><?php echo $row['hora_inicio']; ?> - <?php echo $row['hora_final']; ?></div>
                                             <h1>MESA - <?php echo $row['id_mesa']; ?></h1>
+                                        </div>
+                                        <div class="score">-</div>
+                                        <div class="team">
+                                            <img src="assets/images/icons/default.png" alt="Equipo 2">
+                                            <div class="team-name">Facción Desconocida</div>
                                         </div>
                                     </div>
                                 </div>
@@ -338,8 +344,10 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         } else {
                             echo "No hay partidas programadas.";
                         }
-                    $conn->close();
-                    ?>
+
+                        $conn->close();
+                        ?>
+
 
                     <!-- Partida abierta 1 -->
                     <div class="match-entry mb-2 text-center">

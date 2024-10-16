@@ -221,7 +221,7 @@ register.php<div class="col-sm-auto"></div>
             <div class="row">
                 <div class="col-lg-8 col-md-12 col-12">
                     <div class="single-inner">
-                    <div class="post-details">
+                        <div class="post-details">
     <div class="main-content-head">
         <div class="post-thumbnils">
             <img src="<?php echo htmlspecialchars($publicacion['imagen_publicacion']); ?>" alt="Imagen de la publicación">
@@ -239,6 +239,83 @@ register.php<div class="col-sm-auto"></div>
         <?php echo nl2br(htmlspecialchars($publicacion['contenido'])); ?>
     </div>
 </div>
+                            <!-- Comments -->
+                            <div class="post-comments">
+    <h3 class="comment-title">Comentarios</h3>
+    <?php foreach ($comentarios as $comentario): ?>
+    <div class="single-comment">
+        <img src="https://via.placeholder.com/80x80" alt="User" class="thumbnail">
+        <div class="content">
+            <h4><?php echo htmlspecialchars($comentario['nombre_usuario']); ?></h4>
+            <p><?php echo htmlspecialchars($comentario['comentario']); ?></p>
+            <div class="comment-info">
+                <span><?php echo date('d M Y', strtotime($comentario['fecha_comentario'])); ?></span>
+            </div>
+        </div>
+    </div>
+    <?php endforeach; ?>
+</div>
+
+<div class="comment-form">
+    <h3 class="comment-reply-title">Deja un comentario</h3>
+    <form action="" method="post" id="commentform" class="comment-form" novalidate="">
+        <div class="row">
+            <div class="col-12">
+                <div class="form-box form-group">
+                    <textarea name="comentario" class="form-control form-control-custom" placeholder="Tu comentario" required="required"></textarea>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="button">
+                    <button type="submit" class="btn">Publicar Comentario</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+                            <div class="comment-form">
+                                <h3 class="comment-reply-title">Leave a comment</h3>
+                                <form action="#" method="POST">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-12">
+                                            <div class="form-box form-group">
+                                                <input type="text" name="name" class="form-control form-control-custom"
+                                                    placeholder="Website URL" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-12">
+                                            <div class="form-box form-group">
+                                                <input type="text" name="email" class="form-control form-control-custom"
+                                                    placeholder="Your Name" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-12">
+                                            <div class="form-box form-group">
+                                                <input type="email" name="email"
+                                                    class="form-control form-control-custom" placeholder="Your Email" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-12">
+                                            <div class="form-box form-group">
+                                                <input type="text" name="name" class="form-control form-control-custom"
+                                                    placeholder="Phone Number" />
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-box form-group">
+                                                <textarea name="#" class="form-control form-control-custom"
+                                                    placeholder="Your Comments"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="button">
+                                                <button type="submit" class="btn">Post Comment</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <aside class="col-lg-4 col-md-12 col-12">

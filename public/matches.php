@@ -311,13 +311,10 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                         <div class="col-2">
                                             <h7>PARTIDA ABIERTA</h7>
                                         </div>
-                                        <div class="col-3">
+                                        <div class="col-5">
                                             <div class="button">
                                                 <button class="btn">UNIRSE</button>
                                             </div>
-                                        </div>
-                                        <div class="col-2">
-                                            <img src="https://via.placeholder.com/50x50" alt="Foto de perfil" class="img-fluid">
                                         </div>
                                     </div>
                                     <div class="scoreboard">
@@ -327,15 +324,14 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                     </div>
                                     <div class="score"><?php echo $row['puntaje_usuario1']; ?></div>
                                     <div class="middle-section">
-                                        <h1><?php echo $row['id_juego']; ?></h1>
-                                        <h1><?php echo $row['puntos']; ?> Pts.</h1>
-                                        <div class="timer"><i class="lni lni-hourglass"></i>00:00:00</div>
-                                        <h1>Ronda Nº1</h1>
-                                        <h1>MESA - <?php echo $row['id_mesa']; ?></h1>
+                                    <h1><?php echo $row['id_juego']; ?></h1>
+                                    <h1><?php echo $row['puntos']; ?> Pts.</h1>
+                                    <div class="timer"><?php echo $row['hora_inicio']; ?> - <?php echo $row['hora_final']; ?></div>
+                                    <h1>MESA - <?php echo $row['id_mesa']; ?></h1>
                                     </div>
                                     <div class="score"><?php echo $row['puntaje_usuario2']; ?></div>
                                     <div class="team">
-                                        <img src="<?php echo $row['icono2']; ?>" alt="Equipo 2" style="filter: opacity(50%);">
+                                        <img src="<?php echo $row['icono2']; ?>" alt="Equipo 2" style="filter: opacity(25%);">
                                         <div class="team-name"><?php echo $row['faccion2']; ?><br><?php echo $row['subfaccion2']; ?></div>
                                     </div>
                                 </div>

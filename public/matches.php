@@ -234,7 +234,7 @@ if ($result->num_rows > 0) {
                 <?php
                 // Mostrar el botón solo si el usuario actual es el usuario 1
                 if ($usuario_actual === $row['nombre_usuario1']) {
-                    echo '<a href="panel_control.php?id_partida=' . $row['id_partida'] . '" class="btn btn-primary">Panel de Control</a>';
+                    echo '<a href="panel_control.php?id_partida=' . $row['id_partida'] . '" class="btn btn-primary" style="font-size: 15px;">Panel de Control</a>';
                 } else {
                     echo '<img src="assets/images/matches/sword.png" alt="Icono de batalla" class="img-fluid" style="max-width: 25px;">';
                 }

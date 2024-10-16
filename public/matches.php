@@ -306,37 +306,36 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                             <span><?php echo $row['nombre_usuario1']; ?></span>
                                         </div>
                                         <div class="col-2">
-                                            <img src="assets/images/matches/sword.png" alt="Icono de batalla" class="img-fluid" style="max-width: 25px;">
+                                            <h7>PARTIDA ABIERTA</h7>
                                         </div>
                                         <div class="col-3">
-                                            <!-- Botón para unirse al desafío -->
-                                            <form action="unirse_partida.php" method="POST">
-                                                <input type="hidden" name="id_partida" value="<?php echo $row['id_partida']; ?>">
-                                                <button type="submit" class="btn btn-primary">Unirse al desafío</button>
-                                            </form>
+                                            <div class="button">
+                                                <button class="btn">UNIRSE</button>
+                                            </div>
                                         </div>
                                         <div class="col-2">
                                             <img src="https://via.placeholder.com/50x50" alt="Foto de perfil" class="img-fluid">
                                         </div>
                                     </div>
                                     <div class="scoreboard">
-                                        <div class="team">
-                                            <img src="<?php echo $row['icono1']; ?>" alt="Equipo 1">
-                                            <div class="team-name"><?php echo $row['faccion1']; ?><br><?php echo $row['subfaccion1']; ?></div>
-                                        </div>
-                                        <div class="score">-</div>
-                                        <div class="middle-section">
-                                            <h1><?php echo $row['id_juego']; ?></h1>
-                                            <h1><?php echo $row['puntos']; ?> Pts.</h1>
-                                            <div class="timer"><i class="lni lni-hourglass"></i><?php echo $row['hora_inicio']; ?> - <?php echo $row['hora_final']; ?></div>
-                                            <h1>MESA - <?php echo $row['id_mesa']; ?></h1>
-                                        </div>
-                                        <div class="score">-</div>
-                                        <div class="team">
-                                            <img src="assets/images/icons/default.png" alt="Equipo 2">
-                                            <div class="team-name">Facción Desconocida</div>
-                                        </div>
+                                    <div class="team">
+                                        <img src="<?php echo $row['icono1']; ?>" alt="Equipo 1">
+                                        <div class="team-name"><?php echo $row['faccion1']; ?><br><?php echo $row['subfaccion1']; ?></div>
                                     </div>
+                                    <div class="score"><?php echo $row['puntaje_usuario1']; ?></div>
+                                    <div class="middle-section">
+                                        <h1><?php echo $row['id_juego']; ?></h1>
+                                        <h1><?php echo $row['puntos']; ?> Pts.</h1>
+                                        <div class="timer"><i class="lni lni-hourglass"></i>00:00:00</div>
+                                        <h1>Ronda Nº1</h1>
+                                        <h1>MESA - <?php echo $row['id_mesa']; ?></h1>
+                                    </div>
+                                    <div class="score"><?php echo $row['puntaje_usuario2']; ?></div>
+                                    <div class="team">
+                                        <img src="<?php echo $row['icono2']; ?>" alt="Equipo 2">
+                                        <div class="team-name"><?php echo $row['faccion2']; ?><br><?php echo $row['subfaccion2']; ?></div>
+                                    </div>
+                                </div>
                                 </div>
                                 <!-- Aquí termina el HTML para mostrar las partidas programadas -->
                                 <?php
@@ -348,49 +347,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         $conn->close();
                         ?>
 
-
-                    <!-- Partida abierta 1 -->
-                    <div class="match-entry mb-2 text-center">
-                        <div class="row align-items-center">
-                            <div class="col-2">
-                                <img src="https://via.placeholder.com/50x50" alt="Foto de perfil usuario1" class="img-fluid">
-                            </div>
-                            <div class="col-3">
-                                <span>Usuario1</span>
-                            </div>
-                            <div class="col-2">
-                                <h7>PARTIDA ABIERTA</h7>
-                            </div>
-                            <div class="col-5">
-                                <div class="button">
-                                    <button class="btn">UNIRSE</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="scoreboard">
-                            <!-- Equipo 1 -->
-                            <div class="team">
-                                <img src="https://via.placeholder.com/100" alt="Equipo 1">
-                                <div class="team-name">Astartes<br>Ángeles Sangrientos</div>
-                            </div>
-                            <!-- Puntaje izquierdo -->
-                            <div class="score">-</div>
-                            <!-- Sección central -->
-                            <div class="middle-section">
-                                <h1>Warhammer 40.000</h1>
-                                <div class="timer">--:--:--</div>
-                                <div class="points-title">EN ESPERA</div>
-                                <div class="table-number">MESA - 5</div>
-                            </div>
-                            <!-- Puntaje derecho -->
-                            <div class="score">-</div>
-                            <!-- Equipo 2 -->
-                            <div class="team">
-                                <img src="https://via.placeholder.com/100" alt="Equipo 2">
-                                <div class="team-name">N/A</div>
-                            </div>
-                        </div>
-                    </div>
                     <!-- Botón para iniciar una nueva partida -->
                     <br>
                     <p class="text-muted"><span style="font-size: 15px;">O sino, inicia tu propia partida</span></p>

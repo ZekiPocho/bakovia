@@ -1,14 +1,14 @@
 <?php
 include 'db.php';
 
-function obtenerPublicaciones($conexion, $limite = 6, $offset = 0) {
+function obtenerPublicaciones($conn, $limite = 6, $offset = 0) {
     $query = "SELECT p.*, u.nombre_usuario 
               FROM publicaciones p 
               JOIN usuarios u ON p.id_usuario = u.id_usuario 
               ORDER BY p.fecha_publicacion DESC
               LIMIT ? OFFSET ?";
     
-    $stmt = $conexion->prepare($query);
+    $stmt = $conn->prepare($query);
     $stmt->bind_param("ii", $limite, $offset);
     $stmt->execute();
     $resultado = $stmt->get_result();
@@ -16,7 +16,7 @@ function obtenerPublicaciones($conexion, $limite = 6, $offset = 0) {
     return $resultado->fetch_all(MYSQLI_ASSOC);
 }
 
-$publicaciones = obtenerPublicaciones($conexion);
+$publicaciones = obtenerPublicaciones($conn);
 ?>
 
 <!DOCTYPE html>

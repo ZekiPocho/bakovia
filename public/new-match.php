@@ -306,7 +306,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                     </select>
                 </div>
 
-                <!-- Selección de Hora de inicio y finalización -->
+                <!-- Selección de Hora de inicio y finalización
                 <div class="mb-3">
                     <label for="hora_inicio" class="form-label">Hora de inicio</label>
                     <input type="time" name="hora_inicio" id="hora_inicio" class="form-control" onchange="verificarFormulario()">
@@ -314,10 +314,10 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <div class="mb-3">
                     <label for="hora_final" class="form-label">Hora de finalización</label>
                     <input type="time" name="hora_final" id="hora_final" class="form-control" onchange="verificarFormulario()">
-                </div>
+                </div> -->
 
                 <!-- Selección de Mesa -->
-                <h1>Reservar Mesa para Hoy</h1>
+                <h5>Reserva tu Mesa para Hoy!</h5>
 
 <!-- Formulario oculto donde se guardarán las selecciones -->
 <form id="form-reserva" method="POST" action="procesar_reserva.php">

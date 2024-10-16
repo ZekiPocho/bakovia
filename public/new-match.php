@@ -18,7 +18,10 @@ if ($result_reservas->num_rows > 0) {
 }
 
 // Horarios predefinidos
-$horarios = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00'];
+$horas_disponibles = [
+    '16:30', '17:00', '17:30', '18:00', '18:30', '19:00', 
+    '19:30', '20:00', '20:30', '21:00'
+];
 
 // Consulta para obtener las mesas
 $sql_mesas = "SELECT * FROM mesa";

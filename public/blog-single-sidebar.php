@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comentario'])) {
     $id_usuario = 1; // Esto debería ser el ID del usuario logueado
     
     $query = "INSERT INTO comentarios (id_publicacion, id_usuario, comentario) VALUES (?, ?, ?)";
-    $stmt = $conexion->prepare($query);
+    $stmt = $conn->prepare($query);
     $stmt->bind_param("iis", $id_publicacion, $id_usuario, $nuevo_comentario);
     $stmt->execute();
     

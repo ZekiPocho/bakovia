@@ -335,7 +335,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                     </div>
                                     <div class="score"><?php echo $row['puntaje_usuario2']; ?></div>
                                     <div class="team">
-                                        <img src="<?php echo $row['icono2']; ?>" alt="Equipo 2">
+                                        <img src="<?php echo $row['icono2']; ?>" alt="Equipo 2" style="filter: opacity(50%);">
                                         <div class="team-name"><?php echo $row['faccion2']; ?><br><?php echo $row['subfaccion2']; ?></div>
                                     </div>
                                 </div>

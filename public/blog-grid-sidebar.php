@@ -1,3 +1,6 @@
+<?php
+include 'db.php';
+?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 
@@ -192,22 +195,33 @@ register.php<div class="col-sm-auto"></div>
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-12">
                             <!-- Start Single Blog -->
-                            <div class="single-blog">
-                                <div class="blog-img">
-                                    <a href="blog-single-sidebar.php">
-                                        <img src="https://via.placeholder.com/370x215" alt="#">
-                                    </a>
-                                </div>
-                                <div class="blog-content">
-                                    <a class="category" href="javascript:void(0)">eCommerce</a>
-                                    <h4>
-                                        <a href="blog-single-sidebar.php">What information is needed for shipping?</a>
-                                    </h4>
-                                    <div class="button">
-                                        <a href="javascript:void(0)" class="btn">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
+                            <?php
+include 'db.php'; // Conexión a la base de datos
+
+$sql_publicaciones = "SELECT p.*, u.nombre_usuario FROM publicaciones p 
+                      JOIN usuarios u ON p.id_usuario = u.id_usuario 
+                      ORDER BY p.fecha_publicacion DESC";
+$result_publicaciones = $conn->query($sql_publicaciones);
+
+if ($result_publicaciones->num_rows > 0) {
+    while ($publicacion = $result_publicaciones->fetch_assoc()) {
+        $id_publicacion = $publicacion['id_publicacion'];
+        echo "<div class='single-blog'>";
+        echo "<div class='blog-img'>";
+        echo "<a href='blog-single-sidebar.php?id=$id_publicacion'>";
+        echo "<img src='" . $publicacion['imagen_publicacion'] . "' alt='Imagen de la publicación'>";
+        echo "</a></div>";
+        echo "<div class='blog-content'>";
+        echo "<a class='category' href='javascript:void(0)'>" . $publicacion['tag'] . "</a>";
+        echo "<h4><a href='blog-single-sidebar.php?id=$id_publicacion'>" . $publicacion['titulo'] . "</a></h4>";
+        echo "<p>" . substr($publicacion['contenido'], 0, 100) . "...</p>"; // Mostrar solo una parte del contenido
+        echo "<div class='button'><a href='blog-single-sidebar.php?id=$id_publicacion' class='btn'>Leer más</a></div>";
+        echo "</div></div>";
+    }
+} else {
+    echo "<p>No hay publicaciones disponibles.</p>";
+}
+?>
                             <!-- End Single Blog -->
                         </div>
                         <div class="col-lg-6 col-md-6 col-12">

@@ -1,12 +1,31 @@
 <?php
-session_start();
-include "db.php";
+include 'db.php'; // Conexión a la base de datos
+?>
+<?php
+include 'db.php'; // Conexión a la base de datos
 
-if(!isset($_SESSION['usuario'])) {
-    header("location: login.php");
-    exit();
+if (isset($_GET['id'])) {
+    $id_publicacion = $_GET['id'];  // Captura el ID de la publicación desde la URL
+
+    // Consulta para obtener la publicación seleccionada
+    $sql_publicacion = "SELECT p.*, u.nombre_usuario FROM publicaciones p
+                        JOIN usuarios u ON p.id_usuario = u.id_usuario 
+                        WHERE p.id_publicacion = $id_publicacion";
+    $result_publicacion = $conn->query($sql_publicacion);
+
+    if ($result_publicacion->num_rows > 0) {
+        // Mostrar los detalles de la publicación
+        $publicacion = $result_publicacion->fetch_assoc();
+        echo "<h1>" . $publicacion['titulo'] . "</h1>";
+        echo "<p>Publicado por " . $publicacion['nombre_usuario'] . " el " . $publicacion['fecha_publicacion'] . "</p>";
+        echo "<img src='" . $publicacion['imagen_publicacion'] . "' alt='Imagen de la publicación'>";
+        echo "<p>" . $publicacion['contenido'] . "</p>";
+    } else {
+        echo "<p>La publicación no existe.</p>";
+    }
+} else {
+    echo "<p>No se ha proporcionado un ID de publicación.</p>";
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -323,6 +342,27 @@ register.php<div class="col-sm-auto"></div>
                                     </div>
                                 </div>
                             </div>
+                            <?php
+// Consulta para obtener los comentarios de la publicación actual
+$sql_comentarios = "SELECT c.*, u.nombre_usuario FROM comentarios c
+                    JOIN usuarios u ON c.id_usuario = u.id_usuario
+                    WHERE c.id_publicacion = $id_publicacion
+                    ORDER BY c.fecha_comentario DESC";
+$result_comentarios = $conn->query($sql_comentarios);
+
+echo "<h3>Comentarios:</h3>";
+
+if ($result_comentarios->num_rows > 0) {
+    while ($comentario = $result_comentarios->fetch_assoc()) {
+        echo "<div class='comment'>";
+        echo "<p><strong>" . $comentario['nombre_usuario'] . ":</strong> " . $comentario['comentario'] . "</p>";
+        echo "<p><small>Comentado el " . $comentario['fecha_comentario'] . "</small></p>";
+        echo "</div>";
+    }
+} else {
+    echo "<p>No hay comentarios aún.</p>";
+}
+?>
                             <!-- Comments -->
                             <div class="post-comments">
                                 <h3 class="comment-title"><span>Comentarios</span></h3>
@@ -385,62 +425,28 @@ register.php<div class="col-sm-auto"></div>
                                 </ul>
                             </div>
                             <div class="comment-form">
-                                <h3 class="comment-reply-title">Leave a comment</h3>
-                                <form action="#" method="POST">
+                                    <h3 class="comment-reply-title">Deja un comentario</h3>
+                                    <form action="agregar_comentario.php" method="POST">
                                     <div class="row">
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-box form-group">
-                                                <input type="text" name="name" class="form-control form-control-custom"
-                                                    placeholder="Website URL" />
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-box form-group">
-                                                <input type="text" name="email" class="form-control form-control-custom"
-                                                    placeholder="Your Name" />
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-box form-group">
-                                                <input type="email" name="email"
-                                                    class="form-control form-control-custom" placeholder="Your Email" />
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-box form-group">
-                                                <input type="text" name="name" class="form-control form-control-custom"
-                                                    placeholder="Phone Number" />
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-box form-group">
-                                                <textarea name="comentario" class="form-control form-control-custom"
-                                                    placeholder="Your Comments"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="button">
-                                                <button type="submit" <?php if(isset($_GET['id_usuario'])) { ?>name=reply<?php} else { ?>name="comentar" <?php } ?> class="btn">Post Comment</button>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <div class="col-lg-6 col-12">
+                <div class="form-box form-group">
+                    <input type="hidden" name="id_publicacion" value="<?php echo $id_publicacion; ?>"> <!-- ID de la publicación -->
+                    <input type="number" name="id_usuario" class="form-control form-control-custom" placeholder="ID de Usuario" required />
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-box form-group">
+                    <textarea name="comentario" class="form-control form-control-custom" placeholder="Tus Comentarios" required></textarea>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="button">
+                    <button type="submit" name="comentar" class="btn">Publicar Comentario</button>
+                </div>
+            </div>
+        </div>
                                 </form>
-                                <?php
-                                if (isset($_POST['comentar'])) {
-                                    $query = mysql_query("INSERT INTO comentarios (comentario, id_usuario, fecha_comentario) value ('".$_POST['comentario']."','".$_SESSION['id_usuario']."',NOW())");
-                                    if ($query) {
-                                    header ("location: blog-single-sidebar.php");
-                                    }
-                                } 
-                                
-                                if (isset($_POST['reply'])) {
-                                    $query = mysql_query("INSERT INTO comentarios (comentario, id_usuario, fecha_comentario, reply) value ('".$_POST['comentario']."','".$_SESSION['id_usuario']."',NOW()),'".$_GET{id_usuario}."')");
-                                    if ($query) {
-                                    header ("location: blog-single-sidebar.php");
-                                    }
-                                } 
-                                ?>
-                            </div>
+</div>
                         </div>
                     </div>
                 </div>

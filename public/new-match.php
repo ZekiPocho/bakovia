@@ -1,32 +1,3 @@
-<?php
-// Conectar a la base de datos
-include("../public/db.php");
-
-// Obtener la fecha actual
-$hoy = date('Y-m-d');
-
-// Consulta para obtener las reservas del día actual
-$sql_reservas = "SELECT id_mesa, hora_inicio, hora_final FROM reserva_mesa WHERE fecha = '$hoy'";
-$result_reservas = $conn->query($sql_reservas);
-
-// Arreglo para almacenar las reservas
-$reservas = [];
-if ($result_reservas->num_rows > 0) {
-    while ($row = $result_reservas->fetch_assoc()) {
-        $reservas[] = $row;
-    }
-}
-
-// Horarios predefinidos
-$horarios = ['16:30', '17:00', '17:30', '18:00', '18:30', '19:00', 
-    '19:30', '20:00', '20:30', '21:00'];
-
-// Consulta para obtener las mesas
-$sql_mesas = "SELECT * FROM mesa";
-$result_mesas = $conn->query($sql_mesas);
-
-?>
-
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 
@@ -306,7 +277,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                     </select>
                 </div>
 
-                <!-- Selección de Hora de inicio y finalización
+                <!-- Selección de Hora de inicio y finalización -->
                 <div class="mb-3">
                     <label for="hora_inicio" class="form-label">Hora de inicio</label>
                     <input type="time" name="hora_inicio" id="hora_inicio" class="form-control" onchange="verificarFormulario()">
@@ -314,94 +285,18 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <div class="mb-3">
                     <label for="hora_final" class="form-label">Hora de finalización</label>
                     <input type="time" name="hora_final" id="hora_final" class="form-control" onchange="verificarFormulario()">
-                </div> -->
+                </div>
 
                 <!-- Selección de Mesa -->
-                <h5>Reserva tu Mesa para Hoy!</h5>
-
-<!-- Formulario oculto donde se guardarán las selecciones -->
-<form id="form-reserva" method="POST" action="procesar_reserva.php">
-    <input type="hidden" name="id_mesa" id="id_mesa">
-    <input type="hidden" name="hora_inicio" id="hora_inicio">
-    <input type="hidden" name="hora_final" id="hora_final">
-    <button type="submit" id="btn-reservar" disabled>Reservar Mesa</button>
-</form>
-
-<table>
-    <thead>
-        <tr>
-            <th>Hora</th>
-            <?php 
-            // Mostrar todas las mesas como encabezados de columnas
-            if ($result_mesas->num_rows > 0) {
-                while ($mesa = $result_mesas->fetch_assoc()) {
-                    echo "<th>Mesa " . $mesa['numero'] . "</th>";
-                }
-            }
-            ?>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        // Reiniciar el puntero de resultado de mesas
-        $result_mesas->data_seek(0);
-
-        // Mostrar las horas como filas
-        foreach ($horarios as $hora) {
-            echo "<tr><td>$hora</td>";
-
-            // Reiniciar las mesas para cada fila de horas
-            $result_mesas->data_seek(0);
-
-            while ($mesa = $result_mesas->fetch_assoc()) {
-                $mesa_ocupada = false;
-
-                // Verificar si la mesa está ocupada a esta hora
-                foreach ($reservas as $reserva) {
-                    if ($reserva['id_mesa'] == $mesa['id_mesa'] && $reserva['hora_inicio'] <= $hora && $reserva['hora_final'] > $hora) {
-                        $mesa_ocupada = true;
-                        break;
-                    }
-                }
-
-                if ($mesa_ocupada) {
-                    echo "<td class='ocupado'>Ocupado</td>";
-                } else {
-                    echo "<td class='disponible' data-idmesa='" . $mesa['id_mesa'] . "' data-horainicio='$hora'>Disponible</td>";
-                }
-            }
-            echo "</tr>";
-        }
-        ?>
-    </tbody>
-</table>
-
-<script>
-    const celdasDisponibles = document.querySelectorAll('.disponible');
-    const formReserva = document.getElementById('form-reserva');
-    const btnReservar = document.getElementById('btn-reservar');
-    let horaInicioSeleccionada = null;
-
-    celdasDisponibles.forEach(celda => {
-        celda.addEventListener('click', function() {
-            const idMesa = this.getAttribute('data-idmesa');
-            const horaInicio = this.getAttribute('data-horainicio');
-
-            if (horaInicioSeleccionada === null) {
-                // Primera selección: hora de inicio
-                horaInicioSeleccionada = horaInicio;
-                document.getElementById('id_mesa').value = idMesa;
-                document.getElementById('hora_inicio').value = horaInicio;
-                this.style.backgroundColor = 'blue'; // Cambiar color para marcar la selección
-            } else {
-                // Segunda selección: hora de fin
-                document.getElementById('hora_final').value = horaInicio;
-                btnReservar.disabled = false; // Habilitar el botón de reserva
-            }
-        });
-    });
-</script>
-<?php $conn->close(); ?>            
+                <div class="mb-3">
+                    <label for="mesa" class="form-label">Mesa</label>
+                    <select id="mesa" name="mesa" class="form-select">
+                        <option value="1">Mesa 1</option>
+                        <option value="2">Mesa 2</option>
+                        <option value="3">Mesa 3</option>
+                    </select>
+                </div>
+            
         </div>
 
         <!-- Columna derecha: Previsualización -->

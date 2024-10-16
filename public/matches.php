@@ -193,6 +193,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                             <br>
                             <?php
 // Asegúrate de que la sesión esté iniciada
+include("../public/db.php");
 session_start();
 $usuario_actual = $_SESSION['nombre_usuario']; // Esto depende de cómo guardes el nombre del usuario en la sesión
 

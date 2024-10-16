@@ -147,6 +147,13 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 <!--TERMINA HEADER Y NAVBAR PRO-->
 
 
+<section class="hero-area">
+    <div class="container-sm">
+
+    </div>
+</section> 
+
+
     <!-- Start Footer Area -->
     <footer class="footer">
         <!-- Start Footer Middle -->

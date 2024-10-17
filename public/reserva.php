@@ -244,8 +244,9 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     </div>
 
         <!-- Columna derecha: Previsualización -->
-        <div class="right-column">
-        <h3>Selecciona tu mesa y horario</h3>
+        <div class="col-md-6 text-center">
+        <h3>SELECCIONA</h3>
+        <br>
         <form action="procesar_reserva.php" method="POST">
             <div class="form-group">
                 <label for="mesa">Mesa:</label>

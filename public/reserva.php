@@ -292,6 +292,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                         <option value="3">Mesa 3</option>
                                     </select>
                                 </div>
+                                <br>
                                 <div class="form-group">
                                     <label for="hora_inicio">Hora de Inicio:</label>
                                     <select id="hora_inicio" name="hora_inicio" class="form-control" required>
@@ -304,6 +305,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                         ?>
                                     </select>
                                 </div>
+                                <br>
                                 <div class="form-group">
                                     <label for="hora_final">Hora de Finalización:</label>
                                     <select id="hora_final" name="hora_final" class="form-control" required>
@@ -316,6 +318,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                         ?>
                                     </select>
                                 </div>
+                                <br>
                                 <button type="submit" class="btn btn-primary">Reservar</button>
                             </form>
                         </div>

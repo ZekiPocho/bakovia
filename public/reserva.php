@@ -191,13 +191,13 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <div class="row justify-content-center">
             <div class="col-xxl-10">
                 <div class="matches-div text-center">
-                            <h2 style="border-bottom: solid 1px #6E869D;">NUEVA PARTIDA</h2>
+                            <h2 style="border-bottom: solid 1px #6E869D;">HAZ TU RESERVA</h2>
                             <br>
                             <div class="container mt-1">
     <div class="row">
         <!-- Columna izquierda: Selección -->
         <div class="col-md-6">
-            <h3 class="text-center">SELECCIONA</h3>
+            <h3 class="text-center">HORARIOS</h3>
             <br>
     <form action="../src/crear_partida.php" method="POST">
                 <!-- Selección de Juego -->

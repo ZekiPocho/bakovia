@@ -214,9 +214,13 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <tbody id="horariosMesas">
                 <!-- Aquí se llenarán los horarios y mesas dinámicamente con PHP -->
                 <?php
+                //espanol
+                mysqli_query($conn, "SET lc_time_names = 'es_ES'");
                 // Obtener horarios y reservas de la base de datos
                 $fecha_actual = date('Y-m-d'); // Suponemos que las reservas son solo para el día actual
-                $query_horarios = "SELECT h.id_horario, h.hora_inicio FROM horarios h WHERE h.dia_semana = DAYNAME(CURDATE())";
+                $query_horarios = "SELECT h.id_horario, h.hora_inicio 
+                                    FROM horarios h 
+                                    WHERE DAYNAME(CURDATE()) = h.dia_semana;";
                 $result_horarios = mysqli_query($conn, $query_horarios);
 
                 while ($horario = mysqli_fetch_assoc($result_horarios)) {
@@ -292,96 +296,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     </div>
 </div>
 
-<script>
-    function actualizarFormulario() {
-    const juego = document.getElementById('juego').value;
-    const faccion40kSelect = document.getElementById('faccion40k');
-    const faccionSigmarSelect = document.getElementById('faccionSigmar');
-    const puntosSelect = document.getElementById('puntos');
 
-    if (juego === '1') {
-        faccion40kSelect.style.display = 'block';
-        faccionSigmarSelect.style.display = 'none';
-        faccion40kSelect.disabled = false;
-        puntosSelect.disabled = false;
-        faccionSigmarSelect.disabled = true;  // Desactivar Sigmar
-
-    } else if (juego === 'ageofsigmar') {
-        faccionSigmarSelect.style.display = 'block';
-        faccion40kSelect.style.display = 'none';
-        faccionSigmarSelect.disabled = false;
-        puntosSelect.disabled = true;  // Desactivar puntos para Sigmar
-        faccion40kSelect.disabled = true;  // Desactivar 40k
-    } else {
-        // Para otros juegos como Kill Team o WarCry
-        faccion40kSelect.disabled = true;
-        faccionSigmarSelect.disabled = true;
-        puntosSelect.disabled = true; // Desactivar puntos
-        faccion40kSelect.style.display = 'none';
-        faccionSigmarSelect.style.display = 'none';
-    }
-    }
-
-    function mostrarFaccion40k() {
-        const faccion40kSelect = document.getElementById('faccion40k');
-        const selectedOption = faccion40kSelect.options[faccion40kSelect.selectedIndex];
-        const subfaccion = selectedOption.getAttribute('data-subfaccion');
-        const icono = selectedOption.getAttribute('data-icon');
-
-        // Mostrar facción y subfacción en la columna de previsualización
-        document.getElementById('nombre-faccion').textContent = subfaccion;
-        document.getElementById('subfaccion-faccion').textContent = selectedOption.text;
-
-        // Mostrar icono de facción
-        const iconoFaccion = document.getElementById('icono-faccion');
-        iconoFaccion.src = icono;
-        iconoFaccion.style.display = 'block';
-
-        // Habilitar botón de crear si todos los campos están llenos
-        verificarFormulario();
-    }
-    function mostrarFaccionSigmar() {
-        const faccionSigmarSelect = document.getElementById('faccionSigmar');
-        const selectedOption = faccionSigmarSelect.options[faccionSigmarSelect.selectedIndex];
-        const subfaccion = selectedOption.getAttribute('data-subfaccion');
-        const icono = selectedOption.getAttribute('data-icon');
-
-        // Mostrar facción y subfacción en la columna de previsualización
-        document.getElementById('nombre-faccion').textContent = subfaccion;
-        document.getElementById('subfaccion-faccion').textContent = selectedOption.text;
-
-        // Mostrar icono de facción
-        const iconoFaccion = document.getElementById('icono-faccion');
-        iconoFaccion.src = icono;
-        iconoFaccion.style.display = 'block';
-
-        // Habilitar botón de crear si todos los campos están llenos
-        verificarFormulario();
-    }
-
-    function verificarFormulario() {
-    const juego = document.getElementById('juego').value;
-    const puntos = document.getElementById('puntos').value;
-
-    let faccion = null;
-
-    // Verificar qué select de facciones debe estar habilitado
-    if (juego === '1') {
-        faccion = document.getElementById('faccion40k').value;
-    } else if (juego === 'ageofsigmar') {
-        faccion = document.getElementById('faccionSigmar').value;
-    }
-
-    let formValido = juego && faccion;
-
-    // Verificar puntos solo si el juego es Warhammer 40k
-    if (juego === '1' && !puntos) {
-        formValido = false;
-    }
-
-    document.getElementById('crear-partida').disabled = !formValido;
-    }
-    </script>
                 </div>
             </div>
         </div>

@@ -181,7 +181,7 @@ register.php<div class="col-sm-auto"></div>
     <!-- Start Blog Singel Area -->
     <section class="section blog-single">
         <div class="container-sm">
-            <center><div class="row">
+            <div class="row">
                 <div class="col-lg-8 col-md-12 col-12">
                     <div class="single-inner">
                         <div class="post-details">
@@ -427,9 +427,7 @@ $conn->close();
                         <!-- End Single Widget -->
                     </div>
                 </aside>
-
             </div>
-            </center>
         </div>
     </section>
     <!-- End Blog Singel Area -->

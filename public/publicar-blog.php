@@ -204,58 +204,49 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <h1>
             CREAR POST
         </h1>
-        <form action="POST">
-            <div>
-            <textarea class="form-control form-control-custom" name="titulo" id="" placeholder="Título"></textarea>
-            </div>
-            <div>
+        <h1>CREAR POST</h1>
+    <form action="" method="POST" enctype="multipart/form-data">
+        <div>
+            <textarea class="form-control" name="titulo" placeholder="Título" required></textarea>
+        </div>
+        <div>
             <label for="imagenes">Subir imágenes:</label><br>
             <input type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple onchange="previewImages()"><br><br>
-            </div>
-            <div>
-            <textarea class="form-control form-control-cuerpo form-control-custom" name="contenido" id="" placeholder="Cuerpo"></textarea>
-            </div>
-            <div id="vista-previa">
-            </div>
-            <script>
-        function previewImages() {
-            var preview = document.getElementById('vista-previa');
-            var files = document.getElementById('imagenes').files;
-            preview.innerHTML = '';  // Limpiar las imágenes previas
-
-            // Iterar sobre todos los archivos seleccionados
-            for (var i = 0; i < files.length; i++) {
-                var file = files[i];
-
-                // Comprobar que el archivo es una imagen
-                if (file.type.startsWith('image/')) {
-                    var reader = new FileReader();
-
-                    reader.onload = function (e) {
-                        var img = document.createElement('img');
-                        img.src = e.target.result;
-                        img.className = 'preview-img';
-                        preview.appendChild(img);
-                    }
-
-                    // Leer el archivo como una URL de datos
-                    reader.readAsDataURL(file);
-                } else {
-                    alert('El archivo seleccionado no es una imagen');
-                }
-            }
-        }
-    </script>
-
-
-        <input type="submit" value="Publicar">
         </div>
-        <!-- Botón para enviar el formulario -->
-
-        </form>
+        <div>
+            <textarea class="form-control" name="contenido" placeholder="Cuerpo"></textarea>
+        </div>
+        <div id="vista-previa"></div>
+        <input type="submit" value="Publicar">
+    </form>
     </div>
     
 </section> 
+
+<script>
+function previewImages() {
+    var preview = document.getElementById('vista-previa');
+    var files = document.getElementById('imagenes').files;
+    preview.innerHTML = '';  // Limpiar las imágenes previas
+
+    for (var i = 0; i < files.length; i++) {
+        var file = files[i];
+        if (file.type.startsWith('image/')) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var img = document.createElement('img');
+                img.src = e.target.result;
+                img.style.maxWidth = '300px';
+                img.style.marginTop = '10px';
+                preview.appendChild(img);
+            }
+            reader.readAsDataURL(file);
+        } else {
+            alert('El archivo seleccionado no es una imagen');
+        }
+    }
+}
+</script>
 
 
 </body>

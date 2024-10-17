@@ -160,10 +160,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <textarea class="form-control form-control-cuerpo form-control-custom" name="" id="" placeholder="Cuerpo"></textarea>
             </div>
             <div>
-            <!-- Subir imagen -->
-        <!-- Subir una o más imágenes -->
-        <label for="imagenes">Subir imágenes:</label><br>
-        <input type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple><br><br>
+            <label for="imagenes">Subir imágenes:</label><br>
+            <input type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple onchange="previewImages()"><br><br>
             </div>
         <!-- Vista previa de imágenes -->
         <div id="vista-previa">

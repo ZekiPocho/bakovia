@@ -1,3 +1,15 @@
+<?php
+include ('db.php')
+
+// Obtener las publicaciones
+$sql = "SELECT p.titulo, p.contenido, p.imagen_publicacion, p.fecha_publicacion, u.nombre_usuario 
+        FROM publicaciones p
+        JOIN usuarios u ON p.id_usuario = u.id_usuario
+        ORDER BY p.fecha_publicacion DESC"; // Ordenar por fecha
+
+$result = $conn->query($sql);
+
+?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 
@@ -190,26 +202,52 @@ register.php<div class="col-sm-auto"></div>
             <div class="row">
                 <div class="col-lg-8 col-md-12 col-12">
                     <div class="row">
-                        <div class="col-lg-6 col-md-6 col-12">
-                            <!-- Start Single Blog -->
-                            <div class="single-blog">
-                                <div class="blog-img">
-                                    <a href="blog-single-sidebar.html">
-                                        <img src="https://via.placeholder.com/370x215" alt="#">
-                                    </a>
-                                </div>
-                                <div class="blog-content">
-                                    <a class="category" href="javascript:void(0)">eCommerce</a>
-                                    <h4>
-                                        <a href="blog-single-sidebar.html">What information is needed for shipping?</a>
-                                    </h4>
-                                    <div class="button">
-                                        <a href="javascript:void(0)" class="btn">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Blog -->
-                        </div>
+                    <?php
+    if ($result->num_rows > 0) {
+    echo '<div class="row">'; // Empezar la fila de publicaciones
+    
+    // Mostrar cada publicación
+    while($row = $result->fetch_assoc()) {
+        $titulo = $row['titulo'];
+        $contenido = $row['contenido'];
+        $imagen = !empty($row['imagen_publicacion']) ? $row['imagen_publicacion'] : 'https://via.placeholder.com/370x215'; // Placeholder si no hay imagen
+        $usuario = $row['nombre_usuario'];
+        $fecha = date("d M, Y", strtotime($row['fecha_publicacion'])); // Formato de fecha
+
+        // Limitar el contenido a 100 palabras (puedes cambiar la cantidad)
+        $contenido_resumido = implode(' ', array_slice(explode(' ', $contenido), 0, 20)) . '...';
+
+        echo '
+        <div class="col-lg-6 col-md-6 col-12">
+            <!-- Start Single Blog -->
+            <div class="single-blog">
+                <div class="blog-img">
+                    <a href="blog-single-sidebar.html"> <!-- Aquí puedes enlazar al detalle del blog -->
+                        <img src="'.$imagen.'" alt="#">
+                    </a>
+                </div>
+                <div class="blog-content">
+                    <a class="category" href="javascript:void(0)">Blog</a>
+                    <h4>
+                        <a href="blog-single-sidebar.html">'.$titulo.'</a>
+                    </h4>
+                    <p>'.$contenido_resumido.'</p> <!-- Mostrar un resumen del contenido -->
+                    <div class="button">
+                        <a href="blog-single-sidebar.html" class="btn">ir al blog principal</a>
+                    </div>
+                </div>
+            </div>
+            <!-- End Single Blog -->
+        </div>';
+    }
+
+    echo '</div>'; // Cerrar la fila
+} else {
+    echo "No se encontraron publicaciones.";
+}
+
+$conn->close();
+?>
                     </div>
                     <!-- Pagination -->
                     <div class="pagination left blog-grid-page">

@@ -213,37 +213,53 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                 </thead>
                                 <tbody id="horariosMesas">
                                     <?php
-                                    // Configurar el locale para el idioma español
-                                    mysqli_query($conn, "SET lc_time_names = 'es_ES'");
+                                    // Obtener el día actual
+                                    $dia_actual = date('l'); // 'l' es para obtener el nombre del día
 
-                                    // Obtener la fecha actual
-                                    $fecha_actual = date('Y-m-d');
+                                    // Definir los horarios disponibles
+                                    if ($dia_actual == 'Saturday') {
+                                        // Horarios para sábado
+                                        $horarios_disponibles = [
+                                            11 => '13:30', // id_hora => hora
+                                            12 => '14:00',
+                                            13 => '14:30',
+                                            14 => '15:00',
+                                            15 => '15:30',
+                                            16 => '16:00',
+                                            17 => '16:30',
+                                            18 => '17:00',
+                                            19 => '17:30',
+                                            20 => '18:00'
+                                        ];
+                                    } else {
+                                        // Horarios para días de semana
+                                        $horarios_disponibles = [
+                                            1 => '16:30', // id_hora => hora
+                                            2 => '17:00',
+                                            3 => '17:30',
+                                            4 => '18:00',
+                                            5 => '18:30',
+                                            6 => '19:00',
+                                            7 => '19:30',
+                                            8 => '20:00',
+                                            9 => '20:30',
+                                            10 => '21:00'
+                                        ];
+                                    }
 
-                                    // Consulta para obtener los horarios del día
-                                    $query_horarios = "SELECT h.id_hora, h.hora 
-                                                        FROM horarios h 
-                                                        WHERE (DAYOFWEEK('$fecha_actual') BETWEEN 2 AND 6) 
-                                                        AND (h.hora BETWEEN '16:30' AND '21:00')
-                                                        UNION
-                                                        SELECT h.id_hora, h.hora 
-                                                        FROM horarios h 
-                                                        WHERE DAYOFWEEK('$fecha_actual') = 7 
-                                                        AND (h.hora BETWEEN '13:30' AND '18:00');";
-
-                                    $result_horarios = mysqli_query($conn, $query_horarios);
-
-                                    while ($horario = mysqli_fetch_assoc($result_horarios)) {
+                                    // Mostrar tabla de horarios
+                                    foreach ($horarios_disponibles as $id_hora => $hora) {
                                         echo "<tr style='background-color: white; border: solid 2px #171D25'>";
-                                        echo "<td>" . $horario['hora'] . "</td>";
+                                        echo "<td>$hora</td>";
 
-                                        // Verificar la disponibilidad de cada mesa
                                         for ($mesa = 1; $mesa <= 3; $mesa++) {
-                                            // Consulta para verificar si hay una reserva en esa mesa y horario
+                                            // Lógica para verificar si la mesa está ocupada
                                             $query_reserva = "SELECT * FROM reserva_mesa 
                                                                 WHERE id_mesa = $mesa 
-                                                                AND id_hora_inicio <= " . $horario['id_hora'] . " 
-                                                                AND id_hora_final >= " . $horario['id_hora'] . " 
-                                                                AND fecha = '$fecha_actual'";
+                                                                AND id_hora_inicio <= $id_hora 
+                                                                AND id_hora_final >= $id_hora 
+                                                                AND fecha = CURDATE()"; // Usar CURDATE() para la fecha actual
+                                            
                                             $result_reserva = mysqli_query($conn, $query_reserva);
 
                                             if (mysqli_num_rows($result_reserva) > 0) {
@@ -282,10 +298,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                         <option value="">Selecciona una hora de inicio</option>
                                         <?php
                                         // Aquí agregamos las horas disponibles
-                                        $query_horas = "SELECT * FROM horarios WHERE id_hora BETWEEN 1 AND 10"; // Asegúrate de ajustar según tus registros
-                                        $result_horas = mysqli_query($conn, $query_horas);
-                                        while ($hora = mysqli_fetch_assoc($result_horas)) {
-                                            echo "<option value='" . $hora['id_hora'] . "'>" . $hora['hora'] . "</option>";
+                                        foreach ($horarios_disponibles as $id_hora => $hora) {
+                                            echo "<option value='" . $id_hora . "'>" . $hora . "</option>";
                                         }
                                         ?>
                                     </select>
@@ -296,10 +310,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                         <option value="">Selecciona una hora de finalización</option>
                                         <?php
                                         // Aquí agregamos las horas disponibles
-                                        $query_horas = "SELECT * FROM horarios WHERE id_hora BETWEEN 1 AND 10"; // Asegúrate de ajustar según tus registros
-                                        $result_horas = mysqli_query($conn, $query_horas);
-                                        while ($hora = mysqli_fetch_assoc($result_horas)) {
-                                            echo "<option value='" . $hora['id_hora'] . "'>" . $hora['hora'] . "</option>";
+                                        foreach ($horarios_disponibles as $id_hora => $hora) {
+                                            echo "<option value='" . $id_hora . "'>" . $hora . "</option>";
                                         }
                                         ?>
                                     </select>

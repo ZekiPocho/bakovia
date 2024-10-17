@@ -225,8 +225,15 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         </div>
         <div>
             <select name="" id="" placeholder="Tags">
-                <option value="">juegos</option>
-                <option value="">pintura</option>
+                <option value=""></option>
+                <option value="">Ejercito</option>
+                <option value="">Tienda</option>
+                <option value="">Juegos</option>
+                <option value="">Pintura/Hobby</option>
+                <option value="">Lore</option>
+                <option value="">Noticias</option>
+                <option value="">Miniaturas</option>
+                <option value="">Otros</option>
             </select>
         </div>
         <div>

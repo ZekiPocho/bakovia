@@ -1,5 +1,5 @@
 <?php
-include ('validate_session.php'); // Asegurarse de que el usuario esté autenticado
+include ('validate_session.php'); // Asegúrate de que el usuario esté autenticado
 
 // Conexión a la base de datos
 $servername = "localhost";
@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id_usuario = $_SESSION['id_usuario']; // Asumimos que tienes la sesión del usuario
 
     // Manejo de imagen subida
-    $upload_dir = 'assets/images/blog';
+    $upload_dir = 'assets/images/';
     $imagen_publicacion = '';
 
     if (!empty($_FILES['imagenes']['name'][0])) {
@@ -44,10 +44,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             VALUES ('$id_usuario', '$titulo', '$contenido', NOW(), '$imagen_publicacion')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "Publicación creada con éxito";
+        // Redirigir después de la publicación para evitar duplicados al recargar
+        header("Location: publicar-blog.php?success=1");
+        exit(); // Importante: salir después de la redirección
     } else {
         echo "Error al crear la publicación: " . $conn->error;
     }
+}
+
+// Si hay un parámetro de éxito, mostrar el mensaje
+if (isset($_GET['success'])) {
+    echo "<p>¡Publicación creada con éxito!</p>";
 }
 
 $conn->close();

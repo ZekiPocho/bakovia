@@ -212,42 +212,45 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                     </tr>
                                 </thead>
                                 <tbody id="horariosMesas">
-                                    <?php
-                                    mysqli_query($conn, "SET lc_time_names = 'es_ES'");
-                                    $fecha_actual = date('Y-m-d'); // Suponemos que las reservas son solo para el día actual
-                                    $query_horarios = "SELECT h.id_horario, h.hora_inicio 
-                                                        FROM horarios h 
-                                                        WHERE DAYNAME(CURDATE()) = h.dia_semana;";
-                                    $result_horarios = mysqli_query($conn, $query_horarios);
+                                <?php
+                                // Configurar el locale para el idioma español
+                                mysqli_query($conn, "SET lc_time_names = 'es_ES'");
 
-                                    while ($horario = mysqli_fetch_assoc($result_horarios)) {
-                                        echo "<tr style='background-color: white; border: solid 2px #171D25'>";
-                                        echo "<td>" . $horario['hora_inicio'] . "</td>";
+                                // Obtener la fecha actual
+                                $fecha_actual = date('Y-m-d');
 
-                                        for ($mesa = 1; $mesa <= 3; $mesa++) {
-                                            // Consultar si la mesa está ocupada en ese horario
-                                            $query_reserva = "SELECT * FROM reserva_mesa 
-                                                            WHERE id_mesa = $mesa 
-                                                            AND fecha = '$fecha_actual' 
-                                                            AND (
-                                                                (id_hora_inicio < " . $horario['id_horario'] . " AND id_hora_final > " . $horario['id_horario'] . ") OR 
-                                                                (id_hora_inicio >= " . $horario['id_horario'] . " AND id_hora_inicio < " . $horario['id_horario'] . ")
-                                                            )";
-                                            $result_reserva = mysqli_query($conn, $query_reserva);
-                                            
-                                            // Establecer el estado según la disponibilidad
-                                            if (mysqli_num_rows($result_reserva) > 0) {
-                                                // Mesa ocupada
-                                                echo "<td class='ocupado'>Ocupado</td>";
-                                            } else {
-                                                // Mesa disponible
-                                                echo "<td class='disponible'>Disponible</td>";
-                                            }
+                                // Consulta para obtener los horarios del día
+                                $query_horarios = "SELECT h.id_horario, h.hora_inicio 
+                                                    FROM horarios h 
+                                                    WHERE DAYNAME(CURDATE()) = h.dia_semana;";
+                                $result_horarios = mysqli_query($conn, $query_horarios);
+
+                                while ($horario = mysqli_fetch_assoc($result_horarios)) {
+                                    echo "<tr style='background-color: white; border: solid 2px #171D25'>";
+                                    echo "<td>" . $horario['hora_inicio'] . "</td>";
+
+                                    // Verificar la disponibilidad de cada mesa
+                                    for ($mesa = 1; $mesa <= 3; $mesa++) {
+                                        // Consulta para verificar si hay una reserva en esa mesa y horario
+                                        $query_reserva = "SELECT * FROM reserva_mesa 
+                                                        WHERE id_mesa = $mesa 
+                                                        AND id_hora_inicio <= " . $horario['id_horario'] . " 
+                                                        AND id_hora_final >= " . $horario['id_horario'] . " 
+                                                        AND fecha = '$fecha_actual'";
+                                        $result_reserva = mysqli_query($conn, $query_reserva);
+
+                                        if (mysqli_num_rows($result_reserva) > 0) {
+                                            // Si hay una reserva, la mesa está ocupada
+                                            echo "<td class='ocupado'>Ocupado</td>";
+                                        } else {
+                                            // Si no hay reservas, la mesa está disponible
+                                            echo "<td class='disponible'>Disponible</td>";
                                         }
-
-                                        echo "</tr>";
                                     }
-                                    ?>
+
+                                    echo "</tr>";
+                                }
+                                ?>
                                 </tbody>
 
                             </table>
@@ -303,51 +306,21 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-$(document).ready(function() {
-    $('#mesa, #hora_inicio, #hora_final').change(function() {
-        var id_mesa = $('#mesa').val();
-        var id_hora_inicio = $('#hora_inicio').val();
-        var id_hora_final = $('#hora_final').val();
-
-        if (id_mesa && id_hora_inicio && id_hora_final) {
-            $.ajax({
-                url: 'verificar_disponibilidad.php',
-                type: 'POST',
-                data: {
-                    id_mesa: id_mesa,
-                    id_hora_inicio: id_hora_inicio,
-                    id_hora_final: id_hora_final
-                },
-                success: function(response) {
-                    var data = JSON.parse(response);
-                    if (!data.disponible) {
-                        alert('La mesa no está disponible en ese horario.');
-                        updateTable(id_mesa, false);
-                    } else {
-                        updateTable(id_mesa, true);
-                    }
-                }
-            });
+function actualizarHorarios() {
+    // Realizar la petición AJAX
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'actualizar_horarios.php', true);
+    xhr.onload = function() {
+        if (xhr.status == 200) {
+            // Reemplazar el contenido del tbody con los nuevos datos
+            document.getElementById('horariosMesas').innerHTML = xhr.responseText;
         }
-    });
+    };
+    xhr.send();
+}
 
-    function updateTable(id_mesa, isAvailable) {
-        var statusText = isAvailable ? "Disponible" : "Ocupado";
-        var statusClass = isAvailable ? "disponible" : "ocupado";
-
-        $("#horariosMesas td").each(function() {
-            var mesaIndex = $(this).index();
-
-            // Cambiar el texto y clase de la celda correspondiente a la mesa seleccionada
-            if (mesaIndex === id_mesa) {
-                $(this).text(statusText);
-                $(this).removeClass("ocupado disponible").addClass(statusClass);
-            }
-        });
-    }
-});
+setInterval(actualizarHorarios, 5000);
 </script>
 
 

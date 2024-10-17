@@ -185,7 +185,6 @@ register.php<div class="col-sm-auto"></div>
                 <div class="col-lg-8 col-md-12 col-12">
                     <div class="single-inner">
                         <div class="post-details">
-                        // Obtener las publicaciones
 <?php
 $sql = "SELECT p.titulo, p.contenido, p.imagen_publicacion, p.fecha_publicacion, u.nombre_usuario 
         FROM publicaciones p

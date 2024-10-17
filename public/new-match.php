@@ -277,7 +277,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                     </select>
                 </div>
 
-                <!-- Selección de Hora de inicio y finalización -->
+                <!-- Selección de Hora de inicio y finalización
                 <div class="mb-3">
                 <label for="hora_inicio" class="form-label">Hora de inicio</label>
                 <input type="time" name="hora_inicio" id="hora_inicio" class="form-control" 

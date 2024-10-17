@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Manejo de imágenes subidas
         if (!empty($_FILES['imagenes']['name'][0])) {
-            $upload_dir = 'uploads/'; // Carpeta donde se subirán las imágenes
+            $upload_dir = 'ZekiPocho/bakovia/public/assets/images/blog'; // Carpeta donde se subirán las imágenes
             foreach ($_FILES['imagenes']['name'] as $key => $image_name) {
                 $image_tmp_name = $_FILES['imagenes']['tmp_name'][$key];
                 $image_path = $upload_dir . basename($image_name);
@@ -204,7 +204,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <h1>
             CREAR POST
         </h1>
-        <h1>CREAR POST</h1>
     <form action="" method="POST" enctype="multipart/form-data">
         <div>
             <textarea class="form-control" name="titulo" placeholder="Título" required></textarea>

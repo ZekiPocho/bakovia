@@ -257,10 +257,11 @@ function previewImages() {
     }
 }
 </script>
-
+<center>
 <?php
 echo $mensaje;
 ?>
+</center>
 
 </body>
 

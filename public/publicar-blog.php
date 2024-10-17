@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 // Si hay un parámetro de éxito, mostrar el mensaje
 if (isset($_GET['success'])) {
-    $mensaje = echo "<div class='alert alert-danger'>la públicacion se creó correctamente</div>";
+    $mensaje = "<div class='alert alert-danger'>la públicacion se creó correctamente</div>";
 }
 
 $conn->close();

@@ -157,18 +157,19 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <textarea class="form-control form-control-custom" name="" id="" placeholder="Título"></textarea>
             </div>
             <div>
-            <textarea class="form-control form-control-cuerpo form-control-custom" name="" id="" placeholder="Cuerpo"></textarea>
-            </div>
-            <div>
             <label for="imagenes">Subir imágenes:</label><br>
             <input type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple onchange="previewImages()"><br><br>
+            </div>
+            <div>
+            <textarea class="form-control form-control-cuerpo form-control-custom" name="" id="" placeholder="Cuerpo"></textarea>
             </div>
         <!-- Vista previa de imágenes -->
         <div id="vista-previa">
         </div>
+        <input type="submit" value="Publicar">
         </div>
         <!-- Botón para enviar el formulario -->
-        <input type="submit" value="Publicar">
+
         </form>
 
     <script>

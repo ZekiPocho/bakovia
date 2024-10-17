@@ -258,7 +258,7 @@ function previewImages() {
 </script>
 
 <?php
-echo = $mensaje;
+echo $mensaje;
 ?>
 
 </body>

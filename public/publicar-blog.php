@@ -162,7 +162,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <div>
             <!-- Subir imagen -->
             <label for="imagen">Subir imagen:</label><br>
-            <input type="file" id="imagen" name="imagen" accept="image/*" required><br><br>
+            <input class="btn btn-outline-primary" type="file" id="imagen" name="imagen" accept="image/*" required><br><br>
             </div>
         <div class="row">
         </div>

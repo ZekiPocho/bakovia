@@ -233,7 +233,7 @@ register.php<div class="col-sm-auto"></div>
             <!-- Start Single Blog -->
             <div class="single-blog">
                 <div class="blog-img">
-                    <a href="blog-single-sidebar.html"> <!-- Aquí puedes enlazar al detalle del blog -->
+                    <a href="blog-single-sidebar.php"> <!-- Aquí puedes enlazar al detalle del blog -->
                         <img src="'.$imagen.'" alt="#">
                     </a>
                 </div>

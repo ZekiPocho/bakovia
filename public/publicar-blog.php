@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 // Si hay un parámetro de éxito, mostrar el mensaje
 if (isset($_GET['success'])) {
-    echo "<p>¡Publicación creada con éxito!</p>";
+    $mensaje = echo "<div class='alert alert-danger'>Las contraseñas no coinciden</div>";
 }
 
 $conn->close();
@@ -257,6 +257,9 @@ function previewImages() {
 }
 </script>
 
+<?php
+echo = $mensaje;
+?>
 
 </body>
 

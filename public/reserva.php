@@ -204,7 +204,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <br>
         <table class="table table-bordered">
             <thead>
-                <tr>
+                <tr style="background-color: white;">
                     <th>Hora</th>
                     <th>Mesa 1</th>
                     <th>Mesa 2</th>

@@ -291,7 +291,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
                 </div>
 
-                <!-- Selección de Mesa -->
+                <!-- Selección de Mesa
                 <div class="mb-3">
                     <label for="mesa" class="form-label">Mesa</label>
                     <select id="mesa" name="mesa" class="form-select">
@@ -300,7 +300,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         <option value="2">Mesa 2</option>
                         <option value="3">Mesa 3</option>
                     </select>
-                </div>
+                </div> -->
             
         </div>
 

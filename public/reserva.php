@@ -254,11 +254,10 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
                                         for ($mesa = 1; $mesa <= 3; $mesa++) {
                                             // Lógica para verificar si la mesa está ocupada
-                                            $query_reserva = "SELECT * FROM reserva_mesa 
-                                                                WHERE id_mesa = $mesa 
-                                                                AND id_hora_inicio <= $id_hora 
-                                                                AND id_hora_final >= $id_hora 
-                                                                AND fecha = CURDATE()"; // Usar CURDATE() para la fecha actual
+                                            $query_reserva = "SELECT * 
+                                                            FROM `reserva_mesa` 
+                                                            WHERE fecha = CURRENT_DATE() AND id_hora_inicio <= 1 AND id_hora_final >= 1;
+                                                            "; // Usar CURDATE() para la fecha actual
                                             
                                             $result_reserva = mysqli_query($conn, $query_reserva);
 

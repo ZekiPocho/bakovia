@@ -213,7 +213,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                 </thead>
                                 <tbody id="horariosMesas">
                                     <?php
-                                    // Obtener horarios y reservas de la base de datos
                                     mysqli_query($conn, "SET lc_time_names = 'es_ES'");
                                     $fecha_actual = date('Y-m-d'); // Suponemos que las reservas son solo para el día actual
                                     $query_horarios = "SELECT h.id_horario, h.hora_inicio 
@@ -227,12 +226,15 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
                                         for ($mesa = 1; $mesa <= 3; $mesa++) {
                                             // Consultar si la mesa está ocupada en ese horario
-                                            $query_reserva = "SELECT * FROM reserva_mesa WHERE id_mesa = $mesa 
-                                                            AND id_hora_inicio <= " . $horario['id_horario'] . " 
-                                                            AND id_hora_final >= " . $horario['id_horario'] . " 
-                                                            AND fecha = '$fecha_actual'";
+                                            $query_reserva = "SELECT * FROM reserva_mesa 
+                                                            WHERE id_mesa = $mesa 
+                                                            AND fecha = '$fecha_actual' 
+                                                            AND (
+                                                                (id_hora_inicio < " . $horario['id_horario'] . " AND id_hora_final > " . $horario['id_horario'] . ") OR 
+                                                                (id_hora_inicio >= " . $horario['id_horario'] . " AND id_hora_inicio < " . $horario['id_horario'] . ")
+                                                            )";
                                             $result_reserva = mysqli_query($conn, $query_reserva);
-
+                                            
                                             // Establecer el estado según la disponibilidad
                                             if (mysqli_num_rows($result_reserva) > 0) {
                                                 // Mesa ocupada
@@ -247,6 +249,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                     }
                                     ?>
                                 </tbody>
+
                             </table>
                         </div>
 

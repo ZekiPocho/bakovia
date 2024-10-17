@@ -1,6 +1,7 @@
 <?php
 include ('validate_session.php'); // Asegúrate de que el usuario esté autenticado
 
+$mensaje = "";
 // Conexión a la base de datos
 $servername = "localhost";
 $username = "root";

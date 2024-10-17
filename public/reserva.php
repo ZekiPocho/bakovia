@@ -190,123 +190,117 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     </div>
     <!-- End Breadcrumbs -->
      <!---->
-    <div class="container-sm mt-4">
-        <div class="row justify-content-center">
-            <div class="col-xxl-10">
-                <div class="matches-div text-center">
-                            <h2 style="border-bottom: solid 1px #6E869D;">RESERVA TU MESA</h2>
+     <div class="container-sm mt-4">
+    <div class="row justify-content-center">
+        <div class="col-xxl-10">
+            <div class="matches-div text-center">
+                <h2 style="border-bottom: solid 1px #6E869D;">RESERVA TU MESA</h2>
+                <br>
+                <div class="container mt-1">
+                    <div class="row">
+                        <!-- Columna izquierda: Selección -->
+                        <div class="col-md-6">
+                            <h3 class="text-center">HORARIOS PARA HOY</h3>
                             <br>
-                            <div class="container mt-1">
-    <div class="row">
-        <!-- Columna izquierda: Selección -->
-        <div class="col-md-6">
-        <h3 class="text-center">HORARIOS PARA HOY</h3>
-        <br>
-        <table class="table table-bordered">
-            <thead>
-                <tr style="background-color: #6E869D; border: solid 2px #171D25">
-                    <th>Hora</th>
-                    <th>Mesa 1</th>
-                    <th>Mesa 2</th>
-                    <th>Mesa 3</th>
-                </tr>
-            </thead>
-            <tbody id="horariosMesas">
-                <?php
-                // Obtener horarios y reservas de la base de datos
-                mysqli_query($conn, "SET lc_time_names = 'es_ES'");
-                $fecha_actual = date('Y-m-d'); // Suponemos que las reservas son solo para el día actual
-                $query_horarios = "SELECT h.id_horario, h.hora_inicio 
-                                    FROM horarios h 
-                                    WHERE DAYNAME(CURDATE()) = h.dia_semana;";
-                $result_horarios = mysqli_query($conn, $query_horarios);
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr style="background-color: #6E869D; border: solid 2px #171D25">
+                                        <th>Hora</th>
+                                        <th>Mesa 1</th>
+                                        <th>Mesa 2</th>
+                                        <th>Mesa 3</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="horariosMesas">
+                                    <?php
+                                    // Obtener horarios y reservas de la base de datos
+                                    mysqli_query($conn, "SET lc_time_names = 'es_ES'");
+                                    $fecha_actual = date('Y-m-d'); // Suponemos que las reservas son solo para el día actual
+                                    $query_horarios = "SELECT h.id_horario, h.hora_inicio 
+                                                        FROM horarios h 
+                                                        WHERE DAYNAME(CURDATE()) = h.dia_semana;";
+                                    $result_horarios = mysqli_query($conn, $query_horarios);
 
-                while ($horario = mysqli_fetch_assoc($result_horarios)) {
-                    echo "<tr style='background-color: white; border: solid 2px #171D25'>";
-                    echo "<td>" . $horario['hora_inicio'] . "</td>";
+                                    while ($horario = mysqli_fetch_assoc($result_horarios)) {
+                                        echo "<tr style='background-color: white; border: solid 2px #171D25'>";
+                                        echo "<td>" . $horario['hora_inicio'] . "</td>";
 
-                    for ($mesa = 1; $mesa <= 3; $mesa++) {
-                        // Consultar si la mesa está ocupada en ese horario
-                        $query_reserva = "SELECT * FROM reserva_mesa WHERE id_mesa = $mesa 
-                                        AND id_hora_inicio <= " . $horario['id_horario'] . " 
-                                        AND id_hora_final >= " . $horario['id_horario'] . " 
-                                        AND fecha = '$fecha_actual'";
-                        $result_reserva = mysqli_query($conn, $query_reserva);
-                        
-                        // Establecer el estado según la disponibilidad
-                        if (mysqli_num_rows($result_reserva) > 0) {
-                            // Mesa ocupada
-                            echo "<td class='ocupado'>Ocupado</td>";
-                        } else {
-                            // Mesa disponible
-                            echo "<td class='disponible'>Disponible</td>";
-                        }
-                    }
+                                        for ($mesa = 1; $mesa <= 3; $mesa++) {
+                                            // Consultar si la mesa está ocupada en ese horario
+                                            $query_reserva = "SELECT * FROM reserva_mesa WHERE id_mesa = $mesa 
+                                                            AND id_hora_inicio <= " . $horario['id_horario'] . " 
+                                                            AND id_hora_final >= " . $horario['id_horario'] . " 
+                                                            AND fecha = '$fecha_actual'";
+                                            $result_reserva = mysqli_query($conn, $query_reserva);
 
-                    echo "</tr>";
-                }
-                ?>
-            </tbody>
+                                            // Establecer el estado según la disponibilidad
+                                            if (mysqli_num_rows($result_reserva) > 0) {
+                                                // Mesa ocupada
+                                                echo "<td class='ocupado'>Ocupado</td>";
+                                            } else {
+                                                // Mesa disponible
+                                                echo "<td class='disponible'>Disponible</td>";
+                                            }
+                                        }
 
-        </table>
-    </div>
+                                        echo "</tr>";
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
 
-        <!-- Columna derecha: Previsualización -->
-        <div class="col-md-6 text-center">
-        <h3>SELECCIONA</h3>
-        <br>
-        <form action="procesar_reserva.php" method="POST">
-            <div class="form-group">
-                <label for="mesa">Mesa:</label>
-                <select name="id_mesa" id="mesa" class="form-control" required>
-                    <option value="1">Mesa 1</option>
-                    <option value="2">Mesa 2</option>
-                    <option value="3">Mesa 3</option>
-                    <option value="4">Mesa 4</option>
-                </select>
-            </div>
-            <br>
-            <div class="form-group">
-                <label for="hora_inicio">Hora de inicio:</label>
-                <select name="id_hora_inicio" id="hora_inicio" class="form-control" required>
-                    <!-- Aquí se llenarán las horas disponibles dinámicamente con PHP -->
-                    <?php
-                    $query_horas = "SELECT id_horario, hora_inicio FROM horarios WHERE dia_semana = DAYNAME(CURDATE())";
-                    $result_horas = mysqli_query($conn, $query_horas);
-                    while ($hora = mysqli_fetch_assoc($result_horas)) {
-                        echo "<option value='" . $hora['id_horario'] . "'>" . $hora['hora_inicio'] . "</option>";
-                    }
-                    ?>
-                </select>
-            </div>
-            <br>
-            <div class="form-group">
-                <label for="hora_final">Hora de finalización:</label>
-                <select name="id_hora_final" id="hora_final" class="form-control" required>
-                    <!-- Aquí se llenarán las horas disponibles dinámicamente con PHP -->
-                    <?php
-                    $query_horas_final = "SELECT id_horario, hora_inicio FROM horarios WHERE dia_semana = DAYNAME(CURDATE())";
-                    $result_horas_final = mysqli_query($conn, $query_horas_final);
-                    while ($hora = mysqli_fetch_assoc($result_horas_final)) {
-                        echo "<option value='" . $hora['id_horario'] . "'>" . $hora['hora_inicio'] . "</option>";
-                    }
-                    ?>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary">Reservar</button>
-        </form>
-    </div>
+                        <!-- Columna derecha: Previsualización -->
+                        <div class="col-md-6 text-center">
+                            <h3>SELECCIONA</h3>
+                            <br>
+                            <form action="procesar_reserva.php" method="POST">
+                                <div class="form-group">
+                                    <label for="mesa">Mesa:</label>
+                                    <select name="id_mesa" id="mesa" class="form-control" required>
+                                        <option value="1">Mesa 1</option>
+                                        <option value="2">Mesa 2</option>
+                                        <option value="3">Mesa 3</option>
+                                    </select>
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <label for="hora_inicio">Hora de inicio:</label>
+                                    <select name="id_hora_inicio" id="hora_inicio" class="form-control" required>
+                                        <?php
+                                        $query_horas = "SELECT id_horario, hora_inicio FROM horarios WHERE dia_semana = DAYNAME(CURDATE())";
+                                        $result_horas = mysqli_query($conn, $query_horas);
+                                        while ($hora = mysqli_fetch_assoc($result_horas)) {
+                                            echo "<option value='" . $hora['id_horario'] . "'>" . $hora['hora_inicio'] . "</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <label for="hora_final">Hora de finalización:</label>
+                                    <select name="id_hora_final" id="hora_final" class="form-control" required>
+                                        <?php
+                                        $query_horas_final = "SELECT id_horario, hora_inicio FROM horarios WHERE dia_semana = DAYNAME(CURDATE())";
+                                        $result_horas_final = mysqli_query($conn, $query_horas_final);
+                                        while ($hora = mysqli_fetch_assoc($result_horas_final)) {
+                                            echo "<option value='" . $hora['id_horario'] . "'>" . $hora['hora_inicio'] . "</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Reservar</button>
+                            </form>
+                        </div>
 
-    </div>
-</div>
-
-
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function() {
     $('#mesa, #hora_inicio, #hora_final').change(function() {
@@ -352,6 +346,7 @@ $(document).ready(function() {
     }
 });
 </script>
+
 
     
 

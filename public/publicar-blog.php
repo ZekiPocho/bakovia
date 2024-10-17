@@ -165,9 +165,43 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <label for="imagenes">Subir imágenes:</label><br>
         <input type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple><br><br>
             </div>
-        <div class="row">
+        <!-- Vista previa de imágenes -->
+        <div id="vista-previa">
         </div>
+        </div>
+        <!-- Botón para enviar el formulario -->
+        <input type="submit" value="Publicar">
         </form>
+
+    <script>
+        function previewImages() {
+            var preview = document.getElementById('vista-previa');
+            var files = document.getElementById('imagenes').files;
+            preview.innerHTML = '';  // Limpiar las imágenes previas
+
+            // Iterar sobre todos los archivos seleccionados
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+
+                // Comprobar que el archivo es una imagen
+                if (file.type.startsWith('image/')) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        var img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.className = 'preview-img';
+                        preview.appendChild(img);
+                    }
+
+                    // Leer el archivo como una URL de datos
+                    reader.readAsDataURL(file);
+                } else {
+                    alert('El archivo seleccionado no es una imagen');
+                }
+            }
+        }
+    </script>
     </div>
     
 </section> 

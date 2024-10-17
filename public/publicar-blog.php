@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Manejo de imágenes subidas
         if (!empty($_FILES['imagenes']['name'][0])) {
-            $upload_dir = 'assets/images/'; // Carpeta donde se subirán las imágenes
+            $upload_dir = 'public/assets/images/blog'; // Carpeta donde se subirán las imágenes
             
             // Crear la carpeta si no existe
             if (!is_dir($upload_dir)) {

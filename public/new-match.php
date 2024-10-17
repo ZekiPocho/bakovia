@@ -391,9 +391,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     function verificarFormulario() {
     const juego = document.getElementById('juego').value;
     const puntos = document.getElementById('puntos').value;
-    const horaInicio = document.getElementById('hora_inicio').value;
-    const horaFinal = document.getElementById('hora_final').value;
-    const mesa = document.getElementById('mesa').value;
 
     let faccion = null;
 

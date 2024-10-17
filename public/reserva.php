@@ -196,128 +196,93 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                             <div class="container mt-1">
     <div class="row">
         <!-- Columna izquierda: Selección -->
-        <div class="col-md-6">
-            <h3 class="text-center">SELECCIONA</h3>
-            <br>
-    <form action="../public/reserva.php" method="POST">
-                <!-- Selección de Juego -->
-                <div class="mb-3">
-                    <label for="juego" class="form-label">Juego</label>
-                    <select id="juego" name="juego" class="form-select" onchange="actualizarFormulario()">
-                        <option value="" selected disabled>Selecciona un juego</option>
-                        <option value="1">Warhammer 40k</option>
-                        <option value="ageofsigmar">Age of Sigmar</option>
-                        <option value="killteam">Kill Team</option>
-                        <option value="warcry">WarCry</option>
-                    </select>
-                </div>
+        <div class="left-column">
+        <h3>Horarios y Mesas Disponibles</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Hora</th>
+                    <th>Mesa 1</th>
+                    <th>Mesa 2</th>
+                    <th>Mesa 3</th>
+                    <th>Mesa 4</th>
+                </tr>
+            </thead>
+            <tbody id="horariosMesas">
+                <!-- Aquí se llenarán los horarios y mesas dinámicamente con PHP -->
+                <?php
+                // Obtener horarios y reservas de la base de datos
+                $fecha_actual = date('Y-m-d'); // Suponemos que las reservas son solo para el día actual
+                $query_horarios = "SELECT h.id_horario, h.hora_inicio FROM horarios h WHERE h.dia_semana = DAYNAME(CURDATE())";
+                $result_horarios = mysqli_query($conexion, $query_horarios);
 
-                <!-- Selección de Puntos -->
-                <div class="mb-3">
-                    <label for="puntos" class="form-label">Puntos</label>
-                    <select id="puntos" name="puntos" class="form-select" disabled onchange="verificarFormulario()">
-                        <option value="" selected disabled>Selecciona los puntos</option>
-                        <option value="500">500</option>
-                        <option value="1000">1000</option>
-                        <option value="1500">1500</option>
-                        <option value="2000">2000</option>
-                    </select>
-                </div>
+                while ($horario = mysqli_fetch_assoc($result_horarios)) {
+                    echo "<tr>";
+                    echo "<td>" . $horario['hora_inicio'] . "</td>";
 
-                <!-- Selección de Facción -->
-                <div class="mb-3">
-                    <label for="faccion" class="form-label">Facción</label>
-                    <select id="faccion40k" name="faccion" class="form-select" disabled style="display:block;" onchange="mostrarFaccion40k()">
-                        <option value="" selected disabled>Selecciona una facción</option>
-                        <!-- Facciones de Warhammer 40k -->
-                        <option value="1" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/templarios.svg">Templarios Negros</option>
-                        <option value="2" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/sangrientos.svg">Ángeles Sangrientos</option>
-                        <option value="3" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/oscuros.svg">Ángeles Oscuros</option>
-                        <option value="4" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/puños.svg">Puños Imperiales</option>
-                        <option value="5" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/manos.svg">Manos de Hierro</option>
-                        <option value="6" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/cuervo.svg">Guardia del Cuervo</option>
-                        <option value="7" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/salamandras.svg">Salamandras</option>
-                        <option value="8" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/lobos.svg">Lobos Espaciales</option>
-                        <option value="9" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/ultras.svg">Ultramarines</option>
-                        <option value="10" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/cicatrices.svg">Cicatrices Blancas</option>
-                        <option value="11" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/custodes.svg">Adeptus Custodes</option>
-                        <option value="12" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/sororitas.svg">Hermanas de Batalla</option>
-                        <option value="13" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/mechanicus.svg">Adeptus Mechanicus</option>
-                        <option value="14" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/agentes.svg">Agentes Imperiales</option>
-                        <option value="15" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/guardia.svg">Guardia Imperial</option>
-                        <option value="16" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/grises.svg">Caballeros Grises</option>
-                        <option value="17" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/caballeros.svg">Caballeros Imperiales</option>
-                        <option value="18" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/astartes.svg">Marines Espaciales</option>
-                        <option value="19" data-subfaccion="Aeldari" data-icon="../public/assets/images/icons/drukhari.svg">Drukhari</option>
-                        <option value="20" data-subfaccion="Aeldari" data-icon="../public/assets/images/icons/ynnari.svg">Ynnari</option>
-                        <option value="21" data-subfaccion="Caos" data-icon="../public/assets/images/icons/demons.svg">Demonios del Caos</option>
-                        <option value="22" data-subfaccion="Caos" data-icon="../public/assets/images/icons/caballeroscaos.svg">Caballeros del Caos</option>
-                        <option value="23" data-subfaccion="Caos" data-icon="../public/assets/images/icons/herejes.svg">Marines Espaciales del Caos</option>
-                        <option value="24" data-subfaccion="Heretic Astartes" data-icon="../public/assets/images/icons/nurgle.svg">Guardia de la Muerte</option>
-                        <option value="25" data-subfaccion="Heretic Astartes" data-icon="../public/assets/images/icons/hijos.svg">Mil Hijos</option>
-                        <option value="26" data-subfaccion="Heretic Astartes" data-icon="../public/assets/images/icons/devoradores.svg">Devoradores de Mundos</option>
-                        <option value="27" data-subfaccion="Heretic Astartes" data-icon="../public/assets/images/icons/negra.svg">Legión Negra</option>
-                        <option value="28" data-subfaccion="Xenos" data-icon="../public/assets/images/icons/cultos.svg">Cultos Genestealers</option>
-                        <option value="29" data-subfaccion="Xenos" data-icon="../public/assets/images/icons/necrones.svg">Necrones</option>
-                        <option value="30" data-subfaccion="Xenos" data-icon="../public/assets/images/icons/orcos.svg">Orcos</option>
-                        <option value="31" data-subfaccion="Xenos" data-icon="../public/assets/images/icons/tau.svg">Imperio T'au</option>
-                        <option value="32" data-subfaccion="Xenos" data-icon="../public/assets/images/icons/tiranidos.svg">Tiranidos</option>
+                    for ($mesa = 1; $mesa <= 4; $mesa++) {
+                        // Consultar si la mesa está ocupada en ese horario
+                        $query_reserva = "SELECT * FROM reserva_mesa WHERE id_mesa = $mesa AND id_hora_inicio <= " . $horario['id_horario'] . " AND id_hora_final >= " . $horario['id_horario'] . " AND fecha = '$fecha_actual'";
+                        $result_reserva = mysqli_query($conexion, $query_reserva);
+                        if (mysqli_num_rows($result_reserva) > 0) {
+                            // Mesa ocupada
+                            echo "<td class='ocupado'>Ocupado</td>";
+                        } else {
+                            // Mesa disponible
+                            echo "<td class='disponible'>Disponible</td>";
+                        }
+                    }
 
-
-                        <!-- Agrega el resto de las facciones aquí siguiendo el formato -->
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <select id="faccionSigmar" class="form-select" disabled style="display:none;" onchange="mostrarFaccionSigmar()">
-                        <option value="" selected disabled>Selecciona una facción</option>
-                        <!-- Facciones de Warhammer 40k -->
-                        <option value="1" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/templarios.svg">Templarios Negros</option>
-                        <option value="2" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/sangrientos.svg">Ángeles Sangrientos</option>
-                        <!-- Agrega el resto de las facciones aquí siguiendo el formato -->
-                    </select>
-                </div>
-
-                <!-- Selección de Hora de inicio y finalización
-                <div class="mb-3">
-                <label for="hora_inicio" class="form-label">Hora de inicio</label>
-                <input type="time" name="hora_inicio" id="hora_inicio" class="form-control" 
-                    min="16:00" max="21:00" onchange="verificarFormulario()">
-
-                </div>
-                <div class="mb-3">
-                <label for="hora_final" class="form-label">Hora de finalización</label>
-                <input type="time" name="hora_final" id="hora_final" class="form-control" 
-                    min="16:00" max="21:00" onchange="verificarFormulario()">
-
-                </div>
-
-                <!-- Selección de Mesa
-                <div class="mb-3">
-                    <label for="mesa" class="form-label">Mesa</label>
-                    <select id="mesa" name="mesa" class="form-select">
-                        <option value="" selected disabled>Selecciona tu Mesa</option>
-                        <option value="1">Mesa 1</option>
-                        <option value="2">Mesa 2</option>
-                        <option value="3">Mesa 3</option>
-                    </select>
-                </div> -->
-            
-        </div>
+                    echo "</tr>";
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
 
         <!-- Columna derecha: Previsualización -->
-        <div class="col-md-6 text-center">
-            <h3>LISTO PARA DEPLEGAR...</h3>
-            <br>
-            <center><img id="icono-faccion" class="faction-icon my-3" src="" alt="Icono de facción" style="display: none;"></center>
-
-            <span style="color: gray; font-size: 15px;" id="nombre-faccion"></span>
-            <h4 id="subfaccion-faccion"></h4>
-            <br><br>
-            <div class="button">
-                <button class="btn" id="crear-partida" type="submit" disabled>CREAR PARTIDA</button>
+        <div class="right-column">
+        <h3>Selecciona tu mesa y horario</h3>
+        <form action="procesar_reserva.php" method="POST">
+            <div class="form-group">
+                <label for="mesa">Mesa:</label>
+                <select name="id_mesa" id="mesa" class="form-control" required>
+                    <option value="1">Mesa 1</option>
+                    <option value="2">Mesa 2</option>
+                    <option value="3">Mesa 3</option>
+                    <option value="4">Mesa 4</option>
+                </select>
             </div>
-        </div>
-    </form>
+            <div class="form-group">
+                <label for="hora_inicio">Hora de inicio:</label>
+                <select name="id_hora_inicio" id="hora_inicio" class="form-control" required>
+                    <!-- Aquí se llenarán las horas disponibles dinámicamente con PHP -->
+                    <?php
+                    $query_horas = "SELECT id_horario, hora_inicio FROM horarios WHERE dia_semana = DAYNAME(CURDATE())";
+                    $result_horas = mysqli_query($conexion, $query_horas);
+                    while ($hora = mysqli_fetch_assoc($result_horas)) {
+                        echo "<option value='" . $hora['id_horario'] . "'>" . $hora['hora_inicio'] . "</option>";
+                    }
+                    ?>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="hora_final">Hora de finalización:</label>
+                <select name="id_hora_final" id="hora_final" class="form-control" required>
+                    <!-- Aquí se llenarán las horas disponibles dinámicamente con PHP -->
+                    <?php
+                    $query_horas_final = "SELECT id_horario, hora_inicio FROM horarios WHERE dia_semana = DAYNAME(CURDATE())";
+                    $result_horas_final = mysqli_query($conexion, $query_horas_final);
+                    while ($hora = mysqli_fetch_assoc($result_horas_final)) {
+                        echo "<option value='" . $hora['id_horario'] . "'>" . $hora['hora_inicio'] . "</option>";
+                    }
+                    ?>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Reservar</button>
+        </form>
+    </div>
+
     </div>
 </div>
 

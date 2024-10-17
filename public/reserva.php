@@ -306,6 +306,53 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#mesa, #hora_inicio, #hora_final').change(function() {
+        var id_mesa = $('#mesa').val();
+        var id_hora_inicio = $('#hora_inicio').val();
+        var id_hora_final = $('#hora_final').val();
+
+        if (id_mesa && id_hora_inicio && id_hora_final) {
+            $.ajax({
+                url: 'verificar_disponibilidad.php',
+                type: 'POST',
+                data: {
+                    id_mesa: id_mesa,
+                    id_hora_inicio: id_hora_inicio,
+                    id_hora_final: id_hora_final
+                },
+                success: function(response) {
+                    var data = JSON.parse(response);
+                    if (!data.disponible) {
+                        alert('La mesa no está disponible en ese horario.');
+                        updateTable(id_mesa, false);
+                    } else {
+                        updateTable(id_mesa, true);
+                    }
+                }
+            });
+        }
+    });
+
+    function updateTable(id_mesa, isAvailable) {
+        var statusText = isAvailable ? "Disponible" : "Ocupado";
+        var statusClass = isAvailable ? "disponible" : "ocupado";
+
+        $("#horariosMesas td").each(function() {
+            var mesaIndex = $(this).index();
+
+            // Cambiar el texto y clase de la celda correspondiente a la mesa seleccionada
+            if (mesaIndex === id_mesa) {
+                $(this).text(statusText);
+                $(this).removeClass("ocupado disponible").addClass(statusClass);
+            }
+        });
+    }
+});
+</script>
+
     
 
     

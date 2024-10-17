@@ -401,7 +401,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         faccion = document.getElementById('faccionSigmar').value;
     }
 
-    let formValido = juego && faccion && horaInicio && horaFinal && mesa;
+    let formValido = juego && faccion;
 
     // Verificar puntos solo si el juego es Warhammer 40k
     if (juego === '1' && !puntos) {

@@ -160,11 +160,12 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <label for="imagenes">Subir imágenes:</label><br>
             <input type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple onchange="previewImages()"><br><br>
             </div>
-            <div>
-            <textarea class="form-control form-control-cuerpo form-control-custom" name="" id="" placeholder="Cuerpo"></textarea>
             </div>
             <div id="vista-previa">
             </div>
+            <div>
+            <textarea class="form-control form-control-cuerpo form-control-custom" name="" id="" placeholder="Cuerpo"></textarea>
+
             <script>
         function previewImages() {
             var preview = document.getElementById('vista-previa');

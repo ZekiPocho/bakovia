@@ -1,5 +1,54 @@
 <?php
-include ('validate_session.php')
+include ('validate_session.php'); // Asegurarse de que el usuario esté autenticado
+
+// Conexión a la base de datos
+$servername = "localhost";
+$username = "root";
+$password = ""; // Tu contraseña de la base de datos
+$dbname = "bakoviadb";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Error de conexión: " . $conn->connect_error);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $titulo = $conn->real_escape_string($_POST['titulo']);
+    $contenido = $conn->real_escape_string($_POST['contenido']);
+    $id_usuario = $_SESSION['id_usuario']; // Asumimos que tienes la sesión del usuario
+
+    // Insertar la publicación en la base de datos
+    $sql = "INSERT INTO publicaciones (id_usuario, titulo, contenido, fecha_publicacion) 
+            VALUES ('$id_usuario', '$titulo', '$contenido', NOW())";
+
+    if ($conn->query($sql) === TRUE) {
+        $id_publicacion = $conn->insert_id; // Obtener el ID de la publicación recién insertada
+
+        // Manejo de imágenes subidas
+        if (!empty($_FILES['imagenes']['name'][0])) {
+            $upload_dir = 'uploads/'; // Carpeta donde se subirán las imágenes
+            foreach ($_FILES['imagenes']['name'] as $key => $image_name) {
+                $image_tmp_name = $_FILES['imagenes']['tmp_name'][$key];
+                $image_path = $upload_dir . basename($image_name);
+
+                // Subir la imagen al servidor
+                if (move_uploaded_file($image_tmp_name, $image_path)) {
+                    // Insertar la ruta de la imagen en la base de datos (asumiendo una tabla para imágenes)
+                    $sql_image = "INSERT INTO imagenes (id_publicacion, ruta_imagen) 
+                                  VALUES ('$id_publicacion', '$image_path')";
+                    $conn->query($sql_image);
+                }
+            }
+        }
+
+        echo "Publicación creada con éxito";
+    } else {
+        echo "Error al crear la publicación: " . $conn->error;
+    }
+}
+
+$conn->close();
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">

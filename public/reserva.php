@@ -204,7 +204,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <br>
         <table class="table table-bordered">
             <thead>
-                <tr style="background-color: white;">
+                <tr style="background-color: #6E869D; border: solid 2px #171D25">
                     <th>Hora</th>
                     <th>Mesa 1</th>
                     <th>Mesa 2</th>
@@ -224,7 +224,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 $result_horarios = mysqli_query($conn, $query_horarios);
 
                 while ($horario = mysqli_fetch_assoc($result_horarios)) {
-                    echo "<tr>";
+                    echo "<tr style='background-color: white; border: solid 2px #171D25'>";
                     echo "<td>" . $horario['hora_inicio'] . "</td>";
 
                     for ($mesa = 1; $mesa <= 3; $mesa++) {

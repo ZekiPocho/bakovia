@@ -1,6 +1,6 @@
 <?php
 // Conexión a la base de datos
-include('conexion.php'); // Asegúrate de incluir el archivo correcto para la conexión a la base de datos
+include('..public/db.php'); // Asegúrate de incluir el archivo correcto para la conexión a la base de datos
 
 // Configuración para que los nombres de días estén en español
 mysqli_query($conn, "SET lc_time_names = 'es_ES'");

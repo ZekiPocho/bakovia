@@ -18,30 +18,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $contenido = $conn->real_escape_string($_POST['contenido']);
     $id_usuario = $_SESSION['id_usuario']; // Asumimos que tienes la sesión del usuario
 
-    // Insertar la publicación en la base de datos
-    $sql = "INSERT INTO publicaciones (id_usuario, titulo, contenido, fecha_publicacion) 
-            VALUES ('$id_usuario', '$titulo', '$contenido', NOW())";
+    // Manejo de imagen subida
+    $upload_dir = 'assets/images/blog';
+    $imagen_publicacion = '';
 
-    if ($conn->query($sql) === TRUE) {
-        $id_publicacion = $conn->insert_id; // Obtener el ID de la publicación recién insertada
+    if (!empty($_FILES['imagenes']['name'][0])) {
+        $image_name = basename($_FILES['imagenes']['name'][0]);
+        $image_tmp_name = $_FILES['imagenes']['tmp_name'][0];
+        $image_path = $upload_dir . $image_name;
 
-        // Manejo de imágenes subidas
-        if (!empty($_FILES['imagenes']['name'][0])) {
-            $upload_dir = 'public/assets/images/blog'; // Carpeta donde se subirán las imágenes
-            foreach ($_FILES['imagenes']['name'] as $key => $image_name) {
-                $image_tmp_name = $_FILES['imagenes']['tmp_name'][$key];
-                $image_path = $upload_dir . basename($image_name);
-
-                // Subir la imagen al servidor
-                if (move_uploaded_file($image_tmp_name, $image_path)) {
-                    // Insertar la ruta de la imagen en la base de datos (asumiendo una tabla para imágenes)
-                    $sql_image = "INSERT INTO publicaciones (id_publicacion, imagen_publicacion) 
-                                  VALUES ('$id_publicacion', '$image_path')";
-                    $conn->query($sql_image);
-                }
-            }
+        // Crear la carpeta si no existe
+        if (!is_dir($upload_dir)) {
+            mkdir($upload_dir, 0755, true);
         }
 
+        if (move_uploaded_file($image_tmp_name, $image_path)) {
+            $imagen_publicacion = $image_path; // Guardamos la ruta de la imagen
+        } else {
+            echo "Error al subir la imagen.";
+        }
+    }
+
+    // Insertar la publicación en la base de datos con la imagen
+    $sql = "INSERT INTO publicaciones (id_usuario, titulo, contenido, fecha_publicacion, imagen_publicacion) 
+            VALUES ('$id_usuario', '$titulo', '$contenido', NOW(), '$imagen_publicacion')";
+
+    if ($conn->query($sql) === TRUE) {
         echo "Publicación creada con éxito";
     } else {
         echo "Error al crear la publicación: " . $conn->error;
@@ -50,6 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $conn->close();
 ?>
+
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 

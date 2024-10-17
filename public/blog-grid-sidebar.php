@@ -244,7 +244,7 @@ register.php<div class="col-sm-auto"></div>
                     </h4>
                     <p>'.$contenido_resumido.'</p> <!-- Mostrar un resumen del contenido -->
                     <div class="button">
-                        <a href="blog-single-sidebar.html" class="btn">ir al blog principal</a>
+                        <a href="blog-single-sidebar.php" class="btn">ir al blog principal</a>
                     </div>
                 </div>
             </div>

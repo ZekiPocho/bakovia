@@ -159,6 +159,11 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <div>
             <textarea class="form-control form-control-cuerpo form-control-custom" name="" id="" placeholder="Cuerpo"></textarea>
             </div>
+            <div>
+            <!-- Subir imagen -->
+            <label for="imagen">Subir imagen:</label><br>
+            <input type="file" id="imagen" name="imagen" accept="image/*" required><br><br>
+            </div>
         <div class="row">
         </div>
         </form>

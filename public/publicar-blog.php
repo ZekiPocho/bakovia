@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($conn->query($sql) === TRUE) {
         // Redirigir después de la publicación para evitar duplicados al recargar
-        header("Location: publicar-blog.php?success=1");
+        header("Location: blog-single-sidebar.php?success=1");
         exit(); // Importante: salir después de la redirección
     } else {
         echo "Error al crear la publicación: " . $conn->error;

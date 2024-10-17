@@ -27,17 +27,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Manejo de imágenes subidas
         if (!empty($_FILES['imagenes']['name'][0])) {
-            $upload_dir = 'ZekiPocho/bakovia/public/assets/images/blog'; // Carpeta donde se subirán las imágenes
+            $upload_dir = 'assets/images/'; // Carpeta donde se subirán las imágenes
+            
+            // Crear la carpeta si no existe
+            if (!is_dir($upload_dir)) {
+                mkdir($upload_dir, 0755, true);
+            }
+            
             foreach ($_FILES['imagenes']['name'] as $key => $image_name) {
                 $image_tmp_name = $_FILES['imagenes']['tmp_name'][$key];
                 $image_path = $upload_dir . basename($image_name);
 
                 // Subir la imagen al servidor
                 if (move_uploaded_file($image_tmp_name, $image_path)) {
-                    // Insertar la ruta de la imagen en la base de datos (asumiendo una tabla para imágenes)
+                    // Insertar la ruta de la imagen en la base de datos
                     $sql_image = "INSERT INTO imagenes (id_publicacion, ruta_imagen) 
                                   VALUES ('$id_publicacion', '$image_path')";
                     $conn->query($sql_image);
+                } else {
+                    echo "Error al subir la imagen: " . $image_name;
                 }
             }
         }

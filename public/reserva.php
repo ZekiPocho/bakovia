@@ -233,10 +233,10 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                     for ($mesa = 1; $mesa <= 3; $mesa++) {
                                         // Consulta para verificar si hay una reserva en esa mesa y horario
                                         $query_reserva = "SELECT * FROM reserva_mesa 
-                                                        WHERE id_mesa = $mesa 
-                                                        AND id_hora_inicio <= " . $horario['id_horario'] . " 
-                                                        AND id_hora_final >= " . $horario['id_horario'] . " 
-                                                        AND fecha = '$fecha_actual'";
+                                                            WHERE id_mesa = $mesa 
+                                                            AND ('$horario[hora_inicio]' BETWEEN hora_inicio AND hora_final) 
+                                                            AND fecha = '$fecha_actual'";
+
                                         $result_reserva = mysqli_query($conn, $query_reserva);
 
                                         if (mysqli_num_rows($result_reserva) > 0) {

@@ -1,3 +1,17 @@
+<?php
+// Conexión a la base de datos
+$servername = "localhost";
+$username = "root";
+$password = ""; // Tu contraseña de la base de datos
+$dbname = "bakoviadb";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Error de conexión: " . $conn->connect_error);
+}
+?>
+
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 
@@ -171,37 +185,59 @@ register.php<div class="col-sm-auto"></div>
                 <div class="col-lg-8 col-md-12 col-12">
                     <div class="single-inner">
                         <div class="post-details">
-                            <div class="main-content-head">
-                                <div class="post-thumbnils">
-                                    <img src="https://via.placeholder.com/850x460" alt="#">
-                                </div>
-                                <div class="meta-information">
-                                    <h2 class="post-title">
-                                        <a href="blog-single.html">titulo</a>
-                                    </h2>
-                                    <!-- End Meta Info -->
-                                    <ul class="meta-info">
-                                        <li>
-                                            <a href="javascript:void(0)"> <i class="lni lni-user"></i>usuario</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0)"><i class="lni lni-calendar"></i> fecha
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0)"><i class="lni lni-tag"></i> tag</a>
-                                        </li>
-                                    </ul>
-                                    <!-- End Meta Info -->
-                                </div>
-                                <div class="detail-inner">
-                                    <p>
-                                    cuerpo
-                                    </p>
-                                    <div class="post-bottom-area">
-                                    </div>
-                                </div>
-                            </div>
+                        // Obtener las publicaciones
+<?php
+$sql = "SELECT p.titulo, p.contenido, p.imagen_publicacion, p.fecha_publicacion, u.nombre_usuario 
+        FROM publicaciones p
+        JOIN usuarios u ON p.id_usuario = u.id_usuario
+        ORDER BY p.fecha_publicacion DESC"; // Ordenar por fecha de publicación
+
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // Mostrar todas las publicaciones
+    while($row = $result->fetch_assoc()) {
+        $titulo = $row['titulo'];
+        $contenido = $row['contenido'];
+        $imagen = !empty($row['imagen_publicacion']) ? $row['imagen_publicacion'] : 'https://via.placeholder.com/850x460'; // Si no hay imagen, usar un placeholder
+        $usuario = $row['nombre_usuario'];
+        $fecha = date("d M, Y", strtotime($row['fecha_publicacion'])); // Formatear la fecha
+
+        echo '
+        <div class="main-content-head">
+            <div class="post-thumbnils">
+                <img src="'.$imagen.'" alt="#">
+            </div>
+            <div class="meta-information">
+                <h2 class="post-title">
+                    <a href="blog-single.html">'.$titulo.'</a>
+                </h2>
+                <ul class="meta-info">
+                    <li>
+                        <a href="javascript:void(0)"> <i class="lni lni-user"></i>'.$usuario.'</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><i class="lni lni-calendar"></i>'.$fecha.'</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><i class="lni lni-tag"></i> Blog</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="detail-inner">
+                <p>'.$contenido.'</p>
+                <div class="post-bottom-area">
+                    <!-- Aquí puedes agregar botones o cualquier otra cosa que necesites -->
+                </div>
+            </div>
+        </div>';
+    }
+} else {
+    echo "No se encontraron publicaciones.";
+}
+
+$conn->close();
+?>
                             <!-- Comments -->
                             <div class="post-comments">
                                 <h3 class="comment-title"><span>Comentarios</span></h3>

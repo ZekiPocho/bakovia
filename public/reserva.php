@@ -257,6 +257,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                     <option value="4">Mesa 4</option>
                 </select>
             </div>
+            <br>
             <div class="form-group">
                 <label for="hora_inicio">Hora de inicio:</label>
                 <select name="id_hora_inicio" id="hora_inicio" class="form-control" required>
@@ -270,6 +271,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                     ?>
                 </select>
             </div>
+            <br>
             <div class="form-group">
                 <label for="hora_final">Hora de finalización:</label>
                 <select name="id_hora_final" id="hora_final" class="form-control" required>

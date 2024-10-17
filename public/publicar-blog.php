@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Subir la imagen al servidor
                 if (move_uploaded_file($image_tmp_name, $image_path)) {
                     // Insertar la ruta de la imagen en la base de datos (asumiendo una tabla para imágenes)
-                    $sql_image = "INSERT INTO publicaciones (id_publicacion, ruta_imagen) 
+                    $sql_image = "INSERT INTO publicaciones (id_publicacion, imagen_publicacion) 
                                   VALUES ('$id_publicacion', '$image_path')";
                     $conn->query($sql_image);
                 }

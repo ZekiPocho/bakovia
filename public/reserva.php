@@ -249,8 +249,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
                                     // Mostrar tabla de horarios
                                     foreach ($horarios_disponibles as $id_hora => $hora) {
-                                        echo "<tr style='background-color: white; border: solid 2px #171D25'>";
-                                        echo "<td>$hora</td>";
+                                        echo "<tr>";
+                                        echo "<td style='background-color: white; border: solid 2px #171D25'>$hora</td>";
 
                                         for ($mesa = 1; $mesa <= 3; $mesa++) {
                                             // Lógica para verificar si la mesa está ocupada

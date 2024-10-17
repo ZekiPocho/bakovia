@@ -200,7 +200,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     <div class="row">
         <!-- Columna izquierda: Selección -->
         <div class="col-md-6">
-        <h3 class="text-center">HORARIOS</h3>
+        <h3 class="text-center">HORARIOS PARA HOY</h3>
         <br>
         <table class="table table-bordered">
             <thead>

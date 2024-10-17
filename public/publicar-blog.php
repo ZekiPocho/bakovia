@@ -153,8 +153,10 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <h2>Crear una nueva publicación</h2>
     <form action="upload_post.php" method="post" enctype="multipart/form-data">
         <!-- Título del post -->
+        <textarea name="" id="">
         <label for="titulo">Título:</label><br>
         <input type="text" id="titulo" name="titulo" required><br><br>
+        </textarea>
 
         <!-- Cuerpo del post (opcional) -->
         <label for="contenido">Contenido (opcional):</label><br>

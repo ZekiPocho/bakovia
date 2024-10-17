@@ -214,9 +214,9 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <tbody id="horariosMesas">
                 <?php
                 // Obtener horarios y reservas de la base de datos
-                mysqli_query($conn, "SET lc_time_names = 'es_ES'");
                 $fecha_actual = date('Y-m-d'); // Suponemos que las reservas son solo para el día actual
-                $query_horarios = "SELECT h.id_horario, h.hora_inicio 
+                $query_horarios = "SET lc_time_names = 'es_ES';
+                                    SELECT h.id_horario, h.hora_inicio 
                                     FROM horarios h 
                                     WHERE DAYNAME(CURDATE()) = h.dia_semana;";
                 $result_horarios = mysqli_query($conn, $query_horarios);

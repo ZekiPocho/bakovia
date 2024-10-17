@@ -227,7 +227,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                     echo "<tr>";
                     echo "<td>" . $horario['hora_inicio'] . "</td>";
 
-                    for ($mesa = 1; $mesa <= 4; $mesa++) {
+                    for ($mesa = 1; $mesa <= 3; $mesa++) {
                         // Consultar si la mesa está ocupada en ese horario
                         $query_reserva = "SELECT * FROM reserva_mesa WHERE id_mesa = $mesa AND id_hora_inicio <= " . $horario['id_horario'] . " AND id_hora_final >= " . $horario['id_horario'] . " AND fecha = '$fecha_actual'";
                         $result_reserva = mysqli_query($conn, $query_reserva);

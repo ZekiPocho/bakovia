@@ -149,23 +149,24 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
 <section class="hero-area">
     <div class="container-sm">
-        <h1>
-            CREAR POST
-        </h1>
         <form action="POST">
-            <div>
-            <textarea class="form-control form-control-custom" name="" id="" placeholder="Título"></textarea>
-            </div>
-            <div>
-            <textarea class="form-control form-control-cuerpo form-control-custom" name="" id="" placeholder="Cuerpo"></textarea>
-            </div>
-            <div>
-            <!-- Subir imagen -->
-            <label for="imagen">Subir imagen:</label><br>
-            <input class="btn btn-outline-primary" type="file" id="imagen" name="imagen" accept="image/*" required><br><br>
-            </div>
-        <div class="row">
-        </div>
+        <h2>Crear una nueva publicación</h2>
+    <form action="upload_post.php" method="post" enctype="multipart/form-data">
+        <!-- Título del post -->
+        <label for="titulo">Título:</label><br>
+        <input type="text" id="titulo" name="titulo" required><br><br>
+
+        <!-- Cuerpo del post (opcional) -->
+        <label for="contenido">Contenido (opcional):</label><br>
+        <textarea id="contenido" name="contenido" rows="5" cols="50"></textarea><br><br>
+
+        <!-- Subir una o más imágenes -->
+        <label for="imagenes">Subir imágenes:</label><br>
+        <input type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple><br><br>
+
+        <!-- Botón para enviar el formulario -->
+        <input type="submit" value="Publicar">
+    </form>
         </form>
     </div>
     

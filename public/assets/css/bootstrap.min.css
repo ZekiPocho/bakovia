@@ -5314,7 +5314,7 @@ fieldset:disabled .btn {
 }
 
 .alert-success {
-    font-size: x-large;
+    font-size: -webkit-xxx-large;
     color: #0f5132;
     background-color: #d1e7dd;
     border-color: #badbcc

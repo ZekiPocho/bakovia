@@ -224,7 +224,10 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <input type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple onchange="previewImages()"><br><br>
         </div>
         <div>
-            <select name="" id=""></select>
+            <select name="" id="">
+                <option value="juegos"></option>
+                <option value="pintura"></option>
+            </select>
         </div>
         <div>
             <textarea class="form-control" name="contenido" placeholder="Cuerpo"></textarea>

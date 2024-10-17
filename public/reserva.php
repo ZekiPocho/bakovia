@@ -321,6 +321,14 @@ function actualizarHorarios() {
 }
 
 setInterval(actualizarHorarios, 5000);
+// Script para actualizar la disponibilidad de horarios
+$(document).ready(function() {
+    // Actualizar cada 5 segundos
+    setInterval(function() {
+        $("#horariosMesas").load("actualizar_horarios.php");
+    }, 5000);  // Puedes ajustar el intervalo de tiempo
+});
+
 </script>
 
 

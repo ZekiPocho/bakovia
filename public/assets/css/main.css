@@ -7192,15 +7192,6 @@ blockquote span {
   height: 200px;
   filter: invert(100%);
 }
-.ocupado {
-  background-color: rgb(255, 168, 168); /* Color para ocupado */
-  color: rgb(179, 0, 0);
-}
-
-.disponible {
-  background-color: rgb(182, 255, 164); /* Color para disponible */
-  color: rgb(0, 112, 0);
-}
 
 /*======================================
 	Account Login CSS

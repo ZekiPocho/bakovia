@@ -263,10 +263,10 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
                                             if (mysqli_num_rows($result_reserva) > 0) {
                                                 // Si hay una reserva, la mesa está ocupada
-                                                echo "<td class='ocupado'>Ocupado</td>";
+                                                echo "<td style='background-color: rgb(255, 168, 168); color: rgb(179, 0, 0); border: solid 2px #171D25;'>Ocupado</td>";
                                             } else {
                                                 // Si no hay reservas, la mesa está disponible
-                                                echo "<td class='disponible'>Disponible</td>";
+                                                echo "<td style='background-color: rgb(182, 255, 164); color: rgb(0, 112, 0); border: solid 2px #171D25;'>Disponible</td>";
                                             }
                                         }
 

@@ -163,16 +163,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <div>
             <textarea class="form-control form-control-cuerpo form-control-custom" name="" id="" placeholder="Cuerpo"></textarea>
             </div>
-        <!-- Vista previa de imágenes -->
-        <div id="vista-previa">
-        </div>
-        <input type="submit" value="Publicar">
-        </div>
-        <!-- Botón para enviar el formulario -->
-
-        </form>
-
-    <script>
+            <script>
         function previewImages() {
             var preview = document.getElementById('vista-previa');
             var files = document.getElementById('imagenes').files;
@@ -201,6 +192,14 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             }
         }
     </script>
+        <!-- Vista previa de imágenes -->
+        <div id="vista-previa">
+        </div>
+        <input type="submit" value="Publicar">
+        </div>
+        <!-- Botón para enviar el formulario -->
+
+        </form>
     </div>
     
 </section> 

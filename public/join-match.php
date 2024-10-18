@@ -425,93 +425,109 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 </div>
 
 <script>
-    //function actualizarFormulario() {
-    //const juego = document.getElementById('juego').value;
-    //const faccion40kSelect = document.getElementById('faccion40k');
-    //const faccionSigmarSelect = document.getElementById('faccionSigmar');
-    //const puntosSelect = document.getElementById('puntos');
-
-    if (<?php$juego?> === '1') {
-        faccion40kSelect.style.display = 'block';
-        faccionSigmarSelect.style.display = 'none';
-        faccion40kSelect.disabled = false;
-        puntosSelect.disabled = false;
-        faccionSigmarSelect.disabled = true;  // Desactivar Sigmar
-
-    } else if (<?php$juego?> === '2') {
-        faccionSigmarSelect.style.display = 'block';
-        faccion40kSelect.style.display = 'none';
-        faccionSigmarSelect.disabled = false;
-        puntosSelect.disabled = true;  // Desactivar puntos para Sigmar
-        faccion40kSelect.disabled = true;  // Desactivar 40k
-    } else {
-        // Para otros juegos como Kill Team o WarCry
-        faccion40kSelect.disabled = true;
-        faccionSigmarSelect.disabled = true;
-        puntosSelect.disabled = true; // Desactivar puntos
-        faccion40kSelect.style.display = 'none';
-        faccionSigmarSelect.style.display = 'none';
-    }
-
-
-    function mostrarFaccion40k() {
+    document.addEventListener('DOMContentLoaded', function() {
+        const juegoSelect = document.getElementById('juego');
         const faccion40kSelect = document.getElementById('faccion40k');
-        const selectedOption = faccion40kSelect.options[faccion40kSelect.selectedIndex];
-        const subfaccion = selectedOption.getAttribute('data-subfaccion');
-        const icono = selectedOption.getAttribute('data-icon');
-
-        // Mostrar facción y subfacción en la columna de previsualización
-        document.getElementById('nombre-faccion').textContent = subfaccion;
-        document.getElementById('subfaccion-faccion').textContent = selectedOption.text;
-
-        // Mostrar icono de facción
-        const iconoFaccion = document.getElementById('icono-faccion');
-        iconoFaccion.src = icono;
-        iconoFaccion.style.display = 'block';
-
-        // Habilitar botón de crear si todos los campos están llenos
-        verificarFormulario();
-    }
-    function mostrarFaccionSigmar() {
         const faccionSigmarSelect = document.getElementById('faccionSigmar');
-        const selectedOption = faccionSigmarSelect.options[faccionSigmarSelect.selectedIndex];
-        const subfaccion = selectedOption.getAttribute('data-subfaccion');
-        const icono = selectedOption.getAttribute('data-icon');
+        const puntosSelect = document.getElementById('puntos');
 
-        // Mostrar facción y subfacción en la columna de previsualización
-        document.getElementById('nombre-faccion').textContent = subfaccion;
-        document.getElementById('subfaccion-faccion').textContent = selectedOption.text;
+        // Actualizar formulario cuando el valor del juego cambia
+        juegoSelect.addEventListener('change', actualizarFormulario);
 
-        // Mostrar icono de facción
-        const iconoFaccion = document.getElementById('icono-faccion');
-        iconoFaccion.src = icono;
-        iconoFaccion.style.display = 'block';
+        // Función para actualizar el formulario según el juego seleccionado
+        function actualizarFormulario() {
+            const juego = juegoSelect.value;
 
-        // Habilitar botón de crear si todos los campos están llenos
-        verificarFormulario();
-    }
+            if (juego === '1') { // Warhammer 40k
+                faccion40kSelect.style.display = 'block';
+                faccionSigmarSelect.style.display = 'none';
+                faccion40kSelect.disabled = false;
+                puntosSelect.disabled = false;
+                faccionSigmarSelect.disabled = true; // Desactivar Sigmar
 
-    function verificarFormulario() {
+            } else if (juego === '2') { // Age of Sigmar
+                faccionSigmarSelect.style.display = 'block';
+                faccion40kSelect.style.display = 'none';
+                faccionSigmarSelect.disabled = false;
+                puntosSelect.disabled = true; // Desactivar puntos para Sigmar
+                faccion40kSelect.disabled = true; // Desactivar 40k
+            } else {
+                // Para otros juegos
+                faccion40kSelect.disabled = true;
+                faccionSigmarSelect.disabled = true;
+                puntosSelect.disabled = true; // Desactivar puntos
+                faccion40kSelect.style.display = 'none';
+                faccionSigmarSelect.style.display = 'none';
+            }
+        }
 
-    let faccion = null;
+        // Funciones para mostrar facción y subfacción en la previsualización
+        faccion40kSelect.addEventListener('change', mostrarFaccion40k);
+        faccionSigmarSelect.addEventListener('change', mostrarFaccionSigmar);
 
-    // Verificar qué select de facciones debe estar habilitado
-    if (juego === '1') {
-        faccion = document.getElementById('faccion40k').value;
-    } else if (juego === 'ageofsigmar') {
-        faccion = document.getElementById('faccionSigmar').value;
-    }
+        function mostrarFaccion40k() {
+            const selectedOption = faccion40kSelect.options[faccion40kSelect.selectedIndex];
+            const subfaccion = selectedOption.getAttribute('data-subfaccion');
+            const icono = selectedOption.getAttribute('data-icon');
 
-    let formValido = juego && faccion;
+            // Mostrar facción y subfacción en la columna de previsualización
+            document.getElementById('nombre-faccion').textContent = subfaccion;
+            document.getElementById('subfaccion-faccion').textContent = selectedOption.text;
 
-    // Verificar puntos solo si el juego es Warhammer 40k
-    if (juego === '1' && !puntos) {
-        formValido = false;
-    }
+            // Mostrar icono de facción
+            const iconoFaccion = document.getElementById('icono-faccion');
+            iconoFaccion.src = icono;
+            iconoFaccion.style.display = 'block';
 
-    document.getElementById('crear-partida').disabled = !formValido;
-    }
-    </script>
+            // Habilitar botón de crear si todos los campos están llenos
+            verificarFormulario();
+        }
+
+        function mostrarFaccionSigmar() {
+            const selectedOption = faccionSigmarSelect.options[faccionSigmarSelect.selectedIndex];
+            const subfaccion = selectedOption.getAttribute('data-subfaccion');
+            const icono = selectedOption.getAttribute('data-icon');
+
+            // Mostrar facción y subfacción en la columna de previsualización
+            document.getElementById('nombre-faccion').textContent = subfaccion;
+            document.getElementById('subfaccion-faccion').textContent = selectedOption.text;
+
+            // Mostrar icono de facción
+            const iconoFaccion = document.getElementById('icono-faccion');
+            iconoFaccion.src = icono;
+            iconoFaccion.style.display = 'block';
+
+            // Habilitar botón de crear si todos los campos están llenos
+            verificarFormulario();
+        }
+
+        function verificarFormulario() {
+            let faccion = null;
+            const juego = juegoSelect.value; // Obtener el valor actual del juego
+            const puntos = puntosSelect.value; // Obtener el valor de puntos
+
+            // Verificar qué select de facciones debe estar habilitado
+            if (juego === '1') {
+                faccion = faccion40kSelect.value;
+            } else if (juego === '2') {
+                faccion = faccionSigmarSelect.value;
+            }
+
+            let formValido = juego && faccion;
+
+            // Verificar puntos solo si el juego es Warhammer 40k
+            if (juego === '1' && !puntos) {
+                formValido = false;
+            }
+
+            document.getElementById('crear-partida').disabled = !formValido;
+        }
+
+        // Llamar a la función para inicializar el estado del formulario al cargar la página
+        actualizarFormulario();
+    });
+</script>
+
                 </div>
             </div>
         </div>

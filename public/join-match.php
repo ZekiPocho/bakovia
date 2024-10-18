@@ -431,13 +431,19 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         const faccionSigmarSelect = document.getElementById('faccionSigmar');
         const puntosSelect = document.getElementById('puntos');
 
+        // Inicializar el juego desde PHP
+        const juegoInicial = "<?php echo $juego; ?>"; // Asegúrate de que $juego tenga el valor correcto
+
+        // Actualizar formulario al cargar
+        actualizarFormulario(juegoInicial);
+
         // Actualizar formulario cuando el valor del juego cambia
-        juegoSelect.addEventListener('change', actualizarFormulario);
+        juegoSelect.addEventListener('change', function() {
+            actualizarFormulario(this.value);
+        });
 
         // Función para actualizar el formulario según el juego seleccionado
-        function actualizarFormulario() {
-            const juego = juegoSelect.value;
-
+        function actualizarFormulario(juego) {
             if (juego === '1') { // Warhammer 40k
                 faccion40kSelect.style.display = 'block';
                 faccionSigmarSelect.style.display = 'none';
@@ -522,9 +528,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
             document.getElementById('crear-partida').disabled = !formValido;
         }
-
-        // Llamar a la función para inicializar el estado del formulario al cargar la página
-        actualizarFormulario();
     });
 </script>
 

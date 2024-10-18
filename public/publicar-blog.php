@@ -17,6 +17,7 @@ if ($conn->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $titulo = $conn->real_escape_string($_POST['titulo']);
     $contenido = $conn->real_escape_string($_POST['contenido']);
+    $tag = $conn->real_escape_string($_POST['tag']); // Capturamos el tag seleccionado
     $id_usuario = $_SESSION['id_usuario']; // Asumimos que tienes la sesión del usuario
 
     // Manejo de imagen subida

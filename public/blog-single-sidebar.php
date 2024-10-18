@@ -201,7 +201,7 @@ if ($result->num_rows > 0) {
         $imagen = !empty($row['imagen_publicacion']) ? $row['imagen_publicacion'] : 'https://via.placeholder.com/850x460'; // Si no hay imagen, usar un placeholder
         $usuario = $row['nombre_usuario'];
         $fecha = date("d M, Y", strtotime($row['fecha_publicacion'])); // Formatear la fecha
-
+        $tag = $row{'tag'}
         echo '
         <div class="main-content-head">
             <div class="post-thumbnils">
@@ -219,7 +219,7 @@ if ($result->num_rows > 0) {
                         <a href="javascript:void(0)"><i class="lni lni-calendar"></i>'.$fecha.'</a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)"><i class="lni lni-tag"></i> Blog</a>
+                        <a href="javascript:void(0)"><i class="lni lni-tag">'.$tag.'</i> Blog</a>
                     </li>
                 </ul>
             </div>

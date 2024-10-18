@@ -1,3 +1,6 @@
+<?php
+require_once "../src/validate_session.php";
+?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 
@@ -30,7 +33,7 @@
       </p>
     <![endif]-->
 
-    <!-- Preloader
+<!-- Preloader-->
     <div class="preloader">
         <div class="preloader-inner">
             <div class="preloader-icon">
@@ -39,7 +42,7 @@
             </div>
         </div>
     </div>
-    /End Preloader -->
+<!--/End Preloader -->
 
 <!--HEADER Y NAVBAR PRO-->
 <header class="header navbar-area">
@@ -150,7 +153,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         </div>
     </div>
 <!--PERFIL-->
-register.php<div class="col-sm-auto"></div>
+<div class="col-sm-auto"></div>
     <div class="navbar-cart">
         <div class="cart-items">
             <a href="profile.php" class="main-btn">
@@ -170,13 +173,16 @@ register.php<div class="col-sm-auto"></div>
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="breadcrumbs-content">
-                        <h1 class="page-title">PARTIDAS</h1>
+                        <h1 class="page-title">CREAR PARTIDA</h1>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
                     <ul class="breadcrumb-nav">
                         <li><a href="index.html"><i class="lni lni-home"></i> INICIO</a></li>
-                        <li>PARTIDAS</li>
+                        <li><a href="matches.php">PARTIDAS</a></li>
+                        <li>CREAR PARTIDA</li>
+                    </ul>
+                </div>
                     </ul>
                 </div>
             </div>
@@ -185,265 +191,241 @@ register.php<div class="col-sm-auto"></div>
     <!-- End Breadcrumbs -->
      <!---->
     <div class="container-sm mt-4">
-        <div class="row">
-            <!-- Columna de partidas en progreso -->
-    <div class="col-xxl-6">
-        <div class="matches-div text-center">
-                            <h3 style="border-bottom: solid 1px #6E869D;">PARTIDAS EN PROGRESO</h3>
-                            <br>
-            <?php
-            include("../public/db.php");
-            // Verificar conexión
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-            // Consulta para obtener partidas en progreso
-            $sql = "SELECT p.id_partida, p.id_juego, p.puntos, p.nombre_usuario1, p.nombre_usuario2, 
-            f1.nombre AS faccion1, f1.subfaccion AS subfaccion1, f1.icono AS icono1, 
-            f2.nombre AS faccion2, f2.subfaccion AS subfaccion2, f2.icono AS icono2,
-            p.hora_inicio, p.hora_final, p.id_mesa, p.puntaje_usuario1, 
-            p.puntaje_usuario2
-            FROM partida p
-            JOIN faccion f1 ON p.id_faccion_usuario1 = f1.id_faccion
-            JOIN faccion f2 ON p.id_faccion_usuario2 = f2.id_faccion
-            WHERE p.estado = 'en progreso'";
-            
-            $result = $conn->query($sql);
-            
-            // Verificar y procesar los resultados
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    ?>
-                    <!-- Aquí empieza el HTML para mostrar las partidas en progreso -->
-                    
-                            <div class="match-entry mb-2 text-center">
-                                <div class="row align-items-center">
-                                    <div class="col-2">
-                                        <img src="https://via.placeholder.com/50x50" alt="Foto de perfil" class="img-fluid">
-                                    </div>
-                                    <div class="col-3">
-                                        <span><?php echo $row['nombre_usuario1']; ?></span>
-                                    </div>
-                                    <div class="col-2">
-                                        <img src="assets/images/matches/sword.png" alt="Icono de batalla" class="img-fluid" style="max-width: 25px;">
-                                    </div>
-                                    <div class="col-3">
-                                        <span><?php echo $row['nombre_usuario2']; ?></span>
-                                    </div>
-                                    <div class="col-2">
-                                        <img src="https://via.placeholder.com/50x50" alt="Foto de perfil" class="img-fluid">
-                                    </div>
-                                </div>
-                                <div class="scoreboard">
-                                    <div class="team">
-                                        <img src="<?php echo $row['icono1']; ?>" alt="Equipo 1">
-                                        <div class="team-name"><?php echo $row['faccion1']; ?><br><?php echo $row['subfaccion1']; ?></div>
-                                    </div>
-                                    <div class="score"><?php echo $row['puntaje_usuario1']; ?></div>
-                                    <div class="middle-section">
-                                        <h1><?php echo $row['id_juego']; ?></h1>
-                                        <h1><?php echo $row['puntos']; ?> Pts.</h1>
-                                        <div class="timer"><i class="lni lni-hourglass"></i>00:00:00</div>
-                                        <h1>Ronda Nº1</h1>
-                                        <h1>MESA - <?php echo $row['id_mesa']; ?></h1>
-                                    </div>
-                                    <div class="score"><?php echo $row['puntaje_usuario2']; ?></div>
-                                    <div class="team">
-                                        <img src="<?php echo $row['icono2']; ?>" alt="Equipo 2">
-                                        <div class="team-name"><?php echo $row['faccion2']; ?><br><?php echo $row['subfaccion2']; ?></div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                    
-                    <!-- Aquí termina el HTML para mostrar las partidas en progreso -->
-                    <?php
-                }
-            } else {
-                echo "No hay partidas en progreso.";
-            }
-            
-            $conn->close();
-            ?>
-            
-        </div>
-    </div>
-
-    
-            <!-- Columna de partidas abiertas para jugar -->
-            <div class="col-xxl-6">
+        <div class="row justify-content-center">
+            <div class="col-xxl-10">
                 <div class="matches-div text-center">
-                    <h3 style="border-bottom: solid 1px #6E869D;">¡A JUGAR!</h3>
-                    <br>
-                    <!-- Partida abierta 1 -->
-                    <div class="match-entry mb-2 text-center">
-                        <div class="row align-items-center">
-                            <div class="col-2">
-                                <img src="https://via.placeholder.com/50x50" alt="Foto de perfil usuario1" class="img-fluid">
-                            </div>
-                            <div class="col-3">
-                                <span>Usuario1</span>
-                            </div>
-                            <div class="col-2">
-                                <h7>PARTIDA ABIERTA</h7>
-                            </div>
-                            <div class="col-5">
-                                <div class="button">
-                                    <button class="btn">UNIRSE</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="scoreboard">
-                            <!-- Equipo 1 -->
-                            <div class="team">
-                                <img src="https://via.placeholder.com/100" alt="Equipo 1">
-                                <div class="team-name">Astartes<br>Ángeles Sangrientos</div>
-                            </div>
-                            <!-- Puntaje izquierdo -->
-                            <div class="score">-</div>
-                            <!-- Sección central -->
-                            <div class="middle-section">
-                                <h1>Warhammer 40.000</h1>
-                                <div class="timer">--:--:--</div>
-                                <div class="points-title">EN ESPERA</div>
-                                <div class="table-number">MESA - 5</div>
-                            </div>
-                            <!-- Puntaje derecho -->
-                            <div class="score">-</div>
-                            <!-- Equipo 2 -->
-                            <div class="team">
-                                <img src="https://via.placeholder.com/100" alt="Equipo 2">
-                                <div class="team-name">N/A</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Partida abierta 1 -->
-                    <div class="match-entry mb-2 text-center">
-                        <div class="row align-items-center">
-                            <div class="col-2">
-                                <img src="https://via.placeholder.com/50x50" alt="Foto de perfil usuario1" class="img-fluid">
-                            </div>
-                            <div class="col-3">
-                                <span>Usuario1</span>
-                            </div>
-                            <div class="col-2">
-                                <h7>PARTIDA ABIERTA</h7>
-                            </div>
-                            <div class="col-5">
-                                <div class="button">
-                                    <button class="btn">UNIRSE</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="scoreboard">
-                            <!-- Equipo 1 -->
-                            <div class="team">
-                                <img src="https://via.placeholder.com/100" alt="Equipo 1">
-                                <div class="team-name">Astartes<br>Ángeles Sangrientos</div>
-                            </div>
-                            <!-- Puntaje izquierdo -->
-                            <div class="score">-</div>
-                            <!-- Sección central -->
-                            <div class="middle-section">
-                                <h1>Warhammer 40.000</h1>
-                                <div class="timer">--:--:--</div>
-                                <div class="points-title">EN ESPERA</div>
-                                <div class="table-number">MESA - 5</div>
-                            </div>
-                            <!-- Puntaje derecho -->
-                            <div class="score">-</div>
-                            <!-- Equipo 2 -->
-                            <div class="team">
-                                <img src="https://via.placeholder.com/100" alt="Equipo 2">
-                                <div class="team-name">N/A</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Botón para iniciar una nueva partida -->
-                    <br>
-                    <p class="text-muted"><span style="font-size: 15px;">O sino, inicia tu propia partida</span></p>
-                    <br>
-                    <div class="button">
-                        <button class="btn">Nueva Partida</button>
-                    </div>
+                            <h2 style="border-bottom: solid 1px #6E869D;">NUEVA PARTIDA</h2>
+                            <br>
+                            <div class="container mt-1">
+    <div class="row">
+        <!-- Columna izquierda: Selección -->
+        <div class="col-md-6">
+            <h3 class="text-center">SELECCIONA</h3>
+            <br>
+    <form action="../public/reserva.php" method="POST">
+                <!-- Selección de Juego -->
+                <div class="mb-3">
+                    <label for="juego" class="form-label">Juego</label>
+                    <select id="juego" name="juego" class="form-select" onchange="actualizarFormulario()">
+                        <option value="" selected disabled>Selecciona un juego</option>
+                        <option value="1">Warhammer 40k</option>
+                        <option value="ageofsigmar">Age of Sigmar</option>
+                        <option value="killteam">Kill Team</option>
+                        <option value="warcry">WarCry</option>
+                    </select>
+                </div>
+
+                <!-- Selección de Puntos -->
+                <div class="mb-3">
+                    <label for="puntos" class="form-label">Puntos</label>
+                    <select id="puntos" name="puntos" class="form-select" disabled onchange="verificarFormulario()">
+                        <option value="" selected disabled>Selecciona los puntos</option>
+                        <option value="500">500</option>
+                        <option value="1000">1000</option>
+                        <option value="1500">1500</option>
+                        <option value="2000">2000</option>
+                    </select>
+                </div>
+
+                <!-- Selección de Facción -->
+                <div class="mb-3">
+                    <label for="faccion" class="form-label">Facción</label>
+                    <select id="faccion40k" name="faccion" class="form-select" disabled style="display:block;" onchange="mostrarFaccion40k()">
+                        <option value="" selected disabled>Selecciona una facción</option>
+                        <!-- Facciones de Warhammer 40k -->
+                        <option value="1" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/templarios.svg">Templarios Negros</option>
+                        <option value="2" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/sangrientos.svg">Ángeles Sangrientos</option>
+                        <option value="3" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/oscuros.svg">Ángeles Oscuros</option>
+                        <option value="4" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/puños.svg">Puños Imperiales</option>
+                        <option value="5" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/manos.svg">Manos de Hierro</option>
+                        <option value="6" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/cuervo.svg">Guardia del Cuervo</option>
+                        <option value="7" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/salamandras.svg">Salamandras</option>
+                        <option value="8" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/lobos.svg">Lobos Espaciales</option>
+                        <option value="9" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/ultras.svg">Ultramarines</option>
+                        <option value="10" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/cicatrices.svg">Cicatrices Blancas</option>
+                        <option value="11" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/custodes.svg">Adeptus Custodes</option>
+                        <option value="12" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/sororitas.svg">Hermanas de Batalla</option>
+                        <option value="13" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/mechanicus.svg">Adeptus Mechanicus</option>
+                        <option value="14" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/agentes.svg">Agentes Imperiales</option>
+                        <option value="15" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/guardia.svg">Guardia Imperial</option>
+                        <option value="16" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/grises.svg">Caballeros Grises</option>
+                        <option value="17" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/caballeros.svg">Caballeros Imperiales</option>
+                        <option value="18" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/astartes.svg">Marines Espaciales</option>
+                        <option value="19" data-subfaccion="Aeldari" data-icon="../public/assets/images/icons/drukhari.svg">Drukhari</option>
+                        <option value="20" data-subfaccion="Aeldari" data-icon="../public/assets/images/icons/ynnari.svg">Ynnari</option>
+                        <option value="21" data-subfaccion="Caos" data-icon="../public/assets/images/icons/demons.svg">Demonios del Caos</option>
+                        <option value="22" data-subfaccion="Caos" data-icon="../public/assets/images/icons/caballeroscaos.svg">Caballeros del Caos</option>
+                        <option value="23" data-subfaccion="Caos" data-icon="../public/assets/images/icons/herejes.svg">Marines Espaciales del Caos</option>
+                        <option value="24" data-subfaccion="Heretic Astartes" data-icon="../public/assets/images/icons/nurgle.svg">Guardia de la Muerte</option>
+                        <option value="25" data-subfaccion="Heretic Astartes" data-icon="../public/assets/images/icons/hijos.svg">Mil Hijos</option>
+                        <option value="26" data-subfaccion="Heretic Astartes" data-icon="../public/assets/images/icons/devoradores.svg">Devoradores de Mundos</option>
+                        <option value="27" data-subfaccion="Heretic Astartes" data-icon="../public/assets/images/icons/negra.svg">Legión Negra</option>
+                        <option value="28" data-subfaccion="Xenos" data-icon="../public/assets/images/icons/cultos.svg">Cultos Genestealers</option>
+                        <option value="29" data-subfaccion="Xenos" data-icon="../public/assets/images/icons/necrones.svg">Necrones</option>
+                        <option value="30" data-subfaccion="Xenos" data-icon="../public/assets/images/icons/orcos.svg">Orcos</option>
+                        <option value="31" data-subfaccion="Xenos" data-icon="../public/assets/images/icons/tau.svg">Imperio T'au</option>
+                        <option value="32" data-subfaccion="Xenos" data-icon="../public/assets/images/icons/tiranidos.svg">Tiranidos</option>
+
+
+                        <!-- Agrega el resto de las facciones aquí siguiendo el formato -->
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <select id="faccionSigmar" class="form-select" disabled style="display:none;" onchange="mostrarFaccionSigmar()">
+                        <option value="" selected disabled>Selecciona una facción</option>
+                        <!-- Facciones de Warhammer 40k -->
+                        <option value="1" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/templarios.svg">Templarios Negros</option>
+                        <option value="2" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/sangrientos.svg">Ángeles Sangrientos</option>
+                        <!-- Agrega el resto de las facciones aquí siguiendo el formato -->
+                    </select>
+                </div>
+
+                <!-- Selección de Hora de inicio y finalización
+                <div class="mb-3">
+                <label for="hora_inicio" class="form-label">Hora de inicio</label>
+                <input type="time" name="hora_inicio" id="hora_inicio" class="form-control" 
+                    min="16:00" max="21:00" onchange="verificarFormulario()">
+
+                </div>
+                <div class="mb-3">
+                <label for="hora_final" class="form-label">Hora de finalización</label>
+                <input type="time" name="hora_final" id="hora_final" class="form-control" 
+                    min="16:00" max="21:00" onchange="verificarFormulario()">
+
+                </div>
+
+                <!-- Selección de Mesa
+                <div class="mb-3">
+                    <label for="mesa" class="form-label">Mesa</label>
+                    <select id="mesa" name="mesa" class="form-select">
+                        <option value="" selected disabled>Selecciona tu Mesa</option>
+                        <option value="1">Mesa 1</option>
+                        <option value="2">Mesa 2</option>
+                        <option value="3">Mesa 3</option>
+                    </select>
+                </div> -->
+            
+        </div>
+
+        <!-- Columna derecha: Previsualización -->
+        <div class="col-md-6 text-center">
+            <h3>LISTO PARA DEPLEGAR...</h3>
+            <br>
+            <center><img id="icono-faccion" class="faction-icon my-3" src="" alt="Icono de facción" style="display: none;"></center>
+
+            <span style="color: gray; font-size: 15px;" id="nombre-faccion"></span>
+            <h4 id="subfaccion-faccion"></h4>
+            <br><br>
+            <div class="button">
+                <button class="btn" id="crear-partida" type="submit" disabled>CREAR PARTIDA</button>
+            </div>
+        </div>
+    </form>
+    </div>
+</div>
+
+<script>
+    function actualizarFormulario() {
+    const juego = document.getElementById('juego').value;
+    const faccion40kSelect = document.getElementById('faccion40k');
+    const faccionSigmarSelect = document.getElementById('faccionSigmar');
+    const puntosSelect = document.getElementById('puntos');
+
+    if (juego === '1') {
+        faccion40kSelect.style.display = 'block';
+        faccionSigmarSelect.style.display = 'none';
+        faccion40kSelect.disabled = false;
+        puntosSelect.disabled = false;
+        faccionSigmarSelect.disabled = true;  // Desactivar Sigmar
+
+    } else if (juego === 'ageofsigmar') {
+        faccionSigmarSelect.style.display = 'block';
+        faccion40kSelect.style.display = 'none';
+        faccionSigmarSelect.disabled = false;
+        puntosSelect.disabled = true;  // Desactivar puntos para Sigmar
+        faccion40kSelect.disabled = true;  // Desactivar 40k
+    } else {
+        // Para otros juegos como Kill Team o WarCry
+        faccion40kSelect.disabled = true;
+        faccionSigmarSelect.disabled = true;
+        puntosSelect.disabled = true; // Desactivar puntos
+        faccion40kSelect.style.display = 'none';
+        faccionSigmarSelect.style.display = 'none';
+    }
+    }
+
+    function mostrarFaccion40k() {
+        const faccion40kSelect = document.getElementById('faccion40k');
+        const selectedOption = faccion40kSelect.options[faccion40kSelect.selectedIndex];
+        const subfaccion = selectedOption.getAttribute('data-subfaccion');
+        const icono = selectedOption.getAttribute('data-icon');
+
+        // Mostrar facción y subfacción en la columna de previsualización
+        document.getElementById('nombre-faccion').textContent = subfaccion;
+        document.getElementById('subfaccion-faccion').textContent = selectedOption.text;
+
+        // Mostrar icono de facción
+        const iconoFaccion = document.getElementById('icono-faccion');
+        iconoFaccion.src = icono;
+        iconoFaccion.style.display = 'block';
+
+        // Habilitar botón de crear si todos los campos están llenos
+        verificarFormulario();
+    }
+    function mostrarFaccionSigmar() {
+        const faccionSigmarSelect = document.getElementById('faccionSigmar');
+        const selectedOption = faccionSigmarSelect.options[faccionSigmarSelect.selectedIndex];
+        const subfaccion = selectedOption.getAttribute('data-subfaccion');
+        const icono = selectedOption.getAttribute('data-icon');
+
+        // Mostrar facción y subfacción en la columna de previsualización
+        document.getElementById('nombre-faccion').textContent = subfaccion;
+        document.getElementById('subfaccion-faccion').textContent = selectedOption.text;
+
+        // Mostrar icono de facción
+        const iconoFaccion = document.getElementById('icono-faccion');
+        iconoFaccion.src = icono;
+        iconoFaccion.style.display = 'block';
+
+        // Habilitar botón de crear si todos los campos están llenos
+        verificarFormulario();
+    }
+
+    function verificarFormulario() {
+    const juego = document.getElementById('juego').value;
+    const puntos = document.getElementById('puntos').value;
+
+    let faccion = null;
+
+    // Verificar qué select de facciones debe estar habilitado
+    if (juego === '1') {
+        faccion = document.getElementById('faccion40k').value;
+    } else if (juego === 'ageofsigmar') {
+        faccion = document.getElementById('faccionSigmar').value;
+    }
+
+    let formValido = juego && faccion;
+
+    // Verificar puntos solo si el juego es Warhammer 40k
+    if (juego === '1' && !puntos) {
+        formValido = false;
+    }
+
+    document.getElementById('crear-partida').disabled = !formValido;
+    }
+    </script>
                 </div>
             </div>
         </div>
     </div>
+
     
 
-    <!-- Start Footer Area -->
-    <footer class="footer">
-        <!-- Start Footer Middle -->
-        <div class="footer-middle">
-            <div class="container">
-                <div class="bottom-inner">
-                    <div class="row">
-                        
-                        <div class="col-lg-3 col-md-6 col-12">
-                            <!-- Single Widget -->
-                            <div class="single-footer f-contact">
-                                <h3>¿QUIÉNES SOMOS?</h3>
-                                <p class="phone">Phone: +1 (900) 33 169 7720</p>
-                                <ul>
-                                    <li><span>Monday-Friday: </span> 9.00 am - 8.00 pm</li>
-                                    <li><span>Saturday: </span> 10.00 am - 6.00 pm</li>
-                                </ul>
-                                <p class="mail">
-                                    <a href="mailto:support@shopgrids.com">support@shopgrids.com</a>
-                                </p>
-                            </div>
-                            <!-- End Single Widget -->
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-12">
-                            <!-- Single Widget -->
-                            <div class="single-footer f-link">
-                                <h3>CATEGORÍAS</h3>
-                                <ul>
-                                    <li><a href="javascript:void(0)">About Us</a></li>
-                                    <li><a href="javascript:void(0)">Contact Us</a></li>
-                                    <li><a href="javascript:void(0)">Downloads</a></li>
-                                    <li><a href="javascript:void(0)">Sitemap</a></li>
-                                    <li><a href="javascript:void(0)">FAQs Page</a></li>
-                                </ul>
-                            </div>
-                            <!-- End Single Widget -->
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-12">
-                            <!-- Single Widget -->
-                            <div class="single-footer f-link">
-                                <h3>INFORMACIÓN</h3>
-                                <ul>
-                                    <li><a href="javascript:void(0)">Computers & Accessories</a></li>
-                                    <li><a href="javascript:void(0)">Smartphones & Tablets</a></li>
-                                    <li><a href="javascript:void(0)">TV, Video & Audio</a></li>
-                                    <li><a href="javascript:void(0)">Cameras, Photo & Video</a></li>
-                                    <li><a href="javascript:void(0)">Headphones</a></li>
-                                </ul>
-                            </div>
-                            <!-- End Single Widget -->
-                            
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-12">
-                            <!--Single Widget-->
-                            <div class="footer-logo">
-                                    <a href="index.html">
-                                        <img src="assets/images/logo/mini.png" alt="#">
-                                    </a>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Footer Middle -->
-    </footer>
-    <!--/ End Footer Area -->
-    <!-- ========================= scroll-top ========================= -->
+    
+    <!-- ========================= scroll-top ========================= 
     <a href="#" class="scroll-top">
         <i class="lni lni-chevron-up"></i>
-    </a>
+    </a>-->
 
     <!-- ========================= JS here ========================= -->
     <script src="assets/js/bootstrap.min.js"></script>
@@ -464,3 +446,4 @@ register.php<div class="col-sm-auto"></div>
 </body>
 
 </html>
+

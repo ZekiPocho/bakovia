@@ -359,12 +359,28 @@ document.addEventListener('DOMContentLoaded', function () {
     const horaInicioSelect = document.getElementById('hora_inicio');
     const horaFinalSelect = document.getElementById('hora_final');
 
-    // Horarios disponibles (IDs que corresponden a las horas de la tabla 'horarios')
-    const horariosDisponibles = {
+    // Horarios para días de semana (lunes a viernes)
+    const horariosSemana = {
         1: "16:30", 2: "17:00", 3: "17:30", 4: "18:00", 
         5: "18:30", 6: "19:00", 7: "19:30", 8: "20:00", 
         9: "20:30", 10: "21:00"
     };
+
+    // Horarios para sábado
+    const horariosSabado = {
+        1: "13:30", 2: "14:00", 3: "14:30", 4: "15:00", 
+        5: "15:30", 6: "16:00", 7: "16:30", 8: "17:00", 
+        9: "17:30", 10: "18:00"
+    };
+
+    // Función para verificar si es sábado
+    function esSabado() {
+        const hoy = new Date();
+        return hoy.getDay() === 6;  // 6 es sábado (Sunday es 0)
+    }
+
+    // Dependiendo del día, seleccionar el horario correspondiente
+    let horariosDisponibles = esSabado() ? horariosSabado : horariosSemana;
 
     // Cuando se selecciona una mesa, actualiza las horas de inicio disponibles
     mesaSelect.addEventListener('change', function () {
@@ -419,6 +435,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
+
 
 
 <script>

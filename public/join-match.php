@@ -1,5 +1,51 @@
 <?php
 require_once "../src/validate_session.php";
+
+session_start();
+include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a la base de datos
+
+$id_partida = $_POST['id_partida']; // Asegúrate de que el ID sea pasado de manera segura
+
+// Preparar la consulta
+$query = "SELECT * FROM partida WHERE id_partida = ?";
+if ($stmt = $conn->prepare($query)) {
+    $stmt->bind_param("i", $id_partida); // 'i' indica que el parámetro es un entero
+    $stmt->execute();
+    
+    // Obtener los resultados
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+        $partida = $result->fetch_assoc(); // Obtiene todos los datos de la partida
+        
+        // Guardar cada dato en una variable
+        $id_partida = $partida['id_partida'];
+        $id_jugador1 = $partida['id_jugador1'];
+        $id_jugador2 = $partida['id_jugador2'];
+        $fecha_partida = $partida['fecha_partida'];
+        $juego = $partida['juego'];
+        $puntos = $partida['puntos'];
+        $duracion = $partida['duracion'];
+        $mesa = $partida['mesa'];
+        $estado = $partida['estado'];
+        $resultado_jugador1 = $partida['resultado_jugador1'];
+        $resultado_jugador2 = $partida['resultado_jugador2'];
+        $puntaje_jugador1 = $partida['puntaje_jugador1'];
+        $puntaje_jugador2 = $partida['puntaje_jugador2'];
+        $faccion_jugador1 = $partida['faccion_jugador1'];
+        $faccion_jugador2 = $partida['faccion_jugador2'];
+        
+        // Aquí puedes usar las variables como necesites
+    } else {
+        echo "No se encontró la partida con el ID proporcionado.";
+    }
+    $stmt->close();
+} else {
+    echo "Error en la consulta.";
+}
+
+$conn->close();
+
+
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
@@ -192,7 +238,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
      <!---->
     <div class="container-sm mt-4">
         <div class="row justify-content-center">
-            <div class="col-xxl-10">
+            <div class="col-xxl-12">
                 <div class="matches-div text-center">
                             <h2 style="border-bottom: solid 1px #6E869D;">UNIRSE A UNA PARTIDA</h2>
                             <br>
@@ -200,18 +246,14 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     <div class="row">
         <!-- Columna izquierda: Selección -->
         <div class="col-md-6">
-            <h3 class="text-center">SELECCIONA</h3>
+            <h3 class="text-center">SELECCIONA TU FACCIÓN</h3>
             <br>
     <form action="../public/reserva.php" method="POST">
                 <!-- Selección de Juego -->
                 <div class="mb-3">
                     <label for="juego" class="form-label">Juego</label>
-                    <select id="juego" name="juego" class="form-select" onchange="actualizarFormulario()">
-                        <option value="" selected disabled>Selecciona un juego</option>
-                        <option value="1">Warhammer 40k</option>
-                        <option value="ageofsigmar">Age of Sigmar</option>
-                        <option value="killteam">Kill Team</option>
-                        <option value="warcry">WarCry</option>
+                    <select id="juego" name="juego" class="form-select" hidden disabled onchange="actualizarFormulario()">
+                        <option value="<?php$juego?>" selected disabled>Selecciona un juego</option>
                     </select>
                 </div>
 

@@ -1,3 +1,6 @@
+<?php
+include ('db.php');
+?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 

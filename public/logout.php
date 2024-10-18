@@ -14,6 +14,6 @@ if (isset($_COOKIE['password'])) {
 }
 
 // Redirigir al usuario
-header("Location: ../public/index.html");
+header("Location: ../public/index.php");
 exit(); // Termina la ejecución del script
 ?>

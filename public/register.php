@@ -79,7 +79,7 @@ if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['clave']
 <header class="header navbar-area">
     <nav class="navbar navbar-expand-lg">
 <div class="container">
-<a class="navbar-brand" href="index.html">
+<a class="navbar-brand" href="index.php">
     <img src="assets/images/logo/mini.png" alt="Logo" width="5">
 </a>
 <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -91,7 +91,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
   <ul class="navbar-nav me-auto mb-2 mb-lg-0">
     <li class="nav-item">
-      <a aria-label="Toggle navigation" href="index.html">PRINCIPAL</a>
+      <a aria-label="Toggle navigation" href="index.php">PRINCIPAL</a>
     </li>
     <li class="nav-item">
         <a class="active" class="nav-link dropdown-toggle" href="product-grids.html" data-bs-toggle="collapse"

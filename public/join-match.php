@@ -432,14 +432,14 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     //const faccionSigmarSelect = document.getElementById('faccionSigmar');
     //const puntosSelect = document.getElementById('puntos');
 
-    if (juego === '1') {
+    if (<?php$juego?> === '1') {
         faccion40kSelect.style.display = 'block';
         faccionSigmarSelect.style.display = 'none';
         faccion40kSelect.disabled = false;
         puntosSelect.disabled = false;
         faccionSigmarSelect.disabled = true;  // Desactivar Sigmar
 
-    } else if (juego === 'ageofsigmar') {
+    } else if (<?php$juego?> === '2') {
         faccionSigmarSelect.style.display = 'block';
         faccion40kSelect.style.display = 'none';
         faccionSigmarSelect.disabled = false;
@@ -453,7 +453,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         faccion40kSelect.style.display = 'none';
         faccionSigmarSelect.style.display = 'none';
     }
-    
+
 
     function mostrarFaccion40k() {
         const faccion40kSelect = document.getElementById('faccion40k');

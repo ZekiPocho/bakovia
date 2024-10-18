@@ -231,22 +231,13 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                                 <span><?php echo $row['nombre_usuario1']; ?></span>
                                             </div>
                                             <div class="col-2">
-                                                <h7>PARTIDA ABIERTA</h7>
+                                            <img src="assets/images/matches/sword.png" alt="Icono de batalla" class="img-fluid" style="max-width: 25px;">
                                             </div>
-                                            <div class="col-5">
-                                                <?php
-                                                // Mostrar el botón solo si el usuario actual no es el usuario 1 y si la partida está abierta
-                                                if ($usuario_actual === $row['nombre_usuario1']) {
-                                                    echo 'ESPERANDO';
-                                                } else {
-                                                    echo '<form action="join-match.php" method="POST" style="display:inline;">
-                                                            <input type="hidden" name="id_partida" value="' . $row['id_partida'] . '">
-                                                            <html> <div class="button">
-                                                    <button class="btn">UNIRSE</button>
-                                                </div> </html>
-                                                        </form>';
-                                                }
-                                                ?>
+                                            <div class="col-3">
+                                                <span><?php echo $_SESSION['nombre_usuario']; ?></span>
+                                            </div>
+                                            <div class="col-2">
+                                                <img src="https://via.placeholder.com/50x50" alt="Foto de perfil" class="img-fluid">
                                             </div>
                                         </div>
                                         <div class="scoreboard">

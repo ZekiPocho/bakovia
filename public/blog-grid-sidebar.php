@@ -16,7 +16,7 @@ if ($conn->connect_error) {
 $sql = "SELECT p.titulo, p.contenido, p.imagen_publicacion, p.fecha_publicacion, p.tag, u.nombre_usuario 
         FROM publicaciones p
         JOIN usuarios u ON p.id_usuario = u.id_usuario
-        ORDER BY p.fecha_publicacion DESC"; // Ordenar por fecha
+        ORDER BY p.fecha_publicacion DESC";
 
 $result = $conn->query($sql);
 
@@ -214,7 +214,7 @@ register.php<div class="col-sm-auto"></div>
                 <div class="col-lg-8 col-md-12 col-12">
                     <div class="row">
                     <?php
-    if ($result->num_rows > 0) {
+if ($result->num_rows > 0) {
     echo '<div class="row">'; // Empezar la fila de publicaciones
     
     // Mostrar cada publicación
@@ -224,9 +224,9 @@ register.php<div class="col-sm-auto"></div>
         $imagen = !empty($row['imagen_publicacion']) ? $row['imagen_publicacion'] : 'https://via.placeholder.com/370x215'; // Placeholder si no hay imagen
         $usuario = $row['nombre_usuario'];
         $fecha = date("d M, Y", strtotime($row['fecha_publicacion'])); // Formato de fecha
-        $tag = $row{'tag'};
+        $tag = $row['tag']; // Capturamos el tag
 
-        // Limitar el contenido a 100 palabras (puedes cambiar la cantidad)
+        // Limitar el contenido a 20 palabras
         $contenido_resumido = implode(' ', array_slice(explode(' ', $contenido), 0, 20)) . '...';
 
         echo '
@@ -239,7 +239,7 @@ register.php<div class="col-sm-auto"></div>
                     </a>
                 </div>
                 <div class="blog-content">
-                    <a class="category" href="javascript:void(0)">'.$tag.'</a>
+                    <a class="category" href="javascript:void(0)">'.$tag.'</a> <!-- Mostrar el tag aquí -->
                     <h4>
                         <a href="blog-single-sidebar.html">'.$titulo.'</a>
                     </h4>

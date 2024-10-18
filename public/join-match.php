@@ -363,7 +363,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                             <div class="score"><?php echo $row['puntaje_usuario2']; ?></div>
                                             <div class="team">
                                             <center><img id="icono-faccion" class="faction-icon my-3" src="" alt="Icono de facción" style="display: none;"></center>
-                                                <div class="team-name"><?php echo "<html><span style='color: gray; font-size: 15px;' id='nombre-faccion'></span></html>"; ?><br><?php echo "<html><h4 id='subfaccion-faccion'></h4></html>"; ?></div>
+                                                <div class="team-name"><?php echo "<html><span id='nombre-faccion'></span></html>"; ?><br><?php echo "<html><span id='subfaccion-faccion'></span></html>"; ?></div>
                                             </div>
                                         </div>
                                     </div>

@@ -40,9 +40,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    // Insertar la publicación en la base de datos con la imagen
-    $sql = "INSERT INTO publicaciones (id_usuario, titulo, contenido, fecha_publicacion, imagen_publicacion) 
-            VALUES ('$id_usuario', '$titulo', '$contenido', NOW(), '$imagen_publicacion')";
+    $sql = "INSERT INTO publicaciones (id_usuario, titulo, contenido, fecha_publicacion, imagen_publicacion, tag) 
+            VALUES ('$id_usuario', '$titulo', '$contenido', NOW(), '$imagen_publicacion', '$tag')";
 
     if ($conn->query($sql) === TRUE) {
         // Redirigir después de la publicación para evitar duplicados al recargar
@@ -224,18 +223,18 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <input type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple onchange="previewImages()"><br><br>
         </div>
         <div>
-            <select name="" id="" placeholder="Tags">
-                <option value="">otros</option>
-                <option value="">Ejercito</option>
-                <option value="">Tienda</option>
-                <option value="">Juegos</option>
-                <option value="">Pintura/Hobby</option>
-                <option value="">Lore</option>
-                <option value="">Noticias</option>
-                <option value="">Miniaturas</option>
-                <option value=""></option>
-            </select>
-        </div>
+    <label for="tags">Seleccionar Tag:</label>
+    <select name="tag" id="tags">
+        <option value="otros">Otros</option>
+        <option value="ejercito">Ejército</option>
+        <option value="tienda">Tienda</option>
+        <option value="juegos">Juegos</option>
+        <option value="pintura">Pintura/Hobby</option>
+        <option value="lore">Lore</option>
+        <option value="noticias">Noticias</option>
+        <option value="miniaturas">Miniaturas</option>
+    </select>
+</div>
         <div>
             <textarea class="form-control" name="contenido" placeholder="Cuerpo"></textarea>
         </div>

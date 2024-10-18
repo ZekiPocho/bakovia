@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Datos de la partida
         $juego = $_SESSION['juego'];
         $puntos = $_SESSION['puntos'];
-        $faccion = $_SESSION['faccion']; // Asegúrate de que el id del usuario esté en la sesión
+        $faccion = $_SESSION['faccion'];
 
         // Recibir datos del formulario
         $mesa = $_POST['mesa'];

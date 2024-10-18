@@ -1,3 +1,6 @@
+<?php
+require_once "../src/validate_session.php";
+?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 
@@ -443,17 +446,4 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 </body>
 
 </html>
-<?php
-session_start();
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Almacenar los datos del formulario en la sesión
-    $_SESSION['juego'] = $_POST['juego'];
-    $_SESSION['puntos'] = $_POST['puntos'];
-    $_SESSION['faccion'] = $_POST['faccion'];
-
-    // Redirigir a reservas.php para continuar el proceso
-    header("Location: reservas.php");
-    exit();
-}
-?>

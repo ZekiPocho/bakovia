@@ -16,7 +16,7 @@ if ($conn->connect_error) {
 $sql = "SELECT p.titulo, p.contenido, p.imagen_publicacion, p.fecha_publicacion, p.tag, u.nombre_usuario 
         FROM publicaciones p
         JOIN usuarios u ON p.id_usuario = u.id_usuario
-        ORDER BY p.fecha_publicacion DESC";
+        ORDER BY p.fecha_publicacion DESC"; // Ordenar por fecha
 
 $result = $conn->query($sql);
 
@@ -218,40 +218,40 @@ if ($result->num_rows > 0) {
     echo '<div class="row">'; // Empezar la fila de publicaciones
     
     // Mostrar cada publicación
-    while($row = $result->fetch_assoc()) {
-        $titulo = $row['titulo'];
-        $contenido = $row['contenido'];
-        $imagen = !empty($row['imagen_publicacion']) ? $row['imagen_publicacion'] : 'https://via.placeholder.com/370x215'; // Placeholder si no hay imagen
-        $usuario = $row['nombre_usuario'];
-        $fecha = date("d M, Y", strtotime($row['fecha_publicacion'])); // Formato de fecha
-        $tag = $row['tag']; // Capturamos el tag
+    // Mientras se generan las publicaciones en el ciclo while
+while ($row = $result->fetch_assoc()) {
+    $id_publicacion = $row['id_publicacion'];  // Capturar el ID de la publicación
+    $titulo = $row['titulo'];
+    $contenido = $row['contenido'];
+    $imagen = !empty($row['imagen_publicacion']) ? $row['imagen_publicacion'] : 'https://via.placeholder.com/370x215'; 
+    $usuario = $row['nombre_usuario'];
+    $fecha = date("d M, Y", strtotime($row['fecha_publicacion']));
+    $tag = $row['tag'];
 
-        // Limitar el contenido a 20 palabras
-        $contenido_resumido = implode(' ', array_slice(explode(' ', $contenido), 0, 20)) . '...';
-
-        echo '
-        <div class="col-lg-6 col-md-6 col-12">
-            <!-- Start Single Blog -->
-            <div class="single-blog">
-                <div class="blog-img">
-                    <a href="blog-single-sidebar.php"> <!-- Aquí puedes enlazar al detalle del blog -->
-                        <img src="'.$imagen.'" alt="#">
-                    </a>
-                </div>
-                <div class="blog-content">
-                    <a class="category" href="javascript:void(0)">'.$tag.'</a> <!-- Mostrar el tag aquí -->
-                    <h4>
-                        <a href="blog-single-sidebar.html">'.$titulo.'</a>
-                    </h4>
-                    <p>'.$contenido_resumido.'</p> <!-- Mostrar un resumen del contenido -->
-                    <div class="button">
-                        <a href="blog-single-sidebar.php" class="btn">ir al blog principal</a>
-                    </div>
+    // Generar el HTML
+    echo '
+    <div class="col-lg-6 col-md-6 col-12">
+        <!-- Start Single Blog -->
+        <div class="single-blog">
+            <div class="blog-img">
+                <a href="blog-single-sidebar.php?id='.$id_publicacion.'"> <!-- Pasar el ID en la URL -->
+                    <img src="'.$imagen.'" alt="#">
+                </a>
+            </div>
+            <div class="blog-content">
+                <a class="category" href="javascript:void(0)">'.$tag.'</a>
+                <h4>
+                    <a href="blog-single-sidebar.php?id='.$id_publicacion.'">'.$titulo.'</a> <!-- Pasar el ID aquí también -->
+                </h4>
+                <p>'.substr($contenido, 0, 100).'...</p>
+                <div class="button">
+                    <a href="blog-single-sidebar.php?id='.$id_publicacion.'" class="btn">ir al blog principal</a>
                 </div>
             </div>
-            <!-- End Single Blog -->
-        </div>';
-    }
+        </div>
+        <!-- End Single Blog -->
+    </div>';
+}
 
     echo '</div>'; // Cerrar la fila
 } else {

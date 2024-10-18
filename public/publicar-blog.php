@@ -41,12 +41,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
+    // Insertar la publicación en la base de datos con la imagen
     $sql = "INSERT INTO publicaciones (id_usuario, titulo, contenido, fecha_publicacion, imagen_publicacion, tag) 
             VALUES ('$id_usuario', '$titulo', '$contenido', NOW(), '$imagen_publicacion', '$tag')";
 
     if ($conn->query($sql) === TRUE) {
-        // Redirigir después de la publicación para evitar duplicados al recargar
-        header("Location: blog-single-sidebar.php?success=1");
+        // Obtener el ID de la publicación recién creada
+        $id_publicacion = $conn->insert_id;
+
+        // Redirigir al detalle de la publicación recién creada
+        header("Location: blog-single-sidebar.php?id=$id_publicacion");
         exit(); // Importante: salir después de la redirección
     } else {
         echo "Error al crear la publicación: " . $conn->error;
@@ -55,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 // Si hay un parámetro de éxito, mostrar el mensaje
 if (isset($_GET['success'])) {
-    $mensaje = "<div class='alert-success'>la públicacion se creó correctamente</div>";
+    $mensaje = "<div class='alert-success'>La publicación se creó correctamente</div>";
 }
 
 $conn->close();

@@ -1,23 +1,20 @@
 <?php
 require_once "../src/validate_session.php";
-session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verificar que el usuario está autenticado
     if (isset($_SESSION['id_usuario'])) {
         $nombre_usuario1 = $_SESSION['nombre_usuario'];
-        $id_usuario = $_SESSION['id_usuario']; // Asegúrate de que el id del usuario esté en la sesión
+        $id_usuario = $_SESSION['id_usuario'];
+        // Datos de la partida
+        $juego = $_SESSION['juego'];
+        $puntos = $_SESSION['puntos'];
+        $faccion = $_SESSION['faccion']; // Asegúrate de que el id del usuario esté en la sesión
 
         // Recibir datos del formulario
         $mesa = $_POST['mesa'];
         $hora_inicio = $_POST['hora_inicio'];
-        $hora_final = $_POST['hora_final'];
-        $fecha = date('Y-m-d');  // Asume que la reserva es para el mismo día
-        
-        // Datos de la partida
-        $juego = $_SESSION['juego'];
-        $puntos = $_SESSION['puntos'];
-        $faccion = $_SESSION['faccion'];
+        $hora_final = $_POST['hora_final'];        
         
         // Conectar a la base de datos
         include "../public/db.php";

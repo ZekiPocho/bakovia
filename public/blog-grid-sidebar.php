@@ -230,7 +230,7 @@ while ($row = $result->fetch_assoc()) {
 
     // Generar el HTML
     echo '
-    <div class="col-lg-6 col-md-6 col-12">
+    <div class="col-lg-12">
         <!-- Start Single Blog -->
         <div class="single-blog">
             <div class="blog-img">

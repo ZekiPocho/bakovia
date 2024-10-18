@@ -1,6 +1,6 @@
 <?php 
 $codigo = rand(1000,9999);
-$destinatario = "user@example.com"; 
+$destinatario = $email; 
 $asunto = "Bakovia - Verificación de Correo Electrónico"; 
 $cuerpo = ' 
 <html> 

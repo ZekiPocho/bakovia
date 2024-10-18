@@ -212,7 +212,7 @@ register.php<div class="col-sm-auto"></div>
         <div class="container-sm">
             <div class="row">
                 <div class="col-lg-8 col-md-12 col-12">
-                    <div class="row">
+                    <center><div class="row">
                     <?php
 if ($result->num_rows > 0) {
     echo '<div class="row">'; // Empezar la fila de publicaciones
@@ -270,7 +270,7 @@ $conn->close();
                             <li><a href="javascript:void(0)">4</a></li>
                             <li><a href="javascript:void(0)">Next</a></li>
                         </ul>
-                    </div>
+                    </div></center>
                     <!--/ End Pagination -->
                 </div>
             </div>

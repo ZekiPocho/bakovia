@@ -328,30 +328,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     </div>
 </div>
 
-<script>
-document.getElementById('hora_final').addEventListener('change', function () {
-    const horaInicioSeleccionada = parseInt(document.getElementById('hora_inicio').value);
-    const horaFinalSeleccionada = parseInt(this.value);
-    const mesaSeleccionada = document.getElementById('mesa').value;
-
-    // Limpiar colores previamente aplicados
-    const filasTabla = document.querySelectorAll('#horariosMesas tr');
-    filasTabla.forEach((fila) => {
-        fila.querySelectorAll('td').forEach((celda) => {
-            celda.style.backgroundColor = ''; // Limpiar color
-        });
-    });
-
-    // Colorear celdas correspondientes a la selección actual
-    filasTabla.forEach((fila, index) => {
-        if (index >= horaInicioSeleccionada && index <= horaFinalSeleccionada) {
-            const celda = fila.querySelector(`td:nth-child(${parseInt(mesaSeleccionada) + 1})`);
-            if (celda) celda.style.backgroundColor = 'yellow';  // Marcar celda
-        }
-    });
-});
-</script>
-
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {

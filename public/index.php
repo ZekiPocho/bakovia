@@ -420,7 +420,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                             <div class="single-blog">
                                 <div class="blog-img">
                                     <a href="blog-single-sidebar.php?id='.$id_publicacion.'"> <!-- Enlace con el ID de la publicación -->
-                                        <img src="'.$imagen.'" alt="#" style="width: 300px; height: 200px; object-fit: cover;">
+                                        <img src="'.$imagen.'" alt="#" style="width: 370px; height: 215px; object-fit: cover;">
                                     </a>
                                 </div>
                                 <div class="blog-content">

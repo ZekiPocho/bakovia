@@ -173,7 +173,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="breadcrumbs-content">
-                        <h1 class="page-title">CREAR PARTIDA</h1>
+                        <h1 class="page-title">UNIRSE A UNA PARTIDA</h1>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">

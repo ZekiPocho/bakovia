@@ -214,7 +214,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                             FROM partida p
                             JOIN faccion f1 ON p.id_faccion_usuario1 = f1.id_faccion
                             JOIN faccion f2 ON p.id_faccion_usuario2 = f2.id_faccion
-                            WHERE p.id_partida like '$id_partida'";
+                            WHERE p.id_partida like $id_partida";
     
                             $result = $conn->query($sql);
 

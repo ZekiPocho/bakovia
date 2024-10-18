@@ -244,8 +244,7 @@ if (isset($_GET['id'])) {
 } else {
     echo "No se ha proporcionado un ID de publicación.";
 }
-
-} else {
+ else {
     echo "No se encontraron publicaciones.";
 }
 

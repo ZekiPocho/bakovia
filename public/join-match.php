@@ -248,11 +248,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <h3 class="text-center">SELECCIONA TU FACCIÓN</h3>
             <br>
     <form action="../public/unirse.php" method="POST">
-                <!-- Selección de Juego -->
-
                 <!-- Selección de Facción -->
                 <div class="mb-3">
-                    <label for="faccion" class="form-label">Facción</label>
                     <select id="faccion40k" name="faccion" class="form-select" style="display:block;" onchange="mostrarFaccion40k()">
                         <option value="" selected disabled>Selecciona una facción</option>
                         <!-- Facciones de Warhammer 40k -->
@@ -302,31 +299,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         <!-- Agrega el resto de las facciones aquí siguiendo el formato -->
                     </select>
                 </div>
-
-                <!-- Selección de Hora de inicio y finalización
-                <div class="mb-3">
-                <label for="hora_inicio" class="form-label">Hora de inicio</label>
-                <input type="time" name="hora_inicio" id="hora_inicio" class="form-control" 
-                    min="16:00" max="21:00" onchange="verificarFormulario()">
-
-                </div>
-                <div class="mb-3">
-                <label for="hora_final" class="form-label">Hora de finalización</label>
-                <input type="time" name="hora_final" id="hora_final" class="form-control" 
-                    min="16:00" max="21:00" onchange="verificarFormulario()">
-
-                </div>
-
-                <!-- Selección de Mesa
-                <div class="mb-3">
-                    <label for="mesa" class="form-label">Mesa</label>
-                    <select id="mesa" name="mesa" class="form-select">
-                        <option value="" selected disabled>Selecciona tu Mesa</option>
-                        <option value="1">Mesa 1</option>
-                        <option value="2">Mesa 2</option>
-                        <option value="3">Mesa 3</option>
-                    </select>
-                </div> -->
             
         </div>
 
@@ -419,97 +391,89 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const juego = "<?php echo $juego; ?>"; // Obtener el valor del juego desde PHP
-        const faccion40kSelect = document.getElementById('faccion40k');
-        const faccionSigmarSelect = document.getElementById('faccionSigmar');
-        const puntosSelect = document.getElementById('puntos');
+    // Recibir el valor de $juego desde PHP
+    const juego = <?php echo $juego; ?>;
 
-        // Actualizar formulario basado en el juego
-        if (juego === '1') { // Warhammer 40k
+    const faccion40kSelect = document.getElementById('faccion40k');
+    const faccionSigmarSelect = document.getElementById('faccionSigmar');
+
+    // Función para actualizar el formulario basado en el juego
+    function actualizarFormulario() {
+        if (juego === 1) { // Warhammer 40k
             faccion40kSelect.style.display = 'block';
             faccionSigmarSelect.style.display = 'none';
             faccion40kSelect.disabled = false;
-            puntosSelect.disabled = false;
-            faccionSigmarSelect.disabled = true; // Desactivar Sigmar
-
-        } else if (juego === '2') { // Age of Sigmar
+            faccionSigmarSelect.disabled = true;
+        } else if (juego === 2) { // Age of Sigmar
             faccionSigmarSelect.style.display = 'block';
             faccion40kSelect.style.display = 'none';
             faccionSigmarSelect.disabled = false;
-            puntosSelect.disabled = true; // Desactivar puntos para Sigmar
-            faccion40kSelect.disabled = true; // Desactivar 40k
+            faccion40kSelect.disabled = true;
         } else {
-            // Para otros juegos como Kill Team o WarCry
+            // Para otros juegos, desactivar ambos selects
             faccion40kSelect.disabled = true;
             faccionSigmarSelect.disabled = true;
-            puntosSelect.disabled = true; // Desactivar puntos
             faccion40kSelect.style.display = 'none';
             faccionSigmarSelect.style.display = 'none';
         }
+    }
 
-        // Funciones para mostrar facción y subfacción en la previsualización
-        faccion40kSelect.addEventListener('change', mostrarFaccion40k);
-        faccionSigmarSelect.addEventListener('change', mostrarFaccionSigmar);
+    // Llamar a la función de actualización del formulario
+    actualizarFormulario();
 
-        function mostrarFaccion40k() {
-            const selectedOption = faccion40kSelect.options[faccion40kSelect.selectedIndex];
-            const subfaccion = selectedOption.getAttribute('data-subfaccion');
-            const icono = selectedOption.getAttribute('data-icon');
+    // Función para mostrar la facción seleccionada en Warhammer 40k
+    function mostrarFaccion40k() {
+        const selectedOption = faccion40kSelect.options[faccion40kSelect.selectedIndex];
+        const subfaccion = selectedOption.getAttribute('data-subfaccion');
+        const icono = selectedOption.getAttribute('data-icon');
 
-            // Mostrar facción y subfacción en la columna de previsualización
-            document.getElementById('nombre-faccion').textContent = subfaccion;
-            document.getElementById('subfaccion-faccion').textContent = selectedOption.text;
+        // Mostrar facción y subfacción en la columna de previsualización
+        document.getElementById('nombre-faccion').textContent = subfaccion;
+        document.getElementById('subfaccion-faccion').textContent = selectedOption.text;
 
-            // Mostrar icono de facción
-            const iconoFaccion = document.getElementById('icono-faccion');
-            iconoFaccion.src = icono;
-            iconoFaccion.style.display = 'block';
+        // Mostrar icono de facción
+        const iconoFaccion = document.getElementById('icono-faccion');
+        iconoFaccion.src = icono;
+        iconoFaccion.style.display = 'block';
 
-            // Habilitar botón de crear si todos los campos están llenos
-            verificarFormulario();
+        verificarFormulario();
+    }
+
+    // Función para mostrar la facción seleccionada en Age of Sigmar
+    function mostrarFaccionSigmar() {
+        const selectedOption = faccionSigmarSelect.options[faccionSigmarSelect.selectedIndex];
+        const subfaccion = selectedOption.getAttribute('data-subfaccion');
+        const icono = selectedOption.getAttribute('data-icon');
+
+        // Mostrar facción y subfacción en la columna de previsualización
+        document.getElementById('nombre-faccion').textContent = subfaccion;
+        document.getElementById('subfaccion-faccion').textContent = selectedOption.text;
+
+        // Mostrar icono de facción
+        const iconoFaccion = document.getElementById('icono-faccion');
+        iconoFaccion.src = icono;
+        iconoFaccion.style.display = 'block';
+
+        verificarFormulario();
+    }
+
+    // Función para verificar que el formulario esté completo antes de permitir la creación
+    function verificarFormulario() {
+        let faccion = null;
+
+        // Verificar qué select de facciones debe estar habilitado
+        if (juego === 1) {
+            faccion = document.getElementById('faccion40k').value;
+        } else if (juego === 2) {
+            faccion = document.getElementById('faccionSigmar').value;
         }
 
-        function mostrarFaccionSigmar() {
-            const selectedOption = faccionSigmarSelect.options[faccionSigmarSelect.selectedIndex];
-            const subfaccion = selectedOption.getAttribute('data-subfaccion');
-            const icono = selectedOption.getAttribute('data-icon');
+        let formValido = juego && faccion;
 
-            // Mostrar facción y subfacción en la columna de previsualización
-            document.getElementById('nombre-faccion').textContent = subfaccion;
-            document.getElementById('subfaccion-faccion').textContent = selectedOption.text;
-
-            // Mostrar icono de facción
-            const iconoFaccion = document.getElementById('icono-faccion');
-            iconoFaccion.src = icono;
-            iconoFaccion.style.display = 'block';
-
-            // Habilitar botón de crear si todos los campos están llenos
-            verificarFormulario();
-        }
-
-        function verificarFormulario() {
-            let faccion = null;
-            const puntos = puntosSelect.value; // Obtener el valor de puntos
-
-            // Verificar qué select de facciones debe estar habilitado
-            if (juego === '1') {
-                faccion = faccion40kSelect.value;
-            } else if (juego === '2') {
-                faccion = faccionSigmarSelect.value;
-            }
-
-            let formValido = juego && faccion;
-
-            // Verificar puntos solo si el juego es Warhammer 40k
-            if (juego === '1' && !puntos) {
-                formValido = false;
-            }
-
-            document.getElementById('crear-partida').disabled = !formValido;
-        }
-    });
+        document.getElementById('crear-partida').disabled = !formValido;
+    }
 </script>
+
                 </div>
             </div>
         </div>

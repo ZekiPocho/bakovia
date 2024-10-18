@@ -6,7 +6,7 @@ include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a l
 $id_partida = $_POST['id_partida']; // Asegúrate de que el ID sea pasado de manera segura
 
 // Preparar la consulta
-$query = "SELECT * FROM partida WHERE id_partida = 25";
+$query = "SELECT * FROM partida WHERE id_partida = ?";
 if ($stmt = $conn->prepare($query)) {
     $stmt->bind_param("i", $id_partida); // 'i' indica que el parámetro es un entero
     $stmt->execute();  

@@ -251,23 +251,11 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     <form action="../public/reserva.php" method="POST">
                 <!-- Selección de Juego -->
                 <div class="mb-3">
-                    <label for="juego" class="form-label">Juego</label>
-                    <select id="juego" name="juego" class="form-select" hidden disabled onchange="actualizarFormulario()">
+                    <select id="juego" name="juego" class="form-select" disabled onchange="actualizarFormulario()">
                         <option value="<?php$juego?>" selected disabled>Selecciona un juego</option>
                     </select>
                 </div>
 
-                <!-- Selección de Puntos -->
-                <div class="mb-3">
-                    <label for="puntos" class="form-label">Puntos</label>
-                    <select id="puntos" name="puntos" class="form-select" disabled onchange="verificarFormulario()">
-                        <option value="" selected disabled>Selecciona los puntos</option>
-                        <option value="500">500</option>
-                        <option value="1000">1000</option>
-                        <option value="1500">1500</option>
-                        <option value="2000">2000</option>
-                    </select>
-                </div>
 
                 <!-- Selección de Facción -->
                 <div class="mb-3">
@@ -438,11 +426,11 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 </div>
 
 <script>
-    function actualizarFormulario() {
-    const juego = document.getElementById('juego').value;
-    const faccion40kSelect = document.getElementById('faccion40k');
-    const faccionSigmarSelect = document.getElementById('faccionSigmar');
-    const puntosSelect = document.getElementById('puntos');
+    //function actualizarFormulario() {
+    //const juego = document.getElementById('juego').value;
+    //const faccion40kSelect = document.getElementById('faccion40k');
+    //const faccionSigmarSelect = document.getElementById('faccionSigmar');
+    //const puntosSelect = document.getElementById('puntos');
 
     if (juego === '1') {
         faccion40kSelect.style.display = 'block';
@@ -465,7 +453,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         faccion40kSelect.style.display = 'none';
         faccionSigmarSelect.style.display = 'none';
     }
-    }
+    
 
     function mostrarFaccion40k() {
         const faccion40kSelect = document.getElementById('faccion40k');

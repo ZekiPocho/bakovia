@@ -426,45 +426,32 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const juegoSelect = document.getElementById('juego');
+        const juego = "<?php echo $juego; ?>"; // Obtener el valor del juego desde PHP
         const faccion40kSelect = document.getElementById('faccion40k');
         const faccionSigmarSelect = document.getElementById('faccionSigmar');
         const puntosSelect = document.getElementById('puntos');
 
-        // Inicializar el juego desde PHP
-        const juegoInicial = "<?php echo $juego; ?>"; // Asegúrate de que $juego tenga el valor correcto
+        // Actualizar formulario basado en el juego
+        if (juego === '1') { // Warhammer 40k
+            faccion40kSelect.style.display = 'block';
+            faccionSigmarSelect.style.display = 'none';
+            faccion40kSelect.disabled = false;
+            puntosSelect.disabled = false;
+            faccionSigmarSelect.disabled = true; // Desactivar Sigmar
 
-        // Actualizar formulario al cargar
-        actualizarFormulario(juegoInicial);
-
-        // Actualizar formulario cuando el valor del juego cambia
-        juegoSelect.addEventListener('change', function() {
-            actualizarFormulario(this.value);
-        });
-
-        // Función para actualizar el formulario según el juego seleccionado
-        function actualizarFormulario(juego) {
-            if (juego === '1') { // Warhammer 40k
-                faccion40kSelect.style.display = 'block';
-                faccionSigmarSelect.style.display = 'none';
-                faccion40kSelect.disabled = false;
-                puntosSelect.disabled = false;
-                faccionSigmarSelect.disabled = true; // Desactivar Sigmar
-
-            } else if (juego === '2') { // Age of Sigmar
-                faccionSigmarSelect.style.display = 'block';
-                faccion40kSelect.style.display = 'none';
-                faccionSigmarSelect.disabled = false;
-                puntosSelect.disabled = true; // Desactivar puntos para Sigmar
-                faccion40kSelect.disabled = true; // Desactivar 40k
-            } else {
-                // Para otros juegos
-                faccion40kSelect.disabled = true;
-                faccionSigmarSelect.disabled = true;
-                puntosSelect.disabled = true; // Desactivar puntos
-                faccion40kSelect.style.display = 'none';
-                faccionSigmarSelect.style.display = 'none';
-            }
+        } else if (juego === '2') { // Age of Sigmar
+            faccionSigmarSelect.style.display = 'block';
+            faccion40kSelect.style.display = 'none';
+            faccionSigmarSelect.disabled = false;
+            puntosSelect.disabled = true; // Desactivar puntos para Sigmar
+            faccion40kSelect.disabled = true; // Desactivar 40k
+        } else {
+            // Para otros juegos como Kill Team o WarCry
+            faccion40kSelect.disabled = true;
+            faccionSigmarSelect.disabled = true;
+            puntosSelect.disabled = true; // Desactivar puntos
+            faccion40kSelect.style.display = 'none';
+            faccionSigmarSelect.style.display = 'none';
         }
 
         // Funciones para mostrar facción y subfacción en la previsualización
@@ -509,7 +496,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
         function verificarFormulario() {
             let faccion = null;
-            const juego = juegoSelect.value; // Obtener el valor actual del juego
             const puntos = puntosSelect.value; // Obtener el valor de puntos
 
             // Verificar qué select de facciones debe estar habilitado
@@ -530,7 +516,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         }
     });
 </script>
-
                 </div>
             </div>
         </div>

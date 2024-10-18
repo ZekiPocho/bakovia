@@ -82,7 +82,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 } else {
     echo "Método no permitido.";
 }
-unset($_SESSION['juego']);
-unset($_SESSION['puntos']);
-unset($_SESSION['faccion']);
+
 ?>

@@ -331,9 +331,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                 </div>
                                 <br>
                                 <button type="submit" class="btn btn-primary">Reservar</button>
-                                <?php
-                                echo "$_SESSION['faccion']";
-                                ?>
                             </form>
                         </div>
                     </div>

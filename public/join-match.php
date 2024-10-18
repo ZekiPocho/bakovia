@@ -180,7 +180,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                     <ul class="breadcrumb-nav">
                         <li><a href="index.html"><i class="lni lni-home"></i> INICIO</a></li>
                         <li><a href="matches.php">PARTIDAS</a></li>
-                        <li>CREAR PARTIDA</li>
+                        <li>UNIRSE A UNA PARTIDA</li>
                     </ul>
                 </div>
                     </ul>
@@ -194,13 +194,17 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <div class="row justify-content-center">
             <div class="col-xxl-10">
                 <div class="matches-div text-center">
-                            <h2 style="border-bottom: solid 1px #6E869D;">NUEVA PARTIDA</h2>
+                            <h2 style="border-bottom: solid 1px #6E869D;">UNIRSE A UNA PARTIDA</h2>
                             <br>
                             <div class="container mt-1">
     <div class="row">
         <!-- Columna izquierda: Selección -->
         <div class="col-md-6">
             <h3 class="text-center">SELECCIONA</h3>
+            <?php
+            $test = $_POST['id_partida'];
+            echo $test;
+            ?>
             <br>
     <form action="../public/reserva.php" method="POST">
                 <!-- Selección de Juego -->

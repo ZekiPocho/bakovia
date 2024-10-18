@@ -1,6 +1,5 @@
 <?php 
 $codigo = rand(1000,9999);
-$destinatario = "zekimaldonado@gmail.com"; 
 $asunto = "Bakovia - Verificación de Correo Electrónico"; 
 $cuerpo = ' 
 <html> 
@@ -22,7 +21,7 @@ $cuerpo = '
 $headers .= "From: Bakovia Battle Bunker <noreply@bakovia.com>\r\n"; 
 
 $enviado = false;
-if(mail($destinatario,$asunto,$cuerpo,$headers)){
+if(mail($email,$asunto,$cuerpo,$headers)){
     $enviado = true;
 }
 ?>

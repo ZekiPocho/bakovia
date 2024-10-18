@@ -193,25 +193,35 @@ $sql = "SELECT p.titulo, p.contenido, p.imagen_publicacion, p.fecha_publicacion,
 
 $result = $conn->query($sql);
 
-if ($result->num_rows > 0) {
-    // Mostrar todas las publicaciones
-    while($row = $result->fetch_assoc()) {
-        $titulo = $row['titulo'];
-        $contenido = $row['contenido'];
-        $imagen = !empty($row['imagen_publicacion']) ? $row['imagen_publicacion'] : 'https://via.placeholder.com/850x460'; // Si no hay imagen, usar un placeholder
-        $usuario = $row['nombre_usuario'];
-        $fecha = date("d M, Y", strtotime($row['fecha_publicacion'])); // Formatear la fecha
-        $tag = $row['tag']; // Capturar el tag
 
+if (isset($_GET['id'])) {
+    $id_publicacion = $_GET['id'];  // Capturar el ID de la publicación desde la URL
+
+    // Consulta para obtener la publicación seleccionada
+    $sql = "SELECT p.titulo, p.contenido, p.imagen_publicacion, p.fecha_publicacion, p.tag, u.nombre_usuario 
+            FROM publicaciones p
+            JOIN usuarios u ON p.id_usuario = u.id_usuario 
+            WHERE p.id_publicacion = $id_publicacion";  // Filtrar por el ID
+
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $publicacion = $result->fetch_assoc();
+        $titulo = $publicacion['titulo'];
+        $contenido = $publicacion['contenido'];
+        $imagen = !empty($publicacion['imagen_publicacion']) ? $publicacion['imagen_publicacion'] : 'https://via.placeholder.com/850x460';
+        $usuario = $publicacion['nombre_usuario'];
+        $fecha = date("d M, Y", strtotime($publicacion['fecha_publicacion']));
+        $tag = $publicacion['tag'];
+
+        // Mostrar la publicación
         echo '
         <div class="main-content-head">
             <div class="post-thumbnils">
                 <img src="'.$imagen.'" alt="#">
             </div>
             <div class="meta-information">
-                <h2 class="post-title">
-                    <a href="blog-single.html">'.$titulo.'</a>
-                </h2>
+                <h2 class="post-title">'.$titulo.'</h2>
                 <ul class="meta-info">
                     <li>
                         <a href="javascript:void(0)"> <i class="lni lni-user"></i>'.$usuario.'</a>
@@ -226,12 +236,15 @@ if ($result->num_rows > 0) {
             </div>
             <div class="detail-inner">
                 <p>'.$contenido.'</p>
-                <div class="post-bottom-area">
-                    <!-- Aquí puedes agregar botones o cualquier otra cosa que necesites -->
-                </div>
             </div>
         </div>';
+    } else {
+        echo "Publicación no encontrada.";
     }
+} else {
+    echo "No se ha proporcionado un ID de publicación.";
+}
+
 } else {
     echo "No se encontraron publicaciones.";
 }

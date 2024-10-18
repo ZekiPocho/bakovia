@@ -173,7 +173,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="breadcrumbs-content">
-                        <h1 class="page-title">UNIRSE A UNA PARTIDA</h1>
+                        <h1 class="page-title">CREAR PARTIDA</h1>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
@@ -196,6 +196,86 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <div class="matches-div text-center">
                             <h2 style="border-bottom: solid 1px #6E869D;">UNIRSE A UNA PARTIDA</h2>
                             <br>
+                            <?php
+                            include("../public/db.php");
+                            // Verificar conexión
+                            if ($conn->connect_error) {
+                                die("Connection failed: " . $conn->connect_error);
+                            }
+
+                            $id_partida = $_POST['id_partida'];
+    
+                            // Consulta para obtener partidas programadas
+                            $sql = "SELECT p.id_juego, p.puntos, p.nombre_usuario1, p.nombre_usuario2, 
+                            f1.nombre AS faccion1, f1.subfaccion AS subfaccion1, f1.icono AS icono1, 
+                            f2.nombre AS faccion2, f2.subfaccion AS subfaccion2, f2.icono AS icono2,
+                            p.hora_inicio, p.hora_final, p.id_mesa, p.puntaje_usuario1, 
+                            p.puntaje_usuario2
+                            FROM partida p
+                            JOIN faccion f1 ON p.id_faccion_usuario1 = f1.id_faccion
+                            JOIN faccion f2 ON p.id_faccion_usuario2 = f2.id_faccion
+                            WHERE p.id_partida like '$id_partida'";
+    
+                            $result = $conn->query($sql);
+
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+                                    ?>
+                                    <!-- Aquí empieza el HTML para mostrar las partidas programadas -->
+                                    <div class="match-entry mb-2 text-center">
+                                        <div class="row align-items-center">
+                                            <div class="col-2">
+                                                <img src="https://via.placeholder.com/50x50" alt="Foto de perfil" class="img-fluid">
+                                            </div>
+                                            <div class="col-3">
+                                                <span><?php echo $row['nombre_usuario1']; ?></span>
+                                            </div>
+                                            <div class="col-2">
+                                                <h7>PARTIDA ABIERTA</h7>
+                                            </div>
+                                            <div class="col-5">
+                                                <?php
+                                                // Mostrar el botón solo si el usuario actual no es el usuario 1 y si la partida está abierta
+                                                if ($usuario_actual === $row['nombre_usuario1']) {
+                                                    echo 'ESPERANDO';
+                                                } else {
+                                                    echo '<form action="join-match.php" method="POST" style="display:inline;">
+                                                            <input type="hidden" name="id_partida" value="' . $row['id_partida'] . '">
+                                                            <html> <div class="button">
+                                                    <button class="btn">UNIRSE</button>
+                                                </div> </html>
+                                                        </form>';
+                                                }
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <div class="scoreboard">
+                                            <div class="team">
+                                                <img src="<?php echo $row['icono1']; ?>" alt="Equipo 1">
+                                                <div class="team-name"><?php echo $row['faccion1']; ?><br><?php echo $row['subfaccion1']; ?></div>
+                                            </div>
+                                            <div class="score"><?php echo $row['puntaje_usuario1']; ?></div>
+                                            <div class="middle-section">
+                                                <h1><?php echo $row['id_juego']; ?></h1>
+                                                <h1><?php echo $row['puntos']; ?> Pts.</h1>
+                                                <div class="timer"><?php echo $row['hora_inicio']; ?> - <?php echo $row['hora_final']; ?></div>
+                                                <h1>MESA - <?php echo $row['id_mesa']; ?></h1>
+                                            </div>
+                                            <div class="score"><?php echo $row['puntaje_usuario2']; ?></div>
+                                            <div class="team">
+                                                <img src="<?php echo $row['icono2']; ?>" alt="Equipo 2" style="filter: opacity(25%);">
+                                                <div class="team-name"><?php echo $row['faccion2']; ?><br><?php echo $row['subfaccion2']; ?></div>
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                    <!-- Aquí termina el HTML para mostrar las partidas programadas -->
+                                    <?php
+                                }
+                            } else {
+                                echo "No hay partidas programadas.";
+                            }
+                            ?>
                             <div class="container mt-1">
     <div class="row">
         <!-- Columna izquierda: Selección -->
@@ -204,15 +284,34 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <br>
     <form action="../public/reserva.php" method="POST">
                 <!-- Selección de Juego -->
+                <div class="mb-3">
+                    <label for="juego" class="form-label">Juego</label>
+                    <select id="juego" name="juego" class="form-select" onchange="actualizarFormulario()">
+                        <option value="" selected disabled>Selecciona un juego</option>
+                        <option value="1">Warhammer 40k</option>
+                        <option value="ageofsigmar">Age of Sigmar</option>
+                        <option value="killteam">Kill Team</option>
+                        <option value="warcry">WarCry</option>
+                    </select>
+                </div>
 
                 <!-- Selección de Puntos -->
-
+                <div class="mb-3">
+                    <label for="puntos" class="form-label">Puntos</label>
+                    <select id="puntos" name="puntos" class="form-select" disabled onchange="verificarFormulario()">
+                        <option value="" selected disabled>Selecciona los puntos</option>
+                        <option value="500">500</option>
+                        <option value="1000">1000</option>
+                        <option value="1500">1500</option>
+                        <option value="2000">2000</option>
+                    </select>
+                </div>
 
                 <!-- Selección de Facción -->
                 <div class="mb-3">
                     <label for="faccion" class="form-label">Facción</label>
                     <select id="faccion40k" name="faccion" class="form-select" disabled style="display:block;" onchange="mostrarFaccion40k()">
-                        <option value="" selected disabled>Selecciona tu facción</option>
+                        <option value="" selected disabled>Selecciona una facción</option>
                         <!-- Facciones de Warhammer 40k -->
                         <option value="1" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/templarios.svg">Templarios Negros</option>
                         <option value="2" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/sangrientos.svg">Ángeles Sangrientos</option>
@@ -298,7 +397,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <h4 id="subfaccion-faccion"></h4>
             <br><br>
             <div class="button">
-                <button class="btn" id="crear-partida" type="submit" disabled>UNIRSE</button>
+                <button class="btn" id="crear-partida" type="submit" disabled>CREAR PARTIDA</button>
             </div>
         </div>
     </form>

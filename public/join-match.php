@@ -13,28 +13,13 @@ if ($stmt = $conn->prepare($query)) {
     
     // Obtener los resultados
     $result = $stmt->get_result();
-    if ($result->num_rows > 0) {
-        $partida = $result->fetch_assoc(); // Obtiene todos los datos de la partida
-        
-        // Guardar cada dato en una variable
-        $id_partida = $partida['id_partida'];
-        $id_jugador1 = $partida['id_jugador1'];
-        $id_jugador2 = $partida['id_jugador2'];
-        $fecha_partida = $partida['fecha_partida'];
-        $juego = $partida['juego'];
-        $puntos = $partida['puntos'];
-        $duracion = $partida['duracion'];
-        $mesa = $partida['mesa'];
-        $estado = $partida['estado'];
-        $resultado_jugador1 = $partida['resultado_jugador1'];
-        $resultado_jugador2 = $partida['resultado_jugador2'];
-        $puntaje_jugador1 = $partida['puntaje_jugador1'];
-        $puntaje_jugador2 = $partida['puntaje_jugador2'];
-        $faccion_jugador1 = $partida['faccion_jugador1'];
-        $faccion_jugador2 = $partida['faccion_jugador2'];
-        
-        // Aquí puedes usar las variables como necesites
-    } else {
+    $result = $stmt->get_result();
+if ($result->num_rows > 0) {
+    // Imprimir los resultados para depurar
+    $partida = $result->fetch_assoc();
+    print_r($partida); // Esto mostrará todos los datos devueltos por la consulta.
+}
+ else {
         echo "No se encontró la partida con el ID proporcionado.";
     }
     $stmt->close();

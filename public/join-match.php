@@ -201,41 +201,18 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <!-- Columna izquierda: Selección -->
         <div class="col-md-6">
             <h3 class="text-center">SELECCIONA</h3>
-            <?php
-            $test = $_POST['id_partida'];
-            echo $test;
-            ?>
             <br>
     <form action="../public/reserva.php" method="POST">
                 <!-- Selección de Juego -->
-                <div class="mb-3">
-                    <label for="juego" class="form-label">Juego</label>
-                    <select id="juego" name="juego" class="form-select" onchange="actualizarFormulario()">
-                        <option value="" selected disabled>Selecciona un juego</option>
-                        <option value="1">Warhammer 40k</option>
-                        <option value="ageofsigmar">Age of Sigmar</option>
-                        <option value="killteam">Kill Team</option>
-                        <option value="warcry">WarCry</option>
-                    </select>
-                </div>
 
                 <!-- Selección de Puntos -->
-                <div class="mb-3">
-                    <label for="puntos" class="form-label">Puntos</label>
-                    <select id="puntos" name="puntos" class="form-select" disabled onchange="verificarFormulario()">
-                        <option value="" selected disabled>Selecciona los puntos</option>
-                        <option value="500">500</option>
-                        <option value="1000">1000</option>
-                        <option value="1500">1500</option>
-                        <option value="2000">2000</option>
-                    </select>
-                </div>
+
 
                 <!-- Selección de Facción -->
                 <div class="mb-3">
                     <label for="faccion" class="form-label">Facción</label>
                     <select id="faccion40k" name="faccion" class="form-select" disabled style="display:block;" onchange="mostrarFaccion40k()">
-                        <option value="" selected disabled>Selecciona una facción</option>
+                        <option value="" selected disabled>Selecciona tu facción</option>
                         <!-- Facciones de Warhammer 40k -->
                         <option value="1" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/templarios.svg">Templarios Negros</option>
                         <option value="2" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/sangrientos.svg">Ángeles Sangrientos</option>
@@ -321,7 +298,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <h4 id="subfaccion-faccion"></h4>
             <br><br>
             <div class="button">
-                <button class="btn" id="crear-partida" type="submit" disabled>CREAR PARTIDA</button>
+                <button class="btn" id="crear-partida" type="submit" disabled>UNIRSE</button>
             </div>
         </div>
     </form>

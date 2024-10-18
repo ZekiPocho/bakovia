@@ -335,7 +335,9 @@ $conn->close();
                                             } else {
                                                 echo '<form action="join-match.php" method="POST" style="display:inline;">
                                                         <input type="hidden" name="id_partida" value="' . $row['id_partida'] . '">
-                                                        <button type="submit" class="btn">UNIRSE</button>
+                                                        <html> <div class="button">
+                                                <button class="btn">UNIRSE</button>
+                                            </div> </html>
                                                     </form>';
                                             }
                                             ?>

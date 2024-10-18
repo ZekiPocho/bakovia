@@ -281,7 +281,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         <div class="col-md-6 text-center">
                             <h3>SELECCIONA</h3>
                             <br>
-                            <form method="POST" action="procesar_reserva.php">
+                            <form method="POST" action="../src/crear_partida.php">
                                 <div class="form-group">
                                     <label for="mesa">Selecciona la Mesa:</label>
                                     <select id="mesa" name="mesa" class="form-control" required>

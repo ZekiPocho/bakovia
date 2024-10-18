@@ -185,8 +185,8 @@ register.php<div class="col-sm-auto"></div>
                 <div class="col-lg-8 col-md-12 col-12">
                     <div class="single-inner">
                         <div class="post-details">
-<?php
-$sql = "SELECT p.titulo, p.contenido, p.imagen_publicacion, p.fecha_publicacion, u.nombre_usuario 
+                        <?php
+$sql = "SELECT p.titulo, p.contenido, p.imagen_publicacion, p.fecha_publicacion, p.tag, u.nombre_usuario 
         FROM publicaciones p
         JOIN usuarios u ON p.id_usuario = u.id_usuario
         ORDER BY p.fecha_publicacion DESC"; // Ordenar por fecha de publicación
@@ -201,7 +201,7 @@ if ($result->num_rows > 0) {
         $imagen = !empty($row['imagen_publicacion']) ? $row['imagen_publicacion'] : 'https://via.placeholder.com/850x460'; // Si no hay imagen, usar un placeholder
         $usuario = $row['nombre_usuario'];
         $fecha = date("d M, Y", strtotime($row['fecha_publicacion'])); // Formatear la fecha
-        $tag = $row{'tag'};
+        $tag = $row['tag']; // Capturar el tag
 
         echo '
         <div class="main-content-head">
@@ -220,7 +220,7 @@ if ($result->num_rows > 0) {
                         <a href="javascript:void(0)"><i class="lni lni-calendar"></i>'.$fecha.'</a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)"><i class="lni lni-tag">'.$tag.'</i> Blog</a>
+                        <a href="javascript:void(0)"><i class="lni lni-tag"></i>'.$tag.'</a>
                     </li>
                 </ul>
             </div>

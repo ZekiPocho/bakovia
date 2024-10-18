@@ -247,14 +247,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <div class="col-md-6">
             <h3 class="text-center">SELECCIONA TU FACCIÓN</h3>
             <br>
-    <form action="../public/reserva.php" method="POST">
+    <form action="../public/unirse.php" method="POST">
                 <!-- Selección de Juego -->
-                <div class="mb-3">
-                    <select id="juego" name="juego" class="form-select" disabled on="actualizarFormulario()">
-                        <option value="ageofsigmar" selected disabled>Selecciona un juego</option>
-                    </select>
-                </div>
-
 
                 <!-- Selección de Facción -->
                 <div class="mb-3">

@@ -12,14 +12,30 @@ if ($stmt = $conn->prepare($query)) {
     $stmt->execute();  
     // Obtener los resultados
     $result = $stmt->get_result();
-if ($result->num_rows > 0) {
-    // Imprimir los resultados para depurar
-    $partida = $result->fetch_assoc();
-    print_r($partida); // Esto mostrará todos los datos devueltos por la consulta.
-}
- else {
+    if ($result->num_rows > 0) {
+        $partida = $result->fetch_assoc(); // Obtiene todos los datos de la partida
+        
+        // Guardar cada dato en una variable, con verificación de existencia
+        $id_partida = $partida['id_partida'] ?? null; // Usar null si no existe
+        $id_jugador1 = $partida['id_jugador1'] ?? null; // Usar null si no existe
+        $id_jugador2 = $partida['id_jugador2'] ?? null; // Usar null si no existe
+        $fecha_partida = $partida['fecha_partida'] ?? null;
+        $juego = $partida['juego'] ?? null;
+        $puntos = $partida['puntos'] ?? null;
+        $duracion = $partida['duracion'] ?? null;
+        $mesa = $partida['mesa'] ?? null;
+        $estado = $partida['estado'] ?? null;
+        $resultado_jugador1 = $partida['resultado_jugador1'] ?? null;
+        $resultado_jugador2 = $partida['resultado_jugador2'] ?? null;
+        $puntaje_jugador1 = $partida['puntaje_jugador1'] ?? null;
+        $puntaje_jugador2 = $partida['puntaje_jugador2'] ?? null;
+        $faccion_jugador1 = $partida['faccion_jugador1'] ?? null;
+        $faccion_jugador2 = $partida['faccion_jugador2'] ?? null;
+        
+        // Ahora puedes usar las variables, verificando si no son null
+    } else {
         echo "No se encontró la partida con el ID proporcionado.";
-    }
+    }    
     $stmt->close();
 } else {
     echo "Error en la preparación de la consulta.";

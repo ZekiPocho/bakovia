@@ -1,7 +1,7 @@
 <?php 
 $codigo = rand(1000,9999);
 $asunto = "Bakovia - Verificación de Correo Electrónico"; 
-$to = "zekimaldonado@gmail.com"
+$to = "zekimaldonado@gmail.com";
 $cuerpo = ' 
 <html> 
 <head> 

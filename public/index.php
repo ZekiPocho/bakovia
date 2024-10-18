@@ -264,10 +264,10 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                             <!-- Start Small Banner -->
                             <div class="hero-small-banner style2">
                                 <div class="content">
-                                    <h2>¡Últimas publicaciones!</h2>
+                                    <h2>¡Publicaciones!</h2>
                                     <p></p>
                                     <div class="button">
-                                        <a class="btn" href="blog-single-sidebar.php">Ver Publicaciones</a>
+                                        <a class="btn" href="blog-grid-sidebar.php">Ver Publicaciones</a>
                                     </div>
                                 </div>
                             </div>

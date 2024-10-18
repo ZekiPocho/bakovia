@@ -190,7 +190,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     </div>
     <!-- End Breadcrumbs -->
      <!---->
-     <div class="container-sm mt-4">
+<div class="container-sm mt-4">
     <div class="row justify-content-center">
         <div class="col-xxl-10">
             <div class="matches-div text-center">
@@ -327,6 +327,124 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         </div>
     </div>
 </div>
+
+<script>
+document.getElementById('hora_final').addEventListener('change', function () {
+    const horaInicioSeleccionada = parseInt(document.getElementById('hora_inicio').value);
+    const horaFinalSeleccionada = parseInt(this.value);
+    const mesaSeleccionada = document.getElementById('mesa').value;
+
+    // Limpiar colores previamente aplicados
+    const filasTabla = document.querySelectorAll('#horariosMesas tr');
+    filasTabla.forEach((fila) => {
+        fila.querySelectorAll('td').forEach((celda) => {
+            celda.style.backgroundColor = ''; // Limpiar color
+        });
+    });
+
+    // Colorear celdas correspondientes a la selección actual
+    filasTabla.forEach((fila, index) => {
+        if (index >= horaInicioSeleccionada && index <= horaFinalSeleccionada) {
+            const celda = fila.querySelector(`td:nth-child(${parseInt(mesaSeleccionada) + 1})`);
+            if (celda) celda.style.backgroundColor = 'yellow';  // Marcar celda
+        }
+    });
+});
+</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const mesaSelect = document.getElementById('mesa');
+    const horaInicioSelect = document.getElementById('hora_inicio');
+    const horaFinalSelect = document.getElementById('hora_final');
+
+    // Horarios disponibles (IDs que corresponden a las horas de la tabla 'horarios')
+    const horariosDisponibles = {
+        1: "16:30", 2: "17:00", 3: "17:30", 4: "18:00", 
+        5: "18:30", 6: "19:00", 7: "19:30", 8: "20:00", 
+        9: "20:30", 10: "21:00"
+    };
+
+    // Cuando se selecciona una mesa, actualiza las horas de inicio disponibles
+    mesaSelect.addEventListener('change', function () {
+        const mesaSeleccionada = this.value;
+        const horasOcupadas = horasOcupadasPorMesa[mesaSeleccionada] || [];
+
+        // Limpiar las opciones actuales
+        horaInicioSelect.innerHTML = '<option value="">Selecciona una hora de inicio</option>';
+        horaFinalSelect.innerHTML = '<option value="">Selecciona una hora de finalización</option>';
+
+        // Agregar las horas de inicio disponibles (excluyendo las ocupadas)
+        for (const id_hora in horariosDisponibles) {
+            let disponible = true;
+
+            horasOcupadas.forEach(([inicioOcupado, finalOcupado]) => {
+                if (id_hora >= inicioOcupado && id_hora <= finalOcupado) {
+                    disponible = false;
+                }
+            });
+
+            if (disponible) {
+                horaInicioSelect.innerHTML += `<option value="${id_hora}">${horariosDisponibles[id_hora]}</option>`;
+            }
+        }
+    });
+
+    // Cuando se selecciona una hora de inicio, actualiza las horas de finalización disponibles
+    horaInicioSelect.addEventListener('change', function () {
+        const horaInicioSeleccionada = parseInt(this.value);
+        const mesaSeleccionada = mesaSelect.value;
+        const horasOcupadas = horasOcupadasPorMesa[mesaSeleccionada] || [];
+
+        // Limpiar las opciones actuales
+        horaFinalSelect.innerHTML = '<option value="">Selecciona una hora de finalización</option>';
+
+        // Agregar horas de finalización (mayores a la hora de inicio)
+        for (const id_hora in horariosDisponibles) {
+            let disponible = true;
+
+            if (id_hora > horaInicioSeleccionada) {
+                horasOcupadas.forEach(([inicioOcupado, finalOcupado]) => {
+                    if (id_hora >= inicioOcupado && id_hora <= finalOcupado) {
+                        disponible = false;
+                    }
+                });
+
+                if (disponible) {
+                    horaFinalSelect.innerHTML += `<option value="${id_hora}">${horariosDisponibles[id_hora]}</option>`;
+                }
+            }
+        }
+    });
+});
+</script>
+
+
+<script>
+var horasOcupadasPorMesa = {
+    1: [], // Mesa 1
+    2: [], // Mesa 2
+    3: [], // Mesa 3
+    4: []  // Mesa 4
+};
+
+<?php
+// Consultar las horas ocupadas en la base de datos
+$query_reserva_todas = "SELECT id_mesa, id_hora_inicio, id_hora_final FROM reserva_mesa WHERE fecha = CURRENT_DATE()";
+$result_reserva_todas = mysqli_query($conn, $query_reserva_todas);
+
+// Rellenar el array con horas ocupadas por cada mesa
+while ($row = mysqli_fetch_assoc($result_reserva_todas)) {
+    $id_mesa = $row['id_mesa'];
+    $hora_inicio = $row['id_hora_inicio'];
+    $hora_final = $row['id_hora_final'];
+
+    echo "horasOcupadasPorMesa[$id_mesa].push([$hora_inicio, $hora_final]);";
+}
+?>
+</script>
+
 
 
 

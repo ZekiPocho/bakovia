@@ -1,5 +1,6 @@
 <?php
 require_once "../src/validate_session.php";
+session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verificar que el usuario está autenticado
@@ -14,9 +15,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $fecha = date('Y-m-d');  // Asume que la reserva es para el mismo día
         
         // Datos de la partida
-        $juego = $_POST['juego']; 
-        $puntos = $_POST['puntos']; 
-        $faccion = $_POST['faccion'];
+        $juego = $_SESSION['juego'];
+        $puntos = $_SESSION['puntos'];
+        $faccion = $_SESSION['faccion'];
         
         // Conectar a la base de datos
         include "../public/db.php";
@@ -84,4 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 } else {
     echo "Método no permitido.";
 }
+unset($_SESSION['juego']);
+unset($_SESSION['puntos']);
+unset($_SESSION['faccion']);
 ?>

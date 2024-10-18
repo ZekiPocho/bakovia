@@ -251,8 +251,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     <form action="../public/reserva.php" method="POST">
                 <!-- Selección de Juego -->
                 <div class="mb-3">
-                    <select id="juego" name="juego" class="form-select" disabled onchange="actualizarFormulario()">
-                        <option value="<?php$juego?>" selected disabled>Selecciona un juego</option>
+                    <select id="juego" name="juego" class="form-select" disabled on="actualizarFormulario()">
+                        <option value="ageofsigmar" selected disabled>Selecciona un juego</option>
                     </select>
                 </div>
 
@@ -260,7 +260,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <!-- Selección de Facción -->
                 <div class="mb-3">
                     <label for="faccion" class="form-label">Facción</label>
-                    <select id="faccion40k" name="faccion" class="form-select" disabled style="display:block;" onchange="mostrarFaccion40k()">
+                    <select id="faccion40k" name="faccion" class="form-select" style="display:block;" onchange="mostrarFaccion40k()">
                         <option value="" selected disabled>Selecciona una facción</option>
                         <!-- Facciones de Warhammer 40k -->
                         <option value="1" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/templarios.svg">Templarios Negros</option>
@@ -301,7 +301,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                     </select>
                 </div>
                 <div class="mb-3">
-                    <select id="faccionSigmar" class="form-select" disabled style="display:none;" onchange="mostrarFaccionSigmar()">
+                    <select id="faccionSigmar" class="form-select" style="display:none;" onchange="mostrarFaccionSigmar()">
                         <option value="" selected disabled>Selecciona una facción</option>
                         <!-- Facciones de Warhammer 40k -->
                         <option value="1" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/templarios.svg">Templarios Negros</option>

@@ -328,9 +328,16 @@ $conn->close();
                                             <h7>PARTIDA ABIERTA</h7>
                                         </div>
                                         <div class="col-5">
-                                            <div class="button">
+                                        <?php
+                                        // Mostrar el botón solo si el usuario actual es el usuario 1
+                                        if ($usuario_actual === $row['nombre_usuario1']) {
+                                            echo 'ESPERANDO';
+                                        } else {
+                                            echo '<html> <div class="button">
                                                 <button class="btn">UNIRSE</button>
-                                            </div>
+                                            </div> </html>';
+                                        }
+                                        ?>
                                         </div>
                                     </div>
                                     <div class="scoreboard">

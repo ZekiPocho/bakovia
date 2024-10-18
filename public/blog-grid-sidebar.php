@@ -235,7 +235,7 @@ while ($row = $result->fetch_assoc()) {
         <div class="single-blog">
             <div class="blog-img">
                 <a href="blog-single-sidebar.php?id='.$id_publicacion.'"> <!-- Pasar el ID en la URL -->
-                    <img src="'.$imagen.'" alt="#" width: 370px height: 215px object-fit: cover">
+                    <img src="'.$imagen.'" alt="#" width: max-width: 370 max-height: 215 ">
                 </a>
             </div>
             <div class="blog-content">

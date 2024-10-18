@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 }
 
 // Obtener las publicaciones
-$sql = "SELECT p.titulo, p.contenido, p.imagen_publicacion, p.fecha_publicacion, p.tag, u.nombre_usuario 
+$sql = "SELECT p.id_publicacion,p.titulo, p.contenido, p.imagen_publicacion, p.fecha_publicacion, p.tag, u.nombre_usuario 
         FROM publicaciones p
         JOIN usuarios u ON p.id_usuario = u.id_usuario
         ORDER BY p.fecha_publicacion DESC"; // Ordenar por fecha

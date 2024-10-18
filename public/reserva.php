@@ -1,5 +1,5 @@
 <?php
-include "../public/db.php"
+include "../public/db.php";
 require_once "../src/validate_session.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

@@ -328,37 +328,39 @@ $conn->close();
                                             <h7>PARTIDA ABIERTA</h7>
                                         </div>
                                         <div class="col-5">
-                                        <?php
-                                        // Mostrar el botón solo si el usuario actual es el usuario 1
-                                        if ($usuario_actual === $row['nombre_usuario1']) {
-                                            echo 'ESPERANDO';
-                                        } else {
-                                            echo '<html> <div class="button">
-                                                <button class="btn">UNIRSE</button>
-                                            </div> </html>';
-                                        }
-                                        ?>
+                                            <?php
+                                            // Mostrar el botón solo si el usuario actual no es el usuario 1 y si la partida está abierta
+                                            if ($usuario_actual === $row['nombre_usuario1']) {
+                                                echo 'ESPERANDO';
+                                            } else {
+                                                echo '<form action="join-match.php" method="POST" style="display:inline;">
+                                                        <input type="hidden" name="id_partida" value="' . $row['id_partida'] . '">
+                                                        <button type="submit" class="btn">UNIRSE</button>
+                                                    </form>';
+                                            }
+                                            ?>
                                         </div>
                                     </div>
                                     <div class="scoreboard">
-                                    <div class="team">
-                                        <img src="<?php echo $row['icono1']; ?>" alt="Equipo 1">
-                                        <div class="team-name"><?php echo $row['faccion1']; ?><br><?php echo $row['subfaccion1']; ?></div>
-                                    </div>
-                                    <div class="score"><?php echo $row['puntaje_usuario1']; ?></div>
-                                    <div class="middle-section">
-                                    <h1><?php echo $row['id_juego']; ?></h1>
-                                    <h1><?php echo $row['puntos']; ?> Pts.</h1>
-                                    <div class="timer"><?php echo $row['hora_inicio']; ?> - <?php echo $row['hora_final']; ?></div>
-                                    <h1>MESA - <?php echo $row['id_mesa']; ?></h1>
-                                    </div>
-                                    <div class="score"><?php echo $row['puntaje_usuario2']; ?></div>
-                                    <div class="team">
-                                        <img src="<?php echo $row['icono2']; ?>" alt="Equipo 2" style="filter: opacity(25%);">
-                                        <div class="team-name"><?php echo $row['faccion2']; ?><br><?php echo $row['subfaccion2']; ?></div>
+                                        <div class="team">
+                                            <img src="<?php echo $row['icono1']; ?>" alt="Equipo 1">
+                                            <div class="team-name"><?php echo $row['faccion1']; ?><br><?php echo $row['subfaccion1']; ?></div>
+                                        </div>
+                                        <div class="score"><?php echo $row['puntaje_usuario1']; ?></div>
+                                        <div class="middle-section">
+                                            <h1><?php echo $row['id_juego']; ?></h1>
+                                            <h1><?php echo $row['puntos']; ?> Pts.</h1>
+                                            <div class="timer"><?php echo $row['hora_inicio']; ?> - <?php echo $row['hora_final']; ?></div>
+                                            <h1>MESA - <?php echo $row['id_mesa']; ?></h1>
+                                        </div>
+                                        <div class="score"><?php echo $row['puntaje_usuario2']; ?></div>
+                                        <div class="team">
+                                            <img src="<?php echo $row['icono2']; ?>" alt="Equipo 2" style="filter: opacity(25%);">
+                                            <div class="team-name"><?php echo $row['faccion2']; ?><br><?php echo $row['subfaccion2']; ?></div>
+                                        </div>
                                     </div>
                                 </div>
-                                </div>
+
                                 <!-- Aquí termina el HTML para mostrar las partidas programadas -->
                                 <?php
                             }

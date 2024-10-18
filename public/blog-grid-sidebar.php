@@ -224,7 +224,7 @@ register.php<div class="col-sm-auto"></div>
         $imagen = !empty($row['imagen_publicacion']) ? $row['imagen_publicacion'] : 'https://via.placeholder.com/370x215'; // Placeholder si no hay imagen
         $usuario = $row['nombre_usuario'];
         $fecha = date("d M, Y", strtotime($row['fecha_publicacion'])); // Formato de fecha
-        $tag = $row{'tag'}
+        $tag = $row{'tag'};
 
         // Limitar el contenido a 100 palabras (puedes cambiar la cantidad)
         $contenido_resumido = implode(' ', array_slice(explode(' ', $contenido), 0, 20)) . '...';

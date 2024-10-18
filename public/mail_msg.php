@@ -19,7 +19,7 @@ $cuerpo = '
 </html> 
 '; 
 
-$headers = "From: Bakovia Battle Bunker <noreply@bakovia.com>\r\n"; 
+$headers = "From: zekimaldonado@gmail.com"; 
 
 $enviado = false;
 if(mail($to,$asunto,$cuerpo,$headers)){

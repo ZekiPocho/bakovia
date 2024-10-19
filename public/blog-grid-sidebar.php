@@ -1,10 +1,9 @@
 
-
 <?php
 // Conexión a la base de datos
 $servername = "localhost";
 $username = "root";
-$password = ""; // Reemplaza con tu contraseña de la base de datos
+$password = ""; // Tu contraseña de la base de datos
 $dbname = "bakoviadb";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -13,27 +12,14 @@ if ($conn->connect_error) {
     die("Error de conexión: " . $conn->connect_error);
 }
 
-// Definir cuántas publicaciones mostrar por página
-$limite = 6; // Cambia esto para mostrar más o menos publicaciones por página
-
-// Obtener la página actual desde la URL (por defecto es la página 1)
-if (isset($_GET['pagina']) && is_numeric($_GET['pagina'])) {
-    $pagina_actual = (int) $_GET['pagina'];
-} else {
-    $pagina_actual = 1; // Si no se pasa un valor de página, se usa la primera página
-}
-
-// Calcular el offset (desplazamiento)
-$offset = ($pagina_actual - 1) * $limite;
-
-// Consulta para obtener las publicaciones con límite y desplazamiento
-$sql = "SELECT p.titulo, p.contenido, p.imagen_publicacion, p.fecha_publicacion, u.nombre_usuario 
+// Obtener las publicaciones
+$sql = "SELECT p.id_publicacion,p.titulo, p.contenido, p.imagen_publicacion, p.fecha_publicacion, p.tag, u.nombre_usuario 
         FROM publicaciones p
         JOIN usuarios u ON p.id_usuario = u.id_usuario
-        ORDER BY p.fecha_publicacion DESC
-        LIMIT $limite OFFSET $offset";
+        ORDER BY p.fecha_publicacion DESC"; // Ordenar por fecha
 
 $result = $conn->query($sql);
+
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
@@ -82,7 +68,7 @@ $result = $conn->query($sql);
 <header class="header navbar-area">
     <nav class="navbar navbar-expand-lg">
 <div class="container">
-<a class="navbar-brand" href="index.php">
+<a class="navbar-brand" href="index.html">
     <img src="assets/images/logo/mini.png" alt="Logo" width="5">
 </a>
 <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -94,7 +80,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
   <ul class="navbar-nav me-auto mb-2 mb-lg-0">
     <li class="nav-item">
-      <a aria-label="Toggle navigation" href="index.php">PRINCIPAL</a>
+      <a aria-label="Toggle navigation" href="index.html">PRINCIPAL</a>
     </li>
     <li class="nav-item">
         <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-bs-toggle="collapse"
@@ -212,7 +198,7 @@ register.php<div class="col-sm-auto"></div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
                     <ul class="breadcrumb-nav">
-                        <li><a href="index.php"><i class="lni lni-home"></i> INICIO</a></li>
+                        <li><a href="index.html"><i class="lni lni-home"></i> INICIO</a></li>
                         <li>PUBLICACIONES</li>
                     </ul>
                 </div>
@@ -225,73 +211,66 @@ register.php<div class="col-sm-auto"></div>
     <section class="section blog-section blog-list">
         <div class="container-sm">
             <div class="row">
-                <div class="col-lg-12 col-md-12 col-12">
-                <div class="row">
-    <?php
-    if ($result->num_rows > 0) {
-        // Mostrar cada publicación
-        while($row = $result->fetch_assoc()) {
-            $titulo = $row['titulo'];
-            $contenido = substr($row['contenido'], 0, 100) . '...'; // Resumir contenido
-            $imagen = !empty($row['imagen_publicacion']) ? $row['imagen_publicacion'] : 'https://via.placeholder.com/370x215';
-            $usuario = $row['nombre_usuario'];
-            $fecha = date("d M, Y", strtotime($row['fecha_publicacion']));
-            
-            echo '
-            <div class="col-lg-6 col-md-6 col-12">
-                <div class="single-blog">
-                    <div class="blog-img">
-                        <a href="blog-single-sidebar.html">
-                            <img src="'.$imagen.'" alt="#" style="width: 370px; height: 215px; object-fit: contain;">
-                        </a>
-                    </div>
-                    <div class="blog-content">
-                        <h4><a href="blog-single-sidebar.php">'.$titulo.'</a></h4>
-                        <p>'.$contenido.'</p>
-                        <div class="button">
-                            <a href="blog-single-sidebar.html" class="btn">Leer más</a>
-                        </div>
-                    </div>
+                <div class="col-lg-8 col-md-12 col-12">
+                    <div class="row">
+                    <?php
+if ($result->num_rows > 0) {
+    echo '<div class="row">'; // Empezar la fila de publicaciones
+    
+    // Mostrar cada publicación
+    // Mientras se generan las publicaciones en el ciclo while
+while ($row = $result->fetch_assoc()) {
+    $id_publicacion = $row['id_publicacion'];  // Capturar el ID de la publicación
+    $titulo = $row['titulo'];
+    $contenido = $row['contenido'];
+    $imagen = !empty($row['imagen_publicacion']) ? $row['imagen_publicacion'] : 'https://via.placeholder.com/370x215'; 
+    $usuario = $row['nombre_usuario'];
+    $fecha = date("d M, Y", strtotime($row['fecha_publicacion']));
+    $tag = $row['tag'];
+
+    // Generar el HTML
+    echo '
+    <div class="col-lg-6 col-md-6 col-12">
+        <!-- Start Single Blog -->
+        <div class="single-blog">
+            <div class="blog-img">
+                <a href="blog-single-sidebar.php?id='.$id_publicacion.'"> <!-- Pasar el ID en la URL -->
+                    <img src="'.$imagen.'" alt="#" style="width: 555px; height: 300px; object-fit: cover;">
+                </a>
+            </div>
+            <div class="blog-content">
+                <a class="category" href="javascript:void(0)">'.$tag.'</a>
+                <h4>
+                    <a href="blog-single-sidebar.php?id='.$id_publicacion.'">'.$titulo.'</a> <!-- Pasar el ID aquí también -->
+                </h4>
+                <p>'.substr($contenido, 0, 100).'...</p>
+                <div class="button">
+                    <a href="blog-single-sidebar.php?id='.$id_publicacion.'" class="btn">ir al blog principal</a>
                 </div>
-            </div>';
-        }
-    } else {
-        echo "No se encontraron publicaciones.";
-    }
-    ?>
-</div>
+            </div>
+        </div>
+        <!-- End Single Blog -->
+    </div>';
+}
+
+    echo '</div>'; // Cerrar la fila
+} else {
+    echo "No se encontraron publicaciones.";
+}
+
+$conn->close();
+?>
                     </div>
                     <!-- Pagination -->
-<?php
-// Calcular el número total de publicaciones para la paginación
-$sql_total = "SELECT COUNT(*) AS total_publicaciones FROM publicaciones";
-$result_total = $conn->query($sql_total);
-$row_total = $result_total->fetch_assoc();
-$total_publicaciones = $row_total['total_publicaciones'];
-
-// Calcular el número total de páginas
-$total_paginas = ceil($total_publicaciones / $limite);
-?>
-
-<div class="pagination">
-    <ul>
-        <?php if ($pagina_actual > 1): ?>
-            <li><a href="blog-grid-sidebar.php?pagina=<?php echo $pagina_actual - 1; ?>">Anterior</a></li>
-        <?php endif; ?>
-
-        <?php for ($i = 1; $i <= $total_paginas; $i++): ?>
-            <li><a href="blog-grid-sidebar.php?pagina=<?php echo $i; ?>" <?php if ($i == $pagina_actual) echo 'class="active"'; ?>>
-                <?php echo $i; ?>
-            </a></li>
-        <?php endfor; ?>
-
-        <?php if ($pagina_actual < $total_paginas): ?>
-            <li><a href="blog-grid-sidebar.php?pagina=<?php echo $pagina_actual + 1; ?>">Siguiente</a></li>
-        <?php endif; ?>
-    </ul>
-</div>
-
-<?php $conn->close(); ?>
+                    <div class="pagination left blog-grid-page">
+                        <ul class="pagination-list">
+                            <li><a href="javascript:void(0)">Prev</a></li>
+                            <li class="active"><a href="javascript:void(0)">2</a></li>
+                            <li><a href="javascript:void(0)">3</a></li>
+                            <li><a href="javascript:void(0)">4</a></li>
+                            <li><a href="javascript:void(0)">Next</a></li>
+                        </ul>
+                    </div>
                     <!--/ End Pagination -->
                 </div>
             </div>
@@ -354,7 +333,7 @@ $total_paginas = ceil($total_publicaciones / $limite);
                         <div class="col-lg-3 col-md-6 col-12">
                             <!--Single Widget-->
                             <div class="footer-logo">
-                                    <a href="index.php">
+                                    <a href="index.html">
                                         <img src="assets/images/logo/mini.png" alt="#">
                                     </a>
                             </div>

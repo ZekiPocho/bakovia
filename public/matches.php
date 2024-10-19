@@ -216,7 +216,7 @@ $sql = "SELECT p.id_partida, p.id_juego, p.puntos, p.nombre_usuario1, p.nombre_u
         FROM partida p
         JOIN faccion f1 ON p.id_faccion_usuario1 = f1.id_faccion
         JOIN faccion f2 ON p.id_faccion_usuario2 = f2.id_faccion
-        WHERE p.estado = 'en progreso' AND fecha = CURRENT_DATE()";
+        WHERE p.estado = 'en progreso' AND p.fecha = CURRENT_DATE()";
 
 $result = $conn->query($sql);
 

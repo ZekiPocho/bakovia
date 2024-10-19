@@ -206,7 +206,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
+date_default_timezone_set('America/La_Paz'); // O la zona horaria que necesites
 // Consulta para obtener partidas en progreso
 $sql = "SELECT p.id_partida, p.id_juego, p.puntos, p.nombre_usuario1, p.nombre_usuario2, 
         f1.nombre AS faccion1, f1.subfaccion AS subfaccion1, f1.icono AS icono1, 
@@ -216,7 +216,7 @@ $sql = "SELECT p.id_partida, p.id_juego, p.puntos, p.nombre_usuario1, p.nombre_u
         FROM partida p
         JOIN faccion f1 ON p.id_faccion_usuario1 = f1.id_faccion
         JOIN faccion f2 ON p.id_faccion_usuario2 = f2.id_faccion
-        WHERE p.estado = 'en progreso'";
+        WHERE p.estado = 'en progreso' AND fecha = CURRENT_DATE()";
 
 $result = $conn->query($sql);
 

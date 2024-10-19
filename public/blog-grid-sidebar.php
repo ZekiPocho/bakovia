@@ -3,7 +3,7 @@
 // Conexión a la base de datos
 $servername = "localhost";
 $username = "root";
-$password = ""; // Tu contraseña de la base de datos
+$password = ""; 
 $dbname = "bakoviadb";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -12,14 +12,29 @@ if ($conn->connect_error) {
     die("Error de conexión: " . $conn->connect_error);
 }
 
-// Obtener las publicaciones
-$sql = "SELECT p.id_publicacion,p.titulo, p.contenido, p.imagen_publicacion, p.fecha_publicacion, p.tag, u.nombre_usuario 
+// Definir el número de publicaciones por página
+$limite = 5; // Número de publicaciones por página
+
+// Obtener el número de página actual
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$offset = ($page - 1) * $limite; // Calcular el desplazamiento
+
+// Consulta para obtener las publicaciones
+$sql = "SELECT p.id_publicacion, p.titulo, p.contenido, p.imagen_publicacion, p.fecha_publicacion, p.tag, u.nombre_usuario 
         FROM publicaciones p
         JOIN usuarios u ON p.id_usuario = u.id_usuario
-        ORDER BY p.fecha_publicacion DESC"; // Ordenar por fecha
+        ORDER BY p.fecha_publicacion DESC
+        LIMIT $limite OFFSET $offset";
 
 $result = $conn->query($sql);
 
+// Consulta para contar el total de publicaciones
+$sql_total = "SELECT COUNT(*) AS total FROM publicaciones";
+$result_total = $conn->query($sql_total);
+$total_publicaciones = $result_total->fetch_assoc()['total'];
+
+// Calcular el número total de páginas
+$total_paginas = ceil($total_publicaciones / $limite);
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
@@ -212,65 +227,60 @@ register.php<div class="col-sm-auto"></div>
         <div class="container-sm">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-12">
-                    <div class="row">
-                    <?php
-if ($result->num_rows > 0) {
-    echo '<div class="row">'; // Empezar la fila de publicaciones
-    
-    // Mostrar cada publicación
-    // Mientras se generan las publicaciones en el ciclo while
-while ($row = $result->fetch_assoc()) {
-    $id_publicacion = $row['id_publicacion'];  // Capturar el ID de la publicación
-    $titulo = $row['titulo'];
-    $contenido = $row['contenido'];
-    $imagen = !empty($row['imagen_publicacion']) ? $row['imagen_publicacion'] : 'https://via.placeholder.com/370x215'; 
-    $usuario = $row['nombre_usuario'];
-    $fecha = date("d M, Y", strtotime($row['fecha_publicacion']));
-    $tag = $row['tag'];
+                <div class="row">
+            <?php
+            if ($result->num_rows > 0) {
+                // Mostrar cada publicación
+                while ($row = $result->fetch_assoc()) {
+                    $id_publicacion = $row['id_publicacion'];
+                    $titulo = $row['titulo'];
+                    $contenido = $row['contenido'];
+                    $imagen = !empty($row['imagen_publicacion']) ? $row['imagen_publicacion'] : 'https://via.placeholder.com/370x215'; 
+                    $tag = $row['tag'];
 
-    // Generar el HTML
-    echo '
-    <div class="col-lg-6 col-md-6 col-12">
-        <!-- Start Single Blog -->
-        <div class="single-blog">
-            <div class="blog-img">
-                <a href="blog-single-sidebar.php?id='.$id_publicacion.'"> <!-- Pasar el ID en la URL -->
-                    <img src="'.$imagen.'" alt="#" style="width: 555px; height: 300px; object-fit: cover;">
-                </a>
-            </div>
-            <div class="blog-content">
-                <a class="category" href="javascript:void(0)">'.$tag.'</a>
-                <h4>
-                    <a href="blog-single-sidebar.php?id='.$id_publicacion.'">'.$titulo.'</a> <!-- Pasar el ID aquí también -->
-                </h4>
-                <p>'.substr($contenido, 0, 100).'...</p>
-                <div class="button">
-                    <a href="blog-single-sidebar.php?id='.$id_publicacion.'" class="btn">ir al blog principal</a>
-                </div>
-            </div>
-        </div>
-        <!-- End Single Blog -->
-    </div>';
-}
-
-    echo '</div>'; // Cerrar la fila
-} else {
-    echo "No se encontraron publicaciones.";
-}
-
-$conn->close();
-?>
+                    echo '
+                    <div class="col-lg-6 col-md-6 col-12">
+                        <!-- Start Single Blog -->
+                        <div class="single-blog">
+                            <div class="blog-img">
+                                <a href="blog-single-sidebar.php?id='.$id_publicacion.'">
+                                    <img src="'.$imagen.'" alt="#" style="width: 555px; height: 300px; object-fit: cover;">
+                                </a>
+                            </div>
+                            <div class="blog-content">
+                                <a class="category" href="javascript:void(0)">'.$tag.'</a>
+                                <h4><a href="blog-single-sidebar.php?id='.$id_publicacion.'">'.$titulo.'</a></h4>
+                                <p>'.substr($contenido, 0, 100).'...</p>
+                                <div class="button">
+                                    <a href="blog-single-sidebar.php?id='.$id_publicacion.'" class="btn">Leer más</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Single Blog -->
+                    </div>';
+                }
+            } else {
+                echo "No se encontraron publicaciones.";
+            }
+            ?>
                     </div>
                     <!-- Pagination -->
-                    <div class="pagination left blog-grid-page">
-                        <ul class="pagination-list">
-                            <li><a href="javascript:void(0)">Prev</a></li>
-                            <li class="active"><a href="javascript:void(0)">2</a></li>
-                            <li><a href="javascript:void(0)">3</a></li>
-                            <li><a href="javascript:void(0)">4</a></li>
-                            <li><a href="javascript:void(0)">Next</a></li>
-                        </ul>
-                    </div>
+                    <?php// Paginación
+            echo '<div class="pagination left blog-grid-page">';
+            echo '<ul class="pagination-list">';
+            if ($page > 1) {
+                echo '<li><a href="?page='.($page - 1).'">Prev</a></li>';
+            }
+            for ($i = 1; $i <= $total_paginas; $i++) {
+                $active = $i == $page ? 'active' : '';
+                echo '<li class="'.$active.'"><a href="?page='.$i.'">'.$i.'</a></li>';
+            }
+            if ($page < $total_paginas) {
+                echo '<li><a href="?page='.($page + 1).'">Next</a></li>';
+            }
+            echo '</ul>';
+            echo '</div>';
+            ?>
                     <!--/ End Pagination -->
                 </div>
             </div>

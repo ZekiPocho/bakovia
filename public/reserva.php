@@ -6,7 +6,7 @@ $_SESSION['juego'] = $_POST['juego'];
 $_SESSION['puntos'] = $_POST['puntos'];
 $_SESSION['faccion'] = $_POST['faccion'];
 
-
+ 
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">

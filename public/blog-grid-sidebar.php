@@ -242,7 +242,7 @@ register.php<div class="col-sm-auto"></div>
                 <div class="single-blog">
                     <div class="blog-img">
                         <a href="blog-single-sidebar.html">
-                            <img src="'.$imagen.'" alt="#">
+                            <img src="'.$imagen.'" alt="#" style="width: 370px; height: 215px; object-fit: contain;">
                         </a>
                     </div>
                     <div class="blog-content">

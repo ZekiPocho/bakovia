@@ -3,7 +3,7 @@
 // Conexión a la base de datos
 $servername = "localhost";
 $username = "root";
-$password = ""; // Tu contraseña de la base de datos
+$password = ""; // Reemplaza con tu contraseña de la base de datos
 $dbname = "bakoviadb";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -12,15 +12,29 @@ if ($conn->connect_error) {
     die("Error de conexión: " . $conn->connect_error);
 }
 
-// Obtener las publicaciones
-$sql = "SELECT p.id_publicacion,p.titulo, p.contenido, p.imagen_publicacion, p.fecha_publicacion, p.tag, u.nombre_usuario 
+// Definir cuántas publicaciones mostrar por página
+$limite = 6; // Cambia esto para mostrar más o menos publicaciones por página
+
+// Obtener la página actual desde la URL (por defecto es la página 1)
+if (isset($_GET['pagina']) && is_numeric($_GET['pagina'])) {
+    $pagina_actual = (int) $_GET['pagina'];
+} else {
+    $pagina_actual = 1; // Si no se pasa un valor de página, se usa la primera página
+}
+
+// Calcular el offset (desplazamiento)
+$offset = ($pagina_actual - 1) * $limite;
+
+// Consulta para obtener las publicaciones con límite y desplazamiento
+$sql = "SELECT p.titulo, p.contenido, p.imagen_publicacion, p.fecha_publicacion, u.nombre_usuario 
         FROM publicaciones p
         JOIN usuarios u ON p.id_usuario = u.id_usuario
-        ORDER BY p.fecha_publicacion DESC"; // Ordenar por fecha
+        ORDER BY p.fecha_publicacion DESC
+        LIMIT $limite OFFSET $offset";
 
 $result = $conn->query($sql);
-
 ?>
+
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 

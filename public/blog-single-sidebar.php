@@ -246,18 +246,40 @@ if (isset($_GET['id'])) {
 }
 $conn->close();
 ?>
+
+
+
+
+
+
                             <!-- Comments -->
                             <?php
-// Suponemos que ya tienes la conexión a la base de datos ($conn) y el ID de la publicación ($id_publicacion)
+// Conexión a la base de datos
+include 'db.php'; // Suponemos que ya tienes este archivo para la conexión
 
-$id_publicacion = $_GET['id'];  // Capturar el ID de la publicación desde la URL
+// Verificar si el formulario ha sido enviado
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['comentar'])) {
+    $id_publicacion = $_POST['id_publicacion'];
+    $comentario = $conn->real_escape_string($_POST['comentario']);
+    $nombre_usuario = $_SESSION['nombre_usuario'];  // Asumimos que el nombre del usuario está almacenado en la sesión
+    $fecha_comentario = date('Y-m-d H:i:s'); // Fecha actual
 
+    // Insertar comentario en la base de datos
+    $sql = "INSERT INTO comentarios (id_publicacion, nombre_usuario, comentario, fecha_comentario)
+            VALUES ('$id_publicacion', '$nombre_usuario', '$comentario', '$fecha_comentario')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "<p class='alert-success'>Comentario agregado correctamente.</p>";
+    } else {
+        echo "Error al agregar el comentario: " . $conn->error;
+    }
+}
+?>
+
+
+<?php
 // Consulta para obtener los comentarios de la publicación actual
-$sql_comentarios = "SELECT c.*, u.foto_perfil FROM comentarios c
-                    JOIN usuarios u ON c.id_usuario = u.id_usuario
-                    WHERE c.id_publicacion = $id_publicacion
-                    ORDER BY c.fecha_comentario DESC";
-
+$sql_comentarios = "SELECT * FROM comentarios WHERE id_publicacion = $id_publicacion ORDER BY fecha_comentario DESC";
 $result_comentarios = $conn->query($sql_comentarios);
 
 if ($result_comentarios->num_rows > 0) {
@@ -269,7 +291,7 @@ if ($result_comentarios->num_rows > 0) {
         $nombre_usuario = $comentario['nombre_usuario'];
         $fecha_comentario = date("d M, Y", strtotime($comentario['fecha_comentario']));
         $texto_comentario = $comentario['comentario'];
-        $foto_perfil = !empty($comentario['foto_perfil']) ? $comentario['foto_perfil'] : 'https://via.placeholder.com/150'; // Si no hay foto, usar placeholder
+        $foto_perfil = 'https://via.placeholder.com/150'; // Placeholder o foto real del usuario si la tienes
 
         echo '
         <li>
@@ -280,7 +302,6 @@ if ($result_comentarios->num_rows > 0) {
                 <div class="desc-top">
                     <h6>'.$nombre_usuario.'</h6>
                     <span class="date">'.$fecha_comentario.'</span>
-                    <a href="javascript:void(0)" class="reply-link"><i class="lni lni-reply"></i>Reply</a>
                 </div>
                 <p>'.$texto_comentario.'</p>
             </div>
@@ -293,48 +314,26 @@ if ($result_comentarios->num_rows > 0) {
     echo '<p>No hay comentarios aún.</p>';
 }
 ?>
-                            <div class="comment-form">
-                                <h3 class="comment-reply-title">Leave a comment</h3>
-                                <form action="#" method="POST">
-                                    <div class="row">
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-box form-group">
-                                                <input type="text" name="name" class="form-control form-control-custom"
-                                                    placeholder="Website URL" />
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-box form-group">
-                                                <input type="text" name="email" class="form-control form-control-custom"
-                                                    placeholder="Your Name" />
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-box form-group">
-                                                <input type="email" name="email"
-                                                    class="form-control form-control-custom" placeholder="Your Email" />
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-box form-group">
-                                                <input type="text" name="name" class="form-control form-control-custom"
-                                                    placeholder="Phone Number" />
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-box form-group">
-                                                <textarea name="#" class="form-control form-control-custom"
-                                                    placeholder="Your Comments"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="button">
-                                                <button type="submit" class="btn">Post Comment</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
+
+
+<div class="comment-form">
+    <h3 class="comment-reply-title">Deja un comentario</h3>
+    <form action="" method="POST">
+        <input type="hidden" name="id_publicacion" value="<?php echo $id_publicacion; ?>"> <!-- ID de la publicación -->
+        <div class="row">
+            <div class="col-12">
+                <div class="form-box form-group">
+                    <textarea name="comentario" class="form-control form-control-custom" placeholder="Tu comentario" required></textarea>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="button">
+                    <button type="submit" name="comentar" class="btn">Publicar comentario</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
                         </div>
                     </div>
                 </div>

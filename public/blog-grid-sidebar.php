@@ -261,6 +261,20 @@ while ($row = $result->fetch_assoc()) {
 $conn->close();
 ?>
                     </div>
+
+                    <?php
+// Calcular el número total de publicaciones para la paginación
+$sql_total = "SELECT COUNT(*) AS total_publicaciones FROM publicaciones";
+$result_total = $conn->query($sql_total);
+$row_total = $result_total->fetch_assoc();
+$total_publicaciones = $row_total['total_publicaciones'];
+
+// Calcular el número total de páginas
+$total_paginas = ceil($total_publicaciones / $limite);
+?>
+
+
+
                     <!-- Pagination -->
                     <div class="pagination">
     <ul>

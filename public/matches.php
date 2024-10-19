@@ -216,8 +216,7 @@ $sql = "SELECT p.id_partida, p.id_juego, p.puntos, p.nombre_usuario1, p.nombre_u
         FROM partida p
         JOIN faccion f1 ON p.id_faccion_usuario1 = f1.id_faccion
         JOIN faccion f2 ON p.id_faccion_usuario2 = f2.id_faccion
-        WHERE p.estado = 'en progreso'
-        AND p.fecha_partida = CURDATE();";
+        WHERE p.estado = 'en progreso'";
 
 $result = $conn->query($sql);
 
@@ -309,7 +308,8 @@ $conn->close();
                         FROM partida p
                         JOIN faccion f1 ON p.id_faccion_usuario1 = f1.id_faccion
                         JOIN faccion f2 ON p.id_faccion_usuario2 = f2.id_faccion
-                        WHERE p.estado = 'programado'";
+                        WHERE p.estado = 'programado'
+                        AND p.fecha = CURDATE();";
 
                         $result = $conn->query($sql);
 

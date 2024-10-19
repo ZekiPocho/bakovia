@@ -246,7 +246,7 @@ register.php<div class="col-sm-auto"></div>
                         </a>
                     </div>
                     <div class="blog-content">
-                        <h4><a href="blog-single-sidebar.html">'.$titulo.'</a></h4>
+                        <h4><a href="blog-single-sidebar.php">'.$titulo.'</a></h4>
                         <p>'.$contenido.'</p>
                         <div class="button">
                             <a href="blog-single-sidebar.html" class="btn">Leer más</a>

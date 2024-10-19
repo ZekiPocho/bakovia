@@ -1,6 +1,6 @@
 <?php
 
-include ('validate_session.php')
+include ('validate_session.php');
 // Conexión a la base de datos
 $servername = "localhost";
 $username = "root";

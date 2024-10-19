@@ -262,10 +262,8 @@ register.php<div class="col-sm-auto"></div>
             } else {
                 echo "No se encontraron publicaciones.";
             }
-            ?>
-                    </div>
-                    <!-- Pagination -->
-                    <?php// Paginación
+
+            // Paginación
             echo '<div class="pagination left blog-grid-page">';
             echo '<ul class="pagination-list">';
             if ($page > 1) {
@@ -281,6 +279,7 @@ register.php<div class="col-sm-auto"></div>
             echo '</ul>';
             echo '</div>';
             ?>
+        </div>
                     <!--/ End Pagination -->
                 </div>
             </div>

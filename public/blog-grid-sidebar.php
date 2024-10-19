@@ -262,15 +262,25 @@ $conn->close();
 ?>
                     </div>
                     <!-- Pagination -->
-                    <div class="pagination left blog-grid-page">
-                        <ul class="pagination-list">
-                            <li><a href="javascript:void(0)">Prev</a></li>
-                            <li class="active"><a href="javascript:void(0)">2</a></li>
-                            <li><a href="javascript:void(0)">3</a></li>
-                            <li><a href="javascript:void(0)">4</a></li>
-                            <li><a href="javascript:void(0)">Next</a></li>
-                        </ul>
-                    </div>
+                    <div class="pagination">
+    <ul>
+        <?php if ($pagina_actual > 1): ?>
+            <li><a href="blog-grid-sidebar.php?pagina=<?php echo $pagina_actual - 1; ?>">Anterior</a></li>
+        <?php endif; ?>
+
+        <?php for ($i = 1; $i <= $total_paginas; $i++): ?>
+            <li><a href="blog-grid-sidebar.php?pagina=<?php echo $i; ?>" <?php if ($i == $pagina_actual) echo 'class="active"'; ?>>
+                <?php echo $i; ?>
+            </a></li>
+        <?php endfor; ?>
+
+        <?php if ($pagina_actual < $total_paginas): ?>
+            <li><a href="blog-grid-sidebar.php?pagina=<?php echo $pagina_actual + 1; ?>">Siguiente</a></li>
+        <?php endif; ?>
+    </ul>
+</div>
+
+<?php $conn->close(); ?>
                     <!--/ End Pagination -->
                 </div>
             </div>

@@ -3,7 +3,7 @@
 // Conexión a la base de datos
 $servername = "localhost";
 $username = "root";
-$password = ""; // Reemplaza con tu contraseña de la base de datos
+$password = ""; // Tu contraseña de la base de datos
 $dbname = "bakoviadb";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -12,29 +12,15 @@ if ($conn->connect_error) {
     die("Error de conexión: " . $conn->connect_error);
 }
 
-// Definir cuántas publicaciones mostrar por página
-$limite = 6; // Cambia esto para mostrar más o menos publicaciones por página
-
-// Obtener la página actual desde la URL (por defecto es la página 1)
-if (isset($_GET['pagina']) && is_numeric($_GET['pagina'])) {
-    $pagina_actual = (int) $_GET['pagina'];
-} else {
-    $pagina_actual = 1; // Si no se pasa un valor de página, se usa la primera página
-}
-
-// Calcular el offset (desplazamiento)
-$offset = ($pagina_actual - 1) * $limite;
-
-// Consulta para obtener las publicaciones con límite y desplazamiento
-$sql = "SELECT p.titulo, p.contenido, p.imagen_publicacion, p.fecha_publicacion, u.nombre_usuario 
+// Obtener las publicaciones
+$sql = "SELECT p.id_publicacion,p.titulo, p.contenido, p.imagen_publicacion, p.fecha_publicacion, p.tag, u.nombre_usuario 
         FROM publicaciones p
         JOIN usuarios u ON p.id_usuario = u.id_usuario
-        ORDER BY p.fecha_publicacion DESC
-        LIMIT $limite OFFSET $offset";
+        ORDER BY p.fecha_publicacion DESC"; // Ordenar por fecha
 
 $result = $conn->query($sql);
-?>
 
+?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 
@@ -275,40 +261,16 @@ while ($row = $result->fetch_assoc()) {
 $conn->close();
 ?>
                     </div>
-
-                    <?php
-// Calcular el número total de publicaciones para la paginación
-$sql_total = "SELECT COUNT(*) AS total_publicaciones FROM publicaciones";
-$result_total = $conn->query($sql_total);
-$row_total = $result_total->fetch_assoc();
-$total_publicaciones = $row_total['total_publicaciones'];
-
-// Calcular el número total de páginas
-$total_paginas = ceil($total_publicaciones / $limite);
-?>
-
-
-
                     <!-- Pagination -->
-                    <div class="pagination">
-    <ul>
-        <?php if ($pagina_actual > 1): ?>
-            <li><a href="blog-grid-sidebar.php?pagina=<?php echo $pagina_actual - 1; ?>">Anterior</a></li>
-        <?php endif; ?>
-
-        <?php for ($i = 1; $i <= $total_paginas; $i++): ?>
-            <li><a href="blog-grid-sidebar.php?pagina=<?php echo $i; ?>" <?php if ($i == $pagina_actual) echo 'class="active"'; ?>>
-                <?php echo $i; ?>
-            </a></li>
-        <?php endfor; ?>
-
-        <?php if ($pagina_actual < $total_paginas): ?>
-            <li><a href="blog-grid-sidebar.php?pagina=<?php echo $pagina_actual + 1; ?>">Siguiente</a></li>
-        <?php endif; ?>
-    </ul>
-</div>
-
-<?php $conn->close(); ?>
+                    <div class="pagination left blog-grid-page">
+                        <ul class="pagination-list">
+                            <li><a href="javascript:void(0)">Prev</a></li>
+                            <li class="active"><a href="javascript:void(0)">2</a></li>
+                            <li><a href="javascript:void(0)">3</a></li>
+                            <li><a href="javascript:void(0)">4</a></li>
+                            <li><a href="javascript:void(0)">Next</a></li>
+                        </ul>
+                    </div>
                     <!--/ End Pagination -->
                 </div>
             </div>

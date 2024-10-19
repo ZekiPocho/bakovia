@@ -188,65 +188,46 @@ register.php<div class="col-sm-auto"></div>
                     <div class="single-inner">
                         <div class="post-details">
                         <?php
-$sql = "SELECT p.titulo, p.contenido, p.imagen_publicacion, p.fecha_publicacion, p.tag, u.nombre_usuario 
-        FROM publicaciones p
-        JOIN usuarios u ON p.id_usuario = u.id_usuario
-        ORDER BY p.fecha_publicacion DESC"; // Ordenar por fecha de publicación
+// Consulta para obtener los comentarios de la publicación actual
+$sql_comentarios = "SELECT c.comentario, c.fecha_comentario, u.nombre_usuario, u.foto_perfil 
+                    FROM comentarios c
+                    JOIN usuarios u ON c.id_usuario = u.id_usuario
+                    WHERE c.id_publicacion = $id_publicacion
+                    ORDER BY c.fecha_comentario DESC";
 
-$result = $conn->query($sql);
+$result_comentarios = $conn->query($sql_comentarios);
 
+if ($result_comentarios->num_rows > 0) {
+    echo '<div class="post-comments">';
+    echo '<h3 class="comment-title"><span>Comentarios</span></h3>';
+    echo '<ul class="comments-list">';
 
-if (isset($_GET['id'])) {
-    $id_publicacion = $_GET['id'];  // Capturar el ID de la publicación desde la URL
+    while ($comentario = $result_comentarios->fetch_assoc()) {
+        $nombre_usuario = $comentario['nombre_usuario'];
+        $fecha_comentario = date("d M, Y", strtotime($comentario['fecha_comentario']));
+        $texto_comentario = $comentario['comentario'];
+        $foto_perfil = !empty($comentario['foto_perfil']) ? $comentario['foto_perfil'] : 'https://via.placeholder.com/150'; // Si no hay foto, usar un placeholder
 
-    // Consulta para obtener la publicación seleccionada
-    $sql = "SELECT p.titulo, p.contenido, p.imagen_publicacion, p.fecha_publicacion, p.tag, u.nombre_usuario 
-            FROM publicaciones p
-            JOIN usuarios u ON p.id_usuario = u.id_usuario 
-            WHERE p.id_publicacion = $id_publicacion";  // Filtrar por el ID
-
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        $publicacion = $result->fetch_assoc();
-        $titulo = $publicacion['titulo'];
-        $contenido = $publicacion['contenido'];
-        $imagen = !empty($publicacion['imagen_publicacion']) ? $publicacion['imagen_publicacion'] : 'https://via.placeholder.com/850x460';
-        $usuario = $publicacion['nombre_usuario'];
-        $fecha = date("d M, Y", strtotime($publicacion['fecha_publicacion']));
-        $tag = $publicacion['tag'];
-
-        // Mostrar la publicación
         echo '
-        <div class="main-content-head">
-            <div class="post-thumbnils">
-                <img src="'.$imagen.'" alt="#">
+        <li>
+            <div class="comment-img">
+                <img src="'.$foto_perfil.'" alt="img">
             </div>
-            <div class="meta-information">
-                <h2 class="post-title">'.$titulo.'</h2>
-                <ul class="meta-info">
-                    <li>
-                        <a href="javascript:void(0)"> <i class="lni lni-user"></i>'.$usuario.'</a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)"><i class="lni lni-calendar"></i>'.$fecha.'</a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)"><i class="lni lni-tag"></i>'.$tag.'</a>
-                    </li>
-                </ul>
+            <div class="comment-desc">
+                <div class="desc-top">
+                    <h6>'.$nombre_usuario.'</h6>
+                    <span class="date">'.$fecha_comentario.'</span>
+                </div>
+                <p>'.$texto_comentario.'</p>
             </div>
-            <div class="detail-inner">
-                <p>'.$contenido.'</p>
-            </div>
-        </div>';
-    } else {
-        echo "Publicación no encontrada.";
+        </li>';
     }
+
+    echo '</ul>';
+    echo '</div>';
 } else {
-    echo "No se ha proporcionado un ID de publicación.";
+    echo '<p>No hay comentarios aún.</p>';
 }
-$conn->close();
 ?>
 
 
@@ -257,13 +238,35 @@ $conn->close();
 
 
 
+<?php
+// Conexión a la base de datos
+include 'db.php'; // Suponemos que ya tienes este archivo para la conexión
 
+// Verificar si el formulario ha sido enviado
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['comentar'])) {
+    $id_publicacion = $_POST['id_publicacion'];
+    $id_usuario = $_POST['id_usuario'];
+    $comentario = $conn->real_escape_string($_POST['comentario']);
+    $fecha_comentario = date('Y-m-d H:i:s'); // Fecha actual
+
+    // Insertar comentario en la base de datos
+    $sql = "INSERT INTO comentarios (id_publicacion, id_usuario, comentario, fecha_comentario)
+            VALUES ('$id_publicacion', '$id_usuario', '$comentario', '$fecha_comentario')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "<p class='alert-success'>Comentario agregado correctamente.</p>";
+    } else {
+        echo "Error al agregar el comentario: " . $conn->error;
+    }
+}
+?>
 
 
 <div class="comment-form">
     <h3 class="comment-reply-title">Deja un comentario</h3>
     <form action="" method="POST">
         <input type="hidden" name="id_publicacion" value="<?php echo $id_publicacion; ?>"> <!-- ID de la publicación -->
+        <input type="hidden" name="id_usuario" value="<?php echo $_SESSION['id_usuario']; ?>"> <!-- ID del usuario desde la sesión -->
         <div class="row">
             <div class="col-12">
                 <div class="form-box form-group">
@@ -278,28 +281,7 @@ $conn->close();
         </div>
     </form>
 </div>
-<?php
-// Conexión a la base de datos
-include 'db.php'; // Suponemos que ya tienes este archivo para la conexión
 
-// Verificar si el formulario ha sido enviado
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['comentar'])) {
-    $id_publicacion = $_POST['id_publicacion'];
-    $comentario = $conn->real_escape_string($_POST['comentario']);
-    $nombre_usuario = $_SESSION['nombre_usuario'];  // Asumimos que el nombre del usuario está almacenado en la sesión
-    $fecha_comentario = date('Y-m-d H:i:s'); // Fecha actual
-
-    // Insertar comentario en la base de datos
-    $sql = "INSERT INTO comentarios (id_publicacion, nombre_usuario, comentario, fecha_comentario)
-            VALUES ('$id_publicacion', '$nombre_usuario', '$comentario', '$fecha_comentario')";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "<p class='alert-success'>Comentario agregado correctamente.</p>";
-    } else {
-        echo "Error al agregar el comentario: " . $conn->error;
-    }
-}
-?>
                         </div>
                     </div>
                 </div>

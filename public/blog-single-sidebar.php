@@ -257,43 +257,7 @@ $conn->close();
 
 
 
-<?php
-// Consulta para obtener los comentarios de la publicación actual
-$sql_comentarios = "SELECT * FROM comentarios WHERE id_publicacion = $id_publicacion ORDER BY fecha_comentario DESC";
-$result_comentarios = $conn->query($sql_comentarios);
 
-if ($result_comentarios->num_rows > 0) {
-    echo '<div class="post-comments">';
-    echo '<h3 class="comment-title"><span>Comentarios</span></h3>';
-    echo '<ul class="comments-list">';
-
-    while ($comentario = $result_comentarios->fetch_assoc()) {
-        $nombre_usuario = $comentario['nombre_usuario'];
-        $fecha_comentario = date("d M, Y", strtotime($comentario['fecha_comentario']));
-        $texto_comentario = $comentario['comentario'];
-        $foto_perfil = 'https://via.placeholder.com/150'; // Placeholder o foto real del usuario si la tienes
-
-        echo '
-        <li>
-            <div class="comment-img">
-                <img src="'.$foto_perfil.'" alt="img">
-            </div>
-            <div class="comment-desc">
-                <div class="desc-top">
-                    <h6>'.$nombre_usuario.'</h6>
-                    <span class="date">'.$fecha_comentario.'</span>
-                </div>
-                <p>'.$texto_comentario.'</p>
-            </div>
-        </li>';
-    }
-
-    echo '</ul>';
-    echo '</div>';
-} else {
-    echo '<p>No hay comentarios aún.</p>';
-}
-?>
 
 
 <div class="comment-form">

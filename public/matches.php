@@ -374,7 +374,7 @@ $conn->close();
                         ?>
 
                     <!-- Botón para iniciar una nueva partida -->
-                    <br>
+                    <br><br><br>
                     <p class="text-muted"><span style="font-size: 15px;">O sino, inicia tu propia partida</span></p>
                     <br>
                     <div class="button">

@@ -211,7 +211,7 @@ register.php<div class="col-sm-auto"></div>
     <section class="section blog-section blog-list">
         <div class="container-sm">
             <div class="row">
-                <div class="col-lg-8 col-md-12 col-12">
+                <div class="col-lg-12 col-md-12 col-12">
                     <div class="row">
                     <?php
 if ($result->num_rows > 0) {

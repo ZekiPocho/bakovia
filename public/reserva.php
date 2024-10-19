@@ -221,6 +221,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                 <tbody id="horariosMesas">
                                     <?php
                                     // Obtener el día actual
+                                    date_default_timezone_set('America/La_Paz'); // O la zona horaria que necesites
                                     $dia_actual = date('l'); // 'l' es para obtener el nombre del día
 
                                     // Definir los horarios disponibles

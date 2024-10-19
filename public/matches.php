@@ -275,7 +275,8 @@ if ($result->num_rows > 0) {
 <?php
     }
 } else {
-    echo "No hay partidas en progreso."; <br>;
+    echo "No hay partidas en progreso.";
+    echo <html><br></html>;
 }
 
 $conn->close();

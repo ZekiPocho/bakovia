@@ -6,7 +6,7 @@ $_SESSION['juego'] = $_POST['juego'];
 $_SESSION['puntos'] = $_POST['puntos'];
 $_SESSION['faccion'] = $_POST['faccion'];
 
- 
+
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
@@ -262,11 +262,9 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                         for ($mesa = 1; $mesa <= 3; $mesa++) {
                                             // Lógica para verificar si la mesa está ocupada
                                             $query_reserva = "SELECT * FROM reserva_mesa 
-                                                            WHERE id_mesa = $mesa 
-                                                            AND DATE(fecha) = CURRENT_DATE 
-                                                            AND id_hora_inicio <= $id_hora 
-                                                            AND id_hora_final >= $id_hora;";
-
+                                                                WHERE id_mesa = $mesa 
+                                                                AND fecha = CURRENT_DATE() AND id_hora_inicio <= $id_hora 
+                                                                AND id_hora_final >= $id_hora;";
                                             
                                             $result_reserva = mysqli_query($conn, $query_reserva);
 

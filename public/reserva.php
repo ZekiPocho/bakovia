@@ -287,6 +287,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         <!-- COLUMNA DERECHA -->
                         <div class="col-md-6 text-center">
                             <h3>SELECCIONA</h3>
+                            <?php echo $dia_actual;?>
                             <br>
                             <form method="POST" action="../src/crear_partida.php">
                                 <div class="form-group">

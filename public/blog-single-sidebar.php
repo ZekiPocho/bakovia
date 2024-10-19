@@ -253,30 +253,8 @@ $conn->close();
 
 
 
+<!-- Comments -->
 
-                            <!-- Comments -->
-                            <?php
-// Conexión a la base de datos
-include 'db.php'; // Suponemos que ya tienes este archivo para la conexión
-
-// Verificar si el formulario ha sido enviado
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['comentar'])) {
-    $id_publicacion = $_POST['id_publicacion'];
-    $comentario = $conn->real_escape_string($_POST['comentario']);
-    $nombre_usuario = $_SESSION['nombre_usuario'];  // Asumimos que el nombre del usuario está almacenado en la sesión
-    $fecha_comentario = date('Y-m-d H:i:s'); // Fecha actual
-
-    // Insertar comentario en la base de datos
-    $sql = "INSERT INTO comentarios (id_publicacion, nombre_usuario, comentario, fecha_comentario)
-            VALUES ('$id_publicacion', '$nombre_usuario', '$comentario', '$fecha_comentario')";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "<p class='alert-success'>Comentario agregado correctamente.</p>";
-    } else {
-        echo "Error al agregar el comentario: " . $conn->error;
-    }
-}
-?>
 
 
 <?php
@@ -317,7 +295,28 @@ if ($result_comentarios->num_rows > 0) {
 }
 ?>
 
+<?php
+// Conexión a la base de datos
+include 'db.php'; // Suponemos que ya tienes este archivo para la conexión
 
+// Verificar si el formulario ha sido enviado
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['comentar'])) {
+    $id_publicacion = $_POST['id_publicacion'];
+    $comentario = $conn->real_escape_string($_POST['comentario']);
+    $nombre_usuario = $_SESSION['nombre_usuario'];  // Asumimos que el nombre del usuario está almacenado en la sesión
+    $fecha_comentario = date('Y-m-d H:i:s'); // Fecha actual
+
+    // Insertar comentario en la base de datos
+    $sql = "INSERT INTO comentarios (id_publicacion, nombre_usuario, comentario, fecha_comentario)
+            VALUES ('$id_publicacion', '$nombre_usuario', '$comentario', '$fecha_comentario')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "<p class='alert-success'>Comentario agregado correctamente.</p>";
+    } else {
+        echo "Error al agregar el comentario: " . $conn->error;
+    }
+}
+?>
 <div class="comment-form">
     <h3 class="comment-reply-title">Deja un comentario</h3>
     <form action="" method="POST">

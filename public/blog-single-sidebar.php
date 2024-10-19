@@ -247,44 +247,52 @@ if (isset($_GET['id'])) {
 $conn->close();
 ?>
                             <!-- Comments -->
-                            <div class="post-comments">
-                                <h3 class="comment-title"><span>Comentarios</span></h3>
-                                <ul class="comments-list">
-                                    <li>
-                                        <div class="comment-img">
-                                            <img src="foto de perfil" alt="img">
-                                        </div>
-                                        <div class="comment-desc">
-                                            <div class="desc-top">
-                                                <h6>nombre de usuario</h6>
-                                                <span class="date">fecha</span>
-                                                <a href="javascript:void(0)" class="reply-link"><i
-                                                        class="lni lni-reply"></i>Reply</a>
-                                            </div>
-                                            <p>
-                                                cuerpo
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li class="children">
-                                        <div class="comment-img">
-                                            <img src="foto de perfil" alt="img">
-                                        </div>
-                                        <div class="comment-desc">
-                                            <div class="desc-top">
-                                                <h6>nombre usuario</h6>
-                                                <span class="date">fecha</span>
-                                                <a href="javascript:void(0)" class="reply-link"><i
-                                                        class="lni lni-reply"></i>Reply</a>
-                                            </div>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                                tempor incididunt ut labore et dolore magna aliqua. Ut enim.
-                                            </p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
+                            <?php
+// Suponemos que ya tienes la conexión a la base de datos ($conn) y el ID de la publicación ($id_publicacion)
+
+$id_publicacion = $_GET['id'];  // Capturar el ID de la publicación desde la URL
+
+// Consulta para obtener los comentarios de la publicación actual
+$sql_comentarios = "SELECT c.*, u.foto_perfil FROM comentarios c
+                    JOIN usuarios u ON c.id_usuario = u.id_usuario
+                    WHERE c.id_publicacion = $id_publicacion
+                    ORDER BY c.fecha_comentario DESC";
+
+$result_comentarios = $conn->query($sql_comentarios);
+
+if ($result_comentarios->num_rows > 0) {
+    echo '<div class="post-comments">';
+    echo '<h3 class="comment-title"><span>Comentarios</span></h3>';
+    echo '<ul class="comments-list">';
+
+    while ($comentario = $result_comentarios->fetch_assoc()) {
+        $nombre_usuario = $comentario['nombre_usuario'];
+        $fecha_comentario = date("d M, Y", strtotime($comentario['fecha_comentario']));
+        $texto_comentario = $comentario['comentario'];
+        $foto_perfil = !empty($comentario['foto_perfil']) ? $comentario['foto_perfil'] : 'https://via.placeholder.com/150'; // Si no hay foto, usar placeholder
+
+        echo '
+        <li>
+            <div class="comment-img">
+                <img src="'.$foto_perfil.'" alt="img">
+            </div>
+            <div class="comment-desc">
+                <div class="desc-top">
+                    <h6>'.$nombre_usuario.'</h6>
+                    <span class="date">'.$fecha_comentario.'</span>
+                    <a href="javascript:void(0)" class="reply-link"><i class="lni lni-reply"></i>Reply</a>
+                </div>
+                <p>'.$texto_comentario.'</p>
+            </div>
+        </li>';
+    }
+
+    echo '</ul>';
+    echo '</div>';
+} else {
+    echo '<p>No hay comentarios aún.</p>';
+}
+?>
                             <div class="comment-form">
                                 <h3 class="comment-reply-title">Leave a comment</h3>
                                 <form action="#" method="POST">

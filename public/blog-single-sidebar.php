@@ -295,6 +295,25 @@ if ($result_comentarios->num_rows > 0) {
 }
 ?>
 
+
+<div class="comment-form">
+    <h3 class="comment-reply-title">Deja un comentario</h3>
+    <form action="" method="POST">
+        <input type="hidden" name="id_publicacion" value="<?php echo $id_publicacion; ?>"> <!-- ID de la publicación -->
+        <div class="row">
+            <div class="col-12">
+                <div class="form-box form-group">
+                    <textarea name="comentario" class="form-control form-control-custom" placeholder="Tu comentario" required></textarea>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="button">
+                    <button type="submit" name="comentar" class="btn">Publicar comentario</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
 <?php
 // Conexión a la base de datos
 include 'db.php'; // Suponemos que ya tienes este archivo para la conexión
@@ -317,24 +336,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['comentar'])) {
     }
 }
 ?>
-<div class="comment-form">
-    <h3 class="comment-reply-title">Deja un comentario</h3>
-    <form action="" method="POST">
-        <input type="hidden" name="id_publicacion" value="<?php echo $id_publicacion; ?>"> <!-- ID de la publicación -->
-        <div class="row">
-            <div class="col-12">
-                <div class="form-box form-group">
-                    <textarea name="comentario" class="form-control form-control-custom" placeholder="Tu comentario" required></textarea>
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="button">
-                    <button type="submit" name="comentar" class="btn">Publicar comentario</button>
-                </div>
-            </div>
-        </div>
-    </form>
-</div>
                         </div>
                     </div>
                 </div>

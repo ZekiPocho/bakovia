@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 }
 
 // Definir el número de publicaciones por página
-$limite = 5; // Número de publicaciones por página
+$limite = 8; // Número de publicaciones por página
 
 // Obtener el número de página actual
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;

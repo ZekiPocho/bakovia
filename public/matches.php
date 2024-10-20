@@ -368,7 +368,7 @@ if ($result->num_rows > 0) {
                                 echo '<html>
                                 <div class="row align-items-center">
                                     <div class="col-7">
-                                    <span><?php echo $row["nombre_usuario2"]; ?></span>
+                                    <span><?php echo '. $row["nombre_usuario2"] .'; ?></span>
                                     </div>
                                     <div class="col-5">
                                         <img src="https://via.placeholder.com/50x50" alt="Foto de perfil" class="img-fluid">

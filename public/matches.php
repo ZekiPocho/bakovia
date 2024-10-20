@@ -356,12 +356,22 @@ $conn->close();
                                             ) {
                                                 echo 'ESPERANDO';
                                             } else {
-                                                echo '<form action="join-match.php" method="POST" style="display:inline;">
+                                                if ($row['made_usuario1'] == 1) {
+                                                    echo '<form action="join-match.php" method="POST" style="display:inline;">
+                                                        <input type="hidden" name="id_partida" value="' . $row['id_partida'] . '">
+                                                        <html> <div class="button">
+                                                <button class="btn" disabled>UNIRSE</button>
+                                            </div> </html>
+                                                    </form>';
+                                                }else{
+                                                    echo '<form action="join-match.php" method="POST" style="display:inline;">
                                                         <input type="hidden" name="id_partida" value="' . $row['id_partida'] . '">
                                                         <html> <div class="button">
                                                 <button class="btn">UNIRSE</button>
                                             </div> </html>
                                                     </form>';
+                                                }
+                                                
                                             }
                                             ?>
                                         </div>

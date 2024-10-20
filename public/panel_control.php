@@ -293,7 +293,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     <div class="matches-div text-center">
         <div class="middle-section text-center">
             <!-- Información del Juego -->
-            <p style="font-size: 3rem;"><?php echo htmlspecialchars($nombre_juego); ?></p> <!-- Nombre del juego -->
+            <p style="font-size: 2rem;"><?php echo htmlspecialchars($nombre_juego); ?></p> <!-- Nombre del juego -->
 
             <!-- Puntos -->
             <p style="font-size: 1rem;"><?php echo htmlspecialchars($puntos); ?> Pts.</p> <!-- Puntos -->

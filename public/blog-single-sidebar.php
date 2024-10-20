@@ -288,7 +288,7 @@ if (isset($_GET['id'])) {
                                 <?php
 // Conexión a la base de datos y sesión
 include 'db.php'; 
-include 'validate_session.php';
+include '../src/validate_session.php';
 
 // Verificar si se ha enviado el comentario
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['comentar'])) {

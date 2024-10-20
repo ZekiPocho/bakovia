@@ -176,59 +176,61 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
 
     <!-- Formulario para editar perfil -->
-    <form id="profileForm" action="profile.php" method="POST" enctype="multipart/form-data">
-        <div class="row justify-content-center align-items-center">
-            <!-- Foto de perfil -->
-            <div class="col-md-4 text-center mb-4">
-                <input type="file" id="profileImage" name="profileImage" class="form-control" accept="image/*" onchange="previewImage(event)" style="display: none;">
-                <img src="../uploads/user/default.png" alt="Foto de perfil" class="img-fluid" style="max-height: 200px; max-width: 200px; object-fit: cover;" id="profilePreview" onclick="document.getElementById('profileImage').click();">
-                <p class="mt-2">Haz clic en la imagen para cambiar la foto de perfil</p>
+    <form id="profileForm" action="profile.php" method="POST" enctype="multipart/form-data" onsubmit="return validateImageSize()">
+    <div class="row justify-content-center align-items-center">
+        <!-- Foto de perfil -->
+        <div class="col-md-4 text-center mb-4">
+            <input type="file" id="profileImage" name="profileImage" class="form-control" accept="image/*" onchange="previewImage(event); validateImageSize()" style="display: none;">
+            <img src="../uploads/user/default.png" alt="Foto de perfil" class="img-fluid" style="max-height: 200px; max-width: 200px; object-fit: cover;" id="profilePreview" onclick="document.getElementById('profileImage').click();">
+            <p class="mt-2" style="filter: opacity(50%);">Haz clic en la imagen para cambiar la foto de perfil</p>
+        </div>
+
+        <!-- Nombre de usuario y biografía -->
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label for="username" class="form-label " style="filter: opacity(50%);">Nombre de Usuario</label>
+                <input type="text" id="username" name="username" class="form-control" style="background-color: #171D25; border: solid 2px #6E869D; color: white;">
             </div>
 
-            <!-- Nombre de usuario y biografía -->
-            <div class="col-md-6">
-                <div class="mb-3">
-                    <label for="username" class="form-label " style="filter: opacity(50%);">Nombre de Usuario</label>
-                    <input type="text" id="username" name="username" class="form-control" style="background-color: #171D25; border: solid 2px #6E869D; color: white;">
-                </div>
+            <div class="mb-3">
+                <label for="bio" class="form-label" style="filter: opacity(50%);">Biografía</label>
+                <textarea id="bio" name="bio" class="form-control" maxlength="640" rows="3" style="background-color: #171D25; border: solid 2px #6E869D; color: white;"></textarea>
+            </div>
+        </div>
+    </div>
 
-                <div class="mb-3">
-                    <label for="bio" class="form-label" style="filter: opacity(50%);">Biografía</label>
-                    <textarea id="bio" name="bio" class="form-control" maxlength="640" rows="3" style="background-color: #171D25; border: solid 2px #6E869D; color: white;"></textarea>
+    <!-- ARMY SHOWCASE -->
+    <div class="row mt-2 justify-content-center">
+        <div class="col-md-8">
+            <h2 class="text-center">ARMY SHOWCASE</h2>
+            <div class="card mb-3 text-center" style="background-color: #171D25; border: solid 2px #6E869D; padding: 15px;">
+                <p class="mt-2" style="filter: opacity(50%);">¡Aquí puedes exhibir uno de tus ejercitos! Si deseas, añade una descripción y cuenta la historia de tus personajes...</p>
+                <input type="file" id="armyShowcaseImage" name="armyShowcaseImage" class="form-control" accept="image/*" onchange="previewArmyImage(event)" style="display: none;">
+                <img src="https://via.placeholder.com/400x200" class="card-img-top mt-3" alt="Imagen ARMY SHOWCASE" id="armyImagePreview" onclick="document.getElementById('armyShowcaseImage').click();">
+                <p class="mt-2" style="filter: opacity(50%);">Haz clic en la imagen para cambiar el ARMY SHOWCASE</p>
+                <div class="card-body">
+                    <textarea id="description1" name="description1" class="form-control" maxlength="640" rows="5" placeholder="Descripción" style="background-color: #171D25; border: solid 2px #6E869D; color: white;"></textarea>
                 </div>
             </div>
         </div>
-
-        <!-- ARMY SHOWCASE -->
-        <div class="row mt-2 justify-content-center">
-            <div class="col-md-8">
-                <h2 class="text-center">ARMY SHOWCASE</h2>
-                <div class="card mb-3 text-center" style="background-color: #171D25; border: solid 2px #6E869D; padding: 15px;">
-                    <p class="mt-2" style="filter: opacity(50%);">¡Aquí puedes exhibir uno de tus ejercitos! Si deaseas, añade una descripción y cuenta la historia de tus personajes...</p>
-                    <input type="file" id="armyShowcaseImage" name="armyShowcaseImage" class="form-control" accept="image/*" onchange="previewArmyImage(event)" style="display: none;">
-                    <img src="https://via.placeholder.com/400x200" class="card-img-top mt-3" alt="Imagen ARMY SHOWCASE" id="armyImagePreview" onclick="document.getElementById('armyShowcaseImage').click();">
-                    <p class="mt-2" style="filter: opacity(50%);">Haz clic en la imagen para cambiar el ARMY SHOWCASE</p>
-                    <div class="card-body">
-                        <textarea id="description1" name="description1" class="form-control" maxlength="640" rows="5" placeholder="Descripción" style="background-color: #171D25; border: solid 2px #6E869D; color: white;"></textarea>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
-</div>
+    </div>
+</form>
 
 <!-- Scripts para previsualización de imagen -->
 <script>
     function validateImageSize() {
-    const fileInput = document.getElementById('profileImage');
-    const file = fileInput.files[0];
+        const fileInput = document.getElementById('profileImage');
+        const file = fileInput.files[0];
 
-    if (file && file.size > 5 * 1024 * 1024) { // 5MB en bytes
-        alert("El tamaño del archivo no puede exceder los 5MB.");
-        return false; // Prevenir que el formulario se envíe
+        if (file && file.size > 5 * 1024 * 1024) { // 5MB en bytes
+            alert("El tamaño del archivo no puede exceder los 5MB.");
+            fileInput.value = ""; // Limpiar el input
+            document.getElementById('profilePreview').src = '../uploads/user/default.png'; // Restablecer la imagen
+            return false; // Prevenir que el formulario se envíe
+        }
+        return true; // Permitir que el formulario se envíe si el archivo es válido
     }
-    return true; // Permitir que el formulario se envíe si el archivo es válido
-}
+
     function previewImage(event) {
         const preview = document.getElementById('profilePreview');
         const file = event.target.files[0];

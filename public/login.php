@@ -2,7 +2,7 @@
 
 session_start();
 if(!isset($_SESSION['user'])){
-    header("Location: ../public/index.php");
+    header("Location: ../public/index.html");
 }
 include "db.php";
 $mensaje = "";

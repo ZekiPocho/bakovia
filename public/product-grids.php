@@ -203,6 +203,7 @@ register.php<div class="col-sm-auto"></div>
                                 <input type="text" placeholder="Buscar">
                                 <button type="submit"><i class="lni lni-search-alt"></i></button>
                             </form>
+                            <a href="../admin/admin-products.php">ADMIN</a>
                         </div>
                         <!-- End Single Widget -->
                         <!-- Start Single Widget -->

@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 require_once "../src/validate_session.php"; // Asegúrate de que el usuario esté validado
 include '../public/db.php'; // Conexión a la base de datos
 

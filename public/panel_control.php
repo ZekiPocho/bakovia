@@ -197,7 +197,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     <?php
         $id_partida = $_GET['id_partida']; // Asegúrate de que el ID sea pasado de manera segura
 
-        // Nueva consulta adaptada
+        // Nueva consulta adaptada para obtener todos los datos de la partida, incluyendo id_reserva
         $query = "SELECT 
                         j.nombre AS nombre_juego, 
                         p.puntos AS puntos, 
@@ -215,7 +215,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         h2.hora AS hora_final,
                         p.id_mesa AS id_mesa, 
                         p.puntaje_usuario1 AS puntaje_jugador1, 
-                        p.puntaje_usuario2 AS puntaje_jugador2
+                        p.puntaje_usuario2 AS puntaje_jugador2,
+                        rm.id_reserva AS id_reserva -- Extraer id_reserva
                     FROM partida p
                     JOIN faccion f1 ON p.id_faccion_usuario1 = f1.id_faccion
                     JOIN faccion f2 ON p.id_faccion_usuario2 = f2.id_faccion
@@ -224,17 +225,18 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                     JOIN juego j ON p.id_juego = j.id_juego
                     JOIN horarios h1 ON p.hora_inicio = h1.id_hora
                     JOIN horarios h2 ON p.hora_final = h2.id_hora
+                    LEFT JOIN reserva_mesa rm ON rm.id_partida = p.id_partida -- Relación con reserva_mesa
                     WHERE p.id_partida = ?";
-                  
+        
         if ($stmt = $conn->prepare($query)) {
             $stmt->bind_param("i", $id_partida); // 'i' indica que el parámetro es un entero
             $stmt->execute();  
             $result = $stmt->get_result();
-
+        
             if ($result->num_rows > 0) {
                 // Obtener los datos de la partida
                 $partida = $result->fetch_assoc();
-
+        
                 // Asignar las variables
                 $nombre_juego = $partida['nombre_juego'] ?? null; 
                 $puntos = $partida['puntos'] ?? null;
@@ -253,7 +255,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 $id_mesa = $partida['id_mesa'] ?? null;
                 $puntaje_jugador1 = $partida['puntaje_jugador1'] ?? null;
                 $puntaje_jugador2 = $partida['puntaje_jugador2'] ?? null;
-
+                $id_reserva = $partida['id_reserva'] ?? null; // Asignar id_reserva
+        
                 // Ahora puedes usar las variables para mostrar los datos en tu HTML
             } else {
                 echo "No se encontró la partida con el ID proporcionado.";
@@ -262,6 +265,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         } else {
             echo "Error en la preparación de la consulta.";
         }
+        
     ?>
 
 <div class="container-sm mt-4">
@@ -318,8 +322,9 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <button type="submit" class="btn btn-primary">INICIAR</button>
             </form>
             <br>
-            <form action="delete_match.php" method="POST">
+            <form action="delete_match.php" method="POST" onsubmit="return confirmDelete();">
                 <input type="hidden" name="id_partida" value="<?php echo htmlspecialchars($id_partida); ?>">
+                <input type="hidden" name="id_reserva" value="<?php echo htmlspecialchars($id_reserva); ?>">
                 <button type="submit" class="btn btn-danger">BORRAR PARTIDA</button>
             </form>
         </div>
@@ -353,7 +358,11 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 </div>
 
 
-
+<script>
+function confirmDelete() {
+    return confirm("¿Estás seguro de que deseas borrar la partida?");
+}
+</script>
 
     
 

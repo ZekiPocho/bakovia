@@ -188,19 +188,19 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <!-- Nombre de usuario y biografía -->
             <div class="col-md-6">
                 <div class="mb-3">
-                    <label for="username" class="form-label">Nombre de Usuario</label>
+                    <label for="username" class="form-label " style="filter: opacity(50%);">Nombre de Usuario</label>
                     <input type="text" id="username" name="username" class="form-control" value="Nombre de Usuario" style="background-color: #171D25; border: solid 2px #6E869D; color: white;">
                 </div>
 
                 <div class="mb-3">
-                    <label for="bio" class="form-label">Biografía</label>
-                    <textarea id="bio" name="bio" class="form-control" maxlength="640" rows="3">Esta es la biografía del usuario. Aquí puedes añadir más detalles sobre ti.</textarea>
+                    <label for="bio" class="form-label" style="filter: opacity(50%);">Biografía</label>
+                    <textarea id="bio" name="bio" class="form-control" maxlength="640" rows="3" style="background-color: #171D25; border: solid 2px #6E869D; color: white;" value="Biografía"></textarea>
                 </div>
             </div>
         </div>
 
         <!-- ARMY SHOWCASE -->
-        <div class="row mt-5 justify-content-center">
+        <div class="row mt-2 justify-content-center">
             <div class="col-md-8">
                 <h2 class="text-center">ARMY SHOWCASE</h2>
                 <div class="card mb-3 text-center" style="background-color: #171D25; border: solid 2px #6E869D; padding: 15px;">

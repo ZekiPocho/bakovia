@@ -341,8 +341,8 @@ JOIN juego j ON p.id_juego = j.id_juego -- Unir con la tabla juego para obtener 
 JOIN horarios h1 ON p.hora_inicio = h1.id_hora -- Unir con la tabla horarios para obtener la hora de inicio
 JOIN horarios h2 ON p.hora_final = h2.id_hora -- Unir con la tabla horarios para obtener la hora de finalización
 WHERE p.estado = 'programado'
-AND p.fecha = CURDATE();
-;
+AND p.fecha = CURDATE()";
+
 
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $id_usuario); // Vincula el ID de usuario

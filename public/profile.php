@@ -2,7 +2,7 @@
     require_once "../src/validate_session.php";
     include "db.php";
 ?>
-    <?php
+<?php
 
 // Verifica si el formulario fue enviado
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

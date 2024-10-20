@@ -366,12 +366,12 @@ if ($result->num_rows > 0) {
                         if ($row['made_usuario_sesion'] == 1) {
                             if ($row['nombre_usuario2'] !== "N/A") {
                                 echo '<html>
-                                <div class='row align-items-center'>
-                                    <div class='col-7'>
+                                <div class="row align-items-center">
+                                    <div class="col-7">
                                     <span><?php echo $row['nombre_usuario2']; ?></span>
                                     </div>
-                                    <div class='col-5'>
-                                        <img src='https://via.placeholder.com/50x50' alt='Foto de perfil' class='img-fluid'>
+                                    <div class="col-5">
+                                        <img src="https://via.placeholder.com/50x50" alt="Foto de perfil" class="img-fluid">
                                     </div>
                                 </div></html>';
                             }else {

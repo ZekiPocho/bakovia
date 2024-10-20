@@ -219,7 +219,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <h3>
             Crear Publicación
         </h3>
-    <form form id="miFormulario" action="" method="POST" enctype="multipart/form-data">
+    <form action="" method="POST" enctype="multipart/form-data">
     <div>
     <label for="tags">Seleccionar Tag:</label>
     <select name="tag" id="tags">
@@ -264,18 +264,11 @@ function contarCaracteres() {
             <input class="btn" type="submit" value="Publicar">
             </div>
         </div>
-        <script>
-window.addEventListener("pageshow", function(event) {
-    if (event.persisted) {
-        document.getElementById("miFormulario").reset();
-    }
-});
-</script>
+        
     </form>
     </div>
     
 </section> 
-
 
 <script>
 function previewImages() {

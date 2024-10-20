@@ -84,10 +84,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt_usuario->close();
 
 
-            // Cerrar el statement
-            $stmt_usuario->close();
-
-
             // Si ambas inserciones fueron exitosas, confirmar la transacción
             $conn->commit();
 

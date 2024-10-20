@@ -229,7 +229,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         </div>
         <div>
     <label for="tags">Seleccionar Tag:</label>
-    <select name="tag" id="tags" placeholder="tags">
+    <select name="tag" id="tags">
+        <option value="miniaturas">Miniaturas</option>
         <option value="otros">Otros</option>
         <option value="ejercito">Ejército</option>
         <option value="tienda">Tienda</option>
@@ -237,7 +238,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <option value="pintura">Pintura/Hobby</option>
         <option value="lore">Lore</option>
         <option value="noticias">Noticias</option>
-        <option value="miniaturas">Miniaturas</option>
     </select>
 </div>
         <div>

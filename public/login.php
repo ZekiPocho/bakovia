@@ -63,17 +63,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $email = $_POST['email'];
         $password = sha1($_POST['clave']); 
         // Consulta SQL para verificar el correo y la contraseña
-        $res = $conn->query("SELECT * FROM usuarios 
-            WHERE correo='$email' 
-            AND contrasena='$password'  
-            AND verificado='si'") or die($conn->error);
+        $stmt = $conn->prepare("SELECT id_usuario, nombre_usuario, contrasena, correo, foto_perfil, 
+                                   biografia, fecha_registro, verificado, army_showcase, 
+                                   rango_id, wins, loses, id_rol, token
+                            FROM usuarios 
+                            WHERE correo=? 
+                              AND contrasena=?  
+                              AND verificado='si'");
+                $stmt->bind_param("ss", $email, $password);
+                $stmt->execute();
+                $res = $stmt->get_result();
         if ($res && mysqli_num_rows($res) > 0) {
             $userData = $res->fetch_assoc();
-            // Iniciar sesión
             $_SESSION['user'] = $userData['correo'];
-            $_SESSION['nombre_usuario'] = $userData['nombre_usuario']; // Guardar nombre de usuario
-            $_SESSION['id_usuario'] = $userData['id_usuario']; // Guardar el ID del usuario si lo necesitas
-            // Verificar si la opción de 'remember me' está seleccionada
+            $_SESSION['nombre_usuario'] = $userData['nombre_usuario'];
+            $_SESSION['id_usuario'] = $userData['id_usuario'];
+            $_SESSION['foto_perfil'] = $userData['foto_perfil'];
+            $_SESSION['biografia'] = $userData['biografia'] ?? null;
+            $_SESSION['fecha_registro'] = $userData['fecha_registro'];
+            $_SESSION['army_showcase'] = $userData['army_showcase'];
+            $_SESSION['rango_id'] = $userData['rango_id'];
+            $_SESSION['wins'] = $userData['wins'];
+            $_SESSION['loses'] = $userData['loses'];
+            $_SESSION['id_rol'] = $userData['id_rol'];
+            $_SESSION['token'] = $userData['token'];
             if (isset($_POST['remember'])) {
                 // Generar cookies con duración de 30 días
                 setcookie('email', $email, time() + (86400 * 30), "/"); // 86400 = 1 día

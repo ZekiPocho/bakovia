@@ -31,7 +31,7 @@ if (isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
         $_SESSION['nombre_usuario'] = $userData['nombre_usuario'];
         $_SESSION['id_usuario'] = $userData['id_usuario'];
         $_SESSION['foto_perfil'] = $userData['foto_perfil'];
-        $_SESSION['biografia'] = $userData['biografia']; ?? null;
+        $_SESSION['biografía'] = $userData['biografía'] ?? null;
         $_SESSION['fecha_registro'] = $userData['fecha_registro'];
         $_SESSION['army_showcase'] = $userData['army_showcase'];
         $_SESSION['rango_id'] = $userData['rango_id'];

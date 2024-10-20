@@ -5,6 +5,7 @@ $usuario_actual = $_SESSION['nombre_usuario']; // Esto depende de cómo guardes 
 unset($_SESSION['juego']);
 unset($_SESSION['puntos']);
 unset($_SESSION['faccion']);
+echo "$_SESSION['partida']";
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">

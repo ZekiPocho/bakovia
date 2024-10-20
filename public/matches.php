@@ -373,7 +373,7 @@ if ($result->num_rows > 0) {
                                     <div class='col-5'>
                                         <img src='https://via.placeholder.com/50x50' alt='Foto de perfil' class='img-fluid'>
                                     </div>
-                                </div></html>
+                                </div></html>;
                             }else {
                                 echo '<form action="join-match.php" method="POST" style="display:inline;">
                                     <input type="hidden" name="id_partida" value="' . $row['id_partida'] . '">

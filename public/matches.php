@@ -305,90 +305,83 @@ $conn->close();
                         }
 
                         // Consulta para obtener partidas programadas
-                        $sql = "SELECT p.id_partida, p.id_juego, p.puntos, 
-                            p.nombre_usuario1, u1.made AS made_usuario1, 
-                            p.nombre_usuario2, u2.made AS made_usuario2, 
-                            f1.nombre AS faccion1, f1.subfaccion AS subfaccion1, f1.icono AS icono1, 
-                            f2.nombre AS faccion2, f2.subfaccion AS subfaccion2, f2.icono AS icono2,
-                            p.hora_inicio, p.hora_final, p.id_mesa, p.puntaje_usuario1, 
-                            p.puntaje_usuario2
-                        FROM partida p
-                        JOIN faccion f1 ON p.id_faccion_usuario1 = f1.id_faccion
-                        JOIN faccion f2 ON p.id_faccion_usuario2 = f2.id_faccion
-                        LEFT JOIN usuarios u1 ON p.nombre_usuario1 = u1.nombre_usuario
-                        LEFT JOIN usuarios u2 ON p.nombre_usuario2 = u2.nombre_usuario
-                        WHERE p.estado = 'programado'
-                        AND p.fecha = CURDATE();
+                        $id_usuario = $_SESSION['id_usuario']; // Obtener el ID del usuario de la sesión
 
-                        ";
+$sql = "SELECT p.id_partida, p.id_juego, p.puntos, 
+               p.nombre_usuario1, u1.made AS made_usuario1, 
+               p.nombre_usuario2, u2.made AS made_usuario2, 
+               f1.nombre AS faccion1, f1.subfaccion AS subfaccion1, f1.icono AS icono1, 
+               f2.nombre AS faccion2, f2.subfaccion AS subfaccion2, f2.icono AS icono2,
+               p.hora_inicio, p.hora_final, p.id_mesa, p.puntaje_usuario1, 
+               p.puntaje_usuario2,
+               u_made.made AS made_usuario_sesion -- Agregar made del usuario en la sesión
+        FROM partida p
+        JOIN faccion f1 ON p.id_faccion_usuario1 = f1.id_faccion
+        JOIN faccion f2 ON p.id_faccion_usuario2 = f2.id_faccion
+        LEFT JOIN usuarios u1 ON p.nombre_usuario1 = u1.nombre_usuario
+        LEFT JOIN usuarios u2 ON p.nombre_usuario2 = u2.nombre_usuario
+        LEFT JOIN usuarios u_made ON u_made.id_usuario = ? -- Unir por ID de usuario
+        WHERE p.estado = 'programado'
+        AND p.fecha = CURDATE();";
 
-                        $result = $conn->query($sql);
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $id_usuario); // Vincula el ID de usuario
+$stmt->execute();
+$result = $stmt->get_result();
 
-                        // Verificar y procesar los resultados
-                        if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-                                ?>
-                                <!-- Aquí empieza el HTML para mostrar las partidas programadas -->
-                                <div class="match-entry mb-2 text-center">
-                                    <div class="row align-items-center">
-                                        <div class="col-2">
-                                            <img src="https://via.placeholder.com/50x50" alt="Foto de perfil" class="img-fluid">
-                                        </div>
-                                        <div class="col-3">
-                                            <span><?php echo $row['nombre_usuario1']; ?></span>
-                                        </div>
-                                        <div class="col-2">
-                                            <?php
-                                            if ($usuario_actual === $row['nombre_usuario1'] && $row['made_usuario1'] == 1
-                                            ) {
-                                                echo '<a href="panel_control.php?id_partida=' . $row['id_partida'] . '" class="btn btn-primary">
-                                                ADMIN
-                                                </a>';
-                                            } else {
-                                                echo '<h7>PARTIDA ABIERTA</h7>';
-                                            }
-                                            ?>
-                                        </div>
-                                        <div class="col-5">
-                                            <?php
-                                            // Mostrar el botón solo si el usuario actual no es el usuario 1 y si la partida está abierta
-                                            if ($usuario_actual === $row['nombre_usuario1'] && $row['made_usuario1'] == 1
-                                            ) {
-                                                echo 'ESPERANDO';
-                                            } else {
-                                                $id_usuario = $_SESSION['id_usuario']; // Obtener el ID del usuario de la sesión
-                                                $sql = "SELECT made FROM usuarios WHERE id_usuario = ?"; // Cambié el nombre de la columna a 'id_usuario'
-
-                                                // Preparar la consulta
-                                                $stmt = $conn->prepare($sql);
-                                                $stmt->bind_param("i", $id_usuario); // Vincular el ID de usuario
-                                                $stmt->execute();
-                                                $result = $stmt->get_result();
-
-                                                if ($result->num_rows > 0) {
-                                                    $row = $result->fetch_assoc(); // Obtener el resultado
-                                                    $made = $row['made']; // Extraer el valor de 'made'
-
-                                                    // Mostrar el botón de acuerdo al valor de 'made'
-                                                    echo '<form action="join-match.php" method="POST" style="display:inline;">
-                                                            <input type="hidden" name="id_partida" value="' . $row['id_partida'] . '">
-                                                            <div class="button">';
-                                                    
-                                                    if ($made == 1) { // Si made es 1, desactivar el botón
-                                                        echo '<button class="btn" disabled>UNIRSE</button>';
-                                                    } else { // Si made es 0, activar el botón
-                                                        echo '<button class="btn">UNIRSE</button>';
-                                                    }
-                                                    
-                                                    echo '  </div>
-                                                        </form>';
-                                                }
-
-                                                $stmt->close(); // Cerrar la declaración
-                                            }
-                                            ?>
-                                        </div>
+// Verificar y procesar los resultados
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        ?>
+        <!-- Aquí empieza el HTML para mostrar las partidas programadas -->
+        <div class="match-entry mb-2 text-center">
+            <div class="row align-items-center">
+                <div class="col-2">
+                    <img src="https://via.placeholder.com/50x50" alt="Foto de perfil" class="img-fluid">
+                </div>
+                <div class="col-3">
+                    <span><?php echo $row['nombre_usuario1']; ?></span>
+                </div>
+                <div class="col-2">
+                    <?php
+                    if ($usuario_actual === $row['nombre_usuario1'] && $row['made_usuario1'] == 1) {
+                        echo '<a href="panel_control.php?id_partida=' . $row['id_partida'] . '" class="btn btn-primary">ADMIN</a>';
+                    } else {
+                        echo '<h7>PARTIDA ABIERTA</h7>';
+                    }
+                    ?>
+                </div>
+                <div class="col-5">
+                    <?php
+                    // Mostrar el botón solo si el usuario actual no es el usuario 1 y si la partida está abierta
+                    if ($usuario_actual === $row['nombre_usuario1'] && $row['made_usuario1'] == 1) {
+                        echo 'ESPERANDO';
+                    } else {
+                        // Verificar si el usuario en la sesión tiene made como 1
+                        if ($row['made_usuario_sesion'] == 1) {
+                            echo '<form action="join-match.php" method="POST" style="display:inline;">
+                                    <input type="hidden" name="id_partida" value="' . $row['id_partida'] . '">
+                                    <div class="button">
+                                        <button class="btn" disabled>UNIRSE</button>
                                     </div>
+                                  </form>';
+                        } else {
+                            echo '<form action="join-match.php" method="POST" style="display:inline;">
+                                    <input type="hidden" name="id_partida" value="' . $row['id_partida'] . '">
+                                    <div class="button">
+                                        <button class="btn">UNIRSE</button>
+                                    </div>
+                                  </form>';
+                        }
+                    }
+                    ?>
+                </div>
+            </div>
+        </div>
+        <?php
+    }
+}
+
                                     <div class="scoreboard">
                                         <div class="team">
                                             <img src="<?php echo $row['icono1']; ?>" alt="Equipo 1">

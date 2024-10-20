@@ -216,7 +216,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         p.id_mesa AS id_mesa, 
                         p.puntaje_usuario1 AS puntaje_jugador1, 
                         p.puntaje_usuario2 AS puntaje_jugador2,
-                        rm.id_reserva AS id_reserva -- Extraer id_reserva
+                        p.id_reserva AS id_reserva -- Extraer id_reserva directamente de partida
                     FROM partida p
                     JOIN faccion f1 ON p.id_faccion_usuario1 = f1.id_faccion
                     JOIN faccion f2 ON p.id_faccion_usuario2 = f2.id_faccion
@@ -225,8 +225,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                     JOIN juego j ON p.id_juego = j.id_juego
                     JOIN horarios h1 ON p.hora_inicio = h1.id_hora
                     JOIN horarios h2 ON p.hora_final = h2.id_hora
-                    LEFT JOIN reserva_mesa rm ON rm.id_partida = p.id_partida -- Relación con reserva_mesa
-                    WHERE p.id_partida = ?";
+                    WHERE p.id_partida = ?"; // No es necesario unir con reserva_mesa aquí
         
         if ($stmt = $conn->prepare($query)) {
             $stmt->bind_param("i", $id_partida); // 'i' indica que el parámetro es un entero
@@ -255,7 +254,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 $id_mesa = $partida['id_mesa'] ?? null;
                 $puntaje_jugador1 = $partida['puntaje_jugador1'] ?? null;
                 $puntaje_jugador2 = $partida['puntaje_jugador2'] ?? null;
-                $id_reserva = $partida['id_reserva'] ?? null; // Asignar id_reserva
+                $id_reserva = $partida['id_reserva'] ?? null; // Asignar id_reserva directamente de partida
         
                 // Ahora puedes usar las variables para mostrar los datos en tu HTML
             } else {
@@ -265,6 +264,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         } else {
             echo "Error en la preparación de la consulta.";
         }
+        
         
     ?>
 

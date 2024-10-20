@@ -25,6 +25,11 @@ if (!isset($_SESSION['id_rol']) || $_SESSION['id_rol'] != 1) {
         }
         h1 {
             color: #ff9800;
+            font-size: 25px;
+            text-align: center;
+        }
+        h2 {
+            color: #ff9800;
             text-align: center;
         }
         .button-container {

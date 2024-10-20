@@ -216,9 +216,9 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
 <section class="hero-area">
     <div class="container-sm">
-        <h1>
-            CREAR POST
-        </h1>
+        <h3>
+            Crear Publicación
+        </h3>
     <form action="" method="POST" enctype="multipart/form-data">
         <div>
             <textarea class="form-control" name="titulo" placeholder="título*" required></textarea>

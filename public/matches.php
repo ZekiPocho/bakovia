@@ -329,7 +329,7 @@ $conn->close();
                                         </div>
                                         <div class="col-2">
                                             <?php
-                                            if ($$usuario_partida == true) {
+                                            if ($usuario_partida == true) {
                                                 echo '<a href="panel_control.php?id_partida=' . $row['id_partida'] . '" class="btn btn-primary">
                                                 ADMIN
                                                 </a>';

@@ -226,7 +226,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $armyShowcaseImage = $_FILES['armyShowcaseImage'];
         // Validar y mover la imagen
         if (validateImageSize($armyShowcaseImage)) {
-            $targetDir = '../uploads/army_showcase/';
+            $targetDir = '../uploads/army/';
             $targetFile = $targetDir . basename($armyShowcaseImage['name']);
             move_uploaded_file($armyShowcaseImage['tmp_name'], $targetFile);
             $_SESSION['army_showcase'] = $targetFile; // Actualiza la sesión con la nueva imagen
@@ -236,7 +236,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Guardar los cambios en la base de datos
     if (empty($errors)) {
         $userId = $_SESSION['id_usuario'];
-        $query = "UPDATE users SET nombre_usuario = ?, biografia = ?, army_desc = ? WHERE id_usuario = ?";
+        $query = "UPDATE usuarios SET nombre_usuario = ?, biografia = ?, army_desc = ? WHERE id_usuario = ?";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("sssi", $username, $bio, $description, $userId);
         

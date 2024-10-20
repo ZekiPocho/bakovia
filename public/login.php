@@ -258,8 +258,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <!--/ End Shopping Item -->
         </div>
     </div>
-<!--PERFIL-->
-register.php<div class="col-sm-auto"></div>
+<div class="col-sm-auto"></div>
     <div class="navbar-cart">
         <div class="cart-items">
             <a href="profile.php" class="main-btn">

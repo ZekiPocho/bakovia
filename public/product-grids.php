@@ -154,8 +154,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <!--/ End Shopping Item -->
         </div>
     </div>
-<!--PERFIL-->
-register.php<div class="col-sm-auto"></div>
+<div class="col-sm-auto"></div>
     <div class="navbar-cart">
         <div class="cart-items">
             <a href="profile.php" class="main-btn">
@@ -341,7 +340,6 @@ register.php<div class="col-sm-auto"></div>
                                     ?>
                                     <!-- Start Single Product -->
                                     <?php while ($producto = $productos->fetch_assoc()): ?>
-                                        <!-- Start Single Product -->
                                         <div class="col-lg-4 col-md-6 col-12">
                                             <div class="single-product">
                                                 <div class="product-image">
@@ -358,10 +356,10 @@ register.php<div class="col-sm-auto"></div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- End Single Product -->
                                     <?php endwhile; ?>
                                 </div>
                                     <!-- End Single Product -->
+                                
                                 <div class="row">
                                     <div class="col-12">
                                         <!-- Pagination -->

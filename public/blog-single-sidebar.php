@@ -1,9 +1,10 @@
 
 <?php
-// Conexión a la base de datos
-include 'db.php'; // Archivo para la conexión a la base de datos
-include ('validate_session.php');
-// Verificar si el formulario de comentario o respuesta ha sido enviado
+// Verificar si el usuario autenticado es el autor del comentario
+include 'db.php'; 
+include 'validate_session.php';
+
+// Verificar si se ha enviado el comentario
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['comentar'])) {
     $id_publicacion = $_POST['id_publicacion'];
     $id_usuario = $_SESSION['id_usuario'];
@@ -15,9 +16,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['comentar'])) {
             VALUES ('$id_publicacion', '$id_usuario', '$comentario', '$fecha_comentario')";
 
     if ($conn->query($sql)) {
-        // Redirigir al usuario después de que el comentario haya sido agregado correctamente
         header("Location: blog-single-sidebar.php?id=$id_publicacion&success=1");
-        exit(); // Importante: salir después de la redirección
+        exit(); 
     } else {
         echo "Error al agregar comentario: " . $conn->error;
     }
@@ -313,13 +313,15 @@ $sql_comentarios = "SELECT c.*, u.nombre_usuario, u.foto_perfil
 
 $result_comentarios = $conn->query($sql_comentarios);
 
-// Mostrar los comentarios
+/// Mostrar los comentarios
 if ($result_comentarios->num_rows > 0) {
     while ($comentario = $result_comentarios->fetch_assoc()) {
         $nombre_usuario = $comentario['nombre_usuario'];
         $fecha_comentario = date("d M, Y", strtotime($comentario['fecha_comentario']));
         $texto_comentario = $comentario['comentario'];
         $foto_perfil = !empty($comentario['foto_perfil']) ? $comentario['foto_perfil'] : 'https://via.placeholder.com/150';
+        $id_comentario = $comentario['id_comentario']; // Obtener el ID del comentario
+        $id_usuario_comentario = $comentario['id_usuario']; // ID del usuario que hizo el comentario
 
         echo '
         <li>
@@ -331,9 +333,19 @@ if ($result_comentarios->num_rows > 0) {
                     <h6>'.$nombre_usuario.'</h6>
                     <span class="date">'.$fecha_comentario.'</span>
                 </div>
-                <p>'.$texto_comentario.'</p>
-            </div>
-        </li>';
+                <p>'.$texto_comentario.'</p>';
+
+        // Mostrar el botón de eliminar si el usuario autenticado es el autor del comentario
+        if ($_SESSION['id_usuario'] == $id_usuario_comentario) {
+            echo '
+            <form action="delete_comment.php" method="POST" onsubmit="return confirm(\'¿Estás seguro de que deseas eliminar este comentario?\');">
+                <input type="hidden" name="id_comentario" value="'.$id_comentario.'">
+                <input type="hidden" name="id_publicacion" value="'.$id_publicacion.'">
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+            </form>';
+        }
+
+        echo '</div></li>';
     }
 } else {
     echo "<p>No hay comentarios aún.</p>";

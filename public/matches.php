@@ -394,7 +394,7 @@ $conn->close();
                                             } else {
                                                 echo "<div class='button'>
                         <a href='new-match.php'><button class='btn'>Nueva Partida</button></a>
-                    </div>"
+                    </div>";
                                             }
                     ?>
                     

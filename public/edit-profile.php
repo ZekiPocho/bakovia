@@ -181,8 +181,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <!-- Foto de perfil -->
             <div class="col-md-4 text-center mb-4">
                 <input type="file" id="profileImage" name="profileImage" class="form-control" accept="image/*" onchange="previewImage(event)" style="display: none;">
-                <img src="../uploads/user/default.png" alt="Foto de perfil" class="img-fluid" style="max-height: 200px; max-width: 200px; object-fit: none;" id="profilePreview" onclick="document.getElementById('profileImage').click();">
-                <p class="mt-2" style="filter: opacity(50%);">Haz clic en la imagen para cambiar la foto de perfil</p>
+                <img src="../uploads/user/default.png" alt="Foto de perfil" class="img-fluid" style="max-height: 200px; max-width: 200px; object-fit: cover;" id="profilePreview" onclick="document.getElementById('profileImage').click();">
+                <p class="mt-2">Haz clic en la imagen para cambiar la foto de perfil</p>
             </div>
 
             <!-- Nombre de usuario y biografía -->
@@ -219,6 +219,16 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
 <!-- Scripts para previsualización de imagen -->
 <script>
+    function validateImageSize() {
+    const fileInput = document.getElementById('profileImage');
+    const file = fileInput.files[0];
+
+    if (file && file.size > 5 * 1024 * 1024) { // 5MB en bytes
+        alert("El tamaño del archivo no puede exceder los 5MB.");
+        return false; // Prevenir que el formulario se envíe
+    }
+    return true; // Permitir que el formulario se envíe si el archivo es válido
+}
     function previewImage(event) {
         const preview = document.getElementById('profilePreview');
         const file = event.target.files[0];

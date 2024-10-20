@@ -297,7 +297,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
             <!-- Puntos -->
             <p style="font-size: 1.2rem; filter: opacity(50%);"><?php echo htmlspecialchars($puntos); ?> Pts.</p> <!-- Puntos -->
-
+            <br>
             <!-- Horarios -->
             <h4 style="font-size: 1rem;">Horario:</h4>
             <p style="font-size: 1rem;">

@@ -409,7 +409,7 @@ if ($result->num_rows > 0) {
                 </div>
                 <div class="score"><?php echo $row['puntaje_usuario2']; ?></div>
                 <div class="team">
-                    <img src="<?php echo $row['icono2']; ?>" alt="Equipo 2" style="filter: opacity(<?php echo $row['nombre_usuario2'] !== 'N/A' ? '100%' : '25%'; ?>);">
+                    <img src="<?php echo $row['icono2']; ?>" alt="Equipo 2" style="filter: opacity(<?php echo $row['nombre_usuario2'] !== 'N/A' ? '1' : '0.25'; ?>);">
                     <div class="team-name"><?php echo $row['faccion2']; ?><br><?php echo $row['subfaccion2']; ?></div>
                 </div>
             </div>

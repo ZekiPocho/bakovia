@@ -191,229 +191,147 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     <br>
     <br>
 
+    <?php
+session_start();
+require 'db_connection.php'; // Asegúrate de incluir tu archivo de conexión a la base de datos
+
+// Verifica si el formulario fue enviado
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Procesar datos del formulario
+    $username = trim($_POST['username']);
+    $bio = trim($_POST['bio']);
+    $description = trim($_POST['description1']);
+    
+    // Validación de datos
+    $errors = [];
+    if (empty($username)) {
+        $errors[] = "El nombre de usuario es obligatorio.";
+    }
+    if (strlen($bio) > 640) {
+        $errors[] = "La biografía no puede exceder los 640 caracteres.";
+    }
+
+    // Procesar imagen de perfil
+    if (isset($_FILES['profileImage']) && $_FILES['profileImage']['error'] === UPLOAD_ERR_OK) {
+        $profileImage = $_FILES['profileImage'];
+        // Validar y mover la imagen
+        if (validateImageSize($profileImage)) {
+            $targetDir = '../uploads/user/';
+            $targetFile = $targetDir . basename($profileImage['name']);
+            move_uploaded_file($profileImage['tmp_name'], $targetFile);
+            $_SESSION['foto_perfil'] = $targetFile; // Actualiza la sesión con la nueva imagen
+        }
+    }
+
+    // Procesar imagen de Army Showcase
+    if (isset($_FILES['armyShowcaseImage']) && $_FILES['armyShowcaseImage']['error'] === UPLOAD_ERR_OK) {
+        $armyShowcaseImage = $_FILES['armyShowcaseImage'];
+        // Validar y mover la imagen
+        if (validateImageSize($armyShowcaseImage)) {
+            $targetDir = '../uploads/army_showcase/';
+            $targetFile = $targetDir . basename($armyShowcaseImage['name']);
+            move_uploaded_file($armyShowcaseImage['tmp_name'], $targetFile);
+            $_SESSION['army_showcase'] = $targetFile; // Actualiza la sesión con la nueva imagen
+        }
+    }
+
+    // Guardar los cambios en la base de datos
+    if (empty($errors)) {
+        $userId = $_SESSION['id_usuario'];
+        $query = "UPDATE users SET nombre_usuario = ?, biografia = ?, army_desc = ? WHERE id_usuario = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("sssi", $username, $bio, $description, $userId);
+        
+        if ($stmt->execute()) {
+            // Actualiza la sesión con los nuevos datos
+            $_SESSION['nombre_usuario'] = $username;
+            $_SESSION['biografia'] = $bio;
+            $_SESSION['army_desc'] = $description;
+            // Redirige a la misma página o a otra después de guardar
+            header('Location: profile.php?success=1');
+            exit;
+        } else {
+            $errors[] = "Error al guardar los cambios.";
+        }
+    }
+}
+
+// Función para validar el tamaño de la imagen
+function validateImageSize($file) {
+    return $file['size'] <= 5 * 1024 * 1024; // 5MB
+}
+?>
+
 
     <div class="container-sm p-3">
-        <div class="row">
-            <div class="d-flex flex-wrap align-items-start">
-                <div class="col-auto profile-img" >
-                    <img src="https://via.placeholder.com/200" alt="Foto de perfil" class="profile-img">
-                </div> 
-                
-                <div class="col-7 profile-info-name" >
-                <a href="edit-profile.php" style="text-decoration: none;" 
-                onmouseover="this.style.textDecoration='underline';" 
-                onmouseout="this.style.textDecoration='none';">
-                  <h2><?php
-                    echo $_SESSION['nombre_usuario']," ";
-                                     
-                  ?><svg width="20" height="20" viewBox="0 0 24 24" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" transform="rotate(0 0 0)">
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M19.3028 3.7801C18.4241 2.90142 16.9995 2.90142 16.1208 3.7801L14.3498 5.5511C14.3442 5.55633 14.3387 5.56166 14.3333 5.5671C14.3279 5.57253 14.3225 5.57803 14.3173 5.58359L5.83373 14.0672C5.57259 14.3283 5.37974 14.6497 5.27221 15.003L4.05205 19.0121C3.9714 19.2771 4.04336 19.565 4.23922 19.7608C4.43508 19.9567 4.72294 20.0287 4.98792 19.948L8.99703 18.7279C9.35035 18.6203 9.67176 18.4275 9.93291 18.1663L20.22 7.87928C21.0986 7.0006 21.0986 5.57598 20.22 4.6973L19.3028 3.7801ZM14.8639 7.15833L6.89439 15.1278C6.80735 15.2149 6.74306 15.322 6.70722 15.4398L5.8965 18.1036L8.56029 17.2928C8.67806 17.257 8.7852 17.1927 8.87225 17.1057L16.8417 9.13619L14.8639 7.15833ZM17.9024 8.07553L19.1593 6.81862C19.4522 6.52572 19.4522 6.05085 19.1593 5.75796L18.2421 4.84076C17.9492 4.54787 17.4743 4.54787 17.1814 4.84076L15.9245 6.09767L17.9024 8.07553Z" fill="#ffffff"/>
-                  </svg>
-                  </h2></a>
-                  <div class="bio">
-                    <p class="text-muted">Esta es la biografía del usuario. Aquí puedes añadir más detalles sobre ti.
-                        Esta es la biografía del usuario. Aquí puedes añadir más detalles sobre ti.Esta es la biografía del usuario.
-                         Aquí puedes añadir más detalles sobre ti.Esta es la biografía del usuario. Aquí puedes añadir más detalles sobre ti.
-                         Esta es la biografía del usuario. Aquí puedes añadir más detalles sobre ti.Esta es la biografía del usuario.
-                         Aquí puedes añadir más detalles sobre ti.Esta es la biografía del usuario. Aquí puedes añadir más detalles
-                         sobre ti.</p>
-                  </div>
+    <div class="row">
+        <div class="d-flex flex-wrap align-items-start">
+            <div class="col-auto profile-img">
+                <img src="<?php echo $_SESSION['foto_perfil'] ?? 'https://via.placeholder.com/200'; ?>" alt="Foto de perfil" class="profile-img">
+            </div>
+
+            <div class="col-7 profile-info-name">
+                <a href="edit-profile.php" style="text-decoration: none;"
+                   onmouseover="this.style.textDecoration='underline';"
+                   onmouseout="this.style.textDecoration='none';">
+                    <h2><?php echo htmlspecialchars($_SESSION['nombre_usuario']); ?>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" transform="rotate(0 0 0)">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M19.3028 3.7801C18.4241 2.90142 16.9995 2.90142 16.1208 3.7801L14.3498 5.5511C14.3442 5.55633 14.3387 5.56166 14.3333 5.5671C14.3279 5.57253 14.3225 5.57803 14.3173 5.58359L5.83373 14.0672C5.57259 14.3283 5.37974 14.6497 5.27221 15.003L4.05205 19.0121C3.9714 19.2771 4.04336 19.565 4.23922 19.7608C4.43508 19.9567 4.72294 20.0287 4.98792 19.948L8.99703 18.7279C9.35035 18.6203 9.67176 18.4275 9.93291 18.1663L20.22 7.87928C21.0986 7.0006 21.0986 5.57598 20.22 4.6973L19.3028 3.7801ZM14.8639 7.15833L6.89439 15.1278C6.80735 15.2149 6.74306 15.322 6.70722 15.4398L5.8965 18.1036L8.56029 17.2928C8.67806 17.257 8.7852 17.1927 8.87225 17.1057L16.8417 9.13619L14.8639 7.15833ZM17.9024 8.07553L19.1593 6.81862C19.4522 6.52572 19.4522 6.05085 19.1593 5.75796L18.2421 4.84076C17.9492 4.54787 17.4743 4.54787 17.1814 4.84076L15.9245 6.09767L17.9024 8.07553Z" fill="#ffffff"/>
+                        </svg>
+                    </h2>
+                </a>
+                <div class="bio">
+                    <p class="text-muted"><?php echo htmlspecialchars($_SESSION['biografia']); ?></p>
                 </div>
-                <div class="col profile-info mt-3 mt-md-0" style="margin-top: 20px" >
-                    <ul>
-                        <center>    
+            </div>
+            <div class="col profile-info mt-3 mt-md-0" style="margin-top: 20px">
+                <ul>
+                    <center>
                         <li><p class="text-muted">RANGO</p></li>
-                        <li><img src="https://via.placeholder.com/500" alt="rango" style="width: 80px; height: 80px;"></li>
-                        <li><p class="text-muted">NOMBRE RANGO</p></li>
+                        <li><img src="<?php echo $_SESSION['rango_imagen'] ?? 'https://via.placeholder.com/500'; ?>" alt="rango" style="width: 80px; height: 80px;"></li>
+                        <li><p class="text-muted"><?php echo htmlspecialchars($_SESSION['nombre_rango'] ?? 'Nombre de rango'); ?></p></li>
                         <br>
                         <li><p class="text-muted">MIEMBRO DESDE</p></li>
-                        <li><p class="text-muted">FECHA</p></li>
-                        </center>
-                    </ul>
-                    
-                  </div>
-              </div>
-        </div>
-        <!-- ARMY SHOWCASE -->
-  <div class="row mt-4">
-    <div class="col-md-8">
-        <div class="profile-cards">
-      <div class="card mb-3">
-        <img src="https://via.placeholder.com/400x200" class="card-img-top" alt="Imagen 1">
-        <div class="card-body">
-            <h5 class="card-title">ARMY SHOWCASE</h5>
-            <p class="card-text">Descripción breve de la sección 1.</p>
-          </div>
-      </div>
-      <div class="card">
-        
-        <img src="https://via.placeholder.com/400x200" class="card-img-top" alt="Imagen 2">
-        <div class="card-body">
-            <h5 class="card-title">Título de Sección 2</h5>
-            <p class="card-text">Descripción breve de la sección 2.</p>
-          </div>
-      </div>
-        </div>
-    </div>
-
-    <!-- Segunda columna (1 cuadro más largo) -->
-    <div class="col-md-4">
-      <div class="card">
-        <img src="https://via.placeholder.com/400x400" class="card-img-top" alt="Imagen 3">
-        <div class="card-body">
-          <h5 class="card-title">Título de Sección 3</h5>
-          <p class="card-text">Descripción breve de la sección 3.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-      
-
-
-
-
-    <!--
-    <div class="profile">
-    <div class="container-sm">
-        <div class="row justify-content-center">
-            <div class="col-3">
-                    <div class="profile-image">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="content" alt="image" style="width: 16rem;">
-                    </div>
+                        <li><p class="text-muted"><?php echo htmlspecialchars($_SESSION['fecha_registro']); ?></p></li>
+                    </center>
+                </ul>
             </div>
-            <div class="col-lg-9">
-                <div class="card" style="width: auto;" style="height: auto;">
+        </div>
+    </div>
+    <!-- ARMY SHOWCASE -->
+    <div class="row mt-4">
+        <div class="col-md-8">
+            <div class="profile-cards">
+                <div class="card mb-3">
+                    <img src="<?php echo $_SESSION['army_showcase'] ?? 'https://via.placeholder.com/400x200'; ?>" class="card-img-top" alt="Imagen ARMY SHOWCASE">
                     <div class="card-body">
-                        <h2 class="card-title">USUARIO</h2>
-                        <h6 class="card-subtitle mb-2 text-muted">Bio</h6>
-                        <p>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem consequatur
-                         suscipit rerum ullam tempora explicabo, ipsum quas optio? Officia facilis, quibusdam
-                          optio sed quae reprehenderit! Quibusdam nam nihil voluptate autem.
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem consequatur
-                         suscipit rerum ullam tempora explicabo, ipsum quas optio? Officia facilis, quibusdam
-                          optio sed quae reprehenderit! Quibusdam nam nihil voluptate autem.
-                        </p>
+                        <h5 class="card-title">ARMY SHOWCASE</h5>
+                        <p class="card-text"><?php echo htmlspecialchars($_SESSION['army_desc'] ?? 'Descripción breve de tu ejército.'); ?></p>
                     </div>
                 </div>
-            </div>
-            <div class="profile-info">
-            <div class="container-sm">
-                <div class="row">
-                    <div class="col-7" ">
-                     <div class="card" style="width: auto;" style="height: auto;"">
-                        <div class="card-body">
-                            <center><h4 class="card-title">ARMY SHOWCASE</h4></center>
-                            <img src="https://i.ytimg.com/vi/oKQjZFkbhgU/maxresdefault.jpg" alt="image" height="100%" style="width: 15rem;">
-                        </div>
-                     </div>
-                    </div>
-                    <div class="col-5" >
-                        <div class="card" style="width: auto;" style="height: auto;"">
-                            <div class="card-body">
-                                <center><h4 class="card-title">INFORMACIÓN</h4></center>
-                            </div>
-                         </div>
-                        </div>
+                <div class="card">
+                    <img src="<?php echo $_SESSION['otra_imagen'] ?? 'https://via.placeholder.com/400x200'; ?>" class="card-img-top" alt="Imagen 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Título de Sección 2</h5>
+                        <p class="card-text">Descripción breve de la sección 2.</p>
                     </div>
                 </div>
             </div>
         </div>
-        
+
+        <!-- Segunda columna (1 cuadro más largo) -->
+        <div class="col-md-4">
+            <div class="card">
+                <img src="<?php echo $_SESSION['tercera_imagen'] ?? 'https://via.placeholder.com/400x400'; ?>" class="card-img-top" alt="Imagen 3">
+                <div class="card-body">
+                    <h5 class="card-title">Título de Sección 3</h5>
+                    <p class="card-text">Descripción breve de la sección 3.</p>
+                </div>
+            </div>
+        </div>
     </div>
-</div> -->
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- Start Footer Area -->
-    <footer class="footer">
-        <!-- Start Footer Middle -->
-        <div class="footer-middle">
-            <div class="container">
-                <div class="bottom-inner">
-                    <div class="row">
-                        
-                        <div class="col-lg-3 col-md-6 col-12">
-                            <!-- Single Widget -->
-                            <div class="single-footer f-contact">
-                                <h3>¿QUIÉNES SOMOS?</h3>
-                                <p class="phone">Phone: +1 (900) 33 169 7720</p>
-                                <ul>
-                                    <li><span>Monday-Friday: </span> 9.00 am - 8.00 pm</li>
-                                    <li><span>Saturday: </span> 10.00 am - 6.00 pm</li>
-                                </ul>
-                                <p class="mail">
-                                    <a href="mailto:support@shopgrids.com">support@shopgrids.com</a>
-                                </p>
-                            </div>
-                            <!-- End Single Widget -->
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-12">
-                            <!-- Single Widget -->
-                            <div class="single-footer f-link">
-                                <h3>CATEGORÍAS</h3>
-                                <ul>
-                                    <li><a href="javascript:void(0)">About Us</a></li>
-                                    <li><a href="javascript:void(0)">Contact Us</a></li>
-                                    <li><a href="javascript:void(0)">Downloads</a></li>
-                                    <li><a href="javascript:void(0)">Sitemap</a></li>
-                                    <li><a href="javascript:void(0)">FAQs Page</a></li>
-                                </ul>
-                            </div>
-                            <!-- End Single Widget -->
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-12">
-                            <!-- Single Widget -->
-                            <div class="single-footer f-link">
-                                <h3>INFORMACIÓN</h3>
-                                <ul>
-                                    <li><a href="javascript:void(0)">Computers & Accessories</a></li>
-                                    <li><a href="javascript:void(0)">Smartphones & Tablets</a></li>
-                                    <li><a href="javascript:void(0)">TV, Video & Audio</a></li>
-                                    <li><a href="javascript:void(0)">Cameras, Photo & Video</a></li>
-                                    <li><a href="javascript:void(0)">Headphones</a></li>
-                                </ul>
-                            </div>
-                            <!-- End Single Widget -->
-                            
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-12">
-                            <!--Single Widget-->
-                            <div class="footer-logo">
-                                    <a href="index.html">
-                                        <img src="assets/images/logo/mini.png" alt="#">
-                                    </a>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Footer Middle -->
-    </footer>
-    <!--/ End Footer Area -->
+</div>
+  
     <!-- ========================= scroll-top ========================= -->
     <a href="#" class="scroll-top">
         <i class="lni lni-chevron-up"></i>

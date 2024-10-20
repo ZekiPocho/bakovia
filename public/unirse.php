@@ -42,7 +42,6 @@ if ($id_partida > 0 && $faccion_usuario !== null) {
         } else {
             echo "La partida no está disponible para unirse.";
             echo "$id_partida";
-            echo "$partida['estado']";
         }
     } else {
         echo "Partida no encontrada.";

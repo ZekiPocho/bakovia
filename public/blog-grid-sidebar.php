@@ -226,6 +226,7 @@ register.php<div class="col-sm-auto"></div>
     <section class="section blog-section blog-list">
         <div class="container-sm">
             <div class="container text-center">
+                <div class="row">
                     <div class="col">
                         Ultimas Publicaciones 
                     </div>
@@ -235,6 +236,7 @@ register.php<div class="col-sm-auto"></div>
                     <div class="col">
                         <a aria-label="Toggle navigation" href="publicar-blog.php">Crear Blog <i class="lni lni-plus"></i></a>
                     </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-12">

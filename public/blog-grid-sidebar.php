@@ -228,7 +228,7 @@ register.php<div class="col-sm-auto"></div>
             <div class="container text-center">
                 <div class="row">
                     <div class="col">
-                        <h1>Ultimas Publicaciones</h1>
+                        <h2>Publicaciones</h2>
                     </div>
                     <div class="col">
                         

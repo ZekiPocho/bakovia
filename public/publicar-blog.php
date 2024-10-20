@@ -241,10 +241,21 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <div>
             <textarea class="form-control" name="titulo" placeholder="título*" required></textarea>
         </div>
-        <div class="button">
+        <div>
             <textarea class="form-control" name="contenido" placeholder="cuerpo*"></textarea>
         </div >
-        <input class="btn" type="submit" value="Publicar">
+        <div class="row">
+            <div class="col">
+            </div>
+            <div class="col">
+            </div>
+            <div class="col">
+            </div>
+            <div class="col">
+            <input class="btn" type="submit" value="Publicar">
+            </div>
+        </div>
+        
     </form>
     </div>
     

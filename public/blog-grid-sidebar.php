@@ -230,7 +230,7 @@ register.php<div class="col-sm-auto"></div>
                     <p>Ultimas Publicaciones</p>
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
-                <a aria-label="Toggle navigation" href="index.html">Crear Blog</a>
+                <a aria-label="Toggle navigation" href="publicar-blog.php">Crear Blog</a>
                 <i class="lni lni-plus"></i>
                 </div>
             </div>

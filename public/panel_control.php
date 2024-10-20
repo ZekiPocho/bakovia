@@ -270,18 +270,18 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <div class="team">
                 <h4 class="text-center"><?php echo htmlspecialchars($nombre_jugador1); ?></h4>
                 <br>
-                <img src="<?php echo htmlspecialchars($icono1); ?>" alt="Facción Jugador 1" class="img-fluid" style="height: 200px;">
+                <img src="<?php echo htmlspecialchars($icono1); ?>" alt="Facción Jugador 1" class="img-fluid" style="height: 150px;">
                 <br>
                 <br>
                 <div class="team-name">
                     <p><?php echo htmlspecialchars($faccion1); ?></p>
-                    <p><?php echo htmlspecialchars($subfaccion1); ?></p>
+                    <h2><?php echo htmlspecialchars($subfaccion1); ?></h2>
                 </div>
+                <br>
                 <form action="adjust_score.php" method="POST" id="scoreFormJugador1">
                     <input type="hidden" name="id_partida" value="<?php echo htmlspecialchars($id_partida); ?>">
                     <input type="hidden" name="jugador" value="1">
                     <div class="mb-3">
-                        <label for="puntaje_jugador1" class="form-label">Puntaje Jugador 1:</label>
                         <input type="number" name="puntaje_jugador1" class="form-control" value="<?php echo htmlspecialchars($puntaje_jugador1); ?>">
                     </div>
                     <button type="submit" class="btn btn-primary">Ajustar Puntaje</button>
@@ -311,7 +311,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <div class="team">
                 <h4 class="text-center"><?php echo htmlspecialchars($nombre_jugador2); ?></h4>
                 <br>
-                <img src="<?php echo htmlspecialchars($icono2); ?>" alt="Facción Jugador 2" class="img-fluid" style="height: 200px;">
+                <img src="<?php echo htmlspecialchars($icono2); ?>" alt="Facción Jugador 2" class="img-fluid" style="height: 150px;">
                 <br>
                 <br>
                 <div class="team-name">

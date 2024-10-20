@@ -347,7 +347,12 @@ if ($result->num_rows > 0) {
                     if ($usuario_actual === $row['nombre_usuario1'] && $row['made_usuario1'] == 1) {
                         echo '<a href="panel_control.php?id_partida=' . $row['id_partida'] . '" class="btn btn-primary">ADMIN</a>';
                     } else {
-                        echo '<h7>PARTIDA ABIERTA</h7>';
+                        if ($row['nombre_usuario2'] !== "N/A") {
+                            echo '<img src="assets/images/matches/sword.png" alt="Icono de batalla" class="img-fluid" style="max-width: 25px;">';
+                        }else {
+                            echo '<h7>PARTIDA ABIERTA</h7>';
+                        }
+
                     }
                     ?>
                 </div>

@@ -41,7 +41,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['comentar'])) {
             echo "Error al agregar respuesta: " . $conn->error;
         }
     }
-}
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">

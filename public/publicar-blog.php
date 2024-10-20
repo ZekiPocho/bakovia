@@ -229,7 +229,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         </div>
         <div>
     <label for="tags">Seleccionar Tag:</label>
-    <select name="tag" id="tags">
+    <select name="tag" id="tags" placeholder="tags">
         <option value="otros">Otros</option>
         <option value="ejercito">Ejército</option>
         <option value="tienda">Tienda</option>

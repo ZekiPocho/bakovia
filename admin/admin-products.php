@@ -4,7 +4,7 @@ include("../public/db.php");
 
 // Verifica si el usuario es administrador
 if (!isset($_SESSION['id_rol']) || $_SESSION['id_rol'] !== '2') {
-    header('Location: index.php');
+    header('Location: ../public/index.php');
     exit;
 }
 

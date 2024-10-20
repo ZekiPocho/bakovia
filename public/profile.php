@@ -20,43 +20,97 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = "La biografía no puede exceder los 640 caracteres.";
     }
 
+    // Obtener el ID de usuario
+    $userId = $_SESSION['id_usuario'];
+
     // Procesar imagen de perfil
     if (isset($_FILES['profileImage']) && $_FILES['profileImage']['error'] === UPLOAD_ERR_OK) {
         $profileImage = $_FILES['profileImage'];
-        // Validar y mover la imagen
+        // Validar tamaño de la imagen
         if (validateImageSize($profileImage)) {
-            $targetDir = '../uploads/user/';
-            $targetFile = $targetDir . basename($profileImage['name']);
-            move_uploaded_file($profileImage['tmp_name'], $targetFile);
-            $_SESSION['foto_perfil'] = $targetFile; // Actualiza la sesión con la nueva imagen
+            // Directorio de imágenes de perfil
+            $uploadDirectory = '../uploads/user/';
+            // Obtener extensión del archivo subido
+            $fileExtension = pathinfo($profileImage['name'], PATHINFO_EXTENSION);
+            // Crear el nombre del archivo con el ID de usuario
+            $newProfileFileName = $userId . '.' . $fileExtension;
+            $targetProfileFile = $uploadDirectory . $newProfileFileName;
+
+            // Consulta para obtener la ruta actual de la imagen de perfil del usuario
+            $querySelectProfile = "SELECT foto_perfil FROM usuarios WHERE id_usuario = ?";
+            $stmtSelectProfile = $conn->prepare($querySelectProfile);
+            $stmtSelectProfile->bind_param("i", $userId);
+            $stmtSelectProfile->execute();
+            $stmtSelectProfile->bind_result($currentProfilePhotoPath);
+            $stmtSelectProfile->fetch();
+            $stmtSelectProfile->close();
+
+            // Borrar la imagen anterior si existe
+            if (!empty($currentProfilePhotoPath) && file_exists($currentProfilePhotoPath)) {
+                unlink($currentProfilePhotoPath);
+            }
+
+            // Subir el nuevo archivo
+            if (move_uploaded_file($profileImage['tmp_name'], $targetProfileFile)) {
+                $_SESSION['foto_perfil'] = $targetProfileFile; // Actualiza la sesión con la nueva imagen
+            } else {
+                $errors[] = "Error al subir la imagen de perfil.";
+            }
+        } else {
+            $errors[] = "La imagen de perfil es demasiado grande (máximo 5MB).";
         }
     }
 
     // Procesar imagen de Army Showcase
     if (isset($_FILES['armyShowcaseImage']) && $_FILES['armyShowcaseImage']['error'] === UPLOAD_ERR_OK) {
         $armyShowcaseImage = $_FILES['armyShowcaseImage'];
-        // Validar y mover la imagen
+        // Validar tamaño de la imagen
         if (validateImageSize($armyShowcaseImage)) {
-            $targetDir = '../uploads/army/';
-            $targetFile = $targetDir . basename($armyShowcaseImage['name']);
-            move_uploaded_file($armyShowcaseImage['tmp_name'], $targetFile);
-            $_SESSION['army_showcase'] = $targetFile; // Actualiza la sesión con la nueva imagen
+            // Directorio de imágenes de Army Showcase
+            $uploadArmyDirectory = '../uploads/army/';
+            // Obtener extensión del archivo subido
+            $armyFileExtension = pathinfo($armyShowcaseImage['name'], PATHINFO_EXTENSION);
+            // Crear el nombre del archivo con el ID de usuario
+            $newArmyFileName = $userId . '.' . $armyFileExtension;
+            $targetArmyFile = $uploadArmyDirectory . $newArmyFileName;
+
+            // Consulta para obtener la ruta actual de la imagen de Army Showcase
+            $querySelectArmy = "SELECT army_showcase FROM usuarios WHERE id_usuario = ?";
+            $stmtSelectArmy = $conn->prepare($querySelectArmy);
+            $stmtSelectArmy->bind_param("i", $userId);
+            $stmtSelectArmy->execute();
+            $stmtSelectArmy->bind_result($currentArmyShowcasePath);
+            $stmtSelectArmy->fetch();
+            $stmtSelectArmy->close();
+
+            // Borrar la imagen anterior si existe
+            if (!empty($currentArmyShowcasePath) && file_exists($currentArmyShowcasePath)) {
+                unlink($currentArmyShowcasePath);
+            }
+
+            // Subir el nuevo archivo
+            if (move_uploaded_file($armyShowcaseImage['tmp_name'], $targetArmyFile)) {
+                $_SESSION['army_showcase'] = $targetArmyFile; // Actualiza la sesión con la nueva imagen
+            } else {
+                $errors[] = "Error al subir la imagen de Army Showcase.";
+            }
+        } else {
+            $errors[] = "La imagen de Army Showcase es demasiado grande (máximo 5MB).";
         }
     }
 
     // Guardar los cambios en la base de datos
     if (empty($errors)) {
-        $userId = $_SESSION['id_usuario'];
         $oldUsername = $_SESSION['nombre_usuario']; // Suponiendo que el antiguo nombre de usuario está en la sesión
         $newUsername = $username; // El nuevo nombre de usuario que se está estableciendo
 
-        // Actualizar el nombre de usuario en la tabla de usuarios
-        $query = "UPDATE usuarios SET nombre_usuario = ?, biografia = ?, army_desc = ? WHERE id_usuario = ?";
+        // Actualizar el nombre de usuario y las imágenes en la tabla de usuarios
+        $query = "UPDATE usuarios SET nombre_usuario = ?, biografia = ?, army_desc = ?, foto_perfil = ?, army_showcase = ? WHERE id_usuario = ?";
         $stmt = $conn->prepare($query);
         if ($stmt === false) {
             die('Error en la preparación de la consulta de usuarios: ' . $conn->error);
         }
-        $stmt->bind_param("sssi", $newUsername, $bio, $description, $userId);
+        $stmt->bind_param("sssssi", $newUsername, $bio, $description, $targetProfileFile, $targetArmyFile, $userId);
         $stmt->execute();
 
         // Actualizar solo el nombre de usuario correspondiente en la tabla de partida
@@ -73,20 +127,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $updatePartidasStmt->execute();
 
         // Cerrar las declaraciones
+        $stmt->close();
         $updatePartidasStmt->close();
 
-        
-        if ($stmt->execute()) {
-            // Actualiza la sesión con los nuevos datos
-            $_SESSION['nombre_usuario'] = $username;
-            $_SESSION['biografia'] = $bio;
-            $_SESSION['army_desc'] = $description;
-            // Redirige a la misma página o a otra después de guardar
-            header('Location: profile.php');
-            exit;
-        } else {
-            $errors[] = "Error al guardar los cambios.";
-        }
+        // Actualiza la sesión con los nuevos datos
+        $_SESSION['nombre_usuario'] = $newUsername;
+        $_SESSION['biografia'] = $bio;
+        $_SESSION['army_desc'] = $description;
+
+        // Redirige a la misma página o a otra después de guardar
+        header('Location: profile.php');
+        exit;
     }
 }
 

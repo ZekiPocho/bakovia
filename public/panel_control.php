@@ -294,7 +294,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         </div>
 
                         <!-- Columna 2: Tiempo Transcurrido y Rondas -->
-                         <div class="score">
+                         <div class="score px-5">
                          <div class="middle-section">
                             <h3>Tiempo Transcurrido</h3>
                             <p id="tiempo-transcurrido">00:00:00</p> <!-- Aquí puedes agregar lógica para mostrar el tiempo en tiempo real -->

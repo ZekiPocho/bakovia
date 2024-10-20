@@ -10,6 +10,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $juego = $_SESSION['juego'];
         $puntos = $_SESSION['puntos'];
         $faccion = $_SESSION['faccion'];
+        $id_p_r = rand(1000000000, 9999999999);
+
+
 
         // Recibir datos del formulario
         $mesa = $_POST['mesa'];
@@ -29,8 +32,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         try {
             // 1. Insertar reserva en la tabla 'reserva_mesa'
-            $sql_reserva = "INSERT INTO reserva_mesa (id_mesa, nombre_usuario, id_hora_inicio, id_hora_final) 
-                            VALUES (?, ?, ?, ?)";
+            $sql_reserva = "INSERT INTO reserva_mesa (id_reserva, id_mesa, nombre_usuario, id_hora_inicio, id_hora_final) 
+                            VALUES (?, ?, ?, ?, ?)";
             
             $stmt_reserva = $conn->prepare($sql_reserva);
             if ($stmt_reserva === false) {
@@ -38,14 +41,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
 
             // Vincular parámetros y ejecutar
-            $stmt_reserva->bind_param("isii", $mesa, $nombre_usuario1, $hora_inicio, $hora_final);
+            $stmt_reserva->bind_param("iisii", $id_p_r, $mesa, $nombre_usuario1, $hora_inicio, $hora_final);
             if (!$stmt_reserva->execute()) {
                 throw new Exception("Error al insertar la reserva: " . $stmt_reserva->error);
             }
 
             // 2. Insertar la partida en la tabla 'partida'
-            $sql_partida = "INSERT INTO partida (id_juego, puntos, id_faccion_usuario1, hora_inicio, hora_final, id_mesa, nombre_usuario1)
-                            VALUES (?, ?, ?, ?, ?, ?, ?)";
+            $sql_partida = "INSERT INTO partida (id_reserva, id_juego, puntos, id_faccion_usuario1, hora_inicio, hora_final, id_mesa, nombre_usuario1)
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             
             $stmt_partida = $conn->prepare($sql_partida);
             if ($stmt_partida === false) {
@@ -55,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
 
             // Vincular parámetros y ejecutar
-            $stmt_partida->bind_param("iisssss", $juego, $puntos, $faccion, $hora_inicio, $hora_final, $mesa, $nombre_usuario1);
+            $stmt_partida->bind_param("iiisssss", $id_p_r, $juego, $puntos, $faccion, $hora_inicio, $hora_final, $mesa, $nombre_usuario1);
             if (!$stmt_partida->execute()) {
                 throw new Exception("Error al insertar la partida: " . $stmt_partida->error);
             }

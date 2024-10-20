@@ -221,7 +221,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         </h1>
     <form action="" method="POST" enctype="multipart/form-data">
         <div>
-            <textarea class="form-control" name="titulo" placeholder="Título" required></textarea>
+            <textarea class="form-control-pblog" name="titulo" placeholder="Título" required></textarea>
         </div>
         <div>
             <label for="imagenes">Subir imágenes:</label><br>

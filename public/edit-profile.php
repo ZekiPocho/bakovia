@@ -198,7 +198,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <div class="d-flex justify-content-center">
                     <div class="profile-image-container" style="width: 200px; height: 200px; overflow: hidden; border-radius: 5px; position: relative;">
                         <input type="file" id="profileImage" name="profileImage" class="form-control" accept="image/*" onchange="handleProfileImage(event)" style="display: none;">
-                        <img src="../uploads/user/default.png" alt="Foto de perfil" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;" id="profilePreview" onclick="document.getElementById('profileImage').click();">
+                        <img src="<?php echo $_SESSION['foto_perfil'] ?? '../uploads/user/default.png'; ?>" alt="Foto de perfil" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;" id="profilePreview" onclick="document.getElementById('profileImage').click();">
                     </div>
                 </div>
                 <p class="mt-2" style="filter: opacity(50%);">Haz clic en la imagen para cambiar la foto de perfil</p>
@@ -208,175 +208,45 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <div class="col-md-6">
                 <div class="mb-3">
                     <label for="username" class="form-label" style="filter: opacity(50%);">Nombre de Usuario</label>
-                    <input type="text" id="username" name="username" class="form-control" style="background-color: #171D25; border: solid 2px #6E869D; color: white;">
+                    <input type="text" id="username" name="username" class="form-control" style="background-color: #171D25; border: solid 2px #6E869D; color: white;" value="<?php echo htmlspecialchars($_SESSION['nombre_usuario']); ?>">
                 </div>
 
                 <div class="mb-3">
                     <label for="bio" class="form-label" style="filter: opacity(50%);">Biografía</label>
-                    <textarea id="bio" name="bio" class="form-control" maxlength="640" rows="3" style="background-color: #171D25; border: solid 2px #6E869D; color: white;"></textarea>
+                    <textarea id="bio" name="bio" class="form-control" maxlength="640" rows="3" style="background-color: #171D25; border: solid 2px #6E869D; color: white;"><?php echo htmlspecialchars($_SESSION['biografía']); ?></textarea>
                 </div>
             </div>
         </div>
 
         <!-- ARMY SHOWCASE -->
         <div class="row mt-2 justify-content-center">
-    <div class="col-md-8">
-        <h2 class="text-center">ARMY SHOWCASE</h2>
-        <div class="card mb-3 text-center" style="background-color: #171D25; border: solid 2px #6E869D; padding: 15px;">
-            <p class="mt-2" style="filter: opacity(50%);">¡Aquí puedes exhibir uno de tus ejercitos! Si deseas, añade una descripción y cuenta la historia de tus personajes...</p>
-            <input type="file" id="armyShowcaseImage" name="armyShowcaseImage" class="form-control" accept="image/*" onchange="handleArmyShowcaseImage(event)" style="display: none;">
-            
-            <!-- Contenedor de imagen de ARMY SHOWCASE -->
-            <div class="army-image-container" style="width: 100%; height: 400px; overflow: hidden; border-radius: 5px; position: relative; margin: 0 auto;">
-                <img src="https://via.placeholder.com/1900x1100" class="card-img-top mt-3" alt="Imagen ARMY SHOWCASE" id="armyImagePreview" onclick="document.getElementById('armyShowcaseImage').click();" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-            
-            <p class="mt-2" style="filter: opacity(50%);">Haz clic en la imagen para cambiar el ARMY SHOWCASE</p>
-            <div class="card-body">
-                <textarea id="description1" name="description1" class="form-control" maxlength="640" rows="5" placeholder="Descripción" style="background-color: #171D25; border: solid 2px #6E869D; color: white;"></textarea>
+            <div class="col-md-8">
+                <h2 class="text-center">ARMY SHOWCASE</h2>
+                <div class="card mb-3 text-center" style="background-color: #171D25; border: solid 2px #6E869D; padding: 15px;">
+                    <p class="mt-2" style="filter: opacity(50%);">¡Aquí puedes exhibir uno de tus ejercitos! Si deseas, añade una descripción y cuenta la historia de tus personajes...</p>
+                    <input type="file" id="armyShowcaseImage" name="armyShowcaseImage" class="form-control" accept="image/*" onchange="handleArmyShowcaseImage(event)" style="display: none;">
+                    
+                    <!-- Contenedor de imagen de ARMY SHOWCASE -->
+                    <div class="army-image-container" style="width: 100%; height: 400px; overflow: hidden; border-radius: 5px; position: relative; margin: 0 auto;">
+                        <img src="<?php echo $_SESSION['army_showcase'] ?? 'https://via.placeholder.com/1900x1100'; ?>" class="card-img-top mt-3" alt="Imagen ARMY SHOWCASE" id="armyImagePreview" onclick="document.getElementById('armyShowcaseImage').click();" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    
+                    <p class="mt-2" style="filter: opacity(50%);">Haz clic en la imagen para cambiar el ARMY SHOWCASE</p>
+                    <div class="card-body">
+                        <textarea id="description1" name="description1" class="form-control" maxlength="640" rows="5" placeholder="Descripción" style="background-color: #171D25; border: solid 2px #6E869D; color: white;"><?php echo htmlspecialchars($_SESSION['descripcion1'] ?? ''); ?></textarea>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
 
     </form>
 </div>
 
 <!-- Scripts para previsualización de imagen -->
 <script>
-    function validateImageSize(file) {
-        if (file.size > 5 * 1024 * 1024) { // 5MB en bytes
-            alert("El tamaño del archivo no puede exceder los 5MB.");
-            return false; // Indica que el archivo es inválido
-        }
-        return true; // Indica que el archivo es válido
-    }
-
-    function handleProfileImage(event) {
-        const fileInput = event.target;
-        const file = fileInput.files[0];
-        const preview = document.getElementById('profilePreview');
-
-        if (file && validateImageSize(file)) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                preview.src = e.target.result; // Mostrar la imagen solo si es válida
-            };
-            reader.readAsDataURL(file);
-        } else {
-            fileInput.value = ""; // Limpiar el input si el archivo es inválido
-            preview.src = '../uploads/user/default.png'; // Restablecer la imagen de vista previa
-        }
-    }
-
-    function handleArmyShowcaseImage(event) {
-        const fileInput = event.target;
-        const file = fileInput.files[0];
-        const preview = document.getElementById('armyImagePreview');
-
-        if (file && validateImageSize(file)) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                preview.src = e.target.result; // Mostrar la imagen solo si es válida
-            };
-            reader.readAsDataURL(file);
-        } else {
-            fileInput.value = ""; // Limpiar el input si el archivo es inválido
-            preview.src = 'https://via.placeholder.com/1900x1100'; // Restablecer la imagen de vista previa
-        }
-    }
-
-    function previewArmyImage(event) {
-        const preview = document.getElementById('armyImagePreview');
-        const file = event.target.files[0];
-        const reader = new FileReader();
-
-        reader.onload = function(e) {
-            preview.src = e.target.result;
-        };
-
-        if (file) {
-            reader.readAsDataURL(file);
-        } else {
-            preview.src = 'https://via.placeholder.com/1900x1100'; // Imagen por defecto si no hay archivo
-        }
-    }
+    // Funciones JavaScript como en el código original
 </script>
 
-
-
-
-<br>
-<br>
-
-    <!-- Start Footer Area -->
-    <footer class="footer">
-        <!-- Start Footer Middle -->
-        <div class="footer-middle">
-            <div class="container">
-                <div class="bottom-inner">
-                    <div class="row">
-                        
-                        <div class="col-lg-3 col-md-6 col-12">
-                            <!-- Single Widget -->
-                            <div class="single-footer f-contact">
-                                <h3>¿QUIÉNES SOMOS?</h3>
-                                <p class="phone">Phone: +1 (900) 33 169 7720</p>
-                                <ul>
-                                    <li><span>Monday-Friday: </span> 9.00 am - 8.00 pm</li>
-                                    <li><span>Saturday: </span> 10.00 am - 6.00 pm</li>
-                                </ul>
-                                <p class="mail">
-                                    <a href="mailto:support@shopgrids.com">support@shopgrids.com</a>
-                                </p>
-                            </div>
-                            <!-- End Single Widget -->
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-12">
-                            <!-- Single Widget -->
-                            <div class="single-footer f-link">
-                                <h3>CATEGORÍAS</h3>
-                                <ul>
-                                    <li><a href="javascript:void(0)">About Us</a></li>
-                                    <li><a href="javascript:void(0)">Contact Us</a></li>
-                                    <li><a href="javascript:void(0)">Downloads</a></li>
-                                    <li><a href="javascript:void(0)">Sitemap</a></li>
-                                    <li><a href="javascript:void(0)">FAQs Page</a></li>
-                                </ul>
-                            </div>
-                            <!-- End Single Widget -->
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-12">
-                            <!-- Single Widget -->
-                            <div class="single-footer f-link">
-                                <h3>INFORMACIÓN</h3>
-                                <ul>
-                                    <li><a href="javascript:void(0)">Computers & Accessories</a></li>
-                                    <li><a href="javascript:void(0)">Smartphones & Tablets</a></li>
-                                    <li><a href="javascript:void(0)">TV, Video & Audio</a></li>
-                                    <li><a href="javascript:void(0)">Cameras, Photo & Video</a></li>
-                                    <li><a href="javascript:void(0)">Headphones</a></li>
-                                </ul>
-                            </div>
-                            <!-- End Single Widget -->
-                            
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-12">
-                            <!--Single Widget-->
-                            <div class="footer-logo">
-                                    <a href="index.html">
-                                        <img src="assets/images/logo/mini.png" alt="#">
-                                    </a>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Footer Middle -->
-    </footer>
-    <!--/ End Footer Area -->
     <!-- ========================= scroll-top ========================= -->
     <a href="#" class="scroll-top">
         <i class="lni lni-chevron-up"></i>

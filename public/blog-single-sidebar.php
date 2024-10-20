@@ -313,12 +313,13 @@ if ($result_comentarios->num_rows > 0) {
 
         // Mostrar formulario para responder al comentario
         echo '
-            <form action="" method="POST">
-                <input type="hidden" name="id_comentario_padre" value="'.$comentario['id_comentario'].'">
-                <textarea name="respuesta" class="form-control form-control-custom" placeholder="Tu respuesta" required></textarea>
-                <button type="submit" name="responder" class="btn">Responder</button>
-            </form>
-        ';
+        <form action="" method="POST">
+            <input type="hidden" name="id_comentario_padre" value="'.$comentario['id_comentario'].'">
+            <input type="hidden" name="id_publicacion" value="'.$id_publicacion.'">
+            <textarea name="respuesta" class="form-control form-control-custom" placeholder="Tu respuesta" required></textarea>
+            <button type="submit" name="responder" class="btn">Responder</button>
+        </form>
+    ';
 
         // Mostrar respuestas del comentario
         mostrar_respuestas($comentario['id_comentario'], $conn);

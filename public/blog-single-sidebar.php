@@ -274,7 +274,7 @@ if (isset($_GET['id'])) {
 } else {
     echo "No se ha proporcionado un ID de publicación.";
 }
-$conn->close();
+
 ?>
                             <!-- Comments -->
                             <div class="post-comments">
@@ -370,6 +370,7 @@ function mostrar_respuestas($id_comentario_padre, $conn) {
         echo '</ul>';
     }
 }
+$conn->close();
 ?>
                                 </ul>
                             </div>

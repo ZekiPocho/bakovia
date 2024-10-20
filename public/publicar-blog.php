@@ -242,9 +242,9 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         </div>
         <div>
             <textarea class="form-control" name="contenido" placeholder="cuerpo*"></textarea>
-        </div>
+        </div class="button">
         <div id="vista-previa"></div>
-        <input type="submit" value="Publicar">
+        <input class="btn" type="submit" value="Publicar">
     </form>
     </div>
     

@@ -293,7 +293,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <h2 style="border-bottom: solid 1px #6E869D; font-size: 1.5rem;">PANEL DE CONTROL</h2> <!-- Reducido el tamaño de la fuente -->
                 <br>
                 <div class="scoreboard">
-                    <div class="score">
                         <div class="middle-section text-center">
                             <h3 style="font-size: 1.25rem;">Tiempo Transcurrido</h3> <!-- Reducido el tamaño de la fuente -->
                             <p id="tiempo-transcurrido" style="font-size: 1.2rem;">00:00:00</p> <!-- Reducido el tamaño de la fuente -->
@@ -307,7 +306,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                 <button type="submit" class="btn btn-primary">Ajustar Rondas</button>
                             </form>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>

@@ -397,6 +397,7 @@ $conn->close();
 
                     <!-- Botón para iniciar una nueva partida -->
                     <?php
+                        include ("../public/db.php");
                         $id_usuario = $_SESSION['id_usuario'];
 
                         // Preparar la consulta

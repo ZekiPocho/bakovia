@@ -224,8 +224,8 @@ register.php<div class="col-sm-auto"></div>
 
     <!-- Start Blog Singel Area -->
     <section class="section blog-section blog-list">
-    <div class="navbar-area">
         <div class="container-sm">
+            <div class="navbar-area">
                 <div clas="row-align-items-center">
                     <div class="col-lg-6 col-md-6 col-12">
                         <p>Ultimas Publicaciones</p>

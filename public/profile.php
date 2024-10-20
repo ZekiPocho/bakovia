@@ -75,7 +75,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Cerrar las declaraciones
         $stmt->close();
         $updatePartidasStmt->close();
-        $updateStmt->close();
 
         
         if ($stmt->execute()) {

@@ -27,7 +27,7 @@ if ($id_partida > 0 && $faccion_usuario !== null) {
             $nombre_usuario = $_SESSION['nombre_usuario'];
 
             // Actualizar la partida con el nombre del segundo jugador y la facción
-            $sql_update = "UPDATE partida SET nombre_usuario2 = ?, id_faccion_usuario2 = ?, estado = 'en progreso' WHERE id_partida = ?";
+            $sql_update = "UPDATE partida SET nombre_usuario2 = ?, id_faccion_usuario2 = ? WHERE id_partida = ?";
             $stmt_update = $conn->prepare($sql_update);
             $stmt_update->bind_param("ssi", $nombre_usuario, $faccion_usuario, $id_partida);
 

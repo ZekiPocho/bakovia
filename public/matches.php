@@ -357,30 +357,52 @@ if ($result->num_rows > 0) {
         </div>
         <div class="col-5">
             <?php
-            // Mostrar información sobre el usuario 2
-            if ($row['nombre_usuario2'] !== "N/A") {
-                echo '<div class="row align-items-center">
-                        <div class="col-7">
-                            <span>' . htmlspecialchars($row["nombre_usuario2"]) . '</span>
-                        </div>
-                        <div class="col-5">
-                            <img src="https://via.placeholder.com/50x50" alt="Foto de perfil" class="img-fluid">';
-                
-                // Solo mostrar el botón de "SALIR" para el usuario 2
-                if ($usuario_actual === $row['nombre_usuario2'] && $row['made_usuario2'] == 1) {
-                    echo '<a href="leave-match.php?id_partida=' . $row['id_partida'] . '" class="btn btn-danger">SALIR</a>';
+            // Mostrar el botón solo si el usuario actual no es el usuario 1 y si la partida está abierta
+            if ($usuario_actual === $row['nombre_usuario1'] && $row['made_usuario1'] == 1) {
+                if ($row['nombre_usuario2'] !== "N/A") {
+                    echo '<div class="row align-items-center">
+                            <div class="col-7">
+                                <span>' . htmlspecialchars($row["nombre_usuario2"]) . '</span>
+                            </div>
+                            <div class="col-5">
+                                <img src="https://via.placeholder.com/50x50" alt="Foto de perfil" class="img-fluid">
+                            </div>
+                          </div>';
+                } else {
+                    echo 'ESPERANDO';
                 }
-                
-                echo '</div>
-                      </div>';
             } else {
-                echo 'ESPERANDO';
-                echo '<form action="join-match.php" method="POST" style="display:inline;">
-                        <input type="hidden" name="id_partida" value="' . $row['id_partida'] . '">
-                        <div class="button">
-                            <button class="btn" disabled>UNIRSE</button>
-                        </div>
-                      </form>';
+                // Verificar si el usuario en la sesión tiene made como 1
+                if ($row['made_usuario_sesion'] == 1) {
+                    if ($row['nombre_usuario2'] !== "N/A") {
+                        echo '<div class="row align-items-center">
+                                <div class="col-7">
+                                    <span>' . htmlspecialchars($row["nombre_usuario2"]) . '</span>
+                                </div>
+                                <div class="col-5">
+                                    <img src="https://via.placeholder.com/50x50" alt="Foto de perfil" class="img-fluid">
+                                </div>
+                              </div>';
+                        // Agregar enlace para que el usuario2 salga de la partida
+                        if ($usuario_actual === $row['nombre_usuario2'] && $row['made_usuario2'] == 1) {
+                            echo '<a href="leave-match.php?id_partida=' . $row['id_partida'] . '" class="btn btn-danger">SALIR</a>';
+                        }
+                    } else {
+                        echo '<form action="join-match.php" method="POST" style="display:inline;">
+                                <input type="hidden" name="id_partida" value="' . $row['id_partida'] . '">
+                                <div class="button">
+                                    <button class="btn" disabled>UNIRSE</button>
+                                </div>
+                              </form>';
+                    }
+                } else {
+                    echo '<form action="join-match.php" method="POST" style="display:inline;">
+                            <input type="hidden" name="id_partida" value="' . $row['id_partida'] . '">
+                            <div class="button">
+                                <button class="btn">UNIRSE</button>
+                            </div>
+                          </form>';
+                }
             }
             ?>
         </div>

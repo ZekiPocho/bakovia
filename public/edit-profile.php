@@ -243,8 +243,65 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 </div>
 
 <!-- Scripts para previsualización de imagen -->
+<!-- Scripts para previsualización de imagen -->
 <script>
-    // Funciones JavaScript como en el código original
+    function validateImageSize(file) {
+        if (file.size > 5 * 1024 * 1024) { // 5MB en bytes
+            alert("El tamaño del archivo no puede exceder los 5MB.");
+            return false; // Indica que el archivo es inválido
+        }
+        return true; // Indica que el archivo es válido
+    }
+
+    function handleProfileImage(event) {
+        const fileInput = event.target;
+        const file = fileInput.files[0];
+        const preview = document.getElementById('profilePreview');
+
+        if (file && validateImageSize(file)) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result; // Mostrar la imagen solo si es válida
+            };
+            reader.readAsDataURL(file);
+        } else {
+            fileInput.value = ""; // Limpiar el input si el archivo es inválido
+            preview.src = '../uploads/user/default.png'; // Restablecer la imagen de vista previa
+        }
+    }
+
+    function handleArmyShowcaseImage(event) {
+        const fileInput = event.target;
+        const file = fileInput.files[0];
+        const preview = document.getElementById('armyImagePreview');
+
+        if (file && validateImageSize(file)) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result; // Mostrar la imagen solo si es válida
+            };
+            reader.readAsDataURL(file);
+        } else {
+            fileInput.value = ""; // Limpiar el input si el archivo es inválido
+            preview.src = 'https://via.placeholder.com/1900x1100'; // Restablecer la imagen de vista previa
+        }
+    }
+
+    function previewArmyImage(event) {
+        const preview = document.getElementById('armyImagePreview');
+        const file = event.target.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            preview.src = e.target.result;
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            preview.src = 'https://via.placeholder.com/1900x1100'; // Imagen por defecto si no hay archivo
+        }
+    }
 </script>
 
     <!-- ========================= scroll-top ========================= -->

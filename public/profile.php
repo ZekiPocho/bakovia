@@ -1,5 +1,6 @@
 <?php
     require_once "../src/validate_session.php";
+    include "db.php";
 ?>
 <!DOCTYPE html>
 
@@ -233,9 +234,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                   </div>
               </div>
         </div>
-        <!-- Divisiones personalizadas -->
+        <!-- ARMY SHOWCASE -->
   <div class="row mt-4">
-    <!-- Primera columna (2 cuadros) -->
     <div class="col-md-8">
         <div class="profile-cards">
       <div class="card mb-3">

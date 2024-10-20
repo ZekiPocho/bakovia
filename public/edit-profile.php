@@ -1,3 +1,7 @@
+<?php
+    require_once "../src/validate_session.php";
+    include "db.php";
+?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 

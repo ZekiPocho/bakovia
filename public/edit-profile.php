@@ -205,19 +205,12 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <div class="card mb-3 text-center" style="background-color: #171D25; border: solid 2px #6E869D; padding: 15px;">
                     <p class="mt-2" style="filter: opacity(50%);">¡Aquí puedes exhibir uno de tus ejercitos! Si deseas, añade una descripción y cuenta la historia de tus personajes...</p>
                     <input type="file" id="armyShowcaseImage" name="armyShowcaseImage" class="form-control" accept="image/*" onchange="previewArmyImage(event)" style="display: none;">
-                    <img src="https://via.placeholder.com/400x200" class="card-img-top mt-3" alt="Imagen ARMY SHOWCASE" id="armyImagePreview" onclick="document.getElementById('armyShowcaseImage').click();">
+                    <img src="https://via.placeholder.com/1900x1100" class="card-img-top mt-3" alt="Imagen ARMY SHOWCASE" id="armyImagePreview" onclick="document.getElementById('armyShowcaseImage').click();">
                     <p class="mt-2" style="filter: opacity(50%);">Haz clic en la imagen para cambiar el ARMY SHOWCASE</p>
                     <div class="card-body">
                         <textarea id="description1" name="description1" class="form-control" maxlength="640" rows="5" placeholder="Descripción" style="background-color: #171D25; border: solid 2px #6E869D; color: white;"></textarea>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <!-- Botón para guardar cambios -->
-        <div class="row justify-content-end">
-            <div class="col-md-4 text-end">
-                <input type="submit" value="Guardar cambios" class="btn btn-primary">
             </div>
         </div>
     </form>
@@ -262,7 +255,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         if (file) {
             reader.readAsDataURL(file);
         } else {
-            preview.src = 'https://via.placeholder.com/400x200'; // Imagen por defecto si no hay archivo
+            preview.src = 'https://via.placeholder.com/1900x1100'; // Imagen por defecto si no hay archivo
         }
     }
 </script>

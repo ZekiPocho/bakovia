@@ -159,7 +159,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 </nav>
 </header>
 <!--TERMINA HEADER Y NAVBAR PRO-->
-<!-- Start Breadcrumbs-->
+    <!-- Start Breadcrumbs -->
     <div class="breadcrumbs">
         <div class="container-sm">
             <div class="row align-items-center">
@@ -170,8 +170,11 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
                     <ul class="breadcrumb-nav">
-                        <li<i class="lni lni-home"></i>>INICIO</li>
-                        <li><a href="profile.php"> PERFIL</a></li>
+                        <li><a href="index.html"><i class="lni lni-home"></i> INICIO</a></li>
+                        <li><a href="profile.php">PARTIDAS</a></li>
+                        <li>EDITAR PERFIL</li>
+                    </ul>
+                </div>
                     </ul>
                 </div>
             </div>

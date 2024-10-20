@@ -381,7 +381,7 @@ if ($result->num_rows > 0) {
         <?php
     }
 }
-
+?>
                                     <div class="scoreboard">
                                         <div class="team">
                                             <img src="<?php echo $row['icono1']; ?>" alt="Equipo 1">

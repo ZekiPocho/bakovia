@@ -356,7 +356,12 @@ $conn->close();
                                             ) {
                                                 echo 'ESPERANDO';
                                             } else {
-                                                if ($row['made_usuario1'] == 1) {
+                                                $id_usuario = $_SESSION['id_usuario']; // Obtener el ID del usuario de la sesión
+                                                $sql = "SELECT * FROM usuarios where id = $id_usuario AND made = 1
+                                                ";
+
+                                                $result = $conn->query($sql);
+                                                if ($result->num_rows > 0) {
                                                     echo '<form action="join-match.php" method="POST" style="display:inline;">
                                                         <input type="hidden" name="id_partida" value="' . $row['id_partida'] . '">
                                                         <html> <div class="button">

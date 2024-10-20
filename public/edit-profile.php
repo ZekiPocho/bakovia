@@ -179,9 +179,11 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <div class="row justify-content-center align-items-center">
             <!-- Foto de perfil -->
             <div class="col-md-4 text-center mb-4">
-                <div class="profile-image-container" style="width: 200px; height: 200px; overflow: hidden; border-radius: 5px; position: relative;">
-                    <input type="file" id="profileImage" name="profileImage" class="form-control" accept="image/*" onchange="handleProfileImage(event)" style="display: none;">
-                    <img src="../uploads/user/default.png" alt="Foto de perfil" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;" id="profilePreview" onclick="document.getElementById('profileImage').click();">
+                <div class="d-flex justify-content-center">
+                    <div class="profile-image-container" style="width: 200px; height: 200px; overflow: hidden; border-radius: 5px; position: relative;">
+                        <input type="file" id="profileImage" name="profileImage" class="form-control" accept="image/*" onchange="handleProfileImage(event)" style="display: none;">
+                        <img src="../uploads/user/default.png" alt="Foto de perfil" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;" id="profilePreview" onclick="document.getElementById('profileImage').click();">
+                    </div>
                 </div>
                 <p class="mt-2" style="filter: opacity(50%);">Haz clic en la imagen para cambiar la foto de perfil</p>
             </div>

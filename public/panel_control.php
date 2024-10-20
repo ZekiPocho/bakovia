@@ -292,24 +292,24 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4"> <!-- Columna central -->
     <div class="matches-div text-center">
         <div class="middle-section text-center">
+            <!-- Información del Juego -->
+            <p style="font-size: 1rem;"><?php echo htmlspecialchars($nombre_juego); ?></p> <!-- Nombre del juego -->
+
+            <!-- Puntos -->
+            <p style="font-size: 1rem;"><?php echo htmlspecialchars($puntos); ?></p> <!-- Puntos -->
+
+            <!-- Horarios -->
+            <h4 style="font-size: 1rem;">Horario:</h4>
+            <p style="font-size: 1rem;">
+                Inicio: <?php echo htmlspecialchars($hora_inicio); ?> <br>
+                Finalización: <?php echo htmlspecialchars($hora_final); ?>
+            </p> <!-- Horas de inicio y finalización -->    
+
             <h3 style="font-size: 1.25rem;">Tiempo Transcurrido</h3> <!-- Reducido el tamaño de la fuente -->
             <p id="tiempo-transcurrido" style="font-size: 1.2rem;">00:00:00</p> <!-- Reducido el tamaño de la fuente -->
             <br>
 
-            <!-- Información del Juego -->
-            <h4 style="font-size: 1rem;">Juego:</h4>
-            <p style="font-size: 1rem;"><?php echo htmlspecialchars($nombre_juego); ?></p> <!-- Nombre del juego -->
-
-            <!-- Puntos -->
-            <h4 style="font-size: 1rem;">Puntos:</h4>
-            <p style="font-size: 1rem;"><?php echo htmlspecialchars($puntos); ?></p> <!-- Puntos -->
-
-            <!-- Horarios -->
-            <h4 style="font-size: 1rem;">Horarios:</h4>
-            <p style="font-size: 1rem;">
-                Inicio: <?php echo htmlspecialchars($hora_inicio); ?> <br>
-                Finalización: <?php echo htmlspecialchars($hora_final); ?>
-            </p> <!-- Horas de inicio y finalización -->
+            
 
             <br>
             <form action="adjust_rounds.php" method="POST" id="roundForm">

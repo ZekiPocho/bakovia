@@ -1,6 +1,6 @@
 <?php
 include("../src/validate_session.php");
-if (date('N') == 7) { // 'N' devuelve 1 (lunes) a 7 (domingo)
+if (date('N') == 6) { // 'N' devuelve 1 (lunes) a 7 (domingo)
     header("Location: sorry.html"); // Cambia 'otra_pagina.php' por la URL a la que deseas redirigir
     exit(); // Asegúrate de usar exit() después de header para detener la ejecución del script
 }

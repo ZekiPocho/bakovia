@@ -297,24 +297,24 @@ $conn->close();
                 <div class="matches-div text-center">
                     <h3 style="border-bottom: solid 1px #6E869D;">¡A JUGAR!</h3>
                     <br>
-                                            <?php
-                        include("../public/db.php");
-                        // Verificar conexión
-                        if ($conn->connect_error) {
-                            die("Connection failed: " . $conn->connect_error);
-                        }
+                    <?php
+include("../public/db.php");
+// Verificar conexión
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
-                        // Consulta para obtener partidas programadas
-                        $id_usuario = $_SESSION['id_usuario']; // Obtener el ID del usuario de la sesión
+$id_usuario = $_SESSION['id_usuario']; // Obtener el ID del usuario de la sesión
 
+// Consulta para obtener partidas programadas
 $sql = "SELECT p.id_partida, p.id_juego, p.puntos, 
-               p.nombre_usuario1, u1.made AS made_usuario1, 
-               p.nombre_usuario2, u2.made AS made_usuario2, 
-               f1.nombre AS faccion1, f1.subfaccion AS subfaccion1, f1.icono AS icono1, 
-               f2.nombre AS faccion2, f2.subfaccion AS subfaccion2, f2.icono AS icono2,
-               p.hora_inicio, p.hora_final, p.id_mesa, p.puntaje_usuario1, 
-               p.puntaje_usuario2,
-               u_made.made AS made_usuario_sesion -- Agregar made del usuario en la sesión
+                p.nombre_usuario1, u1.made AS made_usuario1, 
+                p.nombre_usuario2, u2.made AS made_usuario2, 
+                f1.nombre AS faccion1, f1.subfaccion AS subfaccion1, f1.icono AS icono1, 
+                f2.nombre AS faccion2, f2.subfaccion AS subfaccion2, f2.icono AS icono2,
+                p.hora_inicio, p.hora_final, p.id_mesa, p.puntaje_usuario1, 
+                p.puntaje_usuario2,
+                u_made.made AS made_usuario_sesion -- Agregar made del usuario en la sesión
         FROM partida p
         JOIN faccion f1 ON p.id_faccion_usuario1 = f1.id_faccion
         JOIN faccion f2 ON p.id_faccion_usuario2 = f2.id_faccion
@@ -377,40 +377,35 @@ if ($result->num_rows > 0) {
                     ?>
                 </div>
             </div>
+            <div class="scoreboard">
+                <div class="team">
+                    <img src="<?php echo $row['icono1']; ?>" alt="Equipo 1">
+                    <div class="team-name"><?php echo $row['faccion1']; ?><br><?php echo $row['subfaccion1']; ?></div>
+                </div>
+                <div class="score"><?php echo $row['puntaje_usuario1']; ?></div>
+                <div class="middle-section">
+                    <h1><?php echo $row['id_juego']; ?></h1>
+                    <h1><?php echo $row['puntos']; ?> Pts.</h1>
+                    <div class="timer"><?php echo $row['hora_inicio']; ?> - <?php echo $row['hora_final']; ?></div>
+                    <h1>MESA - <?php echo $row['id_mesa']; ?></h1>
+                </div>
+                <div class="score"><?php echo $row['puntaje_usuario2']; ?></div>
+                <div class="team">
+                    <img src="<?php echo $row['icono2']; ?>" alt="Equipo 2" style="filter: opacity(25%);">
+                    <div class="team-name"><?php echo $row['faccion2']; ?><br><?php echo $row['subfaccion2']; ?></div>
+                </div>
+            </div>
         </div>
+        <!-- Aquí termina el HTML para mostrar las partidas programadas -->
         <?php
     }
+} else {
+    echo "No hay partidas programadas.";
 }
+
+$conn->close();
 ?>
-                                    <div class="scoreboard">
-                                        <div class="team">
-                                            <img src="<?php echo $row['icono1']; ?>" alt="Equipo 1">
-                                            <div class="team-name"><?php echo $row['faccion1']; ?><br><?php echo $row['subfaccion1']; ?></div>
-                                        </div>
-                                        <div class="score"><?php echo $row['puntaje_usuario1']; ?></div>
-                                        <div class="middle-section">
-                                            <h1><?php echo $row['id_juego']; ?></h1>
-                                            <h1><?php echo $row['puntos']; ?> Pts.</h1>
-                                            <div class="timer"><?php echo $row['hora_inicio']; ?> - <?php echo $row['hora_final']; ?></div>
-                                            <h1>MESA - <?php echo $row['id_mesa']; ?></h1>
-                                        </div>
-                                        <div class="score"><?php echo $row['puntaje_usuario2']; ?></div>
-                                        <div class="team">
-                                            <img src="<?php echo $row['icono2']; ?>" alt="Equipo 2" style="filter: opacity(25%);">
-                                            <div class="team-name"><?php echo $row['faccion2']; ?><br><?php echo $row['subfaccion2']; ?></div>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <!-- Aquí termina el HTML para mostrar las partidas programadas -->
-                                <?php
-                            }
-                        } else {
-                            echo "No hay partidas programadas.";
-                        }
-
-                        $conn->close();
-                        ?>
 
                     <!-- Botón para iniciar una nueva partida -->
                     <?php

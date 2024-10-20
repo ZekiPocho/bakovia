@@ -4,23 +4,24 @@
 include 'db.php'; // Archivo para la conexión a la base de datos
 include ('validate_session.php');
 // Verificar si el formulario de comentario o respuesta ha sido enviado
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['comentar'])) {
-        $id_publicacion = $_POST['id_publicacion'];
-        $id_usuario = $_SESSION['id_usuario']; // Verifica que la sesión del usuario esté activa
-        $comentario = $conn->real_escape_string($_POST['comentario']);
-        $fecha_comentario = date('Y-m-d H:i:s');
-    
-        // Inserta el comentario
-        $sql = "INSERT INTO comentarios (id_publicacion, id_usuario, comentario, fecha_comentario) 
-                VALUES ('$id_publicacion', '$id_usuario', '$comentario', '$fecha_comentario')";
-    
-        if ($conn->query($sql)) {
-            echo "Comentario agregado correctamente.";
-        } else {
-            echo "Error al agregar comentario: " . $conn->error;
-        }
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['comentar'])) {
+    $id_publicacion = $_POST['id_publicacion'];
+    $id_usuario = $_SESSION['id_usuario'];
+    $comentario = $conn->real_escape_string($_POST['comentario']);
+    $fecha_comentario = date('Y-m-d H:i:s');
+
+    // Inserta el comentario
+    $sql = "INSERT INTO comentarios (id_publicacion, id_usuario, comentario, fecha_comentario) 
+            VALUES ('$id_publicacion', '$id_usuario', '$comentario', '$fecha_comentario')";
+
+    if ($conn->query($sql)) {
+        // Redirigir al usuario después de que el comentario haya sido agregado correctamente
+        header("Location: blog-grid-sidebar.php?id=$id_publicacion&success=1");
+        exit(); // Importante: salir después de la redirección
+    } else {
+        echo "Error al agregar comentario: " . $conn->error;
     }
+}
 
     if (isset($_POST['responder'])) {
         $id_comentario_padre = $_POST['id_comentario_padre'];

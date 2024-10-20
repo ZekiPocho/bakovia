@@ -274,7 +274,9 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         <!-- Columna 1: Información Jugador 1 -->
                         <div class="team">
                             <h4 class="text-center"><?php echo htmlspecialchars($nombre_jugador1); ?></h4>
+                            <br>
                             <img src="<?php echo htmlspecialchars($icono1); ?>" alt="Facción Jugador 1" class="img-fluid" style="max-height: 80px;">
+                            <br>
                             <div class="team-name">
                             <p><?php echo htmlspecialchars($faccion1); ?></p>
                             <p><?php echo htmlspecialchars($subfaccion1); ?></p>
@@ -312,13 +314,15 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         <!-- Columna 3: Información Jugador 2 -->
                         <div class="team">
                             <h4 class="text-center"><?php echo htmlspecialchars($nombre_jugador2); ?></h4>
+                            <br>
                             <img src="<?php echo htmlspecialchars($icono2); ?>" alt="Facción Jugador 2" class="img-fluid" style="max-height: 80px;">
+                            <br>
                             <div class="team-name">
                             <p><?php echo htmlspecialchars($faccion2); ?></p>
                             <p><?php echo htmlspecialchars($subfaccion2); ?></p>
                             </div>
                             
-                            <form action="adjust_score.php" method="POST" id="scoreFormJugador1">
+                            <form action="adjust_score.php" method="POST" id="scoreFormJugador2">
                                 <input type="hidden" name="id_partida" value="<?php echo htmlspecialchars($id_partida); ?>">
                                 <input type="hidden" name="jugador" value="1">
                                 <div class="mb-3">

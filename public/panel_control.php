@@ -275,7 +275,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <br>
                 <div class="team-name">
                     <p><?php echo htmlspecialchars($faccion1); ?></p>
-                    <h2><?php echo htmlspecialchars($subfaccion1); ?></h2>
+                    <h3><?php echo htmlspecialchars($subfaccion1); ?></h3>
                 </div>
                 <br>
                 <form action="adjust_score.php" method="POST" id="scoreFormJugador1">
@@ -293,10 +293,10 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     <div class="matches-div text-center">
         <div class="middle-section text-center">
             <!-- Información del Juego -->
-            <p style="font-size: 1rem;"><?php echo htmlspecialchars($nombre_juego); ?></p> <!-- Nombre del juego -->
+            <p style="font-size: 3rem;"><?php echo htmlspecialchars($nombre_juego); ?></p> <!-- Nombre del juego -->
 
             <!-- Puntos -->
-            <p style="font-size: 1rem;"><?php echo htmlspecialchars($puntos); ?></p> <!-- Puntos -->
+            <p style="font-size: 1rem;"><?php echo htmlspecialchars($puntos); ?> Pts.</p> <!-- Puntos -->
 
             <!-- Horarios -->
             <h4 style="font-size: 1rem;">Horario:</h4>
@@ -304,14 +304,11 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 Inicio: <?php echo htmlspecialchars($hora_inicio); ?> <br>
                 Finalización: <?php echo htmlspecialchars($hora_final); ?>
             </p> <!-- Horas de inicio y finalización -->    
-
+            <br>
             <h3 style="font-size: 1.25rem;">Tiempo Transcurrido</h3> <!-- Reducido el tamaño de la fuente -->
             <p id="tiempo-transcurrido" style="font-size: 1.2rem;">00:00:00</p> <!-- Reducido el tamaño de la fuente -->
             <br>
 
-            
-
-            <br>
             <form action="adjust_rounds.php" method="POST" id="roundForm">
                 <input type="hidden" name="id_partida" value="<?php echo htmlspecialchars($id_partida); ?>">
                 <div class="mb-3">
@@ -334,7 +331,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <br>
                 <div class="team-name">
                     <p><?php echo htmlspecialchars($faccion2); ?></p>
-                    <h2><?php echo htmlspecialchars($subfaccion2); ?></h2>
+                    <h3><?php echo htmlspecialchars($subfaccion2); ?></h3>
                 </div>
                 <br>
                 <form action="adjust_score.php" method="POST" id="scoreFormJugador2">

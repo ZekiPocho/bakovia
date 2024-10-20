@@ -352,9 +352,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Horarios para sábado
     const horariosSabado = {
-        1: "13:30", 2: "14:00", 3: "14:30", 4: "15:00", 
-        5: "15:30", 6: "16:00", 7: "16:30", 8: "17:00", 
-        9: "17:30", 10: "18:00"
+        11: "13:30", 12: "14:00", 13: "14:30", 14: "15:00", 
+        15: "15:30", 16: "16:00", 17: "16:30", 18: "17:00", 
+        19: "17:30", 20: "18:00"
     };
 
     // Función para verificar si es sábado

@@ -241,7 +241,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         if (file) {
             reader.readAsDataURL(file);
         } else {
-            preview.src = 'https://via.placeholder.com/200'; // Imagen por defecto si no hay archivo
+            preview.src = '../uploads/user/default.png'; // Imagen por defecto si no hay archivo
         }
     }
 

@@ -123,6 +123,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_product'])) {
         button:hover {
             background-color: #e68900;
         }
+        .back-button {
+            display: block;
+            text-align: center;
+            margin: 20px auto;
+            background-color: #3c3c3c;
+            padding: 10px 20px;
+            border: none;
+            color: #ff9800;
+            cursor: pointer;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .back-button:hover {
+            background-color: #444;
+        }
     </style>
 </head>
 <body>
@@ -155,5 +170,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_product'])) {
 
         <button type="submit" name="update_product">Actualizar Producto</button>
     </form>
+
+    <a href="admin-products.php" class="back-button">Volver a la Administración de Productos</a>
 </body>
 </html>

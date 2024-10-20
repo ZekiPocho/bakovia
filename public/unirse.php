@@ -4,7 +4,7 @@ require_once "../src/validate_session.php";
 include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a la base de datos
 
 // Obtener el ID de la partida de la solicitud POST
-$id_partida = isset($_POST['id_partida']) ? intval($_POST['id_partida']) : 0;
+$id_partida = isset($_SESSION['id_partida']) ? intval($_SESSION['id_partida']) : 0;
 
 // Obtener la facción del segundo jugador del POST
 $faccion_usuario = isset($_POST['faccion']) ? $_POST['faccion'] : null;

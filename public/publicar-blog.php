@@ -17,8 +17,15 @@ if ($conn->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $titulo = $conn->real_escape_string($_POST['titulo']);
     $contenido = $conn->real_escape_string($_POST['contenido']);
-    $tag = $conn->real_escape_string($_POST['tag']); // Capturamos el tag seleccionado
-    $id_usuario = $_SESSION['id_usuario']; // Asumimos que tienes la sesión del usuario
+    $tag = $conn->real_escape_string($_POST['tag']);
+    $id_usuario = $_SESSION['id_usuario'];
+
+    // Validar que el título no exceda los 300 caracteres
+    if (strlen($titulo) > 300) {
+        echo "Error: El título no puede exceder los 300 caracteres.";
+        exit(); // Detener la ejecución si el título es demasiado largo
+    }
+
 
     // Manejo de imagen subida
     $upload_dir = '../uploads/posts/';
@@ -244,6 +251,13 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <small id="contador-titulo">0/300 caracteres</small>
             </div>
         <div>
+        <script>
+function contarCaracteres() {
+    var titulo = document.getElementById('titulo');
+    var contador = document.getElementById('contador-titulo');
+    contador.textContent = titulo.value.length + "/300 caracteres";
+}
+</script>
             <textarea class="form-control" name="contenido" placeholder="cuerpo*"></textarea>
         </div >
         <div class="row">

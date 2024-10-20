@@ -1,17 +1,45 @@
+
 <?php
 // Conexión a la base de datos
-$servername = "localhost";
-$username = "root";
-$password = ""; // Tu contraseña de la base de datos
-$dbname = "bakoviadb";
+include 'db.php'; // Archivo para la conexión a la base de datos
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+// Verificar si el formulario de comentario o respuesta ha sido enviado
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['comentar'])) {
+        // Insertar un nuevo comentario en la publicación
+        $id_publicacion = $_POST['id_publicacion'];
+        $id_usuario = $_SESSION['id_usuario']; // Asumimos que el usuario está logueado y almacenado en la sesión
+        $comentario = $conn->real_escape_string($_POST['comentario']);
+        $fecha_comentario = date('Y-m-d H:i:s');
 
-if ($conn->connect_error) {
-    die("Error de conexión: " . $conn->connect_error);
+        $sql = "INSERT INTO comentarios (id_publicacion, id_usuario, comentario, fecha_comentario) 
+                VALUES ('$id_publicacion', '$id_usuario', '$comentario', '$fecha_comentario')";
+
+        if ($conn->query($sql)) {
+            echo "Comentario agregado correctamente.";
+        } else {
+            echo "Error al agregar comentario: " . $conn->error;
+        }
+    }
+
+    if (isset($_POST['responder'])) {
+        // Insertar una respuesta a un comentario
+        $id_comentario_padre = $_POST['id_comentario_padre'];
+        $id_usuario = $_SESSION['id_usuario']; 
+        $respuesta = $conn->real_escape_string($_POST['respuesta']);
+        $fecha_respuesta = date('Y-m-d H:i:s');
+
+        $sql = "INSERT INTO comentarios (id_publicacion, id_usuario, comentario, fecha_comentario, id_comentario_padre)
+                VALUES ('$id_publicacion', '$id_usuario', '$respuesta', '$fecha_respuesta', '$id_comentario_padre')";
+
+        if ($conn->query($sql)) {
+            echo "Respuesta agregada correctamente.";
+        } else {
+            echo "Error al agregar respuesta: " . $conn->error;
+        }
+    }
 }
 ?>
-
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 

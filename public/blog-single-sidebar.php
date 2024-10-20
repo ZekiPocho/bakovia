@@ -211,9 +211,6 @@ register.php<div class="col-sm-auto"></div>
     <!-- Start Blog Singel Area -->
     <section class="section blog-single">
         <div class="container-sm">
-            <div class="navbar-area">
-                <p>hplas</p>
-            </div>
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-12">
                     <div class="single-inner">

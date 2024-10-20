@@ -12,7 +12,7 @@ if (isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
 
     // Preparar una consulta segura con prepared statements
     $stmt = $conn->prepare("SELECT id_usuario, nombre_usuario, contrasena, correo, foto_perfil, 
-                                   biografia, fecha_registro, verificado, army_showcase, 
+                                   biografia, fecha_registro, verificado, army_showcase, army_desc, 
                                    rango_id, wins, loses, id_rol, token
                             FROM usuarios 
                             WHERE correo=? 
@@ -34,6 +34,7 @@ if (isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
         $_SESSION['biografia'] = $userData['biografia'] ?? null;
         $_SESSION['fecha_registro'] = $userData['fecha_registro'];
         $_SESSION['army_showcase'] = $userData['army_showcase'];
+        $_SESSION['army_desc'] = $userData['army_desc'];
         $_SESSION['rango_id'] = $userData['rango_id'];
         $_SESSION['wins'] = $userData['wins'];
         $_SESSION['loses'] = $userData['loses'];
@@ -64,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $password = sha1($_POST['clave']); 
         // Consulta SQL para verificar el correo y la contraseña
         $stmt = $conn->prepare("SELECT id_usuario, nombre_usuario, contrasena, correo, foto_perfil, 
-                                   biografia, fecha_registro, verificado, army_showcase, 
+                                   biografia, fecha_registro, verificado, army_showcase, army_desc, 
                                    rango_id, wins, loses, id_rol, token
                             FROM usuarios 
                             WHERE correo=? 
@@ -82,6 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['biografia'] = $userData['biografia'] ?? null;
             $_SESSION['fecha_registro'] = $userData['fecha_registro'];
             $_SESSION['army_showcase'] = $userData['army_showcase'];
+            $_SESSION['army_desc'] = $userData['army_desc'];
             $_SESSION['rango_id'] = $userData['rango_id'];
             $_SESSION['wins'] = $userData['wins'];
             $_SESSION['loses'] = $userData['loses'];

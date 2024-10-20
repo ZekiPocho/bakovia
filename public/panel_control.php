@@ -39,9 +39,6 @@ if ($stmt = $conn->prepare($query)) {
     echo "Error en la preparación de la consulta.";
 }
 
-$conn->close();
-
-
 
 ?>
 <!DOCTYPE html>

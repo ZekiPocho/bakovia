@@ -1,5 +1,5 @@
 <?php
-include ('validate_session.php'); // Asegúrate de que el usuario esté autenticado
+include ('../src/validate_session.php'); // Asegúrate de que el usuario esté autenticado
 
 $mensaje = "";
 // Conexión a la base de datos

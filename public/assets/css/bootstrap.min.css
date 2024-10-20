@@ -2286,7 +2286,7 @@ progress {
 }
 
 .form-control:focus {
-    color: #212529;
+    color: #eee;
     background-color: #171D25;
     border-color: #34404b;
     outline: 0;

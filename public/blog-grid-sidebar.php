@@ -228,13 +228,13 @@ register.php<div class="col-sm-auto"></div>
             <div class="container text-center">
                 <div clas="row-align-items-center">
                     <div class="col">
-                        <p>Ultimas Publicaciones </p>
+                        Ultimas Publicaciones 
                     </div>
                     <div class="col">
                         <a aria-label="Toggle navigation" href="publicar-blog.php">Crear Blog <i class="lni lni-plus"></i></a>
                     </div>
                 </div>
-            </div>
+            a</div>
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-12">
                 <div class="row">

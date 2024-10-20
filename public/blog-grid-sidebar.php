@@ -231,6 +231,7 @@ register.php<div class="col-sm-auto"></div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
                 <a aria-label="Toggle navigation" href="index.html">Crear Blog</a>
+                <i class="lni lni-plus"></i>
                 </div>
             </div>
             <div class="row">

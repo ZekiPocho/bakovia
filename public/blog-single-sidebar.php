@@ -23,15 +23,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (isset($_POST['responder'])) {
-        // Insertar una respuesta a un comentario
         $id_comentario_padre = $_POST['id_comentario_padre'];
         $id_usuario = $_SESSION['id_usuario']; 
         $respuesta = $conn->real_escape_string($_POST['respuesta']);
         $fecha_respuesta = date('Y-m-d H:i:s');
-
+        
+        // Falta definir id_publicacion para las respuestas
+        $id_publicacion = $_POST['id_publicacion']; // Asegúrate de que id_publicacion esté en el POST
+    
         $sql = "INSERT INTO comentarios (id_publicacion, id_usuario, comentario, fecha_comentario, id_comentario_padre)
                 VALUES ('$id_publicacion', '$id_usuario', '$respuesta', '$fecha_respuesta', '$id_comentario_padre')";
-
+    
         if ($conn->query($sql)) {
             echo "Respuesta agregada correctamente.";
         } else {

@@ -61,18 +61,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
 
             // 3. Token USUARIO
-            $sql_usuario = "INSERT INTO usuarios (made)
-                            VALUES (?)";
-            
+            $sql_usuario = "INSERT INTO usuarios (made) VALUES (?)";
+
             $stmt_usuario = $conn->prepare($sql_usuario);
             if ($stmt_usuario === false) {
                 throw new Exception("Error en la consulta de partida: " . $conn->error);
             }
+
+            // Asignar el valor a una variable
+            $made_value = 1; // 1 representa true en este caso
+
             // Vincular parámetros y ejecutar
-            $stmt_usuario->bind_param("i", true);
+            $stmt_usuario->bind_param("i", $made_value);
             if (!$stmt_usuario->execute()) {
                 throw new Exception("Error al insertar la partida: " . $stmt_usuario->error);
             }
+
+            // Cerrar el statement
+            $stmt_usuario->close();
+
 
             // Si ambas inserciones fueron exitosas, confirmar la transacción
             $conn->commit();

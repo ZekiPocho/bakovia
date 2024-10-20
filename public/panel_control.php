@@ -257,7 +257,7 @@ if ($result->num_rows > 0) {
 } else {
     echo "No se encontró la partida con el ID proporcionado.";
 }
-
+?>
 
 
 

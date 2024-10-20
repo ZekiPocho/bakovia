@@ -238,55 +238,59 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <h2 style="border-bottom: solid 1px #6E869D;">PANEL DE CONTROL</h2>
                 <br>
                 <div class="container mt-1">
-                    <div class="row">
-                        <!-- Columna izquierda: Información de la partida -->
-                        <div class="col-md-6">
-                            <h3 class="text-center">INFORMACIÓN DE LA PARTIDA</h3>
-                            <br>
-                            <p><strong>ID de Partida:</strong> <?php echo htmlspecialchars($id_partida); ?></p>
-                            <p><strong>Juego:</strong> <?php echo htmlspecialchars($juego); ?></p>
-                            <p><strong>Puntos:</strong> <span id="puntaje_jugador1"><?php echo htmlspecialchars($puntaje_jugador1); ?></span> - <span id="puntaje_jugador2"><?php echo htmlspecialchars($puntaje_jugador2); ?></span></p>
-                            <p><strong>Mesa:</strong> <?php echo htmlspecialchars($mesa); ?></p>
-                            <p><strong>Estado:</strong> <?php echo htmlspecialchars($estado); ?></p>
-                            <p><strong>Facción Jugador 1:</strong> <?php echo htmlspecialchars($faccion_jugador1); ?></p>
-                            <p><strong>Facción Jugador 2:</strong> <?php echo htmlspecialchars($faccion_jugador2); ?></p>
+                    <div class="row text-center">
+                        <!-- Columna 1: Información Jugador 1 -->
+                        <div class="col-md-4">
+                            <h3 class="text-center"><?php echo htmlspecialchars($id_jugador1); ?></h3>
+                            <img src="../public/assets/images/icons/<?php echo htmlspecialchars($faccion_jugador1); ?>.png" alt="Facción Jugador 1" class="img-fluid" style="max-height: 80px;">
+                            <p><strong>Facción:</strong> <?php echo htmlspecialchars($faccion_jugador1); ?></p>
+                            <form action="adjust_score.php" method="POST" id="scoreFormJugador1">
+                                <input type="hidden" name="id_partida" value="<?php echo htmlspecialchars($id_partida); ?>">
+                                <input type="hidden" name="jugador" value="1">
+                                <div class="mb-3">
+                                    <label for="puntaje_jugador1" class="form-label">Puntaje Jugador 1:</label>
+                                    <input type="number" name="puntaje_jugador1" class="form-control" value="<?php echo htmlspecialchars($puntaje_jugador1); ?>">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Ajustar Puntaje</button>
+                            </form>
                         </div>
 
-                        <!-- Columna derecha: Ajuste de puntaje y rondas -->
-                        <div class="col-md-6">
-                            <h3 class="text-center">AJUSTAR PUNTAJE Y RONDAS</h3>
+                        <!-- Columna 2: Tiempo Transcurrido y Rondas -->
+                        <div class="col-md-4">
+                            <h3>Tiempo Transcurrido</h3>
+                            <p id="tiempo-transcurrido">00:00:00</p> <!-- Aquí puedes agregar lógica para mostrar el tiempo en tiempo real -->
                             <br>
-                            <form action="adjust_score.php" method="POST" id="scoreForm">
+                            <form action="adjust_rounds.php" method="POST" id="roundForm">
                                 <input type="hidden" name="id_partida" value="<?php echo htmlspecialchars($id_partida); ?>">
                                 <div class="mb-3">
-                                    <label for="ajuste_jugador1" class="form-label">Ajustar puntaje Jugador 1:</label>
-                                    <input type="number" name="ajuste_jugador1" class="form-control" value="0">
+                                    <label for="rondas" class="form-label">Rondas:</label>
+                                    <input type="number" name="rondas" class="form-control" value="0"> <!-- Cambia este valor al número de rondas actual -->
                                 </div>
+                                <button type="submit" class="btn btn-primary">Ajustar Rondas</button>
+                            </form>
+                        </div>
+
+                        <!-- Columna 3: Información Jugador 2 -->
+                        <div class="col-md-4">
+                            <h3 class="text-center"><?php echo htmlspecialchars($id_jugador2); ?></h3>
+                            <img src="../public/assets/images/icons/<?php echo htmlspecialchars($faccion_jugador2); ?>.png" alt="Facción Jugador 2" class="img-fluid" style="max-height: 80px;">
+                            <p><strong>Facción:</strong> <?php echo htmlspecialchars($faccion_jugador2); ?></p>
+                            <form action="adjust_score.php" method="POST" id="scoreFormJugador2">
+                                <input type="hidden" name="id_partida" value="<?php echo htmlspecialchars($id_partida); ?>">
+                                <input type="hidden" name="jugador" value="2">
                                 <div class="mb-3">
-                                    <label for="ajuste_jugador2" class="form-label">Ajustar puntaje Jugador 2:</label>
-                                    <input type="number" name="ajuste_jugador2" class="form-control" value="0">
+                                    <label for="puntaje_jugador2" class="form-label">Puntaje Jugador 2:</label>
+                                    <input type="number" name="puntaje_jugador2" class="form-control" value="<?php echo htmlspecialchars($puntaje_jugador2); ?>">
                                 </div>
-                                <div class="mb-3">
-                                    <label for="rondas" class="form-label">Ajustar Rondas:</label>
-                                    <input type="number" name="rondas" class="form-control" value="0">
-                                </div>
-                                <button type="submit" class="btn btn-primary">AJUSTAR</button>
+                                <button type="submit" class="btn btn-primary">Ajustar Puntaje</button>
                             </form>
                         </div>
                     </div>
-                </div>
-
-                <!-- Detalles de la partida -->
-                <div class="mt-4">
-                    <h3>DETALLES DE LA PARTIDA</h3>
-                    <p>Puedes agregar cualquier detalle adicional aquí.</p>
-                    <!-- Aquí puedes añadir más información según sea necesario -->
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 
 
     

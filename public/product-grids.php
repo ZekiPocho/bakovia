@@ -1,15 +1,6 @@
 <?php
 include("../src/validate_session.php");
 include("../public/db.php"); // Asegúrate de incluir el archivo de conexión a la base de datos
-
-// Función para obtener todos los productos
-function getAllProducts($conn) {
-    $sql = "SELECT p.id_producto, p.nombre_producto, p.descripcion, p.precio, p.imagen_producto
-            FROM productos p";
-    return $conn->query($sql);
-}
-
-$productos = getAllProducts($conn);
 ?>
 
 <!DOCTYPE html>
@@ -375,6 +366,16 @@ register.php<div class="col-sm-auto"></div>
                             <div class="tab-pane fade show active" id="nav-grid" role="tabpanel"
                                 aria-labelledby="nav-grid-tab">
                                 <div class="row">
+                                    <?php
+                                    // Función para obtener todos los productos
+                                    function getAllProducts($conn) {
+                                        $sql = "SELECT p.id_producto, p.nombre_producto, p.descripcion, p.precio, p.imagen_producto
+                                                FROM productos p";
+                                        return $conn->query($sql);
+                                    }
+
+                                    $productos = getAllProducts($conn);
+                                    ?>
                                     <!-- Start Single Product -->
                                     <?php while ($producto = $productos->fetch_assoc()): ?>
                                         <!-- Start Single Product -->

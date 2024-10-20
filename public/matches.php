@@ -398,21 +398,39 @@ $conn->close();
                     <!-- Botón para iniciar una nueva partida -->
                     <?php
                         $id_usuario = $_SESSION['id_usuario'];
-                        $sql = "SELECT made 
-                                FROM usuarios 
-                                WHERE id_usuario = $id_usuario";
 
-                        $result = $conn->query($sql);
+                        // Preparar la consulta
+                        $sql = "SELECT made FROM usuarios WHERE id_usuario = ?";
+                        $stmt = $conn->prepare($sql);
 
-                        // Verificar si hay resultados
-                        if ($result->num_rows > 0) {
-                            $row = $result->fetch_assoc();
-                            $made = $row['made'];
+                        if ($stmt) {
+                            // Vincular el parámetro
+                            $stmt->bind_param("i", $id_usuario);
+
+                            // Ejecutar la consulta
+                            $stmt->execute();
+
+                            // Obtener el resultado
+                            $result = $stmt->get_result();
+
+                            // Verificar si hay resultados
+                            if ($result->num_rows > 0) {
+                                $row = $result->fetch_assoc();
+                                $made = $row['made'];
+                            } else {
+                                $made = 0; // Asignar un valor por defecto si no hay resultados
+                            }
+
+                            // Cerrar el statement
+                            $stmt->close();
+                        } else {
+                            // Manejo de error al preparar la consulta
+                            echo "Error al preparar la consulta: " . $conn->error;
                         }
 
                         ?>
 
-                        <?php if ($made != 1): ?>
+                        <?php if (isset($made) && $made != 1): ?>
                             <!-- Mostrar el botón solo si 'made' no es true (1) -->
                             <br><br><br>
                             <p class="text-muted"><span style="font-size: 15px;">O sino, inicia tu propia partida</span></p>
@@ -420,8 +438,8 @@ $conn->close();
                             <div class="button">
                                 <a href="new-match.php"><button class="btn">Nueva Partida</button></a>
                             </div>
-                        <?php endif; ?>
-
+                        <?php endif;
+                    ?>
                 </div>
             </div>
         </div>

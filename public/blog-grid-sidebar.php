@@ -226,12 +226,14 @@ register.php<div class="col-sm-auto"></div>
     <section class="section blog-section blog-list">
         <div class="container-sm">
             <div class="navbar-area">
-                <div class="col-lg-6 col-md-6 col-12">
-                    <p>Ultimas Publicaciones</p>
-                </div>
-                <div class="col-lg-6 col-md-6 col-12">
-                <a aria-label="Toggle navigation" href="publicar-blog.php">Crear Blog</a>
-                <i class="lni lni-plus"></i>
+                <div clas="row-align-items-center">
+                    <div class="col-lg-6 col-md-6 col-12">
+                        <p>Ultimas Publicaciones</p>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-12">
+                    <a aria-label="Toggle navigation" href="publicar-blog.php">Crear Blog</a>
+                    <i class="lni lni-plus"></i>
+                    </div>
                 </div>
             </div>
             <div class="row">

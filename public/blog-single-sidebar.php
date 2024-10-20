@@ -6,15 +6,15 @@ include ('validate_session.php');
 // Verificar si el formulario de comentario o respuesta ha sido enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['comentar'])) {
-        // Insertar un nuevo comentario en la publicación
         $id_publicacion = $_POST['id_publicacion'];
-        $id_usuario = $_SESSION['id_usuario']; // Asumimos que el usuario está logueado y almacenado en la sesión
+        $id_usuario = $_SESSION['id_usuario']; // Verifica que la sesión del usuario esté activa
         $comentario = $conn->real_escape_string($_POST['comentario']);
         $fecha_comentario = date('Y-m-d H:i:s');
-
+    
+        // Inserta el comentario
         $sql = "INSERT INTO comentarios (id_publicacion, id_usuario, comentario, fecha_comentario) 
                 VALUES ('$id_publicacion', '$id_usuario', '$comentario', '$fecha_comentario')";
-
+    
         if ($conn->query($sql)) {
             echo "Comentario agregado correctamente.";
         } else {
@@ -281,20 +281,40 @@ if (isset($_GET['id'])) {
                                 <h3 class="comment-title"><span>Comentarios</span></h3>
                                 <ul class="comments-list">
                                 <?php
-// Consulta para obtener los comentarios principales (sin padre) de la publicación actual
+// Conexión a la base de datos y sesión
+include 'db.php'; 
+include 'validate_session.php';
+
+// Verificar si se ha enviado el comentario
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['comentar'])) {
+    $id_publicacion = $_POST['id_publicacion'];
+    $id_usuario = $_SESSION['id_usuario'];
+    $comentario = $conn->real_escape_string($_POST['comentario']);
+    $fecha_comentario = date('Y-m-d H:i:s');
+
+    // Inserta el comentario
+    $sql = "INSERT INTO comentarios (id_publicacion, id_usuario, comentario, fecha_comentario) 
+            VALUES ('$id_publicacion', '$id_usuario', '$comentario', '$fecha_comentario')";
+
+    if ($conn->query($sql)) {
+        // Mensaje de éxito
+        echo "<p>Comentario agregado correctamente.</p>";
+    } else {
+        echo "Error al agregar comentario: " . $conn->error;
+    }
+}
+
+// Ver comentarios de la publicación
 $sql_comentarios = "SELECT c.*, u.nombre_usuario, u.foto_perfil 
                     FROM comentarios c
                     JOIN usuarios u ON c.id_usuario = u.id_usuario
-                    WHERE c.id_publicacion = $id_publicacion AND c.id_comentario_padre IS NULL
+                    WHERE c.id_publicacion = $id_publicacion
                     ORDER BY c.fecha_comentario DESC";
 
 $result_comentarios = $conn->query($sql_comentarios);
 
+// Mostrar los comentarios
 if ($result_comentarios->num_rows > 0) {
-    echo '<div class="post-comments">';
-    echo '<h3 class="comment-title"><span>Comentarios</span></h3>';
-    echo '<ul class="comments-list">';
-
     while ($comentario = $result_comentarios->fetch_assoc()) {
         $nombre_usuario = $comentario['nombre_usuario'];
         $fecha_comentario = date("d M, Y", strtotime($comentario['fecha_comentario']));
@@ -311,65 +331,14 @@ if ($result_comentarios->num_rows > 0) {
                     <h6>'.$nombre_usuario.'</h6>
                     <span class="date">'.$fecha_comentario.'</span>
                 </div>
-                <p>'.$texto_comentario.'</p>';
-
-        // Mostrar formulario para responder al comentario
-        echo '
-        <form action="" method="POST">
-            <input type="hidden" name="id_comentario_padre" value="'.$comentario['id_comentario'].'">
-            <input type="hidden" name="id_publicacion" value="'.$id_publicacion.'">
-            <textarea name="respuesta" class="form-control form-control-custom" placeholder="Tu respuesta" required></textarea>
-            <button type="submit" name="responder" class="btn">Responder</button>
-        </form>
-    ';
-
-        // Mostrar respuestas del comentario
-        mostrar_respuestas($comentario['id_comentario'], $conn);
-
-        echo '</li>';
+                <p>'.$texto_comentario.'</p>
+            </div>
+        </li>';
     }
-
-    echo '</ul>';
-    echo '</div>';
 } else {
-    echo '<p>No hay comentarios aún.</p>';
+    echo "<p>No hay comentarios aún.</p>";
 }
 
-// Función para mostrar respuestas
-function mostrar_respuestas($id_comentario_padre, $conn) {
-    $sql_respuestas = "SELECT r.*, u.nombre_usuario, u.foto_perfil 
-                       FROM comentarios r
-                       JOIN usuarios u ON r.id_usuario = u.id_usuario
-                       WHERE r.id_comentario_padre = $id_comentario_padre
-                       ORDER BY r.fecha_comentario ASC";
-
-    $result_respuestas = $conn->query($sql_respuestas);
-
-    if ($result_respuestas->num_rows > 0) {
-        echo '<ul class="comments-list children">';
-        while ($respuesta = $result_respuestas->fetch_assoc()) {
-            $nombre_usuario_respuesta = $respuesta['nombre_usuario'];
-            $fecha_respuesta = date("d M, Y", strtotime($respuesta['fecha_comentario']));
-            $texto_respuesta = $respuesta['comentario'];
-            $foto_perfil_respuesta = !empty($respuesta['foto_perfil']) ? $respuesta['foto_perfil'] : 'https://via.placeholder.com/150';
-
-            echo '
-            <li class="children">
-                <div class="comment-img">
-                    <img src="'.$foto_perfil_respuesta.'" alt="img">
-                </div>
-                <div class="comment-desc">
-                    <div class="desc-top">
-                        <h6>'.$nombre_usuario_respuesta.'</h6>
-                        <span class="date">'.$fecha_respuesta.'</span>
-                    </div>
-                    <p>'.$texto_respuesta.'</p>
-                </div>
-            </li>';
-        }
-        echo '</ul>';
-    }
-}
 $conn->close();
 ?>
                                 </ul>

@@ -9,7 +9,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Preparar las consultas
     $sqlDeletePartida = "DELETE FROM partida WHERE id_partida = ?";
-    $sqlUpdateMade = "UPDATE usuarios SET made = 0 WHERE nombre_usuario IN 
+    $sqlUpdateMade = "UPDATE usuarios SET made = 0 
+                      WHERE nombre_usuario IN 
                       (SELECT nombre_usuario1 FROM partida WHERE id_partida = ?) 
                       OR nombre_usuario IN 
                       (SELECT nombre_usuario2 FROM partida WHERE id_partida = ?)";
@@ -22,17 +23,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Ejecutar la consulta para eliminar la partida
         $stmtDeletePartida = $conn->prepare($sqlDeletePartida);
         $stmtDeletePartida->bind_param("i", $id_partida);
-        $stmtDeletePartida->execute();
+        if (!$stmtDeletePartida->execute()) {
+            throw new Exception($stmtDeletePartida->error);
+        }
 
         // Cambiar el made de los jugadores a 0
         $stmtUpdateMade = $conn->prepare($sqlUpdateMade);
         $stmtUpdateMade->bind_param("ii", $id_partida, $id_partida);
-        $stmtUpdateMade->execute();
+        if (!$stmtUpdateMade->execute()) {
+            throw new Exception($stmtUpdateMade->error);
+        }
 
         // Eliminar la reserva
         $stmtDeleteReserva = $conn->prepare($sqlDeleteReserva);
         $stmtDeleteReserva->bind_param("i", $id_reserva);
-        $stmtDeleteReserva->execute();
+        if (!$stmtDeleteReserva->execute()) {
+            throw new Exception($stmtDeleteReserva->error);
+        }
 
         // Confirmar la transacción
         $conn->commit();

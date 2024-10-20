@@ -12,7 +12,8 @@ if (!isset($_SESSION['id_rol']) || $_SESSION['id_rol'] != 1) {
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Página Principal del Administrador</title>
+    <h1>BAKOVIA</h1>
+    <h2>Admin Dashboard</h2>
     <style>
         body {
             background-color: #1e1e1e;

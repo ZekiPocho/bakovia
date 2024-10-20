@@ -2,7 +2,7 @@
 include("../src/validate_session.php");
 include("../public/db.php");
 $usuario_actual = $_SESSION['nombre_usuario']; // Esto depende de cómo guardes el nombre del usuario en la sesión
-$usuario_partida = $_SESSION['partiada'];
+$usuario_partida = $_SESSION['partida'];
 unset($_SESSION['juego']);
 unset($_SESSION['puntos']);
 unset($_SESSION['faccion']);

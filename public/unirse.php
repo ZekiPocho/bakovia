@@ -22,7 +22,7 @@ if ($id_partida > 0 && $faccion_usuario !== null) {
         $partida = $result->fetch_assoc();
 
         // Comprobar el estado de la partida
-        if ($partida['estado'] === 'programado') {
+        if ($partida['estado'] == 'programado') {
             // Obtener el nombre del usuario desde la sesión
             $nombre_usuario = $_SESSION['nombre_usuario'];
 

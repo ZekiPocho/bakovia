@@ -351,7 +351,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                                         <a href="product-details.php?id=<?= $producto['id_producto'] ?>"><?= htmlspecialchars($producto['nombre_producto']) ?></a>
                                                     </h4>
                                                     <div class="price">
-                                                        <span>$<?= number_format($producto['precio'], 2) ?></span>
+                                                        <span>Bs. <?= number_format($producto['precio'], 2) ?></span>
                                                     </div>
                                                 </div>
                                             </div>

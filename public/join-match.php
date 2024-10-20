@@ -4,7 +4,7 @@ require_once "../src/validate_session.php";
 include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a la base de datos
 
 $id_partida = $_POST['id_partida']; // Asegúrate de que el ID sea pasado de manera segura
-$_SESSION['id_partida'] = = $_POST['id_partida'];
+$_SESSION['id_partida'] = $_POST['id_partida'];
 
 // Preparar la consulta
 $query = "SELECT * FROM partida WHERE id_partida = ?";

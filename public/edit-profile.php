@@ -189,12 +189,12 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <div class="col-md-6">
                 <div class="mb-3">
                     <label for="username" class="form-label " style="filter: opacity(50%);">Nombre de Usuario</label>
-                    <input type="text" id="username" name="username" class="form-control" value="Nombre de Usuario" style="background-color: #171D25; border: solid 2px #6E869D; color: white;">
+                    <input type="text" id="username" name="username" class="form-control" style="background-color: #171D25; border: solid 2px #6E869D; color: white;">
                 </div>
 
                 <div class="mb-3">
                     <label for="bio" class="form-label" style="filter: opacity(50%);">Biografía</label>
-                    <textarea id="bio" name="bio" class="form-control" maxlength="640" rows="3" style="background-color: #171D25; border: solid 2px #6E869D; color: white;" value="Biografía"></textarea>
+                    <textarea id="bio" name="bio" class="form-control" maxlength="640" rows="3" style="background-color: #171D25; border: solid 2px #6E869D; color: white;"></textarea>
                 </div>
             </div>
         </div>
@@ -204,6 +204,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <div class="col-md-8">
                 <h2 class="text-center">ARMY SHOWCASE</h2>
                 <div class="card mb-3 text-center" style="background-color: #171D25; border: solid 2px #6E869D; padding: 15px;">
+                    <p class="mt-2" style="filter: opacity(50%);">¡Aquí puedes exhibir uno de tus ejercitos! Si deaseas, añade una descripción y cuenta la historia de tus personajes...</p>
                     <input type="file" id="armyShowcaseImage" name="armyShowcaseImage" class="form-control" accept="image/*" onchange="previewArmyImage(event)" style="display: none;">
                     <img src="https://via.placeholder.com/400x200" class="card-img-top mt-3" alt="Imagen ARMY SHOWCASE" id="armyImagePreview" onclick="document.getElementById('armyShowcaseImage').click();">
                     <p class="mt-2" style="filter: opacity(50%);">Haz clic en la imagen para cambiar el ARMY SHOWCASE</p>

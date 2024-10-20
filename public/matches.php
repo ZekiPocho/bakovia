@@ -397,12 +397,29 @@ $conn->close();
 
                     <!-- Botón para iniciar una nueva partida -->
                     <?php
-                        $id_usuario = $_SESSION['id_usuario'];
-                        $stmt = $pdo->prepare("SELECT made FROM usuarios WHERE id_usuario = :id_usuario");
-                        $stmt->execute(['id_usuario' => $id_usuario]);
+                        $sql = "SELECT made 
+                                FROM usuarios 
+                                WHERE id_usuario = ?";
+
+                        // Preparar la consulta
+                        $stmt = $conn->prepare($sql);
+
+                        // Vincular el parámetro
+                        $stmt->bind_param("i", $_SESSION['id_usuario']);
+
+                        // Ejecutar la consulta
+                        $stmt->execute();
 
                         // Obtener el resultado
-                        $made = $stmt->fetchColumn();
+                        $result = $stmt->get_result();
+                        $made = null;
+
+                        // Verificar si hay resultados
+                        if ($result->num_rows > 0) {
+                            $row = $result->fetch_assoc();
+                            $made = $row['made'];
+                        }
+
                         ?>
 
                         <br><br><br>
@@ -415,6 +432,7 @@ $conn->close();
                                 <a href="new-match.php"><button class="btn">Nueva Partida</button></a>
                             </div>
                         <?php endif; ?>
+
                 </div>
             </div>
         </div>

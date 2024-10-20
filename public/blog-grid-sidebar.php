@@ -233,8 +233,8 @@ register.php<div class="col-sm-auto"></div>
                     <div class="col">
                         
                     </div>
-                    <div class="col-12">
-                        <a aria-label="Toggle navigation" href="publicar-blog.php">Crear Blog <i class="lni lni-plus"></i></a>
+                    <div class="col">
+                        <a aria-label="Toggle navigation" href="publicar-blog.php" left>Crear Blog <i class="lni lni-plus"></i></a>
                     </div>
                 </div>
             </div>

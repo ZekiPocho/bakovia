@@ -109,7 +109,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
       <a class="active" aria-label="Toggle navigation" href="index.php">PRINCIPAL</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link dropdown-toggle" href="product-grids.html"
+        <a class="nav-link dropdown-toggle" href="product-grids.php"
             data-bs-target="#submenu-1-2" aria-controls="navbarSupportedContent"
             aria-expanded="false" aria-label="Toggle navigation">TIENDA</a>
         <ul class="sub-menu collapse" id="submenu-1-2">

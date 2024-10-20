@@ -63,7 +63,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
       <a class="active" aria-label="Toggle navigation" href="index.php">PRINCIPAL</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link dropdown-toggle" href="product-grids.html"
+        <a class="nav-link dropdown-toggle" href="product-grids.php"
             data-bs-target="#submenu-1-2" aria-controls="navbarSupportedContent"
             aria-expanded="false" aria-label="Toggle navigation">TIENDA</a>
         <ul class="sub-menu collapse" id="submenu-1-2">
@@ -182,7 +182,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                 <div class="content">
                                     <p></p>
                                     <!--<div class="button">
-                                        <a href="product-grids.html" class="btn">Shop Now</a>
+                                        <a href="product-grids.php" class="btn">Shop Now</a>
                                     </div>-->
                                 </div>
                             </div>
@@ -196,7 +196,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                     </h1>
                                     <p>Variedad de productos para tus Hobbies favoritos</p>
                                     <div class="button">
-                                        <a href="product-grids.html" class="btn">TIENDA</a>
+                                        <a href="product-grids.php" class="btn">TIENDA</a>
                                     </div>
                                 </div>
                             </div>
@@ -303,7 +303,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         <div class="product-info">
                             <span class="category">Combat Patrol</span>
                             <h4 class="title">
-                                <a href="product-grids.html">Orcos</a>
+                                <a href="product-grids.php">Orcos</a>
                             </h4>
                             <div class="price">
                                 <span>Bs. 1300</span>
@@ -325,7 +325,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         <div class="product-info">
                             <span class="category">Adepta Sororitas</span>
                             <h4 class="title">
-                                <a href="product-grids.html">Escuadrón de Hermanas de Batalla</a>
+                                <a href="product-grids.php">Escuadrón de Hermanas de Batalla</a>
                             </h4>
                             <div class="price">
                                 <span>Bs. 300</span>
@@ -346,7 +346,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         <div class="product-info">
                             <span class="category">Fuerza de Combate</span>
                             <h4 class="title">
-                                <a href="product-grids.html">Adeptus Custodes: Campeones Auricos</a>
+                                <a href="product-grids.php">Adeptus Custodes: Campeones Auricos</a>
                             </h4>
                             <div class="price">
                                 <span>Bs. 2000</span>
@@ -368,7 +368,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         <div class="product-info">
                             <span class="category">Age of Sigmar</span>
                             <h4 class="title">
-                                <a href="product-grids.html">Warhammer AoS: Skaventide</a>
+                                <a href="product-grids.php">Warhammer AoS: Skaventide</a>
                             </h4>
                             <div class="price">
                                 <span>Bs. 2500</span>

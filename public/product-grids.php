@@ -65,7 +65,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
       <a aria-label="Toggle navigation" href="index.php">PRINCIPAL</a>
     </li>
     <li class="nav-item">
-        <a class="active" class="nav-link dropdown-toggle" href="product-grids.html" data-bs-toggle="collapse"
+        <a class="active" class="nav-link dropdown-toggle" href="product-grids.php" data-bs-toggle="collapse"
             data-bs-target="#submenu-1-2" aria-controls="navbarSupportedContent"
             aria-expanded="false" aria-label="Toggle navigation">TIENDA</a>
         <ul class="sub-menu collapse" id="submenu-1-2">
@@ -210,25 +210,25 @@ register.php<div class="col-sm-auto"></div>
                             <h3>Todas las Categorías</h3>
                             <ul class="list">
                                 <li>
-                                    <a href="product-grids.html">Computers & Accessories </a><span>(1138)</span>
+                                    <a href="product-grids.php">Computers & Accessories </a><span>(1138)</span>
                                 </li>
                                 <li>
-                                    <a href="product-grids.html">Smartphones & Tablets</a><span>(2356)</span>
+                                    <a href="product-grids.php">Smartphones & Tablets</a><span>(2356)</span>
                                 </li>
                                 <li>
-                                    <a href="product-grids.html">TV, Video & Audio</a><span>(420)</span>
+                                    <a href="product-grids.php">TV, Video & Audio</a><span>(420)</span>
                                 </li>
                                 <li>
-                                    <a href="product-grids.html">Cameras, Photo & Video</a><span>(874)</span>
+                                    <a href="product-grids.php">Cameras, Photo & Video</a><span>(874)</span>
                                 </li>
                                 <li>
-                                    <a href="product-grids.html">Headphones</a><span>(1239)</span>
+                                    <a href="product-grids.php">Headphones</a><span>(1239)</span>
                                 </li>
                                 <li>
-                                    <a href="product-grids.html">Wearable Electronics</a><span>(340)</span>
+                                    <a href="product-grids.php">Wearable Electronics</a><span>(340)</span>
                                 </li>
                                 <li>
-                                    <a href="product-grids.html">Printers & Ink</a><span>(512)</span>
+                                    <a href="product-grids.php">Printers & Ink</a><span>(512)</span>
                                 </li>
                             </ul>
                         </div>
@@ -341,7 +341,7 @@ register.php<div class="col-sm-auto"></div>
                                             <div class="product-info">
                                                 <span class="category">Watches</span>
                                                 <h4 class="title">
-                                                    <a href="product-grids.html">Xiaomi Mi Band 5</a>
+                                                    <a href="product-grids.php">Xiaomi Mi Band 5</a>
                                                 </h4>
                                                 <div class="price">
                                                     <span>$199.00</span>

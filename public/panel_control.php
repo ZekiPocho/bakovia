@@ -322,7 +322,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                 <input type="hidden" name="id_partida" value="<?php echo htmlspecialchars($id_partida); ?>">
                                 <input type="hidden" name="jugador" value="1">
                                 <div class="mb-3">
-                                    <label for="puntaje_jugador1" class="form-label">Puntaje Jugador 1:</label>
+                                    <label for="puntaje_jugador1" class="form-label">Puntaje Jugador 2:</label>
                                     <input type="number" name="puntaje_jugador1" class="form-control" value="<?php echo htmlspecialchars($puntaje_jugador2); ?>">
                                 </div>
                                 <button type="submit" class="btn btn-primary">Ajustar Puntaje</button>

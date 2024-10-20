@@ -227,9 +227,8 @@ register.php<div class="col-sm-auto"></div>
         <div class="container-sm">
             <div class="container ">
                 <div class="row">
+                    <p></p>
                     <div class="col">
-                        <p></p>
-                        <p></p>
                         <h4><a aria-label="Toggle navigation" href="publicar-blog.php">Crear Blog <i class="lni lni-plus"></i></a></h4>
                     </div>
                     <div class="col">

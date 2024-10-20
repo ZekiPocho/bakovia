@@ -325,8 +325,8 @@ $sql = "SELECT
     f2.nombre AS faccion2, 
     f2.subfaccion AS subfaccion2, 
     f2.icono AS icono2,
-    h1.hora AS hora_inicio, -- Hora de inicio en lugar del ID
-    h2.hora AS hora_final, -- Hora de finalización en lugar del ID
+    LEFT(h1.hora, 5) AS hora_inicio, -- Mostrar solo los primeros 5 caracteres
+    LEFT(h2.hora, 5) AS hora_final, -- Mostrar solo los primeros 5 caracteres
     p.id_mesa, 
     p.puntaje_usuario1, 
     p.puntaje_usuario2,
@@ -341,7 +341,8 @@ JOIN juego j ON p.id_juego = j.id_juego -- Unir con la tabla juego para obtener 
 JOIN horarios h1 ON p.hora_inicio = h1.id_hora -- Unir con la tabla horarios para obtener la hora de inicio
 JOIN horarios h2 ON p.hora_final = h2.id_hora -- Unir con la tabla horarios para obtener la hora de finalización
 WHERE p.estado = 'programado'
-AND p.fecha = CURDATE()";
+AND p.fecha = CURDATE();
+;
 
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $id_usuario); // Vincula el ID de usuario

@@ -163,20 +163,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 <br>
 <br>
 
-<div class="container-sm px-4">
-<div class="row justify-content-between align-items-center mb-4">
-    <div class="col-md-6 d-flex align-items-center">
-        <h1 class="mb-0">EDITAR PERFIL DE USUARIO</h1>
-    </div>
-    <!-- Botón para guardar cambios al lado del título -->
-    <div class="col-md-4 text-end">
-        <input type="submit" form="profileForm" value="Guardar cambios" class="btn btn-primary">
-    </div>
-</div>
-
-
-    <!-- Formulario para editar perfil -->
-    <form id="profileForm" action="profile.php" method="POST" enctype="multipart/form-data" onsubmit="return validateImageSize()">
+<form id="profileForm" action="profile.php" method="POST" enctype="multipart/form-data" onsubmit="return validateImageSize()">
     <div class="row justify-content-center align-items-center">
         <!-- Foto de perfil -->
         <div class="col-md-4 text-center mb-4">
@@ -264,6 +251,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         }
     }
 </script>
+
 
 <br>
 <br>

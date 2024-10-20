@@ -237,13 +237,13 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <input type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple onchange="previewImages()"><br><br>
         </div>
     </div>
+    <div id="vista-previa"></div>
         <div>
             <textarea class="form-control" name="titulo" placeholder="título*" required></textarea>
         </div>
         <div>
             <textarea class="form-control" name="contenido" placeholder="cuerpo*"></textarea>
         </div class="button">
-        <div id="vista-previa"></div>
         <input class="btn" type="submit" value="Publicar">
     </form>
     </div>

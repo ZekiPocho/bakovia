@@ -229,12 +229,8 @@ register.php<div class="col-sm-auto"></div>
                 <div clas="row-align-items-center">
                     <div class="col-lg-6 col-md-6 col-12">
                         <p>Ultimas Publicaciones</p>
+                        <a aria-label="Toggle navigation" href="publicar-blog.php">Crear Blog <i class="lni lni-plus"></i></a>
                     </div>
-                        <ul class="breadcrumb-nav">
-                            <li>
-                                <a aria-label="Toggle navigation" href="publicar-blog.php">Crear Blog <i class="lni lni-plus"></i></a>
-                            </li>
-                        </ul>
                 </div>
             </div>
             <div class="row">

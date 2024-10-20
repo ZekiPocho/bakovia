@@ -2,11 +2,13 @@
 session_start();
 include("../public/db.php");
 
-// Verifica si el usuario es administrador
-if (!isset($_SESSION['id_rol']) || $_SESSION['id_rol'] !== '1') {
+// Verifica si el usuario ha iniciado sesión y si tiene el rol de administrador (id_rol = 1)
+if (!isset($_SESSION['id_rol']) || $_SESSION['id_rol'] != 1) {
+    // Redirige a la página principal si no es administrador o no ha iniciado sesión
     header('Location: ../public/index.php');
     exit;
 }
+
 
 // Función para obtener la lista de productos
 function getAllProducts($conn) {

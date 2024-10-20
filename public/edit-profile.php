@@ -185,10 +185,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
 <div class="container-sm px-4">
     <div class="row justify-content-between align-items-center mb-4">
-        <div class="col-md-6 d-flex align-items-center">
-            <h1 class="mb-0">EDITAR PERFIL DE USUARIO</h1>
-        </div>
-        <!-- Botón para guardar cambios -->
         <div class="col-md-4 text-end">
             <input type="submit" form="profileForm" value="Guardar cambios" class="btn btn-primary">
         </div>

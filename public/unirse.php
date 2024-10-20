@@ -1,17 +1,7 @@
 <?php
-session_start();
-include("../public/db.php");
+require_once "../src/validate_session.php";
 
-// Verificar conexión
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Asegurarse de que el usuario está autenticado
-if (!isset($_SESSION['usuario'])) {
-    header("Location: login.php"); // Redirigir al login si no está autenticado
-    exit;
-}
+include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a la base de datos
 
 // Obtener el ID de la partida de la solicitud POST
 $id_partida = isset($_POST['id_partida']) ? intval($_POST['id_partida']) : 0;

@@ -2,7 +2,7 @@
 <?php
 // Conexión a la base de datos
 include 'db.php'; // Archivo para la conexión a la base de datos
-
+include ('validate_session.php');
 // Verificar si el formulario de comentario o respuesta ha sido enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['comentar'])) {

@@ -328,10 +328,10 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                             <div class="tab-pane fade show active" id="nav-grid" role="tabpanel"
                                 aria-labelledby="nav-grid-tab">
                                 <div class="row">
-                                    <?php
+                                <?php
                                     // Función para obtener todos los productos
                                     function getAllProducts($conn) {
-                                        $sql = "SELECT p.id_producto, p.nombre_producto, p.descripcion, p.precio, p.imagen_producto
+                                        $sql = "SELECT p.id_producto, p.nombre_producto, p.descripcion, p.precio, p.imagen_producto, p.tipo
                                                 FROM productos p";
                                         return $conn->query($sql);
                                     }
@@ -343,12 +343,12 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                         <div class="col-lg-4 col-md-6 col-12">
                                             <div class="single-product">
                                                 <div class="product-image">
-                                                    <img src="<?= $producto['imagen_producto'] ?>" alt="<?= $producto['nombre_producto'] ?>">
+                                                    <img src="<?= $producto['imagen_producto'] ?>" alt="<?= $producto['nombre_producto'] ?>" style="width: 335px; height: 335px; object-fit: cover;">
                                                 </div>
                                                 <div class="product-info">
-                                                    <span class="category">Categoría</span> <!-- Aquí puedes poner la categoría si la tienes -->
+                                                    <span class="category"><?= htmlspecialchars($producto['tipo']) ?></span> <!-- Muestra el tipo de producto -->
                                                     <h4 class="title">
-                                                        <a href="product-details.php?id=<?= $producto['id_producto'] ?>"><?= $producto['nombre_producto'] ?></a>
+                                                        <a href="product-details.php?id=<?= $producto['id_producto'] ?>"><?= htmlspecialchars($producto['nombre_producto']) ?></a>
                                                     </h4>
                                                     <div class="price">
                                                         <span>$<?= number_format($producto['precio'], 2) ?></span>
@@ -357,6 +357,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                             </div>
                                         </div>
                                     <?php endwhile; ?>
+
                                 </div>
                                     <!-- End Single Product -->
                                 

@@ -315,7 +315,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                     <label for="rondas" class="form-label">Ronda Nº:</label>
                     <input type="number" name="rondas" class="form-control" value="0"> <!-- Cambia este valor al número de rondas actual -->
                 </div>
-                <button type="submit" class="btn btn-primary">Ajustar Rondas</button>
+                <button type="submit" class="btn btn-primary">INICIAR</button>
+                <button type="submit" class="btn btn-danger">BORRAR PARTIDA</button>
             </form>
         </div>
     </div>

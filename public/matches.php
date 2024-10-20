@@ -2,7 +2,6 @@
 include("../src/validate_session.php");
 include("../public/db.php");
 $usuario_actual = $_SESSION['nombre_usuario']; // Esto depende de cómo guardes el nombre del usuario en la sesión
-$usuario_partida = $_SESSION['partida'];
 unset($_SESSION['juego']);
 unset($_SESSION['puntos']);
 unset($_SESSION['faccion']);
@@ -329,7 +328,7 @@ $conn->close();
                                         </div>
                                         <div class="col-2">
                                             <?php
-                                            if ($usuario_partida = true) {
+                                            if ($_SESSION['partida'] = true) {
                                                 echo '<a href="panel_control.php?id_partida=' . $row['id_partida'] . '" class="btn btn-primary">
                                                 ADMIN
                                                 </a>';
@@ -341,7 +340,7 @@ $conn->close();
                                         <div class="col-5">
                                             <?php
                                             // Mostrar el botón solo si el usuario actual no es el usuario 1 y si la partida está abierta
-                                            if ($usuario_actual === $row['nombre_usuario1']) {
+                                            if ($_SESSION['partida'] = true) {
                                                 echo 'ESPERANDO';
                                             } else {
                                                 echo '<form action="join-match.php" method="POST" style="display:inline;">
@@ -388,7 +387,7 @@ $conn->close();
                     <br><br><br>
                     
                     <?php
-                                            if ($usuario_partida = true) {
+                                            if ($_SESSION['partida'] = true) {
                                                 
                                             } else {
                                                 echo "<p class='text-muted'><span style='font-size: 15px;'>O sino, inicia tu propia partida</span></p>

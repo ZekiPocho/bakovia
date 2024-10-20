@@ -1,6 +1,6 @@
 <?php
 require_once "../src/validate_session.php";
-$_SESSION['partida'] = "si";
+$_SESSION['partida'] = true;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verificar que el usuario está autenticado

@@ -204,11 +204,9 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
           
         </div>
       
-        <!-- Divisiones personalizadas -->
+        <!-- ARMY SHOWCASE -->
         <div class="row mt-4">
-          <h2>Editar Divisiones Personalizadas</h2>
-      
-          <!-- Primera columna (2 cuadros) -->
+          <h2>ARMY SHOWCASE</h2>
           <div class="col-md-8">
             <div class="card mb-3">
               <label for="image1" class="form-label">Imagen de la Sección 1</label>
@@ -236,13 +234,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         document.getElementById('imagePreview1').src = this.value;
       });
       
-      document.getElementById('image2').addEventListener('input', function() {
-        document.getElementById('imagePreview2').src = this.value;
-      });
-      
-      document.getElementById('image3').addEventListener('input', function() {
-        document.getElementById('imagePreview3').src = this.value;
-      });
       </script>       
     </div>
 </div>

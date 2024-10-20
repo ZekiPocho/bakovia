@@ -200,7 +200,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 </div> 
                 
                 <div class="col-7 profile-info-name" >
-                <a href="edit-profile.html" style="text-decoration: none;" 
+                <a href="edit-profile.php" style="text-decoration: none;" 
                 onmouseover="this.style.textDecoration='underline';" 
                 onmouseout="this.style.textDecoration='none';">
                   <h2><?php

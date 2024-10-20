@@ -164,13 +164,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 <br>
 
 <div class="container-sm px-4">
+    <h1 class="mt-4 text-center">Editar Perfil de Usuario</h1>
     
-    <!-- Botón para guardar cambios -->
-    <div class="row justify-content-center">
-                        <div class="col-md-4 text-center">
-                        <h1 class="mt-4 text-center">Editar Perfil de Usuario </h1><input type="submit" value="Guardar cambios" class="btn btn-primary">
-                        </div>
-            </div>
 
     <!-- Formulario para editar perfil -->
     <form action="profile.php" method="POST" enctype="multipart/form-data">

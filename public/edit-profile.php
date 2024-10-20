@@ -209,7 +209,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                     <img src="https://via.placeholder.com/400x200" class="card-img-top mt-3" alt="Imagen ARMY SHOWCASE" id="armyImagePreview" onclick="document.getElementById('armyShowcaseImage').click();">
                     <p class="mt-2" style="filter: opacity(50%);">Haz clic en la imagen para cambiar el ARMY SHOWCASE</p>
                     <div class="card-body">
-                        <textarea id="description1" name="description1" class="form-control" maxlength="640" rows="5" style="background-color: #171D25; border: solid 2px #6E869D; color: white;"></textarea>
+                        <textarea id="description1" name="description1" class="form-control" maxlength="640" rows="5" aria-label="Descripción" style="background-color: #171D25; border: solid 2px #6E869D; color: white;"></textarea>
                     </div>
                 </div>
             </div>

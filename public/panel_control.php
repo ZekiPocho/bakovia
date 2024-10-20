@@ -266,7 +266,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
 <div class="container-sm mt-4">
     <div class="row justify-content-center">
-        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3"> <!-- Columna para el Jugador 1 -->
+        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4"> <!-- Columna para el Jugador 1 -->
             <div class="team">
                 <h4 class="text-center"><?php echo htmlspecialchars($nombre_jugador1); ?></h4>
                 <br>
@@ -288,12 +288,12 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             </div>
         </div>
 
-        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6"> <!-- Columna central -->
+        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4"> <!-- Columna central -->
             <div class="matches-div text-center">
                 <h2 style="border-bottom: solid 1px #6E869D;">PANEL DE CONTROL</h2>
                 <br>
                 <div class="scoreboard">
-                    <div class="score mx-5">
+                    <div class="score">
                         <div class="middle-section">
                             <h3>Tiempo Transcurrido</h3>
                             <p id="tiempo-transcurrido">00:00:00</p> <!-- Aquí puedes agregar lógica para mostrar el tiempo en tiempo real -->
@@ -312,7 +312,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             </div>
         </div>
 
-        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3"> <!-- Columna para el Jugador 2 -->
+        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4"> <!-- Columna para el Jugador 2 -->
             <div class="team">
                 <h4 class="text-center"><?php echo htmlspecialchars($nombre_jugador2); ?></h4>
                 <br>

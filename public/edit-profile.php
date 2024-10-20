@@ -185,7 +185,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
 <div class="container-sm px-4">
     <div class="row justify-content-between align-items-center mb-4">
-        <div class="col-md-4 text-end">
+        <div class="col-md-12 text-end">
             <input type="submit" form="profileForm" value="Guardar cambios" class="btn btn-primary">
         </div>
     </div>

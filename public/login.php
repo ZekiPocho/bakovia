@@ -1,6 +1,9 @@
 <?php
 
 session_start();
+if(!isset($_SESSION['user'])){
+    header("Location: ../public/profile.php");
+}
 include "db.php";
 $mensaje = "";
 if (isset($_COOKIE['email']) && isset($_COOKIE['password'])) {

@@ -250,36 +250,96 @@ $conn->close();
                             <div class="post-comments">
                                 <h3 class="comment-title"><span>Comentarios</span></h3>
                                 <ul class="comments-list">
-                                    <li>
-                                        <div class="comment-img">
-                                            <img src="foto_perfil" alt="img">
-                                        </div>
-                                        <div class="comment-desc">
-                                            <div class="desc-top">
-                                                <h6>nombre de usuario</h6>
-                                                <span class="date">fecha</span>
-                                                <a href="javascript:void(0)" class="reply-link"><i
-                                                        class="lni lni-reply"></i>responder</a>
-                                            </div>
-                                            <p>
-                                                contenido
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li class="children">
-                                        <div class="comment-img">
-                                            <img src="foto_perfil" alt="img">
-                                        </div>
-                                        <div class="comment-desc">
-                                            <div class="desc-top">
-                                                <h6>Nombre de usuario</h6>
-                                                <span class="date">fecha</span>
-                                            </div>
-                                            <p>
-                                                contenido
-                                            </p>
-                                        </div>
-                                    </li>
+                                <?php
+// Consulta para obtener los comentarios principales (sin padre) de la publicación actual
+$sql_comentarios = "SELECT c.*, u.nombre_usuario, u.foto_perfil 
+                    FROM comentarios c
+                    JOIN usuarios u ON c.id_usuario = u.id_usuario
+                    WHERE c.id_publicacion = $id_publicacion AND c.id_comentario_padre IS NULL
+                    ORDER BY c.fecha_comentario DESC";
+
+$result_comentarios = $conn->query($sql_comentarios);
+
+if ($result_comentarios->num_rows > 0) {
+    echo '<div class="post-comments">';
+    echo '<h3 class="comment-title"><span>Comentarios</span></h3>';
+    echo '<ul class="comments-list">';
+
+    while ($comentario = $result_comentarios->fetch_assoc()) {
+        $nombre_usuario = $comentario['nombre_usuario'];
+        $fecha_comentario = date("d M, Y", strtotime($comentario['fecha_comentario']));
+        $texto_comentario = $comentario['comentario'];
+        $foto_perfil = !empty($comentario['foto_perfil']) ? $comentario['foto_perfil'] : 'https://via.placeholder.com/150';
+
+        echo '
+        <li>
+            <div class="comment-img">
+                <img src="'.$foto_perfil.'" alt="img">
+            </div>
+            <div class="comment-desc">
+                <div class="desc-top">
+                    <h6>'.$nombre_usuario.'</h6>
+                    <span class="date">'.$fecha_comentario.'</span>
+                </div>
+                <p>'.$texto_comentario.'</p>';
+
+        // Mostrar formulario para responder al comentario
+        echo '
+            <form action="" method="POST">
+                <input type="hidden" name="id_comentario_padre" value="'.$comentario['id_comentario'].'">
+                <textarea name="respuesta" class="form-control form-control-custom" placeholder="Tu respuesta" required></textarea>
+                <button type="submit" name="responder" class="btn">Responder</button>
+            </form>
+        ';
+
+        // Mostrar respuestas del comentario
+        mostrar_respuestas($comentario['id_comentario'], $conn);
+
+        echo '</li>';
+    }
+
+    echo '</ul>';
+    echo '</div>';
+} else {
+    echo '<p>No hay comentarios aún.</p>';
+}
+
+// Función para mostrar respuestas
+function mostrar_respuestas($id_comentario_padre, $conn) {
+    $sql_respuestas = "SELECT r.*, u.nombre_usuario, u.foto_perfil 
+                       FROM comentarios r
+                       JOIN usuarios u ON r.id_usuario = u.id_usuario
+                       WHERE r.id_comentario_padre = $id_comentario_padre
+                       ORDER BY r.fecha_comentario ASC";
+
+    $result_respuestas = $conn->query($sql_respuestas);
+
+    if ($result_respuestas->num_rows > 0) {
+        echo '<ul class="comments-list children">';
+        while ($respuesta = $result_respuestas->fetch_assoc()) {
+            $nombre_usuario_respuesta = $respuesta['nombre_usuario'];
+            $fecha_respuesta = date("d M, Y", strtotime($respuesta['fecha_comentario']));
+            $texto_respuesta = $respuesta['comentario'];
+            $foto_perfil_respuesta = !empty($respuesta['foto_perfil']) ? $respuesta['foto_perfil'] : 'https://via.placeholder.com/150';
+
+            echo '
+            <li class="children">
+                <div class="comment-img">
+                    <img src="'.$foto_perfil_respuesta.'" alt="img">
+                </div>
+                <div class="comment-desc">
+                    <div class="desc-top">
+                        <h6>'.$nombre_usuario_respuesta.'</h6>
+                        <span class="date">'.$fecha_respuesta.'</span>
+                    </div>
+                    <p>'.$texto_respuesta.'</p>
+                </div>
+            </li>';
+        }
+        echo '</ul>';
+    }
+}
+?>
                                 </ul>
                             </div>
                             <div class="comment-form">

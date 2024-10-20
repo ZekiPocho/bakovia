@@ -317,7 +317,11 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 </div>
                 <button type="submit" class="btn btn-primary">INICIAR</button>
             </form>
-            <button type="submit" class="btn btn-danger">BORRAR PARTIDA</button>
+            <br>
+            <form action="delete_match.php" method="POST">
+                <input type="hidden" name="id_partida" value="<?php echo htmlspecialchars($id_partida); ?>">
+                <button type="submit" class="btn btn-danger">BORRAR PARTIDA</button>
+            </form>
         </div>
     </div>
 </div>

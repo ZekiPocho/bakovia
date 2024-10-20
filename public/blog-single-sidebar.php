@@ -225,13 +225,13 @@ $result = $conn->query($sql);
 
 
 if (isset($_GET['id'])) {
-    $id_publicacion = $_GET['id'];  // Capturar el ID de la publicación desde la URL
+    $id_publicacion = $_GET['id'];
 
-    // Consulta para obtener la publicación seleccionada
-    $sql = "SELECT p.titulo, p.contenido, p.imagen_publicacion, p.fecha_publicacion, p.tag, u.nombre_usuario 
+    // Consulta para obtener la publicación
+    $sql = "SELECT p.id_publicacion, p.titulo, p.contenido, p.imagen_publicacion, p.fecha_publicacion, p.tag, u.nombre_usuario, p.id_usuario 
             FROM publicaciones p
-            JOIN usuarios u ON p.id_usuario = u.id_usuario 
-            WHERE p.id_publicacion = $id_publicacion";  // Filtrar por el ID
+            JOIN usuarios u ON p.id_usuario = u.id_usuario
+            WHERE p.id_publicacion = $id_publicacion";
 
     $result = $conn->query($sql);
 
@@ -241,6 +241,7 @@ if (isset($_GET['id'])) {
         $contenido = $publicacion['contenido'];
         $imagen = !empty($publicacion['imagen_publicacion']) ? $publicacion['imagen_publicacion'] : 'https://via.placeholder.com/850x460';
         $usuario = $publicacion['nombre_usuario'];
+        $id_usuario_publicacion = $publicacion['id_usuario']; // ID del usuario que creó la publicación
         $fecha = date("d M, Y", strtotime($publicacion['fecha_publicacion']));
         $tag = $publicacion['tag'];
 
@@ -253,21 +254,25 @@ if (isset($_GET['id'])) {
             <div class="meta-information">
                 <h2 class="post-title">'.$titulo.'</h2>
                 <ul class="meta-info">
-                    <li>
-                        <a href="javascript:void(0)"> <i class="lni lni-user"></i>'.$usuario.'</a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)"><i class="lni lni-calendar"></i>'.$fecha.'</a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)"><i class="lni lni-tag"></i>'.$tag.'</a>
-                    </li>
+                    <li><a href="javascript:void(0)"> <i class="lni lni-user"></i>'.$usuario.'</a></li>
+                    <li><a href="javascript:void(0)"><i class="lni lni-calendar"></i>'.$fecha.'</a></li>
+                    <li><a href="javascript:void(0)"><i class="lni lni-tag"></i>'.$tag.'</a></li>
                 </ul>
             </div>
             <div class="detail-inner">
                 <p>'.$contenido.'</p>
-            </div>
-        </div>';
+            </div>';
+
+        // Mostrar el botón de "Eliminar" si el usuario autenticado es el autor de la publicación
+        if ($_SESSION['id_usuario'] == $id_usuario_publicacion) {
+            echo '
+            <form action="delete_publication.php" method="POST" onsubmit="return confirm(\'¿Estás seguro de que deseas eliminar esta publicación?\');">
+                <input type="hidden" name="id_publicacion" value="'.$id_publicacion.'">
+                <button type="submit" class="btn btn-danger">Eliminar publicación</button>
+            </form>';
+        }
+
+        echo '</div>';
     } else {
         echo "Publicación no encontrada.";
     }

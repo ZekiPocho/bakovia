@@ -204,21 +204,25 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
         <!-- ARMY SHOWCASE -->
         <div class="row mt-2 justify-content-center">
-            <div class="col-md-8">
-                <h2 class="text-center">ARMY SHOWCASE</h2>
-                <div class="card mb-3 text-center" style="background-color: #171D25; border: solid 2px #6E869D; padding: 15px;">
-                    <p class="mt-2" style="filter: opacity(50%);">¡Aquí puedes exhibir uno de tus ejercitos! Si deseas, añade una descripción y cuenta la historia de tus personajes...</p>
-                    <input type="file" id="armyShowcaseImage" name="armyShowcaseImage" class="form-control" accept="image/*" onchange="handleArmyShowcaseImage(event)" style="display: none;">
-                    <div class="army-image-container" style="overflow: cover; border-radius: 5px; position: relative; margin: 0 auto;">
-                        <img src="https://via.placeholder.com/1900x1100" class="card-img-top mt-3" alt="Imagen ARMY SHOWCASE" id="armyImagePreview" onclick="document.getElementById('armyShowcaseImage').click();" style="width: 100%; height: 100%; object-fit: cover;">
-                    </div>
-                    <p class="mt-2" style="filter: opacity(50%);">Haz clic en la imagen para cambiar el ARMY SHOWCASE</p>
-                    <div class="card-body">
-                        <textarea id="description1" name="description1" class="form-control" maxlength="640" rows="5" placeholder="Descripción" style="background-color: #171D25; border: solid 2px #6E869D; color: white;"></textarea>
-                    </div>
-                </div>
+    <div class="col-md-8">
+        <h2 class="text-center">ARMY SHOWCASE</h2>
+        <div class="card mb-3 text-center" style="background-color: #171D25; border: solid 2px #6E869D; padding: 15px;">
+            <p class="mt-2" style="filter: opacity(50%);">¡Aquí puedes exhibir uno de tus ejercitos! Si deseas, añade una descripción y cuenta la historia de tus personajes...</p>
+            <input type="file" id="armyShowcaseImage" name="armyShowcaseImage" class="form-control" accept="image/*" onchange="handleArmyShowcaseImage(event)" style="display: none;">
+            
+            <!-- Contenedor de imagen de ARMY SHOWCASE -->
+            <div class="army-image-container" style="width: 100%; height: 400px; overflow: hidden; border-radius: 5px; position: relative; margin: 0 auto;">
+                <img src="https://via.placeholder.com/1900x1100" class="card-img-top mt-3" alt="Imagen ARMY SHOWCASE" id="armyImagePreview" onclick="document.getElementById('armyShowcaseImage').click();" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            
+            <p class="mt-2" style="filter: opacity(50%);">Haz clic en la imagen para cambiar el ARMY SHOWCASE</p>
+            <div class="card-body">
+                <textarea id="description1" name="description1" class="form-control" maxlength="640" rows="5" placeholder="Descripción" style="background-color: #171D25; border: solid 2px #6E869D; color: white;"></textarea>
             </div>
         </div>
+    </div>
+</div>
+
     </form>
 </div>
 

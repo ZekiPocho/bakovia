@@ -193,71 +193,116 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         </div>
     </div>
     <!-- End Breadcrumbs -->
-
-    <?php
     
-    if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-date_default_timezone_set('America/La_Paz');
+    <?php
+        $id_partida = $_GET['id_partida']; // Asegúrate de que el ID sea pasado de manera segura
 
-// Obtener el id_partida de alguna fuente, como un parámetro GET en la URL
-$id_partida = $_GET['id_partida'];  // Asegúrate de hacer una validación de seguridad aquí
-
-// Consulta para obtener la partida en función de su ID
-$sql = "SELECT p.id_partida, p.id_juego, p.puntos, 
-            p.nombre_usuario1, 
-            p.nombre_usuario2, 
-            p.puntaje_usuario1, p.puntaje_usuario2,
-            p.hora_inicio, p.id_mesa
+        // Nueva consulta adaptada
+        $query = "SELECT p.id_juego, p.puntos, 
+            p.nombre_usuario1, u1.made AS made_usuario1, 
+            p.nombre_usuario2, u2.made AS made_usuario2, 
+            f1.nombre AS faccion1, f1.subfaccion AS subfaccion1, f1.icono AS icono1, 
+            f2.nombre AS faccion2, f2.subfaccion AS subfaccion2, f2.icono AS icono2,
+            p.hora_inicio, p.hora_final, p.id_mesa, p.puntaje_usuario1, 
+            p.puntaje_usuario2
         FROM partida p
-        WHERE p.id_partida = ?"; // Usamos una consulta preparada
-
-// Preparar y ejecutar la consulta
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $id_partida);  // Vincular el parámetro
-$stmt->execute();
-$result = $stmt->get_result();
-
-// Verificar y procesar los resultados
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        // Calcular el tiempo transcurrido desde la hora de inicio
-        $hora_inicio = strtotime($row['hora_inicio']);
-        $ahora = time();
-        $tiempo_transcurrido = gmdate("H:i:s", $ahora - $hora_inicio);
-?>
-    <!-- Aquí empieza el HTML para mostrar el panel de control -->
-    <div class="control-panel mb-2 text-center">
-        <div class="row align-items-center">
-            <!-- Columna 1: Jugador 1 -->
-            <div class="col-3">
-                <span><?php echo $row['nombre_usuario1']; ?></span>
-                <div>Puntaje: <?php echo $row['puntaje_usuario1']; ?></div>
-            </div>
+        JOIN faccion f1 ON p.id_faccion_usuario1 = f1.id_faccion
+        JOIN faccion f2 ON p.id_faccion_usuario2 = f2.id_faccion
+        JOIN usuarios u1 ON p.nombre_usuario1 = u1.nombre_usuario
+        JOIN usuarios u2 ON p.nombre_usuario2 = u2.nombre_usuario
+        WHERE p.id_partida = ?"; // Usar WHERE para filtrar por id_partida
+                  
+        if ($stmt = $conn->prepare($query)) {
+            $stmt->bind_param("i", $id_partida); // 'i' indica que el parámetro es un entero
+            $stmt->execute();  
             
-            <!-- Columna 2: Información del juego -->
-            <div class="col-6">
-                <h1><?php echo $row['id_juego']; ?> - MESA <?php echo $row['id_mesa']; ?></h1>
-                <h1><?php echo $row['puntos']; ?> Pts.</h1>
-                <div class="timer">
-                    <i class="lni lni-hourglass"></i> Tiempo transcurrido: <?php echo $tiempo_transcurrido; ?>
+            // Obtener los resultados
+            $result = $stmt->get_result();
+            if ($result->num_rows > 0) {
+                $partida = $result->fetch_assoc(); // Obtiene todos los datos de la partida
+                
+                // Guardar cada dato en una variable
+                $id_partida = $partida['id_partida'] ?? null;
+                $id_jugador1 = $partida['nombre_usuario1'] ?? null; // Nombre de usuario del jugador 1
+                $id_jugador2 = $partida['nombre_usuario2'] ?? null; // Nombre de usuario del jugador 2
+                $puntaje_jugador1 = $partida['puntaje_usuario1'] ?? null;
+                $puntaje_jugador2 = $partida['puntaje_usuario2'] ?? null;
+                
+                // Información de facciones con iconos
+                $faccion_jugador1 = $partida['faccion1'] ?? null;
+                $faccion_jugador2 = $partida['faccion2'] ?? null;
+                $icono_jugador1 = $partida['icono1'] ?? null;
+                $icono_jugador2 = $partida['icono2'] ?? null;
+                
+            } else {
+                echo "No se encontró la partida con el ID proporcionado.";
+            }    
+            $stmt->close();
+        } else {
+            echo "Error en la preparación de la consulta.";
+        }
+    ?>
+
+<div class="container-sm mt-4">
+    <div class="row justify-content-center">
+        <div class="col-xxl-12">
+            <div class="matches-div text-center">
+                <h2 style="border-bottom: solid 1px #6E869D;">PANEL DE CONTROL</h2>
+                <br>
+                <div class="container mt-1">
+                    <div class="row text-center">
+                        <!-- Columna 1: Información Jugador 1 -->
+                        <div class="col-md-4">
+                            <h3 class="text-center"><?php echo htmlspecialchars($id_jugador1); ?></h3>
+                            <img src="../public/assets/images/icons/<?php echo htmlspecialchars($icono_jugador1); ?>.png" alt="Facción Jugador 1" class="img-fluid" style="max-height: 80px;">
+                            <p><strong>Facción:</strong> <?php echo htmlspecialchars($faccion_jugador1); ?></p>
+                            <form action="adjust_score.php" method="POST" id="scoreFormJugador1">
+                                <input type="hidden" name="id_partida" value="<?php echo htmlspecialchars($id_partida); ?>">
+                                <input type="hidden" name="jugador" value="1">
+                                <div class="mb-3">
+                                    <label for="puntaje_jugador1" class="form-label">Puntaje Jugador 1:</label>
+                                    <input type="number" name="puntaje_jugador1" class="form-control" value="<?php echo htmlspecialchars($puntaje_jugador1); ?>">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Ajustar Puntaje</button>
+                            </form>
+                        </div>
+
+                        <!-- Columna 2: Tiempo Transcurrido y Rondas -->
+                        <div class="col-md-4">
+                            <h3>Tiempo Transcurrido</h3>
+                            <p id="tiempo-transcurrido">00:00:00</p> <!-- Aquí puedes agregar lógica para mostrar el tiempo en tiempo real -->
+                            <br>
+                            <form action="adjust_rounds.php" method="POST" id="roundForm">
+                                <input type="hidden" name="id_partida" value="<?php echo htmlspecialchars($id_partida); ?>">
+                                <div class="mb-3">
+                                    <label for="rondas" class="form-label">Rondas:</label>
+                                    <input type="number" name="rondas" class="form-control" value="0"> <!-- Cambia este valor al número de rondas actual -->
+                                </div>
+                                <button type="submit" class="btn btn-primary">Ajustar Rondas</button>
+                            </form>
+                        </div>
+
+                        <!-- Columna 3: Información Jugador 2 -->
+                        <div class="col-md-4">
+                            <h3 class="text-center"><?php echo htmlspecialchars($id_jugador2); ?></h3>
+                            <img src="../public/assets/images/icons/<?php echo htmlspecialchars($icono_jugador2); ?>" alt="Facción Jugador 2" class="img-fluid" style="max-height: 80px;">
+                            <p><strong>Facción:</strong> <?php echo htmlspecialchars($faccion_jugador2); ?></p>
+                            <form action="adjust_score.php" method="POST" id="scoreFormJugador2">
+                                <input type="hidden" name="id_partida" value="<?php echo htmlspecialchars($id_partida); ?>">
+                                <input type="hidden" name="jugador" value="2">
+                                <div class="mb-3">
+                                    <label for="puntaje_jugador2" class="form-label">Puntaje Jugador 2:</label>
+                                    <input type="number" name="puntaje_jugador2" class="form-control" value="<?php echo htmlspecialchars($puntaje_jugador2); ?>">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Ajustar Puntaje</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Columna 3: Jugador 2 -->
-            <div class="col-3">
-                <span><?php echo $row['nombre_usuario2']; ?></span>
-                <div>Puntaje: <?php echo $row['puntaje_usuario2']; ?></div>
             </div>
         </div>
     </div>
-<?php
-    }
-} else {
-    echo "No se encontró la partida con el ID proporcionado.";
-}
-?>
+</div>
 
 
 

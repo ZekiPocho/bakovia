@@ -311,22 +311,37 @@ if ($conn->connect_error) {
 $id_usuario = $_SESSION['id_usuario']; // Obtener el ID del usuario de la sesión
 
 // Consulta para obtener partidas programadas
-$sql = "SELECT p.id_partida, p.id_juego, p.puntos, 
-                p.nombre_usuario1, u1.made AS made_usuario1, 
-                p.nombre_usuario2, u2.made AS made_usuario2, 
-                f1.nombre AS faccion1, f1.subfaccion AS subfaccion1, f1.icono AS icono1, 
-                f2.nombre AS faccion2, f2.subfaccion AS subfaccion2, f2.icono AS icono2,
-                p.hora_inicio, p.hora_final, p.id_mesa, p.puntaje_usuario1, 
-                p.puntaje_usuario2,
-                u_made.made AS made_usuario_sesion -- Agregar made del usuario en la sesión
-        FROM partida p
-        JOIN faccion f1 ON p.id_faccion_usuario1 = f1.id_faccion
-        JOIN faccion f2 ON p.id_faccion_usuario2 = f2.id_faccion
-        LEFT JOIN usuarios u1 ON p.nombre_usuario1 = u1.nombre_usuario
-        LEFT JOIN usuarios u2 ON p.nombre_usuario2 = u2.nombre_usuario
-        LEFT JOIN usuarios u_made ON u_made.id_usuario = ? -- Unir por ID de usuario
-        WHERE p.estado = 'programado'
-        AND p.fecha = CURDATE();";
+$sql = "SELECT 
+    p.id_partida, 
+    j.nombre AS nombre_juego, -- Nombre del juego en lugar del ID
+    p.puntos, 
+    p.nombre_usuario1, 
+    u1.made AS made_usuario1, 
+    p.nombre_usuario2, 
+    u2.made AS made_usuario2, 
+    f1.nombre AS faccion1, 
+    f1.subfaccion AS subfaccion1, 
+    f1.icono AS icono1, 
+    f2.nombre AS faccion2, 
+    f2.subfaccion AS subfaccion2, 
+    f2.icono AS icono2,
+    h1.hora AS hora_inicio, -- Hora de inicio en lugar del ID
+    h2.hora AS hora_final, -- Hora de finalización en lugar del ID
+    p.id_mesa, 
+    p.puntaje_usuario1, 
+    p.puntaje_usuario2,
+    u_made.made AS made_usuario_sesion -- Agregar made del usuario en la sesión
+FROM partida p
+JOIN faccion f1 ON p.id_faccion_usuario1 = f1.id_faccion
+JOIN faccion f2 ON p.id_faccion_usuario2 = f2.id_faccion
+LEFT JOIN usuarios u1 ON p.nombre_usuario1 = u1.nombre_usuario
+LEFT JOIN usuarios u2 ON p.nombre_usuario2 = u2.nombre_usuario
+LEFT JOIN usuarios u_made ON u_made.id_usuario = ? -- Unir por ID de usuario
+JOIN juego j ON p.id_juego = j.id_juego -- Unir con la tabla juego para obtener el nombre
+JOIN horarios h1 ON p.hora_inicio = h1.id_hora -- Unir con la tabla horarios para obtener la hora de inicio
+JOIN horarios h2 ON p.hora_final = h2.id_hora -- Unir con la tabla horarios para obtener la hora de finalización
+WHERE p.estado = 'programado'
+AND p.fecha = CURDATE()";
 
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $id_usuario); // Vincula el ID de usuario

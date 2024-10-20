@@ -20,13 +20,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $tag = $conn->real_escape_string($_POST['tag']);
     $id_usuario = $_SESSION['id_usuario'];
 
-    // Validar que el título no exceda los 300 caracteres
-    if (strlen($titulo) > 300) {
-        echo "Error: El título no puede exceder los 300 caracteres.";
-        exit(); // Detener la ejecución si el título es demasiado largo
-    }
-
-
     // Manejo de imagen subida
     $upload_dir = '../uploads/posts/';
     $imagen_publicacion = '';
@@ -36,29 +29,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $image_tmp_name = $_FILES['imagenes']['tmp_name'][0];
         $image_path = $upload_dir . $image_name;
 
-        // Crear la carpeta si no existe
         if (!is_dir($upload_dir)) {
             mkdir($upload_dir, 0755, true);
         }
 
         if (move_uploaded_file($image_tmp_name, $image_path)) {
-            $imagen_publicacion = $image_path; // Guardamos la ruta de la imagen
+            $imagen_publicacion = $image_path;
         } else {
             echo "Error al subir la imagen.";
         }
     }
 
-    // Insertar la publicación en la base de datos con la imagen
+    // Insertar la publicación en la base de datos
     $sql = "INSERT INTO publicaciones (id_usuario, titulo, contenido, fecha_publicacion, imagen_publicacion, tag) 
             VALUES ('$id_usuario', '$titulo', '$contenido', NOW(), '$imagen_publicacion', '$tag')";
 
     if ($conn->query($sql) === TRUE) {
-        // Obtener el ID de la publicación recién creada
-        $id_publicacion = $conn->insert_id;
-
         // Redirigir al detalle de la publicación recién creada
+        $id_publicacion = $conn->insert_id;
         header("Location: blog-single-sidebar.php?id=$id_publicacion");
-        exit(); // Importante: salir después de la redirección
+        exit(); // Salir después de redirigir
     } else {
         echo "Error al crear la publicación: " . $conn->error;
     }

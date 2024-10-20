@@ -192,8 +192,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     <br>
 
     <?php
-session_start();
-require 'db_connection.php'; // Asegúrate de incluir tu archivo de conexión a la base de datos
 
 // Verifica si el formulario fue enviado
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

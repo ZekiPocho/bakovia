@@ -315,10 +315,11 @@ $conn->close();
                         FROM partida p
                         JOIN faccion f1 ON p.id_faccion_usuario1 = f1.id_faccion
                         JOIN faccion f2 ON p.id_faccion_usuario2 = f2.id_faccion
-                        JOIN usuarios u1 ON p.nombre_usuario1 = u1.nombre_usuario
-                        JOIN usuarios u2 ON p.nombre_usuario2 = u2.nombre_usuario
+                        LEFT JOIN usuarios u1 ON p.nombre_usuario1 = u1.nombre_usuario
+                        LEFT JOIN usuarios u2 ON p.nombre_usuario2 = u2.nombre_usuario
                         WHERE p.estado = 'programado'
                         AND p.fecha = CURDATE();
+
                         ";
 
                         $result = $conn->query($sql);

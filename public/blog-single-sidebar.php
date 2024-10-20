@@ -341,7 +341,7 @@ if ($result_comentarios->num_rows > 0) {
             <form action="delete_comment.php" method="POST" onsubmit="return confirm(\'¿Estás seguro de que deseas eliminar este comentario?\');">
                 <input type="hidden" name="id_comentario" value="'.$id_comentario.'">
                 <input type="hidden" name="id_publicacion" value="'.$id_publicacion.'">
-                <button type="submit" >Eliminar</button>
+                <button type="submit" class="btn btn-danger">Eliminar</button>
             </form>';
         }
 

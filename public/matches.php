@@ -1,5 +1,9 @@
 <?php
 include("../src/validate_session.php");
+if (date('N') == 7) { // 'N' devuelve 1 (lunes) a 7 (domingo)
+    header("Location: sorry.html"); // Cambia 'otra_pagina.php' por la URL a la que deseas redirigir
+    exit(); // Asegúrate de usar exit() después de header para detener la ejecución del script
+}
 include("../public/db.php");
 $usuario_actual = $_SESSION['nombre_usuario']; // Esto depende de cómo guardes el nombre del usuario en la sesión
 unset($_SESSION['juego']);

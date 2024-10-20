@@ -365,7 +365,8 @@ if ($result->num_rows > 0) {
                                 <span>' . htmlspecialchars($row["nombre_usuario2"]) . '</span>
                             </div>
                             <div class="col-5">
-                                <img src="https://via.placeholder.com/50x50" alt="Foto de perfil" class="img-fluid">
+                                <!-- Aquí se reemplaza la imagen por el botón de salir -->
+                                <a href="leave-match.php?id_partida=' . $row['id_partida'] . '" class="btn btn-danger">SALIR</a>
                             </div>
                           </div>';
                 } else {
@@ -380,13 +381,10 @@ if ($result->num_rows > 0) {
                                     <span>' . htmlspecialchars($row["nombre_usuario2"]) . '</span>
                                 </div>
                                 <div class="col-5">
-                                    <img src="https://via.placeholder.com/50x50" alt="Foto de perfil" class="img-fluid">
+                                    <!-- Aquí se reemplaza la imagen por el botón de salir -->
+                                    <a href="leave-match.php?id_partida=' . $row['id_partida'] . '" class="btn btn-danger">SALIR</a>
                                 </div>
                               </div>';
-                        // Agregar enlace para que el usuario2 salga de la partida
-                        if ($usuario_actual === $row['nombre_usuario2'] && $row['made_usuario2'] == 1) {
-                            echo '<a href="leave-match.php?id_partida=' . $row['id_partida'] . '" class="btn btn-danger">SALIR</a>';
-                        }
                     } else {
                         echo '<form action="join-match.php" method="POST" style="display:inline;">
                                 <input type="hidden" name="id_partida" value="' . $row['id_partida'] . '">
@@ -426,6 +424,7 @@ if ($result->num_rows > 0) {
         </div>
     </div>
 </div>
+
 
         <!-- Aquí termina el HTML para mostrar las partidas programadas -->
         <?php

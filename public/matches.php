@@ -349,10 +349,7 @@ if ($result->num_rows > 0) {
         <div class="col-2">
             <?php
             if ($usuario_actual === $row['nombre_usuario1'] && $row['made_usuario1'] == 1) {
-                echo '<form action="join-match.php" method="POST" style="display:inline;">
-                                <input type="hidden" name="id_partida" value="' . $row['id_partida'] . '">
-                                    <button class="btn" disabled>ADMIN</button>
-                              </form>';
+                echo '<a href="panel_control.php?id_partida=' . $row['id_partida'] . '" class="btn btn-primary">ADMIN</a>';
             } else {
                 if ($row['nombre_usuario2'] !== "N/A") {
                     echo '<img src="assets/images/matches/sword.png" alt="Icono de batalla" class="img-fluid" style="max-width: 25px;">';

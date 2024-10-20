@@ -294,7 +294,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <br>
                 <div class="scoreboard">
                     <div class="score">
-                        <div class="middle-section">
+                        <div class="middle-section text-center">
                             <h3 style="font-size: 1.25rem;">Tiempo Transcurrido</h3> <!-- Reducido el tamaño de la fuente -->
                             <p id="tiempo-transcurrido" style="font-size: 1.2rem;">00:00:00</p> <!-- Reducido el tamaño de la fuente -->
                             <br>

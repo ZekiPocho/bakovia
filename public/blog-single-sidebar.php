@@ -259,6 +259,8 @@ if (isset($_GET['id'])) {
                     <li>
                         <a href="javascript:void(0)"><i class="lni lni-calendar"></i>'.$fecha.'</a>
                     </li>
+                    <a href="javascript:void(0)" class="reply-link"><i
+                                                        class="lni lni-reply"></i>Reply</a>
                     <li>
                         <a href="javascript:void(0)"><i class="lni lni-tag"></i>'.$tag.'</a>
                     </li>

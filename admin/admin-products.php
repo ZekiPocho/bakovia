@@ -9,32 +9,26 @@ if (!isset($_SESSION['id_rol']) || $_SESSION['id_rol'] != 1) {
     exit;
 }
 
-
-// Función para obtener la lista de productos
+// Funciones para gestionar productos y juegos
 function getAllProducts($conn) {
     $sql = "SELECT p.id_producto, p.nombre_producto, p.descripcion, p.precio, p.imagen_producto, j.nombre AS nombre_juego, p.tipo
             FROM productos p
             JOIN juego j ON p.id_juego = j.id_juego";
-    $result = $conn->query($sql);
-    return $result;
+    return $conn->query($sql);
 }
 
-// Función para obtener la lista de juegos
 function getAllGames($conn) {
     $sql = "SELECT id_juego, nombre FROM juego";
-    $result = $conn->query($sql);
-    return $result;
+    return $conn->query($sql);
 }
 
-// Función para agregar un nuevo producto
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_product'])) {
     $nombre_producto = trim($_POST['nombre_producto']);
     $descripcion = trim($_POST['descripcion']);
     $precio = trim($_POST['precio']);
-    $id_juego = $_POST['id_juego'];  // Usamos el id_juego ahora
+    $id_juego = $_POST['id_juego'];
     $tipo = trim($_POST['tipo']);
     
-    // Procesar imagen
     $imagen_producto = '';
     if (isset($_FILES['imagen_producto']) && $_FILES['imagen_producto']['error'] === UPLOAD_ERR_OK) {
         $image = $_FILES['imagen_producto'];
@@ -48,7 +42,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_product'])) {
         }
     }
 
-    // Insertar producto
     $sql = "INSERT INTO productos (nombre_producto, descripcion, precio, imagen_producto, id_juego, tipo) 
             VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
@@ -58,11 +51,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_product'])) {
     exit;
 }
 
-// Función para eliminar un producto
 if (isset($_GET['delete'])) {
     $id_producto = $_GET['delete'];
     
-    // Obtener la ruta de la imagen del producto antes de borrarlo
     $query = "SELECT imagen_producto FROM productos WHERE id_producto = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("i", $id_producto);
@@ -71,12 +62,10 @@ if (isset($_GET['delete'])) {
     $stmt->fetch();
     $stmt->close();
 
-    // Borrar imagen del servidor
     if (file_exists($productImage)) {
         unlink($productImage);
     }
 
-    // Borrar producto de la base de datos
     $sql = "DELETE FROM productos WHERE id_producto = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $id_producto);
@@ -85,10 +74,7 @@ if (isset($_GET['delete'])) {
     exit;
 }
 
-// Obtener productos para mostrar
 $productos = getAllProducts($conn);
-
-// Obtener juegos para el formulario
 $juegos = getAllGames($conn);
 ?>
 
@@ -97,12 +83,89 @@ $juegos = getAllGames($conn);
 <head>
     <meta charset="UTF-8">
     <title>Administrar Productos</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #1e1e1e;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        h1, h2 {
+            color: #ff9800;
+            text-align: center;
+        }
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #2c2c2c;
+        }
+        table th, table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+        table th {
+            background-color: #ff9800;
+            color: #000;
+        }
+        table td img {
+            max-width: 50px;
+            height: auto;
+            border-radius: 5px;
+        }
+        a {
+            color: #ff9800;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        form {
+            width: 50%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #2c2c2c;
+            border-radius: 10px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="number"], select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 15px;
+            background-color: #3c3c3c;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+        input[type="file"] {
+            color: #fff;
+        }
+        button {
+            background-color: #ff9800;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #e68900;
+        }
+        .actions {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <h1>Panel de Administración de Productos</h1>
 
-    <!-- Mostrar lista de productos -->
     <table>
         <thead>
             <tr>
@@ -123,10 +186,10 @@ $juegos = getAllGames($conn);
                     <td><?= $producto['nombre_producto'] ?></td>
                     <td><?= $producto['descripcion'] ?></td>
                     <td><?= $producto['precio'] ?></td>
-                    <td><img src="<?= $producto['imagen_producto'] ?>" alt="<?= $producto['nombre_producto'] ?>" width="50"></td>
+                    <td><img src="<?= $producto['imagen_producto'] ?>" alt="<?= $producto['nombre_producto'] ?>"></td>
                     <td><?= $producto['nombre_juego'] ?></td>
                     <td><?= $producto['tipo'] ?></td>
-                    <td>
+                    <td class="actions">
                         <a href="edit-product.php?id=<?= $producto['id_producto'] ?>">Editar</a> | 
                         <a href="admin-products.php?delete=<?= $producto['id_producto'] ?>" onclick="return confirm('¿Seguro que quieres eliminar este producto?')">Eliminar</a>
                     </td>
@@ -135,33 +198,31 @@ $juegos = getAllGames($conn);
         </tbody>
     </table>
 
-    <!-- Formulario para agregar un nuevo producto -->
     <h2>Añadir Nuevo Producto</h2>
     <form action="admin-products.php" method="POST" enctype="multipart/form-data">
         <label for="nombre_producto">Nombre del Producto:</label>
-        <input type="text" name="nombre_producto" required><br>
+        <input type="text" name="nombre_producto" required>
 
         <label for="descripcion">Descripción:</label>
-        <textarea name="descripcion" required></textarea><br>
+        <textarea name="descripcion" required></textarea>
 
         <label for="precio">Precio:</label>
-        <input type="number" name="precio" step="0.01" required><br>
+        <input type="number" name="precio" step="0.01" required>
 
         <label for="id_juego">Juego:</label>
         <select name="id_juego" required>
             <?php while ($juego = $juegos->fetch_assoc()): ?>
                 <option value="<?= $juego['id_juego'] ?>"><?= $juego['nombre'] ?></option>
             <?php endwhile; ?>
-        </select><br>
+        </select>
 
         <label for="tipo">Tipo:</label>
-        <input type="text" name="tipo" required><br>
+        <input type="text" name="tipo" required>
 
         <label for="imagen_producto">Imagen del Producto:</label>
-        <input type="file" name="imagen_producto" required><br>
+        <input type="file" name="imagen_producto" required>
 
         <button type="submit" name="add_product">Añadir Producto</button>
     </form>
-
 </body>
 </html>

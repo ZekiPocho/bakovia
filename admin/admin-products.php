@@ -1,5 +1,5 @@
 <?php
-session_start();
+include("../src/validate_session.php");
 include("../public/db.php");
 
 // Verifica si el usuario ha iniciado sesión y si tiene el rol de administrador (id_rol = 1)

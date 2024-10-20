@@ -252,7 +252,7 @@ $conn->close();
                                 <ul class="comments-list">
                                     <li>
                                         <div class="comment-img">
-                                            <img src="https://via.placeholder.com/150x150" alt="img">
+                                            <img src="foto_perfil" alt="img">
                                         </div>
                                         <div class="comment-desc">
                                             <div class="desc-top">
@@ -268,7 +268,7 @@ $conn->close();
                                     </li>
                                     <li class="children">
                                         <div class="comment-img">
-                                            <img src="https://via.placeholder.com/150x150" alt="img">
+                                            <img src="foto_perfil" alt="img">
                                         </div>
                                         <div class="comment-desc">
                                             <div class="desc-top">
@@ -283,7 +283,7 @@ $conn->close();
                                 </ul>
                             </div>
                             <div class="comment-form">
-                                <h3 class="comment-reply-title">Leave a comment</h3>
+                                <h3 class="comment-reply-title">Comentar</h3>
                                 <form action="#" method="POST">
                                     <div class="row">
                                         <div class="col-12">

@@ -313,7 +313,7 @@ $id_usuario = $_SESSION['id_usuario']; // Obtener el ID del usuario de la sesió
 // Consulta para obtener partidas programadas
 $sql = "SELECT 
     p.id_partida, 
-    j.nombre AS nombre_juego, -- Nombre del juego en lugar del ID
+    j.nombre AS id_juego, -- Nombre del juego en lugar del ID
     p.puntos, 
     p.nombre_usuario1, 
     u1.made AS made_usuario1, 
@@ -437,7 +437,7 @@ if ($result->num_rows > 0) {
         </div>
         <div class="score"><?php echo $row['puntaje_usuario1']; ?></div>
         <div class="middle-section">
-            <h1><?php echo $row['juego']; ?></h1>
+            <h1><?php echo $row['id_juego']; ?></h1>
             <h1><?php echo $row['puntos']; ?> Pts.</h1>
             <div class="timer"><?php echo $row['hora_inicio']; ?> - <?php echo $row['hora_final']; ?></div>
             <h1>MESA - <?php echo $row['id_mesa']; ?></h1>

@@ -1,10 +1,4 @@
-
-
 <?php
-
-header("Cache-Control: no-cache, must-revalidate");
-header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
-
 include ('../src/validate_session.php'); // Asegúrate de que el usuario esté autenticado
 
 $mensaje = "";

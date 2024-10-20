@@ -1,3 +1,8 @@
+<?php
+include("../src/validate_session.php");
+include("../public/db.php");
+?>
+
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 

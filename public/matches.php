@@ -385,8 +385,6 @@ $conn->close();
                                                 }
 
                                                 $stmt->close(); // Cerrar la declaración
-
-                                                
                                             }
                                             ?>
                                         </div>

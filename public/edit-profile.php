@@ -213,7 +213,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
                 <div class="mb-3">
                     <label for="bio" class="form-label" style="filter: opacity(50%);">Biografía</label>
-                    <textarea id="bio" name="bio" class="form-control" maxlength="640" rows="3" style="background-color: #171D25; border: solid 2px #6E869D; color: white;"><?php echo htmlspecialchars($_SESSION['biografía']); ?></textarea>
+                    <textarea id="bio" name="bio" class="form-control" maxlength="640" rows="3" style="background-color: #171D25; border: solid 2px #6E869D; color: white;"><?php echo htmlspecialchars($_SESSION['biografia']); ?></textarea>
                 </div>
             </div>
         </div>

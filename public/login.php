@@ -12,7 +12,7 @@ if (isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
 
     // Preparar una consulta segura con prepared statements
     $stmt = $conn->prepare("SELECT id_usuario, nombre_usuario, contrasena, correo, foto_perfil, 
-                                   biografía, fecha_registro, verificado, army_showcase, 
+                                   biografia, fecha_registro, verificado, army_showcase, 
                                    rango_id, wins, loses, id_rol, token
                             FROM usuarios 
                             WHERE correo=? 
@@ -31,7 +31,7 @@ if (isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
         $_SESSION['nombre_usuario'] = $userData['nombre_usuario'];
         $_SESSION['id_usuario'] = $userData['id_usuario'];
         $_SESSION['foto_perfil'] = $userData['foto_perfil'];
-        $_SESSION['biografía'] = $userData['biografía'];
+        $_SESSION['biografia'] = $userData['biografia'];
         $_SESSION['fecha_registro'] = $userData['fecha_registro'];
         $_SESSION['army_showcase'] = $userData['army_showcase'];
         $_SESSION['rango_id'] = $userData['rango_id'];

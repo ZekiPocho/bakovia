@@ -237,10 +237,12 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <input class="btn" type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple onchange="previewImages()"><br><br>
         </div>
     </div>
-    <div id="vista-previa"></div>
-        <div>
-            <textarea class="form-control" name="titulo" placeholder="título*" required></textarea>
-        </div>
+        <div id="vista-previa"></div>
+            <div>
+                <label for="titulo">Título (máximo 300 caracteres):</label>
+                <textarea class="form-control" name="titulo" id="titulo" placeholder="título*" maxlength="300" oninput="contarCaracteres()" required></textarea>
+                <small id="contador-titulo">0/300 caracteres</small>
+            </div>
         <div>
             <textarea class="form-control" name="contenido" placeholder="cuerpo*"></textarea>
         </div >

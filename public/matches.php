@@ -2,6 +2,7 @@
 include("../src/validate_session.php");
 include("../public/db.php");
 $usuario_actual = $_SESSION['nombre_usuario']; // Esto depende de cómo guardes el nombre del usuario en la sesión
+$usuario_partida = $_SESSION['partiada'];
 unset($_SESSION['juego']);
 unset($_SESSION['puntos']);
 unset($_SESSION['faccion']);
@@ -236,7 +237,7 @@ if ($result->num_rows > 0) {
             <div class="col-2">
                 <?php
                 // Mostrar el botón solo si el usuario actual es el usuario 1
-                if ($usuario_actual === $row['nombre_usuario1']) {
+                if ($usuario_partida = true) {
                     echo '<a href="panel_control.php?id_partida=' . $row['id_partida'] . '" class="btn btn-primary">
                     ADMIN
                     </a>';
@@ -328,7 +329,7 @@ $conn->close();
                                         </div>
                                         <div class="col-2">
                                             <?php
-                                            if ($usuario_actual === $row['nombre_usuario1']) {
+                                            if ($usuario_partida = true) {
                                                 echo '<a href="panel_control.php?id_partida=' . $row['id_partida'] . '" class="btn btn-primary">
                                                 ADMIN
                                                 </a>';

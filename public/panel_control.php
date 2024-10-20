@@ -293,7 +293,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         </div>
 
                         <!-- Columna 2: Tiempo Transcurrido y Rondas -->
-                        <div class="col-md-4">
+                        <div class="middle-section">
                             <h3>Tiempo Transcurrido</h3>
                             <p id="tiempo-transcurrido">00:00:00</p> <!-- Aquí puedes agregar lógica para mostrar el tiempo en tiempo real -->
                             <br>
@@ -308,7 +308,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         </div>
 
                         <!-- Columna 3: Información Jugador 2 -->
-                        <div class="col-md-4">
+                        <div class="team">
                             <h3 class="text-center"><?php echo htmlspecialchars($id_jugador2); ?></h3>
                             <img src="../public/assets/images/icons/<?php echo htmlspecialchars($icono_jugador2); ?>" alt="Facción Jugador 2" class="img-fluid" style="max-height: 80px;">
                             <p><strong>Facción:</strong> <?php echo htmlspecialchars($faccion_jugador2); ?></p>

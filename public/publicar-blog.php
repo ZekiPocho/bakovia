@@ -244,7 +244,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <div>
             <textarea class="form-control" name="contenido" placeholder="cuerpo*"></textarea>
         </div >
-        <div class="row">
+        <div class="row-text-align-left">
             <div class="col">
             </div>
             <div class="col">

@@ -60,22 +60,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 throw new Exception("Error al insertar la partida: " . $stmt_partida->error);
             }
 
-            // 3. Token USUARIO
-            $sql_usuario = "INSERT INTO usuarios (made) VALUES (?)";
+
+            $id_usuario = $_SESSION['id_usuario']; // Obtener el ID del usuario de la sesión
+
+            // Consulta para actualizar el valor de 'made'
+            $sql_usuario = "UPDATE usuarios SET made = ? WHERE id_usuario = ?";
 
             $stmt_usuario = $conn->prepare($sql_usuario);
             if ($stmt_usuario === false) {
-                throw new Exception("Error en la consulta de partida: " . $conn->error);
+                throw new Exception("Error en la consulta de actualización de usuarios: " . $conn->error);
             }
 
-            // Asignar el valor a una variable
+            // Asignar los valores a variables
             $made_value = 1; // 1 representa true en este caso
 
             // Vincular parámetros y ejecutar
-            $stmt_usuario->bind_param("i", $made_value);
+            $stmt_usuario->bind_param("ii", $made_value, $id_usuario);
             if (!$stmt_usuario->execute()) {
-                throw new Exception("Error al insertar la partida: " . $stmt_usuario->error);
+                throw new Exception("Error al actualizar el usuario: " . $stmt_usuario->error);
             }
+
+            // Cerrar el statement
+            $stmt_usuario->close();
+
 
             // Cerrar el statement
             $stmt_usuario->close();

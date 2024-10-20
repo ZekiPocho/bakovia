@@ -343,7 +343,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                         <div class="col-lg-4 col-md-6 col-12">
                                             <div class="single-product">
                                                 <div class="product-image">
-                                                    <img src="<?= $producto['imagen_producto'] ?>" alt="<?= $producto['nombre_producto'] ?>" style="width: 200px; height: 200px; object-fit: cover;">
+                                                    <img src="<?= $producto['imagen_producto'] ?>" alt="<?= $producto['nombre_producto'] ?>" class="product-img">
                                                 </div>
                                                 <div class="product-info">
                                                     <span class="category"><?= htmlspecialchars($producto['tipo']) ?></span> <!-- Muestra el tipo de producto -->
@@ -351,12 +351,13 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                                         <a href="product-details.php?id=<?= $producto['id_producto'] ?>"><?= htmlspecialchars($producto['nombre_producto']) ?></a>
                                                     </h4>
                                                     <div class="price">
-                                                        <span>Bs. <?= number_format($producto['precio'], 2) ?></span>
+                                                        <span>$<?= number_format($producto['precio'], 2) ?></span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     <?php endwhile; ?>
+
 
                                 </div>
                                     <!-- End Single Product -->

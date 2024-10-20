@@ -3342,8 +3342,17 @@ ol {
 }
 
 .single-product .product-image {
-  overflow: hidden;
-  position: relative;
+  width: 100%; /* Asegura que el contenedor ocupe el 100% del espacio disponible */
+    height: 200px; /* Altura fija para el contenedor */
+    overflow: hidden; /* Oculta cualquier parte de la imagen que sobresalga */
+    display: flex; /* Usamos flexbox para centrar la imagen */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+}
+.product-img {
+  width: auto; /* Deja que el ancho se ajuste automáticamente */
+  height: 100%; /* La altura ocupa el 100% del contenedor */
+  object-fit: cover; /* Mantiene la relación de aspecto y recorta la imagen si es necesario */
 }
 
 .single-product .product-image .sale-tag {

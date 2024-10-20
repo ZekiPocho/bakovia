@@ -220,12 +220,13 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 <script>
     function validateImageSize() {
         const fileInput = document.getElementById('profileImage');
+        const preview = document.getElementById('profilePreview');
         const file = fileInput.files[0];
 
         if (file && file.size > 5 * 1024 * 1024) { // 5MB en bytes
             alert("El tamaño del archivo no puede exceder los 5MB.");
             fileInput.value = ""; // Limpiar el input
-            document.getElementById('profilePreview').src = '../uploads/user/default.png'; // Restablecer la imagen
+            preview.src = '../uploads/user/default.png'; // Restablecer la imagen de vista previa
             return false; // Prevenir que el formulario se envíe
         }
         return true; // Permitir que el formulario se envíe si el archivo es válido

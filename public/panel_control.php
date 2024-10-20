@@ -232,250 +232,72 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         </div>
     </div>
     <!-- End Breadcrumbs -->
-     <!---->
-    <div class="container-sm mt-4">
-        <div class="row justify-content-center">
-            <div class="col-xxl-12">
-                <div class="matches-div text-center">
-                            <h2 style="border-bottom: solid 1px #6E869D;">UNIRSE A UNA PARTIDA</h2>
+    
+
+<div class="container-sm mt-4">
+    <div class="row justify-content-center">
+        <div class="col-xxl-12">
+            <div class="matches-div text-center">
+                <h2 style="border-bottom: solid 1px #6E869D;">PANEL DE CONTROL</h2>
+                <br>
+                <div class="container mt-1">
+                    <div class="row">
+                        <!-- Columna izquierda: Selección -->
+                        <div class="col-md-6">
+                            <h3 class="text-center">placeholder</h3>
                             <br>
-                            <div class="container mt-1">
-    <div class="row">
-        <!-- Columna izquierda: Selección -->
-        <div class="col-md-6">
-            <h3 class="text-center">SELECCIONA TU FACCIÓN</h3>
-            <br>
-    <form action="../public/unirse.php" method="POST">
-                <!-- Selección de Facción -->
-                <div class="mb-3">
-                    <select id="faccion40k" name="faccion" class="form-select" style="display:block;" onchange="mostrarFaccion40k()">
-                        <option value="" selected disabled>Selecciona una facción</option>
-                        <!-- Facciones de Warhammer 40k -->
-                        <option value="1" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/templarios.svg">Templarios Negros</option>
-                        <option value="2" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/sangrientos.svg">Ángeles Sangrientos</option>
-                        <option value="3" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/oscuros.svg">Ángeles Oscuros</option>
-                        <option value="4" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/puños.svg">Puños Imperiales</option>
-                        <option value="5" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/manos.svg">Manos de Hierro</option>
-                        <option value="6" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/cuervo.svg">Guardia del Cuervo</option>
-                        <option value="7" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/salamandras.svg">Salamandras</option>
-                        <option value="8" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/lobos.svg">Lobos Espaciales</option>
-                        <option value="9" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/ultras.svg">Ultramarines</option>
-                        <option value="10" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/cicatrices.svg">Cicatrices Blancas</option>
-                        <option value="11" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/custodes.svg">Adeptus Custodes</option>
-                        <option value="12" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/sororitas.svg">Hermanas de Batalla</option>
-                        <option value="13" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/mechanicus.svg">Adeptus Mechanicus</option>
-                        <option value="14" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/agentes.svg">Agentes Imperiales</option>
-                        <option value="15" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/guardia.svg">Guardia Imperial</option>
-                        <option value="16" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/grises.svg">Caballeros Grises</option>
-                        <option value="17" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/caballeros.svg">Caballeros Imperiales</option>
-                        <option value="18" data-subfaccion="Imperium" data-icon="../public/assets/images/icons/astartes.svg">Marines Espaciales</option>
-                        <option value="19" data-subfaccion="Aeldari" data-icon="../public/assets/images/icons/drukhari.svg">Drukhari</option>
-                        <option value="20" data-subfaccion="Aeldari" data-icon="../public/assets/images/icons/ynnari.svg">Ynnari</option>
-                        <option value="21" data-subfaccion="Caos" data-icon="../public/assets/images/icons/demons.svg">Demonios del Caos</option>
-                        <option value="22" data-subfaccion="Caos" data-icon="../public/assets/images/icons/caballeroscaos.svg">Caballeros del Caos</option>
-                        <option value="23" data-subfaccion="Caos" data-icon="../public/assets/images/icons/herejes.svg">Marines Espaciales del Caos</option>
-                        <option value="24" data-subfaccion="Heretic Astartes" data-icon="../public/assets/images/icons/nurgle.svg">Guardia de la Muerte</option>
-                        <option value="25" data-subfaccion="Heretic Astartes" data-icon="../public/assets/images/icons/hijos.svg">Mil Hijos</option>
-                        <option value="26" data-subfaccion="Heretic Astartes" data-icon="../public/assets/images/icons/devoradores.svg">Devoradores de Mundos</option>
-                        <option value="27" data-subfaccion="Heretic Astartes" data-icon="../public/assets/images/icons/negra.svg">Legión Negra</option>
-                        <option value="28" data-subfaccion="Xenos" data-icon="../public/assets/images/icons/cultos.svg">Cultos Genestealers</option>
-                        <option value="29" data-subfaccion="Xenos" data-icon="../public/assets/images/icons/necrones.svg">Necrones</option>
-                        <option value="30" data-subfaccion="Xenos" data-icon="../public/assets/images/icons/orcos.svg">Orcos</option>
-                        <option value="31" data-subfaccion="Xenos" data-icon="../public/assets/images/icons/tau.svg">Imperio T'au</option>
-                        <option value="32" data-subfaccion="Xenos" data-icon="../public/assets/images/icons/tiranidos.svg">Tiranidos</option>
-
-
-                        <!-- Agrega el resto de las facciones aquí siguiendo el formato -->
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <select id="faccionSigmar" class="form-select" style="display:none;" onchange="mostrarFaccionSigmar()">
-                        <option value="" selected disabled>Selecciona una facción</option>
-                        <!-- Facciones de Warhammer 40k -->
-                        <option value="1" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/templarios.svg">Templarios Negros</option>
-                        <option value="2" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/sangrientos.svg">Ángeles Sangrientos</option>
-                        <!-- Agrega el resto de las facciones aquí siguiendo el formato -->
-                    </select>
-                </div>
-            
-        </div>
-
-        <!-- Columna derecha: Previsualización -->
-        <div class="col-md-6 text-center">
-            <h3>LISTO PARA DEPLEGAR...</h3>
-            <br>
-            <?php
-                            include("../public/db.php");
-                            // Verificar conexión
-                            if ($conn->connect_error) {
-                                die("Connection failed: " . $conn->connect_error);
-                            }
-
-                            $id_partida = $_POST['id_partida'];
-    
-                            // Consulta para obtener partidas programadas
-                            $sql = "SELECT p.id_juego, p.puntos, p.nombre_usuario1, p.nombre_usuario2, 
-                            f1.nombre AS faccion1, f1.subfaccion AS subfaccion1, f1.icono AS icono1, 
-                            f2.nombre AS faccion2, f2.subfaccion AS subfaccion2, f2.icono AS icono2,
-                            p.hora_inicio, p.hora_final, p.id_mesa, p.puntaje_usuario1, 
-                            p.puntaje_usuario2
-                            FROM partida p
-                            JOIN faccion f1 ON p.id_faccion_usuario1 = f1.id_faccion
-                            JOIN faccion f2 ON p.id_faccion_usuario2 = f2.id_faccion
-                            WHERE p.id_partida like $id_partida";
-    
-                            $result = $conn->query($sql);
-
-                            if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) {
-                                    ?>
-                                    <!-- Aquí empieza el HTML para mostrar las partidas programadas -->
-                                    <div class="match-entry mb-2 text-center">
-                                        <div class="row align-items-center">
-                                            <div class="col-2">
-                                                <img src="https://via.placeholder.com/50x50" alt="Foto de perfil" class="img-fluid">
-                                            </div>
-                                            <div class="col-3">
-                                                <span><?php echo $row['nombre_usuario1']; ?></span>
-                                            </div>
-                                            <div class="col-2">
-                                            <img src="assets/images/matches/sword.png" alt="Icono de batalla" class="img-fluid" style="max-width: 25px;">
-                                            </div>
-                                            <div class="col-3">
-                                                <span><?php echo $_SESSION['nombre_usuario']; ?></span>
-                                            </div>
-                                            <div class="col-2">
-                                                <img src="https://via.placeholder.com/50x50" alt="Foto de perfil" class="img-fluid">
-                                            </div>
-                                        </div>
-                                        <div class="scoreboard">
-                                            <div class="team">
-                                                <img src="<?php echo $row['icono1']; ?>" alt="Equipo 1">
-                                                <div class="team-name"><?php echo $row['faccion1']; ?><br><?php echo $row['subfaccion1']; ?></div>
-                                            </div>
-                                            <div class="score"><?php echo $row['puntaje_usuario1']; ?></div>
-                                            <div class="middle-section">
-                                                <h1><?php echo $row['id_juego']; ?></h1>
-                                                <h1><?php echo $row['puntos']; ?> Pts.</h1>
-                                                <div class="timer"><?php echo $row['hora_inicio']; ?> - <?php echo $row['hora_final']; ?></div>
-                                                <h1>MESA - <?php echo $row['id_mesa']; ?></h1>
-                                            </div>
-                                            <div class="score"><?php echo $row['puntaje_usuario2']; ?></div>
-                                            <div class="team">
-                                            <img id="icono-faccion" class="faction-icon" src="" alt="Icono de facción" style="display: none;">
-                                                <div class="team-name"><?php echo "<html><span id='nombre-faccion'></span></html>"; ?><br><?php echo "<html><span id='subfaccion-faccion'></span></html>"; ?></div>
-                                            </div>
-                                        </div>
-                                    </div>
-    
-                                    <!-- Aquí termina el HTML para mostrar las partidas programadas -->
-                                    <?php
+                            <?php
+                            if ($id_partida > 0) {
+                                // Obtener información de la partida
+                                $sql = "SELECT * FROM partida WHERE id_partida = ?";
+                                $stmt = $conn->prepare($sql);
+                                $stmt->bind_param("i", $id_partida);
+                                $stmt->execute();
+                                $result = $stmt->get_result();
+                            
+                                if ($result->num_rows > 0) {
+                                    $partida = $result->fetch_assoc();
+                                    // Mostrar información de la partida
+                                    echo "<h1>Panel de Control - Partida ID: " . htmlspecialchars($partida['id_partida']) . "</h1>";
+                                    echo "<p>Estado: " . htmlspecialchars($partida['estado']) . "</p>";
+                                    echo "<p>Jugador 1: " . htmlspecialchars($partida['nombre_usuario1']) . "</p>";
+                                    echo "<p>Jugador 2: " . htmlspecialchars($partida['nombre_usuario2']) . "</p>";
+                                    // Agregar más detalles según sea necesario
+                            
+                                    // Acciones administrativas
+                                    echo '<h2>Acciones Administrativas</h2>';
+                                    echo '<form action="update-match.php" method="POST">';
+                                    echo '<input type="hidden" name="id_partida" value="' . htmlspecialchars($partida['id_partida']) . '">';
+                                    echo '<button type="submit" class="btn btn-warning">Actualizar Partida</button>';
+                                    echo '</form>';
+                                    
+                                    echo '<form action="delete-match.php" method="POST">';
+                                    echo '<input type="hidden" name="id_partida" value="' . htmlspecialchars($partida['id_partida']) . '">';
+                                    echo '<button type="submit" class="btn btn-danger">Eliminar Partida</button>';
+                                    echo '</form>';
+                                } else {
+                                    echo "<p>Partida no encontrada.</p>";
                                 }
                             } else {
-                                echo "No hay partidas programadas.";
+                                echo "<p>ID de partida inválido.</p>";
                             }
+                            
+                            $conn->close();
                             ?>
-            
+                        </div>
 
-            
-            
-            <br><br>
-            <div class="button">
-                <button class="btn" id="crear-partida" type="submit" disabled>UNIRSE</button>
+                        <!-- Columna derecha: Previsualización -->
+                        <div class="col-md-6 text-center">
+                            <h3>placeholder</h3>
+                            <br>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </form>
     </div>
 </div>
 
-<script>
-    // Recibir el valor de $juego desde PHP
-    const juego = <?php echo $juego; ?>;
-
-    const faccion40kSelect = document.getElementById('faccion40k');
-    const faccionSigmarSelect = document.getElementById('faccionSigmar');
-
-    // Función para actualizar el formulario basado en el juego
-    function actualizarFormulario() {
-        if (juego === 1) { // Warhammer 40k
-            faccion40kSelect.style.display = 'block';
-            faccionSigmarSelect.style.display = 'none';
-            faccion40kSelect.disabled = false;
-            faccionSigmarSelect.disabled = true;
-        } else if (juego === 2) { // Age of Sigmar
-            faccionSigmarSelect.style.display = 'block';
-            faccion40kSelect.style.display = 'none';
-            faccionSigmarSelect.disabled = false;
-            faccion40kSelect.disabled = true;
-        } else {
-            // Para otros juegos, desactivar ambos selects
-            faccion40kSelect.disabled = true;
-            faccionSigmarSelect.disabled = true;
-            faccion40kSelect.style.display = 'none';
-            faccionSigmarSelect.style.display = 'none';
-        }
-    }
-
-    // Llamar a la función de actualización del formulario
-    actualizarFormulario();
-
-    // Función para mostrar la facción seleccionada en Warhammer 40k
-    function mostrarFaccion40k() {
-        const selectedOption = faccion40kSelect.options[faccion40kSelect.selectedIndex];
-        const subfaccion = selectedOption.getAttribute('data-subfaccion');
-        const icono = selectedOption.getAttribute('data-icon');
-
-        // Mostrar facción y subfacción en la columna de previsualización
-        document.getElementById('nombre-faccion').textContent = subfaccion;
-        document.getElementById('subfaccion-faccion').textContent = selectedOption.text;
-
-        // Mostrar icono de facción
-        const iconoFaccion = document.getElementById('icono-faccion');
-        iconoFaccion.src = icono;
-        iconoFaccion.style.display = 'block';
-
-        verificarFormulario();
-    }
-
-    // Función para mostrar la facción seleccionada en Age of Sigmar
-    function mostrarFaccionSigmar() {
-        const selectedOption = faccionSigmarSelect.options[faccionSigmarSelect.selectedIndex];
-        const subfaccion = selectedOption.getAttribute('data-subfaccion');
-        const icono = selectedOption.getAttribute('data-icon');
-
-        // Mostrar facción y subfacción en la columna de previsualización
-        document.getElementById('nombre-faccion').textContent = subfaccion;
-        document.getElementById('subfaccion-faccion').textContent = selectedOption.text;
-
-        // Mostrar icono de facción
-        const iconoFaccion = document.getElementById('icono-faccion');
-        iconoFaccion.src = icono;
-        iconoFaccion.style.display = 'block';
-
-        verificarFormulario();
-    }
-
-    // Función para verificar que el formulario esté completo antes de permitir la creación
-    function verificarFormulario() {
-        let faccion = null;
-
-        // Verificar qué select de facciones debe estar habilitado
-        if (juego === 1) {
-            faccion = document.getElementById('faccion40k').value;
-        } else if (juego === 2) {
-            faccion = document.getElementById('faccionSigmar').value;
-        }
-
-        let formValido = juego && faccion;
-
-        document.getElementById('crear-partida').disabled = !formValido;
-    }
-</script>
-
-                </div>
-            </div>
-        </div>
-    </div>
 
     
 

@@ -1,5 +1,6 @@
 <?php
 include("../src/validate_session.php");
+include("../public/db.php");
 
 // Verifica si el usuario ha iniciado sesión y si tiene el rol de administrador (id_rol = 1)
 if (!isset($_SESSION['id_rol']) || $_SESSION['id_rol'] != 1) {
@@ -12,8 +13,6 @@ if (!isset($_SESSION['id_rol']) || $_SESSION['id_rol'] != 1) {
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <h1>BAKOVIA</h1>
-    <h2>Admin Dashboard</h2>
     <style>
         body {
             background-color: #1e1e1e;
@@ -55,7 +54,7 @@ if (!isset($_SESSION['id_rol']) || $_SESSION['id_rol'] != 1) {
     </style>
 </head>
 <body>
-    <h1>Página Principal del Administrador</h1>
+    <h1>BAKOVIA - Admin Dashboard</h1>
 
     <div class="button-container">
         <a href="admin-products.php" class="admin-button">Administrar Productos</a>

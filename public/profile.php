@@ -47,9 +47,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Guardar los cambios en la base de datos
     if (empty($errors)) {
         $userId = $_SESSION['id_usuario'];
+        $oldUsername = $_SESSION['nombre_usuario']; // Suponiendo que el antiguo nombre de usuario está en la sesión
+        $newUsername = $username; // El nuevo nombre de usuario que se está estableciendo
+
+        // Primero, actualiza el nombre de usuario en la tabla usuarios
         $query = "UPDATE usuarios SET nombre_usuario = ?, biografia = ?, army_desc = ? WHERE id_usuario = ?";
         $stmt = $conn->prepare($query);
-        $stmt->bind_param("sssi", $username, $bio, $description, $userId);
+        $stmt->bind_param("sssi", $newUsername, $bio, $description, $userId);
+        $stmt->execute();
+
+        // A continuación, actualiza el nombre de usuario en otras tablas
+        $tablesToUpdate = [
+            'comentarios' => 'nombre_usuario', // Cambia 'nombre_usuario' según corresponda
+            // Agrega aquí más tablas y columnas según sea necesario
+        ];
+
+        // Actualizar nombre de usuario en la tabla partidas
+        $updatePartidasQuery = "UPDATE partidas SET nombre_usuario1 = ?, nombre_usuario2 = ? WHERE nombre_usuario1 = ? OR nombre_usuario2 = ?";
+        $updatePartidasStmt = $conn->prepare($updatePartidasQuery);
+        $updatePartidasStmt->bind_param("ssss", $newUsername, $newUsername, $oldUsername, $oldUsername);
+        $updatePartidasStmt->execute();
+
+        // Actualizar en otras tablas
+        foreach ($tablesToUpdate as $table => $column) {
+            $updateQuery = "UPDATE $table SET $column = ? WHERE $column = ?";
+            $updateStmt = $conn->prepare($updateQuery);
+            $updateStmt->bind_param("ss", $newUsername, $oldUsername);
+            $updateStmt->execute();
+        }
+
+        // No olvides cerrar las declaraciones
+        $stmt->close();
+        $updatePartidasStmt->close();
+        $updateStmt->close();
+
         
         if ($stmt->execute()) {
             // Actualiza la sesión con los nuevos datos

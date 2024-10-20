@@ -262,7 +262,7 @@ register.php<div class="col-sm-auto"></div>
                             </div>
                             <div class="blog-content">
                                 <a class="category" href="javascript:void(0)">'.$tag.'</a>
-                                <h4><a href="blog-single-sidebar.php?id='.$id_publicacion.'">'.(strlen($titulo) > 75 ? substr($titulo, 0, 75) . '...' : $titulo).'</a></h4>
+                                <h4><a href="blog-single-sidebar.php?id='.$id_publicacion.'">'.$titulo.'</a></h4>
                                 <p>'.substr($contenido, 0, 100).'...</p>
                                 <div class="button">
                                     <a href="blog-single-sidebar.php?id='.$id_publicacion.'" class="btn">Leer más</a>

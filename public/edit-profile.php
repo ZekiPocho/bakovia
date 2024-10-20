@@ -175,11 +175,11 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     </div>
 
     <!-- Formulario para editar perfil -->
-    <form id="profileForm" action="profile.php" method="POST" enctype="multipart/form-data" onsubmit="return validateImageSize()">
+    <form id="profileForm" action="profile.php" method="POST" enctype="multipart/form-data">
         <div class="row justify-content-center align-items-center">
             <!-- Foto de perfil -->
             <div class="col-md-4 text-center mb-4">
-                <input type="file" id="profileImage" name="profileImage" class="form-control" accept="image/*" onchange="previewImage(event); validateImageSize()" style="display: none;">
+                <input type="file" id="profileImage" name="profileImage" class="form-control" accept="image/*" onchange="handleProfileImage(event)" style="display: none;">
                 <img src="../uploads/user/default.png" alt="Foto de perfil" class="img-fluid" style="max-height: 200px; max-width: 200px; object-fit: cover;" id="profilePreview" onclick="document.getElementById('profileImage').click();">
                 <p class="mt-2" style="filter: opacity(50%);">Haz clic en la imagen para cambiar la foto de perfil</p>
             </div>
@@ -213,38 +213,40 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 </div>
             </div>
         </div>
+
+        <!-- Botón para guardar cambios -->
+        <div class="row justify-content-end">
+            <div class="col-md-4 text-end">
+                <input type="submit" value="Guardar cambios" class="btn btn-primary">
+            </div>
+        </div>
     </form>
 </div>
 
 <!-- Scripts para previsualización de imagen -->
 <script>
-    function validateImageSize() {
-        const fileInput = document.getElementById('profileImage');
-        const preview = document.getElementById('profilePreview');
-        const file = fileInput.files[0];
-
-        if (file && file.size > 5 * 1024 * 1024) { // 5MB en bytes
+    function validateImageSize(file) {
+        if (file.size > 5 * 1024 * 1024) { // 5MB en bytes
             alert("El tamaño del archivo no puede exceder los 5MB.");
-            fileInput.value = ""; // Limpiar el input
-            preview.src = '../uploads/user/default.png'; // Restablecer la imagen de vista previa
-            return false; // Prevenir que el formulario se envíe
+            return false; // Indica que el archivo es inválido
         }
-        return true; // Permitir que el formulario se envíe si el archivo es válido
+        return true; // Indica que el archivo es válido
     }
 
-    function previewImage(event) {
+    function handleProfileImage(event) {
+        const fileInput = event.target;
+        const file = fileInput.files[0];
         const preview = document.getElementById('profilePreview');
-        const file = event.target.files[0];
-        const reader = new FileReader();
 
-        reader.onload = function(e) {
-            preview.src = e.target.result;
-        };
-
-        if (file) {
+        if (file && validateImageSize(file)) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result; // Mostrar la imagen solo si es válida
+            };
             reader.readAsDataURL(file);
         } else {
-            preview.src = '../uploads/user/default.png'; // Imagen por defecto si no hay archivo
+            fileInput.value = ""; // Limpiar el input si el archivo es inválido
+            preview.src = '../uploads/user/default.png'; // Restablecer la imagen de vista previa
         }
     }
 
@@ -264,6 +266,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         }
     }
 </script>
+
 
 
 

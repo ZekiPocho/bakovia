@@ -290,22 +290,40 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         </div>
 
         <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4"> <!-- Columna central -->
-            <div class="matches-div text-center">
-                        <div class="middle-section text-center">
-                            <h3 style="font-size: 1.25rem;">Tiempo Transcurrido</h3> <!-- Reducido el tamaño de la fuente -->
-                            <p id="tiempo-transcurrido" style="font-size: 1.2rem;">00:00:00</p> <!-- Reducido el tamaño de la fuente -->
-                            <br>
-                            <form action="adjust_rounds.php" method="POST" id="roundForm">
-                                <input type="hidden" name="id_partida" value="<?php echo htmlspecialchars($id_partida); ?>">
-                                <div class="mb-3">
-                                    <label for="rondas" class="form-label">Rondas:</label>
-                                    <input type="number" name="rondas" class="form-control" value="0"> <!-- Cambia este valor al número de rondas actual -->
-                                </div>
-                                <button type="submit" class="btn btn-primary">Ajustar Rondas</button>
-                            </form>
-                        </div>
-            </div>
+    <div class="matches-div text-center">
+        <div class="middle-section text-center">
+            <h3 style="font-size: 1.25rem;">Tiempo Transcurrido</h3> <!-- Reducido el tamaño de la fuente -->
+            <p id="tiempo-transcurrido" style="font-size: 1.2rem;">00:00:00</p> <!-- Reducido el tamaño de la fuente -->
+            <br>
+
+            <!-- Información del Juego -->
+            <h4 style="font-size: 1rem;">Juego:</h4>
+            <p style="font-size: 1rem;"><?php echo htmlspecialchars($nombre_juego); ?></p> <!-- Nombre del juego -->
+
+            <!-- Puntos -->
+            <h4 style="font-size: 1rem;">Puntos:</h4>
+            <p style="font-size: 1rem;"><?php echo htmlspecialchars($puntos); ?></p> <!-- Puntos -->
+
+            <!-- Horarios -->
+            <h4 style="font-size: 1rem;">Horarios:</h4>
+            <p style="font-size: 1rem;">
+                Inicio: <?php echo htmlspecialchars($hora_inicio); ?> <br>
+                Finalización: <?php echo htmlspecialchars($hora_final); ?>
+            </p> <!-- Horas de inicio y finalización -->
+
+            <br>
+            <form action="adjust_rounds.php" method="POST" id="roundForm">
+                <input type="hidden" name="id_partida" value="<?php echo htmlspecialchars($id_partida); ?>">
+                <div class="mb-3">
+                    <label for="rondas" class="form-label">Ronda Nº:</label>
+                    <input type="number" name="rondas" class="form-control" value="0"> <!-- Cambia este valor al número de rondas actual -->
+                </div>
+                <button type="submit" class="btn btn-primary">Ajustar Rondas</button>
+            </form>
         </div>
+    </div>
+</div>
+
 
         <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4"> <!-- Columna para el Jugador 2 -->
             <div class="team">
@@ -316,13 +334,13 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <br>
                 <div class="team-name">
                     <p><?php echo htmlspecialchars($faccion2); ?></p>
-                    <p><?php echo htmlspecialchars($subfaccion2); ?></p>
+                    <h2><?php echo htmlspecialchars($subfaccion2); ?></h2>
                 </div>
+                <br>
                 <form action="adjust_score.php" method="POST" id="scoreFormJugador2">
                     <input type="hidden" name="id_partida" value="<?php echo htmlspecialchars($id_partida); ?>">
                     <input type="hidden" name="jugador" value="2">
                     <div class="mb-3">
-                        <label for="puntaje_jugador2" class="form-label">Puntaje Jugador 2:</label>
                         <input type="number" name="puntaje_jugador2" class="form-control" value="<?php echo htmlspecialchars($puntaje_jugador2); ?>">
                     </div>
                     <button type="submit" class="btn btn-primary">Ajustar Puntaje</button>

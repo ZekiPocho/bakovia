@@ -215,7 +215,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         </div>
             </div>
     </form>
-
+</div>
 
 <!-- Scripts para previsualización de imagen -->
 <script>

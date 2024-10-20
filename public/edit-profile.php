@@ -190,31 +190,32 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             </div>
         </div>
 
-        <!-- Botón para guardar cambios -->
-        <div class="row justify-content-center">
-            <div class="col-md-4 text-center">
-                <input type="submit" value="Guardar cambios" class="btn btn-primary">
-            </div>
-        </div>
-    </form>
-
-    <!-- ARMY SHOWCASE -->
-    <div class="row mt-5 justify-content-center">
-        <div class="col-md-8">
-            <h2 class="text-center">ARMY SHOWCASE</h2>
-            <div class="card mb-3">
-                <label for="image1" class="form-label">Imagen de la Sección 1</label>
-                <input type="text" id="image1" class="form-control" placeholder="URL de la imagen 1" value="https://via.placeholder.com/400x200">
-                <img src="https://via.placeholder.com/400x200" class="card-img-top mt-3" alt="Imagen 1" id="imagePreview1">
-                <div class="card-body">
-                    <h5 class="card-title">ARMY SHOWCASE</h5>
-                    <label for="description1" class="form-label">Descripción de la Sección 1</label>
-                    <textarea id="description1" class="form-control" rows="2">Descripción breve de la sección 1.</textarea>
+            <!-- ARMY SHOWCASE -->
+                <div class="row mt-5 justify-content-center">
+                    <div class="col-md-8">
+                        <h2 class="text-center">ARMY SHOWCASE</h2>
+                        <div class="card mb-3">
+                            <label for="image1" class="form-label">Imagen de la Sección 1</label>
+                            <input type="text" id="image1" class="form-control" placeholder="URL de la imagen 1" value="https://via.placeholder.com/400x200">
+                            <img src="https://via.placeholder.com/400x200" class="card-img-top mt-3" alt="Imagen 1" id="imagePreview1">
+                            <div class="card-body">
+                                <h5 class="card-title">ARMY SHOWCASE</h5>
+                                <label for="description1" class="form-label">Descripción de la Sección 1</label>
+                                <textarea id="description1" class="form-control" rows="2">Descripción breve de la sección 1.</textarea>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
+
+            <!-- Botón para guardar cambios -->
+            <div class="row justify-content-center">
+                        <div class="col-md-4 text-center">
+                            <input type="submit" value="Guardar cambios" class="btn btn-primary">
+                        </div>
+            </div>
+    </form>
+
 
 <!-- Scripts para previsualización de imagen -->
 <script>

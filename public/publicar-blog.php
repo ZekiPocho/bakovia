@@ -232,13 +232,13 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <option value="lore">Lore</option>
         <option value="noticias">Noticias</option>
     </select>
+    <div>
+            <label for="imagenes">Subir imágenes:</label><br>
+            <input type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple onchange="previewImages()"><br><br>
+        </div>
     </div>
         <div>
             <textarea class="form-control" name="titulo" placeholder="título*" required></textarea>
-        </div>
-        <div>
-            <label for="imagenes">Subir imágenes:</label><br>
-            <input type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple onchange="previewImages()"><br><br>
         </div>
         <div>
             <textarea class="form-control" name="contenido" placeholder="cuerpo*"></textarea>

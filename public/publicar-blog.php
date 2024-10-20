@@ -251,7 +251,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             </div>
             <div class="col">
             </div>
-            <div class="col-3">
+            <div class="col-1">
             <input class="btn" type="submit" value="Publicar">
             </div>
         </div>

@@ -1,6 +1,5 @@
 <?php
 require_once "../src/validate_session.php";
-$_SESSION['partida'] = true;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verificar que el usuario está autenticado
@@ -53,10 +52,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 throw new Exception("Error en la consulta de partida: " . $conn->error);
             }
 
+            
+
             // Vincular parámetros y ejecutar
             $stmt_partida->bind_param("iisssss", $juego, $puntos, $faccion, $hora_inicio, $hora_final, $mesa, $nombre_usuario1);
             if (!$stmt_partida->execute()) {
                 throw new Exception("Error al insertar la partida: " . $stmt_partida->error);
+            }
+
+            // 3. Token USUARIO
+            $sql_usuario = "INSERT INTO usuarios (made)
+                            VALUES (?)";
+            
+            $stmt_usuario = $conn->prepare($sql_usuario);
+            if ($stmt_usuario === false) {
+                throw new Exception("Error en la consulta de partida: " . $conn->error);
+            }
+            // Vincular parámetros y ejecutar
+            $stmt_usuario->bind_param("i", true);
+            if (!$stmt_usuario->execute()) {
+                throw new Exception("Error al insertar la partida: " . $stmt_usuario->error);
             }
 
             // Si ambas inserciones fueron exitosas, confirmar la transacción

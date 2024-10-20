@@ -1,7 +1,6 @@
 <?php
 
 session_start();
-$_SESSION['partida'] = false;
 include "db.php";
 $mensaje = "";
 if (isset($_COOKIE['email']) && isset($_COOKIE['password'])) {

@@ -1,7 +1,6 @@
 <?php
 include("../src/validate_session.php");
 include("../public/db.php");
-$usuario_partida = $_SESSION['partida'];
 $usuario_actual = $_SESSION['nombre_usuario']; // Esto depende de cómo guardes el nombre del usuario en la sesión
 unset($_SESSION['juego']);
 unset($_SESSION['puntos']);
@@ -209,15 +208,20 @@ if ($conn->connect_error) {
 }
 date_default_timezone_set('America/La_Paz'); // O la zona horaria que necesites
 // Consulta para obtener partidas en progreso
-$sql = "SELECT p.id_partida, p.id_juego, p.puntos, p.nombre_usuario1, p.nombre_usuario2, 
-        f1.nombre AS faccion1, f1.subfaccion AS subfaccion1, f1.icono AS icono1, 
-        f2.nombre AS faccion2, f2.subfaccion AS subfaccion2, f2.icono AS icono2,
-        p.hora_inicio, p.hora_final, p.id_mesa, p.puntaje_usuario1, 
-        p.puntaje_usuario2
+        $sql = "SELECT p.id_partida, p.id_juego, p.puntos, 
+            p.nombre_usuario1, u1.made AS made_usuario1, 
+            p.nombre_usuario2, u2.made AS made_usuario2, 
+            f1.nombre AS faccion1, f1.subfaccion AS subfaccion1, f1.icono AS icono1, 
+            f2.nombre AS faccion2, f2.subfaccion AS subfaccion2, f2.icono AS icono2,
+            p.hora_inicio, p.hora_final, p.id_mesa, p.puntaje_usuario1, 
+            p.puntaje_usuario2
         FROM partida p
         JOIN faccion f1 ON p.id_faccion_usuario1 = f1.id_faccion
         JOIN faccion f2 ON p.id_faccion_usuario2 = f2.id_faccion
-        WHERE p.estado = 'en progreso'";
+        JOIN usuarios u1 ON p.nombre_usuario1 = u1.nombre_usuario
+        JOIN usuarios u2 ON p.nombre_usuario2 = u2.nombre_usuario
+        WHERE p.estado = 'en progreso'
+        ";
 
 $result = $conn->query($sql);
 
@@ -237,7 +241,7 @@ if ($result->num_rows > 0) {
             <div class="col-2">
                 <?php
                 // Mostrar el botón solo si el usuario actual es el usuario 1
-                if ($usuario_partida == true) {
+                if ($usuario_actual === $row['nombre_usuario1'] && $row['made_usuario1'] == 1) {
                     echo '<a href="panel_control.php?id_partida=' . $row['id_partida'] . '" class="btn btn-primary">
                     ADMIN
                     </a>';
@@ -293,7 +297,7 @@ $conn->close();
                 <div class="matches-div text-center">
                     <h3 style="border-bottom: solid 1px #6E869D;">¡A JUGAR!</h3>
                     <br>
-                        <?php
+                                            <?php
                         include("../public/db.php");
                         // Verificar conexión
                         if ($conn->connect_error) {
@@ -301,16 +305,21 @@ $conn->close();
                         }
 
                         // Consulta para obtener partidas programadas
-                        $sql = "SELECT p.id_partida, p.id_juego, p.puntos, p.nombre_usuario1, p.nombre_usuario2, 
-                        f1.nombre AS faccion1, f1.subfaccion AS subfaccion1, f1.icono AS icono1, 
-                        f2.nombre AS faccion2, f2.subfaccion AS subfaccion2, f2.icono AS icono2,
-                        p.hora_inicio, p.hora_final, p.id_mesa, p.puntaje_usuario1, 
-                        p.puntaje_usuario2
+                        $sql = "SELECT p.id_partida, p.id_juego, p.puntos, 
+                            p.nombre_usuario1, u1.made AS made_usuario1, 
+                            p.nombre_usuario2, u2.made AS made_usuario2, 
+                            f1.nombre AS faccion1, f1.subfaccion AS subfaccion1, f1.icono AS icono1, 
+                            f2.nombre AS faccion2, f2.subfaccion AS subfaccion2, f2.icono AS icono2,
+                            p.hora_inicio, p.hora_final, p.id_mesa, p.puntaje_usuario1, 
+                            p.puntaje_usuario2
                         FROM partida p
                         JOIN faccion f1 ON p.id_faccion_usuario1 = f1.id_faccion
                         JOIN faccion f2 ON p.id_faccion_usuario2 = f2.id_faccion
+                        JOIN usuarios u1 ON p.nombre_usuario1 = u1.nombre_usuario
+                        JOIN usuarios u2 ON p.nombre_usuario2 = u2.nombre_usuario
                         WHERE p.estado = 'programado'
-                        AND p.fecha = CURDATE();";
+                        AND p.fecha = CURDATE();
+                        ";
 
                         $result = $conn->query($sql);
 
@@ -329,7 +338,8 @@ $conn->close();
                                         </div>
                                         <div class="col-2">
                                             <?php
-                                            if ($usuario_partida == true) {
+                                            if ($usuario_actual === $row['nombre_usuario1'] && $row['made_usuario1'] == 1
+                                            ) {
                                                 echo '<a href="panel_control.php?id_partida=' . $row['id_partida'] . '" class="btn btn-primary">
                                                 ADMIN
                                                 </a>';
@@ -341,7 +351,8 @@ $conn->close();
                                         <div class="col-5">
                                             <?php
                                             // Mostrar el botón solo si el usuario actual no es el usuario 1 y si la partida está abierta
-                                            if ($usuario_partida == true) {
+                                            if ($usuario_actual === $row['nombre_usuario1'] && $row['made_usuario1'] == 1
+                                            ) {
                                                 echo 'ESPERANDO';
                                             } else {
                                                 echo '<form action="join-match.php" method="POST" style="display:inline;">
@@ -385,19 +396,25 @@ $conn->close();
                         ?>
 
                     <!-- Botón para iniciar una nueva partida -->
-                    <br><br><br>
-                    
                     <?php
-                                            if ($usuario_partida == true) {
-                                                
-                                            } else {
-                                                echo "<p class='text-muted'><span style='font-size: 15px;'>O sino, inicia tu propia partida</span></p>
-                    <br><div class='button'>
-                        <a href='new-match.php'><button class='btn'>Nueva Partida</button></a>
-                    </div>";
-                                            }
-                    ?>
-                    
+                        $id_usuario = $_SESSION['id_usuario'];
+                        $stmt = $pdo->prepare("SELECT made FROM usuarios WHERE id_usuario = :id_usuario");
+                        $stmt->execute(['id_usuario' => $id_usuario]);
+
+                        // Obtener el resultado
+                        $made = $stmt->fetchColumn();
+                        ?>
+
+                        <br><br><br>
+                        <p class="text-muted"><span style="font-size: 15px;">O sino, inicia tu propia partida</span></p>
+                        <br>
+
+                        <?php if ($made != 1): ?>
+                            <!-- Mostrar el botón solo si 'made' no es true (1) -->
+                            <div class="button">
+                                <a href="new-match.php"><button class="btn">Nueva Partida</button></a>
+                            </div>
+                        <?php endif; ?>
                 </div>
             </div>
         </div>

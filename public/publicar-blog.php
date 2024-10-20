@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id_usuario = $_SESSION['id_usuario']; // Asumimos que tienes la sesión del usuario
 
     // Manejo de imagen subida
-    $upload_dir = 'assets/images/blog';
+    $upload_dir = '../uploads/posts/';
     $imagen_publicacion = '';
 
     if (!empty($_FILES['imagenes']['name'][0])) {

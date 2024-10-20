@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['comentar'])) {
 
     if ($conn->query($sql)) {
         // Redirigir al usuario después de que el comentario haya sido agregado correctamente
-        header("Location: blog-grid-sidebar.php?id=$id_publicacion&success=1");
+        header("Location: blog-single-sidebar.php?id=$id_publicacion&success=1");
         exit(); // Importante: salir después de la redirección
     } else {
         echo "Error al agregar comentario: " . $conn->error;

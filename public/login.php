@@ -9,27 +9,49 @@ $mensaje = "";
 if (isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
     $email = $_COOKIE['email'];
     $password = $_COOKIE['password'];
-    
-    // Verificar si los datos de las cookies son válidos
-    $res = $conn->query("SELECT * FROM usuarios 
-        WHERE correo='$email' 
-        AND contrasena='$password'  
-        AND verificado='si'") or die($conn->error);
-    
-    if (mysqli_num_rows($res) > 0) {
+
+    // Preparar una consulta segura con prepared statements
+    $stmt = $conn->prepare("SELECT id_usuario, nombre_usuario, contrasena, correo, foto_perfil, 
+                                   biografía, fecha_registro, verificado, army_showcase, 
+                                   rango_id, wins, loses, id_rol, token
+                            FROM usuarios 
+                            WHERE correo=? 
+                              AND contrasena=?  
+                              AND verificado='si'");
+    $stmt->bind_param("ss", $email, $password);
+    $stmt->execute();
+    $res = $stmt->get_result();
+
+    if ($res->num_rows > 0) {
         // Obtener los datos del usuario
         $userData = $res->fetch_assoc();
         
         // Guardar los datos relevantes en la sesión
         $_SESSION['user'] = $userData['correo'];
-        $_SESSION['nombre_usuario'] = $userData['nombre_usuario']; // Guardar nombre de usuario
-        $_SESSION['id_usuario'] = $userData['id_usuario']; // Guardar el ID del usuario si lo necesitas
-        
+        $_SESSION['nombre_usuario'] = $userData['nombre_usuario'];
+        $_SESSION['id_usuario'] = $userData['id_usuario'];
+        $_SESSION['foto_perfil'] = $userData['foto_perfil'];
+        $_SESSION['biografía'] = $userData['biografía'];
+        $_SESSION['fecha_registro'] = $userData['fecha_registro'];
+        $_SESSION['army_showcase'] = $userData['army_showcase'];
+        $_SESSION['rango_id'] = $userData['rango_id'];
+        $_SESSION['wins'] = $userData['wins'];
+        $_SESSION['loses'] = $userData['loses'];
+        $_SESSION['id_rol'] = $userData['id_rol'];
+        $_SESSION['token'] = $userData['token'];
+
         // Redirigir a la página principal
         header("Location:../public/index.html");
         exit();
+    } else {
+        // Si no se encuentra el usuario, puedes gestionar el error aquí
+        echo "Correo o contraseña inválidos, o cuenta no verificada.";
     }
+
+    // Cerrar el statement
+    $stmt->close();
 }
+
 
 
 // Verificar si el formulario fue enviado

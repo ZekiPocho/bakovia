@@ -13,6 +13,7 @@ if (!isset($_SESSION['id_rol']) || $_SESSION['id_rol'] != 1) {
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <title>Página Principal del Administrador</title>
     <style>
         body {
             background-color: #1e1e1e;
@@ -23,11 +24,6 @@ if (!isset($_SESSION['id_rol']) || $_SESSION['id_rol'] != 1) {
             line-height: 1.6;
         }
         h1 {
-            color: #ff9800;
-            font-size: 25px;
-            text-align: center;
-        }
-        h2 {
             color: #ff9800;
             text-align: center;
         }
@@ -54,13 +50,15 @@ if (!isset($_SESSION['id_rol']) || $_SESSION['id_rol'] != 1) {
     </style>
 </head>
 <body>
-    <h1>BAKOVIA - Admin Dashboard</h1>
+    <h1>Página Principal del Administrador</h1>
 
     <div class="button-container">
         <a href="admin-products.php" class="admin-button">Administrar Productos</a>
         <a href="admin-matches.php" class="admin-button">Administrar Partidas</a>
         <a href="admin-posts.php" class="admin-button">Administrar Publicaciones</a>
-        <!-- Añadir más botones según sea necesario -->
+        <a href="admin-index.php" class="admin-button">Modificar Contenido del Index</a>
+        <a href="admin-about-us.php" class="admin-button">Modificar Contenido de About Us</a>
+        <a href="admin-faq.php" class="admin-button">Modificar Contenido de FAQ</a>
     </div>
 </body>
 </html>

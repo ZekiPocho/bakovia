@@ -377,10 +377,10 @@ if ($result->num_rows > 0) {
                 if ($row['made_usuario_sesion'] == 1) {
                     if ($row['nombre_usuario2'] !== "N/A") {
                         echo '<div class="row align-items-center">
-                                <div class="col-7">
+                                <div class="col-5">
                                     <span>' . htmlspecialchars($row["nombre_usuario2"]) . '</span>
                                 </div>
-                                <div class="col-5">
+                                <div class="col-7">
                                     <!-- Aquí se reemplaza la imagen por el botón de salir -->
                                     <a href="leave-match.php?id_partida=' . $row['id_partida'] . '" class="btn btn-danger">SALIR</a>
                                 </div>

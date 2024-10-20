@@ -1,9 +1,11 @@
 
-<?php
+<?php// Iniciar sesión
+session_start();
+
 // Conexión a la base de datos
 $servername = "localhost";
 $username = "root";
-$password = ""; 
+$password = "";
 $dbname = "bakoviadb";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -20,7 +22,7 @@ $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $offset = ($page - 1) * $limite; // Calcular el desplazamiento
 
 // Consulta para obtener las publicaciones
-$sql = "SELECT p.id_publicacion, p.titulo, p.contenido, p.imagen_publicacion, p.fecha_publicacion, p.tag, u.nombre_usuario 
+$sql = "SELECT p.id_publicacion, p.titulo, p.contenido, p.imagen_publicacion, p.fecha_publicacion, p.tag, p.id_usuario, u.nombre_usuario 
         FROM publicaciones p
         JOIN usuarios u ON p.id_usuario = u.id_usuario
         ORDER BY p.fecha_publicacion DESC
@@ -35,6 +37,9 @@ $total_publicaciones = $result_total->fetch_assoc()['total'];
 
 // Calcular el número total de páginas
 $total_paginas = ceil($total_publicaciones / $limite);
+
+// Obtener el ID del usuario autenticado desde la sesión
+$id_usuario_actual = isset($_SESSION['id_usuario']) ? $_SESSION['id_usuario'] : null;
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
@@ -241,62 +246,67 @@ register.php<div class="col-sm-auto"></div>
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-12">
                 <div class="row">
-            <?php
-            if ($result->num_rows > 0) {
-                // Mostrar cada publicación
-                while ($row = $result->fetch_assoc()) {
-                    $id_publicacion = $row['id_publicacion'];
-                    $titulo = $row['titulo'];
-                    $contenido = $row['contenido'];
-                    $imagen = !empty($row['imagen_publicacion']) ? $row['imagen_publicacion'] : 'https://via.placeholder.com/370x215'; 
-                    $tag = $row['tag'];
+    <?php
+    if ($result->num_rows > 0) {
+        // Mostrar cada publicación
+        while ($row = $result->fetch_assoc()) {
+            $id_publicacion = $row['id_publicacion'];
+            $titulo = $row['titulo'];
+            $contenido = $row['contenido'];
+            $imagen = !empty($row['imagen_publicacion']) ? $row['imagen_publicacion'] : 'https://via.placeholder.com/370x215'; 
+            $tag = $row['tag'];
+            $id_usuario_publicacion = $row['id_usuario']; // Obtener el ID del usuario que creó la publicación
 
-                    echo '
-                    <div class="col-lg-6 col-md-6 col-12">
-                        <!-- Start Single Blog -->
-                        <div class="single-blog">
-                            <div class="blog-img">
-                                <a href="blog-single-sidebar.php?id='.$id_publicacion.'">
-                                    <img src="'.$imagen.'" alt="#" style="width: 555px; height: 300px; object-fit: cover;">
-                                </a>
-                            </div>
-                            <div class="blog-content">
-                                <a class="category" href="javascript:void(0)">'.$tag.'</a>
-                                <h4><a href="blog-single-sidebar.php?id='.$id_publicacion.'">'.$titulo.'</a></h4>
-                                <p>'.substr($contenido, 0, 100).'...</p>
-                                <div class="button">
-                                    <a href="blog-single-sidebar.php?id='.$id_publicacion.'" class="btn">Leer más</a>
-                                </div>
-                            </div>
-                            <div>
-                                <a href="javascript:void(0)" class="reply-link"><i
-                                                        class="lni lni-reply"></i>Borrar</a>
-                            </div>
+            echo '
+            <div class="col-lg-6 col-md-6 col-12">
+                <!-- Start Single Blog -->
+                <div class="single-blog">
+                    <div class="blog-img">
+                        <a href="blog-single-sidebar.php?id='.$id_publicacion.'">
+                            <img src="'.$imagen.'" alt="#" style="width: 555px; height: 300px; object-fit: cover;">
+                        </a>
+                    </div>
+                    <div class="blog-content">
+                        <a class="category" href="javascript:void(0)">'.$tag.'</a>
+                        <h4><a href="blog-single-sidebar.php?id='.$id_publicacion.'">'.$titulo.'</a></h4>
+                        <p>'.substr($contenido, 0, 100).'...</p>
+                        <div class="button">
+                            <a href="blog-single-sidebar.php?id='.$id_publicacion.'" class="btn">Leer más</a>
                         </div>
-                        <!-- End Single Blog -->
                     </div>';
-                }
-            } else {
-                echo "No se encontraron publicaciones.";
+
+            // Mostrar el botón de borrar solo si el usuario autenticado es el creador de la publicación
+            if ($id_usuario_actual == $id_usuario_publicacion) {
+                echo '
+                <div>
+                    <a href="delete_post.php?id='.$id_publicacion.'" class="reply-link" onclick="return confirm(\'¿Estás seguro de que deseas eliminar esta publicación?\')">
+                        <i class="lni lni-trash-1"></i>Borrar
+                    </a>
+                </div>';
             }
 
-            // Paginación
-            echo '<div class="pagination left blog-grid-page">';
-            echo '<ul class="pagination-list">';
-            if ($page > 1) {
-                echo '<li><a href="?page='.($page - 1).'">Prev</a></li>';
-            }
-            for ($i = 1; $i <= $total_paginas; $i++) {
-                $active = $i == $page ? 'active' : '';
-                echo '<li class="'.$active.'"><a href="?page='.$i.'">'.$i.'</a></li>';
-            }
-            if ($page < $total_paginas) {
-                echo '<li><a href="?page='.($page + 1).'">Next</a></li>';
-            }
-            echo '</ul>';
-            echo '</div>';
-            ?>
-        </div>
+            echo '</div></div>';
+        }
+    } else {
+        echo "No se encontraron publicaciones.";
+    }
+
+    // Paginación
+    echo '<div class="pagination left blog-grid-page">';
+    echo '<ul class="pagination-list">';
+    if ($page > 1) {
+        echo '<li><a href="?page='.($page - 1).'">Prev</a></li>';
+    }
+    for ($i = 1; $i <= $total_paginas; $i++) {
+        $active = $i == $page ? 'active' : '';
+        echo '<li class="'.$active.'"><a href="?page='.$i.'">'.$i.'</a></li>';
+    }
+    if ($page < $total_paginas) {
+        echo '<li><a href="?page='.($page + 1).'">Next</a></li>';
+    }
+    echo '</ul></div>';
+    ?>
+</div>
                     <!--/ End Pagination -->
                 </div>
             </div>

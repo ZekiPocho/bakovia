@@ -225,7 +225,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                     $dia_actual = date('l'); // 'l' es para obtener el nombre del día
 
                                     // Definir los horarios disponibles
-                                    if ($dia_actual == 'Saturday') {
+                                    if ($dia_actual == 'Monday') {
                                         // Horarios para sábado
                                         $horarios_disponibles = [
                                             11 => '13:30', // id_hora => hora

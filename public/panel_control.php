@@ -311,15 +311,19 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
                         <!-- Columna 3: Información Jugador 2 -->
                         <div class="team">
-                            <h3 class="text-center"><?php echo htmlspecialchars($id_jugador2); ?></h3>
-                            <img src="../public/assets/images/icons/<?php echo htmlspecialchars($icono_jugador2); ?>" alt="Facción Jugador 2" class="img-fluid" style="max-height: 80px;">
-                            <p><strong>Facción:</strong> <?php echo htmlspecialchars($faccion_jugador2); ?></p>
-                            <form action="adjust_score.php" method="POST" id="scoreFormJugador2">
+                            <h4 class="text-center"><?php echo htmlspecialchars($nombre_jugador2); ?></h4>
+                            <img src="<?php echo htmlspecialchars($icono2); ?>" alt="Facción Jugador 2" class="img-fluid" style="max-height: 80px;">
+                            <div class="team-name">
+                            <p><?php echo htmlspecialchars($faccion2); ?></p>
+                            <p><?php echo htmlspecialchars($subfaccion2); ?></p>
+                            </div>
+                            
+                            <form action="adjust_score.php" method="POST" id="scoreFormJugador1">
                                 <input type="hidden" name="id_partida" value="<?php echo htmlspecialchars($id_partida); ?>">
-                                <input type="hidden" name="jugador" value="2">
+                                <input type="hidden" name="jugador" value="1">
                                 <div class="mb-3">
-                                    <label for="puntaje_jugador2" class="form-label">Puntaje Jugador 2:</label>
-                                    <input type="number" name="puntaje_jugador2" class="form-control" value="<?php echo htmlspecialchars($puntaje_jugador2); ?>">
+                                    <label for="puntaje_jugador1" class="form-label">Puntaje Jugador 1:</label>
+                                    <input type="number" name="puntaje_jugador1" class="form-control" value="<?php echo htmlspecialchars($puntaje_jugador2); ?>">
                                 </div>
                                 <button type="submit" class="btn btn-primary">Ajustar Puntaje</button>
                             </form>

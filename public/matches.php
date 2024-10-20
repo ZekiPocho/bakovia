@@ -364,12 +364,25 @@ if ($result->num_rows > 0) {
                     } else {
                         // Verificar si el usuario en la sesión tiene made como 1
                         if ($row['made_usuario_sesion'] == 1) {
-                            echo '<form action="join-match.php" method="POST" style="display:inline;">
+                            if ($row['nombre_usuario2'] !== "N/A") {
+                                echo"
+                                <div class='row align-items-center'>
+                                    <div class='col-7'>
+                                    <span><?php echo $row['nombre_usuario2']; ?></span>
+                                    </div>
+                                    <div class='col-5'>
+                                        <img src='https://via.placeholder.com/50x50' alt='Foto de perfil' class='img-fluid'>
+                                    </div>
+                                </div>"
+                            }else {
+                                echo '<form action="join-match.php" method="POST" style="display:inline;">
                                     <input type="hidden" name="id_partida" value="' . $row['id_partida'] . '">
                                     <div class="button">
                                         <button class="btn" disabled>UNIRSE</button>
                                     </div>
                                   </form>';
+                            }
+                            
                         } else {
                             echo '<form action="join-match.php" method="POST" style="display:inline;">
                                     <input type="hidden" name="id_partida" value="' . $row['id_partida'] . '">

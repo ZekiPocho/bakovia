@@ -342,23 +342,23 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                     <?php while ($producto = $productos->fetch_assoc()): ?>
                                         <div class="col-lg-4 col-md-6 col-12">
                                             <div class="single-product">
-                                                <div class="product-image">
-                                                    <img src="<?= $producto['imagen_producto'] ?>" alt="<?= htmlspecialchars($producto['nombre_producto']) ?>" class="product-img">
-                                                </div>
-                                                <div class="product-info">
-                                                    <span class="category"><?= htmlspecialchars($producto['tipo']) ?></span> <!-- Muestra el tipo de producto -->
-                                                    <h4 class="title">
-                                                        <a href="product-details.php?id=<?= $producto['id_producto'] ?>"><?= htmlspecialchars($producto['nombre_producto']) ?></a>
-                                                    </h4>
-                                                    <div class="price">
-                                                        <span>$<?= number_format($producto['precio'], 2) ?></span>
+                                                <a href="product-details.php?id=<?= $producto['id_producto'] ?>" style="text-decoration: none; color: inherit;">
+                                                    <div class="product-image">
+                                                        <img src="<?= $producto['imagen_producto'] ?>" alt="<?= htmlspecialchars($producto['nombre_producto']) ?>" class="product-img">
                                                     </div>
-                                                </div>
+                                                    <div class="product-info">
+                                                        <span class="category"><?= htmlspecialchars($producto['tipo']) ?></span> <!-- Muestra el tipo de producto -->
+                                                        <h4 class="title">
+                                                            <?= htmlspecialchars($producto['nombre_producto']) ?>
+                                                        </h4>
+                                                        <div class="price">
+                                                            <span>$<?= number_format($producto['precio'], 2) ?></span>
+                                                        </div>
+                                                    </div>
+                                                </a>
                                             </div>
                                         </div>
                                     <?php endwhile; ?>
-
-
 
                                 </div>
                                     <!-- End Single Product -->

@@ -3,7 +3,7 @@ require_once "../src/validate_session.php";
 
 include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a la base de datos
 
-$id_partida = isset($_GET['id_partida']) ? intval($_GET['id_partida']) : 0;
+$id_partida = $_GET['id_partida']; // Asegúrate de que el ID sea pasado de manera segura
 
 // Preparar la consulta
 $query = "SELECT * FROM partida WHERE id_partida = ?";
@@ -231,7 +231,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     <!-- End Breadcrumbs -->
     
 
-<div class="container-sm mt-4">
+    <div class="container-sm mt-4">
     <div class="row justify-content-center">
         <div class="col-xxl-12">
             <div class="matches-div text-center">
@@ -239,61 +239,54 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <br>
                 <div class="container mt-1">
                     <div class="row">
-                        <!-- Columna izquierda: Selección -->
+                        <!-- Columna izquierda: Información de la partida -->
                         <div class="col-md-6">
-                            <h3 class="text-center">placeholder</h3>
+                            <h3 class="text-center">INFORMACIÓN DE LA PARTIDA</h3>
                             <br>
-                            <?php
-                            if ($id_partida > 0) {
-                                // Obtener información de la partida
-                                $sql = "SELECT * FROM partida WHERE id_partida = ?";
-                                $stmt = $conn->prepare($sql);
-                                $stmt->bind_param("i", $id_partida);
-                                $stmt->execute();
-                                $result = $stmt->get_result();
-                            
-                                if ($result->num_rows > 0) {
-                                    $partida = $result->fetch_assoc();
-                                    // Mostrar información de la partida
-                                    echo "<h1>Panel de Control - Partida ID: " . htmlspecialchars($partida['id_partida']) . "</h1>";
-                                    echo "<p>Estado: " . htmlspecialchars($partida['estado']) . "</p>";
-                                    echo "<p>Jugador 1: " . htmlspecialchars($partida['nombre_usuario1']) . "</p>";
-                                    echo "<p>Jugador 2: " . htmlspecialchars($partida['nombre_usuario2']) . "</p>";
-                                    // Agregar más detalles según sea necesario
-                            
-                                    // Acciones administrativas
-                                    echo '<h2>Acciones Administrativas</h2>';
-                                    echo '<form action="update-match.php" method="POST">';
-                                    echo '<input type="hidden" name="id_partida" value="' . htmlspecialchars($partida['id_partida']) . '">';
-                                    echo '<button type="submit" class="btn btn-warning">Actualizar Partida</button>';
-                                    echo '</form>';
-                                    
-                                    echo '<form action="delete-match.php" method="POST">';
-                                    echo '<input type="hidden" name="id_partida" value="' . htmlspecialchars($partida['id_partida']) . '">';
-                                    echo '<button type="submit" class="btn btn-danger">Eliminar Partida</button>';
-                                    echo '</form>';
-                                } else {
-                                    echo "<p>Partida no encontrada.</p>";
-                                }
-                            } else {
-                                echo "<p>ID de partida inválido.</p>";
-                            }
-                            
-                            $conn->close();
-                            ?>
+                            <p><strong>ID de Partida:</strong> <?php echo htmlspecialchars($id_partida); ?></p>
+                            <p><strong>Juego:</strong> <?php echo htmlspecialchars($juego); ?></p>
+                            <p><strong>Puntos:</strong> <span id="puntaje_jugador1"><?php echo htmlspecialchars($puntaje_jugador1); ?></span> - <span id="puntaje_jugador2"><?php echo htmlspecialchars($puntaje_jugador2); ?></span></p>
+                            <p><strong>Mesa:</strong> <?php echo htmlspecialchars($mesa); ?></p>
+                            <p><strong>Estado:</strong> <?php echo htmlspecialchars($estado); ?></p>
+                            <p><strong>Facción Jugador 1:</strong> <?php echo htmlspecialchars($faccion_jugador1); ?></p>
+                            <p><strong>Facción Jugador 2:</strong> <?php echo htmlspecialchars($faccion_jugador2); ?></p>
                         </div>
 
-                        <!-- Columna derecha: Previsualización -->
-                        <div class="col-md-6 text-center">
-                            <h3>placeholder</h3>
+                        <!-- Columna derecha: Ajuste de puntaje y rondas -->
+                        <div class="col-md-6">
+                            <h3 class="text-center">AJUSTAR PUNTAJE Y RONDAS</h3>
                             <br>
+                            <form action="adjust_score.php" method="POST" id="scoreForm">
+                                <input type="hidden" name="id_partida" value="<?php echo htmlspecialchars($id_partida); ?>">
+                                <div class="mb-3">
+                                    <label for="ajuste_jugador1" class="form-label">Ajustar puntaje Jugador 1:</label>
+                                    <input type="number" name="ajuste_jugador1" class="form-control" value="0">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="ajuste_jugador2" class="form-label">Ajustar puntaje Jugador 2:</label>
+                                    <input type="number" name="ajuste_jugador2" class="form-control" value="0">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="rondas" class="form-label">Ajustar Rondas:</label>
+                                    <input type="number" name="rondas" class="form-control" value="0">
+                                </div>
+                                <button type="submit" class="btn btn-primary">AJUSTAR</button>
+                            </form>
                         </div>
                     </div>
+                </div>
+
+                <!-- Detalles de la partida -->
+                <div class="mt-4">
+                    <h3>DETALLES DE LA PARTIDA</h3>
+                    <p>Puedes agregar cualquier detalle adicional aquí.</p>
+                    <!-- Aquí puedes añadir más información según sea necesario -->
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 
 
     

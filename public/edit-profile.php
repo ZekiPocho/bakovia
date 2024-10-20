@@ -164,7 +164,13 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 <br>
 
 <div class="container-sm px-4">
-    <h1 class="mt-4 text-center">Editar Perfil de Usuario</h1>
+    
+    <!-- Botón para guardar cambios -->
+    <div class="row justify-content-center">
+                        <div class="col-md-4 text-center">
+                        <h1 class="mt-4 text-center">Editar Perfil de Usuario </h1><input type="submit" value="Guardar cambios" class="btn btn-primary">
+                        </div>
+            </div>
 
     <!-- Formulario para editar perfil -->
     <form action="profile.php" method="POST" enctype="multipart/form-data">
@@ -172,7 +178,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <!-- Foto de perfil -->
             <div class="col-md-4 text-center mb-4">
                 <input type="file" id="profileImage" name="profileImage" class="form-control" accept="image/*" onchange="previewImage(event)" style="display: none;">
-                <img src="https://via.placeholder.com/200" alt="Foto de perfil" class="img-fluid rounded-circle" style="max-height: 200px; max-width: 200px;" id="profilePreview" onclick="document.getElementById('profileImage').click();">
+                <img src="https://via.placeholder.com/200" alt="Foto de perfil" class="img-fluid" style="max-height: 200px; max-width: 200px;" id="profilePreview" onclick="document.getElementById('profileImage').click();">
                 <p class="mt-2">Haz clic en la imagen para cambiar la foto de perfil</p>
             </div>
 
@@ -208,12 +214,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 </div>
             </div>
 
-            <!-- Botón para guardar cambios -->
-            <div class="row justify-content-center">
-                        <div class="col-md-4 text-center">
-                            <input type="submit" value="Guardar cambios" class="btn btn-primary">
-                        </div>
-            </div>
+            
     </form>
 
 

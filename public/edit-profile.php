@@ -181,7 +181,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <!-- Foto de perfil -->
             <div class="col-md-4 text-center mb-4">
                 <input type="file" id="profileImage" name="profileImage" class="form-control" accept="image/*" onchange="previewImage(event)" style="display: none;">
-                <img src="../uploads/user/default.png" alt="Foto de perfil" class="img-fluid" style="max-height: 200px; max-width: 200px; height: 200px; width: 200px;" id="profilePreview" onclick="document.getElementById('profileImage').click();">
+                <img src="../uploads/user/default.png" alt="Foto de perfil" class="img-fluid" style="max-height: 200px; max-width: 200px; object-fit: none;" id="profilePreview" onclick="document.getElementById('profileImage').click();">
                 <p class="mt-2" style="filter: opacity(50%);">Haz clic en la imagen para cambiar la foto de perfil</p>
             </div>
 

@@ -241,9 +241,9 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <div>
             <textarea class="form-control" name="titulo" placeholder="título*" required></textarea>
         </div>
-        <div>
+        <div class="button">
             <textarea class="form-control" name="contenido" placeholder="cuerpo*"></textarea>
-        </div class="button">
+        </div >
         <input class="btn" type="submit" value="Publicar">
     </form>
     </div>

@@ -343,7 +343,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                         <div class="col-lg-4 col-md-6 col-12">
                                             <div class="single-product">
                                                 <div class="product-image">
-                                                    <img src="<?= $producto['imagen_producto'] ?>" alt="<?= $producto['nombre_producto'] ?>" style="width: 335px; height: 335px; object-fit: cover;">
+                                                    <img src="<?= $producto['imagen_producto'] ?>" alt="<?= $producto['nombre_producto'] ?>" style="width: 200px; height: 200px; object-fit: cover;">
                                                 </div>
                                                 <div class="product-info">
                                                     <span class="category"><?= htmlspecialchars($producto['tipo']) ?></span> <!-- Muestra el tipo de producto -->

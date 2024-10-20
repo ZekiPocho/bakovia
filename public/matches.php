@@ -376,10 +376,10 @@ if ($result->num_rows > 0) {
                 if ($row['made_usuario_sesion'] == 1) {
                     if ($row['nombre_usuario2'] !== "N/A") {
                         echo '<div class="row align-items-center">
-                                <div class="col-7">
+                                <div class="col-5">
                                     <span>' . htmlspecialchars($row["nombre_usuario2"]) . '</span>
                                 </div>
-                                <div class="col-5">';
+                                <div class="col-7">';
                                 
                                 // Comprobación para el botón de salir
                                 if ($usuario_actual === $row['nombre_usuario2'] && $row['made_usuario2'] == 1) {

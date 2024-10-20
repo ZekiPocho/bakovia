@@ -437,7 +437,7 @@ if ($result->num_rows > 0) {
         </div>
         <div class="score"><?php echo $row['puntaje_usuario1']; ?></div>
         <div class="middle-section">
-            <h1><?php echo $row['id_juego']; ?></h1>
+            <h1><?php echo $row['juego']; ?></h1>
             <h1><?php echo $row['puntos']; ?> Pts.</h1>
             <div class="timer"><?php echo $row['hora_inicio']; ?> - <?php echo $row['hora_final']; ?></div>
             <h1>MESA - <?php echo $row['id_mesa']; ?></h1>

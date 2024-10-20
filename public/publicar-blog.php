@@ -232,9 +232,9 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <option value="lore">Lore</option>
         <option value="noticias">Noticias</option>
     </select>
-    <div>
+        <div>
             <label for="imagenes">Subir imágenes:</label><br>
-            <input type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple onchange="previewImages()"><br><br>
+            <input type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple onchange="previewImages()"><br>
         </div>
     </div>
     <div id="vista-previa"></div>

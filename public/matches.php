@@ -357,25 +357,35 @@ $conn->close();
                                                 echo 'ESPERANDO';
                                             } else {
                                                 $id_usuario = $_SESSION['id_usuario']; // Obtener el ID del usuario de la sesión
-                                                $sql = "SELECT * FROM usuarios where id = $id_usuario AND made = 1
-                                                ";
+                                                $sql = "SELECT made FROM usuarios WHERE id_usuario = ?"; // Cambié el nombre de la columna a 'id_usuario'
 
-                                                $result = $conn->query($sql);
+                                                // Preparar la consulta
+                                                $stmt = $conn->prepare($sql);
+                                                $stmt->bind_param("i", $id_usuario); // Vincular el ID de usuario
+                                                $stmt->execute();
+                                                $result = $stmt->get_result();
+
                                                 if ($result->num_rows > 0) {
+                                                    $row = $result->fetch_assoc(); // Obtener el resultado
+                                                    $made = $row['made']; // Extraer el valor de 'made'
+
+                                                    // Mostrar el botón de acuerdo al valor de 'made'
                                                     echo '<form action="join-match.php" method="POST" style="display:inline;">
-                                                        <input type="hidden" name="id_partida" value="' . $row['id_partida'] . '">
-                                                        <html> <div class="button">
-                                                <button class="btn" disabled>UNIRSE</button>
-                                            </div> </html>
-                                                    </form>';
-                                                }else{
-                                                    echo '<form action="join-match.php" method="POST" style="display:inline;">
-                                                        <input type="hidden" name="id_partida" value="' . $row['id_partida'] . '">
-                                                        <html> <div class="button">
-                                                <button class="btn">UNIRSE</button>
-                                            </div> </html>
-                                                    </form>';
+                                                            <input type="hidden" name="id_partida" value="' . $row['id_partida'] . '">
+                                                            <div class="button">';
+                                                    
+                                                    if ($made == 1) { // Si made es 1, desactivar el botón
+                                                        echo '<button class="btn" disabled>UNIRSE</button>';
+                                                    } else { // Si made es 0, activar el botón
+                                                        echo '<button class="btn">UNIRSE</button>';
+                                                    }
+                                                    
+                                                    echo '  </div>
+                                                        </form>';
                                                 }
+
+                                                $stmt->close(); // Cerrar la declaración
+
                                                 
                                             }
                                             ?>

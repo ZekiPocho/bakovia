@@ -164,10 +164,18 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 <br>
 
 <div class="container-sm px-4">
-    <h1 class="mt-4 text-center">Editar Perfil de Usuario</h1>
+    <div class="row justify-content-between align-items-center">
+        <div class="col-md-6">
+            <h1 class="mt-4">Editar Perfil de Usuario</h1>
+        </div>
+        <!-- Botón para guardar cambios al lado del título -->
+        <div class="col-md-4 text-end mt-4">
+            <input type="submit" form="profileForm" value="Guardar cambios" class="btn btn-primary">
+        </div>
+    </div>
 
     <!-- Formulario para editar perfil -->
-    <form action="profile.php" method="POST" enctype="multipart/form-data">
+    <form id="profileForm" action="profile.php" method="POST" enctype="multipart/form-data">
         <div class="row justify-content-center align-items-center">
             <!-- Foto de perfil -->
             <div class="col-md-4 text-center mb-4">
@@ -190,30 +198,22 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             </div>
         </div>
 
-            <!-- ARMY SHOWCASE -->
-                <div class="row mt-5 justify-content-center">
-                    <div class="col-md-8">
-                        <h2 class="text-center">ARMY SHOWCASE</h2>
-                        <div class="card mb-3">
-                            <label for="image1" class="form-label">Imagen de la Sección 1</label>
-                            <input type="text" id="image1" class="form-control" placeholder="URL de la imagen 1" value="https://via.placeholder.com/400x200">
-                            <img src="https://via.placeholder.com/400x200" class="card-img-top mt-3" alt="Imagen 1" id="imagePreview1">
-                            <div class="card-body">
-                                <h5 class="card-title">ARMY SHOWCASE</h5>
-                                <label for="description1" class="form-label">Descripción de la Sección 1</label>
-                                <textarea id="description1" class="form-control" rows="2">Descripción breve de la sección 1.</textarea>
-                            </div>
-                        </div>
+        <!-- ARMY SHOWCASE -->
+        <div class="row mt-5 justify-content-center">
+            <div class="col-md-8">
+                <h2 class="text-center">ARMY SHOWCASE</h2>
+                <div class="card mb-3 text-center">
+                    <input type="file" id="armyShowcaseImage" name="armyShowcaseImage" class="form-control" accept="image/*" onchange="previewArmyImage(event)" style="display: none;">
+                    <img src="https://via.placeholder.com/400x200" class="card-img-top mt-3" alt="Imagen ARMY SHOWCASE" id="armyImagePreview" onclick="document.getElementById('armyShowcaseImage').click();">
+                    <p class="mt-2">Haz clic en la imagen para cambiar el ARMY SHOWCASE</p>
+                    <div class="card-body">
+                        <h5 class="card-title">ARMY SHOWCASE</h5>
+                        <label for="description1" class="form-label">Descripción de la Sección 1</label>
+                        <textarea id="description1" name="description1" class="form-control" rows="2">Descripción breve de la sección 1.</textarea>
                     </div>
                 </div>
             </div>
-
-            <!-- Botón para guardar cambios -->
-            <div class="row justify-content-center">
-                        <div class="col-md-4 text-center">
-                            <input type="submit" value="Guardar cambios" class="btn btn-primary">
-                        </div>
-            </div>
+        </div>
     </form>
 </div>
 
@@ -235,10 +235,21 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         }
     }
 
-    // Previsualizar otras imágenes de las secciones
-    document.getElementById('image1').addEventListener('input', function() {
-        document.getElementById('imagePreview1').src = this.value;
-    });
+    function previewArmyImage(event) {
+        const preview = document.getElementById('armyImagePreview');
+        const file = event.target.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            preview.src = e.target.result;
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            preview.src = 'https://via.placeholder.com/400x200'; // Imagen por defecto si no hay archivo
+        }
+    }
 </script>
 
 <br>

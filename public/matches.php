@@ -386,13 +386,13 @@ $conn->close();
 
                     <!-- Botón para iniciar una nueva partida -->
                     <br><br><br>
-                    <p class="text-muted"><span style="font-size: 15px;">O sino, inicia tu propia partida</span></p>
-                    <br>
+                    
                     <?php
                                             if ($usuario_partida = true) {
                                                 
                                             } else {
-                                                echo "<div class='button'>
+                                                echo "<p class="text-muted"><span style="font-size: 15px;">O sino, inicia tu propia partida</span></p>
+                    <br><div class='button'>
                         <a href='new-match.php'><button class='btn'>Nueva Partida</button></a>
                     </div>";
                                             }

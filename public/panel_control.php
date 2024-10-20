@@ -280,7 +280,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         <!-- Columna 3: Información Jugador 2 -->
                         <div class="col-md-4">
                             <h3 class="text-center"><?php echo htmlspecialchars($id_jugador2); ?></h3>
-                            <img src="../public/assets/images/icons/<?php echo htmlspecialchars($icono_jugador2); ?>.png" alt="Facción Jugador 2" class="img-fluid" style="max-height: 80px;">
+                            <img src="../public/assets/images/icons/<?php echo htmlspecialchars($icono_jugador2); ?>" alt="Facción Jugador 2" class="img-fluid" style="max-height: 80px;">
                             <p><strong>Facción:</strong> <?php echo htmlspecialchars($faccion_jugador2); ?></p>
                             <form action="adjust_score.php" method="POST" id="scoreFormJugador2">
                                 <input type="hidden" name="id_partida" value="<?php echo htmlspecialchars($id_partida); ?>">

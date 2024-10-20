@@ -226,7 +226,9 @@ register.php<div class="col-sm-auto"></div>
     <section class="section blog-section blog-list">
         <div class="container-sm">
             <div class="navbar-area">
-                <p>hplas</p>
+                <div class="col-lg-6 col-md-6 col-12">
+                    <p>Ultimas Publicaciones</p>
+                </div>
             </div>
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-12">

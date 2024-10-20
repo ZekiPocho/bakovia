@@ -276,7 +276,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         <div class="col-md-4">
                             <h4 class="text-center"><?php echo htmlspecialchars($nombre_jugador1); ?></h4>
                             <img src="<?php echo htmlspecialchars($icono1); ?>" alt="Facción Jugador 1" class="img-fluid" style="max-height: 80px;">
-                            <p><strong>Facción:</strong> <?php echo htmlspecialchars($faccion_jugador1); ?></p>
+                            <p><?php echo htmlspecialchars($jugador1); ?></p>
+                            <p><?php echo htmlspecialchars($subjugador1); ?></p>
                             <form action="adjust_score.php" method="POST" id="scoreFormJugador1">
                                 <input type="hidden" name="id_partida" value="<?php echo htmlspecialchars($id_partida); ?>">
                                 <input type="hidden" name="jugador" value="1">

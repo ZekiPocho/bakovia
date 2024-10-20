@@ -1,9 +1,9 @@
 <?php
-require_once "../src/validate_session.php";
+require_once "../src/validate_session.php"; // Verifica que el usuario esté autenticado
 
-include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a la base de datos
+include '../public/db.php'; // Incluye la conexión a la base de datos
 
-// Obtener el ID de la partida de la solicitud POST
+// Obtener el ID de la partida de la sesión
 $id_partida = isset($_SESSION['id_partida']) ? intval($_SESSION['id_partida']) : 0;
 
 // Obtener la facción del segundo jugador del POST
@@ -32,7 +32,12 @@ if ($id_partida > 0 && $faccion_usuario !== null) {
             $stmt_update->bind_param("ssi", $nombre_usuario, $faccion_usuario, $id_partida);
 
             if ($stmt_update->execute()) {
-                echo "Te has unido a la partida con éxito.";
+                // Actualizar la columna 'made' del usuario en la base de datos
+                $sql_user_update = "UPDATE usuarios SET made = 1 WHERE nombre_usuario = ?";
+                $stmt_user_update = $conn->prepare($sql_user_update);
+                $stmt_user_update->bind_param("s", $nombre_usuario);
+                $stmt_user_update->execute();
+
                 // Redirigir a matches.php
                 header("Location: matches.php");
                 exit;
@@ -41,7 +46,6 @@ if ($id_partida > 0 && $faccion_usuario !== null) {
             }
         } else {
             echo "La partida no está disponible para unirse.";
-            echo "$id_partida";
         }
     } else {
         echo "Partida no encontrada.";
@@ -50,5 +54,5 @@ if ($id_partida > 0 && $faccion_usuario !== null) {
     echo "ID de partida inválido o facción no especificada.";
 }
 
-$conn->close();
+$conn->close(); // Cierra la conexión a la base de datos
 ?>

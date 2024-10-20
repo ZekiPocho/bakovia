@@ -194,77 +194,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     </div>
     <!-- End Breadcrumbs -->
     
-    <?php
-        $id_partida = $_GET['id_partida']; // Asegúrate de que el ID sea pasado de manera segura
-
-        // Nueva consulta adaptada
-        $query = "SELECT 
-                        j.nombre AS nombre_juego, 
-                        p.puntos AS puntos, 
-                        p.nombre_usuario1 AS nombre_jugador1, 
-                        u1.made AS made_usuario1, 
-                        p.nombre_usuario2 AS nombre_jugador2, 
-                        u2.made AS made_usuario2, 
-                        f1.nombre AS faccion1, 
-                        f1.subfaccion AS subfaccion1, 
-                        f1.icono AS icono1, 
-                        f2.nombre AS faccion2, 
-                        f2.subfaccion AS subfaccion2, 
-                        f2.icono AS icono2,
-                        h1.hora AS hora_inicio, 
-                        h2.hora AS hora_final,
-                        p.id_mesa AS id_mesa, 
-                        p.puntaje_usuario1 AS puntaje_jugador1, 
-                        p.puntaje_usuario2 AS puntaje_jugador2
-                    FROM partida p
-                    JOIN faccion f1 ON p.id_faccion_usuario1 = f1.id_faccion
-                    JOIN faccion f2 ON p.id_faccion_usuario2 = f2.id_faccion
-                    JOIN usuarios u1 ON p.nombre_usuario1 = u1.nombre_usuario
-                    JOIN usuarios u2 ON p.nombre_usuario2 = u2.nombre_usuario
-                    JOIN juego j ON p.id_juego = j.id_juego
-                    JOIN horarios h1 ON p.hora_inicio = h1.id_hora
-                    JOIN horarios h2 ON p.hora_final = h2.id_hora
-                    WHERE p.id_partida = ?";
-                  
-        if ($stmt = $conn->prepare($query)) {
-            $stmt->bind_param("i", $id_partida); // 'i' indica que el parámetro es un entero
-            $stmt->execute();  
-            $result = $stmt->get_result();
-
-            if ($result->num_rows > 0) {
-                // Obtener los datos de la partida
-                $partida = $result->fetch_assoc();
-
-                // Asignar las variables
-                $nombre_juego = $partida['nombre_juego'] ?? null; 
-                $puntos = $partida['puntos'] ?? null;
-                $nombre_jugador1 = $partida['nombre_jugador1'] ?? null;
-                $made_usuario1 = $partida['made_usuario1'] ?? null;
-                $nombre_jugador2 = $partida['nombre_jugador2'] ?? null;
-                $made_usuario2 = $partida['made_usuario2'] ?? null;
-                $faccion1 = $partida['faccion1'] ?? null;
-                $subfaccion1 = $partida['subfaccion1'] ?? null;
-                $icono1 = $partida['icono1'] ?? null;
-                $faccion2 = $partida['faccion2'] ?? null;
-                $subfaccion2 = $partida['subfaccion2'] ?? null;
-                $icono2 = $partida['icono2'] ?? null;
-                $hora_inicio = $partida['hora_inicio'] ?? null;
-                $hora_final = $partida['hora_final'] ?? null;
-                $id_mesa = $partida['id_mesa'] ?? null;
-                $puntaje_jugador1 = $partida['puntaje_jugador1'] ?? null;
-                $puntaje_jugador2 = $partida['puntaje_jugador2'] ?? null;
-
-                // Ahora puedes usar las variables para mostrar los datos en tu HTML
-            } else {
-                echo "No se encontró la partida con el ID proporcionado.";
-            }    
-            $stmt->close();
-        } else {
-            echo "Error en la preparación de la consulta.";
-        }
-    ?>
-
-<div class="container-sm mt-4">
+    <div class="container-sm mt-4">
     <div class="row justify-content-center">
         <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4"> <!-- Columna para el Jugador 1 -->
             <div class="team">
@@ -335,6 +265,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         </div>
     </div>
 </div>
+
 
 
 

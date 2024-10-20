@@ -47,6 +47,18 @@ if (!isset($_SESSION['id_rol']) || $_SESSION['id_rol'] != 1) {
         .admin-button:hover {
             background-color: #e68900;
         }
+        .normal-view-button {
+            background-color: #3c3c3c;
+            color: #ff9800;
+            padding: 15px 30px;
+            margin: 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        .normal-view-button:hover {
+            background-color: #444;
+        }
     </style>
 </head>
 <body>
@@ -60,5 +72,7 @@ if (!isset($_SESSION['id_rol']) || $_SESSION['id_rol'] != 1) {
         <a href="admin-about-us.php" class="admin-button">Modificar Contenido de About Us</a>
         <a href="admin-faq.php" class="admin-button">Modificar Contenido de FAQ</a>
     </div>
+
+    <a href="../public/index.php" class="normal-view-button">Volver a la Vista Normal</a>
 </body>
 </html>

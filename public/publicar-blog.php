@@ -234,7 +234,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     </select>
         <div>
             <label for="imagenes">Subir imágenes:</label><br>
-            <input type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple onchange="previewImages()"><br>
+            <input class="btn" type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple onchange="previewImages()"><br><br>
         </div>
     </div>
     <div id="vista-previa"></div>

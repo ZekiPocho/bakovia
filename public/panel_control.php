@@ -270,7 +270,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <div class="team">
                 <h4 class="text-center"><?php echo htmlspecialchars($nombre_jugador1); ?></h4>
                 <br>
-                <img src="<?php echo htmlspecialchars($icono1); ?>" alt="Facción Jugador 1" class="img-fluid" style="max-height: 80px;">
+                <img src="<?php echo htmlspecialchars($icono1); ?>" alt="Facción Jugador 1" class="img-fluid" style="max-height: 100px;">
+                <br>
                 <br>
                 <div class="team-name">
                     <p><?php echo htmlspecialchars($faccion1); ?></p>
@@ -312,7 +313,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <div class="team">
                 <h4 class="text-center"><?php echo htmlspecialchars($nombre_jugador2); ?></h4>
                 <br>
-                <img src="<?php echo htmlspecialchars($icono2); ?>" alt="Facción Jugador 2" class="img-fluid" style="max-height: 80px;">
+                <img src="<?php echo htmlspecialchars($icono2); ?>" alt="Facción Jugador 2" class="img-fluid" style="max-height: 100px;">
+                <br>
                 <br>
                 <div class="team-name">
                     <p><?php echo htmlspecialchars($faccion2); ?></p>

@@ -256,17 +256,13 @@ $conn->close();
                                         </div>
                                         <div class="comment-desc">
                                             <div class="desc-top">
-                                                <h6>Arista Williamson</h6>
-                                                <span class="date">19th May 2023</span>
+                                                <h6>nombre de usuario</h6>
+                                                <span class="date">fecha</span>
                                                 <a href="javascript:void(0)" class="reply-link"><i
-                                                        class="lni lni-reply"></i>Reply</a>
+                                                        class="lni lni-reply"></i>responder</a>
                                             </div>
                                             <p>
-                                                Donec aliquam ex ut odio dictum, ut consequat leo interdum. Aenean nunc
-                                                ipsum, blandit eu enim sed, facilisis convallis orci. Etiam commodo
-                                                lectus
-                                                quis vulputate tincidunt. Mauris tristique velit eu magna maximus
-                                                condimentum.
+                                                contenido
                                             </p>
                                         </div>
                                     </li>
@@ -276,32 +272,11 @@ $conn->close();
                                         </div>
                                         <div class="comment-desc">
                                             <div class="desc-top">
-                                                <h6>Rosalina Kelian</h6>
-                                                <span class="date">15th May 2023</span>
-                                                <a href="javascript:void(0)" class="reply-link"><i
-                                                        class="lni lni-reply"></i>Reply</a>
+                                                <h6>Nombre de usuario</h6>
+                                                <span class="date">fecha</span>
                                             </div>
                                             <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                                tempor incididunt ut labore et dolore magna aliqua. Ut enim.
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="comment-img">
-                                            <img src="https://via.placeholder.com/150x150" alt="img">
-                                        </div>
-                                        <div class="comment-desc">
-                                            <div class="desc-top">
-                                                <h6>Alex Jemmi</h6>
-                                                <span class="date">12th May 2023</span>
-                                                <a href="javascript:void(0)" class="reply-link"><i
-                                                        class="lni lni-reply"></i>Reply</a>
-                                            </div>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                                                veniam.
+                                                contenido
                                             </p>
                                         </div>
                                     </li>
@@ -311,39 +286,15 @@ $conn->close();
                                 <h3 class="comment-reply-title">Leave a comment</h3>
                                 <form action="#" method="POST">
                                     <div class="row">
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-box form-group">
-                                                <input type="text" name="name" class="form-control form-control-custom"
-                                                    placeholder="Website URL" />
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-box form-group">
-                                                <input type="text" name="email" class="form-control form-control-custom"
-                                                    placeholder="Your Name" />
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-box form-group">
-                                                <input type="email" name="email"
-                                                    class="form-control form-control-custom" placeholder="Your Email" />
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-box form-group">
-                                                <input type="text" name="name" class="form-control form-control-custom"
-                                                    placeholder="Phone Number" />
-                                            </div>
-                                        </div>
                                         <div class="col-12">
                                             <div class="form-box form-group">
                                                 <textarea name="#" class="form-control form-control-custom"
-                                                    placeholder="Your Comments"></textarea>
+                                                    placeholder="Añadir comentario"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="button">
-                                                <button type="submit" class="btn">Post Comment</button>
+                                                <button type="submit" class="btn">Enviar comentario</button>
                                             </div>
                                         </div>
                                     </div>

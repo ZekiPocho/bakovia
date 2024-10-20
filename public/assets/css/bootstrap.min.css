@@ -3096,7 +3096,7 @@ textarea.form-control.is-invalid {
     display: inline-block;
     font-weight: 400;
     line-height: 1.5;
-    color: #212529;
+    color: #eee;
     text-align: center;
     text-decoration: none;
     vertical-align: middle;
@@ -3105,7 +3105,7 @@ textarea.form-control.is-invalid {
     -moz-user-select: none;
     user-select: none;
     background-color: transparent;
-    border: 1px solid transparent;
+    border: 1px solid #ECBE00;
     padding: .375rem .75rem;
     font-size: 1rem;
     border-radius: .25rem;
@@ -3119,7 +3119,7 @@ textarea.form-control.is-invalid {
 }
 
 .btn:hover {
-    color: #212529
+    color: #ECBE00
 }
 
 .btn-check:focus+.btn,

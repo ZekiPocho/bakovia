@@ -4,43 +4,6 @@ include("../public/db.php"); // Asegúrate de incluir el archivo de conexión a 
 ?>
 
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Productos</title>
-    <link rel="stylesheet" href="path/to/your/styles.css"> <!-- Asegúrate de enlazar tu CSS -->
-</head>
-<body>
-    <div class="container">
-        <div class="row">
-            <?php while ($producto = $productos->fetch_assoc()): ?>
-                <!-- Start Single Product -->
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="single-product">
-                        <div class="product-image">
-                            <img src="<?= $producto['imagen_producto'] ?>" alt="<?= $producto['nombre_producto'] ?>">
-                        </div>
-                        <div class="product-info">
-                            <span class="category">Categoría</span> <!-- Aquí puedes poner la categoría si la tienes -->
-                            <h4 class="title">
-                                <a href="product-details.php?id=<?= $producto['id_producto'] ?>"><?= $producto['nombre_producto'] ?></a>
-                            </h4>
-                            <div class="price">
-                                <span>$<?= number_format($producto['precio'], 2) ?></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- End Single Product -->
-            <?php endwhile; ?>
-        </div>
-    </div>
-</body>
-</html>
-
-?>
-
-<!DOCTYPE html>
 <html class="no-js" lang="zxx">
 
 <head>

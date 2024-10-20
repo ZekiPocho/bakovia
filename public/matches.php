@@ -379,14 +379,18 @@ if ($result->num_rows > 0) {
                                 <div class="col-7">
                                     <span>' . htmlspecialchars($row["nombre_usuario2"]) . '</span>
                                 </div>
-                                <div class="col-5">
-                                    <img src="https://via.placeholder.com/50x50" alt="Foto de perfil" class="img-fluid">
-                                </div>
-                              </div>';
+                                <div class="col-5">';
+                                
+                                // Comprobación para el botón de salir
+                                if ($usuario_actual === $row['nombre_usuario2'] && $row['made_usuario2'] == 1) {
+                                    echo '<a href="leave-match.php?id_partida=' . $row['id_partida'] . '" class="btn btn-danger">SALIR</a>';
+                                }
+
+                        echo '  </div>
+                            </div>';
+
                         // Agregar enlace para que el usuario2 salga de la partida
-                        if ($usuario_actual === $row['nombre_usuario2'] && $row['made_usuario2'] == 1) {
-                            echo '<a href="leave-match.php?id_partida=' . $row['id_partida'] . '" class="btn btn-danger">SALIR</a>';
-                        }
+                        
                     } else {
                         echo '<form action="join-match.php" method="POST" style="display:inline;">
                                 <input type="hidden" name="id_partida" value="' . $row['id_partida'] . '">

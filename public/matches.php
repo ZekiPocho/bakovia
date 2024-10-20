@@ -5,7 +5,6 @@ $usuario_actual = $_SESSION['nombre_usuario']; // Esto depende de cómo guardes 
 unset($_SESSION['juego']);
 unset($_SESSION['puntos']);
 unset($_SESSION['faccion']);
-echo "$_SESSION['partida']";
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
@@ -293,7 +292,7 @@ $conn->close();
                 <div class="matches-div text-center">
                     <h3 style="border-bottom: solid 1px #6E869D;">¡A JUGAR!</h3>
                     <br>
-                                            <?php
+                        <?php
                         include("../public/db.php");
                         // Verificar conexión
                         if ($conn->connect_error) {
@@ -329,7 +328,7 @@ $conn->close();
                                         </div>
                                         <div class="col-2">
                                             <?php
-                                            if ($_SESSION['partida'] = true) {
+                                            if ($_SESSION['partida'] = false) {
                                                 echo '<a href="panel_control.php?id_partida=' . $row['id_partida'] . '" class="btn btn-primary">
                                                 ADMIN
                                                 </a>';

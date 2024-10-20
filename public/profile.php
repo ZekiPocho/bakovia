@@ -50,33 +50,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $oldUsername = $_SESSION['nombre_usuario']; // Suponiendo que el antiguo nombre de usuario está en la sesión
         $newUsername = $username; // El nuevo nombre de usuario que se está estableciendo
 
-        // Primero, actualiza el nombre de usuario en la tabla usuarios
+        // Actualizar el nombre de usuario en la tabla de usuarios
         $query = "UPDATE usuarios SET nombre_usuario = ?, biografia = ?, army_desc = ? WHERE id_usuario = ?";
         $stmt = $conn->prepare($query);
+        if ($stmt === false) {
+            die('Error en la preparación de la consulta de usuarios: ' . $conn->error);
+        }
         $stmt->bind_param("sssi", $newUsername, $bio, $description, $userId);
         $stmt->execute();
 
-        // A continuación, actualiza el nombre de usuario en otras tablas
-        $tablesToUpdate = [
-            'comentarios' => 'nombre_usuario', // Cambia 'nombre_usuario' según corresponda
-            // Agrega aquí más tablas y columnas según sea necesario
-        ];
+        // Actualizar solo el nombre de usuario correspondiente en la tabla de partida
+        $updatePartidasQuery = "UPDATE partida 
+                                SET nombre_usuario1 = CASE WHEN nombre_usuario1 = ? THEN ? ELSE nombre_usuario1 END, 
+                                    nombre_usuario2 = CASE WHEN nombre_usuario2 = ? THEN ? ELSE nombre_usuario2 END 
+                                WHERE nombre_usuario1 = ? OR nombre_usuario2 = ?";
 
-        // Actualizar nombre de usuario en la tabla partidas
-        $updatePartidasQuery = "UPDATE partida SET nombre_usuario1 = ?, nombre_usuario2 = ? WHERE nombre_usuario1 = ? OR nombre_usuario2 = ?";
         $updatePartidasStmt = $conn->prepare($updatePartidasQuery);
-        $updatePartidasStmt->bind_param("ssss", $newUsername, $newUsername, $oldUsername, $oldUsername);
+        if ($updatePartidasStmt === false) {
+            die('Error en la preparación de la consulta de partidas: ' . $conn->error);
+        }
+        $updatePartidasStmt->bind_param("ssssss", $oldUsername, $newUsername, $oldUsername, $newUsername, $oldUsername, $oldUsername);
         $updatePartidasStmt->execute();
 
-        // Actualizar en otras tablas
-        foreach ($tablesToUpdate as $table => $column) {
-            $updateQuery = "UPDATE $table SET $column = ? WHERE $column = ?";
-            $updateStmt = $conn->prepare($updateQuery);
-            $updateStmt->bind_param("ss", $newUsername, $oldUsername);
-            $updateStmt->execute();
-        }
-
-        // No olvides cerrar las declaraciones
+        // Cerrar las declaraciones
         $stmt->close();
         $updatePartidasStmt->close();
         $updateStmt->close();

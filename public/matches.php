@@ -360,7 +360,19 @@ if ($result->num_rows > 0) {
                     <?php
                     // Mostrar el botón solo si el usuario actual no es el usuario 1 y si la partida está abierta
                     if ($usuario_actual === $row['nombre_usuario1'] && $row['made_usuario1'] == 1) {
-                        echo 'ESPERANDO';
+                        if ($row['nombre_usuario2'] !== "N/A") {
+                            echo '<div class="row align-items-center">
+                                    <div class="col-7">
+                                        <span>' . htmlspecialchars($row["nombre_usuario2"]) . '</span>
+                                    </div>
+                                    <div class="col-5">
+                                        <img src="https://via.placeholder.com/50x50" alt="Foto de perfil" class="img-fluid">
+                                    </div>
+                                </div>';
+
+                        }else {
+                            echo 'ESPERANDO';
+                        }
                     } else {
                         // Verificar si el usuario en la sesión tiene made como 1
                         if ($row['made_usuario_sesion'] == 1) {

@@ -1,6 +1,52 @@
 <?php
 include("../src/validate_session.php");
-include("../public/db.php");
+include("../public/db.php"); // Asegúrate de incluir el archivo de conexión a la base de datos
+
+// Función para obtener todos los productos
+function getAllProducts($conn) {
+    $sql = "SELECT p.id_producto, p.nombre_producto, p.descripcion, p.precio, p.imagen_producto
+            FROM productos p";
+    return $conn->query($sql);
+}
+
+$productos = getAllProducts($conn);
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Productos</title>
+    <link rel="stylesheet" href="path/to/your/styles.css"> <!-- Asegúrate de enlazar tu CSS -->
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <?php while ($producto = $productos->fetch_assoc()): ?>
+                <!-- Start Single Product -->
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="single-product">
+                        <div class="product-image">
+                            <img src="<?= $producto['imagen_producto'] ?>" alt="<?= $producto['nombre_producto'] ?>">
+                        </div>
+                        <div class="product-info">
+                            <span class="category">Categoría</span> <!-- Aquí puedes poner la categoría si la tienes -->
+                            <h4 class="title">
+                                <a href="product-details.php?id=<?= $producto['id_producto'] ?>"><?= $producto['nombre_producto'] ?></a>
+                            </h4>
+                            <div class="price">
+                                <span>$<?= number_format($producto['precio'], 2) ?></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Single Product -->
+            <?php endwhile; ?>
+        </div>
+    </div>
+</body>
+</html>
+
 ?>
 
 <!DOCTYPE html>
@@ -330,26 +376,27 @@ register.php<div class="col-sm-auto"></div>
                                 aria-labelledby="nav-grid-tab">
                                 <div class="row">
                                     <!-- Start Single Product -->
-                                    <div class="col-lg-4 col-md-6 col-12">
-                                        <div class="single-product">
-                                            <div class="product-image">
-                                                <img src="https://via.placeholder.com/335x335" alt="#">
-                                                <!--<div class="button">
-                                                    <a href="product-details.html" class="btn"><i
-                                                            class="lni lni-cart"></i> Add to Cart</a>
-                                                </div>-->
-                                            </div>
-                                            <div class="product-info">
-                                                <span class="category">Watches</span>
-                                                <h4 class="title">
-                                                    <a href="product-grids.php">Xiaomi Mi Band 5</a>
-                                                </h4>
-                                                <div class="price">
-                                                    <span>$199.00</span>
+                                    <?php while ($producto = $productos->fetch_assoc()): ?>
+                                        <!-- Start Single Product -->
+                                        <div class="col-lg-4 col-md-6 col-12">
+                                            <div class="single-product">
+                                                <div class="product-image">
+                                                    <img src="<?= $producto['imagen_producto'] ?>" alt="<?= $producto['nombre_producto'] ?>">
+                                                </div>
+                                                <div class="product-info">
+                                                    <span class="category">Categoría</span> <!-- Aquí puedes poner la categoría si la tienes -->
+                                                    <h4 class="title">
+                                                        <a href="product-details.php?id=<?= $producto['id_producto'] ?>"><?= $producto['nombre_producto'] ?></a>
+                                                    </h4>
+                                                    <div class="price">
+                                                        <span>$<?= number_format($producto['precio'], 2) ?></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                        <!-- End Single Product -->
+                                    <?php endwhile; ?>
+                                </div>
                                     <!-- End Single Product -->
                                 <div class="row">
                                     <div class="col-12">

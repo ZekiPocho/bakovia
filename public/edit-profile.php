@@ -163,80 +163,83 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 <br>
 <br>
 
-    <div class="container-sm px-4">
-        <h1 class="mt-4">Editar Perfil de Usuario</h1>
-      
-        <div class="row align-content-center">
-          <!-- Sección de perfil -->
-          <div class="d-flex flex-wrap align-items-start">
+<div class="container-sm px-4">
+    <h1 class="mt-4 text-center">Editar Perfil de Usuario</h1>
+
+    <!-- Formulario para editar perfil -->
+    <form action="profile.php" method="POST" enctype="multipart/form-data">
+        <div class="row justify-content-center align-items-center">
             <!-- Foto de perfil -->
-            <div class="col-2 profile-img-edit">
-              <input type="file" id="profileImage" class="form-control" accept="image/*" onchange="previewImage(event)" style="display: none;">
-              <img src="https://via.placeholder.com/200" style="max-height: 200px; max-width: 200px;" alt="Foto de perfil" class="img-fluid" id="profilePreview" onclick="document.getElementById('profileImage').click();">
+            <div class="col-md-4 text-center mb-4">
+                <input type="file" id="profileImage" name="profileImage" class="form-control" accept="image/*" onchange="previewImage(event)" style="display: none;">
+                <img src="https://via.placeholder.com/200" alt="Foto de perfil" class="img-fluid rounded-circle" style="max-height: 200px; max-width: 200px;" id="profilePreview" onclick="document.getElementById('profileImage').click();">
+                <p class="mt-2">Haz clic en la imagen para cambiar la foto de perfil</p>
             </div>
+
             <!-- Nombre de usuario y biografía -->
-            <div class="col-6 profile-info-name mb-3">
-              <label for="username" class="form-label">Nombre de Usuario</label>
-              <input type="text" id="username" class="form-control"  value="Nombre de Usuario">
-          
-              <label for="bio" class="form-label mt-3">Biografía</label>
-              <textarea id="bio" class="form-control" maxlength="640" rows="3">Esta es la biografía del usuario. Aquí puedes añadir más detalles sobre ti.</textarea>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Nombre de Usuario</label>
+                    <input type="text" id="username" name="username" class="form-control" value="Nombre de Usuario">
+                </div>
+
+                <div class="mb-3">
+                    <label for="bio" class="form-label">Biografía</label>
+                    <textarea id="bio" name="bio" class="form-control" maxlength="640" rows="3">Esta es la biografía del usuario. Aquí puedes añadir más detalles sobre ti.</textarea>
+                </div>
             </div>
-          </div>
-          
-          <script>
-            function previewImage(event) {
-              const preview = document.getElementById('profilePreview');
-              const file = event.target.files[0];
-              const reader = new FileReader();
-              
-              reader.onload = function(e) {
-                preview.src = e.target.result;
-              }
-              
-              if (file) {
-                reader.readAsDataURL(file);
-              } else {
-                preview.src = 'https://via.placeholder.com/200'; // Restablecer a la imagen por defecto si no hay archivo
-              }
-            }
-          </script>
-          
         </div>
-      
-        <!-- ARMY SHOWCASE -->
-        <div class="row mt-4">
-          <h2>ARMY SHOWCASE</h2>
-          <div class="col-md-8">
+
+        <!-- Botón para guardar cambios -->
+        <div class="row justify-content-center">
+            <div class="col-md-4 text-center">
+                <input type="submit" value="Guardar cambios" class="btn btn-primary">
+            </div>
+        </div>
+    </form>
+
+    <!-- ARMY SHOWCASE -->
+    <div class="row mt-5 justify-content-center">
+        <div class="col-md-8">
+            <h2 class="text-center">ARMY SHOWCASE</h2>
             <div class="card mb-3">
-              <label for="image1" class="form-label">Imagen de la Sección 1</label>
-              <input type="text" id="image1" class="form-control" placeholder="URL de la imagen 1" value="https://via.placeholder.com/400x200">
-              <img src="https://via.placeholder.com/400x200" class="card-img-top mt-3" alt="Imagen 1" id="imagePreview1">
-              <div class="card-body">
-                <h5 class="card-title">ARMY SHOWCASE</h5>
-                <label for="description1" class="form-label">Descripción de la Sección 1</label>
-                <textarea id="description1" class="form-control" rows="2">Descripción breve de la sección 1.</textarea>
-              </div>
-            </div>      
-        </div>    
-      
-      <!-- Bootstrap JS -->
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-      
-      <script>
-      // Actualizar imagen de perfil
-      document.getElementById('profileImage').addEventListener('input', function() {
-        document.getElementById('profilePreview').src = this.value;
-      });
-      
-      // Actualizar imagenes de divisiones personalizadas
-      document.getElementById('image1').addEventListener('input', function() {
-        document.getElementById('imagePreview1').src = this.value;
-      });
-      
-      </script>       
+                <label for="image1" class="form-label">Imagen de la Sección 1</label>
+                <input type="text" id="image1" class="form-control" placeholder="URL de la imagen 1" value="https://via.placeholder.com/400x200">
+                <img src="https://via.placeholder.com/400x200" class="card-img-top mt-3" alt="Imagen 1" id="imagePreview1">
+                <div class="card-body">
+                    <h5 class="card-title">ARMY SHOWCASE</h5>
+                    <label for="description1" class="form-label">Descripción de la Sección 1</label>
+                    <textarea id="description1" class="form-control" rows="2">Descripción breve de la sección 1.</textarea>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+<!-- Scripts para previsualización de imagen -->
+<script>
+    function previewImage(event) {
+        const preview = document.getElementById('profilePreview');
+        const file = event.target.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            preview.src = e.target.result;
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            preview.src = 'https://via.placeholder.com/200'; // Imagen por defecto si no hay archivo
+        }
+    }
+
+    // Previsualizar otras imágenes de las secciones
+    document.getElementById('image1').addEventListener('input', function() {
+        document.getElementById('imagePreview1').src = this.value;
+    });
+</script>
+
 <br>
 <br>
 

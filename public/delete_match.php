@@ -20,18 +20,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->begin_transaction();
 
     try {
-        // Ejecutar la consulta para eliminar la partida
-        $stmtDeletePartida = $conn->prepare($sqlDeletePartida);
-        $stmtDeletePartida->bind_param("i", $id_partida);
-        if (!$stmtDeletePartida->execute()) {
-            throw new Exception($stmtDeletePartida->error);
-        }
-
         // Cambiar el made de los jugadores a 0
         $stmtUpdateMade = $conn->prepare($sqlUpdateMade);
         $stmtUpdateMade->bind_param("ii", $id_partida, $id_partida);
         if (!$stmtUpdateMade->execute()) {
             throw new Exception($stmtUpdateMade->error);
+        }
+        
+        // Ejecutar la consulta para eliminar la partida
+        $stmtDeletePartida = $conn->prepare($sqlDeletePartida);
+        $stmtDeletePartida->bind_param("i", $id_partida);
+        if (!$stmtDeletePartida->execute()) {
+            throw new Exception($stmtDeletePartida->error);
         }
 
         // Eliminar la reserva

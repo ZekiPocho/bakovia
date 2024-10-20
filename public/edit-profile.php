@@ -233,7 +233,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                     
                     <p class="mt-2" style="filter: opacity(50%);">Haz clic en la imagen para cambiar el ARMY SHOWCASE</p>
                     <div class="card-body">
-                        <textarea id="description1" name="description1" class="form-control" maxlength="640" rows="5" placeholder="Descripción" style="background-color: #171D25; border: solid 2px #6E869D; color: white;"><?php echo htmlspecialchars($_SESSION['descripcion1'] ?? ''); ?></textarea>
+                        <textarea id="description1" name="description1" class="form-control" maxlength="640" rows="5" placeholder="Descripción" style="background-color: #171D25; border: solid 2px #6E869D; color: white;"><?php echo htmlspecialchars($_SESSION['army_desc'] ?? ''); ?></textarea>
                     </div>
                 </div>
             </div>

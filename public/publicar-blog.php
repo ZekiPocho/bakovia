@@ -17,8 +17,8 @@ if ($conn->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $titulo = $conn->real_escape_string($_POST['titulo']);
     $contenido = $conn->real_escape_string($_POST['contenido']);
-    $tag = $conn->real_escape_string($_POST['tag']);
-    $id_usuario = $_SESSION['id_usuario'];
+    $tag = $conn->real_escape_string($_POST['tag']); // Capturamos el tag seleccionado
+    $id_usuario = $_SESSION['id_usuario']; // Asumimos que tienes la sesión del usuario
 
     // Manejo de imagen subida
     $upload_dir = '../uploads/posts/';
@@ -29,26 +29,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $image_tmp_name = $_FILES['imagenes']['tmp_name'][0];
         $image_path = $upload_dir . $image_name;
 
+        // Crear la carpeta si no existe
         if (!is_dir($upload_dir)) {
             mkdir($upload_dir, 0755, true);
         }
 
         if (move_uploaded_file($image_tmp_name, $image_path)) {
-            $imagen_publicacion = $image_path;
+            $imagen_publicacion = $image_path; // Guardamos la ruta de la imagen
         } else {
             echo "Error al subir la imagen.";
         }
     }
 
-    // Insertar la publicación en la base de datos
+    // Insertar la publicación en la base de datos con la imagen
     $sql = "INSERT INTO publicaciones (id_usuario, titulo, contenido, fecha_publicacion, imagen_publicacion, tag) 
             VALUES ('$id_usuario', '$titulo', '$contenido', NOW(), '$imagen_publicacion', '$tag')";
 
     if ($conn->query($sql) === TRUE) {
-        // Redirigir al detalle de la publicación recién creada
+        // Obtener el ID de la publicación recién creada
         $id_publicacion = $conn->insert_id;
+
+        // Redirigir al detalle de la publicación recién creada
         header("Location: blog-single-sidebar.php?id=$id_publicacion");
-        exit(); // Salir después de redirigir
+        exit(); // Importante: salir después de la redirección
     } else {
         echo "Error al crear la publicación: " . $conn->error;
     }
@@ -241,7 +244,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <small id="contador-titulo">0/300 caracteres</small>
             </div>
         <div>
-        <script>
+            <script>
 function contarCaracteres() {
     var titulo = document.getElementById('titulo');
     var contador = document.getElementById('contador-titulo');

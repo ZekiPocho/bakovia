@@ -3091,7 +3091,7 @@ textarea.form-control.is-invalid {
     display: inline-block;
     font-weight: 400;
     line-height: 1.5;
-    color: #212529;
+    color: #6E869D;
     text-align: center;
     text-decoration: none;
     vertical-align: middle;
@@ -3114,7 +3114,7 @@ textarea.form-control.is-invalid {
 }
 
 .btn:hover {
-    color: #212529
+    color: #90afcc
 }
 
 .btn-check:focus+.btn,

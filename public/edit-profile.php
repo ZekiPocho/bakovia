@@ -209,7 +209,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <div class="card mb-3 text-center" style="background-color: #171D25; border: solid 2px #6E869D; padding: 15px;">
                     <p class="mt-2" style="filter: opacity(50%);">¡Aquí puedes exhibir uno de tus ejercitos! Si deseas, añade una descripción y cuenta la historia de tus personajes...</p>
                     <input type="file" id="armyShowcaseImage" name="armyShowcaseImage" class="form-control" accept="image/*" onchange="handleArmyShowcaseImage(event)" style="display: none;">
-                    <div class="army-image-container" style="width: 190px; height: 110px; overflow: hidden; border-radius: 5px; position: relative; margin: 0 auto;">
+                    <div class="army-image-container" style="width: 1900px; height: 1100px; overflow: hidden; border-radius: 5px; position: relative; margin: 0 auto;">
                         <img src="https://via.placeholder.com/1900x1100" class="card-img-top mt-3" alt="Imagen ARMY SHOWCASE" id="armyImagePreview" onclick="document.getElementById('armyShowcaseImage').click();" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <p class="mt-2" style="filter: opacity(50%);">Haz clic en la imagen para cambiar el ARMY SHOWCASE</p>

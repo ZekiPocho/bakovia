@@ -2,7 +2,7 @@
 
 session_start();
 if(isset($_SESSION['user'])){
-    header("Location: ../public/index.html");
+    header("Location: ../public/index.php");
 }
 include "db.php";
 $mensaje = "";
@@ -42,7 +42,7 @@ if (isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
         $_SESSION['token'] = $userData['token'];
 
         // Redirigir a la página principal
-        header("Location:../public/index.html");
+        header("Location:../public/index.php");
         exit();
     } else {
         // Si no se encuentra el usuario, puedes gestionar el error aquí
@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
             
             // Redirigir al usuario a la página principal
-            header("Location:../public/index.html");
+            header("Location:../public/index.php");
             exit();
         } else {
             $mensaje="<div class='alert alert-danger'>El correo o la contraseña es incorrecto</div>";
@@ -154,7 +154,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <header class="header navbar-area">
     <nav class="navbar navbar-expand-lg">
 <div class="container">
-<a class="navbar-brand" href="index.html">
+<a class="navbar-brand" href="index.php">
     <img src="assets/images/logo/mini.png" alt="Logo" width="5">
 </a>
 <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -166,7 +166,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
   <ul class="navbar-nav me-auto mb-2 mb-lg-0">
     <li class="nav-item">
-      <a aria-label="Toggle navigation" href="index.html">PRINCIPAL</a>
+      <a aria-label="Toggle navigation" href="index.php">PRINCIPAL</a>
     </li>
     <li class="nav-item">
         <a class="active" class="nav-link dropdown-toggle" href="product-grids.html" data-bs-toggle="collapse"

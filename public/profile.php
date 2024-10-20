@@ -195,7 +195,7 @@ function validateImageSize($file) {
 <header class="header navbar-area">
     <nav class="navbar navbar-expand-lg">
 <div class="container">
-<a class="navbar-brand" href="index.html">
+<a class="navbar-brand" href="index.php">
     <img src="assets/images/logo/mini.png" alt="Logo" width="5">
 </a>
 <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -207,7 +207,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
   <ul class="navbar-nav me-auto mb-2 mb-lg-0">
     <li class="nav-item">
-      <a aria-label="Toggle navigation" href="index.html">PRINCIPAL</a>
+      <a aria-label="Toggle navigation" href="index.php">PRINCIPAL</a>
     </li>
     <li class="nav-item">
         <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-bs-toggle="collapse"
@@ -325,7 +325,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
                     <ul class="breadcrumb-nav">
-                        <li><a href="index.html"><i class="lni lni-home"></i> INICIO</a></li>
+                        <li><a href="index.php"><i class="lni lni-home"></i> INICIO</a></li>
                         <li>¿QUIÉNES SOMOS?</li>
                     </ul>
                 </div>

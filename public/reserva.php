@@ -307,7 +307,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                         <?php
                                         // Aquí agregamos las horas disponibles
                                         foreach ($horarios_disponibles as $id_hora => $hora) {
-                                            echo "<option value='" . $id_hora . "'>" . $hora . "</option>";
+                                            echo "<option value='" . $id_hora . "'>" . $id_hora . "</option>";
                                         }
                                         ?>
                                     </select>
@@ -320,7 +320,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                         <?php
                                         // Aquí agregamos las horas disponibles
                                         foreach ($horarios_disponibles as $id_hora => $hora) {
-                                            echo "<option value='" . $id_hora . "'>" . $hora . "</option>";
+                                            echo "<option value='" . $id_hora . "'>" . $id_hora . "</option>";
                                         }
                                         ?>
                                     </select>

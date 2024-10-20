@@ -264,19 +264,18 @@ function contarCaracteres() {
             <input class="btn" type="submit" value="Publicar">
             </div>
         </div>
-        
-    </form>
-    </div>
-    
-</section> 
-
-<script>
+        <script>
 window.addEventListener("pageshow", function(event) {
     if (event.persisted) {
         document.getElementById("miFormulario").reset();
     }
 });
 </script>
+    </form>
+    </div>
+    
+</section> 
+
 
 <script>
 function previewImages() {

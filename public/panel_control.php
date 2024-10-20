@@ -270,8 +270,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <div class="matches-div text-center">
                 <h2 style="border-bottom: solid 1px #6E869D;">PANEL DE CONTROL</h2>
                 <br>
-                <div class="scoreboard">
-                    <div class="row text-center">
+                <div class="scoreboard">                   
                         <!-- Columna 1: Información Jugador 1 -->
                         <div class="team">
                             <h4 class="text-center"><?php echo htmlspecialchars($nombre_jugador1); ?></h4>
@@ -293,7 +292,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         </div>
 
                         <!-- Columna 2: Tiempo Transcurrido y Rondas -->
-                        <div class="middle-section">
+                         <div class="score">
+                         <div class="middle-section">
                             <h3>Tiempo Transcurrido</h3>
                             <p id="tiempo-transcurrido">00:00:00</p> <!-- Aquí puedes agregar lógica para mostrar el tiempo en tiempo real -->
                             <br>
@@ -306,6 +306,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                 <button type="submit" class="btn btn-primary">Ajustar Rondas</button>
                             </form>
                         </div>
+                         </div>
+                        
 
                         <!-- Columna 3: Información Jugador 2 -->
                         <div class="team">
@@ -322,7 +324,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                 <button type="submit" class="btn btn-primary">Ajustar Puntaje</button>
                             </form>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>

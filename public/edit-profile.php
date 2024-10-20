@@ -203,7 +203,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <div class="row mt-5 justify-content-center">
             <div class="col-md-8">
                 <h2 class="text-center">ARMY SHOWCASE</h2>
-                <div class="card mb-3 text-center">
+                <div class="card mb-3 text-center" style="background-color: #171D25; border: solid 2px 6E869D;">
                     <input type="file" id="armyShowcaseImage" name="armyShowcaseImage" class="form-control" accept="image/*" onchange="previewArmyImage(event)" style="display: none;">
                     <img src="https://via.placeholder.com/400x200" class="card-img-top mt-3" alt="Imagen ARMY SHOWCASE" id="armyImagePreview" onclick="document.getElementById('armyShowcaseImage').click();">
                     <p class="mt-2">Haz clic en la imagen para cambiar el ARMY SHOWCASE</p>

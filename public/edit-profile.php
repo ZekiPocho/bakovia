@@ -179,8 +179,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     <form id="profileForm" action="profile.php" method="POST" enctype="multipart/form-data">
         <div class="row justify-content-center align-items-center">
             <!-- Foto de perfil -->
-            <div class="col-md-4 text-center mb-4 pt-2">
-                <br>
+            <div class="col-md-4 text-center mb-4">
                 <input type="file" id="profileImage" name="profileImage" class="form-control" accept="image/*" onchange="previewImage(event)" style="display: none;">
                 <img src="https://via.placeholder.com/200" alt="Foto de perfil" class="img-fluid" style="max-height: 200px; max-width: 200px; height: 200px; width: 200px;" id="profilePreview" onclick="document.getElementById('profileImage').click();">
                 <p class="mt-2" style="filter: opacity(50%);">Haz clic en la imagen para cambiar la foto de perfil</p>

@@ -18,6 +18,7 @@ if (isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
         $userData = $res->fetch_assoc();
         
         // Guardar los datos relevantes en la sesión
+        $_SESSION['partida'] = false;
         $_SESSION['user'] = $userData['correo'];
         $_SESSION['nombre_usuario'] = $userData['nombre_usuario']; // Guardar nombre de usuario
         $_SESSION['id_usuario'] = $userData['id_usuario']; // Guardar el ID del usuario si lo necesitas

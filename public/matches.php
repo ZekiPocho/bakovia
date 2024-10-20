@@ -397,22 +397,12 @@ $conn->close();
 
                     <!-- Botón para iniciar una nueva partida -->
                     <?php
+                        $id_usuario = $_SESSION['id_usuario'];
                         $sql = "SELECT made 
                                 FROM usuarios 
-                                WHERE id_usuario = ?";
+                                WHERE id_usuario = $id_usuario";
 
-                        // Preparar la consulta
-                        $stmt = $conn->prepare($sql);
-
-                        // Vincular el parámetro
-                        $stmt->bind_param("i", $_SESSION['id_usuario']);
-
-                        // Ejecutar la consulta
-                        $stmt->execute();
-
-                        // Obtener el resultado
-                        $result = $stmt->get_result();
-                        $made = null;
+                        $result = $conn->query($sql);
 
                         // Verificar si hay resultados
                         if ($result->num_rows > 0) {
@@ -422,12 +412,11 @@ $conn->close();
 
                         ?>
 
-                        <br><br><br>
-                        <p class="text-muted"><span style="font-size: 15px;">O sino, inicia tu propia partida</span></p>
-                        <br>
-
                         <?php if ($made != 1): ?>
                             <!-- Mostrar el botón solo si 'made' no es true (1) -->
+                            <br><br><br>
+                            <p class="text-muted"><span style="font-size: 15px;">O sino, inicia tu propia partida</span></p>
+                            <br>
                             <div class="button">
                                 <a href="new-match.php"><button class="btn">Nueva Partida</button></a>
                             </div>

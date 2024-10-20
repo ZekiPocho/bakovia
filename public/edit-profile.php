@@ -182,14 +182,14 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <div class="col-md-4 text-center mb-4">
                 <input type="file" id="profileImage" name="profileImage" class="form-control" accept="image/*" onchange="previewImage(event)" style="display: none;">
                 <img src="https://via.placeholder.com/200" alt="Foto de perfil" class="img-fluid" style="max-height: 200px; max-width: 200px;" id="profilePreview" onclick="document.getElementById('profileImage').click();">
-                <p class="mt-2" disabled>Haz clic en la imagen para cambiar la foto de perfil</p>
+                <p class="mt-2" style="filter: opacity(50%);">Haz clic en la imagen para cambiar la foto de perfil</p>
             </div>
 
             <!-- Nombre de usuario y biografía -->
             <div class="col-md-6">
                 <div class="mb-3">
                     <label for="username" class="form-label">Nombre de Usuario</label>
-                    <input type="text" id="username" name="username" class="form-control" value="Nombre de Usuario">
+                    <input type="text" id="username" name="username" class="form-control" value="Nombre de Usuario" style="background-color: #171D25; border: solid 2px #6E869D; color: white;">
                 </div>
 
                 <div class="mb-3">
@@ -206,7 +206,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <div class="card mb-3 text-center" style="background-color: #171D25; border: solid 2px #6E869D; padding: 15px;">
                     <input type="file" id="armyShowcaseImage" name="armyShowcaseImage" class="form-control" accept="image/*" onchange="previewArmyImage(event)" style="display: none;">
                     <img src="https://via.placeholder.com/400x200" class="card-img-top mt-3" alt="Imagen ARMY SHOWCASE" id="armyImagePreview" onclick="document.getElementById('armyShowcaseImage').click();">
-                    <p class="mt-2" disabled>Haz clic en la imagen para cambiar el ARMY SHOWCASE</p>
+                    <p class="mt-2" style="filter: opacity(50%);">Haz clic en la imagen para cambiar el ARMY SHOWCASE</p>
                     <div class="card-body">
                         <textarea id="description1" name="description1" class="form-control" rows="2">Descripción breve de la sección 1.</textarea>
                     </div>

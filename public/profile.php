@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ];
 
         // Actualizar nombre de usuario en la tabla partidas
-        $updatePartidasQuery = "UPDATE partidas SET nombre_usuario1 = ?, nombre_usuario2 = ? WHERE nombre_usuario1 = ? OR nombre_usuario2 = ?";
+        $updatePartidasQuery = "UPDATE partida SET nombre_usuario1 = ?, nombre_usuario2 = ? WHERE nombre_usuario1 = ? OR nombre_usuario2 = ?";
         $updatePartidasStmt = $conn->prepare($updatePartidasQuery);
         $updatePartidasStmt->bind_param("ssss", $newUsername, $newUsername, $oldUsername, $oldUsername);
         $updatePartidasStmt->execute();

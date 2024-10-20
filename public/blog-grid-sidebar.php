@@ -268,6 +268,10 @@ register.php<div class="col-sm-auto"></div>
                                     <a href="blog-single-sidebar.php?id='.$id_publicacion.'" class="btn">Leer más</a>
                                 </div>
                             </div>
+                            <div>
+                                <a href="javascript:void(0)" class="reply-link"><i
+                                                        class="lni lni-reply"></i>Borrar</a>
+                            </div>
                         </div>
                         <!-- End Single Blog -->
                     </div>';

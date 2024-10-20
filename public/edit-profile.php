@@ -188,7 +188,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <p class="mt-2" style="filter: opacity(50%);">Haz clic en la imagen para cambiar la foto de perfil</p>
             </div>
 
-
             <!-- Nombre de usuario y biografía -->
             <div class="col-md-6">
                 <div class="mb-3">
@@ -209,7 +208,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <h2 class="text-center">ARMY SHOWCASE</h2>
                 <div class="card mb-3 text-center" style="background-color: #171D25; border: solid 2px #6E869D; padding: 15px;">
                     <p class="mt-2" style="filter: opacity(50%);">¡Aquí puedes exhibir uno de tus ejercitos! Si deseas, añade una descripción y cuenta la historia de tus personajes...</p>
-                    <input type="file" id="armyShowcaseImage" name="armyShowcaseImage" class="form-control" accept="image/*" onchange="previewArmyImage(event)" style="display: none;">
+                    <input type="file" id="armyShowcaseImage" name="armyShowcaseImage" class="form-control" accept="image/*" onchange="handleArmyShowcaseImage(event)" style="display: none;">
                     <img src="https://via.placeholder.com/1900x1100" class="card-img-top mt-3" alt="Imagen ARMY SHOWCASE" id="armyImagePreview" onclick="document.getElementById('armyShowcaseImage').click();">
                     <p class="mt-2" style="filter: opacity(50%);">Haz clic en la imagen para cambiar el ARMY SHOWCASE</p>
                     <div class="card-body">
@@ -245,6 +244,23 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         } else {
             fileInput.value = ""; // Limpiar el input si el archivo es inválido
             preview.src = '../uploads/user/default.png'; // Restablecer la imagen de vista previa
+        }
+    }
+
+    function handleArmyShowcaseImage(event) {
+        const fileInput = event.target;
+        const file = fileInput.files[0];
+        const preview = document.getElementById('armyImagePreview');
+
+        if (file && validateImageSize(file)) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result; // Mostrar la imagen solo si es válida
+            };
+            reader.readAsDataURL(file);
+        } else {
+            fileInput.value = ""; // Limpiar el input si el archivo es inválido
+            preview.src = 'https://via.placeholder.com/1900x1100'; // Restablecer la imagen de vista previa
         }
     }
 

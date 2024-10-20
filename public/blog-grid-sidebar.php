@@ -229,6 +229,9 @@ register.php<div class="col-sm-auto"></div>
                 <div class="col-lg-6 col-md-6 col-12">
                     <p>Ultimas Publicaciones</p>
                 </div>
+                <div class="col-lg-6 col-md-6 col-12">
+                <a aria-label="Toggle navigation" href="index.html">Crear Blog</a>
+                </div>
             </div>
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-12">

@@ -157,7 +157,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     <div class="navbar-cart">
         <div class="cart-items">
             <a href="profile.php" class="main-btn">
-                <i class="lni lni-user"></i>
+                <i class="lni lni-plus"></i>
             </a>
         </div>
     </div>

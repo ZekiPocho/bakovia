@@ -270,7 +270,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <div class="team">
                 <h4 class="text-center"><?php echo htmlspecialchars($nombre_jugador1); ?></h4>
                 <br>
-                <img src="<?php echo htmlspecialchars($icono1); ?>" alt="Facción Jugador 1" class="img-fluid" style="max-height: 100px;">
+                <img src="<?php echo htmlspecialchars($icono1); ?>" alt="Facción Jugador 1" class="img-fluid" style="max-height: 200px;">
                 <br>
                 <br>
                 <div class="team-name">
@@ -291,8 +291,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
         <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4"> <!-- Columna central -->
             <div class="matches-div text-center">
-                <h2 style="border-bottom: solid 1px #6E869D; font-size: 1.5rem;">PANEL DE CONTROL</h2> <!-- Reducido el tamaño de la fuente -->
-                <br>
                         <div class="middle-section text-center">
                             <h3 style="font-size: 1.25rem;">Tiempo Transcurrido</h3> <!-- Reducido el tamaño de la fuente -->
                             <p id="tiempo-transcurrido" style="font-size: 1.2rem;">00:00:00</p> <!-- Reducido el tamaño de la fuente -->
@@ -313,7 +311,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <div class="team">
                 <h4 class="text-center"><?php echo htmlspecialchars($nombre_jugador2); ?></h4>
                 <br>
-                <img src="<?php echo htmlspecialchars($icono2); ?>" alt="Facción Jugador 2" class="img-fluid" style="max-height: 100px;">
+                <img src="<?php echo htmlspecialchars($icono2); ?>" alt="Facción Jugador 2" class="img-fluid" style="max-height: 200px;">
                 <br>
                 <br>
                 <div class="team-name">

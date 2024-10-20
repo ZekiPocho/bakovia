@@ -270,14 +270,17 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <div class="matches-div text-center">
                 <h2 style="border-bottom: solid 1px #6E869D;">PANEL DE CONTROL</h2>
                 <br>
-                <div class="container mt-1">
+                <div class="scoreboard">
                     <div class="row text-center">
                         <!-- Columna 1: Información Jugador 1 -->
-                        <div class="col-md-4">
+                        <div class="team">
                             <h4 class="text-center"><?php echo htmlspecialchars($nombre_jugador1); ?></h4>
                             <img src="<?php echo htmlspecialchars($icono1); ?>" alt="Facción Jugador 1" class="img-fluid" style="max-height: 80px;">
+                            <div class="team-name">
                             <p><?php echo htmlspecialchars($faccion1); ?></p>
                             <p><?php echo htmlspecialchars($subfaccion1); ?></p>
+                            </div>
+                            
                             <form action="adjust_score.php" method="POST" id="scoreFormJugador1">
                                 <input type="hidden" name="id_partida" value="<?php echo htmlspecialchars($id_partida); ?>">
                                 <input type="hidden" name="jugador" value="1">

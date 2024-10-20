@@ -24,7 +24,7 @@ if ($id_partida > 0 && $faccion_usuario !== null) {
         // Comprobar el estado de la partida
         if ($partida['estado'] === 'programado') {
             // Obtener el nombre del usuario desde la sesión
-            $nombre_usuario = $_SESSION['usuario'];
+            $nombre_usuario = $_SESSION['nombre_usuario'];
 
             // Actualizar la partida con el nombre del segundo jugador y la facción
             $sql_update = "UPDATE partida SET nombre_usuario2 = ?, id_faccion_usuario2 = ?, estado = 'en progreso' WHERE id_partida = ?";

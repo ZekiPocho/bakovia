@@ -199,7 +199,8 @@ $juegos = getAllGames($conn);
 <body>
     <h1>Panel de Administración de Productos</h1>
 
-    <a href="admin-dashboard.php" class="back-button">Volver a la Página Principal</a>
+    <a href="admin-dashboard.php" class="back-button">Volver al dashboard</a>
+    <a href="../public/product-grids.php" class="back-button">Volver a la Tienda</a>
 
     <table>
         <thead>

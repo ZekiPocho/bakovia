@@ -274,11 +274,11 @@ $juegos = getAllGames($conn);
 
         <label for="tipo">Tipo:</label>
         <select name="tipo" required>
-            <option value="miniatura">Miniaturas</option>
-            <option value="pintura">Pinturas</option>
-            <option value="suplemento">Suplementos</option>
-            <option value="servicio">Servicio</option>
-            <option value="otro">Otros</option>
+            <option value="Miniaturas">Miniaturas</option>
+            <option value="Pinturas">Pinturas</option>
+            <option value="Suplementos">Suplementos</option>
+            <option value="Servicio">Servicio</option>
+            <option value="Otros">Otros</option>
         </select>
 
         <button type="submit" name="add_product">Añadir Producto</button>

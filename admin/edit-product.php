@@ -8,6 +8,13 @@ if (!isset($_SESSION['id_rol']) || $_SESSION['id_rol'] != 1) {
     exit;
 }
 
+// Definición de la función (si no está en db.php)
+function getAllGames($conn) {
+    $sql = "SELECT id_juego, nombre FROM juegos";
+    $result = $conn->query($sql);
+    return $result;
+}
+
 // Función para obtener un producto por su ID
 function getProductById($conn, $id) {
     $sql = "SELECT p.id_producto, p.nombre_producto, p.descripcion, p.desc_mini, p.precio, p.imagen_producto, p.imagen_producto2, p.tipo, p.stock, p.id_juego 
@@ -88,6 +95,7 @@ if (isset($_GET['id'])) {
     exit;
 }
 
+$juegos = getAllGames($conn);
 ?>
 
 <!DOCTYPE html>

@@ -246,10 +246,11 @@ $juegos = getAllGames($conn);
         <input type="text" name="nombre_producto" required>
 
         <label for="descripcion">Descripción:</label>
-        <textarea name="descripcion" required></textarea>
+        <textarea name="descripcion" rows="10" required></textarea>
 
         <label for="desc_mini">Descripción Corta:</label>
-        <textarea name="desc_mini" required></textarea>
+        <textarea name="desc_mini" id="desc_mini" rows="10" maxlength="300" required></textarea>
+        <p id="charCount">300 caracteres restantes</p>
 
         <label for="precio">Precio:</label>
         <input type="number" name="precio" step="0.01" required>
@@ -272,13 +273,24 @@ $juegos = getAllGames($conn);
 
         <label for="tipo">Tipo:</label>
         <select name="tipo" required>
-            <option value="miniatura">Miniatura</option>
-            <option value="accesorio">Accesorio</option>
-            <option value="terreno">Terreno</option>
-            <option value="otro">Otro</option>
+            <option value="miniatura">Miniaturas</option>
+            <option value="pintura">Pinturas</option>
+            <option value="suplemento">Suplementos</option>
+            <option value="servicio">Servicio</option>
+            <option value="otro">Otros</option>
         </select>
 
         <button type="submit" name="add_product">Añadir Producto</button>
     </form>
 </body>
+<script>
+    const descMini = document.getElementById('desc_mini');
+    const charCount = document.getElementById('charCount');
+
+    descMini.addEventListener('input', function () {
+        const remaining = 300 - descMini.value.length;
+        charCount.textContent = `${remaining} caracteres restantes`;
+    });
+</script>
 </html>
+

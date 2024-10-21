@@ -348,9 +348,9 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                                     </div>
                                                     <div class="product-info">
                                                         <span class="category"><?= htmlspecialchars($producto['tipo']) ?></span> <!-- Muestra el tipo de producto -->
-                                                        <h4 class="title">
+                                                        <span style="color: black; font-weight: bold;">
                                                             <?= htmlspecialchars($producto['nombre_producto']) ?>
-                                                        </h4>
+                                                        </span>
                                                         <div class="price">
                                                             <span>Bs. <?= number_format($producto['precio'], 2) ?></span>
                                                         </div>

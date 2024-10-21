@@ -3341,15 +3341,6 @@ ol {
   background: #171D25;
 }
 
-.single-product .product-image {
-  width: 100%; /* Asegura que el contenedor ocupe el 100% del espacio disponible */
-    height: 200px; /* Altura fija para el contenedor */
-    overflow: hidden; /* Oculta cualquier parte de la imagen que sobresalga */
-    display: flex; /* Usamos flexbox para centrar la imagen */
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
-}
-
 .single-product .product-image .sale-tag {
   background: #f73232;
   border-radius: 2px;
@@ -3402,6 +3393,11 @@ ol {
 }
 
 .single-product .product-image img {
+    height: 200px; /* Altura fija para el contenedor */
+    overflow: hidden; /* Oculta cualquier parte de la imagen que sobresalga */
+    display: flex; /* Usamos flexbox para centrar la imagen */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
   width: 100%;
   -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;

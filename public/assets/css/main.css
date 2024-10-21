@@ -3337,22 +3337,26 @@ ol {
   box-shadow: 0px 0px 20px #00000012;
   padding: 8px;
   background: #171D25;
+  text-align: center; /* Centramos el contenido */
+  position: relative; /* Necesario para la correcta disposición de los elementos */
+  overflow: hidden; /* Evitar que las imágenes o contenido se desborden */
 }
 
 .single-product .product-image {
   position: relative;
+  width: 100%;
+  height: 200px; /* Establecemos la altura de la imagen */
+  overflow: hidden; /* Para evitar que las imágenes se desborden */
 }
 
 .single-product .product-image img {
-  height: 200px;
   width: 100%;
+  height: 100%;
+  object-fit: cover; /* Para que las imágenes se adapten al contenedor sin deformarse */
   transition: opacity 0.4s ease;
-  display: block;
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
 }
 
 .single-product .product-image img.second-image {
@@ -3367,44 +3371,23 @@ ol {
   opacity: 1; /* Muestra la segunda imagen al hacer hover */
 }
 
-.single-product .product-image .button {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: -60px;
-  transition: all 0.4s ease;
-  opacity: 0;
-  visibility: hidden;
-}
-
-.single-product:hover .product-image .button {
-  bottom: 30px;
-  opacity: 1;
-  visibility: visible;
-}
-
 .single-product .product-info {
-  padding: 20px;
-  background-color: #ECBE00;
+  padding: 15px 10px; /* Espaciado para el contenido del producto */
+  background-color: #ECBE00; /* Color de fondo del bloque de información */
+  color: #000; /* Color de texto negro para contrastar */
 }
 
 .single-product .product-info .category {
-  color: #444;
   font-size: 13px;
-  display: block;
-  margin-bottom: 2px;
+  color: #444;
+  margin-bottom: 5px;
 }
 
 .single-product .product-info .title a {
   font-size: 16px;
-  font-weight: 700;
+  font-weight: bold;
   color: #000;
-}
-
-@media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
-  .single-product .product-info .title a {
-    font-size: 15px;
-  }
+  text-decoration: none; /* Eliminar subrayado en los enlaces */
 }
 
 .single-product .product-info .title a:hover {
@@ -3412,48 +3395,29 @@ ol {
   font-style: italic;
 }
 
-.single-product .product-info .review {
-  margin-top: 5px;
-}
-
-.single-product .product-info .review li {
-  display: inline-block;
-}
-
-.single-product .product-info .review li i {
-  color: #fecb00;
-  font-size: 13px;
-}
-
-.single-product .product-info .review li span {
-  display: inline-block;
-  margin-left: 4px;
-  color: #888;
-  font-size: 13px;
-}
-
 .single-product .product-info .price {
-  margin-top: 15px;
-}
-
-.single-product .product-info .price span {
+  margin-top: 10px;
   font-size: 17px;
   font-weight: 700;
-  color: #000000;
-  display: inline-block;
+  color: #000;
 }
 
 .single-product .product-info .price .discount-price {
-  margin: 0;
-  color: #aaaaaa;
-  text-decoration: line-through;
-  font-weight: normal;
   margin-left: 10px;
   font-size: 14px;
-  display: inline-block;
+  color: #aaaaaa;
+  text-decoration: line-through;
 }
 
-/* End Single Product */
+.single-product .product-info .button {
+  display: none;
+}
+
+.single-product:hover .product-info .button {
+  display: block; /* Mostrar el botón solo al hacer hover */
+  margin-top: 10px;
+}
+
 .trending-product {
   background-color: transparent;
 }
@@ -3462,6 +3426,7 @@ ol {
   margin-bottom: -10px;
   margin-top: 20px;
 }
+
 
 /*======================================
     Banner CSS

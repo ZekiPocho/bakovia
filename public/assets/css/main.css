@@ -3406,11 +3406,11 @@ ol {
   top: 2px;
 }
 
-.single-product .product-image img {
+/*.single-product .product-image img {
   width: 100%;
   -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
-}
+}*/
 
 .single-product:hover .product-image .button {
   bottom: 30px;

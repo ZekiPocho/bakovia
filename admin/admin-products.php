@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_product'])) {
     $sql = "INSERT INTO productos (nombre_producto, descripcion, desc_mini, precio, imagen_producto, imagen_producto2, id_juego, tipo, stock) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssdsssii", $nombre_producto, $descripcion, $desc_mini, $precio, $imagen_producto, $imagen_producto2, $id_juego, $tipo, $stock);
+    $stmt->bind_param("sssdssssi", $nombre_producto, $descripcion, $desc_mini, $precio, $imagen_producto, $imagen_producto2, $id_juego, $tipo, $stock);
     $stmt->execute();
     header('Location: admin-products.php');
     exit;

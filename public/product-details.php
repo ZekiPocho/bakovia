@@ -209,9 +209,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                             <h3 class="price">Bs. 850</h3>
                             <p style="padding-bottom: 10px; border-bottom: solid 1px white; margin-bottom: 10px;">Disponibilidad: <span style="color: #5DD422;">1 en Stock</span> </p>
                             <!--MINI DESCRIPCIÓN-->
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam, ipsam! Expedita,
-                                 id asperiores, illo repudiandae similique consequatur assumenda atque ratione
-                                  dignissimos nemo ducimus dolores nulla modi. Molestias, veniam! Omnis, commodi!</p>
+                            <p>None fight with more grim determination than the battle-brothers of the Dark Angels – they are held in awe by their allies and enemies alike. Yet behind their devotion to the Imperium lies a shadowy obsession.
+                            </p>
                             <!--<div class="row">
                                 <div class="col-lg-4 col-md-4 col-12">
                                     <div class="form-group quantity">
@@ -243,12 +242,19 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         <div class="col-12">
                             <div class="info-body custom-responsive-margin">
                                 <h4>Detalles</h4>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae maiores
-                                     inventore non nobis necessitatibus soluta vitae similique illo animi nihil
-                                      consectetur culpa, praesentium nostrum. Iusto, molestias mollitia autem repudiandae
-                                       quos dignissimos fuga eos quod facilis amet voluptatibus quasi excepturi
-                                        saepe necessitatibus placeat unde cumque. Ea inventore distinctio officiis
-                                         exercitationem. Exercitationem?</p>
+                                <p>None fight with more grim determination than the battle-brothers of the Dark Angels – they are held in awe by their allies and enemies alike. Yet behind their devotion to the Imperium lies a shadowy obsession.
+
+Combat Patrol: Dark Angels is an army in a box, containing all the units you’ll need to field them as the Vengeful Brethren in Combat Patrol games of Warhammer 40,000, or simply to expand your existing collection. This selection of infantry offers a balanced force, with heavy fire support provided by the Hellblasters, line-breaking melee specialists in the form of Bladeguard Veterans, and a solid core of ten Intercessors – all led by a mighty Captain clad in Gravis Armour. You can download a free copy of the Combat Patrol rules on the Warhammer Community website.
+
+This set includes the following multipart plastic models:
+- 1x Captain in Gravis Armour
+- 3x Bladeguard Veterans
+- 5x Hellblasters
+- 10x Intercessors
+- 2x Dark Angels Primaris Upgrade frames, featuring a variety of shoulder pads and other accessories for your Intercessors
+- 3x Dark Angels Transfers Sheets
+
+All models come with their appropriate bases. These miniatures are supplied unpainted and require assembly – we recommend using Citadel Plastic Glue and Citadel Colour paints.</p>
                             </div>
 
                     </div>

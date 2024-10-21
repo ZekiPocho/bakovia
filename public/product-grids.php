@@ -329,40 +329,47 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                 aria-labelledby="nav-grid-tab">
                                 <div class="row">
                                 <?php
-                                    // Función para obtener todos los productos
-                                    function getAllProducts($conn) {
-                                        $sql = "SELECT p.id_producto, p.nombre_producto, p.descripcion, p.precio, p.imagen_producto, p.imagen_producto2, p.tipo
-                                                FROM productos p";
-                                        return $conn->query($sql);
-                                    }
-                                   
-                                    $productos = getAllProducts($conn);
-                                    ?>
-                                    <!-- Start Single Product -->
-                                    <?php while ($producto = $productos->fetch_assoc()): ?>
-                                        <div class="col-lg-4 col-md-6 col-12">
-                                            <div class="single-product">
-                                                <a href="product-details.php?id=<?= $producto['id_producto'] ?>" style="text-decoration: none; color: inherit;">
-                                                    <div class="product-image">
-                                                        <img src="<?= $producto['imagen_producto'] ?>" 
-                                                            data-hover="<?= $producto['imagen_producto2'] ?>" 
-                                                            alt="<?= htmlspecialchars($producto['nombre_producto']) ?>" 
-                                                            class="product-img">
+                                // Función para obtener todos los productos
+                                function getAllProducts($conn) {
+                                    $sql = "SELECT p.id_producto, p.nombre_producto, p.descripcion, p.precio, p.imagen_producto, p.imagen_producto2, p.tipo
+                                            FROM productos p";
+                                    return $conn->query($sql);
+                                }
+
+                                $productos = getAllProducts($conn);
+                                ?>
+
+                                <!-- Start Single Product -->
+                                <?php while ($producto = $productos->fetch_assoc()): ?>
+                                    <div class="col-lg-4 col-md-6 col-12">
+                                        <div class="single-product">
+                                            <a href="product-details.php?id=<?= $producto['id_producto'] ?>" style="text-decoration: none; color: inherit;">
+                                                <div class="product-image">
+                                                    <!-- Imagen principal -->
+                                                    <img src="<?= htmlspecialchars($producto['imagen_producto']) ?>" 
+                                                        alt="<?= htmlspecialchars($producto['nombre_producto']) ?>" 
+                                                        class="product-img first-image">
+                                                    
+                                                    <!-- Imagen al hacer hover -->
+                                                    <img src="<?= htmlspecialchars($producto['imagen_producto2']) ?>" 
+                                                        alt="<?= htmlspecialchars($producto['nombre_producto']) ?>" 
+                                                        class="product-img second-image">
+                                                </div>
+                                                <div class="product-info">
+                                                    <span class="category"><?= htmlspecialchars($producto['tipo']) ?></span>
+                                                    <span style="color: black; font-weight: bold;">
+                                                        <?= htmlspecialchars($producto['nombre_producto']) ?>
+                                                    </span>
+                                                    <div class="price">
+                                                        <span>Bs. <?= number_format($producto['precio'], 2) ?></span>
                                                     </div>
-                                                    <div class="product-info">
-                                                        <span class="category"><?= htmlspecialchars($producto['tipo']) ?></span>
-                                                        <span style="color: black; font-weight: bold;">
-                                                            <?= htmlspecialchars($producto['nombre_producto']) ?>
-                                                        </span>
-                                                        <div class="price">
-                                                            <span>Bs. <?= number_format($producto['precio'], 2) ?></span>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
+                                                </div>
+                                            </a>
                                         </div>
-                                    <?php endwhile; ?>
-                                    <!-- End Single Product -->
+                                    </div>
+                                <?php endwhile; ?>
+                                <!-- End Single Product -->
+
 
                                 
                                 <div class="row">

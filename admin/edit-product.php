@@ -88,7 +88,6 @@ if (isset($_GET['id'])) {
     exit;
 }
 
-$juegos = getAllGames($conn);
 ?>
 
 <!DOCTYPE html>

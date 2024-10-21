@@ -331,11 +331,11 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                 <?php
                                     // Función para obtener todos los productos
                                     function getAllProducts($conn) {
-                                        $sql = "SELECT p.id_producto, p.nombre_producto, p.descripcion, p.precio, p.imagen_producto, p.tipo
+                                        $sql = "SELECT p.id_producto, p.nombre_producto, p.descripcion, p.precio, p.imagen_producto, p.imagen_producto2, p.tipo
                                                 FROM productos p";
                                         return $conn->query($sql);
                                     }
-
+                                   
                                     $productos = getAllProducts($conn);
                                     ?>
                                     <!-- Start Single Product -->
@@ -344,10 +344,13 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                             <div class="single-product">
                                                 <a href="product-details.php?id=<?= $producto['id_producto'] ?>" style="text-decoration: none; color: inherit;">
                                                     <div class="product-image">
-                                                        <img src="<?= $producto['imagen_producto'] ?>" alt="<?= htmlspecialchars($producto['nombre_producto']) ?>" class="product-img">
+                                                        <img src="<?= $producto['imagen_producto'] ?>" 
+                                                            data-hover="<?= $producto['imagen_producto2'] ?>" 
+                                                            alt="<?= htmlspecialchars($producto['nombre_producto']) ?>" 
+                                                            class="product-img">
                                                     </div>
                                                     <div class="product-info">
-                                                        <span class="category"><?= htmlspecialchars($producto['tipo']) ?></span> <!-- Muestra el tipo de producto -->
+                                                        <span class="category"><?= htmlspecialchars($producto['tipo']) ?></span>
                                                         <span style="color: black; font-weight: bold;">
                                                             <?= htmlspecialchars($producto['nombre_producto']) ?>
                                                         </span>
@@ -359,9 +362,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                             </div>
                                         </div>
                                     <?php endwhile; ?>
-
-                                </div>
                                     <!-- End Single Product -->
+
                                 
                                 <div class="row">
                                     <div class="col-12">
@@ -467,5 +469,19 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     <script src="assets/js/glightbox.min.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
+<script>
+    document.querySelectorAll('.product-image').forEach(function(productImage) {
+    const productImg = productImage.querySelector('.product-img');
+    const hoverImgUrl = productImg.getAttribute('data-hover');
+    
+    productImage.addEventListener('mouseenter', function() {
+        productImage.style.setProperty('--hover-image', `url(${hoverImgUrl})`);
+    });
 
+    productImage.addEventListener('mouseleave', function() {
+        productImage.style.setProperty('--hover-image', '');
+    });
+});
+
+</script>
 </html>

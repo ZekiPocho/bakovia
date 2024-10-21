@@ -207,7 +207,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                             <br>
                             <p class="category">Juego: <a href="javascript:void(0)">Warhammer</a></p><p class="category">Tipo de Producto: <a href="javascript:void(0)">Miniaturas</a></p>
                             <h3 class="price">Bs. 850</h3>
-                            <p>Disponibilidad: <span style="color: #5DD422;padding-bottom: 10px; border-bottom: solid 1px white; margin-bottom: 10px">1 en Stock</span> </p>
+                            <p style="padding-bottom: 10px; border-bottom: solid 1px white; margin-bottom: 10px;">Disponibilidad: <span style="color: #5DD422;">1 en Stock</span> </p>
                             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam, ipsam! Expedita,
                                  id asperiores, illo repudiandae similique consequatur assumenda atque ratione
                                   dignissimos nemo ducimus dolores nulla modi. Molestias, veniam! Omnis, commodi!</p>

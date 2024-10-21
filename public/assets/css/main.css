@@ -3349,11 +3349,6 @@ ol {
     justify-content: center; /* Centra horizontalmente */
     align-items: center; /* Centra verticalmente */
 }
-.product-img {
-  width: auto; /* Deja que el ancho se ajuste automáticamente */
-  height: 100%; /* La altura ocupa el 100% del contenedor */
-  object-fit: cover; /* Mantiene la relación de aspecto y recorta la imagen si es necesario */
-}
 
 .single-product .product-image .sale-tag {
   background: #f73232;
@@ -3406,11 +3401,11 @@ ol {
   top: 2px;
 }
 
-/*.single-product .product-image img {
+.single-product .product-image img {
   width: 100%;
   -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
-}*/
+}
 
 .single-product:hover .product-image .button {
   bottom: 30px;

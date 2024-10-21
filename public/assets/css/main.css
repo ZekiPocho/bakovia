@@ -3337,7 +3337,6 @@ ol {
   box-shadow: 0px 0px 20px #00000012;
   padding: 8px;
   background: #171D25;
-  text-align: center; /* Centramos el contenido */
   position: relative; /* Necesario para la correcta disposición de los elementos */
   overflow: hidden; /* Evitar que las imágenes o contenido se desborden */
 }
@@ -3352,11 +3351,13 @@ ol {
 .single-product .product-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Para que las imágenes se adapten al contenedor sin deformarse */
+  object-fit: scale-down; /* Para que las imágenes se adapten al contenedor sin deformarse */
   transition: opacity 0.4s ease;
   position: absolute;
   top: 0;
   left: 0;
+  padding: 5px;
+  background-color: white;
 }
 
 .single-product .product-image img.second-image {

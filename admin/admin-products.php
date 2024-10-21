@@ -4,14 +4,13 @@ include("../public/db.php");
 
 // Verifica si el usuario ha iniciado sesión y si tiene el rol de administrador (id_rol = 1)
 if (!isset($_SESSION['id_rol']) || $_SESSION['id_rol'] != 1) {
-    // Redirige a la página principal si no es administrador o no ha iniciado sesión
     header('Location: ../public/index.php');
     exit;
 }
 
 // Funciones para gestionar productos y juegos
 function getAllProducts($conn) {
-    $sql = "SELECT p.id_producto, p.nombre_producto, p.descripcion, p.precio, p.imagen_producto, j.nombre AS nombre_juego, p.tipo
+    $sql = "SELECT p.id_producto, p.nombre_producto, p.descripcion, p.desc_mini, p.precio, p.imagen_producto, p.imagen_producto2, p.tipo, j.nombre AS nombre_juego, p.stock
             FROM productos p
             JOIN juego j ON p.id_juego = j.id_juego";
     return $conn->query($sql);
@@ -25,11 +24,16 @@ function getAllGames($conn) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_product'])) {
     $nombre_producto = trim($_POST['nombre_producto']);
     $descripcion = trim($_POST['descripcion']);
+    $desc_mini = trim($_POST['desc_mini']);
     $precio = trim($_POST['precio']);
     $id_juego = $_POST['id_juego'];
     $tipo = trim($_POST['tipo']);
+    $stock = (int)$_POST['stock'];
     
     $imagen_producto = '';
+    $imagen_producto2 = '';
+
+    // Cargar la primera imagen
     if (isset($_FILES['imagen_producto']) && $_FILES['imagen_producto']['error'] === UPLOAD_ERR_OK) {
         $image = $_FILES['imagen_producto'];
         $targetDir = '../uploads/products/';
@@ -42,10 +46,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_product'])) {
         }
     }
 
-    $sql = "INSERT INTO productos (nombre_producto, descripcion, precio, imagen_producto, id_juego, tipo) 
-            VALUES (?, ?, ?, ?, ?, ?)";
+    // Cargar la segunda imagen
+    if (isset($_FILES['imagen_producto2']) && $_FILES['imagen_producto2']['error'] === UPLOAD_ERR_OK) {
+        $image2 = $_FILES['imagen_producto2'];
+        $imageExtension2 = pathinfo($image2['name'], PATHINFO_EXTENSION);
+        $newImageName2 = uniqid() . '_2.' . $imageExtension2;
+        $targetFile2 = $targetDir . $newImageName2;
+
+        if (move_uploaded_file($image2['tmp_name'], $targetFile2)) {
+            $imagen_producto2 = $targetFile2;
+        }
+    }
+
+    $sql = "INSERT INTO productos (nombre_producto, descripcion, desc_mini, precio, imagen_producto, imagen_producto2, id_juego, tipo, stock) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssdsss", $nombre_producto, $descripcion, $precio, $imagen_producto, $id_juego, $tipo);
+    $stmt->bind_param("sssdsssii", $nombre_producto, $descripcion, $desc_mini, $precio, $imagen_producto, $imagen_producto2, $id_juego, $tipo, $stock);
     $stmt->execute();
     header('Location: admin-products.php');
     exit;
@@ -54,16 +70,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_product'])) {
 if (isset($_GET['delete'])) {
     $id_producto = $_GET['delete'];
     
-    $query = "SELECT imagen_producto FROM productos WHERE id_producto = ?";
+    $query = "SELECT imagen_producto, imagen_producto2 FROM productos WHERE id_producto = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("i", $id_producto);
     $stmt->execute();
-    $stmt->bind_result($productImage);
+    $stmt->bind_result($productImage, $productImage2);
     $stmt->fetch();
     $stmt->close();
 
     if (file_exists($productImage)) {
         unlink($productImage);
+    }
+    if (file_exists($productImage2)) {
+        unlink($productImage2);
     }
 
     $sql = "DELETE FROM productos WHERE id_producto = ?";
@@ -189,7 +208,8 @@ $juegos = getAllGames($conn);
                 <th>Nombre</th>
                 <th>Descripción</th>
                 <th>Precio</th>
-                <th>Imagen</th>
+                <th>Stock</th>
+                <th>Imágenes</th>
                 <th>Juego</th>
                 <th>Tipo</th>
                 <th>Acciones</th>
@@ -202,7 +222,13 @@ $juegos = getAllGames($conn);
                     <td><?= $producto['nombre_producto'] ?></td>
                     <td><?= $producto['descripcion'] ?></td>
                     <td><?= $producto['precio'] ?></td>
-                    <td><img src="<?= $producto['imagen_producto'] ?>" alt="<?= $producto['nombre_producto'] ?>"></td>
+                    <td><?= $producto['stock'] ?></td>
+                    <td>
+                        <img src="<?= $producto['imagen_producto'] ?>" alt="<?= $producto['nombre_producto'] ?>">
+                        <?php if (!empty($producto['imagen_producto2'])): ?>
+                            <img src="<?= $producto['imagen_producto2'] ?>" alt="<?= $producto['nombre_producto'] ?>">
+                        <?php endif; ?>
+                    </td>
                     <td><?= $producto['nombre_juego'] ?></td>
                     <td><?= $producto['tipo'] ?></td>
                     <td class="actions">
@@ -222,8 +248,20 @@ $juegos = getAllGames($conn);
         <label for="descripcion">Descripción:</label>
         <textarea name="descripcion" required></textarea>
 
+        <label for="desc_mini">Descripción Corta:</label>
+        <textarea name="desc_mini" required></textarea>
+
         <label for="precio">Precio:</label>
         <input type="number" name="precio" step="0.01" required>
+
+        <label for="stock">Stock:</label>
+        <input type="number" name="stock" required>
+
+        <label for="imagen_producto">Imagen del Producto 1:</label>
+        <input type="file" name="imagen_producto" required>
+
+        <label for="imagen_producto2">Imagen del Producto 2 (Opcional):</label>
+        <input type="file" name="imagen_producto2">
 
         <label for="id_juego">Juego:</label>
         <select name="id_juego" required>
@@ -233,10 +271,12 @@ $juegos = getAllGames($conn);
         </select>
 
         <label for="tipo">Tipo:</label>
-        <input type="text" name="tipo" required>
-
-        <label for="imagen_producto">Imagen del Producto:</label>
-        <input type="file" name="imagen_producto" required>
+        <select name="tipo" required>
+            <option value="miniatura">Miniatura</option>
+            <option value="accesorio">Accesorio</option>
+            <option value="terreno">Terreno</option>
+            <option value="otro">Otro</option>
+        </select>
 
         <button type="submit" name="add_product">Añadir Producto</button>
     </form>

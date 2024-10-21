@@ -197,16 +197,13 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                 <div class="images">
                                     <img src="https://via.placeholder.com/1000x670" class="img" alt="#">
                                     <img src="https://via.placeholder.com/1000x670" class="img" alt="#">
-                                    <img src="https://via.placeholder.com/1000x670" class="img" alt="#">
-                                    <img src="https://via.placeholder.com/1000x670" class="img" alt="#">
-                                    <img src="https://via.placeholder.com/1000x670" class="img" alt="#">
                                 </div>
                             </main>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12 col-12">
                         <div class="product-info">
-                            <span style="font-size: 40px; padding: 0px; border-bottom: solid 1px white; margin-bottom: 10px;">Nombre</span>
+                            <span style="font-size: 40px; padding-bottom: 10px; border-bottom: solid 1px white; margin-bottom: 10px; line-height: 45px;">Nombre</span>
                             <br>
                             <p class="category">Juego: <a href="javascript:void(0)">Warhammer</a></p><p class="category">Tipo de Producto: <a href="javascript:void(0)">Miniaturas</a></p>
                             <h3 class="price">Bs. 850</h3>

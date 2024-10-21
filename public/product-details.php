@@ -207,13 +207,10 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                     <div class="col-lg-6 col-md-12 col-12">
                         <div class="product-info">
                             <h2 class="title">Nombre</h2>
-                            <p class="category">Juego: <a href="javascript:void(0)">Tipo</a></p>
-                            <p class="category"><a href="javascript:void(0)">Tipo</a></p>
-                            <h3 class="price">$850</h3>
-                            <p class="info-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                tempor incididunt
-                                ut labore et dolore magna aliqua.</p>
-                            <div class="row">
+                            <p class="category">Juego: <a href="javascript:void(0)">Warhammer</a></p><p class="category">Tipo de Producto: <a href="javascript:void(0)">Miniaturas</a></p>
+                            <h3 class="price">BS. 850</h3>
+                            <p class="info-text">Disponibilidad: 1 en Stock</p>
+                            <!--<div class="row">
                                 <div class="col-lg-4 col-md-4 col-12">
                                     <div class="form-group quantity">
                                         <label for="color">Cantidad</label>
@@ -233,7 +230,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                 </div>

@@ -206,10 +206,11 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                     </div>
                     <div class="col-lg-6 col-md-12 col-12">
                         <div class="product-info">
-                            <h2 class="title">Nombre</h2>
+                            <span style="font-size: 40px;">Nombre</span>
+                            <br>
                             <p class="category">Juego: <a href="javascript:void(0)">Warhammer</a></p><p class="category">Tipo de Producto: <a href="javascript:void(0)">Miniaturas</a></p>
                             <h3 class="price">BS. 850</h3>
-                            <p class="info-text">Disponibilidad: <span syle="color: #40BE00;">1 en Stock</span> </p>
+                            <p>Disponibilidad: <span syle="color: #40BE00;">1 en Stock</span> </p>
                             <!--<div class="row">
                                 <div class="col-lg-4 col-md-4 col-12">
                                     <div class="form-group quantity">

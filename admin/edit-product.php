@@ -170,7 +170,7 @@ $juegos = getAllGames($conn);
 <body>
     <h1>Editar Producto</h1>
 
-    <a href="admin-dashboard.php" class="back-button">Volver al dashboard</a>
+    <a href="admin-products.php" class="back-button">Volver a Productos</a>
     <a href="../public/product-grids.php" class="back-button">Volver a la Tienda</a>
 
     <form action="edit-product.php" method="POST" enctype="multipart/form-data">
@@ -212,20 +212,20 @@ $juegos = getAllGames($conn);
             <option value="Miniaturas" <?= $producto['tipo'] == 'Miniaturas' ? 'selected' : '' ?>>Miniaturas</option>
             <option value="Pinturas" <?= $producto['tipo'] == 'Pinturas' ? 'selected' : '' ?>>Pinturas</option>
             <option value="Suplementos" <?= $producto['tipo'] == 'Suplementos' ? 'selected' : '' ?>>Suplementos</option>
-            <option value="Servicio" <?= $producto['tipo'] == 'Servicio' ? 'selected' : '' ?>>Servicio</option>
-            <option value="Otros" <?= $producto['tipo'] == 'Otros' ? 'selected' : '' ?>>Otros</option>
+            <option value="Accesorios" <?= $producto['tipo'] == 'Accesorios' ? 'selected' : '' ?>>Accesorios</option>
         </select>
 
         <button type="submit" name="update_product">Actualizar Producto</button>
     </form>
 
     <script>
-        const descMini = document.querySelector('textarea[name="desc_mini"]');
+        // Contador de caracteres para la descripción corta
+        const descMiniInput = document.getElementById('desc_mini');
         const charCount = document.getElementById('charCount');
 
-        descMini.addEventListener('input', function () {
-            const remainingChars = 300 - this.value.length;
-            charCount.textContent = remainingChars + " caracteres restantes";
+        descMiniInput.addEventListener('input', () => {
+            const remainingChars = 300 - descMiniInput.value.length;
+            charCount.textContent = `${remainingChars} caracteres restantes`;
         });
     </script>
 </body>

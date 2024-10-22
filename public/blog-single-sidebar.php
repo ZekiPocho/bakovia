@@ -273,7 +273,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                                 <li><a href="javascript:void(0)"> '.$fecha.'</a></li>
                                             </ul>
                                             <br>
-                                            <h2 class="post-title">'.$titulo.'</h2>
+                                            <h3 class="post-title">'.$titulo.'</h3>
                                             <ul class="meta-info">
                                             <li><a href="javascript:void(0)"><i class="lni lni-tag"></i>'.$tag.'</a></li>
                                             </ul>

@@ -153,13 +153,13 @@ $result = mysqli_query($conn, $query);
             <th>Publicaciones</th>
             <th>Comentarios</th>
             <th>Acciones</th>
-        </tr>
+            </tr>
         <?php while ($user = mysqli_fetch_assoc($result)): ?>
         <tr>
             <td><?php echo $user['id_usuario']; ?></td>
             <td><?php echo $user['nombre_usuario']; ?></td>
-            <td><?php echo $user['correo_electronico']; ?></td> <!-- Cambia 'correo_electronico' por el nombre correcto de la columna si es necesario -->
-            <td><?php echo $user['fecha_registro']; ?></td> <!-- Cambia 'fecha_registro' por el nombre correcto de la columna si es necesario -->
+            <td><?php echo $user['correo']; ?></td> <!-- Asegúrate de que la columna se llame 'correo' -->
+            <td><?php echo $user['fecha_registro']; ?></td> <!-- Asegúrate de que la columna se llame 'fecha_registro' -->
             <td>
                 <?php
                 // Obtener las publicaciones del usuario

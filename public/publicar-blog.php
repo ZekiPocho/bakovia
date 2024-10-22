@@ -226,41 +226,40 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     <div class="container-sm p-2 mt-2">
         <br>
         <center>
-        <h2>
-            CREAR PUBLICACIÓN
-        </h2>
+            <h2>CREAR PUBLICACIÓN</h2>
         </center>
-
-    <br>
-    <br>
-    <form action="" method="POST" enctype="multipart/form-data">
-    <div>
-        <div>
-            <label for="imagenes">Subir imágenes:</label><br>
-            <input class="btn" type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple onchange="previewImages()" required><br><br>
-        </div>
-    </div>
-        <div id="vista-previa"></div>
+        <br><br>
+        
+        <form action="" method="POST" enctype="multipart/form-data">
+            <div>
+                <div>
+                    <label for="imagenes">Subir imágenes:</label><br>
+                    <input class="btn" type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple onchange="previewImages()" required><br><br>
+                </div>
+            </div>
+            <div id="vista-previa"></div>
+            
             <div>
                 <label for="titulo">Título:</label><br>
                 <input type="text" class="form-control" name="titulo" id="titulo" placeholder="Escribe el título de tu publicación" maxlength="100" oninput="contarCaracteres()" required>
                 <span id="contador-titulo" style="filter: opacity(50%);">0/100 caracteres</span>
             </div>
-        <div>
-        <script>
-            function contarCaracteres() {
-                var titulo = document.getElementById('titulo');
-                var contador = document.getElementById('contador-titulo');
-                contador.textContent = titulo.value.length + "/100 caracteres";
-            }
-        </script>
-        <br><br>
 
-        <label for="contenido">Cuerpo de la publicación</label><br>
-        <textarea class="form-control" name="contenido" placeholder="cuerpo*"></textarea>
-        </div >
-    <br><br>
-    <label for="tags">Selecciona el Tag de tu publicación. ¿De qué trata tu publicación?:</label><br>
+            <script>
+                function contarCaracteres() {
+                    var titulo = document.getElementById('titulo');
+                    var contador = document.getElementById('contador-titulo');
+                    contador.textContent = titulo.value.length + "/100 caracteres";
+                }
+            </script>
+
+            <br><br>
+            
+            <label for="contenido">Cuerpo de la publicación:</label><br>
+            <textarea class="form-control" name="contenido" placeholder="Cuerpo*" required></textarea>
+            <br><br>
+            
+            <label for="tags">Selecciona el Tag de tu publicación. ¿De qué trata tu publicación?:</label><br>
             <select style="color: white;" name="tag" id="tags" required>
                 <option value="" selected disabled>Selecciona Tag</option>
                 <option value="miniaturas">Miniaturas</option>
@@ -272,16 +271,16 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <option value="lore">Lore</option>
                 <option value="noticias">Noticias</option>
             </select>
-        <div class="row">
-            <div class="col-auto">
-            <input class="btn" type="submit" value="Publicar">
+            
+            <div class="row">
+                <div class="col-auto">
+                    <input class="btn" type="submit" value="Publicar">
+                </div>
             </div>
-        </div>
-        
-    </form>
+        </form>
     </div>
-    
-</section> 
+</section>
+
 
 <script>
 function previewImages() {

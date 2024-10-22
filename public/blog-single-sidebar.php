@@ -262,8 +262,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                 <div class="main-content-head">
                                     <div class="meta-information">
                                         <ul class="meta-info">
-                                            <li><a href="javascript:void(0)">' . $usuario . ' -</a></li>
-                                            <li><a href="javascript:void(0)">' . $fecha . '</a></li>
+                                            <li><a href="javascript:void(0)">' . $usuario . '</a></li>
+                                            <li>'. $fecha .'</li>
                                         </ul>
                                         <h3 class="post-title">' . $titulo . '</h3>
                                         <ul class="meta-info">

@@ -1,4 +1,7 @@
 <?php
+include 'db.php'; 
+include 'validate_session.php';
+
 session_start();
 if (!isset($_SESSION['id_usuario'])) {
     // Redirigir a la página de inicio de sesión si no está autenticado
@@ -13,15 +16,30 @@ if (!isset($_SESSION['id_rol']) || $_SESSION['id_rol'] != 1) {
     exit;
 }
 
-// Obtener los datos de la publicación
+// Inicializamos la variable para evitar errores
+$publicacion = null;
+
+// Verificar si se ha proporcionado un ID de publicación
 if (isset($_GET['id'])) {
     $id_publicacion = $_GET['id'];
+    
+    // Obtener los datos de la publicación
     $sql = "SELECT * FROM publicaciones WHERE id_publicacion = $id_publicacion";
     $result = $conn->query($sql);
-    $publicacion = $result->fetch_assoc();
+    
+    if ($result->num_rows > 0) {
+        // Si la publicación existe, la guardamos en la variable $publicacion
+        $publicacion = $result->fetch_assoc();
+    } else {
+        echo "<p>La publicación no existe.</p>";
+        exit(); // Detenemos la ejecución si no se encuentra la publicación
+    }
+} else {
+    echo "<p>No se ha proporcionado un ID de publicación.</p>";
+    exit(); // Detenemos la ejecución si no se ha proporcionado el ID
 }
 
-// Guardar cambios
+// Guardar cambios en la publicación
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $titulo = $_POST['titulo'];
     $contenido = $_POST['contenido'];
@@ -46,6 +64,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div class="container">
         <h1>Editar Publicación</h1>
+
+        <?php if ($publicacion): ?>
         <form action="" method="POST">
             <div class="form-group">
                 <label for="titulo">Título</label>
@@ -57,6 +77,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <button type="submit" class="btn btn-primary">Guardar Cambios</button>
         </form>
+        <?php else: ?>
+        <p>No se puede editar esta publicación.</p>
+        <?php endif; ?>
     </div>
 </body>
 </html>

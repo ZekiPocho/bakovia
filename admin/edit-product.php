@@ -218,10 +218,10 @@ $juegos = getAllGames($conn);
         <label for="tipo">Tipo:</label>
         <select name="tipo" required>
             <option value="Miniaturas"><?= $producto['tipo'] == 'Miniaturas' ? 'selected' : '' ?>Miniaturas</option>
-            <option value="Pinturas"><?= $producto['tipo'] == 'Miniaturas' ? 'selected' : '' ?>Pinturas</option>
-            <option value="Suplementos"><?= $producto['tipo'] == 'Miniaturas' ? 'selected' : '' ?>Suplementos</option>
-            <option value="Servicio"><?= $producto['tipo'] == 'Miniaturas' ? 'selected' : '' ?>Servicio</option>
-            <option value="Otros"><?= $producto['tipo'] == 'Miniaturas' ? 'selected' : '' ?>Otros</option>
+            <option value="Pinturas"><?= $producto['tipo'] == 'Pinturas' ? 'selected' : '' ?>Pinturas</option>
+            <option value="Suplementos"><?= $producto['tipo'] == 'Suplementos' ? 'selected' : '' ?>Suplementos</option>
+            <option value="Servicio"><?= $producto['tipo'] == 'Servicio' ? 'selected' : '' ?>Servicio</option>
+            <option value="Otros"><?= $producto['tipo'] == 'Otros' ? 'selected' : '' ?>Otros</option>
         </select>
 
         <button type="submit" name="update_product">Actualizar Producto</button>

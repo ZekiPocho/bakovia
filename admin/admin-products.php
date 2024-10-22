@@ -283,8 +283,8 @@ $juegos = getAllGames($conn);
         <label for="imagen_producto">Imagen del Producto 1:</label>
         <input type="file" name="imagen_producto" required>
 
-        <label for="imagen_producto2">Imagen del Producto 2 (Opcional):</label>
-        <input type="file" name="imagen_producto2">
+        <label for="imagen_producto2">Imagen del Producto 2:</label>
+        <input type="file" name="imagen_producto2" required>
 
         <label for="id_juego">Juego:</label>
         <select name="id_juego" required>

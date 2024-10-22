@@ -1,19 +1,18 @@
 <?php
 // Conexión a la base de datos
-include("../public/db.php"); // Asegúrate de tener un archivo para conectarte a la base de datos
+include("../public/db.php");
 
 session_start();
 if (!isset($_SESSION['id_usuario'])) {
-    // Redirigir a la página de inicio de sesión si no está autenticado
     header("Location: ../public/login.php");
     exit();
 }
 
-// Verifica si el usuario ha iniciado sesión y si tiene el rol de administrador (id_rol = 1)
 if (!isset($_SESSION['id_rol']) || $_SESSION['id_rol'] != 1) {
     header('Location: ../public/index.php');
     exit;
 }
+
 // Eliminar publicación
 if (isset($_GET['delete'])) {
     $id_publicacion = intval($_GET['delete']);
@@ -73,41 +72,6 @@ $result = mysqli_query($conn, $query);
         a:hover {
             text-decoration: underline;
         }
-        form {
-            width: 50%;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #2c2c2c;
-            border-radius: 10px;
-        }
-        label {
-            display: block;
-            margin: 10px 0 5px;
-            font-weight: bold;
-        }
-        input[type="text"], input[type="number"], select, textarea {
-            width: 100%;
-            padding: 8px;
-            margin: 5px 0 15px;
-            background-color: #3c3c3c;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-        }
-        input[type="file"] {
-            color: #fff;
-        }
-        button {
-            background-color: #ff9800;
-            color: #000;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        button:hover {
-            background-color: #e68900;
-        }
         .actions {
             text-align: center;
         }
@@ -130,8 +94,8 @@ $result = mysqli_query($conn, $query);
 <body>
     <h1>Administrar Publicaciones</h1>
 
-<a href="admin-dashboard.php" class="back-button">Volver al dashboard</a>
-<a href="../public/blog-grid-sidebar.php" class="back-button">Volver a publicaciones</a>
+    <a href="admin-dashboard.php" class="back-button">Volver al dashboard</a>
+    <a href="../public/blog-grid-sidebar.php" class="back-button">Volver a publicaciones</a>
     <table>
         <tr>
             <th>ID</th>
@@ -151,6 +115,31 @@ $result = mysqli_query($conn, $query);
             <td>
                 <a href="edit-post.php?id=<?php echo $row['id_publicacion']; ?>">Editar</a> |
                 <a href="admin-post.php?delete=<?php echo $row['id_publicacion']; ?>" onclick="return confirm('¿Estás seguro de eliminar esta publicación?')">Eliminar</a>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6">
+                <h2>Comentarios</h2>
+                <table style="width: 100%; margin-top: 10px;">
+                    <tr>
+                        <th>ID Comentario</th>
+                        <th>Comentario</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <?php
+                    // Obtener los comentarios para esta publicación
+                    $id_publicacion = $row['id_publicacion'];
+                    $comment_query = "SELECT * FROM comentarios WHERE id_publicacion = $id_publicacion";
+                    $comment_result = mysqli_query($conn, $comment_query);
+
+                    while ($comment = mysqli_fetch_assoc($comment_result)): ?>
+                        <tr>
+                            <td><?php echo $comment['id_comentario']; ?></td>
+                            <td><?php echo $comment['comentario']; ?></td>
+                            <td><?php echo $comment['fecha_comentario']; ?></td>
+                        </tr>
+                    <?php endwhile; ?>
+                </table>
             </td>
         </tr>
         <?php endwhile; ?>

@@ -212,7 +212,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     <section class="section blog-single">
         <div class="container-sm">
             <div class="row justify-content-center">
-                <div class="col-lg-10 col-md-10 col-10">
+                <div class="col-lg-8 col-md-8 col-8">
                     <div class="single-inner">
                         <div class="post-details">
                         <?php
@@ -283,85 +283,84 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                             } else {
                                 echo "No se ha proporcionado un ID de publicación.";
                             }
-
-?>
+                        ?>
                             <!-- Comments -->
                             <div class="post-comments">
                                 <h3 class="comment-title"><span>Comentarios</span></h3>
                                 <ul class="comments-list">
                                 <?php
-// Conexión a la base de datos y sesión
-include 'db.php'; 
-include '../src/validate_session.php';
+                                    // Conexión a la base de datos y sesión
+                                    include 'db.php'; 
+                                    include '../src/validate_session.php';
 
-// Verificar si se ha enviado el comentario
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['comentar'])) {
-    $id_publicacion = $_POST['id_publicacion'];
-    $id_usuario = $_SESSION['id_usuario'];
-    $comentario = $conn->real_escape_string($_POST['comentario']);
-    $fecha_comentario = date('Y-m-d H:i:s');
+                                // Verificar si se ha enviado el comentario
+                                if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['comentar'])) {
+                                    $id_publicacion = $_POST['id_publicacion'];
+                                    $id_usuario = $_SESSION['id_usuario'];
+                                    $comentario = $conn->real_escape_string($_POST['comentario']);
+                                    $fecha_comentario = date('Y-m-d H:i:s');
 
-    // Inserta el comentario
-    $sql = "INSERT INTO comentarios (id_publicacion, id_usuario, comentario, fecha_comentario) 
-            VALUES ('$id_publicacion', '$id_usuario', '$comentario', '$fecha_comentario')";
+                                    // Inserta el comentario
+                                    $sql = "INSERT INTO comentarios (id_publicacion, id_usuario, comentario, fecha_comentario) 
+                                            VALUES ('$id_publicacion', '$id_usuario', '$comentario', '$fecha_comentario')";
 
-    if ($conn->query($sql)) {
-        // Mensaje de éxito
-        echo "<p>Comentario agregado correctamente.</p>";
-    } else {
-        echo "Error al agregar comentario: " . $conn->error;
-    }
-}
+                                    if ($conn->query($sql)) {
+                                        // Mensaje de éxito
+                                        echo "<p>Comentario agregado correctamente.</p>";
+                                    } else {
+                                        echo "Error al agregar comentario: " . $conn->error;
+                                    }
+                                }
 
-// Ver comentarios de la publicación
-$sql_comentarios = "SELECT c.*, u.nombre_usuario, u.foto_perfil 
-                    FROM comentarios c
-                    JOIN usuarios u ON c.id_usuario = u.id_usuario
-                    WHERE c.id_publicacion = $id_publicacion
-                    ORDER BY c.fecha_comentario DESC";
+                                    // Ver comentarios de la publicación
+                                    $sql_comentarios = "SELECT c.*, u.nombre_usuario, u.foto_perfil 
+                                                        FROM comentarios c
+                                                        JOIN usuarios u ON c.id_usuario = u.id_usuario
+                                                        WHERE c.id_publicacion = $id_publicacion
+                                                        ORDER BY c.fecha_comentario DESC";
 
-$result_comentarios = $conn->query($sql_comentarios);
+                                    $result_comentarios = $conn->query($sql_comentarios);
 
-/// Mostrar los comentarios
-if ($result_comentarios->num_rows > 0) {
-    while ($comentario = $result_comentarios->fetch_assoc()) {
-        $nombre_usuario = $comentario['nombre_usuario'];
-        $fecha_comentario = date("d M, Y", strtotime($comentario['fecha_comentario']));
-        $texto_comentario = $comentario['comentario'];
-        $foto_perfil = !empty($comentario['foto_perfil']) ? $comentario['foto_perfil'] : 'https://via.placeholder.com/150';
-        $id_comentario = $comentario['id_comentario']; // Obtener el ID del comentario
-        $id_usuario_comentario = $comentario['id_usuario']; // ID del usuario que hizo el comentario
+                                    /// Mostrar los comentarios
+                                    if ($result_comentarios->num_rows > 0) {
+                                        while ($comentario = $result_comentarios->fetch_assoc()) {
+                                            $nombre_usuario = $comentario['nombre_usuario'];
+                                            $fecha_comentario = date("d M, Y", strtotime($comentario['fecha_comentario']));
+                                            $texto_comentario = $comentario['comentario'];
+                                            $foto_perfil = !empty($comentario['foto_perfil']) ? $comentario['foto_perfil'] : 'https://via.placeholder.com/150';
+                                            $id_comentario = $comentario['id_comentario']; // Obtener el ID del comentario
+                                            $id_usuario_comentario = $comentario['id_usuario']; // ID del usuario que hizo el comentario
 
-        echo '
-        <li>
-            <div class="comment-img">
-                <img src="'.$foto_perfil.'" alt="img">
-            </div>
-            <div class="comment-desc">
-                <div class="desc-top">
-                    <h6>'.$nombre_usuario.'</h6>
-                    <span class="date">'.$fecha_comentario.'</span>
-                </div>
-                <p>'.$texto_comentario.'</p>';
+                                            echo '
+                                            <li>
+                                                <div class="comment-img">
+                                                    <img src="'.$foto_perfil.'" alt="img">
+                                                </div>
+                                                <div class="comment-desc">
+                                                    <div class="desc-top">
+                                                        <h6>'.$nombre_usuario.'</h6>
+                                                        <span class="date">'.$fecha_comentario.'</span>
+                                                    </div>
+                                                    <p>'.$texto_comentario.'</p>';
 
-        // Mostrar el botón de eliminar si el usuario autenticado es el autor del comentario
-        if ($_SESSION['id_usuario'] == $id_usuario_comentario) {
-            echo '
-            <form action="delete_comment.php" method="POST" onsubmit="return confirm(\'¿Estás seguro de que deseas eliminar este comentario?\');">
-                <input type="hidden" name="id_comentario" value="'.$id_comentario.'">
-                <input type="hidden" name="id_publicacion" value="'.$id_publicacion.'">
-                <button type="submit" class="btn btn-danger">Eliminar</button>
-            </form>';
-        }
+                                            // Mostrar el botón de eliminar si el usuario autenticado es el autor del comentario
+                                            if ($_SESSION['id_usuario'] == $id_usuario_comentario) {
+                                                echo '
+                                                <form action="delete_comment.php" method="POST" onsubmit="return confirm(\'¿Estás seguro de que deseas eliminar este comentario?\');">
+                                                    <input type="hidden" name="id_comentario" value="'.$id_comentario.'">
+                                                    <input type="hidden" name="id_publicacion" value="'.$id_publicacion.'">
+                                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                                </form>';
+                                            }
 
-        echo '</div></li>';
-    }
-} else {
-    echo "<p>No hay comentarios aún.</p>";
-}
+                                            echo '</div></li>';
+                                        }
+                                    } else {
+                                        echo "<p>No hay comentarios aún.</p>";
+                                    }
 
-$conn->close();
-?>
+                                    $conn->close();
+                                    ?>
                                 </ul>
                             </div>
                             <div class="comment-form">

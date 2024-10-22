@@ -91,4 +91,7 @@ if (isset($_GET['id'])) {
         <input type="hidden" name="id_comentario" value="<?php echo $comment['id_comentario']; ?>">
         <label for="comentario">Comentario:</label>
         <textarea name="comentario" rows="5" required><?php echo $comment['comentario']; ?></textarea>
-        <button type="submit" name="
+        <button type="submit" name="update">Guardar Cambios</button> <!-- Botón para guardar cambios -->
+    </form>
+</body>
+</html>

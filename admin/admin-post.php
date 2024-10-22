@@ -3,9 +3,9 @@ include 'db.php';
 include 'validate_session.php';
 
 // Verificar si el usuario es superadministrador
-if ($_SESSION['rol'] !== 'admin') {
-    header("Location: index.php");
-    exit();
+if (!isset($_SESSION['id_rol']) || $_SESSION['id_rol'] != 1) {
+    header('Location: ../public/index.php');
+    exit;
 }
 
 // Obtener los datos de la publicación

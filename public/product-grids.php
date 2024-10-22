@@ -61,7 +61,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
   <ul class="navbar-nav me-auto mb-2 mb-lg-0">
     <li class="nav-item">
-      <a aria-label="Toggle navigation" href="index.php">PRINCIPAL</a>
+      <a aria-label="Toggle navigation" href="../admin/admin-products.php">ADMIN</a>
     </li>
     <li class="nav-item">
         <a class="active" class="nav-link dropdown-toggle" href="product-grids.php" data-bs-toggle="collapse"

@@ -258,10 +258,10 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     </div>
 </div>
         <!-- Descripción larga del producto -->
-        <div class="product-details-info">
-            <div class="single-block">
+        <div class="container">
+            <div class="col-lg-6 col-md-12 col-12">
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col-12">
                         <div class="info-body custom-responsive-margin">
                             <h4>Detalles</h4>
                             <p><?php echo $descripcion; ?></p>

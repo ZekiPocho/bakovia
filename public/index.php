@@ -280,15 +280,16 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     </section>
     <!-- End Hero Area -->
 
-<!-- Start Trending Product Area -->
-<?php
+    <?php
 // Conexión a la base de datos
 include("db.php");
 
-// Obtener los últimos 4 productos
-$query = "SELECT * FROM productos ORDER BY fecha_agregado DESC LIMIT 4"; // Asegúrate de que la columna de fecha sea correcta
+// Obtener los últimos 4 productos según su ID
+$query = "SELECT * FROM productos ORDER BY id_producto DESC LIMIT 4"; // Cambia 'id_producto' si el nombre es diferente
 $result = mysqli_query($conn, $query);
 ?>
+
+<!-- Start Trending Product Area -->
 <section class="trending-product section">
     <div class="container-sm">
         <div class="row">

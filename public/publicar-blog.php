@@ -229,7 +229,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <h2>CREAR PUBLICACIÓN</h2>
         </center>
         <br><br>
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form action="publicar-blog.php" method="POST" enctype="multipart/form-data">
             <div>
                 <div>
                     <label for="imagenes" class="form-label">Subir imágenes:</label><br>

@@ -1,5 +1,7 @@
+@ -1,319 +1,319 @@
 <?php
 include ('../src/validate_session.php'); // Asegúrate de que el usuario esté autenticado
+include ('../public/db.php')
 include ('../public/db.php');
 $mensaje = "";
 
@@ -223,119 +225,90 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
 
 <section class="post">
-    <div class="container-sm p-4 mt-4">
-        <h2 class="text-center mb-4">CREAR PUBLICACIÓN</h2>
-        
-        <form action="publicar-blog.php" method="POST" enctype="multipart/form-data">
+    <div class="container-sm p-2 mt-2">
+        <br>
+        <center>
+        <h2>
+            CREAR PUBLICACIÓN
+        </h2>
+        </center>
 
-        <!--<div class="col-md-4 text-center mb-4">
-            <div class="d-flex justify-content-center">
-                <div class="image-upload-container" style="width: 400px; height: 300px; overflow: hidden; border-radius: 5px; position: relative; border: 2px dashed #007bff;">
-                    <input type="file" id="postImage" name="imagenes" class="form-control" accept="image/*" onchange="handlePostImage(event)" style="display: none;">
-                    <img src="../uploads/user/default.png" alt="Imagen de publicación" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;" id="postPreview" onclick="document.getElementById('postImage').click();">
-                </div>
-            </div>
-            <p class="mt-2" style="filter: opacity(50%);">Haz clic en la imagen para subir una imagen de publicación</p>
-        </div>-->
+    <br>
+    <br>
+    <form action="" method="POST" enctype="multipart/form-data">
+    <div>
         <div>
             <label for="imagenes">Subir imágenes:</label><br>
             <input class="btn" type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple onchange="previewImages()" required><br><br>
         </div>
-
-
-
-            <div class="mb-3">
-                <label for="titulo" class="form-label">Título:</label>
-                <input type="text" class="form-control" name="titulo" id="titulo" placeholder="Escribe el título de tu publicación" maxlength="100" oninput="contarCaracteres()" required>
-                <span id="contador-titulo" class="text-muted" style="opacity: 0.5;">0/100 caracteres</span>
-            </div>
-
-            <script>
-                function contarCaracteres() {
-                    var titulo = document.getElementById('titulo');
-                    var contador = document.getElementById('contador-titulo');
-                    contador.textContent = titulo.value.length + "/100 caracteres";
-                }
-            </script>
-
-
-                <label for="contenido">Cuerpo de la publicación:</label>
-                <textarea name="contenido" id="default" required></textarea>
-
-
-            <div class="mb-3">
-                <label for="tags" class="form-label">Selecciona el Tag de tu publicación. ¿De qué trata tu publicación?:</label>
-                <select class="form-select" name="tag" id="tags" required>
-                    <option value="" selected disabled>Selecciona Tag</option>
-                    <option value="miniaturas">Miniaturas</option>
-                    <option value="otros">Otros</option>
-                    <option value="ejercito">Ejército</option>
-                    <option value="tienda">Tienda</option>
-                    <option value="juegos">Juegos</option>
-                    <option value="pintura">Pintura/Hobby</option>
-                    <option value="lore">Lore</option>
-                    <option value="noticias">Noticias</option>
-                </select>
-            </div>
-
-            <div class="text-center">
-                <input class="btn btn-primary" type="submit" value="Publicar">
-            </div>
-        </form>
     </div>
-</section>
+        <div id="vista-previa"></div>
+            <div>
+                <label for="titulo">Título:</label><br>
+                <input type="text" class="form-control" name="titulo" id="titulo" placeholder="Escribe el título de tu publicación" maxlength="100" oninput="contarCaracteres()" required>
+                <span id="contador-titulo" style="filter: opacity(50%);">0/100 caracteres</span>
+            </div>
+        <div>
+        <script>
+            function contarCaracteres() {
+                var titulo = document.getElementById('titulo');
+                var contador = document.getElementById('contador-titulo');
+                contador.textContent = titulo.value.length + "/100 caracteres";
+            }
+        </script>
+        <br><br>
 
-
-<!--<script>
-function handlePostImage(event) {
-    var preview = document.getElementById('postPreview');
-    var file = event.target.files[0];
-
-    if (file && file.type.startsWith('image/')) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            preview.src = e.target.result; // Cambia la imagen de vista previa
-        }
-        reader.readAsDataURL(file);
-    } else {
-        alert('El archivo seleccionado no es una imagen');
-    }
-}
-</script>-->
+        <label for="contenido">Cuerpo de la publicación</label><br>
+        <textarea class="form-control" name="contenido" placeholder="cuerpo*"></textarea>
+        </div >
+    <br><br>
+    <label for="tags">Selecciona el Tag de tu publicación. ¿De qué trata tu publicación?:</label><br>
+            <select style="color: white;" name="tag" id="tags" required>
+                <option value="" selected disabled>Selecciona Tag</option>
+                <option value="miniaturas">Miniaturas</option>
+                <option value="otros">Otros</option>
+                <option value="ejercito">Ejército</option>
+                <option value="tienda">Tienda</option>
+                <option value="juegos">Juegos</option>
+                <option value="pintura">Pintura/Hobby</option>
+                <option value="lore">Lore</option>
+                <option value="noticias">Noticias</option>
+            </select>
+        <div class="row">
+            <div class="col-auto">
+            <input class="btn" type="submit" value="Publicar">
+            </div>
+        </div>
+        
+    </form>
+    </div>
+    
+</section> 
 
 <script>
-    const imageUpload = document.getElementById('image-upload');
-    const fileInput = document.getElementById('imagenes');
+function previewImages() {
+    var preview = document.getElementById('vista-previa');
+    var files = document.getElementById('imagenes').files;
+    preview.innerHTML = '';  // Limpiar las imágenes previas
 
-    imageUpload.addEventListener('click', () => {
-        fileInput.click();
-    });
-
-    function previewImages() {
-        const files = fileInput.files;
-        const previewContainer = document.getElementById('vista-previa');
-        previewContainer.innerHTML = ''; // Limpiar el contenedor previo
-
-        for (let i = 0; i < files.length; i++) {
-            const file = files[i];
-            const reader = new FileReader();
-
-            reader.onload = function(e) {
-                const img = document.createElement('img');
+    for (var i = 0; i < files.length; i++) {
+        var file = files[i];
+        if (file.type.startsWith('image/')) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var img = document.createElement('img');
                 img.src = e.target.result;
-                img.style.width = '100%'; // Ajustar la imagen al contenedor
-                img.style.height = '100%'; // Mantener la altura del contenedor
-                img.style.objectFit = 'cover'; // Cubrir el contenedor sin distorsión
-                img.style.border = '1px solid #007bff'; // Borde para las imágenes
-
-                previewContainer.appendChild(img);
-            };
-
+                img.style.maxWidth = '300px';
+                img.style.marginTop = '10px';
+                preview.appendChild(img);
+            }
             reader.readAsDataURL(file);
+        } else {
+            alert('El archivo seleccionado no es una imagen');
         }
     }
+}
 </script>
-
 <center>
 <?php
 echo $mensaje;

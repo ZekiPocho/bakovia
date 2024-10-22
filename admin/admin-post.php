@@ -89,6 +89,12 @@ $result = mysqli_query($conn, $query);
         .back-button:hover {
             background-color: #444;
         }
+        .comment {
+            background-color: #3c3c3c;
+            padding: 5px;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
     </style>
 </head>
 <body>
@@ -120,26 +126,19 @@ $result = mysqli_query($conn, $query);
         <tr>
             <td colspan="6">
                 <h2>Comentarios</h2>
-                <table style="width: 100%; margin-top: 10px;">
-                    <tr>
-                        <th>ID Comentario</th>
-                        <th>Comentario</th>
-                        <th>Fecha</th>
-                    </tr>
-                    <?php
-                    // Obtener los comentarios para esta publicación
-                    $id_publicacion = $row['id_publicacion'];
-                    $comment_query = "SELECT * FROM comentarios WHERE id_publicacion = $id_publicacion";
-                    $comment_result = mysqli_query($conn, $comment_query);
+                <?php
+                // Obtener los comentarios para esta publicación
+                $id_publicacion = $row['id_publicacion'];
+                $comment_query = "SELECT * FROM comentarios WHERE id_publicacion = $id_publicacion";
+                $comment_result = mysqli_query($conn, $comment_query);
 
-                    while ($comment = mysqli_fetch_assoc($comment_result)): ?>
-                        <tr>
-                            <td><?php echo $comment['id_comentario']; ?></td>
-                            <td><?php echo $comment['comentario']; ?></td>
-                            <td><?php echo $comment['fecha_comentario']; ?></td>
-                        </tr>
-                    <?php endwhile; ?>
-                </table>
+                while ($comment = mysqli_fetch_assoc($comment_result)): ?>
+                    <div class="comment">
+                        <strong>ID Comentario:</strong> <?php echo $comment['id_comentario']; ?><br>
+                        <strong>Comentario:</strong> <?php echo $comment['comentario']; ?><br>
+                        <strong>Fecha:</strong> <?php echo $comment['fecha_comentario']; ?>
+                    </div>
+                <?php endwhile; ?>
             </td>
         </tr>
         <?php endwhile; ?>

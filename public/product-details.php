@@ -222,7 +222,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <div class="col-lg-6 col-md-12 col-12">
                 <div class="product-images">
                     <main id="gallery">
-                        <div class="main-img" style="width: 630px; height: 350px; overflow: hidden;">
+                        <div class="main-img" style="width: 600px; height: 350px; overflow: hidden;">
                             <!-- Imagen principal del producto -->
                             <img src="<?php echo $imagen1; ?>" id="current" alt="<?php echo $nombre; ?>" style="width: 100%; height: 100%; object-fit: scale-down; background-color: white;">
                         </div>
@@ -259,7 +259,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 </div>
         <!-- Descripción larga del producto -->
         <div class="container">
-            <div class="col-lg-6 col-md-12 col-12">
+            <div class="top-area">
                 <div class="row">
                     <div class="col-12">
                         <div class="info-body custom-responsive-margin">

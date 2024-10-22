@@ -257,7 +257,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         <div class="single-blog">
                             <div class="blog-img">
                                 <a href="blog-single-sidebar.php?id='.$id_publicacion.'">
-                                    <img src="'.$imagen.'" alt="#" style="width: 555px; height: 300px; object-fit: contain;">
+                                    <img src="'.$imagen.'" alt="#" style="max-width: 555px; max-height: 300px; object-fit: contain;">
                                 </a>
                             </div>
                             <div class="blog-content">

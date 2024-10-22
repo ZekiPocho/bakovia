@@ -1,5 +1,4 @@
 <?php
-include("../src/validate_session.php");
 include("../public/db.php"); // Asegúrate de incluir el archivo de conexión a la base de datos
 ?>
 

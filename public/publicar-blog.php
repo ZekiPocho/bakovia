@@ -235,9 +235,12 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <div class="mb-4">
                 <h5 for="titulo">Título:</h5>
                 <br>
-                <textarea class="form-control" name="titulo" id="titulo" placeholder="Escribe el título de tu publicación" maxlength="100" rows="2" style="resize: none; overflow-y: auto;" oninput="contarCaracteres()" required></textarea>
-                <small id="contador-titulo" class="form-text text-muted">0/100 caracteres</small>
+                <div style="position: relative;">
+                    <input type="text" class="form-control" name="titulo" id="titulo" placeholder="Escribe el título de tu publicación" maxlength="100" oninput="contarCaracteres()" required style="max-height: 3rem; overflow-y: auto; padding-right: 20px;">
+                    <small id="contador-titulo" class="form-text text-muted">0/100 caracteres</small>
+                </div>
             </div>
+
 
             <!-- Cuerpo de la publicación -->
             <div class="mb-4">

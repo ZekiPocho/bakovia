@@ -264,9 +264,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                 <a class="category" href="javascript:void(0)">'.$usuario.'</a>
                                 <h4><a href="blog-single-sidebar.php?id='.$id_publicacion.'">'.(strlen($titulo) > 75 ? substr($titulo, 0, 75) . '...' : $titulo).'</a></h4>
                                 <a class="category" href="javascript:void(0)"><i class="lni lni-tag"></i>'.$tag.'</a>
-                                <div class="button">
-                                    <a href="blog-single-sidebar.php?id='.$id_publicacion.'" class="btn">Leer más</a>
-                                </div>
                             </div>
                         </div>
                         <!-- End Single Blog -->

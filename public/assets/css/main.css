@@ -3343,8 +3343,8 @@ ol {
 
 .single-product .product-image {
   position: relative;
-  width: 100%;
-  height: 200px; /* Establecemos la altura de la imagen */
+  width: 200px;
+  height: 100%; /* Establecemos la altura de la imagen */
   overflow: hidden; /* Para evitar que las imágenes se desborden */
 }
 

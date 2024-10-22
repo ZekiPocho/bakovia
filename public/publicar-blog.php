@@ -226,7 +226,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     <div class="container-sm p-4 mt-4">
         <h2 class="text-center mb-4">CREAR PUBLICACIÓN</h2>
         
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form action="publicar-blog.php" method="POST" enctype="multipart/form-data">
         <div class="col-md-4 text-center mb-4">
             <div class="d-flex justify-content-center">
                 <div class="image-upload-container" style="width: 400px; height: 300px; overflow: hidden; border-radius: 5px; position: relative; border: 2px dashed #007bff;">

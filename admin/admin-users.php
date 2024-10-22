@@ -109,48 +109,16 @@ $result = mysqli_query($conn, $query);
             border-radius: 5px;
             margin-top: 5px;
         }
-        input[type="file"] {
-            color: #fff;
-        }
-        button {
-            background-color: #ff9800;
-            color: #000;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        button:hover {
-            background-color: #e68900;
-        }
-        .actions {
-            text-align: center;
-        }
-        .back-button {
-            display: block;
-            width: 200px;
-            margin: 20px auto;
-            background-color: #3c3c3c;
-            padding: 10px;
-            text-align: center;
-            color: #ff9800;
-            border-radius: 5px;
-            text-decoration: none;
-        }
-        .back-button:hover {
-            background-color: #444;
-        }
     </style>
 </head>
 <body>
     <h1>Administrar Usuarios</h1>
-
-    <a href="admin-dashboard.php" class="back-button">Volver al dashboard</a>
-
     <table>
         <tr>
             <th>ID Usuario</th>
             <th>Nombre</th>
+            <th>Correo Electrónico</th>
+            <th>Fecha de Registro</th>
             <th>Publicaciones</th>
             <th>Comentarios</th>
             <th>Acciones</th>
@@ -159,6 +127,8 @@ $result = mysqli_query($conn, $query);
         <tr>
             <td><?php echo $user['id_usuario']; ?></td>
             <td><?php echo $user['nombre_usuario']; ?></td>
+            <td><?php echo $user['correo_electronico']; ?></td> <!-- Cambia 'correo_electronico' por el nombre correcto de la columna si es necesario -->
+            <td><?php echo $user['fecha_registro']; ?></td> <!-- Cambia 'fecha_registro' por el nombre correcto de la columna si es necesario -->
             <td>
                 <?php
                 // Obtener las publicaciones del usuario

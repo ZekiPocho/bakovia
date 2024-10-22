@@ -284,7 +284,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     function previewImage() {
         var preview = document.getElementById('image-preview');
         var imageText = document.getElementById('image-text');
-        var file = document.getElementById('imagen').files[0];
+        var file = document.getElementById('imagenes').files[0];
 
         if (file && file.type.startsWith('image/')) {
             var reader = new FileReader();

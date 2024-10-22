@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_product'])) {
     $sql = "UPDATE productos SET nombre_producto = ?, descripcion = ?, desc_mini = ?, precio = ?, imagen_producto = ?, imagen_producto2 = ?, id_juego = ?, tipo = ?, stock = ? 
             WHERE id_producto = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssdsssiii", $nombre_producto, $descripcion, $desc_mini, $precio, $imagen_producto, $imagen_producto2, $id_juego, $tipo, $stock, $id_producto);
+    $stmt->bind_param("sssdssssii", $nombre_producto, $descripcion, $desc_mini, $precio, $imagen_producto, $imagen_producto2, $id_juego, $tipo, $stock, $id_producto);
     $stmt->execute();
     header('Location: admin-products.php');
     exit;

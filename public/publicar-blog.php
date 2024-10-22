@@ -97,8 +97,8 @@ $conn->close();
     <style>
         .image-upload {
     position: relative;
-    width: 400px; /* Ancho del input */
-    height: 300px; /* Alto del input */
+    width: 500px; /* Ancho del input */
+    height: 040px; /* Alto del input */
     border: 2px dashed #007bff; /* Estilo del borde */
     border-radius: 8px; /* Bordes redondeados */
     display: flex;
@@ -119,7 +119,8 @@ $conn->close();
 .image-preview img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ajustar la imagen sin distorsionarse */
+    object-fit: scale_down; /* Ajustar la imagen sin distorsionarse */
+    background-color: black;
 }
 
     </style>

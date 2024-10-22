@@ -253,7 +253,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
 
 <section class="post">
-    <div class="container-sm mt-2 py-5 px-8">
+    <div class="container-sm mt-5 p-5">
         <br>
         <center>
         <h2>

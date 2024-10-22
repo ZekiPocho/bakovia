@@ -308,9 +308,9 @@ $result = mysqli_query($conn, $query);
                             <img src="<?php echo $product['imagen_producto']; ?>" alt="<?php echo $product['nombre_producto']; ?>">
                         </div>
                         <div class="product-info">
-                            <span class="category"><?php echo $product['nombre_producto']; ?></span>
+                            <span class="category"><?php echo $product['id_producto']; ?></span>
                             <h4 class="title">
-                                <a href="product-grids.php?id=<?php echo $product['id_producto']; ?>"><?php echo $product['tipo']; ?></a>
+                                <a href="product-grids.php?id=<?php echo $product['inombre_producto']; ?>"><?php echo $product['tipo']; ?></a>
                             </h4>
                             <div class="price">
                                 <span><?php echo $product['precio']; ?> Bs.</span> <!-- Ajusta el símbolo de la moneda según sea necesario -->

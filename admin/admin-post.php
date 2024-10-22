@@ -14,12 +14,10 @@ if (!isset($_SESSION['id_rol']) || $_SESSION['id_rol'] != 1) {
 }
 
 
-// Inicializamos la variable para evitar errores
-$publicacion = null;
 
 // Verificar si se ha proporcionado un ID de publicación
-if (isset($_GET['id_publicacion'])) {
-    $id_publicacion = $_GET['id_publicacion'];
+if (isset($_GET['id'])) {
+    $id_publicacion = $_GET['id'];
     
     // Obtener los datos de la publicación
     $sql = "SELECT * FROM publicaciones WHERE id_publicacion = $id_publicacion";

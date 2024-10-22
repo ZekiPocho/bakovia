@@ -284,6 +284,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                     echo '
                                     <form action="delete_publication.php" method="POST" onsubmit="return confirm(\'¿Estás seguro de que deseas eliminar esta publicación?\');">
                                         <input type="hidden" name="id_publicacion" value="' . $id_publicacion . '">
+                                        <br>
                                         <button type="submit" class="btn btn-danger">Eliminar publicación</button>
                                     </form>';
                                 }

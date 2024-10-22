@@ -10,7 +10,7 @@ if (!isset($_SESSION['id_rol']) || $_SESSION['id_rol'] != 1) {
 
 // Definición de la función (si no está en db.php)
 function getAllGames($conn) {
-    $sql = "SELECT id_juego, nombre FROM juegos";
+    $sql = "SELECT id_juego, nombre FROM juego";
     $result = $conn->query($sql);
     return $result;
 }

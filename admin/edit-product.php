@@ -8,7 +8,7 @@ if (!isset($_SESSION['id_rol']) || $_SESSION['id_rol'] != 1) {
     exit;
 }
 
-// Definición de la función (si no está en db.php)
+// Función para obtener todos los juegos
 function getAllGames($conn) {
     $sql = "SELECT id_juego, nombre FROM juego";
     $result = $conn->query($sql);
@@ -40,10 +40,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_product'])) {
     $imagen_producto = $_POST['current_image'];
     $imagen_producto2 = $_POST['current_image2'];
 
+    $targetDir = '../uploads/products/';
+
     // Cargar la primera imagen si se sube una nueva
     if (isset($_FILES['imagen_producto']) && $_FILES['imagen_producto']['error'] === UPLOAD_ERR_OK) {
         $image = $_FILES['imagen_producto'];
-        $targetDir = '../uploads/products/';
         $imageExtension = pathinfo($image['name'], PATHINFO_EXTENSION);
         $newImageName = uniqid() . '.' . $imageExtension;
         $targetFile = $targetDir . $newImageName;
@@ -165,22 +166,13 @@ $juegos = getAllGames($conn);
         .back-button:hover {
             background-color: #444;
         }
-    </style>
+        </style>
     <script src="https://cdn.tiny.cloud/1/ygwkt7hwy11qzbk8uc4veikmopkjbvolxix57q02vpkn8sif/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
       tinymce.init({
-        selector: 'texto',  // change this value according to your HTML
-        menu: {
-            file: { title: 'File', items: 'newdocument restoredraft | preview | importword exportpdf exportword | print | deleteallconversations' },
-            edit: { title: 'Edit', items: 'undo redo | cut copy paste pastetext | selectall | searchreplace' },
-            view: { title: 'View', items: 'code revisionhistory | visualaid visualchars visualblocks | spellchecker | preview fullscreen | showcomments' },
-            insert: { title: 'Insert', items: 'image link media addcomment pageembed codesample inserttable | math | charmap emoticons hr | pagebreak nonbreaking anchor tableofcontents | insertdatetime' },
-            format: { title: 'Format', items: 'bold italic underline strikethrough superscript subscript codeformat | styles blocks fontfamily fontsize align lineheight | forecolor backcolor | language | removeformat' },
-            tools: { title: 'Tools', items: 'spellchecker spellcheckerlanguage | a11ycheck code wordcount' },
-            table: { title: 'Table', items: 'inserttable | cell row column | advtablesort | tableprops deletetable' },
-            help: { title: 'Help', items: 'help' }
-        }
-        });
+        selector: 'textarea[name=descripcion]',
+        /* Configuración adicional si es necesario */
+      });
     </script>
 </head>
 <body>
@@ -198,10 +190,10 @@ $juegos = getAllGames($conn);
         <input type="text" name="nombre_producto" value="<?= $producto['nombre_producto'] ?>" required>
 
         <label for="descripcion">Descripción:</label>
-        <texto id="default" type="text" name="descripcion" rows="10"><?= $producto['descripcion'] ?></texto>
+        <textarea name="descripcion" rows="10"><?= $producto['descripcion'] ?></textarea>
 
         <label for="desc_mini">Descripción Corta:</label>
-        <textarea type="text" name="desc_mini" id="desc_mini" rows="10" maxlength="300" value="<?= $producto['desc_mini'] ?>" required></textarea>
+        <textarea name="desc_mini" id="desc_mini" rows="3" maxlength="300" required><?= $producto['desc_mini'] ?></textarea>
         <p id="charCount">300 caracteres restantes</p>
 
         <label for="precio">Precio:</label>

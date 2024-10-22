@@ -21,6 +21,14 @@ if (isset($_GET['delete'])) {
     header("Location: admin-post.php");
 }
 
+// Eliminar comentario
+if (isset($_GET['delete_comment'])) {
+    $id_comentario = intval($_GET['delete_comment']);
+    $query = "DELETE FROM comentarios WHERE id_comentario = $id_comentario";
+    mysqli_query($conn, $query);
+    header("Location: admin-post.php");
+}
+
 // Obtener todas las publicaciones
 $query = "SELECT * FROM publicaciones";
 $result = mysqli_query($conn, $query);
@@ -95,6 +103,9 @@ $result = mysqli_query($conn, $query);
             border-radius: 5px;
             margin-top: 5px;
         }
+        .comment a {
+            margin-left: 10px;
+        }
     </style>
 </head>
 <body>
@@ -137,6 +148,8 @@ $result = mysqli_query($conn, $query);
                         <strong>ID Comentario:</strong> <?php echo $comment['id_comentario']; ?><br>
                         <strong>Comentario:</strong> <?php echo $comment['comentario']; ?><br>
                         <strong>Fecha:</strong> <?php echo $comment['fecha_comentario']; ?>
+                        <a href="edit-comment.php?id=<?php echo $comment['id_comentario']; ?>">Editar</a> |
+                        <a href="admin-post.php?delete_comment=<?php echo $comment['id_comentario']; ?>" onclick="return confirm('¿Estás seguro de eliminar este comentario?')">Eliminar</a>
                     </div>
                 <?php endwhile; ?>
             </td>

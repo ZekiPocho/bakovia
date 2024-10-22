@@ -1,36 +1,35 @@
 <?php
 // Conexión a la base de datos
-include("../public/db.php"); // Asegúrate de tener un archivo para conectarte a la base de datos
+include("../public/db.php");
 
 session_start();
 if (!isset($_SESSION['id_usuario'])) {
-    // Redirigir a la página de inicio de sesión si no está autenticado
     header("Location: ../public/login.php");
     exit();
 }
 
-// Verifica si el usuario tiene el rol de administrador
 if (!isset($_SESSION['id_rol']) || $_SESSION['id_rol'] != 1) {
     header('Location: ../public/index.php');
-    exit();
-}
-
-// Obtener el comentario a editar
-if (isset($_GET['id'])) {
-    $id_comentario = intval($_GET['id']);
-    $query = "SELECT * FROM comentarios WHERE id_comentario = $id_comentario";
-    $result = mysqli_query($conn, $query);
-    $comentario = mysqli_fetch_assoc($result);
+    exit;
 }
 
 // Actualizar el comentario
 if (isset($_POST['update'])) {
-    $nuevo_contenido = mysqli_real_escape_string($conn, $_POST['contenido_comentario']);
-
-    $query = "UPDATE comentarios SET contenido_comentario = '$nuevo_contenido' WHERE id_comentario = $id_comentario";
+    $id_comentario = intval($_POST['id_comentario']);
+    $comentario = mysqli_real_escape_string($conn, $_POST['comentario']);
+    
+    $query = "UPDATE comentarios SET comentario = '$comentario' WHERE id_comentario = $id_comentario";
     mysqli_query($conn, $query);
-
+    
     header("Location: admin-post.php");
+}
+
+// Obtener el comentario para editar
+if (isset($_GET['id'])) {
+    $id_comentario = intval($_GET['id']);
+    $query = "SELECT * FROM comentarios WHERE id_comentario = $id_comentario";
+    $result = mysqli_query($conn, $query);
+    $comment = mysqli_fetch_assoc($result);
 }
 ?>
 
@@ -47,12 +46,10 @@ if (isset($_POST['update'])) {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            line-height: 1.6;
         }
         h1 {
             color: #ff9800;
             text-align: center;
-            margin-top: 20px;
         }
         form {
             width: 50%;
@@ -68,11 +65,12 @@ if (isset($_POST['update'])) {
         }
         textarea {
             width: 100%;
-            padding: 10px;
+            padding: 8px;
             background-color: #3c3c3c;
             color: #fff;
             border: none;
             border-radius: 5px;
+            margin-bottom: 15px;
         }
         button {
             background-color: #ff9800;
@@ -81,41 +79,16 @@ if (isset($_POST['update'])) {
             padding: 10px 20px;
             cursor: pointer;
             border-radius: 5px;
-            margin-top: 10px;
-            display: block;
-            width: 100%;
         }
         button:hover {
             background-color: #e68900;
         }
-        .back-button {
-            display: block;
-            width: 200px;
-            margin: 20px auto;
-            background-color: #3c3c3c;
-            padding: 10px;
-            text-align: center;
-            color: #ff9800;
-            border-radius: 5px;
-            text-decoration: none;
-        }
-        .back-button:hover {
-            background-color: #444;
-        }
     </style>
 </head>
 <body>
-
-<h1>Editar Comentario</h1>
-
-<a href="admin-post.php" class="back-button">Volver a publicaciones</a>
-
-<form action="edit-comment.php?id=<?php echo $comentario['id_comentario']; ?>" method="POST">
-    <label for="contenido_comentario">Contenido del comentario:</label>
-    <textarea name="contenido_comentario" id="contenido_comentario" rows="10"><?php echo $comentario['contenido_comentario']; ?></textarea>
-    
-    <button type="submit" name="update">Actualizar Comentario</button>
-</form>
-
-</body>
-</html>
+    <h1>Editar Comentario</h1>
+    <form action="edit-comment.php" method="post">
+        <input type="hidden" name="id_comentario" value="<?php echo $comment['id_comentario']; ?>">
+        <label for="comentario">Comentario:</label>
+        <textarea name="comentario" rows="5" required><?php echo $comment['comentario']; ?></textarea>
+        <button type="submit" name="

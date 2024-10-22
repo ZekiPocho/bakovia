@@ -229,11 +229,16 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 <!--TERMINA HEADER Y NAVBAR PRO-->
 
 
-<section class="hero-area">
-    <div class="container-sm">
-        <h3>
-            Crear Publicación
-        </h3>
+<section class="post">
+    <div class="container-sm p-3">
+        <center>
+        <h2>
+            CREAR PUBLICACIÓN
+        </h2>
+        </center>
+
+    <br>
+    <br>
     <form action="" method="POST" enctype="multipart/form-data">
     <div>
     <label for="tags">Seleccionar Tag:</label>

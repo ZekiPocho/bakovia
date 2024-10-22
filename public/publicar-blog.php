@@ -223,7 +223,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
 
 <section class="post">
-    <div class="container-sm p-2 mt-2">
+    <div class="container-sm p-2 mt-2 p-5">
         <br>
         <center>
         <h2>
@@ -242,7 +242,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     </div>
         <div id="vista-previa"></div>
             <div>
-                <label for="titulo">Título:</label><br>
+                <h5 for="titulo">Título:</h5><br>
                 <input type="text" class="form-control" name="titulo" id="titulo" placeholder="Escribe el título de tu publicación" maxlength="100" oninput="contarCaracteres()" required>
                 <span id="contador-titulo" style="filter: opacity(50%);">0/100 caracteres</span>
             </div>
@@ -256,11 +256,11 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         </script>
         <br><br>
 
-        <label for="contenido">Cuerpo de la publicación</label><br>
+        <h5 for="contenido">Cuerpo de la publicación</h5><br>
         <textarea class="form-control" name="contenido" placeholder="cuerpo*"></textarea>
         </div >
     <br><br>
-    <label for="tags">Selecciona el Tag de tu publicación. ¿De qué trata tu publicación?:</label><br>
+    <h5 for="tags">Selecciona el Tag de tu publicación. ¿De qué trata tu publicación?:</h5><br>
             <select style="color: white;" name="tag" id="tags" required>
                 <option value="" selected disabled>Selecciona Tag</option>
                 <option value="miniaturas">Miniaturas</option>
@@ -274,7 +274,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             </select>
         <div class="row">
             <div class="col-auto">
-            <input class="btn" type="submit" value="Publicar">
+            <input class="btn btn-primary" type="submit" value="Publicar">
             </div>
         </div>
         

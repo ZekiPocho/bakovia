@@ -294,8 +294,12 @@ function previewImages() {
             reader.onload = function (e) {
                 var img = document.createElement('img');
                 img.src = e.target.result;
-                img.style.maxWidth = '300px';
-                img.style.marginTop = '10px';
+                img.style.width = '100%';  // Ajustar al 100% del contenedor
+                img.style.height = '100%';  // Mantener la altura del contenedor
+                img.style.objectFit = 'cover';  // Cubrir el contenedor sin distorsión
+                img.style.border = '1px solid #007bff';  // Borde para las imágenes
+                img.style.marginTop = '10px';  // Espacio superior entre imágenes
+
                 preview.appendChild(img);
             }
             reader.readAsDataURL(file);
@@ -305,6 +309,7 @@ function previewImages() {
     }
 }
 </script>
+
 <script>
     const imageUpload = document.getElementById('image-upload');
     const fileInput = document.getElementById('imagenes');

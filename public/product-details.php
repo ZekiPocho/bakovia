@@ -222,9 +222,9 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <div class="col-lg-6 col-md-12 col-12">
                 <div class="product-images">
                     <main id="gallery">
-                        <div class="main-img" style="width: 300px; height: 300px; overflow: hidden;">
+                        <div class="main-img" style="width: 630px; height: 350px; overflow: hidden;">
                             <!-- Imagen principal del producto -->
-                            <img src="<?php echo $imagen1; ?>" id="current" alt="<?php echo $nombre; ?>" style="width: 100%; height: 100%; object-fit: cover;">
+                            <img src="<?php echo $imagen1; ?>" id="current" alt="<?php echo $nombre; ?>" style="width: 100%; height: 100%; object-fit: scale-down; background-color: white;">
                         </div>
                         <div class="images" style="display: flex; margin-top: 10px;">
                             <img src="<?php echo $imagen1; ?>" class="img" alt="<?php echo $nombre; ?>" style="width: 80px; height: 80px; margin-right: 10px; object-fit: cover;">
@@ -233,7 +233,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                     </main>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-12 col-12">
+            <div class="col-lg-6 col-md-12 col-12 pb-50">
                 <div class="product-info">
                     <!-- Nombre del producto -->
                     <span style="font-size: 40px; padding-bottom: 10px;"><?php echo $nombre; ?></span>

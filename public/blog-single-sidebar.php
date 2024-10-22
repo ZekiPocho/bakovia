@@ -207,7 +207,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 </nav>
 </header>
 <!--TERMINA HEADER Y NAVBAR PRO-->
-<br>
 <!-- Start Breadcrumbs -->
 <div class="breadcrumbs">
         <div class="container-sm">
@@ -228,7 +227,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         </div>
     </div>
     <!-- End Breadcrumbs -->
-     <br>
 
     <!-- Start Blog Singel Area -->
     <section class="section blog-single">

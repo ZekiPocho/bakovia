@@ -1,5 +1,6 @@
 <?php
-include 'db.php'; 
+include("../public/db.php");
+
 include 'validate_session.php';
 
 // Verificar si el usuario es superadministrador

@@ -227,11 +227,17 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <h2 class="text-center mb-4">CREAR PUBLICACIÓN</h2>
         
         <form action="" method="POST" enctype="multipart/form-data">
-            <div class="mb-3">
-                <label for="imagenes" class="form-label">Subir imágenes:</label>
-                <input class="form-control" type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple onchange="previewImages()" required>
-                <div id="vista-previa" class="mt-2"></div>
+        <div class="mb-3">
+            <label for="imagenes" class="form-label">Subir imágenes:</label>
+            
+            <input class="form-control" type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple onchange="previewImages()" required style="display: none;">
+            
+            <div class="image-upload" id="image-upload" style="width: 400px; height: 300px; border: 2px dashed #007bff; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                <span class="text-muted">Arrastra y suelta tus imágenes aquí o haz clic para seleccionar</span>
             </div>
+
+            <div id="vista-previa" class="mt-2" style="display: flex; flex-wrap: wrap;"></div>
+        </div>
 
             <div class="mb-3">
                 <label for="titulo" class="form-label">Título:</label>
@@ -299,6 +305,39 @@ function previewImages() {
     }
 }
 </script>
+<script>
+    const imageUpload = document.getElementById('image-upload');
+    const fileInput = document.getElementById('imagenes');
+
+    imageUpload.addEventListener('click', () => {
+        fileInput.click();
+    });
+
+    function previewImages() {
+        const files = fileInput.files;
+        const previewContainer = document.getElementById('vista-previa');
+        previewContainer.innerHTML = ''; // Limpiar el contenedor previo
+
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.style.width = '100%'; // Ajustar la imagen al contenedor
+                img.style.height = '100%'; // Mantener la altura del contenedor
+                img.style.objectFit = 'cover'; // Cubrir el contenedor sin distorsión
+                img.style.border = '1px solid #007bff'; // Borde para las imágenes
+
+                previewContainer.appendChild(img);
+            };
+
+            reader.readAsDataURL(file);
+        }
+    }
+</script>
+
 <center>
 <?php
 echo $mensaje;

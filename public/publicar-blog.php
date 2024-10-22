@@ -218,7 +218,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="breadcrumbs-content">
-                        <h1 class="page-title">PRODUCTO</h1>
+                        <h1 class="page-title">PUBLICAR</h1>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
@@ -233,7 +233,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     </div>
     <!-- End Breadcrumbs -->
 
-<br><br>
+<br>
 <section class="post">
     <div class="container-sm mt-6 p-4" style="max-width: 600px;">
         <h2 class="text-center mb-4">CREAR PUBLICACIÓN</h2>

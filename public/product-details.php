@@ -220,17 +220,18 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <div class="top-area">
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-12 col-12">
-                <div class="product-images" style="display: flex; flex-direction: column;">
-                    <main id="gallery">
-                        <div class="main-img" style="width: 300px; height: 300px; overflow: hidden;">
-                            <!-- Imagen principal del producto -->
-                            <img src="<?php echo $imagen1; ?>" id="current" alt="<?php echo $nombre; ?>" style="width: 100%; height: 100%; object-fit: cover;">
-                        </div>
-                        <div class="images" style="display: flex; margin-top: 10px;">
-                            <img src="<?php echo $imagen1; ?>" class="img" alt="<?php echo $nombre; ?>" style="width: 80px; height: 80px; margin-right: 10px; object-fit: cover;">
-                            <img src="<?php echo $imagen2; ?>" class="img" alt="<?php echo $nombre; ?>" style="width: 80px; height: 80px; margin-right: 10px; object-fit: cover;">
-                        </div>
-                    </main>
+                    <div class="product-images">
+                        <main id="gallery">
+                            <div class="main-img" >
+                                <!-- Imagen principal del producto -->
+                                <img src="<?php echo $imagen1; ?>" id="current" alt="<?php echo $nombre; ?>">
+                            </div>
+                            <div class="images">
+                                <img src="<?php echo $imagen1; ?>" class="img" alt="<?php echo $nombre; ?>" style="object-fit: ">
+                                <img src="<?php echo $imagen2; ?>" class="img" alt="<?php echo $nombre; ?>">
+                            </div>
+                        </main>
+                    </div>
                 </div>
                 <div class="col-lg-6 col-md-12 col-12">
                     <div class="product-info">

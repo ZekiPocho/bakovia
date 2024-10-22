@@ -8,6 +8,12 @@ if (isset($_GET['id'])) {
     // Consulta SQL para obtener los detalles del producto
     $sql = "SELECT nombre_producto, id_juego, tipo, precio, stock, desc_mini, descripcion, imagen_producto, imagen_producto2 FROM productos WHERE id_producto = ?";
     $stmt = $conn->prepare($sql);
+
+    // Verificar si prepare() falló
+    if (!$stmt) {
+        die("Error en la preparación de la consulta: " . $conn->error);
+    }
+
     $stmt->bind_param("i", $producto_id);
     $stmt->execute();
     $stmt->bind_result($nombre, $id_juego, $tipo, $precio, $stock, $desc_mini, $descripcion, $imagen1, $imagen2);
@@ -21,6 +27,12 @@ if (isset($_GET['id'])) {
         // Consulta para obtener el nombre del juego
         $sqlJuego = "SELECT nombre FROM juego WHERE id_juego = ?";
         $stmtJuego = $conn->prepare($sqlJuego);
+
+        // Verificar si prepare() falló
+        if (!$stmtJuego) {
+            die("Error en la preparación de la consulta de juego: " . $conn->error);
+        }
+
         $stmtJuego->bind_param("i", $id_juego);
         $stmtJuego->execute();
         $stmtJuego->bind_result($nombre_juego); // Usar esta variable para almacenar el nombre del juego
@@ -44,6 +56,7 @@ if (isset($_GET['id'])) {
 
 $conn->close();
 ?>
+
 
 
 

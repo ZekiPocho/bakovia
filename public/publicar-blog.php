@@ -212,7 +212,28 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 </header>
 <!--TERMINA HEADER Y NAVBAR PRO-->
 
+<!-- Start Breadcrumbs -->
+<div class="breadcrumbs">
+        <div class="container-sm">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="breadcrumbs-content">
+                        <h1 class="page-title">PRODUCTO</h1>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-12">
+                    <ul class="breadcrumb-nav">
+                        <li><a href="index.php"><i class="lni lni-home"></i> INICIO</a></li>
+                        <li><a href="blog-grid-sidebar.phpp">PUBLICACIONES</a></li>
+                        <li>PUBLICAR</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumbs -->
 
+<br><br>
 <section class="post">
     <div class="container-sm mt-6 p-4" style="max-width: 600px;">
         <h2 class="text-center mb-4">CREAR PUBLICACIÓN</h2>

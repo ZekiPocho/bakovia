@@ -200,6 +200,12 @@ $juegos = getAllGames($conn);
             background-color: #444;
         }
     </style>
+    <script src="https://cdn.tiny.cloud/1/ygwkt7hwy11qzbk8uc4veikmopkjbvolxix57q02vpkn8sif/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+      tinymce.init({
+        selector: '#mytextarea'
+      });
+    </script>
 </head>
 <body>
     <h1>Panel de Administración de Productos</h1>
@@ -252,7 +258,7 @@ $juegos = getAllGames($conn);
         <input type="text" name="nombre_producto" required>
 
         <label for="descripcion">Descripción:</label>
-        <textarea name="descripcion" rows="10" required></textarea>
+        <textarea name="descripcion" id="default" rows="10" required></textarea>
 
         <label for="desc_mini">Descripción Corta:</label>
         <textarea name="desc_mini" id="desc_mini" rows="10" maxlength="300" required></textarea>

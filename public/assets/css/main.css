@@ -3340,24 +3340,43 @@ ol {
   overflow: hidden;
   width: 100%; /* Hace que el contenedor se adapte al contenedor padre */
   max-width: 350px; /* Establece un ancho máximo razonable */
-  height: auto; /* La altura se adapta al contenido */
   display: flex;
-  flex-direction: column; /* Para organizar los elementos verticalmente */
+  flex-direction: column;
 }
 
 .single-product .product-image {
   position: relative;
   width: 100%;
-  height: 220px; /* Ajuste de altura para la imagen del producto */
+  height: 220px;
   overflow: hidden;
-  background-color: #ffffff; /* Fondo blanco para la imagen */
 }
 
 .single-product .product-image img {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* Mantener la proporción de la imagen */
+  object-fit: contain;
+  position: absolute;
+  top: 0;
+  left: 0;
   transition: opacity 0.4s ease;
+}
+
+.single-product .product-image img.first-image {
+  opacity: 1; /* Mostrar primera imagen */
+  z-index: 1; /* Asegura que la primera imagen esté al frente por defecto */
+}
+
+.single-product .product-image img.second-image {
+  opacity: 0; /* Ocultar segunda imagen */
+  z-index: 0; /* Segunda imagen detrás */
+}
+
+.single-product:hover .product-image img.first-image {
+  opacity: 0; /* Ocultar primera imagen al hacer hover */
+}
+
+.single-product:hover .product-image img.second-image {
+  opacity: 1; /* Mostrar segunda imagen al hacer hover */
 }
 
 .single-product .product-info {
@@ -3365,9 +3384,9 @@ ol {
   background-color: #ECBE00;
   color: #000;
   display: flex;
-  flex-direction: column; /* Organiza el contenido verticalmente */
-  flex-grow: 1; /* Permite que el bloque de información se ajuste */
-  justify-content: space-between; /* Distribuye el contenido */
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
 }
 
 .single-product .product-info .category {

@@ -230,183 +230,168 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
     <!-- Start Blog Singel Area -->
     <section class="section blog-single">
-        <div class="container-sm">
-            <div class="row justify-content-center">
-                <div class="col-lg-8 col-md-8 col-8">
-                    <div class="single-inner">
-                        <div class="post-details">
+    <div class="container-sm">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-8 col-12">
+                <div class="single-inner">
+                    <div class="post-details">
                         <?php
-                            $sql = "SELECT p.titulo, p.contenido, p.imagen_publicacion, p.fecha_publicacion, p.tag, u.nombre_usuario 
+                        // Obtener la publicación por ID
+                        if (isset($_GET['id'])) {
+                            $id_publicacion = $_GET['id'];
+                            $sql = "SELECT p.id_publicacion, p.titulo, p.contenido, p.imagen_publicacion, 
+                                            p.fecha_publicacion, p.tag, u.nombre_usuario, p.id_usuario 
                                     FROM publicaciones p
                                     JOIN usuarios u ON p.id_usuario = u.id_usuario
-                                    ORDER BY p.fecha_publicacion DESC"; // Ordenar por fecha de publicación
+                                    WHERE p.id_publicacion = $id_publicacion";
 
                             $result = $conn->query($sql);
 
-                            if (isset($_GET['id'])) {
-                                $id_publicacion = $_GET['id'];
+                            if ($result->num_rows > 0) {
+                                $publicacion = $result->fetch_assoc();
+                                $titulo = $publicacion['titulo'];
+                                $contenido = $publicacion['contenido'];
+                                $imagen = !empty($publicacion['imagen_publicacion']) ? $publicacion['imagen_publicacion'] : 'https://via.placeholder.com/850x460';
+                                $usuario = $publicacion['nombre_usuario'];
+                                $fecha = date("d M, Y", strtotime($publicacion['fecha_publicacion']));
+                                $tag = $publicacion['tag'];
+                                $id_usuario_publicacion = $publicacion['id_usuario'];
 
-                                // Consulta para obtener la publicación
-                                $sql = "SELECT p.id_publicacion, p.titulo, p.contenido, p.imagen_publicacion, p.fecha_publicacion, p.tag, u.nombre_usuario, p.id_usuario 
-                                        FROM publicaciones p
-                                        JOIN usuarios u ON p.id_usuario = u.id_usuario
-                                        WHERE p.id_publicacion = $id_publicacion";
-
-                                $result = $conn->query($sql);
-
-                                if ($result->num_rows > 0) {
-                                    $publicacion = $result->fetch_assoc();
-                                    $titulo = $publicacion['titulo'];
-                                    $contenido = $publicacion['contenido'];
-                                    $imagen = !empty($publicacion['imagen_publicacion']) ? $publicacion['imagen_publicacion'] : 'https://via.placeholder.com/850x460';
-                                    $usuario = $publicacion['nombre_usuario'];
-                                    $id_usuario_publicacion = $publicacion['id_usuario']; // ID del usuario que creó la publicación
-                                    $fecha = date("d M, Y", strtotime($publicacion['fecha_publicacion']));
-                                    $tag = $publicacion['tag'];
-
-                                    // Mostrar la publicación
-                                    echo '
-                                    <div class="main-content-head">
-                                        <div class="meta-information">
-                                            <ul class="meta-info">
-                                                <li><a href="javascript:void(0)"> '.$usuario.' -</a></li>
-                                                <li><a href="javascript:void(0)"> '.$fecha.'</a></li>
-                                            </ul>
-                                            <br>
-                                            <h3 class="post-title">'.$titulo.'</h3>
-                                            <ul class="meta-info">
-                                            <li><a href="javascript:void(0)"><i class="lni lni-tag"></i>'.$tag.'</a></li>
-                                            </ul>
-                                        </div>
+                                // Mostrar la publicación
+                                echo '
+                                <div class="main-content-head">
+                                    <div class="meta-information">
+                                        <ul class="meta-info">
+                                            <li><a href="javascript:void(0)">' . $usuario . ' -</a></li>
+                                            <li><a href="javascript:void(0)">' . $fecha . '</a></li>
+                                        </ul>
+                                        <h3 class="post-title">' . $titulo . '</h3>
+                                        <ul class="meta-info">
+                                            <li><a href="javascript:void(0)"><i class="lni lni-tag"></i>' . $tag . '</a></li>
+                                        </ul>
+                                    </div>
                                     
-                                        <div class="col-9 post-thumbnils">
-                                            <img src="'.$imagen.'" alt="#">
-                                        </div>
-                                        
-                                        <div class="detail-inner">
-                                            <p>'.$contenido.'</p>
-                                        </div>';
+                                    <div class="post-thumbnils text-center">
+                                        <img src="' . $imagen . '" alt="#" class="img-fluid rounded">
+                                    </div>
+                                    
+                                    <div class="detail-inner">
+                                        <p>' . $contenido . '</p>
+                                    </div>';
 
-                                    // Mostrar el botón de "Eliminar" si el usuario autenticado es el autor de la publicación
-                                    if ($_SESSION['id_usuario'] == $id_usuario_publicacion) {
-                                        echo '
-                                        <form action="delete_publication.php" method="POST" onsubmit="return confirm(\'¿Estás seguro de que deseas eliminar esta publicación?\');">
-                                            <input type="hidden" name="id_publicacion" value="'.$id_publicacion.'">
-                                            <button type="submit" class="btn btn-danger">Eliminar publicación</button>
-                                        </form>';
-                                    }
-
-                                    echo '</div>';
-                                } else {
-                                    echo "Publicación no encontrada.";
+                                // Mostrar el botón de "Eliminar" si el usuario autenticado es el autor de la publicación
+                                if ($_SESSION['id_usuario'] == $id_usuario_publicacion) {
+                                    echo '
+                                    <form action="delete_publication.php" method="POST" onsubmit="return confirm(\'¿Estás seguro de que deseas eliminar esta publicación?\');">
+                                        <input type="hidden" name="id_publicacion" value="' . $id_publicacion . '">
+                                        <button type="submit" class="btn btn-danger">Eliminar publicación</button>
+                                    </form>';
                                 }
+
+                                echo '</div>';
                             } else {
-                                echo "No se ha proporcionado un ID de publicación.";
+                                echo "<p>Publicación no encontrada.</p>";
                             }
+                        } else {
+                            echo "<p>No se ha proporcionado un ID de publicación.</p>";
+                        }
                         ?>
-                            <!-- Comments -->
-                            <div class="post-comments">
-                                <h3 class="comment-title"><span>Comentarios</span></h3>
-                                <ul class="comments-list">
-                                <?php
-                                    // Conexión a la base de datos y sesión
-                                    include 'db.php'; 
-                                    include '../src/validate_session.php';
+                    </div>
 
-                                // Verificar si se ha enviado el comentario
-                                if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['comentar'])) {
-                                    $id_publicacion = $_POST['id_publicacion'];
-                                    $id_usuario = $_SESSION['id_usuario'];
-                                    $comentario = $conn->real_escape_string($_POST['comentario']);
-                                    $fecha_comentario = date('Y-m-d H:i:s');
+                    <!-- Comments Section -->
+                    <div class="post-comments">
+                        <h3 class="comment-title"><span>Comentarios</span></h3>
+                        <ul class="comments-list">
+                        <?php
+                        // Verificar si se ha enviado el comentario
+                        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['comentar'])) {
+                            $id_publicacion = $_POST['id_publicacion'];
+                            $id_usuario = $_SESSION['id_usuario'];
+                            $comentario = $conn->real_escape_string($_POST['comentario']);
+                            $fecha_comentario = date('Y-m-d H:i:s');
 
-                                    // Inserta el comentario
-                                    $sql = "INSERT INTO comentarios (id_publicacion, id_usuario, comentario, fecha_comentario) 
-                                            VALUES ('$id_publicacion', '$id_usuario', '$comentario', '$fecha_comentario')";
+                            // Inserta el comentario
+                            $sql = "INSERT INTO comentarios (id_publicacion, id_usuario, comentario, fecha_comentario) 
+                                    VALUES ('$id_publicacion', '$id_usuario', '$comentario', '$fecha_comentario')";
 
-                                    if ($conn->query($sql)) {
-                                        // Mensaje de éxito
-                                        echo "<p>Comentario agregado correctamente.</p>";
-                                    } else {
-                                        echo "Error al agregar comentario: " . $conn->error;
-                                    }
+                            if ($conn->query($sql)) {
+                                echo "<p>Comentario agregado correctamente.</p>";
+                            } else {
+                                echo "Error al agregar comentario: " . $conn->error;
+                            }
+                        }
+
+                        // Ver comentarios de la publicación
+                        $sql_comentarios = "SELECT c.*, u.nombre_usuario, u.foto_perfil 
+                                            FROM comentarios c
+                                            JOIN usuarios u ON c.id_usuario = u.id_usuario
+                                            WHERE c.id_publicacion = $id_publicacion
+                                            ORDER BY c.fecha_comentario DESC";
+
+                        $result_comentarios = $conn->query($sql_comentarios);
+
+                        // Mostrar los comentarios
+                        if ($result_comentarios->num_rows > 0) {
+                            while ($comentario = $result_comentarios->fetch_assoc()) {
+                                $nombre_usuario = $comentario['nombre_usuario'];
+                                $fecha_comentario = date("d M, Y", strtotime($comentario['fecha_comentario']));
+                                $texto_comentario = $comentario['comentario'];
+                                $foto_perfil = !empty($comentario['foto_perfil']) ? $comentario['foto_perfil'] : 'https://via.placeholder.com/150';
+                                $id_comentario = $comentario['id_comentario'];
+                                $id_usuario_comentario = $comentario['id_usuario'];
+
+                                echo '
+                                <li class="comment-item">
+                                    <div class="comment-img">
+                                        <img src="' . $foto_perfil . '" alt="img" class="rounded-circle">
+                                    </div>
+                                    <div class="comment-desc">
+                                        <div class="desc-top">
+                                            <h6>' . $nombre_usuario . '</h6>
+                                            <span class="date">' . $fecha_comentario . '</span>
+                                        </div>
+                                        <p>' . $texto_comentario . '</p>';
+
+                                // Mostrar el botón de eliminar si el usuario autenticado es el autor del comentario
+                                if ($_SESSION['id_usuario'] == $id_usuario_comentario) {
+                                    echo '
+                                    <form action="delete_comment.php" method="POST" onsubmit="return confirm(\'¿Estás seguro de que deseas eliminar este comentario?\');">
+                                        <input type="hidden" name="id_comentario" value="' . $id_comentario . '">
+                                        <input type="hidden" name="id_publicacion" value="' . $id_publicacion . '">
+                                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                    </form>';
                                 }
 
-                                    // Ver comentarios de la publicación
-                                    $sql_comentarios = "SELECT c.*, u.nombre_usuario, u.foto_perfil 
-                                                        FROM comentarios c
-                                                        JOIN usuarios u ON c.id_usuario = u.id_usuario
-                                                        WHERE c.id_publicacion = $id_publicacion
-                                                        ORDER BY c.fecha_comentario DESC";
+                                echo '</div></li>';
+                            }
+                        } else {
+                            echo "<p>No hay comentarios aún.</p>";
+                        }
 
-                                    $result_comentarios = $conn->query($sql_comentarios);
+                        $conn->close();
+                        ?>
+                        </ul>
+                    </div>
 
-                                    /// Mostrar los comentarios
-                                    if ($result_comentarios->num_rows > 0) {
-                                        while ($comentario = $result_comentarios->fetch_assoc()) {
-                                            $nombre_usuario = $comentario['nombre_usuario'];
-                                            $fecha_comentario = date("d M, Y", strtotime($comentario['fecha_comentario']));
-                                            $texto_comentario = $comentario['comentario'];
-                                            $foto_perfil = !empty($comentario['foto_perfil']) ? $comentario['foto_perfil'] : 'https://via.placeholder.com/150';
-                                            $id_comentario = $comentario['id_comentario']; // Obtener el ID del comentario
-                                            $id_usuario_comentario = $comentario['id_usuario']; // ID del usuario que hizo el comentario
-
-                                            echo '
-                                            <li>
-                                                <div class="comment-img">
-                                                    <img src="'.$foto_perfil.'" alt="img">
-                                                </div>
-                                                <div class="comment-desc">
-                                                    <div class="desc-top">
-                                                        <h6>'.$nombre_usuario.'</h6>
-                                                        <span class="date">'.$fecha_comentario.'</span>
-                                                    </div>
-                                                    <p>'.$texto_comentario.'</p>';
-
-                                            // Mostrar el botón de eliminar si el usuario autenticado es el autor del comentario
-                                            if ($_SESSION['id_usuario'] == $id_usuario_comentario) {
-                                                echo '
-                                                <form action="delete_comment.php" method="POST" onsubmit="return confirm(\'¿Estás seguro de que deseas eliminar este comentario?\');">
-                                                    <input type="hidden" name="id_comentario" value="'.$id_comentario.'">
-                                                    <input type="hidden" name="id_publicacion" value="'.$id_publicacion.'">
-                                                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                                                </form>';
-                                            }
-
-                                            echo '</div></li>';
-                                        }
-                                    } else {
-                                        echo "<p>No hay comentarios aún.</p>";
-                                    }
-
-                                    $conn->close();
-                                    ?>
-                                </ul>
+                    <!-- Comment Form -->
+                    <div class="comment-form">
+                        <h3 class="comment-reply-title">Deja un comentario</h3>
+                        <form action="" method="POST">
+                            <input type="hidden" name="id_publicacion" value="<?php echo $id_publicacion; ?>">
+                            <div class="form-group">
+                                <textarea name="comentario" class="form-control" placeholder="Tu comentario" required></textarea>
                             </div>
-                            <div class="comment-form">
-                                <h3 class="comment-reply-title">Deja un comentario</h3>
-                                    <form action="" method="POST">
-                                        <input type="hidden" name="id_publicacion" value="<?php echo $id_publicacion; ?>"> <!-- ID de la publicación -->
-                                        <div class="row">
-                                        <div class="col-12">
-                                        <div class="form-box form-group">
-                                            <textarea name="comentario" class="form-control form-control-custom" placeholder="Tu comentario" required></textarea>
-                                        </div>
-                                        </div>
-                                        <div class="col-12">
-                                        <div class="button">
-                                            <button type="submit" name="comentar" class="btn">Publicar comentario</button>
-                </div>
-            </div>
-        </div>
-    </form>
-</div>
-                        </div>
+                            <div class="button">
+                                <button type="submit" name="comentar" class="btn btn-primary">Publicar comentario</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
     <!-- End Blog Singel Area -->
 
     <!-- Start Footer Area -->

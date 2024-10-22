@@ -11,24 +11,23 @@ if (isset($_GET['id'])) {
     $stmt->bind_param("i", $producto_id);
     $stmt->execute();
     $stmt->bind_result($nombre, $id_juego, $tipo, $precio, $stock, $desc_mini, $descripcion, $imagen1, $imagen2);
-
-    $stmt->close();
     
     // Verificar si se encontró el producto
     if ($stmt->fetch()) {
         // Producto encontrado, ahora se mostrará el nombre del juego
+        // Inicializar variable para el nombre del juego
+        $nombre_juego = "Juego no encontrado"; // Valor por defecto
+
         // Consulta para obtener el nombre del juego
         $sqlJuego = "SELECT nombre FROM juego WHERE id_juego = ?";
         $stmtJuego = $conn->prepare($sqlJuego);
         $stmtJuego->bind_param("i", $id_juego);
         $stmtJuego->execute();
-        $stmtJuego->bind_result($juego);
+        $stmtJuego->bind_result($nombre_juego); // Usar esta variable para almacenar el nombre del juego
         
         // Verificar si se encontró el juego
-        if ($stmtJuego->fetch()) {
-            // Ahora puedes usar $nombre_juego en lugar de $juego
-        } else {
-            $nombre_juego = "Juego no encontrado"; // Valor por defecto si no se encuentra
+        if (!$stmtJuego->fetch()) {
+            $nombre_juego = "Juego no encontrado"; // Esto es redundante pero puede ser útil para el control de errores
         }
 
         $stmtJuego->close();
@@ -45,6 +44,7 @@ if (isset($_GET['id'])) {
 
 $conn->close();
 ?>
+
 
 
 <!DOCTYPE html>

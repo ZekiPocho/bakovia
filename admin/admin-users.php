@@ -109,6 +109,37 @@ $result = mysqli_query($conn, $query);
             border-radius: 5px;
             margin-top: 5px;
         }
+        input[type="file"] {
+            color: #fff;
+        }
+        button {
+            background-color: #ff9800;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #e68900;
+        }
+        .actions {
+            text-align: center;
+        }
+        .back-button {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            background-color: #3c3c3c;
+            padding: 10px;
+            text-align: center;
+            color: #ff9800;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .back-button:hover {
+            background-color: #444;
+        }
     </style>
 </head>
 <body>

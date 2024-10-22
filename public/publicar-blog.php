@@ -94,6 +94,35 @@ $conn->close();
         }
         });
     </script>
+    <style>
+        .image-upload {
+    position: relative;
+    width: 400px; /* Ancho del input */
+    height: 300px; /* Alto del input */
+    border: 2px dashed #007bff; /* Estilo del borde */
+    border-radius: 8px; /* Bordes redondeados */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Ocultar contenido que desborda */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+}
+
+.image-upload input[type="file"] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0; /* Hacer que el input sea invisible */
+    cursor: pointer; /* Cambiar el cursor al pasar por encima */
+}
+
+.image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajustar la imagen sin distorsionarse */
+}
+
+    </style>
 </head>
 
 <body>
@@ -227,17 +256,14 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <h2 class="text-center mb-4">CREAR PUBLICACIÓN</h2>
         
         <form action="" method="POST" enctype="multipart/form-data">
-        <div class="mb-3 align-items-center">
-            <label for="imagenes" class="form-label">Subir imágenes:</label>
-            
-            <input class="form-control" type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple onchange="previewImages()" required style="display: none;">
-            
-            <div class="image-upload" id="image-upload" style="width: 600px; height: 300px; flex; border: dotted 2px red; align-items: center; justify-content: center; cursor: pointer;">
-                <span>Presiona para subir la imagen de tu publicación</span>
+        <div class="mb-3">
+            <label for="imagenes" class="form-label"></label>
+            <div class="image-upload">
+                <input type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple onchange="previewImages()" required>
+                <div id="vista-previa" class="image-preview"></div>
             </div>
-
-            <div id="vista-previa" class="mt-2" style="display: flex; flex-wrap: wrap;"></div>
         </div>
+
 
             <div class="mb-3">
                 <label for="titulo" class="form-label">Título:</label>
@@ -282,6 +308,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
 
 <script>
+<script>
 function previewImages() {
     var preview = document.getElementById('vista-previa');
     var files = document.getElementById('imagenes').files;
@@ -294,12 +321,6 @@ function previewImages() {
             reader.onload = function (e) {
                 var img = document.createElement('img');
                 img.src = e.target.result;
-                img.style.width = '100%';  // Ajustar al 100% del contenedor
-                img.style.height = '100%';  // Mantener la altura del contenedor
-                img.style.objectFit = 'cover';  // Cubrir el contenedor sin distorsión
-                img.style.border = '1px solid #007bff';  // Borde para las imágenes
-                img.style.marginTop = '10px';  // Espacio superior entre imágenes
-
                 preview.appendChild(img);
             }
             reader.readAsDataURL(file);
@@ -309,6 +330,7 @@ function previewImages() {
     }
 }
 </script>
+
 
 <script>
     const imageUpload = document.getElementById('image-upload');

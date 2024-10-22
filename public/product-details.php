@@ -38,11 +38,11 @@ if (isset($_GET['id'])) {
 
         $stmtJuego->bind_param("i", $id_juego);
         $stmtJuego->execute();
-        $stmtJuego->bind_result($nombre_juego); // Usar esta variable para almacenar el nombre del juego
+        $stmtJuego->bind_result($juego); // Usar esta variable para almacenar el nombre del juego
         
         // Verificar si se encontró el juego
         if (!$stmtJuego->fetch()) {
-            $nombre_juego = "Juego no encontrado"; // Esto es redundante pero puede ser útil para el control de errores
+            $juego = "Juego no encontrado"; // Esto es redundante pero puede ser útil para el control de errores
         }
 
         $stmtJuego->close(); // Cerrar la declaración de juego
@@ -293,6 +293,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         </div>
     </div>
     <!-- Descripción larga del producto -->
+     <br>
     <div class="container">
         <div class="top-area">
             <div class="row">

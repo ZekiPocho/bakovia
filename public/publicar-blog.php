@@ -81,7 +81,7 @@ $conn->close();
     <script src="https://cdn.tiny.cloud/1/ygwkt7hwy11qzbk8uc4veikmopkjbvolxix57q02vpkn8sif/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
       tinymce.init({
-        selector: 'texto',  // change this value according to your HTML
+        selector: 'textarea[name=contenido]',  // change this value according to your HTML
         menubar: 'edit insert format tools table help'
         });
     </script>
@@ -245,7 +245,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <div class="mb-4">
                 <h5 for="contenido">Cuerpo de la publicación:</h5>
                 <br>
-                <texto class="form-control" name="contenido" rows="5" placeholder="¡Siéntete libre de escribir en el formato que quieras!"></texto>
+                <textarea class="form-control" name="contenido" rows="5" placeholder="¡Siéntete libre de escribir en el formato que quieras!"></textarea>
             </div>
 
             <!-- Selección de Tags -->

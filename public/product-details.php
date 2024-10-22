@@ -16,7 +16,7 @@ if (isset($_GET['id'])) {
     if ($stmt->fetch()) {
         // Producto encontrado, ahora se mostrará el nombre del juego
         // Consulta para obtener el nombre del juego
-        $sqlJuego = "SELECT nombre_juego FROM juegos WHERE id_juego = ?";
+        $sqlJuego = "SELECT nombre_juego FROM juego WHERE id_juego = ?";
         $stmtJuego = $conn->prepare($sqlJuego);
         $stmtJuego->bind_param("i", $juego_id);
         $stmtJuego->execute();
@@ -243,8 +243,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                 <img src="<?php echo $imagen1; ?>" id="current" alt="<?php echo $nombre; ?>" style="width: 100%; height: 100%; object-fit: scale-down; background-color: white;" onclick="openFullscreen(this.src)">
                             </div>
                             <div class="images" style="display: flex; margin-top: 10px;">
-                                <img src="<?php echo $imagen1; ?>" class="img" alt="<?php echo $nombre; ?>" style="width: 80px; height: 80px; margin-right: 10px; object-fit: cover;" onclick="openFullscreen(this.src)">
-                                <img src="<?php echo $imagen2; ?>" class="img" alt="<?php echo $nombre; ?>" style="width: 80px; height: 80px; margin-right: 10px; object-fit: cover;" onclick="openFullscreen(this.src)">
+                                <img src="<?php echo $imagen1; ?>" class="img" alt="<?php echo $nombre; ?>" style="width: 80px; height: 80px; margin-right: 10px; object-fit: cover;">
+                                <img src="<?php echo $imagen2; ?>" class="img" alt="<?php echo $nombre; ?>" style="width: 80px; height: 80px; margin-right: 10px; object-fit: cover;">
                             </div>
                         </main>
                     </div>

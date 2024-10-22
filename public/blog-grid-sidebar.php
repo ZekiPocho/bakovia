@@ -247,7 +247,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 while ($row = $result->fetch_assoc()) {
                     $id_publicacion = $row['id_publicacion'];
                     $titulo = $row['titulo'];
-                    $contenido = $row['contenido'];
+                    $usuario = $row['nombre_usuario'];
                     $imagen = !empty($row['imagen_publicacion']) ? $row['imagen_publicacion'] : 'https://via.placeholder.com/370x215'; 
                     $tag = $row['tag'];
 
@@ -257,13 +257,13 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         <div class="single-blog">
                             <div class="blog-img">
                                 <a href="blog-single-sidebar.php?id='.$id_publicacion.'">
-                                    <img src="'.$imagen.'" alt="#" style="width: 555px; height: 300px; object-fit: cover;">
+                                    <img src="'.$imagen.'" alt="#" style="width: 555px; height: 300px; object-fit: contain;">
                                 </a>
                             </div>
                             <div class="blog-content">
-                                <a class="category" href="javascript:void(0)">'.$tag.'</a>
+                                <a class="category" href="javascript:void(0)">'.$usuario.'</a>
                                 <h4><a href="blog-single-sidebar.php?id='.$id_publicacion.'">'.(strlen($titulo) > 75 ? substr($titulo, 0, 75) . '...' : $titulo).'</a></h4>
-                                <p>'.substr($contenido, 0, 100).'...</p>
+                                <a class="category" href="javascript:void(0)">'.$tag.'</a>
                                 <div class="button">
                                     <a href="blog-single-sidebar.php?id='.$id_publicacion.'" class="btn">Leer más</a>
                                 </div>

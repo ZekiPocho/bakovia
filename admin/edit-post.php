@@ -120,17 +120,8 @@ if (isset($_POST['editar'])) {
     <script src="https://cdn.tiny.cloud/1/ygwkt7hwy11qzbk8uc4veikmopkjbvolxix57q02vpkn8sif/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
       tinymce.init({
-        selector: 'textarea',  // change this value according to your HTML
-        menu: {
-            file: { title: 'File', items: 'newdocument restoredraft | preview | importword exportpdf exportword | print | deleteallconversations' },
-            edit: { title: 'Edit', items: 'undo redo | cut copy paste pastetext | selectall | searchreplace' },
-            view: { title: 'View', items: 'code revisionhistory | visualaid visualchars visualblocks | spellchecker | preview fullscreen | showcomments' },
-            insert: { title: 'Insert', items: 'image link media addcomment pageembed codesample inserttable | math | charmap emoticons hr | pagebreak nonbreaking anchor tableofcontents | insertdatetime' },
-            format: { title: 'Format', items: 'bold italic underline strikethrough superscript subscript codeformat | styles blocks fontfamily fontsize align lineheight | forecolor backcolor | language | removeformat' },
-            tools: { title: 'Tools', items: 'spellchecker spellcheckerlanguage | a11ycheck code wordcount' },
-            table: { title: 'Table', items: 'inserttable | cell row column | advtablesort | tableprops deletetable' },
-            help: { title: 'Help', items: 'help' }
-        }
+        selector: 'texto',  // change this value according to your HTML
+        menubar: 'edit insert format tools table help'
         });
     </script>
 </head>
@@ -142,7 +133,7 @@ if (isset($_POST['editar'])) {
         <input type="text" name="titulo" value="<?php echo $publicacion['titulo']; ?>" required>
 
         <label for="contenido">Contenido</label>
-        <textarea name="contenido" rows="10" required><?php echo $publicacion['contenido']; ?></textarea>
+        <texto name="contenido" rows="10" required><?php echo $publicacion['contenido']; ?></texto>
 
         <label for="imagen_publicacion">Imagen Actual</label>
         <img src="<?php echo $publicacion['imagen_publicacion']; ?>" alt="Imagen Actual" style="max-width: 200px; display: block; margin-bottom: 10px;">

@@ -113,6 +113,9 @@ $result = mysqli_query($conn, $query);
 </head>
 <body>
     <h1>Administrar Usuarios</h1>
+
+    <a href="admin-dashboard.php" class="back-button">Volver al dashboard</a>
+
     <table>
         <tr>
             <th>ID Usuario</th>

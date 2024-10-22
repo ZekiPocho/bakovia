@@ -130,6 +130,8 @@ $result = mysqli_query($conn, $query);
 <body>
     <h1>Administrar Publicaciones</h1>
 
+<a href="admin-dashboard.php" class="back-button">Volver al dashboard</a>
+<a href="../public/blog-grid-sidebar.php" class="back-button">Volver a publicaciones</a>
     <table>
         <tr>
             <th>ID</th>

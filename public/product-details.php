@@ -6,7 +6,7 @@ if (isset($_GET['id'])) {
     $producto_id = $_GET['id'];
 
     // Consulta SQL para obtener los detalles del producto
-    $sql = "SELECT nombre_producto, id_juego, tipo, precio, stock, desc_mini, descripcion, imagen_producto, imagen_producto2 FROM productos WHERE id = ?";
+    $sql = "SELECT nombre_producto, id_juego, tipo, precio, stock, desc_mini, descripcion, imagen_producto, imagen_producto2 FROM productos WHERE id_producto = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $producto_id);
     $stmt->execute();

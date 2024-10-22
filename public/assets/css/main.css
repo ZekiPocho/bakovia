@@ -4268,11 +4268,12 @@ ol {
 .blog-single .post-thumbnils {
   position: relative;
   overflow: hidden;
-  border-radius: 0;
+  border-radius: 5px;
 }
 
 .blog-single .post-thumbnils img {
   width: 100%;
+  height: 500px;
 }
 
 .blog-single .detail-inner {

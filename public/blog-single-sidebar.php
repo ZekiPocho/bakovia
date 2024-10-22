@@ -249,15 +249,18 @@ if (isset($_GET['id'])) {
         echo '
         <div class="main-content-head">
             <div class="meta-information">
+                <ul class="meta-info">
+                    <li><a href="javascript:void(0)"> '.$usuario.' - </a></li>
+                    <li><a href="javascript:void(0)"> '.$fecha.'</a></li>
+                </ul>
+                <br>
                 <h2 class="post-title">'.$titulo.'</h2>
                 <ul class="meta-info">
-                    <li><a href="javascript:void(0)"> <i class="lni lni-user"></i>'.$usuario.'</a></li>
-                    <li><a href="javascript:void(0)"><i class="lni lni-calendar"></i>'.$fecha.'</a></li>
-                    <li><a href="javascript:void(0)"><i class="lni lni-tag"></i>'.$tag.'</a></li>
+                <li><a href="javascript:void(0)"><i class="lni lni-tag"></i>'.$tag.'</a></li>
                 </ul>
             </div>
         
-            <div class="post-thumbnils">
+            <div class="col-8 align-self-center post-thumbnils">
                 <img src="'.$imagen.'" alt="#" style="height: 100px; width: 100px;">
             </div>
             

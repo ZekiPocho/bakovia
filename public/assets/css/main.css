@@ -3359,6 +3359,7 @@ ol {
   top: 0;
   left: 0;
   transition: opacity 0.4s ease;
+  background-color: white;
 }
 
 .single-product .product-image img.first-image {

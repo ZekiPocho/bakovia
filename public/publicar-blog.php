@@ -222,8 +222,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <div class="mb-4 text-center">
                 <h5>Imagen de tu publicación:</h5>
                 <br>
-                <label for="imagen" class="image-upload-label">
-                    <div class="image-upload-placeholder d-flex align-items-center justify-content-center " style="height: 100%; width: 300px; background-color: black;" id="image-upload">
+                <label for="imagenes" class="image-upload-label" style="cursor: pointer;">
+                    <div class="image-upload-placeholder d-flex align-items-center justify-content-center" style="height: 100%; width: 300px; background-color: black;" id="image-upload">
                         <img id="image-preview" src="" alt="Previsualización" class="img-fluid d-none" style="max-height: 200px; object-fit: scale-down;">
                         <span id="image-text" class="text-muted">Haz clic aquí para subir una imagen</span>
                     </div>
@@ -282,22 +282,22 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     }
 
     function previewImage() {
-        var preview = document.getElementById('image-preview');
-        var imageText = document.getElementById('image-text');
-        var file = document.getElementById('imagenes').files[0];
+    const fileInput = document.getElementById('imagenes');
+    const imagePreview = document.getElementById('image-preview');
+    const imageText = document.getElementById('image-text');
 
-        if (file && file.type.startsWith('image/')) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                preview.src = e.target.result;
-                preview.classList.remove('d-none');  // Mostrar la imagen
-                imageText.classList.add('d-none');  // Ocultar el texto
-            }
-            reader.readAsDataURL(file);
-        } else {
-            alert('El archivo seleccionado no es una imagen');
+    if (fileInput.files && fileInput.files[0]) {
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+            imagePreview.src = e.target.result;
+            imagePreview.classList.remove('d-none'); // Mostrar la imagen
+            imageText.classList.add('d-none'); // Ocultar el texto
         }
+        
+        reader.readAsDataURL(fileInput.files[0]);
     }
+}
 </script>
 
 

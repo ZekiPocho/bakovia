@@ -78,7 +78,7 @@ $conn->close();
     <link rel="stylesheet" href="assets/css/tiny-slider.css" />
     <link rel="stylesheet" href="assets/css/glightbox.min.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
-    <<script src="https://cdn.tiny.cloud/1/ygwkt7hwy11qzbk8uc4veikmopkjbvolxix57q02vpkn8sif/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdn.tiny.cloud/1/ygwkt7hwy11qzbk8uc4veikmopkjbvolxix57q02vpkn8sif/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
       tinymce.init({
         selector: 'textarea',  // change this value according to your HTML
@@ -258,10 +258,10 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 }
             </script>
 
-            <div class="mb-3">
+
                 <label for="contenido">Cuerpo de la publicación:</label>
                 <textarea name="contenido" id="default" required></textarea>
-            </div>
+
 
             <div class="mb-3">
                 <label for="tags" class="form-label">Selecciona el Tag de tu publicación. ¿De qué trata tu publicación?:</label>

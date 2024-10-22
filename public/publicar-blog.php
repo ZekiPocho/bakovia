@@ -227,13 +227,13 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <h2 class="text-center mb-4">CREAR PUBLICACIÓN</h2>
         
         <form action="" method="POST" enctype="multipart/form-data">
-        <div class="mb-3">
+        <div class="mb-3 align-items-center">
             <label for="imagenes" class="form-label">Subir imágenes:</label>
             
             <input class="form-control" type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple onchange="previewImages()" required style="display: none;">
             
-            <div class="image-upload" id="image-upload" style="width: 400px; height: 300px; border: 2px dashed #007bff; display: flex; align-items: center; justify-content: center; cursor: pointer;">
-                <span class="text-muted">Arrastra y suelta tus imágenes aquí o haz clic para seleccionar</span>
+            <div class="image-upload" id="image-upload" style="width: 900px; height: 600px; flex; align-items: center; justify-content: center; cursor: pointer;">
+                <span class="text-muted"><img src="https://via.placeholder.com/900x600" alt="Foto de perfil" class="img-fluid"></span>
             </div>
 
             <div id="vista-previa" class="mt-2" style="display: flex; flex-wrap: wrap;"></div>

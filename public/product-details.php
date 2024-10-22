@@ -224,11 +224,11 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         <main id="gallery">
                             <div class="main-img">
                                 <!-- Imagen principal del producto -->
-                                <img src="assets/images/productos/<?php echo $imagen1; ?>" id="current" alt="<?php echo $nombre; ?>">
+                                <img src="<?php echo $imagen1; ?>" id="current" alt="<?php echo $nombre; ?>">
                             </div>
                             <div class="images">
-                                <img src="assets/images/productos/<?php echo $imagen1; ?>" class="img" alt="<?php echo $nombre; ?>">
-                                <img src="assets/images/productos/<?php echo $imagen2; ?>" class="img" alt="<?php echo $nombre; ?>">
+                                <img src="<?php echo $imagen1; ?>" class="img" alt="<?php echo $nombre; ?>">
+                                <img src="<?php echo $imagen2; ?>" class="img" alt="<?php echo $nombre; ?>">
                             </div>
                         </main>
                     </div>

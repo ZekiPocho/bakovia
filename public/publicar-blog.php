@@ -232,7 +232,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             
             <input class="form-control" type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple onchange="previewImages()" required style="display: none;">
             
-            <div class="image-upload" id="image-upload" style="width: 600px; height: 300px; flex; align-items: center; justify-content: center; cursor: pointer;">
+            <div class="image-upload" id="image-upload" style="width: 600px; height: 300px; flex; border: solid 2px red; align-items: center; justify-content: center; cursor: pointer;">
                 <span class="text-muted"><img src="https://via.placeholder.com/900x600" class="img-fluid"></span>
             </div>
 

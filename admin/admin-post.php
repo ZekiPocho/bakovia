@@ -61,12 +61,10 @@ $result = mysqli_query($conn, $query);
             text-align: center;
         }
         table {
-            width: 100%;
+            width: 90%;
             margin: 20px auto;
             border-collapse: collapse;
             background-color: #2c2c2c;
-            overflow-x: auto; /* Permitir scroll horizontal */
-            display: block; /* Para que el overflow funcione */
         }
         table th, table td {
             padding: 12px;
@@ -94,8 +92,7 @@ $result = mysqli_query($conn, $query);
         }
         .back-button {
             display: block;
-            width: 80%;
-            max-width: 200px;
+            width: 200px;
             margin: 20px auto;
             background-color: #3c3c3c;
             padding: 10px;
@@ -115,21 +112,6 @@ $result = mysqli_query($conn, $query);
         }
         .comment a {
             margin-left: 10px;
-        }
-        
-        @media (max-width: 600px) {
-            table, 
-            table th, 
-            table td {
-                display: block; /* Hace que cada celda sea un bloque */
-                width: 100%; /* Ocupa el 100% del contenedor */
-            }
-            table th {
-                display: none; /* Oculta los encabezados en vista móvil */
-            }
-            .back-button {
-                width: 90%; /* Botón más ancho en móvil */
-            }
         }
     </style>
 </head>

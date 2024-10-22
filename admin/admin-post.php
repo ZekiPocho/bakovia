@@ -12,7 +12,7 @@ if (!isset($_SESSION['id_rol']) || $_SESSION['id_rol'] != 1) {
     header('Location: ../public/index.php');
     exit;
 }
-}
+
 
 // Inicializamos la variable para evitar errores
 $publicacion = null;

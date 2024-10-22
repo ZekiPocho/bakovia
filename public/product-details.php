@@ -16,7 +16,7 @@ if (isset($_GET['id'])) {
     if ($stmt->fetch()) {
         // Producto encontrado, ahora se mostrará el nombre del juego
         // Consulta para obtener el nombre del juego
-        $sqlJuego = "SELECT nombre_juego FROM juego WHERE id_juego = ?";
+        $sqlJuego = "SELECT nombre FROM juego WHERE id_juego = ?";
         $stmtJuego = $conn->prepare($sqlJuego);
         $stmtJuego->bind_param("i", $juego_id);
         $stmtJuego->execute();

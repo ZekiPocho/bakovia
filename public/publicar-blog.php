@@ -237,7 +237,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     <form action="" method="POST" enctype="multipart/form-data">
     <div>
     <label for="tags">Seleccionar Tag:</label>
-    <select name="tag" id="tags">
+    <select name="tag" id="tags" required>
         <option value="miniaturas">Miniaturas</option>
         <option value="otros">Otros</option>
         <option value="ejercito">Ejército</option>
@@ -249,7 +249,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     </select>
         <div>
             <label for="imagenes">Subir imágenes:</label><br>
-            <input class="btn" type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple onchange="previewImages()"><br><br>
+            <input class="btn" type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple onchange="previewImages()" required><br><br>
         </div>
     </div>
         <div id="vista-previa"></div>
@@ -269,12 +269,6 @@ function contarCaracteres() {
             <textarea class="form-control" name="contenido" placeholder="cuerpo*"></textarea>
         </div >
         <div class="row">
-            <div class="col">
-            </div>
-            <div class="col">
-            </div>
-            <div class="col">
-            </div>
             <div class="col-auto">
             <input class="btn" type="submit" value="Publicar">
             </div>

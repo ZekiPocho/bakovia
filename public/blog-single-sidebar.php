@@ -207,6 +207,28 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 </nav>
 </header>
 <!--TERMINA HEADER Y NAVBAR PRO-->
+<br>
+<!-- Start Breadcrumbs -->
+<div class="breadcrumbs">
+        <div class="container-sm">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="breadcrumbs-content">
+                        <h1 class="page-title">POST</h1>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-12">
+                    <ul class="breadcrumb-nav">
+                        <li><a href="index.php"><i class="lni lni-home"></i> INICIO</a></li>
+                        <li><a href="blog-grid-sidebar.php">PUBLICACIONES</a></li>
+                        <li>POST</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumbs -->
+     <br>
 
     <!-- Start Blog Singel Area -->
     <section class="section blog-single">

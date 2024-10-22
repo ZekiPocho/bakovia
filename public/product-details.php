@@ -24,6 +24,9 @@ if (isset($_GET['id'])) {
         // Inicializar variable para el nombre del juego
         $nombre_juego = "Juego no encontrado"; // Valor por defecto
 
+        // Cerrar la primera declaración antes de preparar la siguiente
+        $stmt->close();
+
         // Consulta para obtener el nombre del juego
         $sqlJuego = "SELECT nombre FROM juego WHERE id_juego = ?";
         $stmtJuego = $conn->prepare($sqlJuego);
@@ -42,13 +45,12 @@ if (isset($_GET['id'])) {
             $nombre_juego = "Juego no encontrado"; // Esto es redundante pero puede ser útil para el control de errores
         }
 
-        $stmtJuego->close();
+        $stmtJuego->close(); // Cerrar la declaración de juego
     } else {
         echo "Producto no encontrado.";
         exit;
     }
     
-    $stmt->close();
 } else {
     echo "ID de producto no especificado.";
     exit;
@@ -56,6 +58,7 @@ if (isset($_GET['id'])) {
 
 $conn->close();
 ?>
+
 
 
 

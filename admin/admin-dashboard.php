@@ -67,6 +67,17 @@ if (!isset($_SESSION['id_rol']) || $_SESSION['id_rol'] != 1) {
     </style>
 </head>
 <body>
+    <h1>Página Principal del Administrador</h1>
 
+    <div class="button-container">
+        <a href="admin-products.php" class="admin-button">Administrar Productos</a>
+        <a href="admin-matches.php" class="admin-button">Administrar Partidas</a>
+        <a href="admin-post.php" class="admin-button">Administrar Publicaciones</a>
+        <a href="admin-index.php" class="admin-button">Modificar Contenido del Index</a>
+        <a href="admin-about-us.php" class="admin-button">Modificar Contenido de About Us</a>
+        <a href="admin-faq.php" class="admin-button">Modificar Contenido de FAQ</a>
+    </div>
+
+    <a href="../public/index.php" class="normal-view-button">Volver a la Vista Normal</a>
 </body>
 </html>

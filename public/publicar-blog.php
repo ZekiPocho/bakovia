@@ -259,7 +259,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             </script>
 
             <div class="mb-3">
-                <label for="contenido" class="form-label">Cuerpo de la publicación:</label>
+                <label for="contenido">Cuerpo de la publicación:</label>
                 <textarea name="contenido" id="default" required></textarea>
             </div>
 

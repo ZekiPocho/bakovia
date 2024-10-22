@@ -4269,6 +4269,9 @@ ol {
   position: relative;
   overflow: hidden;
   border-radius: 5px;
+  display: flex; /* Activar flexbox */
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente (si es necesario) */
 
 }
 

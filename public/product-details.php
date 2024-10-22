@@ -10,7 +10,7 @@ if (isset($_GET['id'])) {
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $producto_id);
     $stmt->execute();
-    $stmt->bind_result($nombre, $juego_id, $tipo, $precio, $stock, $desc_mini, $descripcion, $imagen1, $imagen2);
+    $stmt->bind_result($nombre, $id_juego, $tipo, $precio, $stock, $desc_mini, $descripcion, $imagen1, $imagen2);
     
     // Verificar si se encontró el producto
     if ($stmt->fetch()) {
@@ -18,9 +18,9 @@ if (isset($_GET['id'])) {
         // Consulta para obtener el nombre del juego
         $sqlJuego = "SELECT nombre FROM juego WHERE id_juego = ?";
         $stmtJuego = $conn->prepare($sqlJuego);
-        $stmtJuego->bind_param("i", $juego_id);
+        $stmtJuego->bind_param("i", $id_juego);
         $stmtJuego->execute();
-        $stmtJuego->bind_result($nombre_juego);
+        $stmtJuego->bind_result($juego);
         
         // Verificar si se encontró el juego
         if ($stmtJuego->fetch()) {

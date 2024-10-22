@@ -1,3 +1,39 @@
+<?php
+include("../public/db.php"); // Asegúrate de incluir el archivo de conexión a la base de datos
+
+// Verificar conexión
+if ($conn->connect_error) {
+    die("Conexión fallida: " . $conn->connect_error);
+}
+
+// Obtener el ID del producto de la URL
+if (isset($_GET['id'])) {
+    $producto_id = $_GET['id'];
+
+    // Consulta SQL para obtener los detalles del producto
+    $sql = "SELECT nombre_producto, id_juego, tipo, precio, stock, desc_mini, descripcion, imagen_producto, imagen_producto2 FROM productos WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $producto_id);
+    $stmt->execute();
+    $stmt->bind_result($nombre, $juego, $tipo, $precio, $stock, $desc_mini, $descripcion, $imagen1, $imagen2);
+    
+    // Verificar si se encontró el producto
+    if ($stmt->fetch()) {
+        // Producto encontrado, ahora mostrará los datos en la página
+    } else {
+        echo "Producto no encontrado.";
+        exit;
+    }
+    
+    $stmt->close();
+} else {
+    echo "ID de producto no especificado.";
+    exit;
+}
+
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 
@@ -185,84 +221,61 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
     <!-- Start Item Details -->
     <section class="item-details section">
-        <div class="container">
-            <div class="top-area">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 col-md-12 col-12">
-                        <div class="product-images">
-                            <main id="gallery">
-                                <div class="main-img">
-                                    <img src="https://via.placeholder.com/1000x670" id="current" alt="#">
-                                </div>
-                                <div class="images">
-                                    <img src="https://via.placeholder.com/1000x670" class="img" alt="#">
-                                    <img src="https://via.placeholder.com/1000x670" class="img" alt="#">
-                                </div>
-                            </main>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-12">
-                        <div class="product-info">
-                            <span style="font-size: 40px; padding-bottom: 10px; border-bottom: solid 1px white; margin-bottom: 10px; line-height: 45px;">Nombre</span>
-                            <br>
-                            <p class="category">Juego: <a href="javascript:void(0)">Warhammer</a></p><p class="category">Tipo de Producto: <a href="javascript:void(0)">Miniaturas</a></p>
-                            <h3 class="price">Bs. 850</h3>
-                            <p style="padding-bottom: 10px; border-bottom: solid 1px white; margin-bottom: 10px;">Disponibilidad: <span style="color: #5DD422;">1 en Stock</span> </p>
-                            <!--MINI DESCRIPCIÓN-->
-                            <p>None fight with more grim determination than the battle-brothers of the Dark Angels – they are held in awe by their allies and enemies alike. Yet behind their devotion to the Imperium lies a shadowy obsession.
-                            </p>
-                            <!--<div class="row">
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <div class="form-group quantity">
-                                        <label for="color">Cantidad</label>
-                                        <select class="form-control">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                        </select>
-                                    </div>
-                                </div>
+    <div class="container">
+        <div class="top-area">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-12 col-12">
+                    <div class="product-images">
+                        <main id="gallery">
+                            <div class="main-img">
+                                <!-- Imagen principal del producto -->
+                                <img src="assets/images/productos/<?php echo $imagen1; ?>" id="current" alt="<?php echo $nombre; ?>">
                             </div>
-                            <div class="bottom-content">
-                                <div class="row align-items-end">
-                                    <div class="col-lg-4 col-md-4 col-12">
-                                        <div class="button cart-button">
-                                            <button class="btn" style="width: 100%;">Add to Cart</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>-->
-                        </div>
+                            <div class="images">
+                                <img src="assets/images/productos/<?php echo $imagen1; ?>" class="img" alt="<?php echo $nombre; ?>">
+                                <img src="assets/images/productos/<?php echo $imagen2; ?>" class="img" alt="<?php echo $nombre; ?>">
+                            </div>
+                        </main>
                     </div>
                 </div>
-            </div>
-            <div class="product-details-info">
-                <div class="single-block">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="info-body custom-responsive-margin">
-                                <h4>Detalles</h4>
-                                <p>None fight with more grim determination than the battle-brothers of the Dark Angels – they are held in awe by their allies and enemies alike. Yet behind their devotion to the Imperium lies a shadowy obsession.
-
-Combat Patrol: Dark Angels is an army in a box, containing all the units you’ll need to field them as the Vengeful Brethren in Combat Patrol games of Warhammer 40,000, or simply to expand your existing collection. This selection of infantry offers a balanced force, with heavy fire support provided by the Hellblasters, line-breaking melee specialists in the form of Bladeguard Veterans, and a solid core of ten Intercessors – all led by a mighty Captain clad in Gravis Armour. You can download a free copy of the Combat Patrol rules on the Warhammer Community website.
-
-This set includes the following multipart plastic models:
-- 1x Captain in Gravis Armour
-- 3x Bladeguard Veterans
-- 5x Hellblasters
-- 10x Intercessors
-- 2x Dark Angels Primaris Upgrade frames, featuring a variety of shoulder pads and other accessories for your Intercessors
-- 3x Dark Angels Transfers Sheets
-
-All models come with their appropriate bases. These miniatures are supplied unpainted and require assembly – we recommend using Citadel Plastic Glue and Citadel Colour paints.</p>
-                            </div>
-
+                <div class="col-lg-6 col-md-12 col-12">
+                    <div class="product-info">
+                        <!-- Nombre del producto -->
+                        <span style="font-size: 40px; padding-bottom: 10px;"><?php echo $nombre; ?></span>
+                        <br>
+                        <p class="category">Juego: <a href="javascript:void(0)"><?php echo $juego; ?></a></p>
+                        <p class="category">Tipo de Producto: <a href="javascript:void(0)"><?php echo $tipo; ?></a></p>
+                        <!-- Precio -->
+                        <h3 class="price">Bs. <?php echo $precio; ?></h3>
+                        <!-- Disponibilidad -->
+                        <p style="padding-bottom: 10px;">Disponibilidad: 
+                            <?php if ($stock > 0): ?>
+                                <span style="color: #5DD422;"><?php echo $stock; ?> en Stock</span>
+                            <?php else: ?>
+                                <span style="color: #FF0000;">No disponible</span>
+                            <?php endif; ?>
+                        </p>
+                        <!-- Descripción corta -->
+                        <p><?php echo $desc_mini; ?></p>
                     </div>
                 </div>
-
             </div>
         </div>
-    </section>
+        <!-- Descripción larga del producto -->
+        <div class="product-details-info">
+            <div class="single-block">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="info-body custom-responsive-margin">
+                            <h4>Detalles</h4>
+                            <p><?php echo $descripcion; ?></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Start Footer Area -->
     <footer class="footer">

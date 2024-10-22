@@ -253,20 +253,20 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
 
 <section class="post">
-    <div class="container mt-5 p-4">
+    <div class="container mt-5 p-4" style="max-width: 600px;">
         <h2 class="text-center mb-4">CREAR PUBLICACIÓN</h2>
 
         <form action="" method="POST" enctype="multipart/form-data">
             <!-- Subir Imágenes -->
-            <div class="mb-4">
-                <h5>Subir imágenes:</h5>
-                <label for="imagenes" class="image-upload-label">
-                    <div class="image-upload-placeholder d-flex align-items-center justify-content-center bg-light border" style="height: 200px;" id="image-upload">
-                        <span class="text-muted">Haz clic aquí para subir imágenes</span>
+            <div class="mb-4 text-center">
+                <h5>Subir imagen:</h5>
+                <label for="imagen" class="image-upload-label">
+                    <div class="image-upload-placeholder d-flex align-items-center justify-content-center bg-light border" style="height: 200px; width: 100%;" id="image-upload">
+                        <img id="image-preview" src="" alt="Previsualización" class="img-fluid d-none" style="max-height: 200px; object-fit: contain;">
+                        <span id="image-text" class="text-muted">Haz clic aquí para subir una imagen</span>
                     </div>
-                    <input type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple onchange="previewImages()" class="d-none" required>
+                    <input type="file" id="imagen" name="imagen" accept="image/*" class="d-none" onchange="previewImage()" required>
                 </label>
-                <div id="vista-previa" class="d-flex flex-wrap mt-3"></div>
             </div>
 
             <!-- Título -->
@@ -306,7 +306,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     </div>
 </section>
 
-<!-- Script para contar caracteres y previsualización de imágenes -->
+<!-- Script para contar caracteres y previsualización de imagen -->
 <script>
     function contarCaracteres() {
         var titulo = document.getElementById('titulo');
@@ -314,26 +314,21 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         contador.textContent = titulo.value.length + "/100 caracteres";
     }
 
-    function previewImages() {
-        var preview = document.getElementById('vista-previa');
-        var files = document.getElementById('imagenes').files;
-        preview.innerHTML = ''; // Limpiar las imágenes previas
+    function previewImage() {
+        var preview = document.getElementById('image-preview');
+        var imageText = document.getElementById('image-text');
+        var file = document.getElementById('imagen').files[0];
 
-        for (var i = 0; i < files.length; i++) {
-            var file = files[i];
-            if (file.type.startsWith('image/')) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    var img = document.createElement('img');
-                    img.src = e.target.result;
-                    img.className = 'img-thumbnail m-2';
-                    img.style.maxHeight = '150px';
-                    preview.appendChild(img);
-                }
-                reader.readAsDataURL(file);
-            } else {
-                alert('El archivo seleccionado no es una imagen');
+        if (file && file.type.startsWith('image/')) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                preview.src = e.target.result;
+                preview.classList.remove('d-none');  // Mostrar la imagen
+                imageText.classList.add('d-none');  // Ocultar el texto
             }
+            reader.readAsDataURL(file);
+        } else {
+            alert('El archivo seleccionado no es una imagen');
         }
     }
 </script>

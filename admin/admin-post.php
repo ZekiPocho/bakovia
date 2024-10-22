@@ -13,11 +13,18 @@ if (!isset($_SESSION['id_rol']) || $_SESSION['id_rol'] != 1) {
     exit;
 }
 
-// Eliminar publicación
+// Eliminar publicación y sus comentarios
 if (isset($_GET['delete'])) {
     $id_publicacion = intval($_GET['delete']);
-    $query = "DELETE FROM publicaciones WHERE id_publicacion = $id_publicacion";
-    mysqli_query($conn, $query);
+    
+    // Primero eliminar los comentarios asociados
+    $delete_comments_query = "DELETE FROM comentarios WHERE id_publicacion = $id_publicacion";
+    mysqli_query($conn, $delete_comments_query);
+    
+    // Luego eliminar la publicación
+    $delete_post_query = "DELETE FROM publicaciones WHERE id_publicacion = $id_publicacion";
+    mysqli_query($conn, $delete_post_query);
+    
     header("Location: admin-post.php");
 }
 
@@ -131,7 +138,7 @@ $result = mysqli_query($conn, $query);
             <td><?php echo $row['fecha_publicacion']; ?></td>
             <td>
                 <a href="edit-post.php?id=<?php echo $row['id_publicacion']; ?>">Editar</a> |
-                <a href="admin-post.php?delete=<?php echo $row['id_publicacion']; ?>" onclick="return confirm('¿Estás seguro de eliminar esta publicación?')">Eliminar</a>
+                <a href="admin-post.php?delete=<?php echo $row['id_publicacion']; ?>" onclick="return confirm('¿Estás seguro de eliminar esta publicación y todos sus comentarios?')">Eliminar</a>
             </td>
         </tr>
         <tr>

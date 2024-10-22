@@ -279,7 +279,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                             </ul>
                                         </div>
                                     
-                                        <div class="col-8 align-self-center post-thumbnils">
+                                        <div class="col-9 post-thumbnils">
                                             <img src="'.$imagen.'" alt="#">
                                         </div>
                                         

@@ -242,7 +242,7 @@ $juegos = getAllGames($conn);
                 <tr>
                     <td><?= $producto['id_producto'] ?></td>
                     <td><?= $producto['nombre_producto'] ?></td>
-                    <td><?= $producto['descripcion'] ?></td>
+                    <td maxlength="50";><?= $producto['descripcion'] ?></td>
                     <td><?= $producto['precio'] ?></td>
                     <td><?= $producto['stock'] ?></td>
                     <td>

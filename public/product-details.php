@@ -11,6 +11,8 @@ if (isset($_GET['id'])) {
     $stmt->bind_param("i", $producto_id);
     $stmt->execute();
     $stmt->bind_result($nombre, $id_juego, $tipo, $precio, $stock, $desc_mini, $descripcion, $imagen1, $imagen2);
+
+    $stmt->close();
     
     // Verificar si se encontró el producto
     if ($stmt->fetch()) {

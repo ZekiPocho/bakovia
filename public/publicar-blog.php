@@ -230,7 +230,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
 
 <section class="post">
-    <div class="container-sm p-3">
+    <div class="container-sm p-2 mt-2">
         <center>
         <h2>
             CREAR PUBLICACIÓN
@@ -241,7 +241,31 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     <br>
     <form action="" method="POST" enctype="multipart/form-data">
     <div>
-    <label for="tags">Seleccionar Tag:</label>
+        <div>
+            <label for="imagenes">Subir imágenes:</label><br>
+            <input class="btn" type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple onchange="previewImages()" required><br><br>
+        </div>
+    </div>
+        <div id="vista-previa"></div>
+            <div>
+                <label for="titulo">Título:</label>
+                <input type="text" class="form-control" name="titulo" id="titulo" placeholder="título*" maxlength="300" oninput="contarCaracteres()" required>
+                <span id="contador-titulo" style="filter: opacity(50%);">0/100 caracteres</span>
+            </div>
+        <div>
+            <script>
+function contarCaracteres() {
+    var titulo = document.getElementById('titulo');
+    var contador = document.getElementById('contador-titulo');
+    contador.textContent = titulo.value.length + "/100 caracteres";
+}
+</script>
+        <br><br>
+
+        <label for="contenido">Cuerpo de la publicación</label>
+        <textarea class="form-control" name="contenido" placeholder="cuerpo*"></textarea>
+        </div >
+        <label for="tags">Seleccionar Tag:</label>
     <select name="tag" id="tags" required>
         <option value="miniaturas">Miniaturas</option>
         <option value="otros">Otros</option>
@@ -252,27 +276,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <option value="lore">Lore</option>
         <option value="noticias">Noticias</option>
     </select>
-        <div>
-            <label for="imagenes">Subir imágenes:</label><br>
-            <input class="btn" type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple onchange="previewImages()" required><br><br>
-        </div>
-    </div>
-        <div id="vista-previa"></div>
-            <div>
-                <label for="titulo">Título (máximo 100 carácteres):</label>
-                <input type="text" class="form-control" name="titulo" id="titulo" placeholder="título*" maxlength="300" oninput="contarCaracteres()" required>
-                <small id="contador-titulo">0/100 carácteres</small>
-            </div>
-        <div>
-            <script>
-function contarCaracteres() {
-    var titulo = document.getElementById('titulo');
-    var contador = document.getElementById('contador-titulo');
-    contador.textContent = titulo.value.length + "/100 caracteres";
-}
-</script>
-            <textarea class="form-control" name="contenido" placeholder="cuerpo*"></textarea>
-        </div >
         <div class="row">
             <div class="col-auto">
             <input class="btn" type="submit" value="Publicar">

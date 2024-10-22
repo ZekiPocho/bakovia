@@ -9,15 +9,24 @@ if (!isset($_SESSION['id_usuario'])) {
     exit();
 }
 
-// Verifica si el usuario ha iniciado sesión y si tiene el rol de administrador (id_rol = 1)
+// Verifica si el usuario tiene el rol de administrador
 if (!isset($_SESSION['id_rol']) || $_SESSION['id_rol'] != 1) {
     header('Location: ../public/index.php');
-    exit;
+    exit();
 }
+
 // Eliminar publicación
 if (isset($_GET['delete'])) {
     $id_publicacion = intval($_GET['delete']);
     $query = "DELETE FROM publicaciones WHERE id_publicacion = $id_publicacion";
+    mysqli_query($conn, $query);
+    header("Location: admin-post.php");
+}
+
+// Eliminar comentario
+if (isset($_GET['delete_comment'])) {
+    $id_comentario = intval($_GET['delete_comment']);
+    $query = "DELETE FROM comentarios WHERE id_comentario = $id_comentario";
     mysqli_query($conn, $query);
     header("Location: admin-post.php");
 }
@@ -73,44 +82,6 @@ $result = mysqli_query($conn, $query);
         a:hover {
             text-decoration: underline;
         }
-        form {
-            width: 50%;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #2c2c2c;
-            border-radius: 10px;
-        }
-        label {
-            display: block;
-            margin: 10px 0 5px;
-            font-weight: bold;
-        }
-        input[type="text"], input[type="number"], select, textarea {
-            width: 100%;
-            padding: 8px;
-            margin: 5px 0 15px;
-            background-color: #3c3c3c;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-        }
-        input[type="file"] {
-            color: #fff;
-        }
-        button {
-            background-color: #ff9800;
-            color: #000;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        button:hover {
-            background-color: #e68900;
-        }
-        .actions {
-            text-align: center;
-        }
         .back-button {
             display: block;
             width: 200px;
@@ -128,10 +99,12 @@ $result = mysqli_query($conn, $query);
     </style>
 </head>
 <body>
-    <h1>Administrar Publicaciones</h1>
+    <h1>Administrar Publicaciones y Comentarios</h1>
 
-<a href="admin-dashboard.php" class="back-button">Volver al dashboard</a>
-<a href="../public/blog-grid-sidebar.php" class="back-button">Volver a publicaciones</a>
+    <a href="admin-dashboard.php" class="back-button">Volver al dashboard</a>
+    <a href="../public/blog-grid-sidebar.php" class="back-button">Volver a publicaciones</a>
+
+    <h2>Publicaciones</h2>
     <table>
         <tr>
             <th>ID</th>
@@ -151,6 +124,32 @@ $result = mysqli_query($conn, $query);
             <td>
                 <a href="edit-post.php?id=<?php echo $row['id_publicacion']; ?>">Editar</a> |
                 <a href="admin-post.php?delete=<?php echo $row['id_publicacion']; ?>" onclick="return confirm('¿Estás seguro de eliminar esta publicación?')">Eliminar</a>
+            </td>
+        </tr>
+        <?php endwhile; ?>
+    </table>
+
+    <h2>Comentarios</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>ID Publicación</th>
+            <th>Contenido del Comentario</th>
+            <th>Acciones</th>
+        </tr>
+        <?php
+        // Obtener todos los comentarios
+        $query_comentarios = "SELECT * FROM comentarios";
+        $result_comentarios = mysqli_query($conn, $query_comentarios);
+
+        while ($comentario = mysqli_fetch_assoc($result_comentarios)): ?>
+        <tr>
+            <td><?php echo $comentario['id_comentario']; ?></td>
+            <td><?php echo $comentario['id_publicacion']; ?></td>
+            <td><?php echo substr($comentario['contenido_comentario'], 0, 100); ?>...</td>
+            <td>
+                <a href="edit-comment.php?id=<?php echo $comentario['id_comentario']; ?>">Editar</a> |
+                <a href="admin-post.php?delete_comment=<?php echo $comentario['id_comentario']; ?>" onclick="return confirm('¿Estás seguro de eliminar este comentario?')">Eliminar</a>
             </td>
         </tr>
         <?php endwhile; ?>

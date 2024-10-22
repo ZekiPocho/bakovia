@@ -94,36 +94,6 @@ $conn->close();
         }
         });
     </script>
-    <style>
-        .image-upload {
-    position: relative;
-    width: 500px; /* Ancho del input */
-    height: 400px; /* Alto del input */
-    border: 2px dashed #007bff; /* Estilo del borde */
-    border-radius: 8px; /* Bordes redondeados */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden; /* Ocultar contenido que desborda */
-    cursor: pointer; /* Cambia el cursor al pasar por encima */
-}
-
-.image-upload input[type="file"] {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: 0; /* Hacer que el input sea invisible */
-    cursor: pointer; /* Cambiar el cursor al pasar por encima */
-}
-
-.image-preview img {
-    width: 100%;
-    height: 100%;
-    object-fit: scale_down; /* Ajustar la imagen sin distorsionarse */
-    background-color: black;
-}
-
-    </style>
 </head>
 
 <body>
@@ -257,13 +227,16 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <h2 class="text-center mb-4">CREAR PUBLICACIÓN</h2>
         
         <form action="" method="POST" enctype="multipart/form-data">
-        <div class="mb-3">
-            <label for="imagenes" class="form-label"></label>
-            <div class="image-upload">
-                <input type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple onchange="previewImages()" required>
-                <div id="vista-previa" class="image-preview"></div>
+        <div class="col-md-4 text-center mb-4">
+            <div class="d-flex justify-content-center">
+                <div class="image-upload-container" style="width: 400px; height: 300px; overflow: hidden; border-radius: 5px; position: relative; border: 2px dashed #007bff;">
+                    <input type="file" id="postImage" name="postImage" class="form-control" accept="image/*" onchange="handlePostImage(event)" style="display: none;">
+                    <img src="../uploads/user/default.png" alt="Imagen de publicación" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;" id="postPreview" onclick="document.getElementById('postImage').click();">
+                </div>
             </div>
+            <p class="mt-2" style="filter: opacity(50%);">Haz clic en la imagen para subir una imagen de publicación</p>
         </div>
+
 
 
             <div class="mb-3">
@@ -309,29 +282,21 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
 
 <script>
-<script>
-function previewImages() {
-    var preview = document.getElementById('vista-previa');
-    var files = document.getElementById('imagenes').files;
-    preview.innerHTML = '';  // Limpiar las imágenes previas
+function handlePostImage(event) {
+    var preview = document.getElementById('postPreview');
+    var file = event.target.files[0];
 
-    for (var i = 0; i < files.length; i++) {
-        var file = files[i];
-        if (file.type.startsWith('image/')) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                var img = document.createElement('img');
-                img.src = e.target.result;
-                preview.appendChild(img);
-            }
-            reader.readAsDataURL(file);
-        } else {
-            alert('El archivo seleccionado no es una imagen');
+    if (file && file.type.startsWith('image/')) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            preview.src = e.target.result; // Cambia la imagen de vista previa
         }
+        reader.readAsDataURL(file);
+    } else {
+        alert('El archivo seleccionado no es una imagen');
     }
 }
 </script>
-
 
 <script>
     const imageUpload = document.getElementById('image-upload');

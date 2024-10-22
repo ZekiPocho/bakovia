@@ -1,6 +1,6 @@
 <?php
 include ('../src/validate_session.php'); // Asegúrate de que el usuario esté autenticado
-include ('../public/db.php')
+include ('../public/db.php');
 
 if ($conn->connect_error) {
     die("Error de conexión: " . $conn->connect_error);

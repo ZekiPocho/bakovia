@@ -217,56 +217,55 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     <!-- Start Item Details -->
     <section class="item-details section">
     <div class="container">
-    <div class="top-area">
-        <div class="row align-items-center">
-            <div class="col-lg-6 col-md-12 col-12">
-                <div class="product-images">
-                    <main id="gallery">
-                        <div class="main-img" style="width: 500px; height: 350px; overflow: hidden;">
-                            <!-- Imagen principal del producto -->
-                            <img src="<?php echo $imagen1; ?>" id="current" alt="<?php echo $nombre; ?>" style="width: 100%; height: 100%; object-fit: scale-down; background-color: white;">
-                        </div>
-                        <div class="images" style="display: flex; margin-top: 10px;">
-                            <img src="<?php echo $imagen1; ?>" class="img" alt="<?php echo $nombre; ?>" style="width: 80px; height: 80px; margin-right: 10px; object-fit: cover;">
-                            <img src="<?php echo $imagen2; ?>" class="img" alt="<?php echo $nombre; ?>" style="width: 80px; height: 80px; margin-right: 10px; object-fit: cover;">
-                        </div>
-                    </main>
+        <div class="top-area">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-12 col-12">
+                    <div class="product-images">
+                        <main id="gallery">
+                            <div class="main-img" style="width: 500px; height: 350px; overflow: hidden;">
+                                <!-- Imagen principal del producto -->
+                                <img src="<?php echo $imagen1; ?>" id="current" alt="<?php echo $nombre; ?>" style="width: 100%; height: 100%; object-fit: scale-down; background-color: white;" onclick="openFullscreen(this.src)">
+                            </div>
+                            <div class="images" style="display: flex; margin-top: 10px;">
+                                <img src="<?php echo $imagen1; ?>" class="img" alt="<?php echo $nombre; ?>" style="width: 80px; height: 80px; margin-right: 10px; object-fit: cover;" onclick="openFullscreen(this.src)">
+                                <img src="<?php echo $imagen2; ?>" class="img" alt="<?php echo $nombre; ?>" style="width: 80px; height: 80px; margin-right: 10px; object-fit: cover;" onclick="openFullscreen(this.src)">
+                            </div>
+                        </main>
+                    </div>
                 </div>
-            </div>
-            <br>
-            <div class="col-lg-6 col-md-12 col-12 pb-50">
-                <div class="product-info">
-                    <!-- Nombre del producto -->
-                    <span style="font-size: 40px; padding-bottom: 10px;"><?php echo $nombre; ?></span>
-                    <br>
-                    <p class="category">Juego: <a href="javascript:void(0)"><?php echo $juego; ?></a></p>
-                    <p class="category">Tipo de Producto: <a href="javascript:void(0)"><?php echo $tipo; ?></a></p>
-                    <!-- Precio -->
-                    <h3 class="price">Bs. <?php echo $precio; ?></h3>
-                    <!-- Disponibilidad -->
-                    <p style="padding-bottom: 10px;">Disponibilidad: 
-                        <?php if ($stock > 0): ?>
-                            <span style="color: #5DD422;"><?php echo $stock; ?> en Stock</span>
-                        <?php else: ?>
-                            <span style="color: #FF0000;">No disponible</span>
-                        <?php endif; ?>
-                    </p>
-                    <!-- Descripción corta -->
-                    <p><?php echo $desc_mini; ?></p>
+                <br>
+                <div class="col-lg-6 col-md-12 col-12 pb-50">
+                    <div class="product-info">
+                        <!-- Nombre del producto -->
+                        <span style="font-size: 40px; padding-bottom: 10px;"><?php echo $nombre; ?></span>
+                        <br>
+                        <p class="category">Juego: <a href="javascript:void(0)"><?php echo $juego; ?></a></p>
+                        <p class="category">Tipo de Producto: <a href="javascript:void(0)"><?php echo $tipo; ?></a></p>
+                        <!-- Precio -->
+                        <h3 class="price">Bs. <?php echo $precio; ?></h3>
+                        <!-- Disponibilidad -->
+                        <p style="padding-bottom: 10px;">Disponibilidad: 
+                            <?php if ($stock > 0): ?>
+                                <span style="color: #5DD422;"><?php echo $stock; ?> en Stock</span>
+                            <?php else: ?>
+                                <span style="color: #FF0000;">No disponible</span>
+                            <?php endif; ?>
+                        </p>
+                        <!-- Descripción corta -->
+                        <p><?php echo $desc_mini; ?></p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-        <!-- Descripción larga del producto -->
-        <div class="container">
-            <div class="top-area">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="info-body custom-responsive-margin">
-                            <h4>Detalles</h4>
-                            <p><?php echo $descripcion; ?></p>
-                        </div>
+    <!-- Descripción larga del producto -->
+    <div class="container">
+        <div class="top-area">
+            <div class="row">
+                <div class="col-12">
+                    <div class="info-body custom-responsive-margin">
+                        <h4>Detalles</h4>
+                        <p><?php echo $descripcion; ?></p>
                     </div>
                 </div>
             </div>
@@ -343,7 +342,35 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <!-- End Footer Middle -->
     </footer>
     <!--/ End Footer Area -->
+    <script>
+    function openFullscreen(imageSrc) {
+        const fullscreenDiv = document.createElement('div');
+        fullscreenDiv.style.position = 'fixed';
+        fullscreenDiv.style.top = 0;
+        fullscreenDiv.style.left = 0;
+        fullscreenDiv.style.width = '100%';
+        fullscreenDiv.style.height = '100%';
+        fullscreenDiv.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+        fullscreenDiv.style.display = 'flex';
+        fullscreenDiv.style.alignItems = 'center';
+        fullscreenDiv.style.justifyContent = 'center';
+        fullscreenDiv.style.zIndex = 9999;
 
+        const img = document.createElement('img');
+        img.src = imageSrc;
+        img.style.maxWidth = '90%';
+        img.style.maxHeight = '90%';
+        img.style.objectFit = 'contain';
+
+        // Cerrar pantalla completa al hacer clic en la imagen o fuera de ella
+        fullscreenDiv.onclick = function() {
+            document.body.removeChild(fullscreenDiv);
+        };
+
+        fullscreenDiv.appendChild(img);
+        document.body.appendChild(fullscreenDiv);
+    }
+</script>
     <!-- ========================= JS here ========================= -->
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/tiny-slider.js"></script>

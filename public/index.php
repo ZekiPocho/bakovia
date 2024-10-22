@@ -280,42 +280,52 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     </section>
     <!-- End Hero Area -->
 
-    <!-- Start Trending Product Area -->
-    <section class="trending-product section">
-        <div class="container-sm">
-            <div class="row">
-                <div class="col-12"> 
-                    <div class="section-title">
-                        <h2>Productos Disponibles</h2>
-                    </div>
+<!-- Start Trending Product Area -->
+<?php
+// Conexión a la base de datos
+include("db.php");
+
+// Obtener los últimos 4 productos
+$query = "SELECT * FROM productos ORDER BY fecha_agregado DESC LIMIT 4"; // Asegúrate de que la columna de fecha sea correcta
+$result = mysqli_query($conn, $query);
+?>
+<section class="trending-product section">
+    <div class="container-sm">
+        <div class="row">
+            <div class="col-12"> 
+                <div class="section-title">
+                    <h2>Productos Disponibles</h2>
                 </div>
             </div>
-            <div class="row">
+        </div>
+        <div class="row">
+            <?php while ($product = mysqli_fetch_assoc($result)): ?>
                 <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Product -->
                     <div class="single-product">
                         <div class="product-image">
-                            <img src="assets/images/products/orks.png" alt="#">
+                            <img src="<?php echo $product['imagen_producto']; ?>" alt="<?php echo $product['nombre_producto']; ?>">
                             <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Añadir al Carrito</a>
+                                <a href="product-details.php?id=<?php echo $product['id_producto']; ?>" class="btn"><i class="lni lni-cart"></i> Añadir al Carrito</a>
                             </div>
                         </div>
                         <div class="product-info">
-                            <span class="category">Combat Patrol</span>
+                            <span class="category"><?php echo $product['nombre_producto']; ?></span>
                             <h4 class="title">
-                                <a href="product-grids.php">Orcos</a>
+                                <a href="product-grids.php?id=<?php echo $product['id_producto']; ?>"><?php echo $product['tipo']; ?></a>
                             </h4>
                             <div class="price">
-                                <span>Bs. 1300</span>
+                                <span><?php echo $product['precio']; ?> €</span> <!-- Ajusta el símbolo de la moneda según sea necesario -->
                             </div>
                         </div>
                     </div>
                     <!-- End Single Product -->
                 </div>
-            </div>
+            <?php endwhile; ?>
         </div>
-    </section>
-    <!-- End Trending Product Area -->
+    </div>
+</section>
+<!-- End Trending Product Area -->
 
     <!-- Start Blog Section Area -->
     <section class="blog-section section">

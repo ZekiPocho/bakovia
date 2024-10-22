@@ -1,6 +1,7 @@
 <?php
 include ('../src/validate_session.php'); // Asegúrate de que el usuario esté autenticado
-include ('../public/db.php');
+include ('../public/db.php')
+$mensaje = "";
 
 if ($conn->connect_error) {
     die("Error de conexión: " . $conn->connect_error);
@@ -246,29 +247,31 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <span id="contador-titulo" style="filter: opacity(50%);">0/100 caracteres</span>
             </div>
         <div>
-            <script>
-function contarCaracteres() {
-    var titulo = document.getElementById('titulo');
-    var contador = document.getElementById('contador-titulo');
-    contador.textContent = titulo.value.length + "/100 caracteres";
-}
-</script>
+        <script>
+            function contarCaracteres() {
+                var titulo = document.getElementById('titulo');
+                var contador = document.getElementById('contador-titulo');
+                contador.textContent = titulo.value.length + "/100 caracteres";
+            }
+        </script>
         <br><br>
 
         <label for="contenido">Cuerpo de la publicación</label><br>
         <textarea class="form-control" name="contenido" placeholder="cuerpo*"></textarea>
         </div >
-        <label for="tags">Selecciona el Tag de tu publicación. ¿De qué trata tu publicación?:</label><br>
-    <select name="tag" id="tags" required>
-        <option value="miniaturas">Miniaturas</option>
-        <option value="otros">Otros</option>
-        <option value="ejercito">Ejército</option>
-        <option value="tienda">Tienda</option>
-        <option value="juegos">Juegos</option>
-        <option value="pintura">Pintura/Hobby</option>
-        <option value="lore">Lore</option>
-        <option value="noticias">Noticias</option>
-    </select>
+    <br><br>
+    <label for="tags">Selecciona el Tag de tu publicación. ¿De qué trata tu publicación?:</label><br>
+            <select style="color: white;" name="tag" id="tags" required>
+                <option value="" selected disabled>Selecciona Tag</option>
+                <option value="miniaturas">Miniaturas</option>
+                <option value="otros">Otros</option>
+                <option value="ejercito">Ejército</option>
+                <option value="tienda">Tienda</option>
+                <option value="juegos">Juegos</option>
+                <option value="pintura">Pintura/Hobby</option>
+                <option value="lore">Lore</option>
+                <option value="noticias">Noticias</option>
+            </select>
         <div class="row">
             <div class="col-auto">
             <input class="btn" type="submit" value="Publicar">

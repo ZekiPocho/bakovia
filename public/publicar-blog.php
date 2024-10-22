@@ -227,14 +227,19 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <h2 class="text-center mb-4">CREAR PUBLICACIÓN</h2>
         
         <form action="publicar-blog.php" method="POST" enctype="multipart/form-data">
-        <div class="col-md-4 text-center mb-4">
+
+        <!--<div class="col-md-4 text-center mb-4">
             <div class="d-flex justify-content-center">
                 <div class="image-upload-container" style="width: 400px; height: 300px; overflow: hidden; border-radius: 5px; position: relative; border: 2px dashed #007bff;">
-                    <input type="file" id="postImage" name="postImage" class="form-control" accept="image/*" onchange="handlePostImage(event)" style="display: none;">
+                    <input type="file" id="postImage" name="imagenes" class="form-control" accept="image/*" onchange="handlePostImage(event)" style="display: none;">
                     <img src="../uploads/user/default.png" alt="Imagen de publicación" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;" id="postPreview" onclick="document.getElementById('postImage').click();">
                 </div>
             </div>
             <p class="mt-2" style="filter: opacity(50%);">Haz clic en la imagen para subir una imagen de publicación</p>
+        </div>-->
+        <div>
+            <label for="imagenes">Subir imágenes:</label><br>
+            <input class="btn" type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple onchange="previewImages()" required><br><br>
         </div>
 
 
@@ -281,7 +286,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 </section>
 
 
-<script>
+<!--<script>
 function handlePostImage(event) {
     var preview = document.getElementById('postPreview');
     var file = event.target.files[0];
@@ -296,7 +301,7 @@ function handlePostImage(event) {
         alert('El archivo seleccionado no es una imagen');
     }
 }
-</script>
+</script>-->
 
 <script>
     const imageUpload = document.getElementById('image-upload');

@@ -83,11 +83,9 @@ $conn->close();
       tinymce.init({
         selector: 'textarea',  // change this value according to your HTML
         menu: {
-            file: { title: 'File', items: 'newdocument restoredraft | preview | importword exportpdf exportword | print | deleteallconversations' },
-            edit: { title: 'Edit', items: 'undo redo | cut copy paste pastetext | selectall | searchreplace' },
-            view: { title: 'View', items: 'code revisionhistory | visualaid visualchars visualblocks | spellchecker | preview fullscreen | showcomments' },
-            insert: { title: 'Insert', items: 'image link media addcomment pageembed codesample inserttable | math | charmap emoticons hr | pagebreak nonbreaking anchor tableofcontents | insertdatetime' },
-            format: { title: 'Format', items: 'bold italic underline strikethrough superscript subscript codeformat | styles blocks fontfamily fontsize align lineheight | forecolor backcolor | language | removeformat' },
+            edit: { title: 'Editar', items: 'undo redo | cut copy paste pastetext | selectall | searchreplace' },
+            insert: { title: 'Insertar Línea', items: 'image link media addcomment pageembed codesample inserttable | math | charmap emoticons hr | pagebreak nonbreaking anchor tableofcontents | insertdatetime' },
+            format: { title: 'Format', items: 'bold italic underline strikethrough superscript subscript codeformat | styles blocks fontfamily fontsize align lineheight | language | removeformat' },
             tools: { title: 'Tools', items: 'spellchecker spellcheckerlanguage | a11ycheck code wordcount' },
             table: { title: 'Table', items: 'inserttable | cell row column | advtablesort | tableprops deletetable' },
             help: { title: 'Help', items: 'help' }
@@ -257,7 +255,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <br><br>
 
         <h5 for="contenido">Cuerpo de la publicación</h5><br>
-        <textarea class="form-control" name="contenido" placeholder="cuerpo*"></textarea>
+        <textarea class="form-control" name="contenido" placeholder="¡Siéntete libre de escribir en el formato que quieras!"></textarea>
         </div >
     <br><br>
     <h5 for="tags">Selecciona el Tag de tu publicación. ¿De qué trata tu publicación?:</h5><br>

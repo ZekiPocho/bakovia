@@ -18,13 +18,13 @@ if (!isset($_SESSION['id_rol']) || $_SESSION['id_rol'] != 1) {
 if (isset($_GET['delete'])) {
     $id_publicacion = intval($_GET['delete']);
     $query = "DELETE FROM publicaciones WHERE id_publicacion = $id_publicacion";
-    mysqli_query($conexion, $query);
+    mysqli_query($conn, $query);
     header("Location: admin-post.php");
 }
 
 // Obtener todas las publicaciones
 $query = "SELECT * FROM publicaciones";
-$result = mysqli_query($conexion, $query);
+$result = mysqli_query($conn, $query);
 ?>
 
 <!DOCTYPE html>

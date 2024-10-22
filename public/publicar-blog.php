@@ -1,14 +1,6 @@
 <?php
 include ('../src/validate_session.php'); // Asegúrate de que el usuario esté autenticado
-
-$mensaje = "";
-// Conexión a la base de datos
-$servername = "localhost";
-$username = "root";
-$password = ""; // Tu contraseña de la base de datos
-$dbname = "bakoviadb";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
+include ('../public/db.php')
 
 if ($conn->connect_error) {
     die("Error de conexión: " . $conn->connect_error);

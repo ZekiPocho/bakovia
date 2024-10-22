@@ -261,7 +261,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <div class="product-details-info">
             <div class="single-block">
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-8">
                         <div class="info-body custom-responsive-margin">
                             <h4>Detalles</h4>
                             <p><?php echo $descripcion; ?></p>

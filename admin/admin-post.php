@@ -36,28 +36,35 @@ $result = mysqli_query($conn, $query);
     <style>
         body {
             background-color: #1e1e1e;
-            color: #ff9800;
+            color: #ffffff;
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
         }
-        h1 {
-            text-align: center;
-            margin-top: 20px;
+        h1, h2 {
             color: #ff9800;
+            text-align: center;
         }
         table {
-            width: 100%;
-            border-collapse: collapse;
+            width: 90%;
             margin: 20px auto;
-            background-color: #333;
+            border-collapse: collapse;
+            background-color: #2c2c2c;
         }
-        th, td {
-            padding: 10px;
+        table th, table td {
+            padding: 12px;
             text-align: left;
-            border: 1px solid #ff9800;
-            color: #ff9800;
+            border-bottom: 1px solid #444;
         }
-        th {
-            background-color: #444;
+        table th {
+            background-color: #ff9800;
+            color: #000;
+        }
+        table td img {
+            max-width: 50px;
+            height: auto;
+            border-radius: 5px;
         }
         a {
             color: #ff9800;
@@ -66,26 +73,64 @@ $result = mysqli_query($conn, $query);
         a:hover {
             text-decoration: underline;
         }
-        button, a {
-            padding: 5px 10px;
-            background-color: #ff9800;
-            border: none;
-            color: #1e1e1e;
-            cursor: pointer;
-            text-transform: uppercase;
+        form {
+            width: 50%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #2c2c2c;
+            border-radius: 10px;
         }
-        button:hover, a:hover {
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="number"], select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 15px;
+            background-color: #3c3c3c;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+        input[type="file"] {
+            color: #fff;
+        }
+        button {
+            background-color: #ff9800;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
             background-color: #e68900;
         }
-        img {
-            max-width: 100px;
+        .actions {
+            text-align: center;
+        }
+        .back-button {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            background-color: #3c3c3c;
+            padding: 10px;
+            text-align: center;
+            color: #ff9800;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .back-button:hover {
+            background-color: #444;
         }
     </style>
 </head>
 <body>
     <h1>Administrar Publicaciones</h1>
 
-    <table border="1">
+    <table>
         <tr>
             <th>ID</th>
             <th>Título</th>

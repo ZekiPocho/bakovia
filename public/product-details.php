@@ -1,11 +1,6 @@
 <?php
 include("../public/db.php"); // Asegúrate de incluir el archivo de conexión a la base de datos
 
-// Verificar conexión
-if ($conn->connect_error) {
-    die("Conexión fallida: " . $conn->connect_error);
-}
-
 // Obtener el ID del producto de la URL
 if (isset($_GET['id'])) {
     $producto_id = $_GET['id'];

@@ -284,7 +284,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                     echo '
                                     <form action="delete_publication.php" method="POST" onsubmit="return confirm(\'¿Estás seguro de que deseas eliminar esta publicación?\');">
                                         <input type="hidden" name="id_publicacion" value="' . $id_publicacion . '">
-                                        <br>
                                         <button type="submit" class="btn btn-danger">Eliminar publicación</button>
                                     </form>';
                                 }
@@ -382,6 +381,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                             <div class="form-group">
                                 <textarea name="comentario" class="form-control" placeholder="Tu comentario" required></textarea>
                             </div>
+                            <br>
                             <div class="button">
                                 <button type="submit" name="comentar" class="btn btn-primary">Publicar comentario</button>
                             </div>

@@ -214,7 +214,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
 
 <section class="post">
-    <div class="container-sm mt-5 p-4" style="max-width: 600px;">
+    <div class="container-sm mt-6 p-4" style="max-width: 600px;">
         <h2 class="text-center mb-4">CREAR PUBLICACIÓN</h2>
 
         <form action="" method="POST" enctype="multipart/form-data">
@@ -223,7 +223,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <h5>Imagen de tu publicación:</h5>
                 <br>
                 <label for="imagen" class="image-upload-label">
-                    <div class="image-upload-placeholder d-flex align-items-center justify-content-center bg-light border" style="height: 200px; width: 100%;" id="image-upload">
+                    <div class="image-upload-placeholder d-flex align-items-center justify-content-center bg-light border" style="height: 300px; width: 100%;" id="image-upload">
                         <img id="image-preview" src="" alt="Previsualización" class="img-fluid d-none" style="max-height: 200px; object-fit: contain;">
                         <span id="image-text" class="text-muted">Haz clic aquí para subir una imagen</span>
                     </div>
@@ -235,7 +235,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <div class="mb-4">
                 <h5 for="titulo">Título:</h5>
                 <br>
-                <input type="text" class="form-control" name="titulo" id="titulo" placeholder="Escribe el título de tu publicación" maxlength="100" oninput="contarCaracteres()" required>
+                <textarea class="form-control" name="titulo" id="titulo" placeholder="Escribe el título de tu publicación" maxlength="100" rows="2" style="resize: none; overflow-y: auto;" oninput="contarCaracteres()" required></textarea>
                 <small id="contador-titulo" class="form-text text-muted">0/100 caracteres</small>
             </div>
 

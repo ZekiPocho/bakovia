@@ -194,7 +194,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <div class="col-lg-3 col-12">
                     <!-- Start Product Sidebar -->
                     <div class="product-sidebar">
-                        <!-- Start Single Widget -->
+                        <!-- Start Single Widget
                         <div class="single-widget search">
                             <h3>Buscar Producto</h3>
                             <form action="#">
@@ -203,7 +203,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                             </form>
                             <a href="../admin/admin-products.php">ADMIN</a>
                         </div>
-                        <!-- End Single Widget -->
+                        End Single Widget -->
                         <!-- Start Single Widget -->
                         <div class="single-widget">
                             <h3>Todas las Categorías</h3>
@@ -290,11 +290,10 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 </div>
                 <div class="col-lg-9 col-12">
                     <div class="product-grids-head">
-                        <div class="product-grid-topbar">
+                        <!--<div class="product-grid-topbar">
                             <div class="row align-items-center">
                                 <div class="col-lg-7 col-md-8 col-12">
                                     <div class="product-sorting">
-                                        <!--
                                         <label for="sorting">Sort by:</label>
                                         <select class="form-control" id="sorting">
                                             <option>Popularity</option>
@@ -303,7 +302,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                             <option>Average Rating</option>
                                             <option>A - Z Order</option>
                                             <option>Z - A Order</option>
-                                        </select>-->
+                                        </select>
                                         <h3 class="total-show-product">Mostrando: <span>1 - 12 Productos</span></h3>
                                     </div>
                                 </div>
@@ -322,7 +321,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                     </nav>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-grid" role="tabpanel"
                                 aria-labelledby="nav-grid-tab">

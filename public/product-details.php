@@ -204,7 +204,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
                     <ul class="breadcrumb-nav">
-                        <li><a href="index.php"><i class="lni lni-home"></i> INICIO</a></li>
+                        <li><a href="product-grids.php"><i class="lni lni-home"></i> INICIO</a></li>
                         <li><a href="index.php">TIENDA</a></li>
                         <li>PRODUCTO</li>
                     </ul>

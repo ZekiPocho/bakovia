@@ -273,8 +273,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <option value="noticias">Noticias</option>
             </select>
         <div class="row">
-            <div class="col-auto">
-            <input class="btn btn-primary" type="submit" value="Publicar">
+            <div class="col-auto button">
+            <input class="btn" type="submit" value="Publicar">
             </div>
         </div>
         

@@ -82,14 +82,7 @@ $conn->close();
     <script>
       tinymce.init({
         selector: 'textarea',  // change this value according to your HTML
-        menu: {
-            edit: { title: 'Editar', items: 'undo redo | cut copy paste pastetext | selectall | searchreplace' },
-            insert: { title: 'Insertar Línea', items: 'image link media addcomment pageembed codesample inserttable | math | charmap emoticons hr | pagebreak nonbreaking anchor tableofcontents | insertdatetime' },
-            format: { title: 'Format', items: 'bold italic underline strikethrough superscript subscript codeformat | styles blocks fontfamily fontsize align lineheight | language | removeformat' },
-            tools: { title: 'Tools', items: 'spellchecker spellcheckerlanguage | a11ycheck code wordcount' },
-            table: { title: 'Table', items: 'inserttable | cell row column | advtablesort | tableprops deletetable' },
-            help: { title: 'Help', items: 'help' }
-        }
+        menubar: 'edit insert format tools table help'
         });
     </script>
 </head>

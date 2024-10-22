@@ -1,11 +1,17 @@
 <?php
+session_start();
+if (!isset($_SESSION['id_usuario'])) {
+    // Redirigir a la página de inicio de sesión si no está autenticado
+    header("Location: ../public/login.php");
+    exit();
+}
 include("../public/db.php");
-include 'validate_session.php';
 
 // Verifica si el usuario ha iniciado sesión y si tiene el rol de administrador (id_rol = 1)
 if (!isset($_SESSION['id_rol']) || $_SESSION['id_rol'] != 1) {
     header('Location: ../public/index.php');
     exit;
+}
 }
 
 // Inicializamos la variable para evitar errores

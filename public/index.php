@@ -306,9 +306,6 @@ $result = mysqli_query($conn, $query);
                     <div class="single-product">
                         <div class="product-image">
                             <img src="<?php echo $product['imagen_producto']; ?>" alt="<?php echo $product['nombre_producto']; ?>">
-                            <div class="button">
-                                <a href="product-details.php?id=<?php echo $product['id_producto']; ?>" class="btn"><i class="lni lni-cart"></i> Añadir al Carrito</a>
-                            </div>
                         </div>
                         <div class="product-info">
                             <span class="category"><?php echo $product['nombre_producto']; ?></span>
@@ -316,7 +313,7 @@ $result = mysqli_query($conn, $query);
                                 <a href="product-grids.php?id=<?php echo $product['id_producto']; ?>"><?php echo $product['tipo']; ?></a>
                             </h4>
                             <div class="price">
-                                <span><?php echo $product['precio']; ?> €</span> <!-- Ajusta el símbolo de la moneda según sea necesario -->
+                                <span><?php echo $product['precio']; ?> Bs.</span> <!-- Ajusta el símbolo de la moneda según sea necesario -->
                             </div>
                         </div>
                     </div>

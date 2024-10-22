@@ -253,33 +253,37 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
 
 <section class="post">
-    <div class="container-sm mt-5 p-5">
-        <h2 class="text-center">CREAR PUBLICACIÓN</h2>
+    <div class="container mt-5 p-4">
+        <h2 class="text-center mb-4">CREAR PUBLICACIÓN</h2>
 
         <form action="" method="POST" enctype="multipart/form-data">
-            <div>
+            <!-- Subir Imágenes -->
+            <div class="mb-4">
                 <h5>Subir imágenes:</h5>
                 <label for="imagenes" class="image-upload-label">
-                    <div class="image-upload-placeholder" id="image-upload">
-                        <span>Haz clic aquí para subir imágenes</span>
+                    <div class="image-upload-placeholder d-flex align-items-center justify-content-center bg-light border" style="height: 200px;" id="image-upload">
+                        <span class="text-muted">Haz clic aquí para subir imágenes</span>
                     </div>
-                    <input type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple onchange="previewImages()" required>
+                    <input type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple onchange="previewImages()" class="d-none" required>
                 </label>
-                <div id="vista-previa" class="image-preview-container"></div>
+                <div id="vista-previa" class="d-flex flex-wrap mt-3"></div>
             </div>
 
-            <div>
+            <!-- Título -->
+            <div class="mb-4">
                 <h5 for="titulo">Título:</h5>
                 <input type="text" class="form-control" name="titulo" id="titulo" placeholder="Escribe el título de tu publicación" maxlength="100" oninput="contarCaracteres()" required>
-                <span id="contador-titulo" class="text-muted">0/100 caracteres</span>
+                <small id="contador-titulo" class="form-text text-muted">0/100 caracteres</small>
             </div>
 
-            <div>
+            <!-- Cuerpo de la publicación -->
+            <div class="mb-4">
                 <h5 for="contenido">Cuerpo de la publicación:</h5>
-                <textarea class="form-control" name="contenido" placeholder="¡Siéntete libre de escribir en el formato que quieras!"></textarea>
+                <textarea class="form-control" name="contenido" rows="5" placeholder="¡Siéntete libre de escribir en el formato que quieras!"></textarea>
             </div>
 
-            <div>
+            <!-- Selección de Tags -->
+            <div class="mb-4">
                 <h5 for="tags">Selecciona el Tag de tu publicación. ¿De qué trata tu publicación?:</h5>
                 <select class="form-control" name="tag" id="tags" required>
                     <option value="" selected disabled>Selecciona Tag</option>
@@ -294,15 +298,15 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 </select>
             </div>
 
-            <div class="row mt-3">
-                <div class="col-auto">
-                    <input class="btn btn-primary" type="submit" value="Publicar">
-                </div>
+            <!-- Botón de Publicar -->
+            <div class="text-center">
+                <input class="btn btn-primary" type="submit" value="Publicar">
             </div>
         </form>
     </div>
 </section>
 
+<!-- Script para contar caracteres y previsualización de imágenes -->
 <script>
     function contarCaracteres() {
         var titulo = document.getElementById('titulo');
@@ -322,6 +326,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 reader.onload = function (e) {
                     var img = document.createElement('img');
                     img.src = e.target.result;
+                    img.className = 'img-thumbnail m-2';
+                    img.style.maxHeight = '150px';
                     preview.appendChild(img);
                 }
                 reader.readAsDataURL(file);
@@ -331,6 +337,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         }
     }
 </script>
+
 
 <center>
 <?php

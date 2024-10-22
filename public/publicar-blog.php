@@ -81,7 +81,7 @@ $conn->close();
     <script src="https://cdn.tiny.cloud/1/ygwkt7hwy11qzbk8uc4veikmopkjbvolxix57q02vpkn8sif/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
       tinymce.init({
-        selector: 'textarea',  // change this value according to your HTML
+        selector: 'texto',  // change this value according to your HTML
         menubar: 'edit insert format tools table help'
         });
     </script>
@@ -233,20 +233,19 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
             <!-- Título -->
             <div class="mb-4">
-                <h5 for="titulo">Título:</h5>
-                <br>
-                <div style="position: relative;">
-                    <input type="text" class="form-control" name="titulo" id="titulo" placeholder="Escribe el título de tu publicación" maxlength="100" oninput="contarCaracteres()" required style="max-height: 3rem; overflow-y: auto; padding-right: 20px;">
-                    <small id="contador-titulo" class="form-text text-muted">0/100 caracteres</small>
-                </div>
-            </div>
+    <h5 for="titulo">Título:</h5>
+    <br>
+    <textarea class="form-control" name="titulo" id="titulo" placeholder="Escribe el título de tu publicación" maxlength="100" rows="2" style="resize: none; overflow-y: auto;" oninput="contarCaracteres()" required></textarea>
+    <small id="contador-titulo" class="form-text text-muted">0/100 caracteres</small>
+</div>
+
 
 
             <!-- Cuerpo de la publicación -->
             <div class="mb-4">
                 <h5 for="contenido">Cuerpo de la publicación:</h5>
                 <br>
-                <textarea class="form-control" name="contenido" rows="5" placeholder="¡Siéntete libre de escribir en el formato que quieras!"></textarea>
+                <texto class="form-control" name="contenido" rows="5" placeholder="¡Siéntete libre de escribir en el formato que quieras!"></texto>
             </div>
 
             <!-- Selección de Tags -->

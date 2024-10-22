@@ -4120,6 +4120,7 @@ ol {
 
 .blog-section .single-blog .blog-img {
   overflow: hidden;
+  background-color: black;
 }
 
 .blog-section .single-blog .blog-img a {

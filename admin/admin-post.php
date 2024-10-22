@@ -8,13 +8,27 @@ if ($_SESSION['rol'] !== 'superadmin') {
     exit();
 }
 
-// Obtener todas las publicaciones
-$sql = "SELECT p.id_publicacion, p.titulo, p.contenido, p.fecha_publicacion, u.nombre_usuario 
-        FROM publicaciones p 
-        JOIN usuarios u ON p.id_usuario = u.id_usuario
-        ORDER BY p.fecha_publicacion DESC";
+// Obtener los datos de la publicación
+if (isset($_GET['id'])) {
+    $id_publicacion = $_GET['id'];
+    $sql = "SELECT * FROM publicaciones WHERE id_publicacion = $id_publicacion";
+    $result = $conn->query($sql);
+    $publicacion = $result->fetch_assoc();
+}
 
-$result = $conn->query($sql);
+// Guardar cambios
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $titulo = $_POST['titulo'];
+    $contenido = $_POST['contenido'];
+
+    $sql = "UPDATE publicaciones SET titulo = '$titulo', contenido = '$contenido' WHERE id_publicacion = $id_publicacion";
+    if ($conn->query($sql)) {
+        header("Location: admin_dashboard.php?edit_success=1");
+        exit();
+    } else {
+        echo "Error al actualizar: " . $conn->error;
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -22,40 +36,22 @@ $result = $conn->query($sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Superadministrador</title>
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <title>Editar Publicación</title>
 </head>
 <body>
     <div class="container">
-        <h1>Publicaciones</h1>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Título</th>
-                    <th>Autor</th>
-                    <th>Fecha</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php while ($row = $result->fetch_assoc()): ?>
-                <tr>
-                    <td><?php echo $row['id_publicacion']; ?></td>
-                    <td><?php echo $row['titulo']; ?></td>
-                    <td><?php echo $row['nombre_usuario']; ?></td>
-                    <td><?php echo date('d M Y', strtotime($row['fecha_publicacion'])); ?></td>
-                    <td>
-                        <a href="editar_publicacion.php?id=<?php echo $row['id_publicacion']; ?>" class="btn btn-warning">Editar</a>
-                        <form action="eliminar_publicacion.php" method="POST" style="display:inline;">
-                            <input type="hidden" name="id_publicacion" value="<?php echo $row['id_publicacion']; ?>">
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de eliminar esta publicación?');">Eliminar</button>
-                        </form>
-                    </td>
-                </tr>
-                <?php endwhile; ?>
-            </tbody>
-        </table>
+        <h1>Editar Publicación</h1>
+        <form action="" method="POST">
+            <div class="form-group">
+                <label for="titulo">Título</label>
+                <input type="text" name="titulo" value="<?php echo $publicacion['titulo']; ?>" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="contenido">Contenido</label>
+                <textarea name="contenido" class="form-control"><?php echo $publicacion['contenido']; ?></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        </form>
     </div>
 </body>
 </html>

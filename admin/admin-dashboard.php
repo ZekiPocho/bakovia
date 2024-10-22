@@ -76,6 +76,7 @@ if (!isset($_SESSION['id_rol']) || $_SESSION['id_rol'] != 1) {
         <a href="admin-index.php" class="admin-button">Modificar Contenido del Index</a>
         <a href="admin-about-us.php" class="admin-button">Modificar Contenido de About Us</a>
         <a href="admin-faq.php" class="admin-button">Modificar Contenido de FAQ</a>
+        <a href="admin-users.php" class="admin-button">Administrar Usuarios</a>
     </div>
 
     <a href="../public/index.php" class="normal-view-button">Volver a la Vista Normal</a>

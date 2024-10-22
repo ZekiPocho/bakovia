@@ -254,93 +254,84 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
 <section class="post">
     <div class="container-sm mt-5 p-5">
-        <br>
-        <center>
-        <h2>
-            CREAR PUBLICACIÓN
-        </h2>
-        </center>
+        <h2 class="text-center">CREAR PUBLICACIÓN</h2>
 
-    <br>
-    <br>
-    <form action="" method="POST" enctype="multipart/form-data">
-    <div>
-        <div>
-            <h5>Subir imágenes:</h5>
-            <label for="imagenes" class="image-upload-label">
-                <div class="image-upload-placeholder" id="image-upload">
-                    <span>Haz clic aquí para subir imágenes</span>
-                </div>
-                <input type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple onchange="previewImages()" required>
-            </label>
-            <div id="vista-previa" class="image-preview-container"></div>
-        </div>
-    </div>
-        <div id="vista-previa"></div>
+        <form action="" method="POST" enctype="multipart/form-data">
             <div>
-                <h5 for="titulo">Título:</h5><br>
-                <input type="text" class="form-control" name="titulo" id="titulo" placeholder="Escribe el título de tu publicación" maxlength="100" oninput="contarCaracteres()" required>
-                <span id="contador-titulo" style="filter: opacity(50%);">0/100 caracteres</span>
+                <h5>Subir imágenes:</h5>
+                <label for="imagenes" class="image-upload-label">
+                    <div class="image-upload-placeholder" id="image-upload">
+                        <span>Haz clic aquí para subir imágenes</span>
+                    </div>
+                    <input type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple onchange="previewImages()" required>
+                </label>
+                <div id="vista-previa" class="image-preview-container"></div>
             </div>
-        <div>
-        <script>
-            function contarCaracteres() {
-                var titulo = document.getElementById('titulo');
-                var contador = document.getElementById('contador-titulo');
-                contador.textContent = titulo.value.length + "/100 caracteres";
-            }
-        </script>
-        <br><br>
 
-        <h5 for="contenido">Cuerpo de la publicación</h5><br>
-        <textarea class="form-control" name="contenido" placeholder="¡Siéntete libre de escribir en el formato que quieras!"></textarea>
-        </div >
-    <br><br>
-    <h5 for="tags">Selecciona el Tag de tu publicación. ¿De qué trata tu publicación?:</h5><br>
-            <select style="color: white;" name="tag" id="tags" required>
-                <option value="" selected disabled>Selecciona Tag</option>
-                <option value="miniaturas">Miniaturas</option>
-                <option value="otros">Otros</option>
-                <option value="ejercito">Ejército</option>
-                <option value="tienda">Tienda</option>
-                <option value="juegos">Juegos</option>
-                <option value="pintura">Pintura/Hobby</option>
-                <option value="lore">Lore</option>
-                <option value="noticias">Noticias</option>
-            </select>
-        <div class="row">
-            <div class="col-auto button">
-            <input class="btn" type="submit" value="Publicar">
+            <div>
+                <h5 for="titulo">Título:</h5>
+                <input type="text" class="form-control" name="titulo" id="titulo" placeholder="Escribe el título de tu publicación" maxlength="100" oninput="contarCaracteres()" required>
+                <span id="contador-titulo" class="text-muted">0/100 caracteres</span>
             </div>
-        </div>
-        
-    </form>
+
+            <div>
+                <h5 for="contenido">Cuerpo de la publicación:</h5>
+                <textarea class="form-control" name="contenido" placeholder="¡Siéntete libre de escribir en el formato que quieras!"></textarea>
+            </div>
+
+            <div>
+                <h5 for="tags">Selecciona el Tag de tu publicación. ¿De qué trata tu publicación?:</h5>
+                <select class="form-control" name="tag" id="tags" required>
+                    <option value="" selected disabled>Selecciona Tag</option>
+                    <option value="miniaturas">Miniaturas</option>
+                    <option value="otros">Otros</option>
+                    <option value="ejercito">Ejército</option>
+                    <option value="tienda">Tienda</option>
+                    <option value="juegos">Juegos</option>
+                    <option value="pintura">Pintura/Hobby</option>
+                    <option value="lore">Lore</option>
+                    <option value="noticias">Noticias</option>
+                </select>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-auto">
+                    <input class="btn btn-primary" type="submit" value="Publicar">
+                </div>
+            </div>
+        </form>
     </div>
-    
-</section> 
+</section>
 
 <script>
-function previewImages() {
-    var preview = document.getElementById('vista-previa');
-    var files = document.getElementById('imagenes').files;
-    preview.innerHTML = '';  // Limpiar las imágenes previas
+    function contarCaracteres() {
+        var titulo = document.getElementById('titulo');
+        var contador = document.getElementById('contador-titulo');
+        contador.textContent = titulo.value.length + "/100 caracteres";
+    }
 
-    for (var i = 0; i < files.length; i++) {
-        var file = files[i];
-        if (file.type.startsWith('image/')) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                var img = document.createElement('img');
-                img.src = e.target.result;
-                preview.appendChild(img);
+    function previewImages() {
+        var preview = document.getElementById('vista-previa');
+        var files = document.getElementById('imagenes').files;
+        preview.innerHTML = ''; // Limpiar las imágenes previas
+
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            if (file.type.startsWith('image/')) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var img = document.createElement('img');
+                    img.src = e.target.result;
+                    preview.appendChild(img);
+                }
+                reader.readAsDataURL(file);
+            } else {
+                alert('El archivo seleccionado no es una imagen');
             }
-            reader.readAsDataURL(file);
-        } else {
-            alert('El archivo seleccionado no es una imagen');
         }
     }
-}
 </script>
+
 <center>
 <?php
 echo $mensaje;

@@ -231,6 +231,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
 <section class="post">
     <div class="container-sm p-2 mt-2">
+        <br>
         <center>
         <h2>
             CREAR PUBLICACIÓN
@@ -248,8 +249,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     </div>
         <div id="vista-previa"></div>
             <div>
-                <label for="titulo">Título:</label>
-                <input type="text" class="form-control" name="titulo" id="titulo" placeholder="título*" maxlength="300" oninput="contarCaracteres()" required>
+                <label for="titulo">Título:</label><br>
+                <input type="text" class="form-control" name="titulo" id="titulo" placeholder="Escribe el título de tu publicación" maxlength="100" oninput="contarCaracteres()" required>
                 <span id="contador-titulo" style="filter: opacity(50%);">0/100 caracteres</span>
             </div>
         <div>
@@ -262,10 +263,10 @@ function contarCaracteres() {
 </script>
         <br><br>
 
-        <label for="contenido">Cuerpo de la publicación</label>
+        <label for="contenido">Cuerpo de la publicación</label><br>
         <textarea class="form-control" name="contenido" placeholder="cuerpo*"></textarea>
         </div >
-        <label for="tags">Seleccionar Tag:</label>
+        <label for="tags">Selecciona el Tag de tu publicación. ¿De qué trata tu publicación?:</label><br>
     <select name="tag" id="tags" required>
         <option value="miniaturas">Miniaturas</option>
         <option value="otros">Otros</option>

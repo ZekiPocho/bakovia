@@ -227,7 +227,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         <img id="image-preview" src="" alt="Previsualización" class="img-fluid d-none" style="max-height: 200px; object-fit: scale-down;">
                         <span id="image-text" class="text-muted">Haz clic aquí para subir una imagen</span>
                     </div>
-                    <input type="file" id="imagen" name="imagenes" accept="image/*" class="d-none" onchange="previewImage()" required>
+                    <input type="file" id="imagenes" name="imagenes[]" accept="image/*" class="d-none" onchange="previewImage()" required>
                 </label>
             </div>
 

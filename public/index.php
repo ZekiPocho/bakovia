@@ -301,7 +301,7 @@ $result = mysqli_query($conn, $query);
         </div>
         <div class="row">
             <?php while ($product = mysqli_fetch_assoc($result)): ?>
-                <div class="col-lg-3 col-md-6 col-12">
+                <div href="product-grids.php?id=<?php echo $product['id_producto']; ?>" class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Product -->
                     <div class="single-product">
                         <div class="product-image">

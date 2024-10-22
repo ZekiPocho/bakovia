@@ -254,16 +254,16 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     </div>
         <div id="vista-previa"></div>
             <div>
-                <label for="titulo">Título (máximo 300 caracteres):</label>
-                <textarea class="form-control" name="titulo" id="titulo" placeholder="título*" maxlength="300" oninput="contarCaracteres()" required></textarea>
-                <small id="contador-titulo">0/300 caracteres</small>
+                <label for="titulo">Título (máximo 100 carácteres):</label>
+                <input type="text" class="form-control" name="titulo" id="titulo" placeholder="título*" maxlength="300" oninput="contarCaracteres()" required>
+                <small id="contador-titulo">0/100 carácteres</small>
             </div>
         <div>
             <script>
 function contarCaracteres() {
     var titulo = document.getElementById('titulo');
     var contador = document.getElementById('contador-titulo');
-    contador.textContent = titulo.value.length + "/300 caracteres";
+    contador.textContent = titulo.value.length + "/100 caracteres";
 }
 </script>
             <textarea class="form-control" name="contenido" placeholder="cuerpo*"></textarea>

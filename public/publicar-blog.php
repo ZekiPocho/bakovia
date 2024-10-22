@@ -223,8 +223,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <h5>Imagen de tu publicación:</h5>
                 <br>
                 <label for="imagen" class="image-upload-label">
-                    <div class="image-upload-placeholder d-flex align-items-center justify-content-center bg-light border" style="height: 300px; width: 100%;" id="image-upload">
-                        <img id="image-preview" src="" alt="Previsualización" class="img-fluid d-none" style="max-height: 200px; object-fit: contain;">
+                    <div class="image-upload-placeholder d-flex align-items-center justify-content-center " style="height: 100%; width: 300px; background-color: black;" id="image-upload">
+                        <img id="image-preview" src="" alt="Previsualización" class="img-fluid d-none" style="max-height: 200px; object-fit: scale-down;">
                         <span id="image-text" class="text-muted">Haz clic aquí para subir una imagen</span>
                     </div>
                     <input type="file" id="imagen" name="imagen" accept="image/*" class="d-none" onchange="previewImage()" required>

@@ -4671,7 +4671,7 @@ blockquote span {
 
 /*Comment form*/
 .comment-form {
-  background-color: #fff;
+  background-color: transparent;
   padding: 40px;
   margin-top: 30px;
   border-radius: 4px;

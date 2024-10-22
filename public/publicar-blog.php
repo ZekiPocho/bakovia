@@ -223,26 +223,20 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
 
 <section class="post">
-    <div class="container-sm p-2 mt-2">
-        <br>
-        <center>
-            <h2>CREAR PUBLICACIÓN</h2>
-        </center>
-        <br><br>
+    <div class="container-sm p-4 mt-4 bg-light rounded shadow">
+        <h2 class="text-center mb-4">CREAR PUBLICACIÓN</h2>
         
         <form action="" method="POST" enctype="multipart/form-data">
-            <div>
-                <div>
-                    <label for="imagenes">Subir imágenes:</label><br>
-                    <input class="btn" type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple onchange="previewImages()" required><br><br>
-                </div>
+            <div class="mb-3">
+                <label for="imagenes" class="form-label">Subir imágenes:</label>
+                <input class="form-control" type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple onchange="previewImages()" required>
+                <div id="vista-previa" class="mt-2"></div>
             </div>
-            <div id="vista-previa"></div>
-            
-            <div>
-                <label for="titulo">Título:</label><br>
+
+            <div class="mb-3">
+                <label for="titulo" class="form-label">Título:</label>
                 <input type="text" class="form-control" name="titulo" id="titulo" placeholder="Escribe el título de tu publicación" maxlength="100" oninput="contarCaracteres()" required>
-                <span id="contador-titulo" style="filter: opacity(50%);">0/100 caracteres</span>
+                <span id="contador-titulo" class="text-muted" style="opacity: 0.5;">0/100 caracteres</span>
             </div>
 
             <script>
@@ -253,29 +247,28 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 }
             </script>
 
-            <br><br>
-            
-            <label for="contenido">Cuerpo de la publicación:</label><br>
-            <textarea class="form-control" name="contenido" placeholder="Cuerpo*" required></textarea>
-            <br><br>
-            
-            <label for="tags">Selecciona el Tag de tu publicación. ¿De qué trata tu publicación?:</label><br>
-            <select style="color: white;" name="tag" id="tags" required>
-                <option value="" selected disabled>Selecciona Tag</option>
-                <option value="miniaturas">Miniaturas</option>
-                <option value="otros">Otros</option>
-                <option value="ejercito">Ejército</option>
-                <option value="tienda">Tienda</option>
-                <option value="juegos">Juegos</option>
-                <option value="pintura">Pintura/Hobby</option>
-                <option value="lore">Lore</option>
-                <option value="noticias">Noticias</option>
-            </select>
-            
-            <div class="row">
-                <div class="col-auto">
-                    <input class="btn" type="submit" value="Publicar">
-                </div>
+            <div class="mb-3">
+                <label for="contenido" class="form-label">Cuerpo de la publicación:</label>
+                <textarea class="form-control" name="contenido" placeholder="Cuerpo*" required></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="tags" class="form-label">Selecciona el Tag de tu publicación. ¿De qué trata tu publicación?:</label>
+                <select class="form-select" name="tag" id="tags" required>
+                    <option value="" selected disabled>Selecciona Tag</option>
+                    <option value="miniaturas">Miniaturas</option>
+                    <option value="otros">Otros</option>
+                    <option value="ejercito">Ejército</option>
+                    <option value="tienda">Tienda</option>
+                    <option value="juegos">Juegos</option>
+                    <option value="pintura">Pintura/Hobby</option>
+                    <option value="lore">Lore</option>
+                    <option value="noticias">Noticias</option>
+                </select>
+            </div>
+
+            <div class="text-center">
+                <input class="btn btn-primary" type="submit" value="Publicar">
             </div>
         </form>
     </div>

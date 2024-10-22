@@ -3335,47 +3335,39 @@ ol {
   margin-top: 30px;
   margin-bottom: 15px;
   box-shadow: 0px 0px 20px #00000012;
-  padding: 8px;
   background: #171D25;
-  position: relative; /* Necesario para la correcta disposición de los elementos */
-  overflow: hidden; /* Evitar que las imágenes o contenido se desborden */
+  position: relative;
+  overflow: hidden;
+  width: 100%; /* Hace que el contenedor se adapte al contenedor padre */
+  max-width: 350px; /* Establece un ancho máximo razonable */
+  height: auto; /* La altura se adapta al contenido */
+  display: flex;
+  flex-direction: column; /* Para organizar los elementos verticalmente */
 }
 
 .single-product .product-image {
   position: relative;
-  width: 200px;
-  height: 100%; /* Establecemos la altura de la imagen */
-  overflow: hidden; /* Para evitar que las imágenes se desborden */
+  width: 100%;
+  height: 220px; /* Ajuste de altura para la imagen del producto */
+  overflow: hidden;
+  background-color: #ffffff; /* Fondo blanco para la imagen */
 }
 
 .single-product .product-image img {
   width: 100%;
   height: 100%;
-  object-fit: scale-down; /* Para que las imágenes se adapten al contenedor sin deformarse */
+  object-fit: contain; /* Mantener la proporción de la imagen */
   transition: opacity 0.4s ease;
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 5px;
-  background-color: white;
-}
-
-.single-product .product-image img.second-image {
-  opacity: 0; /* Inicialmente oculta la segunda imagen */
-}
-
-.single-product:hover .product-image img.first-image {
-  opacity: 0; /* Oculta la primera imagen al hacer hover */
-}
-
-.single-product:hover .product-image img.second-image {
-  opacity: 1; /* Muestra la segunda imagen al hacer hover */
 }
 
 .single-product .product-info {
-  padding: 15px 10px; /* Espaciado para el contenido del producto */
-  background-color: #ECBE00; /* Color de fondo del bloque de información */
-  color: #000; /* Color de texto negro para contrastar */
+  padding: 15px 10px;
+  background-color: #ECBE00;
+  color: #000;
+  display: flex;
+  flex-direction: column; /* Organiza el contenido verticalmente */
+  flex-grow: 1; /* Permite que el bloque de información se ajuste */
+  justify-content: space-between; /* Distribuye el contenido */
 }
 
 .single-product .product-info .category {
@@ -3384,16 +3376,11 @@ ol {
   margin-bottom: 5px;
 }
 
-.single-product .product-info .title a {
+.single-product .product-info .title {
   font-size: 16px;
   font-weight: bold;
   color: #000;
-  text-decoration: none; /* Eliminar subrayado en los enlaces */
-}
-
-.single-product .product-info .title a:hover {
-  color: #000000;
-  font-style: italic;
+  margin-top: 10px;
 }
 
 .single-product .product-info .price {
@@ -3401,22 +3388,6 @@ ol {
   font-size: 17px;
   font-weight: 700;
   color: #000;
-}
-
-.single-product .product-info .price .discount-price {
-  margin-left: 10px;
-  font-size: 14px;
-  color: #aaaaaa;
-  text-decoration: line-through;
-}
-
-.single-product .product-info .button {
-  display: none;
-}
-
-.single-product:hover .product-info .button {
-  display: block; /* Mostrar el botón solo al hacer hover */
-  margin-top: 10px;
 }
 
 .trending-product {

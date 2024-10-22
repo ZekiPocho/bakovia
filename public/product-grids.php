@@ -338,35 +338,36 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                 ?>
 
                                 <!-- Start Single Product -->
-                                <?php while ($producto = $productos->fetch_assoc()): ?>
-                                    <div class="col-lg-4 col-md-6 col-12">
-                                        <div class="single-product">
-                                            <a href="product-details.php?id=<?= $producto['id_producto'] ?>" style="text-decoration: none; color: inherit;">
-                                                <div class="product-image">
-                                                    <!-- Imagen principal -->
-                                                    <img src="<?= htmlspecialchars($producto['imagen_producto']) ?>" 
-                                                        alt="<?= htmlspecialchars($producto['nombre_producto']) ?>" 
-                                                        class="product-img first-image">
-                                                    
-                                                    <!-- Imagen al hacer hover -->
-                                                    <img src="<?= htmlspecialchars($producto['imagen_producto2']) ?>" 
-                                                        alt="<?= htmlspecialchars($producto['nombre_producto']) ?>" 
-                                                        class="product-img second-image">
-                                                </div>
-                                                <div class="product-info">
-                                                    <span class="category"><?= htmlspecialchars($producto['tipo']) ?></span>
-                                                    <span style="color: black; font-weight: bold;">
-                                                        <?= htmlspecialchars($producto['nombre_producto']) ?>
-                                                    </span>
-                                                    <div class="price">
-                                                        <span>Bs. <?= number_format($producto['precio'], 2) ?></span>
+                                    <?php while ($producto = $productos->fetch_assoc()): ?>
+                                        <div class="col-lg-4 col-md-6 col-12">
+                                            <div class="single-product">
+                                                <a href="product-details.php?id=<?= $producto['id_producto'] ?>" style="text-decoration: none; color: inherit;">
+                                                    <div class="product-image">
+                                                        <!-- Imagen principal -->
+                                                        <img src="<?= htmlspecialchars($producto['imagen_producto']) ?>" 
+                                                            alt="<?= htmlspecialchars($producto['nombre_producto']) ?>" 
+                                                            class="first-image">
+
+                                                        <!-- Imagen al hacer hover -->
+                                                        <img src="<?= htmlspecialchars($producto['imagen_producto2']) ?>" 
+                                                            alt="<?= htmlspecialchars($producto['nombre_producto']) ?>" 
+                                                            class="second-image">
                                                     </div>
-                                                </div>
-                                            </a>
+                                                    <div class="product-info">
+                                                        <span class="category"><?= htmlspecialchars($producto['tipo']) ?></span>
+                                                        <span class="title">
+                                                            <?= htmlspecialchars($producto['nombre_producto']) ?>
+                                                        </span>
+                                                        <div class="price">
+                                                            <span>Bs. <?= number_format($producto['precio'], 2) ?></span>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
                                         </div>
-                                    </div>
-                                <?php endwhile; ?>
-                                <!-- End Single Product -->
+                                    <?php endwhile; ?>
+                                    <!-- End Single Product -->
+
 
 
                                 

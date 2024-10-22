@@ -214,13 +214,14 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
 
 <section class="post">
-    <div class="container mt-5 p-4" style="max-width: 600px;">
+    <div class="container-sm mt-5 p-4" style="max-width: 600px;">
         <h2 class="text-center mb-4">CREAR PUBLICACIÓN</h2>
 
         <form action="" method="POST" enctype="multipart/form-data">
             <!-- Subir Imágenes -->
             <div class="mb-4 text-center">
-                <h5>Subir imagen:</h5>
+                <h5>Imagen de tu publicación:</h5>
+                <br>
                 <label for="imagen" class="image-upload-label">
                     <div class="image-upload-placeholder d-flex align-items-center justify-content-center bg-light border" style="height: 200px; width: 100%;" id="image-upload">
                         <img id="image-preview" src="" alt="Previsualización" class="img-fluid d-none" style="max-height: 200px; object-fit: contain;">
@@ -233,6 +234,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <!-- Título -->
             <div class="mb-4">
                 <h5 for="titulo">Título:</h5>
+                <br>
                 <input type="text" class="form-control" name="titulo" id="titulo" placeholder="Escribe el título de tu publicación" maxlength="100" oninput="contarCaracteres()" required>
                 <small id="contador-titulo" class="form-text text-muted">0/100 caracteres</small>
             </div>
@@ -240,12 +242,14 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <!-- Cuerpo de la publicación -->
             <div class="mb-4">
                 <h5 for="contenido">Cuerpo de la publicación:</h5>
+                <br>
                 <textarea class="form-control" name="contenido" rows="5" placeholder="¡Siéntete libre de escribir en el formato que quieras!"></textarea>
             </div>
 
             <!-- Selección de Tags -->
             <div class="mb-4">
                 <h5 for="tags">Selecciona el Tag de tu publicación. ¿De qué trata tu publicación?:</h5>
+                <br>
                 <select class="form-control" name="tag" id="tags" required>
                     <option value="" selected disabled>Selecciona Tag</option>
                     <option value="miniaturas">Miniaturas</option>

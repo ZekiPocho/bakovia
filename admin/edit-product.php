@@ -169,7 +169,7 @@ $juegos = getAllGames($conn);
     <script src="https://cdn.tiny.cloud/1/ygwkt7hwy11qzbk8uc4veikmopkjbvolxix57q02vpkn8sif/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
       tinymce.init({
-        selector: 'textarea',  // change this value according to your HTML
+        selector: 'texto',  // change this value according to your HTML
         menu: {
             file: { title: 'File', items: 'newdocument restoredraft | preview | importword exportpdf exportword | print | deleteallconversations' },
             edit: { title: 'Edit', items: 'undo redo | cut copy paste pastetext | selectall | searchreplace' },
@@ -198,10 +198,10 @@ $juegos = getAllGames($conn);
         <input type="text" name="nombre_producto" value="<?= $producto['nombre_producto'] ?>" required>
 
         <label for="descripcion">Descripción:</label>
-        <textarea name="descripcion" rows="10" required value="<?= $producto['descripcion'] ?>"></textarea>
+        <texto name="descripcion" rows="10" required value="<?= $producto['descripcion'] ?>"></texto>
 
         <label for="desc_mini">Descripción Corta:</label>
-        <input type="text" name="desc_mini" id="desc_mini" rows="10" maxlength="300" value="<?= $producto['desc_mini'] ?>">
+        <textarea type="text" name="desc_mini" id="desc_mini" rows="10" maxlength="300" value="<?= $producto['desc_mini'] ?>">
         <p id="charCount">300 caracteres restantes</p>
 
         <label for="precio">Precio:</label>

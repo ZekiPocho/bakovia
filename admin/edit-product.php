@@ -190,7 +190,7 @@ $juegos = getAllGames($conn);
         <input type="text" name="nombre_producto" value="<?= $producto['nombre_producto'] ?>" required>
 
         <label for="descripcion">Descripción:</label>
-        <textarea name="descripcion" rows="10"><?= $producto['descripcion'] ?></textarea>
+        <textarea name="descripcion" rows="10" value="<?= $producto['descripcion'] ?>"></textarea>
 
         <label for="desc_mini">Descripción Corta:</label>
         <textarea name="desc_mini" id="desc_mini" rows="3" maxlength="300" required><?= $producto['desc_mini'] ?></textarea>

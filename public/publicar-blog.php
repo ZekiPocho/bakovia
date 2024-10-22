@@ -223,7 +223,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
 
 <section class="post">
-    <div class="container-sm p-4 mt-4 bg-light rounded shadow">
+    <div class="container-sm p-4 mt-4">
         <h2 class="text-center mb-4">CREAR PUBLICACIÓN</h2>
         
         <form action="" method="POST" enctype="multipart/form-data">

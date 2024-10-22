@@ -98,7 +98,7 @@ $conn->close();
         .image-upload {
     position: relative;
     width: 500px; /* Ancho del input */
-    height: 040px; /* Alto del input */
+    height: 400px; /* Alto del input */
     border: 2px dashed #007bff; /* Estilo del borde */
     border-radius: 8px; /* Bordes redondeados */
     display: flex;

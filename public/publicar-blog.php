@@ -85,45 +85,6 @@ $conn->close();
         menubar: 'edit insert format tools table help'
         });
     </script>
-    <style>
-    .image-upload-label {
-        display: block;
-        cursor: pointer;
-    }
-
-    .image-upload-placeholder {
-        width: 100%;
-        height: 150px; /* Altura del cuadro */
-        border: 2px dashed #007bff; /* Borde punteado */
-        border-radius: 5px; /* Bordes redondeados */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #007bff; /* Color del texto */
-        text-align: center;
-        transition: background-color 0.2s;
-        margin-bottom: 10px; /* Espacio inferior */
-    }
-
-    .image-upload-placeholder:hover {
-        background-color: rgba(0, 123, 255, 0.1); /* Color de fondo al pasar el mouse */
-    }
-
-    .image-preview-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px; /* Espaciado entre imágenes */
-        margin-top: 10px; /* Espacio superior */
-    }
-    
-    .image-preview-container img {
-        max-width: 100px; /* Tamaño máximo de la imagen */
-        height: auto; /* Mantener proporción */
-        border: 2px solid #007bff; /* Borde azul */
-        border-radius: 5px; /* Bordes redondeados */
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra suave */
-    }
-</style>
 </head>
 
 <body>

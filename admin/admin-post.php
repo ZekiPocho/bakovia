@@ -8,7 +8,6 @@ if (!isset($_SESSION['id_usuario'])) {
     header("Location: ../public/login.php");
     exit();
 }
-include("../public/db.php");
 
 // Verifica si el usuario ha iniciado sesión y si tiene el rol de administrador (id_rol = 1)
 if (!isset($_SESSION['id_rol']) || $_SESSION['id_rol'] != 1) {

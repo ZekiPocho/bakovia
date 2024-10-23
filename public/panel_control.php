@@ -486,7 +486,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     .then(response => response.json())
     .then(result => {
         if (result.success) {
-            alert('Estado actualizado a En Progreso');
+            alert('Partida en: PROGRESO'<br>'¡QUE EMPIEZE EL DUELO!');
             // Aquí puedes hacer cualquier acción adicional como actualizar la UI
         } else {
             alert('Error al actualizar el estado');

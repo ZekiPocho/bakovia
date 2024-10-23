@@ -554,6 +554,33 @@ finalizarBtn.addEventListener('click', function () {
         actualizarEstadoPartida('finalizado');
     }
 });
+fetch('actualizar_estado.php', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        id_partida: idPartida,
+        estado: 'finalizado',
+        id_jugador1: idJugador1,
+        id_jugador2: idJugador2
+    })
+})
+.then(response => response.json())
+.then(data => {
+    if (data.success) {
+        // Redirigir si la partida ha finalizado
+        if (data.redirect) {
+            window.location.href = data.redirect;
+        }
+    } else {
+        alert(data.message || 'Hubo un error al finalizar la partida.');
+    }
+})
+.catch(error => {
+    console.error('Error:', error);
+});
+
 </script>
 
 

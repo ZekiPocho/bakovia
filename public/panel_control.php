@@ -322,7 +322,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                     <input id="ronda" type="number" style="width: 50px;" name="rondas" class="form-control" value="<?php echo htmlspecialchars($ronda); ?>"> <!-- Cambia este valor al número de rondas actual -->
                     </center>
                 </div>
-                <button type="submit" id="iniciar-btn" class="btn btn-primary" disabled>
+                <button type="button" id="iniciar-btn" class="btn btn-primary" disabled>
                     INICIAR
                 </button>
                 <!-- Botón para finalizar la partida (inicialmente oculto) -->

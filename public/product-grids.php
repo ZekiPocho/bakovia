@@ -367,10 +367,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                         </div>
                                     <?php endwhile; ?>
                                     <!-- End Single Product -->
-
-
-
-                                
                                 <div class="row">
                                     <div class="col-12">
                                         <!-- Pagination -->

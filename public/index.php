@@ -102,49 +102,47 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     <span class="toggler-icon"></span>
 </button>
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-    <li class="nav-item">
-      <a class="active" aria-label="Toggle navigation" href="index.php">PRINCIPAL</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link dropdown-toggle" href="product-grids.php"
-            data-bs-target="#submenu-1-2" aria-controls="navbarSupportedContent"
-            aria-expanded="false" aria-label="Toggle navigation">TIENDA</a>
-        <ul class="sub-menu collapse" id="submenu-1-2">
-            <li class="nav-item"><a href="about-us.html">About Us</a></li>
-            <li class="nav-item"><a href="faq.html">Faq</a></li>
-            <li class="nav-item"><a href="login.php">Login</a></li>
-            <li class="nav-item"><a href="register.php">Register</a></li>
-            <li class="nav-item"><a href="mail-success.html">Mail Success</a></li>
-            <li class="nav-item"><a href="404.html">404 Error</a></li>
-        </ul>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-bs-toggle="collapse"
-        data-bs-target="#submenu-1-3" aria-controls="navbarSupportedContent"
-        aria-expanded="false" aria-label="Toggle navigation">CATEGORÍAS</a>
-        <ul class="sub-menu collapse" id="submenu-1-3">
-          <li class="nav-item"><a href="#">Action</a></li>
-          <li class="nav-item"><a href="#">Another action</a></li>
-          <li class="nav-item"><a href="#">XD</a></li>
-        </ul>
-      </li>
-       </ul>
-       <form class="d-flex">
-    <div class="navbar-search search-style-5">
-        <div class="navbar-search search-input">
-            <input id="search-input" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-        </div>
-        <div class="search-btn">
-            <button type="button"><i class="lni lni-search-alt"></i></button>
-        </div>
-    </div>
-    <!-- Aquí se muestra el dropdown de búsqueda -->
-    <div id="search-dropdown" class="search-dropdown" style="display: none;"></div>
-</form>
-  
-
-</div>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="active" aria-label="Toggle navigation" href="index.php">PRINCIPAL</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link dropdown-toggle" href="product-grids.php"
+                            data-bs-target="#submenu-1-2" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">TIENDA</a>
+                        <ul class="sub-menu collapse" id="submenu-1-2">
+                            <li class="nav-item"><a href="about-us.html">About Us</a></li>
+                            <li class="nav-item"><a href="faq.html">Faq</a></li>
+                            <li class="nav-item"><a href="login.php">Login</a></li>
+                            <li class="nav-item"><a href="register.php">Register</a></li>
+                            <li class="nav-item"><a href="mail-success.html">Mail Success</a></li>
+                            <li class="nav-item"><a href="404.html">404 Error</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-bs-toggle="collapse"
+                            data-bs-target="#submenu-1-3" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">CATEGORÍAS</a>
+                        <ul class="sub-menu collapse" id="submenu-1-3">
+                            <li class="nav-item"><a href="#">Action</a></li>
+                            <li class="nav-item"><a href="#">Another action</a></li>
+                            <li class="nav-item"><a href="#">XD</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <div class="navbar-search search-style-5">
+                        <div class="navbar-search search-input">
+                            <input id="search-input" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                        </div>
+                        <div class="search-btn">
+                            <button type="button"><i class="lni lni-search-alt"></i></button>
+                        </div>
+                    </div>
+                    <!-- Aquí se muestra el dropdown de búsqueda -->
+                    <div id="search-dropdown" class="search-dropdown" style="display: none;"></div>
+                </form>
+            </div>
 <!-- carrito -->
     <div class="navbar-cart">
         <div class="cart-items">

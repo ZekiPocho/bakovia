@@ -21,22 +21,23 @@ include ('db.php');
     <link rel="stylesheet" href="assets/css/tiny-slider.css" />
     <link rel="stylesheet" href="assets/css/glightbox.min.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
-    
-    <style>
+
+        <style>
         .search-dropdown {
             position: absolute;
             background-color: white;
             border: 1px solid #ccc;
-            max-height: 300px; /* Ajusta según sea necesario */
-            overflow-y: auto;
-            width: 100%;
+            max-height: 150px; /* Reduce la altura máxima */
+            overflow-y: auto; /* Permite desplazamiento si es necesario */
+            width: 100%; /* Mantiene el ancho al 100% del contenedor */
             z-index: 1000;
-            padding: 10px;
+            padding: 5px; /* Reduce el padding */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Agrega una sombra sutil */
         }
 
         .search-dropdown h5 {
             margin: 0;
-            font-size: 16px;
+            font-size: 14px; /* Reduce el tamaño de fuente */
         }
 
         .search-dropdown ul {
@@ -46,16 +47,17 @@ include ('db.php');
         }
 
         .search-dropdown ul li {
-            padding: 5px 0;
+            padding: 3px 0; /* Reduce el padding de los elementos de la lista */
         }
 
         .search-dropdown ul li a {
             text-decoration: none;
-            color: #333; /* Ajusta según tu diseño */
+            color: #333; /* Color del texto */
+            font-size: 12px; /* Tamaño de fuente más pequeño */
         }
 
         .search-dropdown ul li a:hover {
-            color: #ff9800; /* Cambia el color al pasar el mouse */
+            color: #ff9800; /* Color al pasar el mouse */
         }
     </style>
 </head>

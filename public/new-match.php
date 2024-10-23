@@ -342,7 +342,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         faccionSigmarSelect.style.display = 'block';
         faccion40kSelect.style.display = 'none';
         faccionSigmarSelect.disabled = false;
-        puntosSelect.disabled = true;  // Desactivar puntos para Sigmar
+        puntosSelect.disabled = false;  // Desactivar puntos para Sigmar
         faccion40kSelect.disabled = true;  // Desactivar 40k
     } else {
         // Para otros juegos como Kill Team o WarCry

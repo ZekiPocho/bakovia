@@ -23,10 +23,6 @@ include ('db.php');
     <link rel="stylesheet" href="assets/css/main.css" />
 
     <style>
-.navbar-search {
-    position: relative; /* Para que el dropdown se posicione relativo a este contenedor */
-}
-
 .search-dropdown {
     position: absolute; /* Posiciona el dropdown */
     top: 100%; /* Lo coloca justo debajo del input */

@@ -19,8 +19,8 @@ if (isset($_GET['id_partida'])) {
        f2.subfaccion AS subfaccion2, 
        f2.icono AS icono2
 FROM partida p
-JOIN faccion f1 ON p.id_faccion_jugador1 = f1.id_faccion
-JOIN faccion f2 ON p.id_faccion_jugador2 = f2.id_faccion
+JOIN faccion f1 ON p.id_faccion_usuario1 = f1.id_faccion
+JOIN faccion f2 ON p.id_faccion_usuario2 = f2.id_faccion
 WHERE p.id_partida = $id_partida;
 ";
 

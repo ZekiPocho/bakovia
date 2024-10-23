@@ -191,12 +191,12 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     <section class="product-grids section">
         <div class="container-sm">
             <div class="row">
-                    <!-- Product Sidebar section temporarily commented out -->
-            <div class="col-lg-3 col-12">
 
+    <!-- Product Sidebar section temporarily commented out 
+                 <div class="col-lg-3 col-12">
+                 </div>
+     Aquí se puede agregar contenido relacionado con productos o filtros en el futuro -->
 
-</div>
-    <!-- Aquí se puede agregar contenido relacionado con productos o filtros en el futuro -->
                 <div class="col-lg-9 col-12">
                     <div class="product-grids-head">
                         <!--<div class="product-grid-topbar">

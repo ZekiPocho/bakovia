@@ -148,7 +148,7 @@ include ('db.php');
     <div class="navbar-cart">
         <div class="cart-items">
             <?php if (isset($_SESSION['usuario'])): // Verifica si el usuario ha iniciado sesión ?>
-                <a href="profile.php" class="main-btn">
+                <a href="edit-profile.php" class="main-btn">
                     <img src="<?php echo $_SESSION['usuario']['foto_perfil']; ?>" alt="Perfil" class="profile-pic">
                 </a>
             <?php else: ?>

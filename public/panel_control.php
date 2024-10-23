@@ -428,7 +428,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         formData.append('jugador', jugador);
         formData.append('puntaje', puntaje);
 
-        fetch('actualizar_puntaje.php', {
+        fetch('../public/actualizar_partida.php', {
             method: 'POST',
             body: formData
         })

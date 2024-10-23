@@ -59,6 +59,24 @@ include ('db.php');
         .search-dropdown ul li a:hover {
             color: #ff9800; /* Color al pasar el mouse */
         }
+
+        .navbar-search {
+    position: relative; /* Asegúrate de que el contenedor sea relativo */
+}
+
+.search-dropdown {
+    position: absolute; /* Mantén la posición absoluta para que se alinee correctamente */
+    top: 100%; /* Alinea el menú desplegable justo debajo del campo de búsqueda */
+    left: 0; /* Alinea a la izquierda del contenedor */
+    background-color: #171D25;
+    border: 1px solid #6E869D;
+    max-height: 150px; /* Reduce la altura máxima */
+    overflow-y: auto; /* Permite desplazamiento si es necesario */
+    width: 100%; /* Ajusta el ancho al 100% del contenedor */
+    z-index: 1000;
+    padding: 5px; /* Reduce el padding */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Agrega una sombra sutil */
+}
     </style>
 
 

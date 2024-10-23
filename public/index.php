@@ -604,6 +604,18 @@ $result = mysqli_query($conn, $query);
         setInterval(timer, 100000);
     </script>
     <script>
+        function showDropdown() {
+    const input = document.getElementById('search-input').value;
+    const dropdown = document.getElementById('search-dropdown');
+    
+    if (input.length > 0) {
+        dropdown.style.display = 'block'; // Muestra el menú desplegable
+        // Aquí puedes llenar el menú con los resultados de búsqueda
+    } else {
+        dropdown.style.display = 'none'; // Oculta el menú si no hay entrada
+    }
+}
+
 function showResults(event) {
     event.preventDefault(); // Evita que el formulario se envíe de la manera tradicional
 
@@ -652,17 +664,7 @@ function showResults(event) {
             resultsContainer.style.display = 'block'; // Muestra un mensaje de error
         });
 }
-function showDropdown() {
-    const input = document.getElementById('search-input').value;
-    const dropdown = document.getElementById('search-dropdown');
-    
-    if (input.length > 0) {
-        dropdown.style.display = 'block'; // Muestra el menú desplegable
-        // Aquí puedes llenar el menú con los resultados de búsqueda
-    } else {
-        dropdown.style.display = 'none'; // Oculta el menú si no hay entrada
-    }
-}
+
 </script>
 
 </body>

@@ -548,7 +548,7 @@ function confirmDelete() {
             'autoplayVideos': true,
         });
     </script>
-     <script>
+    <!-- <script>
         // Función para cargar las partidas en progreso
         function cargarPartidas() {
             $.ajax({
@@ -606,7 +606,7 @@ function confirmDelete() {
         $(document).ready(function() {
             cargarPartidas();
         });
-    </script>
+    </script>-->
 </body>
 
 </html>

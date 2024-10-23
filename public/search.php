@@ -1,47 +1,43 @@
 <?php
-// Conectar a la base de datos
-include 'db.php';
+// Conexión a la base de datos
+require 'db_connection.php';
 
-// Obtener el término de búsqueda desde el request
-$searchTerm = $_GET['search'];
+// Obtener el término de búsqueda
+$query = isset($_GET['query']) ? trim($_GET['query']) : '';
 
-// Realizar consultas a la base de datos
-$products = [];
-$publications = [];
+// Inicializar las variables
+$productos = [];
+$publicaciones = [];
 
-// Consulta para productos
-$productQuery = "SELECT id_producto, nombre_producto FROM productos WHERE nombre_producto LIKE ?";
-$stmt = $conn->prepare($productQuery);
-$likeTerm = "%" . $searchTerm . "%";
-$stmt->bind_param("s", $likeTerm);
-$stmt->execute();
-$result = $stmt->get_result();
+// Realizar la búsqueda de productos
+if (!empty($query)) {
+    $queryEscaped = $conn->real_escape_string($query);
+    
+    // Buscar productos
+    $sqlProductos = "SELECT id_producto, nombre_producto, precio 
+                     FROM productos 
+                     WHERE nombre_producto LIKE '%$queryEscaped%' OR descripcion LIKE '%$queryEscaped%'";
+    $resultProductos = $conn->query($sqlProductos);
+    
+    if ($resultProductos->num_rows > 0) {
+        while ($row = $resultProductos->fetch_assoc()) {
+            $productos[] = $row;
+        }
+    }
 
-while ($row = $result->fetch_assoc()) {
-    $products[] = [
-        'id' => $row['id_producto'],
-        'name' => $row['nombre_producto'],
-        'link' => "producto.php?id=" . urlencode($row['id_producto']) // Genera el enlace
-    ];
-}
-
-// Consulta para publicaciones
-$publicationQuery = "SELECT id_publicacion, titulo FROM publicaciones WHERE titulo LIKE ?";
-$stmt = $conn->prepare($publicationQuery);
-$stmt->bind_param("s", $likeTerm);
-$stmt->execute();
-$result = $stmt->get_result();
-
-while ($row = $result->fetch_assoc()) {
-    $publications[] = [
-        'id' => $row['id_publicacion'],
-        'title' => $row['titulo'],
-        'link' => "publicacion.php?id=" . urlencode($row['id_publicacion']) // Genera el enlace
-    ];
+    // Buscar publicaciones
+    $sqlPublicaciones = "SELECT id_publicacion, titulo 
+                         FROM publicaciones 
+                         WHERE titulo LIKE '%$queryEscaped%' OR contenido LIKE '%$queryEscaped%'";
+    $resultPublicaciones = $conn->query($sqlPublicaciones);
+    
+    if ($resultPublicaciones->num_rows > 0) {
+        while ($row = $resultPublicaciones->fetch_assoc()) {
+            $publicaciones[] = $row;
+        }
+    }
 }
 
 // Devolver resultados en formato JSON
-echo json_encode([
-    'products' => $products,
-    'publications' => $publications
-]);
+header('Content-Type: application/json');
+echo json_encode(['productos' => $productos, 'publicaciones' => $publicaciones]);

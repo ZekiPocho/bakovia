@@ -23,48 +23,39 @@ include ('db.php');
     <link rel="stylesheet" href="assets/css/main.css" />
 
     <style>
-        .navbar-search {
-    position: relative; /* Para que el dropdown se posicione relativo a este contenedor */
-}
-
-.search-dropdown {
-    position: absolute; /* Posiciona el dropdown */
-    top: 100%; /* Lo coloca justo debajo del input */
-    left: 0; /* Alineado a la izquierda del input */
-    background-color: #171D25;
-    border: 1px solid #6E869D;
-    max-height: 150px; /* Altura máxima */
-    overflow-y: auto; /* Permite desplazamiento si es necesario */
-    width: 100%; /* Ancho igual al del input */
+     .search-dropdown {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    max-height: 300px; /* Ajusta según sea necesario */
+    overflow-y: auto;
+    width: 100%;
     z-index: 1000;
-    padding: 5px; /* Padding interno */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+    padding: 10px;
 }
 
 .search-dropdown h5 {
-    margin: 5px 0;
-    font-size: 14px; /* Ajusta el tamaño según sea necesario */
-    color: #ECBE00; /* Color para el encabezado */
+    margin: 0;
+    font-size: 16px;
 }
 
 .search-dropdown ul {
-    list-style: none; /* Sin viñetas */
+    list-style: none;
     padding: 0;
     margin: 0;
 }
 
 .search-dropdown ul li {
-    padding: 3px 0; /* Espaciado de los elementos */
+    padding: 5px 0;
 }
 
 .search-dropdown ul li a {
-    text-decoration: none; /* Sin subrayado */
-    color: #eee; /* Color del texto */
-    font-size: 12px; /* Tamaño de fuente más pequeño */
+    text-decoration: none;
+    color: #333; /* Ajusta según tu diseño */
 }
 
 .search-dropdown ul li a:hover {
-    color: #ff9800; /* Color al pasar el mouse */
+    color: #ff9800; /* Cambia el color al pasar el mouse */
 }
     </style>
 
@@ -131,24 +122,19 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
           <li class="nav-item"><a href="#">XD</a></li>
         </ul>
       </li>
-  </ul>
-    <form class="d-flex">
-    <div class="navbar-search search-style-5" style="position: relative;">
+       </ul>
+       <form class="d-flex" onsubmit="return showResults(event)">
+    <div class="navbar-search search-style-5">
         <div class="navbar-search search-input">
-            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" id="search-input" oninput="showDropdown()">
+            <input class="form-control me-2" type="search" name="query" placeholder="Buscar" aria-label="Search" required>
         </div>
         <div class="search-btn">
-            <button type="button" onclick="showDropdown()"><i class="lni lni-search-alt"></i></button>
+            <button type="submit"><i class="lni lni-search-alt"></i></button>
         </div>
-        <!-- Menú desplegable -->
-        <div id="search-dropdown" class="search-dropdown" style="display: none;">
-    <h5>Productos</h5>
-    <ul id="product-results"></ul>
-    <h5>Publicaciones</h5>
-    <ul id="publication-results"></ul>
-</div>
     </div>
-    </form>
+    <div id="search-results" class="search-dropdown" style="display: none;"></div>
+</form>
+  
 
 </div>
 <!-- carrito -->
@@ -599,47 +585,57 @@ $result = mysqli_query($conn, $query);
     </script>
 
 
-
-
-
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-$(document).ready(function() {
-    $('#search-form').on('submit', function(event) {
-        event.preventDefault();
-        var searchQuery = $('#search-input').val();
+function showResults(event) {
+    event.preventDefault(); // Evita que el formulario se envíe de la manera tradicional
 
-        $.ajax({
-            url: 'search.php',
-            type: 'GET',
-            data: { search: searchQuery },
-            success: function(data) {
-                var results = JSON.parse(data);
-                $('#product-results').empty();
-                $('#publication-results').empty();
+    const query = event.target.query.value; // Obtén el término de búsqueda
+    const resultsContainer = document.getElementById('search-results');
 
-                // Agregar resultados de productos
-                results.products.forEach(function(product) {
-                    $('#product-results').append(
-                        `<li><a href="${product.link}">${product.name}</a></li>`
-                    );
-                });
+    if (query.trim() === '') {
+        resultsContainer.style.display = 'none'; // Oculta los resultados si la consulta está vacía
+        return;
+    }
 
-                // Agregar resultados de publicaciones
-                results.publications.forEach(function(publication) {
-                    $('#publication-results').append(
-                        `<li><a href="${publication.link}">${publication.title}</a></li>`
-                    );
-                });
+    // Realiza una solicitud AJAX para buscar productos y publicaciones
+    fetch(`search.php?query=${encodeURIComponent(query)}`)
+        .then(response => response.json())
+        .then(data => {
+            // Limpia los resultados anteriores
+            resultsContainer.innerHTML = '';
 
-                // Mostrar el menú desplegable
-                $('.search-dropdown').show();
+            if (data.productos.length > 0 || data.publicaciones.length > 0) {
+                // Muestra productos
+                if (data.productos.length > 0) {
+                    resultsContainer.innerHTML += '<h5>Productos:</h5><ul>';
+                    data.productos.forEach(producto => {
+                        resultsContainer.innerHTML += `<li><a href="product-details.php?id=${producto.id_producto}">${producto.nombre_producto} - Bs. ${producto.precio}</a></li>`;
+                    });
+                    resultsContainer.innerHTML += '</ul>';
+                }
+
+                // Muestra publicaciones
+                if (data.publicaciones.length > 0) {
+                    resultsContainer.innerHTML += '<h5>Publicaciones:</h5><ul>';
+                    data.publicaciones.forEach(publicacion => {
+                        resultsContainer.innerHTML += `<li><a href="post-details.php?id=${publicacion.id_publicacion}">${publicacion.titulo}</a></li>`;
+                    });
+                    resultsContainer.innerHTML += '</ul>';
+                }
+            } else {
+                resultsContainer.innerHTML = '<p>No se encontraron resultados.</p>';
             }
+
+            resultsContainer.style.display = 'block'; // Muestra el menú de resultados
+        })
+        .catch(error => {
+            console.error('Error al buscar:', error);
+            resultsContainer.innerHTML = '<p>Error en la búsqueda.</p>';
+            resultsContainer.style.display = 'block'; // Muestra un mensaje de error
         });
-    });
-});
+}
 </script>
+
 
 </body>
 

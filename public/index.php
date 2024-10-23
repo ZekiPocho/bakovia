@@ -202,54 +202,14 @@ include ('db.php');
                     <div class="row">
                         <div class="col-lg-12 col-md-6 col-12 md-custom-padding">
                             <!-- Start Small Banner -->
-                            <div class="hero-small-banner">
-                                <a href="matches.php" style="display: block; text-decoration: none; color: white;">
-                                        <div class="matches-div-mini text-center">
-                                            <!-- Partida 1 -->
-                                            <div class="match-entry mb-2 text-center">
-                                                <div class="row align-items-center">
-                                                    <div class="col-2">
-                                                        <img src="https://via.placeholder.com/50x50" alt="Foto de perfil usuario1" class="img-fluid" style="width: 20px; height: 20px;">
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <span style="font-size: 8px;">Usuario1</span>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <img src="assets/images/matches/sword.png" alt="Icono de batalla" class="img-fluid" style="max-width: 15px;">
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <span style="font-size: 8px;">Usuario2</span>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <img src="https://via.placeholder.com/50x50" alt="Foto de perfil usuario2" class="img-fluid" style="width: 20px; height: 20px;">
-                                                    </div>
-                                                </div>
-                                                <div class="scoreboard">
-                                                    <!-- Equipo 1 -->
-                                                    <div class="team">
-                                                        <img src="https://via.placeholder.com/100x100" alt="Equipo 1" style="width: 55px; height: 55px;">
-                                                        <span style="font-size: 10px;">Adeptus Astartes<br>Ultramarines</span>
-                                                    </div>
-                                                    <!-- Puntaje izquierdo -->
-                                                    <div class="score-mini">15</div>
-                                                    <!-- Sección central -->
-                                                    <div class="middle-section">
-                                                        <span style="font-size: 10px;">Warhammer 40.000</span>
-                                                        <span style="font-size: 10px;">Ronda Nº1</span>
-                                                    <span style="font-size: 10px;"><i class="lni lni-hourglass"></i>00:00:00</span>
-                                                        <div class="points-title-mini">PUNTOS DE VICTORIA</div>
-                                                    </div>
-                                                    <!-- Puntaje derecho -->
-                                                    <div class="score-mini">15</div>
-                                                    <!-- Equipo 2 -->
-                                                    <div class="team">
-                                                        <img src="https://via.placeholder.com/100x100" alt="Equipo 2" style="width: 55px; height: 55px;">
-                                                        <span style="font-size: 10px;">Adeptus Astartes<br>Ultramarines</span>
-                                                    </div>
-                                                </div>
-                                            </div>
+                            <div class="hero-small-banner style2">
+                                <div class="content">
+                                    <h2>¡Publicaciones!</h2>
+                                    <p></p>
+                                    <div class="button">
+                                        <a class="btn" href="blog-grid-sidebar.php">Ver Publicaciones</a>
+                                    </div>
                                 </div>
-                            </a>
                             </div>
                             <!-- End Small Banner -->
                         </div>

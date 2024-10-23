@@ -42,8 +42,9 @@ include ('db.php');
 }
 
 .search-dropdown h5 {
-    margin: 0;
-    font-size: 14px; /* Tamaño de fuente */
+    margin: 5px 0;
+    font-size: 14px; /* Ajusta el tamaño según sea necesario */
+    color: #ECBE00; /* Color para el encabezado */
 }
 
 .search-dropdown ul {

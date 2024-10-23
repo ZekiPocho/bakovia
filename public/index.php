@@ -52,13 +52,13 @@ include ('db.php');
 
 #search-dropdown li a {
     text-decoration: none; /* Sin subrayado */
-    color: #eee; /* Color del texto */
+    color: #ECBE00; /* Color del texto */
     display: block; /* Hacer que el enlace ocupe toda la área */
     font-size: 14px; /* Cambiar el tamaño de la fuente para que sea más pequeño */
 }
 
 #search-dropdown li a:hover {
-    background: #f1f1f1; /* Color de fondo en hover */
+    color: #ECBE00; /* Color de fondo en hover */
 }
 </style>
 

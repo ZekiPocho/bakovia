@@ -216,7 +216,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                     p.id_mesa AS id_mesa, 
                     p.puntaje_usuario1 AS puntaje_jugador1, 
                     p.puntaje_usuario2 AS puntaje_jugador2,
-                    p.id_reserva AS id_reserva -- Extraer id_reserva directamente de partida
+                    p.id_reserva AS id_reserva,
+                    p.ronda as ronda -- Extraer id_reserva directamente de partida
                 FROM partida p
                 LEFT JOIN faccion f1 ON p.id_faccion_usuario1 = f1.id_faccion
                 LEFT JOIN faccion f2 ON p.id_faccion_usuario2 = f2.id_faccion
@@ -256,6 +257,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 $puntaje_jugador1 = $partida['puntaje_jugador1'] ?? null;
                 $puntaje_jugador2 = $partida['puntaje_jugador2'] ?? null;
                 $id_reserva = $partida['id_reserva'] ?? null; // Asignar id_reserva directamente de partida
+                $ronda = $partida['ronda'] ?? null; // Asignar id_reserva directamente de partida
         
                 // Ahora puedes usar las variables para mostrar los datos en tu HTML
             } else {
@@ -320,7 +322,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <div class="mb-3">
                     <label for="rondas" class="form-label">Ronda Nº:</label>
                     <center>
-                    <input type="number" style="width: 50px;" name="rondas" class="form-control" value="0"> <!-- Cambia este valor al número de rondas actual -->
+                    <input type="number" style="width: 50px;" name="rondas" class="form-control" value="<?php echo htmlspecialchars($ronda); ?>"> <!-- Cambia este valor al número de rondas actual -->
                     </center>
                 </div>
                 <button type="submit" class="btn btn-primary" 

@@ -121,9 +121,8 @@ include ('db.php');
                             data-bs-target="#submenu-1-3" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">CATEGORÍAS</a>
                         <ul class="sub-menu collapse" id="submenu-1-3">
-                            <li class="nav-item"><a href="#">Action</a></li>
-                            <li class="nav-item"><a href="#">Another action</a></li>
-                            <li class="nav-item"><a href="#">XD</a></li>
+                            <li class="nav-item"><a href="matches.php">Partidas</a></li>
+                            <li class="nav-item"><a href="blog-grid-sidebar.php">Blogs</a></li>
                         </ul>
                     </li>
                 </ul>

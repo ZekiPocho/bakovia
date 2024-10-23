@@ -1,44 +1,35 @@
 <?php
-// Conexión a la base de datos
-require 'db.php';
+include 'db.php';
 
-// Obtener el término de búsqueda
-$query = isset($_GET['query']) ? trim($_GET['query']) : '';
+// Obtener la consulta de búsqueda
+$query = isset($_GET['query']) ? $_GET['query'] : '';
 
-// Inicializar las variables
-$productos = [];
-$publicaciones = [];
+// Inicializar un array para almacenar los resultados
+$items = [];
 
-// Realizar la búsqueda de productos
-if (!empty($query)) {
-    $queryEscaped = $conn->real_escape_string($query);
-    
-    // Buscar productos
-    $sqlProductos = "SELECT id_producto, nombre_producto, precio 
-                     FROM productos 
-                     WHERE nombre_producto LIKE '%$queryEscaped%' OR descripcion LIKE '%$queryEscaped%'";
-    $resultProductos = $conn->query($sqlProductos);
-    
-    if ($resultProductos->num_rows > 0) {
-        while ($row = $resultProductos->fetch_assoc()) {
-            $productos[] = $row;
-        }
-    }
+// Consulta para buscar productos
+$sqlProducts = "SELECT nombre_producto AS name, 'product' AS type, CONCAT('product-details.php?id=', id_producto) AS link FROM productos WHERE nombre_producto LIKE '%$query%'";
+$resultProducts = $conn->query($sqlProducts);
 
-    // Buscar publicaciones
-    $sqlPublicaciones = "SELECT id_publicacion, titulo 
-                        FROM publicaciones 
-                        WHERE titulo LIKE '%$queryEscaped%' OR contenido LIKE '%$queryEscaped%'";
-    $resultPublicaciones = $conn->query($sqlPublicaciones);
-    
-    if ($resultPublicaciones->num_rows > 0) {
-        while ($row = $resultPublicaciones->fetch_assoc()) {
-            $publicaciones[] = $row;
-        }
+if ($resultProducts->num_rows > 0) {
+    while ($row = $resultProducts->fetch_assoc()) {
+        $items[] = $row;
     }
 }
 
-// Devolver resultados en formato JSON
+// Consulta para buscar publicaciones
+$sqlPublications = "SELECT titulo AS name, 'post' AS type, CONCAT('blog-single-sidebar.php?id=', id_publicacion) AS link FROM publicaciones WHERE titulo LIKE '%$query%'";
+$resultPublications = $conn->query($sqlPublications);
+
+if ($resultPublications->num_rows > 0) {
+    while ($row = $resultPublications->fetch_assoc()) {
+        $items[] = $row;
+    }
+}
+
+// Devolver los resultados como JSON
 header('Content-Type: application/json');
-echo json_encode(['productos' => $productos, 'publicaciones' => $publicaciones]);
+echo json_encode($items);
+
+$conn->close();
 ?>

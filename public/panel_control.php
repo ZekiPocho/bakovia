@@ -275,14 +275,14 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     <div class="row justify-content-center">
         <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4"> <!-- Columna para el Jugador 1 -->
             <div class="team">
-                <h4 class="text-center"><?php echo htmlspecialchars($nombre_jugador1); ?></h4>
+                <h4 id="nombre_jugador1" class="text-center"><?php echo htmlspecialchars($nombre_jugador1); ?></h4>
                 <br>
-                <img src="<?php echo htmlspecialchars($icono1); ?>" alt="Facción Jugador 1" class="img-fluid" style="height: 150px;">
+                <img id="icono_jugador1" src="<?php echo htmlspecialchars($icono1); ?>" alt="Facción Jugador 1" class="img-fluid" style="height: 150px;">
                 <br>
                 <br>
                 <div class="team-name">
-                    <p><?php echo htmlspecialchars($faccion1); ?></p>
-                    <h3><?php echo htmlspecialchars($subfaccion1); ?></h3>
+                <p id="faccion_jugador1"><?php echo htmlspecialchars($faccion1); ?></p>
+                <h3 id="subfaccion_jugador1"><?php echo htmlspecialchars($subfaccion1); ?></h3>
                 </div>
                 <br>
                 <form action="adjust_score.php" method="POST" id="scoreFormJugador1">
@@ -290,7 +290,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                     <input type="hidden" name="jugador" value="1">
                     <div class="mb-3">
                         <center>
-                        <input type="number" style="width: 100px; height: 100px; font-size: xxx-large;align-content: center;" name="puntaje_jugador1" class="form-control" value="<?php echo htmlspecialchars($puntaje_jugador1); ?>">
+                        <input id="puntaje_jugador1" type="number" style="width: 100px; height: 100px; font-size: xxx-large;align-content: center;" name="puntaje_jugador1" class="form-control" value="<?php echo htmlspecialchars($puntaje_jugador1); ?>">
                         </center>                    
                     </div>
                 </form>
@@ -301,10 +301,10 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     <div class="matches-div text-center">
         <div class="middle-section text-center">
             <!-- Información del Juego -->
-            <p style="font-size: 1.50rem;"><?php echo htmlspecialchars($nombre_juego); ?></p> <!-- Nombre del juego -->
+            <p id="nombre_juego" style="font-size: 1.50rem;"><?php echo htmlspecialchars($nombre_juego); ?></p> <!-- Nombre del juego -->
 
             <!-- Puntos -->
-            <p style="font-size: 1.2rem; filter: opacity(50%);"><?php echo htmlspecialchars($puntos); ?> Pts.</p> <!-- Puntos -->
+            <p id="puntos" style="font-size: 1.2rem; filter: opacity(50%);"><?php echo htmlspecialchars($puntos); ?> Pts.</p> <!-- Puntos -->
             <br>
             <!-- Horarios -->
             <h4 style="font-size: 1rem;">Horario:</h4>
@@ -314,7 +314,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             </p> <!-- Horas de inicio y finalización -->    
             <br>
             <h3 style="font-size: 1.25rem;">Tiempo Transcurrido</h3> <!-- Reducido el tamaño de la fuente -->
-            <div id="tiempo-transcurrido" style="font-size: 1.2rem;">00:00:00</div> <!-- Reducido el tamaño de la fuente -->
+            <div id="tiempo-transcurrido" style="font-size: 1.2rem;">00:00:00</div> <!-- Tiempo transcurrido -->
             <br>
 
                 <input type="hidden" name="id_partida" value="<?php echo htmlspecialchars($id_partida); ?>">
@@ -381,24 +381,24 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         .then(data => {
             if (!data.error) {
                 // Actualizar información del jugador 1
-                document.querySelector('input[name="puntaje_jugador1"]').value = data.puntaje_usuario1; // Asegúrate de que el nombre sea correcto
-                document.querySelector('.team:nth-child(1) h4').textContent = data.nombre_jugador1;
-                document.querySelector('.team:nth-child(1) img').src = data.icono1;
-                document.querySelector('.team:nth-child(1) p').textContent = data.faccion1;
-                document.querySelector('.team:nth-child(1) h3').textContent = data.subfaccion1;
+                document.getElementById('puntaje_jugador1').value = data.puntaje_usuario1; // Input para puntaje
+                document.getElementById('nombre_jugador1').textContent = data.nombre_jugador1; // Nombre del jugador
+                document.getElementById('icono_jugador1').src = data.icono1; // Icono del jugador
+                document.getElementById('faccion_jugador1').textContent = data.faccion1; // Facción del jugador
+                document.getElementById('subfaccion_jugador1').textContent = data.subfaccion1; // Subfacción del jugador
 
                 // Actualizar información del jugador 2
-                document.querySelector('input[name="puntaje_jugador2"]').value = data.puntaje_usuario2; // Asegúrate de que el nombre sea correcto
-                document.querySelector('.team:nth-child(3) h4').textContent = data.nombre_jugador2;
-                document.querySelector('.team:nth-child(3) img').src = data.icono2;
-                document.querySelector('.team:nth-child(3) p').textContent = data.faccion2;
-                document.querySelector('.team:nth-child(3) h3').textContent = data.subfaccion2;
+                document.getElementById('puntaje_jugador2').value = data.puntaje_usuario2; // Input para puntaje
+                document.getElementById('nombre_jugador2').textContent = data.nombre_jugador2; // Nombre del jugador
+                document.getElementById('icono_jugador2').src = data.icono2; // Icono del jugador
+                document.getElementById('faccion_jugador2').textContent = data.faccion2; // Facción del jugador
+                document.getElementById('subfaccion_jugador2').textContent = data.subfaccion2; // Subfacción del jugador
 
                 // Actualizar información del juego
-                document.querySelector('.matches-div p:first-child').textContent = data.nombre_juego;
-                document.querySelector('.matches-div p:nth-child(2)').textContent = `${data.puntos} Pts.`;
-                document.getElementById('ronda').textContent = data.ronda;
-                document.getElementById('tiempo-transcurrido').textContent = data.tiempo_transcurrido;
+                document.getElementById('nombre_juego').textContent = data.nombre_juego; // Nombre del juego
+                document.getElementById('puntos').textContent = `${data.puntos} Pts.`; // Puntos
+                document.getElementById('ronda').value = data.ronda; // Input para puntaje
+                document.getElementById('tiempo-transcurrido').textContent = data.tiempo_transcurrido; // Tiempo transcurrido
 
                 // Actualizar cronómetro (hora de inicio)
                 actualizarCronometro(data.hora_inicio, 'tiempo-transcurrido');

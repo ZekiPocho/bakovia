@@ -52,7 +52,7 @@ include ('db.php');
 
 #search-dropdown li a {
     text-decoration: none; /* Sin subrayado */
-    color: eee; /* Color del texto */
+    color: #eee; /* Color del texto */
     display: block; /* Hacer que el enlace ocupe toda la área */
 }
 

@@ -155,7 +155,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                     <div class="row">
                         <div class="col-lg-12 col-md-6 col-12 md-custom-padding">
                             <!-- Start Small Banner -->
-                            <div class="hero-small-banner style2" style="background-image: url('..../uploads/posts/IMG_20241004_195630_168.jpg');">
+                            <div class="hero-small-banner style2" style="background-image: url('../uploads/posts/IMG_20241004_195630_168.jpg');">
                                 <div class="content">
                                     <h2>¡Partidas!</h2>
                                     <p></p>

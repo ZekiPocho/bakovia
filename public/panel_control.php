@@ -495,10 +495,12 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 const nombreJugador2 = "<?php echo $nombre_jugador2; ?>";
 const iniciarBtn = document.getElementById('iniciar-btn');
 const finalizarBtn = document.getElementById('finalizar-btn');
-
-if (nombreJugador2 !== 'N/A') {
+function verificarEstadoBoton{
+    if (nombreJugador2 !== 'N/A') {
     iniciarBtn.disabled = false;
 }
+}
+
 
 // Función para actualizar el estado de la partida
 function actualizarEstadoPartida(nuevoEstado) {

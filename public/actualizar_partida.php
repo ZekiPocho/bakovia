@@ -1,68 +1,66 @@
 <?php
 include('../public/db.php');
 
-// Verificar la conexión
-if ($conexion->connect_error) {
-    die("Conexión fallida: " . $conexion->connect_error);
+// Verificar conexión
+if ($conn->connect_error) {
+    die(json_encode(['error' => 'Error de conexión: ' . $conn->connect_error]));
 }
 
-// Manejar la solicitud POST para actualizar los datos
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Obtener los datos enviados
-    $id_partida = $_POST['id_partida']; // ID de la partida
-    $puntaje_jugador1 = $_POST['puntaje_jugador1']; // Puntaje del jugador 1
-    $puntaje_jugador2 = $_POST['puntaje_jugador2']; // Puntaje del jugador 2
+// Comprobar si se ha pasado el ID de la partida
+if (isset($_GET['id_partida'])) {
+    $id_partida = intval($_GET['id_partida']);
 
-    // Consulta para actualizar los datos de la partida
-    $query = "UPDATE partida SET puntaje_usuario1 = ?, puntaje_usuario2 = ? WHERE id_partida = ?";
-    $stmt = $conexion->prepare($query);
-    $stmt->bind_param("iii", $puntaje_jugador1, $puntaje_jugador2, $id_partida);
+    // Consulta para obtener los datos de la partida
+    $sql = "SELECT p.*, j1.nombre AS nombre_jugador1, j2.nombre AS nombre_jugador2, 
+            f1.nombre AS faccion1, f1.subfaccion AS subfaccion1, f1.icono AS icono1,
+            f2.nombre AS faccion2, f2.subfaccion AS subfaccion2, f2.icono AS icono2
+            FROM partida p
+            JOIN jugador j1 ON p.id_jugador1 = j1.id_jugador
+            JOIN jugador j2 ON p.id_jugador2 = j2.id_jugador
+            JOIN faccion f1 ON p.id_faccion_jugador1 = f1.id_faccion
+            JOIN faccion f2 ON p.id_faccion_jugador2 = f2.id_faccion
+            WHERE p.id_partida = $id_partida";
+
+    $result = $conn->query($sql);
+    if ($result) {
+        $partida = $result->fetch_assoc();
+        if ($partida) {
+            // Devolver los datos de la partida como JSON
+            echo json_encode($partida);
+        } else {
+            echo json_encode(['error' => 'Partida no encontrada']);
+        }
+    } else {
+        echo json_encode(['error' => 'Error en la consulta: ' . $conn->error]);
+    }
+} elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Actualizar puntaje del jugador
+    $id_partida = $_POST['id_partida'];
+    $jugador = intval($_POST['jugador']);
+    $puntaje = intval($_POST['puntaje']);
+
+    // Validar datos
+    if ($jugador < 1 || $jugador > 2) {
+        echo json_encode(['error' => 'Jugador no válido']);
+        exit;
+    }
+
+    // Actualizar puntaje en la base de datos
+    $campo_puntaje = $jugador === 1 ? 'puntaje_usuario1' : 'puntaje_usuario2';
+    $sql_update = "UPDATE partida SET $campo_puntaje = ? WHERE id_partida = ?";
+    $stmt = $conn->prepare($sql_update);
+    $stmt->bind_param('ii', $puntaje, $id_partida);
 
     if ($stmt->execute()) {
-        // Si la actualización es exitosa, devuelve los datos actualizados
-        $response = [
-            'success' => true,
-            'id_partida' => $id_partida,
-            'puntaje_usuario1' => $puntaje_jugador1,
-            'puntaje_usuario2' => $puntaje_jugador2
-        ];
+        echo json_encode(['success' => true]);
     } else {
-        // Si hay un error, devuelve un mensaje de error
-        $response = [
-            'success' => false,
-            'error' => 'Error al actualizar la partida: ' . $stmt->error
-        ];
+        echo json_encode(['error' => 'Error al actualizar el puntaje: ' . $stmt->error]);
     }
-    // Cierra la declaración
+    
     $stmt->close();
 } else {
-    // Manejar la solicitud GET para recibir los datos actuales de la partida
-    $id_partida = $_GET['id_partida'];
-    $query = "SELECT * FROM partida WHERE id_partida = ?";
-    $stmt = $conexion->prepare($query);
-    $stmt->bind_param("i", $id_partida);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows > 0) {
-        $data = $result->fetch_assoc();
-        // Devuelve los datos de la partida como JSON
-        $response = [
-            'success' => true,
-            'data' => $data
-        ];
-    } else {
-        $response = [
-            'success' => false,
-            'error' => 'Partida no encontrada.'
-        ];
-    }
+    echo json_encode(['error' => 'Método no permitido']);
 }
 
-// Cierra la conexión
-$conexion->close();
-
-// Envía la respuesta como JSON
-header('Content-Type: application/json');
-echo json_encode($response);
+$conn->close();
 ?>

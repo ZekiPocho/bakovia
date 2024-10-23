@@ -23,58 +23,47 @@ include ('db.php');
     <link rel="stylesheet" href="assets/css/main.css" />
 
     <style>
-        .search-dropdown {
-            position: absolute;
-            background-color: #171D25;
-            border: 1px solid #6E869D;
-            max-height: 150px; /* Reduce la altura máxima */
-            overflow-y: auto; /* Permite desplazamiento si es necesario */
-            width: 20%; /* Mantiene el ancho al 100% del contenedor */
-            z-index: 1000;
-            padding: 5px; /* Reduce el padding */
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Agrega una sombra sutil */
-        }
-
-        .search-dropdown h5 {
-            margin: 0;
-            font-size: 14px; /* Reduce el tamaño de fuente */
-        }
-
-        .search-dropdown ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .search-dropdown ul li {
-            padding: 3px 0; /* Reduce el padding de los elementos de la lista */
-        }
-
-        .search-dropdown ul li a {
-            text-decoration: none;
-            color: #ECBE00; /* Color del texto */
-            font-size: 12px; /* Tamaño de fuente más pequeño */
-        }
-
-        .search-dropdown ul li a:hover {
-            color: #ff9800; /* Color al pasar el mouse */
-        }
         .navbar-search {
-    position: relative; /* Asegúrate de que el contenedor sea relativo */
+    position: relative; /* Para que el dropdown se posicione relativo a este contenedor */
 }
 
 .search-dropdown {
-    position: absolute; /* Mantén la posición absoluta para que se alinee correctamente */
-    top: 100%; /* Alinea el menú desplegable justo debajo del campo de búsqueda */
-    left: 0; /* Alinea a la izquierda del contenedor */
+    position: absolute; /* Posiciona el dropdown */
+    top: 100%; /* Lo coloca justo debajo del input */
+    left: 0; /* Alineado a la izquierda del input */
     background-color: #171D25;
     border: 1px solid #6E869D;
-    max-height: 150px; /* Reduce la altura máxima */
+    max-height: 150px; /* Altura máxima */
     overflow-y: auto; /* Permite desplazamiento si es necesario */
-    width: 100%; /* Ajusta el ancho al 100% del contenedor */
+    width: 100%; /* Ancho igual al del input */
     z-index: 1000;
-    padding: 5px; /* Reduce el padding */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Agrega una sombra sutil */
+    padding: 5px; /* Padding interno */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+
+.search-dropdown h5 {
+    margin: 0;
+    font-size: 14px; /* Tamaño de fuente */
+}
+
+.search-dropdown ul {
+    list-style: none; /* Sin viñetas */
+    padding: 0;
+    margin: 0;
+}
+
+.search-dropdown ul li {
+    padding: 3px 0; /* Espaciado de los elementos */
+}
+
+.search-dropdown ul li a {
+    text-decoration: none; /* Sin subrayado */
+    color: #ECBE00; /* Color del texto */
+    font-size: 12px; /* Tamaño de fuente más pequeño */
+}
+
+.search-dropdown ul li a:hover {
+    color: #ff9800; /* Color al pasar el mouse */
 }
     </style>
 

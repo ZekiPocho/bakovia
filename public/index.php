@@ -130,16 +130,17 @@ include ('db.php');
                     </li>
                 </ul>
                 <form class="d-flex">
-                    <div class="navbar-search search-style-5">
-                        <div class="navbar-search search-input">
-                            <input id="search-input" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-                        </div>
-                        <div class="search-btn">
-                            <button type="button"><i class="lni lni-search-alt"></i></button>
-                        </div>
-                    </div>
-                    <!-- Aquí se muestra el dropdown de búsqueda -->
-                    <div id="search-dropdown" class="search-dropdown" style="display: none;"></div>
+    <div class="navbar-search search-style-5">
+        <div class="navbar-search search-input">
+            <input id="search-input" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+        </div>
+        <div class="search-btn">
+            <button type="button"><i class="lni lni-search-alt"></i></button>
+        </div>
+    </div>
+    <!-- Aquí se muestra el dropdown de búsqueda -->
+    <div id="search-dropdown" class="search-dropdown" style="display: none;"></div>
+</form>d="search-dropdown" class="search-dropdown" style="display: none;"></div>
                 </form>
             </div>
             <!-- carrito -->

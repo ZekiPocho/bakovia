@@ -29,7 +29,7 @@ include ('db.php');
 
 .search-dropdown {
     position: absolute; /* Posiciona el dropdown */
-    top: calc(100% + 5px); /* Coloca justo debajo del input con un margen */
+    top: 100%; /* Coloca justo debajo del input con un margen */
     left: 0; /* Alineado a la izquierda del input */
     background-color: #171D25;
     border: 1px solid #6E869D;

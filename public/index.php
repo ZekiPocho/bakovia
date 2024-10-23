@@ -209,7 +209,7 @@ include ('db.php');
                                     <h2>¡Partidas!</h2>
                                     <p></p>
                                     <div class="button">
-                                        <a class="btn" href="blog-grid-sidebar.php">Ver Partidas en Progreso</a>
+                                        <a class="btn" href="matches.php">Ver Partidas en Progreso</a>
                                     </div>
                                 </div>
                             </div>

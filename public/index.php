@@ -31,8 +31,8 @@ include ('db.php');
     position: absolute; /* Posiciona el dropdown de forma absoluta */
     top: 100%; /* Coloca el dropdown justo debajo del input */
     left: 0; /* Alinea el dropdown a la izquierda del contenedor */
-    background: white; /* Fondo blanco para el dropdown */
-    border: 1px solid #ccc; /* Borde gris */
+    background: #171D25; /* Fondo blanco para el dropdown */
+    border: 1px solid #6E869D; /* Borde gris */
     z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
     display: none; /* Ocultar por defecto */
     width: 100%; /* Ancho igual al contenedor de búsqueda */
@@ -52,7 +52,7 @@ include ('db.php');
 
 #search-dropdown li a {
     text-decoration: none; /* Sin subrayado */
-    color: black; /* Color del texto */
+    color: eee; /* Color del texto */
     display: block; /* Hacer que el enlace ocupe toda la área */
 }
 

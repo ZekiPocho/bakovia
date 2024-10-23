@@ -29,7 +29,7 @@ include ('db.php');
             border: 1px solid #ccc;
             max-height: 150px; /* Reduce la altura máxima */
             overflow-y: auto; /* Permite desplazamiento si es necesario */
-            width: 80%; /* Mantiene el ancho al 100% del contenedor */
+            width: 20%; /* Mantiene el ancho al 100% del contenedor */
             z-index: 1000;
             padding: 5px; /* Reduce el padding */
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Agrega una sombra sutil */

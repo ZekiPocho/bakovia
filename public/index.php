@@ -125,16 +125,22 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         </ul>
       </li>
   </ul>
-    <form class="d-flex" onsubmit="return showResults(event)">
+    <form class="d-flex">
     <div class="navbar-search search-style-5">
         <div class="navbar-search search-input">
-            <input class="form-control me-2" type="search" name="query" placeholder="Buscar" aria-label="Search" required>
+            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" id="search-input" oninput="showDropdown()">
         </div>
         <div class="search-btn">
-            <button type="submit"><i class="lni lni-search-alt"></i></button>
+            <button type="button" onclick="showDropdown()"><i class="lni lni-search-alt"></i></button>
+        </div>
+        <!-- Menú desplegable -->
+        <div class="search-dropdown" id="search-dropdown" style="display: none;">
+            <h5>Resultados</h5>
+            <ul id="search-results">
+                <!-- Resultados se insertarán aquí con JavaScript -->
+            </ul>
         </div>
     </div>
-    <div id="search-results" class="search-dropdown" style="display: none;"></div>
     </form>
 </div>
 <!-- carrito -->

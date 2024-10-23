@@ -367,6 +367,51 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     </div>
 </div>
 
+<script>
+    // ID de la partida en curso (lo obtienes desde PHP)
+    const idPartida = "<?php echo $id_partida; ?>";
+
+    // Carga inicial de la partida
+    cargarPartida();
+
+    // Cargar datos de la partida cada 5 segundos
+    setInterval(cargarPartida, 5000);
+
+    function cargarPartida() {
+        fetch(`actualizar_partida.php?id_partida=${idPartida}`)
+        .then(response => response.json())
+        .then(data => {
+            if (!data.error) {
+                // Actualizar puntajes de jugadores
+                document.querySelector('input[name="puntaje_jugador1"]').value = data.puntaje_jugador1;
+                document.querySelector('input[name="puntaje_jugador2"]').value = data.puntaje_jugador2;
+
+                // Actualizar cronómetro
+                actualizarCronometro(data.hora_inicio, 'tiempo-transcurrido');
+            } else {
+                console.error(data.error);
+            }
+        })
+        .catch(error => console.error('Error al cargar la partida:', error));
+    }
+
+    function actualizarCronometro(horaInicio, elementoId) {
+        const inicio = new Date(horaInicio); // Convertimos la hora de inicio en un objeto Date
+        const ahora = new Date(); // Hora actual
+        const diferencia = ahora - inicio; // Diferencia en milisegundos
+
+        // Convertimos la diferencia a horas, minutos y segundos
+        const horas = Math.floor(diferencia / 1000 / 60 / 60);
+        const minutos = Math.floor((diferencia / 1000 / 60) % 60);
+        const segundos = Math.floor((diferencia / 1000) % 60);
+
+        // Formateamos los valores a dos dígitos
+        const tiempoTranscurrido = `${String(horas).padStart(2, '0')}:${String(minutos).padStart(2, '0')}:${String(segundos).padStart(2, '0')}`;
+
+        // Actualizamos el DOM
+        document.getElementById(elementoId).textContent = tiempoTranscurrido;
+    }
+</script>
 
 <script>
 function confirmDelete() {

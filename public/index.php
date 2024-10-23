@@ -592,39 +592,62 @@ $result = mysqli_query($conn, $query);
         }
         timer();
         setInterval(timer, 100000);
+
+
+        
     </script>
-    <script>
-function showDropdown() {
-    const input = document.getElementById('search-input').value;
-    const dropdown = document.getElementById('search-dropdown');
-    const results = document.getElementById('search-results');
 
-    // Limpiar resultados anteriores
-    results.innerHTML = '';
 
-    if (input.length > 0) {
-        dropdown.style.display = 'block'; // Muestra el menú desplegable
 
-        // Aquí deberías llenar `results` con los resultados de búsqueda
-        // Por ahora, solo vamos a simular algunos resultados
-        const dummyResults = ['Producto 1', 'Producto 2', 'Publicación 1', 'Publicación 2'];
 
-        dummyResults.forEach(item => {
-            if (item.toLowerCase().includes(input.toLowerCase())) {
-                const li = document.createElement('li');
-                li.innerHTML = `<a href="#">${item}</a>`; // Enlace para cada resultado
-                results.appendChild(li);
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#search-input').on('input', function() {
+        let query = $(this).val();
+
+        // Si la consulta está vacía, limpiar el dropdown
+        if (query.length < 1) {
+            $('#search-dropdown').empty().hide();
+            return;
+        }
+
+        // Realizar la búsqueda a través de AJAX
+        $.ajax({
+            url: 'search.php',
+            method: 'GET',
+            data: { query: query },
+            dataType: 'json',
+            success: function(data) {
+                $('#search-dropdown').empty(); // Limpiar resultados previos
+
+                if (data.length > 0) {
+                    // Mostrar resultados
+                    data.forEach(function(item) {
+                        $('#search-dropdown').append(
+                            `<li><a href="${item.link}">${item.name} (${item.type})</a></li>`
+                        );
+                    });
+                    $('#search-dropdown').show(); // Mostrar el dropdown
+                } else {
+                    $('#search-dropdown').hide(); // Ocultar si no hay resultados
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error("Error en la búsqueda: ", error);
             }
         });
-        
-        // Si no hay resultados, puedes mostrar un mensaje
-        if (results.innerHTML === '') {
-            results.innerHTML = '<li>No hay resultados</li>';
+    });
+
+    // Ocultar el dropdown al hacer clic fuera
+    $(document).on('click', function(event) {
+        if (!$(event.target).closest('.navbar-search').length) {
+            $('#search-dropdown').hide();
         }
-    } else {
-        dropdown.style.display = 'none'; // Oculta el menú si no hay entrada
-    }
-}
+    });
+});
 </script>
 
 </body>

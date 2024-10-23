@@ -133,10 +133,10 @@ include ('db.php');
         </div>
         <div class="search-btn">
             <button type="button"><i class="lni lni-search-alt"></i></button>
+                <!-- Aquí se muestra el dropdown de búsqueda -->
+    <div id="search-dropdown" class="search-dropdown" style="display: none;"></div>
         </div>
     </div>
-    <!-- Aquí se muestra el dropdown de búsqueda -->
-    <div id="search-dropdown" class="search-dropdown" style="display: none;"></div>
 </form>
             </div>
             

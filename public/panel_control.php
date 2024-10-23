@@ -325,6 +325,11 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <button type="submit" id="iniciar-btn" class="btn btn-primary" disabled>
                     INICIAR
                 </button>
+                <!-- Botón para finalizar la partida (inicialmente oculto) -->
+                <button type="button" id="finalizar-btn" class="btn btn-danger" style="display: none;">
+                    FINALIZAR
+                </button>
+                
             <br>
             <form action="delete_match.php" method="POST" onsubmit="return confirmDelete();">
                 <input type="hidden" name="id_partida" value="<?php echo htmlspecialchars($id_partida); ?>">
@@ -405,19 +410,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         })
         .catch(error => console.error('Error al cargar la partida:', error));
 }
-    function verificarEstadoBoton() {
-        // Suponiendo que `nombre_jugador2` es un valor que se actualiza dinámicamente
-        const nombreJugador2 = document.querySelector('#nombre_jugador2').textContent; // Modificar esto según el origen de nombre_jugador2
-        
-        const botonIniciar = document.getElementById('iniciar-btn');
-        
-        // Si el nombre del jugador 2 es 'N/A', desactiva el botón
-        if (nombreJugador2 === 'N/A') {
-            botonIniciar.disabled = true;
-        } else {
-            botonIniciar.disabled = false;
-        }
-    }
+    
 
     // Verificar el estado del botón constantemente cada segundo
     setInterval(verificarEstadoBoton, 1000);
@@ -495,6 +488,54 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     .catch(error => {
         console.error('Error en la solicitud:', error);
     });
+});
+</script>
+<script>
+// Verificar si el juego tiene un segundo jugador asignado (habilitar botón de iniciar)
+const nombreJugador2 = "<?php echo $nombre_jugador2; ?>";
+const iniciarBtn = document.getElementById('iniciar-btn');
+const finalizarBtn = document.getElementById('finalizar-btn');
+
+if (nombreJugador2 !== 'N/A') {
+    iniciarBtn.disabled = false;
+}
+
+// Función para actualizar el estado de la partida
+function actualizarEstadoPartida(nuevoEstado) {
+    const idPartida = "<?php echo $id_partida; ?>"; // Obtén el ID de la partida
+    fetch('actualizar_estado.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id_partida: idPartida, estado: nuevoEstado })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            if (nuevoEstado === 'en progreso') {
+                iniciarBtn.style.display = 'none'; // Ocultar botón de iniciar
+                finalizarBtn.style.display = 'inline-block'; // Mostrar botón de finalizar
+            } else if (nuevoEstado === 'finalizado') {
+                finalizarBtn.disabled = true; // Deshabilitar el botón de finalizar
+                alert('La partida ha sido finalizada.');
+            }
+        } else {
+            alert('Error al actualizar el estado de la partida.');
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+// Al hacer clic en el botón de iniciar, cambiar el estado a 'en progreso'
+iniciarBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    actualizarEstadoPartida('en progreso');
+});
+
+// Al hacer clic en el botón de finalizar, cambiar el estado a 'finalizado'
+finalizarBtn.addEventListener('click', function () {
+    actualizarEstadoPartida('finalizado');
 });
 </script>
 

@@ -189,7 +189,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-12 col-12">
                     <div class="content-left">
-                        <img src="https://via.placeholder.com/540x420" alt="#">
+                        <img src="assets/images/hero/Imagen_de_WhatsApp_2024-10-04_a_las_22.34.00_bb76dc8d.jpg" alt="#">
                         <!--
                         <a href="https://www.youtube.com/watch?v=r44RKWyfcFw&fbclid=IwAR21beSJORalzmzokxDRcGfkZA1AtRTE__l5N4r09HcGS5Y6vOluyouM9EM"
                             class="glightbox video"><i class="lni lni-play"></i></a>-->

@@ -140,12 +140,12 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <button type="button" onclick="showDropdown()"><i class="lni lni-search-alt"></i></button>
         </div>
         <!-- Menú desplegable -->
-        <div class="search-dropdown" id="search-dropdown" style="display: none;">
-            <h5>Resultados</h5>
-            <ul id="search-results">
-                <!-- Resultados se insertarán aquí con JavaScript -->
-            </ul>
-        </div>
+        <div id="search-dropdown" class="search-dropdown" style="display: none;">
+    <h5>Productos</h5>
+    <ul id="product-results"></ul>
+    <h5>Publicaciones</h5>
+    <ul id="publication-results"></ul>
+</div>
     </div>
     </form>
 

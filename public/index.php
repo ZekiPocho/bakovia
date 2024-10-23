@@ -25,8 +25,8 @@ include ('db.php');
         <style>
         .search-dropdown {
             position: absolute;
-            background-color: white;
-            border: 1px solid #ccc;
+            background-color: #171D25;
+            border: 1px solid #6E869D;
             max-height: 150px; /* Reduce la altura máxima */
             overflow-y: auto; /* Permite desplazamiento si es necesario */
             width: 20%; /* Mantiene el ancho al 100% del contenedor */

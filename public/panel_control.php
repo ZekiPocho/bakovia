@@ -317,7 +317,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <div id="tiempo-transcurrido" style="font-size: 1.2rem;">00:00:00</div> <!-- Reducido el tamaño de la fuente -->
             <br>
 
-            <form action="adjust_rounds.php" method="POST" id="roundForm">
                 <input type="hidden" name="id_partida" value="<?php echo htmlspecialchars($id_partida); ?>">
                 <div class="mb-3">
                     <label for="rondas" class="form-label">Ronda Nº:</label>
@@ -329,7 +328,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                     <?php echo ($nombre_jugador2 === 'N/A') ? 'disabled' : ''; ?>>
                     INICIAR
                 </button>
-            </form>
             <br>
             <form action="delete_match.php" method="POST" onsubmit="return confirmDelete();">
                 <input type="hidden" name="id_partida" value="<?php echo htmlspecialchars($id_partida); ?>">
@@ -383,26 +381,76 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         .then(data => {
             if (!data.error) {
                 // Actualizar información del jugador 1
-                document.querySelector('input[name="puntaje_jugador1"]').value = data.puntaje_usuario1; // Asegúrate de que el nombre sea correcto
-                document.querySelector('.team:nth-child(1) h4').textContent = data.nombre_jugador1;
-                document.querySelector('.team:nth-child(1) img').src = data.icono1;
-                document.querySelector('.team:nth-child(1) p').textContent = data.faccion1;
-                document.querySelector('.team:nth-child(1) h3').textContent = data.subfaccion1;
+            const jugador1PuntajeInput = document.querySelector('input[name="puntaje_jugador1"]');
+            if (jugador1PuntajeInput) {
+                jugador1PuntajeInput.value = data.puntaje_usuario1; // Asegúrate de que el nombre sea correcto
+            }
 
-                // Actualizar información del jugador 2
-                document.querySelector('input[name="puntaje_jugador2"]').value = data.puntaje_usuario2; // Asegúrate de que el nombre sea correcto
-                document.querySelector('.team:nth-child(3) h4').textContent = data.nombre_jugador2;
-                document.querySelector('.team:nth-child(3) img').src = data.icono2;
-                document.querySelector('.team:nth-child(3) p').textContent = data.faccion2;
-                document.querySelector('.team:nth-child(3) h3').textContent = data.subfaccion2;
+            const jugador1Nombre = document.querySelector('.team:nth-of-type(1) h4');
+            if (jugador1Nombre) {
+                jugador1Nombre.textContent = data.nombre_jugador1;
+            }
 
-                // Actualizar información del juego
-                document.querySelector('.matches-div p:first-child').textContent = data.nombre_juego;
-                document.querySelector('.matches-div p:nth-child(2)').textContent = `${data.puntos} Pts.`;
-                document.getElementById('tiempo-transcurrido').textContent = data.tiempo_transcurrido;
+            const jugador1Icono = document.querySelector('.team:nth-of-type(1) img');
+            if (jugador1Icono) {
+                jugador1Icono.src = data.icono1;
+            }
 
-                // Actualizar cronómetro (hora de inicio)
-                actualizarCronometro(data.hora_inicio, 'tiempo-transcurrido');
+            const jugador1Faccion = document.querySelector('.team:nth-of-type(1) p');
+            if (jugador1Faccion) {
+                jugador1Faccion.textContent = data.faccion1;
+            }
+
+            const jugador1Subfaccion = document.querySelector('.team:nth-of-type(1) h3');
+            if (jugador1Subfaccion) {
+                jugador1Subfaccion.textContent = data.subfaccion1;
+            }
+
+            // Actualizar información del jugador 2
+            const jugador2PuntajeInput = document.querySelector('input[name="puntaje_jugador2"]');
+            if (jugador2PuntajeInput) {
+                jugador2PuntajeInput.value = data.puntaje_usuario2; // Asegúrate de que el nombre sea correcto
+            }
+
+            const jugador2Nombre = document.querySelector('.team:nth-of-type(3) h4');
+            if (jugador2Nombre) {
+                jugador2Nombre.textContent = data.nombre_jugador2;
+            }
+
+            const jugador2Icono = document.querySelector('.team:nth-of-type(3) img');
+            if (jugador2Icono) {
+                jugador2Icono.src = data.icono2;
+            }
+
+            const jugador2Faccion = document.querySelector('.team:nth-of-type(3) p');
+            if (jugador2Faccion) {
+                jugador2Faccion.textContent = data.faccion2;
+            }
+
+            const jugador2Subfaccion = document.querySelector('.team:nth-of-type(3) h3');
+            if (jugador2Subfaccion) {
+                jugador2Subfaccion.textContent = data.subfaccion2;
+            }
+
+            // Actualizar información del juego
+            const nombreJuegoElement = document.querySelector('.matches-div p:first-child');
+            if (nombreJuegoElement) {
+                nombreJuegoElement.textContent = data.nombre_juego;
+            }
+
+            const puntosElement = document.querySelector('.matches-div p:nth-child(2)');
+            if (puntosElement) {
+                puntosElement.textContent = `${data.puntos} Pts.`;
+            }
+
+            const tiempoTranscurridoElement = document.getElementById('tiempo-transcurrido');
+            if (tiempoTranscurridoElement) {
+                tiempoTranscurridoElement.textContent = data.tiempo_transcurrido;
+            }
+
+            // Actualizar cronómetro (hora de inicio)
+            actualizarCronometro(data.hora_inicio, 'tiempo-transcurrido');
+
             } else {
                 console.error(data.error);
             }

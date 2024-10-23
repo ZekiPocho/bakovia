@@ -406,6 +406,12 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
     let formValido = juego && faccion;
 
+    // Verificar puntos solo si el juego es Warhammer 40k
+    if ((juego === '1' || juego === '2') && !puntos) {
+    formValido = false;
+    }
+
+
     document.getElementById('crear-partida').disabled = !formValido;
     }
     </script>

@@ -36,7 +36,7 @@ include ('db.php');
     z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
     display: none; /* Ocultar por defecto */
     width: 100%; /* Ancho igual al contenedor de búsqueda */
-    max-width: 300px; /* Ancho máximo si es necesario */
+    max-width: 250px; /* Disminuir el ancho máximo si es necesario */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra opcional para el dropdown */
 }
 
@@ -47,19 +47,20 @@ include ('db.php');
 }
 
 #search-dropdown li {
-    padding: 10px; /* Espaciado interno para los elementos */
+    padding: 5px 8px; /* Reducir el espaciado interno para los elementos */
 }
 
 #search-dropdown li a {
     text-decoration: none; /* Sin subrayado */
     color: #eee; /* Color del texto */
     display: block; /* Hacer que el enlace ocupe toda la área */
+    font-size: 14px; /* Cambiar el tamaño de la fuente para que sea más pequeño */
 }
 
 #search-dropdown li a:hover {
     background: #f1f1f1; /* Color de fondo en hover */
 }
-    </style>
+</style>
 
 
 

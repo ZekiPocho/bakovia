@@ -23,15 +23,19 @@ include ('db.php');
     <link rel="stylesheet" href="assets/css/main.css" />
 
     <style>
+.navbar-search {
+    position: relative; /* Para que el dropdown se posicione relativo a este contenedor */
+}
+
 .search-dropdown {
     position: absolute; /* Posiciona el dropdown */
-    top: 100%; /* Lo coloca justo debajo del input */
+    top: calc(100% + 5px); /* Coloca justo debajo del input con un margen */
     left: 0; /* Alineado a la izquierda del input */
     background-color: #171D25;
     border: 1px solid #6E869D;
     max-height: 100px; /* Altura máxima reducida */
     overflow-y: auto; /* Permite desplazamiento si es necesario */
-    width: 150px; /* Ancho reducido, puedes ajustar este valor */
+    width: 150px; /* Ancho reducido */
     z-index: 1000;
     padding: 3px; /* Padding interno reducido */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra */

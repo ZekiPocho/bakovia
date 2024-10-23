@@ -610,7 +610,9 @@ $(document).ready(function() {
 
         // Si la consulta está vacía, limpiar el dropdown
         if (query.length < 1) {
-            $('#search-dropdown').empty().hide();
+            $('#search-dropdown').hide();
+            $('#product-results').empty();
+            $('#publication-results').empty();
             return;
         }
 
@@ -621,18 +623,33 @@ $(document).ready(function() {
             data: { query: query },
             dataType: 'json',
             success: function(data) {
-                $('#search-dropdown').empty(); // Limpiar resultados previos
+                // Limpiar resultados previos
+                $('#product-results').empty();
+                $('#publication-results').empty();
 
-                if (data.length > 0) {
-                    // Mostrar resultados
-                    data.forEach(function(item) {
-                        $('#search-dropdown').append(
-                            `<li><a href="${item.link}">${item.name} (${item.type})</a></li>`
+                // Mostrar productos
+                if (data.products.length > 0) {
+                    data.products.forEach(function(product) {
+                        $('#product-results').append(
+                            `<li><a href="${product.link}">${product.name}</a></li>`
                         );
                     });
-                    $('#search-dropdown').show(); // Mostrar el dropdown
+                }
+
+                // Mostrar publicaciones
+                if (data.publications.length > 0) {
+                    data.publications.forEach(function(publication) {
+                        $('#publication-results').append(
+                            `<li><a href="${publication.link}">${publication.title}</a></li>`
+                        );
+                    });
+                }
+
+                // Mostrar u ocultar el dropdown según los resultados
+                if (data.products.length > 0 || data.publications.length > 0) {
+                    $('#search-dropdown').show();
                 } else {
-                    $('#search-dropdown').hide(); // Ocultar si no hay resultados
+                    $('#search-dropdown').hide();
                 }
             },
             error: function(xhr, status, error) {

@@ -370,47 +370,50 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 <script>
     // ID de la partida en curso (lo obtienes desde PHP)
     const idPartida = "<?php echo $id_partida; ?>";
+    const nombreJugador2 = "<?php echo $nombre_jugador2; ?>";
+    const iniciarBtn = document.getElementById('iniciar-btn');
+    const finalizarBtn = document.getElementById('finalizar-btn');
 
     // Carga inicial de la partida
     cargarPartida();
 
     // Cargar datos de la partida cada 5 segundos
-    setInterval(cargarPartida, 1000);
+    setInterval(cargarPartida, 5000); // Cambiar a 5000 ms para evitar carga excesiva
 
     function cargarPartida() {
-    fetch(`actualizar_partida.php?id_partida=${idPartida}`)
-        .then(response => response.json())
-        .then(data => {
-            if (!data.error) {
-                // Actualizar información del jugador 1
-                document.getElementById('puntaje_jugador1').value = data.puntaje_usuario1; // Input para puntaje
-                document.getElementById('nombre_jugador1').textContent = data.nombre_jugador1; // Nombre del jugador
-                document.getElementById('icono_jugador1').src = data.icono1; // Icono del jugador
-                document.getElementById('faccion_jugador1').textContent = data.faccion1; // Facción del jugador
-                document.getElementById('subfaccion_jugador1').textContent = data.subfaccion1; // Subfacción del jugador
+        fetch(`actualizar_partida.php?id_partida=${idPartida}`)
+            .then(response => response.json())
+            .then(data => {
+                if (!data.error) {
+                    // Actualizar información del jugador 1
+                    document.getElementById('puntaje_jugador1').value = data.puntaje_usuario1;
+                    document.getElementById('nombre_jugador1').textContent = data.nombre_jugador1;
+                    document.getElementById('icono_jugador1').src = data.icono1;
+                    document.getElementById('faccion_jugador1').textContent = data.faccion1;
+                    document.getElementById('subfaccion_jugador1').textContent = data.subfaccion1;
 
-                // Actualizar información del jugador 2
-                document.getElementById('puntaje_jugador2').value = data.puntaje_usuario2; // Input para puntaje
-                document.getElementById('nombre_jugador2').textContent = data.nombre_jugador2; // Nombre del jugador
-                document.getElementById('icono_jugador2').src = data.icono2; // Icono del jugador
-                document.getElementById('faccion_jugador2').textContent = data.faccion2; // Facción del jugador
-                document.getElementById('subfaccion_jugador2').textContent = data.subfaccion2; // Subfacción del jugador
+                    // Actualizar información del jugador 2
+                    document.getElementById('puntaje_jugador2').value = data.puntaje_usuario2;
+                    document.getElementById('nombre_jugador2').textContent = data.nombre_jugador2;
+                    document.getElementById('icono_jugador2').src = data.icono2;
+                    document.getElementById('faccion_jugador2').textContent = data.faccion2;
+                    document.getElementById('subfaccion_jugador2').textContent = data.subfaccion2;
 
-                // Actualizar información del juego
-                document.getElementById('nombre_juego').textContent = data.nombre_juego; // Nombre del juego
-                document.getElementById('puntos').textContent = `${data.puntos} Pts.`; // Puntos
-                document.getElementById('ronda').value = data.ronda; // Input para puntaje
-                document.getElementById('tiempo-transcurrido').textContent = data.tiempo_transcurrido; // Tiempo transcurrido
+                    // Actualizar información del juego
+                    document.getElementById('nombre_juego').textContent = data.nombre_juego;
+                    document.getElementById('puntos').textContent = `${data.puntos} Pts.`;
+                    document.getElementById('ronda').value = data.ronda;
+                    document.getElementById('tiempo-transcurrido').textContent = data.tiempo_transcurrido;
 
-                // Actualizar cronómetro (hora de inicio)
-                actualizarCronometro(data.hora_inicio, 'tiempo-transcurrido');
-            } else {
-                console.error(data.error);
-            }
-        })
-        .catch(error => console.error('Error al cargar la partida:', error));
-}
-    
+                    // Actualizar cronómetro (hora de inicio)
+                    actualizarCronometro(data.hora_inicio, 'tiempo-transcurrido');
+                } else {
+                    console.error(data.error);
+                }
+            })
+            .catch(error => console.error('Error al cargar la partida:', error));
+    }
+
     function actualizarCronometro(horaInicio, elementoId) {
         const inicio = new Date(`1970-01-01T${horaInicio}Z`); // Convertimos la hora de inicio a un objeto Date
         const ahora = new Date(); // Hora actual
@@ -458,138 +461,61 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         })
         .catch(error => console.error('Error al actualizar el puntaje:', error));
     }
-    document.getElementById('iniciar-btn').addEventListener('click', function(event) {
-    event.preventDefault();  // Previene el envío normal del formulario o el comportamiento del botón
 
-    const idPartida = <?php echo htmlspecialchars($id_partida); ?>;  // Asegúrate de que la variable id_partida esté definida
-    const data = { id_partida: idPartida, nuevo_estado: 'en progreso' };
-
-    // Enviar la solicitud AJAX usando fetch
-    fetch('actualizar_estado.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)  // Convertir los datos en formato JSON
-    })
-    .then(response => response.json())
-    .then(result => {
-        if (result.success) {
-            alert('Partid en: PROGRESO');
-            // Aquí puedes hacer cualquier acción adicional como actualizar la UI
-        } else {
-            alert('Error al actualizar el estado');
-        }
-    })
-    .catch(error => {
-        console.error('Error en la solicitud:', error);
-    });
-});
-</script>
-<script>
     // Verificar el estado del botón constantemente cada segundo
-// Llamar a verificarEstadoBoton cada segundo
-setInterval(verificarEstadoBoton, 1000);
+    setInterval(verificarEstadoBoton, 1000);
 
-// Función para verificar el estado del botón
-function verificarEstadoBoton() {
-    // Verificar si nombreJugador2 no es 'N/A'
-    if (nombreJugador2 !== 'N/A') {
-        iniciarBtn.disabled = false; // Habilitar el botón si la condición se cumple
-    } else {
-        iniciarBtn.disabled = true; // Deshabilitar el botón si la condición no se cumple
+    // Función para verificar el estado del botón
+    function verificarEstadoBoton() {
+        iniciarBtn.disabled = (nombreJugador2 === 'N/A');
     }
-}
 
-// Verificar si el juego tiene un segundo jugador asignado (habilitar botón de iniciar)
-const nombreJugador2 = "<?php echo $nombre_jugador2; ?>";
-const iniciarBtn = document.getElementById('iniciar-btn');
-const finalizarBtn = document.getElementById('finalizar-btn');
-
-
-
-// Función para actualizar el estado de la partida
-function actualizarEstadoPartida(nuevoEstado) {
-    const idPartida = "<?php echo $id_partida; ?>"; // Obtén el ID de la partida
-    const idJugador1 = "<?php echo $id_jugador1; ?>"; // ID del jugador 1
-    const idJugador2 = "<?php echo $id_jugador2; ?>"; // ID del jugador 2
-    
-    fetch('actualizar_estado.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            id_partida: idPartida,
-            estado: nuevoEstado,
-            id_jugador1: idJugador1,
-            id_jugador2: idJugador2
+    // Función para actualizar el estado de la partida
+    function actualizarEstadoPartida(nuevoEstado) {
+        fetch('actualizar_estado.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id_partida: idPartida,
+                estado: nuevoEstado
+            })
         })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            if (nuevoEstado === 'en progreso') {
-                iniciarBtn.style.display = 'none'; // Ocultar botón de iniciar
-                finalizarBtn.style.display = 'inline-block'; // Mostrar botón de finalizar
-            } else if (nuevoEstado === 'finalizado') {
-                finalizarBtn.disabled = true; // Deshabilitar el botón de finalizar
-                alert('La partida ha sido finalizada.');
-
-                // Redirigir al usuario 1 a 'matches.php'
-                window.location.href = 'matches.php';
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                if (nuevoEstado === 'en progreso') {
+                    iniciarBtn.style.display = 'none'; // Ocultar botón de iniciar
+                    finalizarBtn.style.display = 'inline-block'; // Mostrar botón de finalizar
+                    alert('Partida en: PROGRESO');
+                } else if (nuevoEstado === 'finalizado') {
+                    finalizarBtn.disabled = true; // Deshabilitar el botón de finalizar
+                    alert('La partida ha sido finalizada.');
+                    window.location.href = 'matches.php'; // Redirigir al usuario a matches.php
+                }
+            } else {
+                alert('Error al actualizar el estado de la partida.');
             }
-        } else {
-            alert('Error al actualizar el estado de la partida.');
-        }
-    })
-    .catch(error => console.error('Error:', error));
-}
-
-// Al hacer clic en el botón de iniciar, cambiar el estado a 'en progreso'
-iniciarBtn.addEventListener('click', function (e) {
-    e.preventDefault();
-    actualizarEstadoPartida('en progreso');
-});
-
-// Al hacer clic en el botón de finalizar, mostrar confirmación antes de cambiar el estado
-finalizarBtn.addEventListener('click', function () {
-    // Mostrar alerta de confirmación
-    const confirmacion = confirm("¿Estás seguro de que deseas finalizar la partida?");
-    
-    // Si el usuario confirma, cambiar el estado a 'finalizado'
-    if (confirmacion) {
-        actualizarEstadoPartida('finalizado');
+        })
+        .catch(error => console.error('Error:', error));
     }
-});
-fetch('actualizar_estado.php', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-        id_partida: idPartida,
-        estado: 'finalizado',
-        id_jugador1: idJugador1,
-        id_jugador2: idJugador2
-    })
-})
-.then(response => response.json())
-.then(data => {
-    if (data.success) {
-        // Redirigir si la partida ha finalizado
-        if (data.redirect) {
-            window.location.href = data.redirect;
-        }
-    } else {
-        alert(data.message || 'Hubo un error al finalizar la partida.');
-    }
-})
-.catch(error => {
-    console.error('Error:', error);
-});
 
+    // Al hacer clic en el botón de iniciar, cambiar el estado a 'en progreso'
+    iniciarBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        actualizarEstadoPartida('en progreso');
+    });
+
+    // Al hacer clic en el botón de finalizar, mostrar confirmación antes de cambiar el estado
+    finalizarBtn.addEventListener('click', function () {
+        const confirmacion = confirm("¿Estás seguro de que deseas finalizar la partida?");
+        if (confirmacion) {
+            actualizarEstadoPartida('finalizado');
+        }
+    });
 </script>
+
 
 
 <script>

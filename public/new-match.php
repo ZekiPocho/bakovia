@@ -400,7 +400,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     // Verificar qué select de facciones debe estar habilitado
     if (juego === '1') {
         faccion = document.getElementById('faccion40k').value;
-    } else if (juego === 'ageofsigmar') {
+    } else if (juego === '2') {
         faccion = document.getElementById('faccionSigmar').value;
     }
 

@@ -41,6 +41,7 @@ if (!empty($query)) {
 // Devolver resultados en formato JSON
 header('Content-Type: application/json');
 echo json_encode(['productos' => $productos, 'publicaciones' => $publicaciones]);
+?>
 
 <style>
 .search-dropdown {

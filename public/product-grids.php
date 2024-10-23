@@ -209,25 +209,19 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                             <h3>Todas las Categorías</h3>
                             <ul class="list">
                                 <li>
-                                    <a href="product-grids.php">Computers & Accessories </a><span>(1138)</span>
+                                    <a href="product-grids.php">cajas de inicio</a><span>(1138)</span>
                                 </li>
                                 <li>
-                                    <a href="product-grids.php">Smartphones & Tablets</a><span>(2356)</span>
+                                    <a href="product-grids.php">Set introductorio</a><span>(2356)</span>
                                 </li>
                                 <li>
-                                    <a href="product-grids.php">TV, Video & Audio</a><span>(420)</span>
+                                    <a href="product-grids.php">Pintura</a><span>(420)</span>
                                 </li>
                                 <li>
-                                    <a href="product-grids.php">Cameras, Photo & Video</a><span>(874)</span>
+                                    <a href="product-grids.php">Herramientas de modelage</a><span>(874)</span>
                                 </li>
                                 <li>
-                                    <a href="product-grids.php">Headphones</a><span>(1239)</span>
-                                </li>
-                                <li>
-                                    <a href="product-grids.php">Wearable Electronics</a><span>(340)</span>
-                                </li>
-                                <li>
-                                    <a href="product-grids.php">Printers & Ink</a><span>(512)</span>
+                                    <a href="product-grids.php">Combat patrol</a><span>(1239)</span>
                                 </li>
                             </ul>
                         </div>

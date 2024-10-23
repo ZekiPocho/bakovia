@@ -203,8 +203,6 @@ $conn->close();
     <small id="contador-titulo" class="form-text text-muted">0/100 caracteres</small>
 </div>
 
-
-
             <!-- Cuerpo de la publicación -->
             <div class="mb-4">
                 <h5 for="contenido">Cuerpo de la publicación:</h5>

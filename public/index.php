@@ -22,7 +22,43 @@ include ('db.php');
     <link rel="stylesheet" href="assets/css/glightbox.min.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
 
-        <style>
+    <style>
+        .search-dropdown {
+            position: absolute;
+            background-color: #171D25;
+            border: 1px solid #6E869D;
+            max-height: 150px; /* Reduce la altura máxima */
+            overflow-y: auto; /* Permite desplazamiento si es necesario */
+            width: 20%; /* Mantiene el ancho al 100% del contenedor */
+            z-index: 1000;
+            padding: 5px; /* Reduce el padding */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Agrega una sombra sutil */
+        }
+
+        .search-dropdown h5 {
+            margin: 0;
+            font-size: 14px; /* Reduce el tamaño de fuente */
+        }
+
+        .search-dropdown ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .search-dropdown ul li {
+            padding: 3px 0; /* Reduce el padding de los elementos de la lista */
+        }
+
+        .search-dropdown ul li a {
+            text-decoration: none;
+            color: #ECBE00; /* Color del texto */
+            font-size: 12px; /* Tamaño de fuente más pequeño */
+        }
+
+        .search-dropdown ul li a:hover {
+            color: #ff9800; /* Color al pasar el mouse */
+        }
         .navbar-search {
     position: relative; /* Asegúrate de que el contenedor sea relativo */
 }
@@ -40,7 +76,7 @@ include ('db.php');
     padding: 5px; /* Reduce el padding */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Agrega una sombra sutil */
 }
-        </style>
+    </style>
 
 </head>
 

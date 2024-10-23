@@ -160,7 +160,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                     <h2>¡Partidas!</h2>
                                     <p></p>
                                     <div class="button">
-                                        <a class="btn" href="blog-grid-sidebar.php">Ver Partidas</a>
+                                        <a class="btn" href="matches.php">Ver Partidas</a>
                                     </div>
                                 </div>
                             </div>

@@ -105,7 +105,7 @@ include ('db.php');
                         <a class="active" aria-label="Toggle navigation" href="index.php">PRINCIPAL</a>
                     </li>
                     <li class="nav-item">
-                        <a class="active" aria-label="Toggle navigation" href="product-grids.php">PRINCIPAL</a>
+                        <a class="active" aria-label="Toggle navigation" href="product-grids.php">TIENDA</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-bs-toggle="collapse"

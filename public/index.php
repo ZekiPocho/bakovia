@@ -124,6 +124,7 @@ include ('db.php');
                             <li class="nav-item"><a href="matches.php">Partidas</a></li>
                             <li class="nav-item"><a href="blog-grid-sidebar.php">Blogs</a></li>
                             <li class="nav-item"><a href="about-us.php">¿Quienes Somos?</a></li>
+                            <li class="nav-item"><a href="faq.php">Preguntas Frecuentes</a></li>
                         </ul>
                     </li>
                 </ul>

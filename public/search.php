@@ -44,5 +44,19 @@ echo json_encode([
     'publications' => $publications
 ]);
 
+// Genera las URLs correctas
+$products[] = [
+    'id' => $row['id_producto'],
+    'name' => $row['nombre_producto'],
+    'link' => "producto.php?id=" . urlencode($row['id_producto']) // Usar urlencode para asegurar que la URL es válida
+];
+
+$publications[] = [
+    'id' => $row['id_publicacion'],
+    'title' => $row['titulo'],
+    'link' => "publicacion.php?id=" . urlencode($row['id_publicacion']) // Igualmente para publicaciones
+];
+
+
 $conn->close();
 ?>

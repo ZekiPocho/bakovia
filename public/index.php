@@ -605,18 +605,14 @@ function showDropdown() {
     if (input.length > 0) {
         dropdown.style.display = 'block'; // Muestra el menú desplegable
 
-        // Simular resultados de búsqueda (puedes cambiar esto por una llamada AJAX a tu base de datos)
-        const dummyResults = [
-            { name: 'Producto 1', link: 'product1.html' },
-            { name: 'Producto 2', link: 'product2.html' },
-            { name: 'Publicación 1', link: 'post1.html' },
-            { name: 'Publicación 2', link: 'post2.html' }
-        ];
+        // Aquí deberías llenar `results` con los resultados de búsqueda
+        // Por ahora, solo vamos a simular algunos resultados
+        const dummyResults = ['Producto 1', 'Producto 2', 'Publicación 1', 'Publicación 2'];
 
         dummyResults.forEach(item => {
-            if (item.name.toLowerCase().includes(input.toLowerCase())) {
+            if (item.toLowerCase().includes(input.toLowerCase())) {
                 const li = document.createElement('li');
-                li.innerHTML = `<a href="${item.link}">${item.name}</a>`; // Enlace para cada resultado
+                li.innerHTML = `<a href="#">${item}</a>`; // Enlace para cada resultado
                 results.appendChild(li);
             }
         });

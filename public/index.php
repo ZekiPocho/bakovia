@@ -144,17 +144,21 @@ include ('db.php');
                 </div>
             </div>
             <!-- PERFIL -->
-            <div class="col-sm-auto">
-                <div class="navbar-cart">
-                    <div class="cart-items">
-                        <a href="profile.php" class="main-btn">
-                            <i class="lni lni-user"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
+<div class="col-sm-auto">
+    <div class="navbar-cart">
+        <div class="cart-items">
+            <?php if (isset($_SESSION['usuario'])): // Verifica si el usuario ha iniciado sesión ?>
+                <a href="profile.php" class="main-btn">
+                    <img src="<?php echo $_SESSION['usuario']['foto_perfil']; ?>" alt="Perfil" class="profile-pic">
+                </a>
+            <?php else: ?>
+                <a href="login.php" class="main-btn">
+                    <i class="lni lni-user"></i>
+                </a>
+            <?php endif; ?>
         </div>
-    </nav>
+    </div>
+</div>
 </header>
 <!-- TERMINA HEADER Y NAVBAR PRO --> 
 

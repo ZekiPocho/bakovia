@@ -11,8 +11,8 @@ $data = json_decode(file_get_contents('php://input'), true);
 // Verifica que todos los datos necesarios estén presentes
 $id_partida = $data['id_partida'] ?? null;
 $estado = $data['estado'] ?? null;
-$id_jugador1 = $data['id_jugador1'] ?? null;
-$id_jugador2 = $data['id_jugador2'] ?? null;
+$id_jugador1 = $data['nombre_jugador1'] ?? null;
+$id_jugador2 = $data['nombre_jugador2'] ?? null;
 
 if (is_null($id_partida) || is_null($estado) || is_null($id_jugador1) || is_null($id_jugador2)) {
     echo json_encode(['success' => false, 'message' => 'Faltan datos requeridos.']);
@@ -26,8 +26,8 @@ $result = mysqli_query($conn, $query);
 if ($result) {
     if ($estado === 'finalizado') {
         // Actualizar la columna 'made' de ambos jugadores
-        $query_jugador1 = "UPDATE usuarios SET made = 0 WHERE id_usuario = $id_jugador1";
-        $query_jugador2 = "UPDATE usuarios SET made = 0 WHERE id_usuario = $id_jugador2";
+        $query_jugador1 = "UPDATE usuarios SET made = 0 WHERE nombre_usuario = $id_jugador1";
+        $query_jugador2 = "UPDATE usuarios SET made = 0 WHERE nombre_usuario = $id_jugador2";
         
         $result_jugador1 = mysqli_query($conn, $query_jugador1);
         $result_jugador2 = mysqli_query($conn, $query_jugador2);

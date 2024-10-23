@@ -422,7 +422,9 @@ include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a l
             },
             body: JSON.stringify({
                 id_partida: idPartida,
-                estado: nuevoEstado
+                estado: nuevoEstado,
+                id_jugador1: nombre_jugador1,
+                id_jugador2: nombre_jugador2
             })
         })
         .then(response => response.json())

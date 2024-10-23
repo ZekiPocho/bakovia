@@ -488,16 +488,24 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 </script>
 <script>
     // Verificar el estado del botón constantemente cada segundo
-    setInterval(verificarEstadoBoton, 1000);
+// Llamar a verificarEstadoBoton cada segundo
+setInterval(verificarEstadoBoton, 1000);
+
+// Función para verificar el estado del botón
+function verificarEstadoBoton() {
+    // Verificar si nombreJugador2 no es 'N/A'
+    if (nombreJugador2 !== 'N/A') {
+        iniciarBtn.disabled = false; // Habilitar el botón si la condición se cumple
+    } else {
+        iniciarBtn.disabled = true; // Deshabilitar el botón si la condición no se cumple
+    }
+}
+
 // Verificar si el juego tiene un segundo jugador asignado (habilitar botón de iniciar)
 const nombreJugador2 = "<?php echo $nombre_jugador2; ?>";
 const iniciarBtn = document.getElementById('iniciar-btn');
 const finalizarBtn = document.getElementById('finalizar-btn');
-function verificarEstadoBoton{
-    if (nombreJugador2 !== 'N/A') {
-    iniciarBtn.disabled = false;
-}
-}
+
 
 
 // Función para actualizar el estado de la partida

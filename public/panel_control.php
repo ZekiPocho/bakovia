@@ -320,7 +320,9 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <input type="hidden" name="id_partida" value="<?php echo htmlspecialchars($id_partida); ?>">
                 <div class="mb-3">
                     <label for="rondas" class="form-label">Ronda Nº:</label>
-                    
+                    <center>
+                    <input id="ronda" type="number" style="width: 50px;" name="rondas" class="form-control" value="<?php echo htmlspecialchars($ronda); ?>"> <!-- Cambia este valor al número de rondas actual -->
+                    </center>
                 </div>
                 <button type="submit" class="btn btn-primary" 
                     <?php echo ($nombre_jugador2 === 'N/A') ? 'disabled' : ''; ?>>
@@ -354,7 +356,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                     <input type="hidden" name="jugador" value="2">
                     <div class="mb-3">
                         <center>
-                        <input type="number" style="width: 100px; height: 100px; font-size: xxx-large;align-content: center;" name="puntaje_jugador2" class="form-control" value="<?php echo htmlspecialchars($puntaje_jugador2); ?>">
+                        <input id="puntaje_jugador2" type="number" style="width: 100px; height: 100px; font-size: xxx-large;align-content: center;" name="puntaje_jugador2" class="form-control" value="<?php echo htmlspecialchars($puntaje_jugador2); ?>">
                         </center>                    
                     </div>
                 </form>

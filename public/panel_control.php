@@ -314,7 +314,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             </p> <!-- Horas de inicio y finalización -->    
             <br>
             <h3 style="font-size: 1.25rem;">Tiempo Transcurrido</h3> <!-- Reducido el tamaño de la fuente -->
-            <p id="tiempo-transcurrido" style="font-size: 1.2rem;">00:00:00</p> <!-- Reducido el tamaño de la fuente -->
+            <div id="tiempo-transcurrido" style="font-size: 1.2rem;">00:00:00</div> <!-- Reducido el tamaño de la fuente -->
             <br>
 
             <form action="adjust_rounds.php" method="POST" id="roundForm">
@@ -443,13 +443,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         .catch(error => console.error('Error al actualizar el puntaje:', error));
     }
 </script>
-
-<!-- Aquí el cronómetro en el HTML -->
-<div id="tiempo-transcurrido">00:00:00</div>
-
-<!-- Inputs para los puntajes de los jugadores -->
-<input type="number" name="puntaje_jugador1" value="0" />
-<input type="number" name="puntaje_jugador2" value="0" />
 
 
 <script>

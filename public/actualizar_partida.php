@@ -1,6 +1,6 @@
 <?php
 // Incluir tu archivo de conexión a la base de datos
-include('..public/db.php');
+include('../public/db.php');
 
 // Verificar si se han recibido los datos necesarios
 if (isset($_POST['id_partida']) && isset($_POST['jugador']) && isset($_POST['puntaje'])) {

@@ -1,6 +1,6 @@
 <?php
 // Conexión a la base de datos
-include 'db_connection.php';
+include 'db.php';
 
 // Obtener el ID del producto de la URL
 $id = $_GET['id'];

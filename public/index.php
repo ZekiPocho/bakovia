@@ -568,53 +568,16 @@ $result = mysqli_query($conn, $query);
         setInterval(timer, 100000);
     </script>
     <script>
-function showResults(event) {
-    event.preventDefault(); // Evita que el formulario se envíe de la manera tradicional
-
-    const query = event.target.query.value; // Obtén el término de búsqueda
-    const resultsContainer = document.getElementById('search-results');
-
-    if (query.trim() === '') {
-        resultsContainer.style.display = 'none'; // Oculta los resultados si la consulta está vacía
-        return;
+function showDropdown() {
+    const input = document.getElementById('search-input').value;
+    const dropdown = document.getElementById('search-dropdown');
+    
+    if (input.length > 0) {
+        dropdown.style.display = 'block'; // Muestra el menú desplegable
+        // Aquí puedes llenar el menú con los resultados de búsqueda
+    } else {
+        dropdown.style.display = 'none'; // Oculta el menú si no hay entrada
     }
-
-    // Realiza una solicitud AJAX para buscar productos y publicaciones
-    fetch(`search.php?query=${encodeURIComponent(query)}`)
-        .then(response => response.json())
-        .then(data => {
-            // Limpia los resultados anteriores
-            resultsContainer.innerHTML = '';
-
-            if (data.productos.length > 0 || data.publicaciones.length > 0) {
-                // Muestra productos
-                if (data.productos.length > 0) {
-                    resultsContainer.innerHTML += '<h5>Productos:</h5><ul>';
-                    data.productos.forEach(producto => {
-                        resultsContainer.innerHTML += `<li><a href="product-details.php?id=${producto.id_producto}">${producto.nombre_producto} - Bs. ${producto.precio}</a></li>`;
-                    });
-                    resultsContainer.innerHTML += '</ul>';
-                }
-
-                // Muestra publicaciones
-                if (data.publicaciones.length > 0) {
-                    resultsContainer.innerHTML += '<h5>Publicaciones:</h5><ul>';
-                    data.publicaciones.forEach(publicacion => {
-                        resultsContainer.innerHTML += `<li><a href="post-details.php?id=${publicacion.id_publicacion}">${publicacion.titulo}</a></li>`;
-                    });
-                    resultsContainer.innerHTML += '</ul>';
-                }
-            } else {
-                resultsContainer.innerHTML = '<p>No se encontraron resultados.</p>';
-            }
-
-            resultsContainer.style.display = 'block'; // Muestra el menú de resultados
-        })
-        .catch(error => {
-            console.error('Error al buscar:', error);
-            resultsContainer.innerHTML = '<p>Error en la búsqueda.</p>';
-            resultsContainer.style.display = 'block'; // Muestra un mensaje de error
-        });
 }
 </script>
 

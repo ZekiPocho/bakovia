@@ -27,8 +27,8 @@ if (!empty($query)) {
 
     // Buscar publicaciones
     $sqlPublicaciones = "SELECT id_publicacion, titulo 
-                         FROM publicaciones 
-                         WHERE titulo LIKE '%$queryEscaped%' OR contenido LIKE '%$queryEscaped%'";
+                        FROM publicaciones 
+                        WHERE titulo LIKE '%$queryEscaped%' OR contenido LIKE '%$queryEscaped%'";
     $resultPublicaciones = $conn->query($sqlPublicaciones);
     
     if ($resultPublicaciones->num_rows > 0) {

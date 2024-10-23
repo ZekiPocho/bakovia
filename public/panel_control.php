@@ -503,12 +503,20 @@ if (nombreJugador2 !== 'N/A') {
 // Función para actualizar el estado de la partida
 function actualizarEstadoPartida(nuevoEstado) {
     const idPartida = "<?php echo $id_partida; ?>"; // Obtén el ID de la partida
+    const idJugador1 = "<?php echo $id_jugador1; ?>"; // ID del jugador 1
+    const idJugador2 = "<?php echo $id_jugador2; ?>"; // ID del jugador 2
+    
     fetch('actualizar_estado.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ id_partida: idPartida, estado: nuevoEstado })
+        body: JSON.stringify({
+            id_partida: idPartida,
+            estado: nuevoEstado,
+            id_jugador1: idJugador1,
+            id_jugador2: idJugador2
+        })
     })
     .then(response => response.json())
     .then(data => {
@@ -519,6 +527,9 @@ function actualizarEstadoPartida(nuevoEstado) {
             } else if (nuevoEstado === 'finalizado') {
                 finalizarBtn.disabled = true; // Deshabilitar el botón de finalizar
                 alert('La partida ha sido finalizada.');
+
+                // Redirigir al usuario 1 a 'matches.php'
+                window.location.href = 'matches.php';
             }
         } else {
             alert('Error al actualizar el estado de la partida.');
@@ -533,9 +544,15 @@ iniciarBtn.addEventListener('click', function (e) {
     actualizarEstadoPartida('en progreso');
 });
 
-// Al hacer clic en el botón de finalizar, cambiar el estado a 'finalizado'
+// Al hacer clic en el botón de finalizar, mostrar confirmación antes de cambiar el estado
 finalizarBtn.addEventListener('click', function () {
-    actualizarEstadoPartida('finalizado');
+    // Mostrar alerta de confirmación
+    const confirmacion = confirm("¿Estás seguro de que deseas finalizar la partida?");
+    
+    // Si el usuario confirma, cambiar el estado a 'finalizado'
+    if (confirmacion) {
+        actualizarEstadoPartida('finalizado');
+    }
 });
 </script>
 

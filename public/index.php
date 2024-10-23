@@ -1,30 +1,4 @@
 <?php
-session_start();
-include 'db.php'; // Conexión a tu base de datos
-
-// Verificar si el usuario ha iniciado sesión
-if (isset($_SESSION['id_usuario'])) {
-    $id_usuario = $_SESSION['id_usuario'];
-
-    // Consulta para obtener la foto de perfil del usuario
-    $sql = "SELECT foto_perfil FROM usuarios WHERE id_usuario = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $id_usuario);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $foto_perfil = $row['foto_perfil'] ? $row['foto_perfil'] : 'default.png'; // Si no tiene foto, usar default
-    } else {
-        $foto_perfil = 'default.png'; // Imagen por defecto si no hay foto
-    }
-} else {
-    $foto_perfil = 'default.png'; // Si no está logueado, usar imagen por defecto
-}
-?>
-
-<?php
 include ('db.php');
 ?>
 <!DOCTYPE html>
@@ -171,14 +145,16 @@ include ('db.php');
             </div>
             <!-- PERFIL -->
             <div class="col-sm-auto">
-    <div class="navbar-cart">
-        <div class="cart-items">
-            <a href="profile.php" class="main-btn">
-                <img src="../uploads/user/<?php echo htmlspecialchars($foto_perfil); ?>" alt="" width="40" height="40" style="border-radius: 50%;">
-            </a>
-        </div>
+                <div class="navbar-cart">
+                    <div class="cart-items">
+                        <a href="profile.php" class="main-btn">
+                            <i class="lni lni-user"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
     </div>
-</div>s
+</div>
         </div>
     </nav>
 </header>

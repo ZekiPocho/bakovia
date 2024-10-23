@@ -12,6 +12,8 @@ if (isset($_GET['id_partida'])) {
 
     // Consulta para obtener los datos de la partida
     $sql = "SELECT p.*, 
+       p.nombre_usuario1 AS nombre_jugador1,
+       p.nombre_usuario2 AS nombre_jugador2,
        f1.nombre AS faccion1, 
        f1.subfaccion AS subfaccion1, 
        f1.icono AS icono1,
@@ -22,6 +24,7 @@ FROM partida p
 JOIN faccion f1 ON p.id_faccion_usuario1 = f1.id_faccion
 JOIN faccion f2 ON p.id_faccion_usuario2 = f2.id_faccion
 WHERE p.id_partida = $id_partida;
+
 ";
 
     $result = $conn->query($sql);

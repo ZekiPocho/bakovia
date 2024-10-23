@@ -322,67 +322,87 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                 </div>
                             </div>
                         </div>-->
-                        <div class="tab-content" id="nav-tabContent">
-                            <div class="tab-pane fade show active" id="nav-grid" role="tabpanel"
-                                aria-labelledby="nav-grid-tab">
-                                <div class="row">
-                                <?php
-                                // Función para obtener todos los productos
-                                function getAllProducts($conn) {
-                                    $sql = "SELECT p.id_producto, p.nombre_producto, p.descripcion, p.precio, p.imagen_producto, p.imagen_producto2, p.tipo
-                                            FROM productos p";
-                                    return $conn->query($sql);
-                                }
+                        <?php
+// Número de productos por página
+$productosPorPagina = 12;
 
-                                $productos = getAllProducts($conn);
-                                ?>
+// Obtener el número total de productos
+$totalProductos = $conn->query("SELECT COUNT(*) AS total FROM productos")->fetch_assoc()['total'];
 
-                                <!-- Start Single Product -->
-                                    <?php while ($producto = $productos->fetch_assoc()): ?>
-                                        <div class="col-lg-4 col-md-6 col-12">
-                                            <div class="single-product">
-                                                <a href="product-details.php?id=<?= $producto['id_producto'] ?>" style="text-decoration: none; color: inherit;">
-                                                    <div class="product-image">
-                                                        <!-- Imagen principal -->
-                                                        <img src="<?= htmlspecialchars($producto['imagen_producto']) ?>" 
-                                                            alt="<?= htmlspecialchars($producto['nombre_producto']) ?>" 
-                                                            class="first-image">
+// Calcular el número total de páginas
+$totalPaginas = ceil($totalProductos / $productosPorPagina);
 
-                                                        <!-- Imagen al hacer hover -->
-                                                        <img src="<?= htmlspecialchars($producto['imagen_producto2']) ?>" 
-                                                            alt="<?= htmlspecialchars($producto['nombre_producto']) ?>" 
-                                                            class="second-image">
-                                                    </div>
-                                                    <div class="product-info">
-                                                        <span class="category"><?= htmlspecialchars($producto['tipo']) ?></span>
-                                                        <span class="title">
-                                                            <?= htmlspecialchars($producto['nombre_producto']) ?>
-                                                        </span>
-                                                        <div class="price">
-                                                            <span>Bs. <?= number_format($producto['precio'], 2) ?></span>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    <?php endwhile; ?>
-                                    <!-- End Single Product -->
-                                <div class="row">
-                                    <div class="col-12">
-                                        <!-- Pagination -->
-                                        <div class="pagination left">
-                                            <ul class="pagination-list">
-                                                <li><a href="javascript:void(0)">1</a></li>
-                                                <li class="active"><a href="javascript:void(0)">2</a></li>
-                                                <li><a href="javascript:void(0)">3</a></li>
-                                                <li><a href="javascript:void(0)">4</a></li>
-                                                <li><a href="javascript:void(0)"><i
-                                                            class="lni lni-chevron-right"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <!--/ End Pagination -->
-                                    </div>
+// Obtener el número de la página actual (de la URL, por ejemplo)
+$paginaActual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+
+// Calcular el límite para la consulta
+$limite = ($paginaActual - 1) * $productosPorPagina;
+
+// Función para obtener productos limitados
+function getLimitedProducts($conn, $limite, $productosPorPagina) {
+    $sql = "SELECT p.id_producto, p.nombre_producto, p.descripcion, p.precio, p.imagen_producto, p.imagen_producto2, p.tipo
+            FROM productos p
+            LIMIT $limite, $productosPorPagina";
+    return $conn->query($sql);
+}
+
+$productos = getLimitedProducts($conn, $limite, $productosPorPagina);
+?>
+
+<!-- Inicia la sección de productos -->
+<div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-grid" role="tabpanel" aria-labelledby="nav-grid-tab">
+        <div class="row">
+            <?php while ($producto = $productos->fetch_assoc()): ?>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="single-product">
+                        <a href="product-details.php?id=<?= $producto['id_producto'] ?>" style="text-decoration: none; color: inherit;">
+                            <div class="product-image">
+                                <img src="<?= htmlspecialchars($producto['imagen_producto']) ?>" 
+                                     alt="<?= htmlspecialchars($producto['nombre_producto']) ?>" 
+                                     class="first-image">
+                                <img src="<?= htmlspecialchars($producto['imagen_producto2']) ?>" 
+                                     alt="<?= htmlspecialchars($producto['nombre_producto']) ?>" 
+                                     class="second-image">
+                            </div>
+                            <div class="product-info">
+                                <span class="category"><?= htmlspecialchars($producto['tipo']) ?></span>
+                                <span class="title"><?= htmlspecialchars($producto['nombre_producto']) ?></span>
+                                <div class="price">
+                                    <span>Bs. <?= number_format($producto['precio'], 2) ?></span>
                                 </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            <?php endwhile; ?>
+        </div>
+
+        <!-- Pagination -->
+        <div class="row">
+            <div class="col-12">
+                <div class="pagination left">
+                    <ul class="pagination-list">
+                        <?php for ($i = 1; $i <= $totalPaginas; $i++): ?>
+                            <li class="<?= ($i === $paginaActual) ? 'active' : '' ?>">
+                                <a href="?pagina=<?= $i ?>"><?= $i ?></a>
+                            </li>
+                        <?php endfor; ?>
+                        <?php if ($paginaActual < $totalPaginas): ?>
+                            <li>
+                                <a href="?pagina=<?= $paginaActual + 1 ?>">
+                                    <i class="lni lni-chevron-right"></i>
+                                </a>
+                            </li>
+                        <?php endif; ?>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--/ End Pagination -->
+    </div>
+</div>
+
                             </div>
                         </div>
                     </div>

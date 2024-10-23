@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+include "../public/db.php";
 
 // Obtener la consulta de búsqueda
 $query = isset($_GET['query']) ? $_GET['query'] : '';

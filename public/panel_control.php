@@ -386,7 +386,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 document.querySelector('input[name="puntaje_jugador1"]').value = data.puntaje_jugador1;
                 document.querySelector('input[name="puntaje_jugador2"]').value = data.puntaje_jugador2;
 
-                // Actualizar cronómetro
+                // Actualizar cronómetro (hora de inicio)
                 actualizarCronometro(data.hora_inicio, 'tiempo-transcurrido');
             } else {
                 console.error(data.error);
@@ -396,7 +396,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     }
 
     function actualizarCronometro(horaInicio, elementoId) {
-        const inicio = new Date(horaInicio); // Convertimos la hora de inicio en un objeto Date
+        const inicio = new Date(`1970-01-01T${horaInicio}Z`); // Convertimos la hora de inicio a un objeto Date
         const ahora = new Date(); // Hora actual
         const diferencia = ahora - inicio; // Diferencia en milisegundos
 
@@ -411,7 +411,46 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         // Actualizamos el DOM
         document.getElementById(elementoId).textContent = tiempoTranscurrido;
     }
+
+    // Detectar cambios en los inputs de puntaje y actualizar la base de datos
+    document.querySelector('input[name="puntaje_jugador1"]').addEventListener('change', function() {
+        actualizarPuntaje(1, this.value);
+    });
+
+    document.querySelector('input[name="puntaje_jugador2"]').addEventListener('change', function() {
+        actualizarPuntaje(2, this.value);
+    });
+
+    // Función para actualizar el puntaje del jugador en la base de datos
+    function actualizarPuntaje(jugador, puntaje) {
+        const formData = new FormData();
+        formData.append('id_partida', idPartida);
+        formData.append('jugador', jugador);
+        formData.append('puntaje', puntaje);
+
+        fetch('actualizar_puntaje.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log(`Puntaje del jugador ${jugador} actualizado correctamente.`);
+            } else {
+                console.error('Error al actualizar el puntaje:', data.error);
+            }
+        })
+        .catch(error => console.error('Error al actualizar el puntaje:', error));
+    }
 </script>
+
+<!-- Aquí el cronómetro en el HTML -->
+<div id="tiempo-transcurrido">00:00:00</div>
+
+<!-- Inputs para los puntajes de los jugadores -->
+<input type="number" name="puntaje_jugador1" value="0" />
+<input type="number" name="puntaje_jugador2" value="0" />
+
 
 <script>
 function confirmDelete() {

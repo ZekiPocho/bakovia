@@ -598,37 +598,47 @@ $result = mysqli_query($conn, $query);
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-$(document).ready(function() {
-    $('#search-input').on('input', function() {
-        var query = $(this).val();
-        
+    const searchInput = document.getElementById("search-input");
+    const searchDropdown = document.getElementById("search-dropdown");
+
+    searchInput.addEventListener("input", function() {
+        const query = searchInput.value;
+
         if (query.length > 0) {
-            $.ajax({
-                url: 'tu_script_de_busqueda.php',
-                type: 'GET',
-                data: { query: query },
-                success: function(data) {
+            fetch(`search.php?query=${encodeURIComponent(query)}`)
+                .then(response => response.json())
+                .then(data => {
+                    searchDropdown.innerHTML = ""; // Limpiar resultados anteriores
                     if (data.length > 0) {
-                        $('#search-dropdown').html('<ul>' + data.map(item => `<li><a href="${item.link}">${item.name}</a></li>`).join('') + '</ul>');
-                        $('#search-dropdown').show();
+                        const ul = document.createElement("ul");
+                        data.forEach(item => {
+                            const li = document.createElement("li");
+                            const a = document.createElement("a");
+                            a.href = item.link; // Enlace a la publicación o producto
+                            a.textContent = item.name; // Nombre del producto o publicación
+                            li.appendChild(a);
+                            ul.appendChild(li);
+                        });
+                        searchDropdown.appendChild(ul);
+                        searchDropdown.style.display = "block"; // Mostrar el dropdown
                     } else {
-                        $('#search-dropdown').hide();
+                        searchDropdown.style.display = "none"; // No hay resultados
                     }
-                }
-            });
+                })
+                .catch(error => {
+                    console.error("Error fetching search results:", error);
+                });
         } else {
-            $('#search-dropdown').hide();
+            searchDropdown.style.display = "none"; // Si el input está vacío, ocultar el dropdown
         }
     });
 
-    // Ocultar dropdown cuando se hace clic fuera
-    $(document).on('click', function(e) {
-        if (!$(e.target).closest('.navbar-search').length) {
-            $('#search-dropdown').hide();
+    // Ocultar el dropdown si se hace clic fuera de él
+    document.addEventListener("click", function(event) {
+        if (!searchInput.contains(event.target) && !searchDropdown.contains(event.target)) {
+            searchDropdown.style.display = "none"; // Ocultar si se hace clic fuera
         }
     });
-});
-
 </script>
 
 

@@ -23,6 +23,7 @@ if (isset($_SESSION['id_usuario'])) {
     $foto_perfil = 'default.png'; // Si no está logueado, usar imagen por defecto
 }
 ?>
+
 <?php
 include ('db.php');
 ?>
@@ -173,7 +174,7 @@ include ('db.php');
     <div class="navbar-cart">
         <div class="cart-items">
             <a href="profile.php" class="main-btn">
-                <img src="uploads/perfiles/<?php echo htmlspecialchars($foto_perfil); ?>" alt="Foto de perfil" width="40" height="40" style="border-radius: 50%;">
+                <img src="uploads/perfiles/<?php echo htmlspecialchars($foto_perfil); ?>" alt="" width="40" height="40" style="border-radius: 50%;">
             </a>
         </div>
     </div>

@@ -59,7 +59,7 @@ include ('db.php');
 
 .search-dropdown ul li a {
     text-decoration: none; /* Sin subrayado */
-    color: #ECBE00; /* Color del texto */
+    color: #eee; /* Color del texto */
     font-size: 12px; /* Tamaño de fuente más pequeño */
 }
 

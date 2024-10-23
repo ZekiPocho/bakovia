@@ -37,6 +37,7 @@ include ('db.php');
     display: none; /* Ocultar por defecto */
     width: 100%; /* Ancho igual al contenedor de búsqueda */
     max-width: 300px; /* Ancho máximo si es necesario */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra opcional para el dropdown */
 }
 
 #search-dropdown ul {
@@ -571,6 +572,7 @@ $result = mysqli_query($conn, $query);
         searchDropdown.style.display = "none"; // Si el input está vacío, ocultar el dropdown
     }
 });
+
 
     // Ocultar el dropdown si se hace clic fuera de él
     document.addEventListener("click", function(event) {

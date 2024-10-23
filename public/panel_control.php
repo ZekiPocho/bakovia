@@ -285,7 +285,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <h3 id="subfaccion_jugador1"><?php echo htmlspecialchars($subfaccion1); ?></h3>
                 </div>
                 <br>
-                <form action="adjust_score.php" method="POST" id="scoreFormJugador1">
                     <input type="hidden" name="id_partida" value="<?php echo htmlspecialchars($id_partida); ?>">
                     <input type="hidden" name="jugador" value="1">
                     <div class="mb-3">
@@ -293,7 +292,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         <input id="puntaje_jugador1" type="number" style="width: 100px; height: 100px; font-size: xxx-large;align-content: center;" name="puntaje_jugador1" class="form-control" value="<?php echo htmlspecialchars($puntaje_jugador1); ?>">
                         </center>                    
                     </div>
-                </form>
             </div>
         </div>
 
@@ -324,8 +322,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                     <input id="ronda" type="number" style="width: 50px;" name="rondas" class="form-control" value="<?php echo htmlspecialchars($ronda); ?>"> <!-- Cambia este valor al número de rondas actual -->
                     </center>
                 </div>
-                <button type="submit" class="btn btn-primary" 
-                    <?php echo ($nombre_jugador2 === 'N/A') ? 'disabled' : ''; ?>>
+                <button type="submit" id="iniciar-btn" class="btn btn-primary" disabled>
                     INICIAR
                 </button>
             <br>
@@ -408,7 +405,22 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         })
         .catch(error => console.error('Error al cargar la partida:', error));
 }
+    function verificarEstadoBoton() {
+        // Suponiendo que `nombre_jugador2` es un valor que se actualiza dinámicamente
+        const nombreJugador2 = document.querySelector('#nombre-jugador2').textContent; // Modificar esto según el origen de nombre_jugador2
+        
+        const botonIniciar = document.getElementById('iniciar-btn');
+        
+        // Si el nombre del jugador 2 es 'N/A', desactiva el botón
+        if (nombreJugador2 === 'N/A') {
+            botonIniciar.disabled = true;
+        } else {
+            botonIniciar.disabled = false;
+        }
+    }
 
+    // Verificar el estado del botón constantemente cada segundo
+    setInterval(verificarEstadoBoton, 1000);
 
     function actualizarCronometro(horaInicio, elementoId) {
         const inicio = new Date(`1970-01-01T${horaInicio}Z`); // Convertimos la hora de inicio a un objeto Date

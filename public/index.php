@@ -40,7 +40,7 @@ include ('db.php');
     border: 1px solid #6E869D;
     max-height: 150px; /* Altura máxima */
     overflow-y: auto; /* Permite desplazamiento si es necesario */
-    width: 100%; /* Ancho igual al del input */
+    width: 20%; /* Ancho igual al del input */
     z-index: 1000;
     padding: 5px; /* Padding interno */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra */

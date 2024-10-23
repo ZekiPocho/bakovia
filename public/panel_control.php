@@ -469,6 +469,33 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         })
         .catch(error => console.error('Error al actualizar el puntaje:', error));
     }
+    document.getElementById('iniciar-btn').addEventListener('click', function(event) {
+    event.preventDefault();  // Previene el envío normal del formulario o el comportamiento del botón
+
+    const idPartida = <?php echo htmlspecialchars($id_partida); ?>;  // Asegúrate de que la variable id_partida esté definida
+    const data = { id_partida: idPartida, nuevo_estado: 'en progreso' };
+
+    // Enviar la solicitud AJAX usando fetch
+    fetch('actualizar_estado.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)  // Convertir los datos en formato JSON
+    })
+    .then(response => response.json())
+    .then(result => {
+        if (result.success) {
+            alert('Estado actualizado a En Progreso');
+            // Aquí puedes hacer cualquier acción adicional como actualizar la UI
+        } else {
+            alert('Error al actualizar el estado');
+        }
+    })
+    .catch(error => {
+        console.error('Error en la solicitud:', error);
+    });
+});
 </script>
 
 

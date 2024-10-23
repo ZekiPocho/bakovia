@@ -175,7 +175,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         <!-- End Single Widget -->
                         <!-- Start Single Widget -->
                         <div class="single-widget condition">
-                            <h3>Filter by Brand</h3>
+                            <h3>Filtrar</h3>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault11">
                                 <label class="form-check-label" for="flexCheckDefault11">

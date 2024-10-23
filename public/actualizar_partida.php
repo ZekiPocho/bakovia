@@ -11,15 +11,18 @@ if (isset($_GET['id_partida'])) {
     $id_partida = intval($_GET['id_partida']);
 
     // Consulta para obtener los datos de la partida
-    $sql = "SELECT p.*, j1.nombre AS nombre_jugador1, j2.nombre AS nombre_jugador2, 
-            f1.nombre AS faccion1, f1.subfaccion AS subfaccion1, f1.icono AS icono1,
-            f2.nombre AS faccion2, f2.subfaccion AS subfaccion2, f2.icono AS icono2
-            FROM partida p
-            JOIN jugador j1 ON p.id_jugador1 = j1.id_jugador
-            JOIN jugador j2 ON p.id_jugador2 = j2.id_jugador
-            JOIN faccion f1 ON p.id_faccion_jugador1 = f1.id_faccion
-            JOIN faccion f2 ON p.id_faccion_jugador2 = f2.id_faccion
-            WHERE p.id_partida = $id_partida";
+    $sql = "SELECT p.*, 
+       f1.nombre AS faccion1, 
+       f1.subfaccion AS subfaccion1, 
+       f1.icono AS icono1,
+       f2.nombre AS faccion2, 
+       f2.subfaccion AS subfaccion2, 
+       f2.icono AS icono2
+FROM partida p
+JOIN faccion f1 ON p.id_faccion_jugador1 = f1.id_faccion
+JOIN faccion f2 ON p.id_faccion_jugador2 = f2.id_faccion
+WHERE p.id_partida = $id_partida;
+";
 
     $result = $conn->query($sql);
     if ($result) {

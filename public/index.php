@@ -52,7 +52,7 @@ include ('db.php');
 
         .search-dropdown ul li a {
             text-decoration: none;
-            color: #333; /* Color del texto */
+            color: #ECBE00; /* Color del texto */
             font-size: 12px; /* Tamaño de fuente más pequeño */
         }
 

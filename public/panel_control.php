@@ -341,14 +341,14 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 
         <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4"> <!-- Columna para el Jugador 2 -->
             <div class="team">
-                <h4 class="text-center"><?php echo htmlspecialchars($nombre_jugador2); ?></h4>
+                <h4 id="nombre_jugador2" class="text-center"><?php echo htmlspecialchars($nombre_jugador2); ?></h4>
                 <br>
-                <img src="<?php echo htmlspecialchars($icono2); ?>" alt="Facción Jugador 2" class="img-fluid" style="height: 150px;">
+                <img id="icono_jugador2" src="<?php echo htmlspecialchars($icono2); ?>" alt="Facción Jugador 2" class="img-fluid" style="height: 150px;">
                 <br>
                 <br>
                 <div class="team-name">
-                    <p><?php echo htmlspecialchars($faccion2); ?></p>
-                    <h3><?php echo htmlspecialchars($subfaccion2); ?></h3>
+                    <p id="faccion_jugador2"><?php echo htmlspecialchars($faccion2); ?></p>
+                    <h3 id="subfaccion_jugador2"><?php echo htmlspecialchars($subfaccion2); ?></h3>
                 </div>
                 <br>
                 <form action="adjust_score.php" method="POST" id="scoreFormJugador2">

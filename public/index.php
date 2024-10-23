@@ -123,6 +123,7 @@ include ('db.php');
                         <ul class="sub-menu collapse" id="submenu-1-3">
                             <li class="nav-item"><a href="matches.php">Partidas</a></li>
                             <li class="nav-item"><a href="blog-grid-sidebar.php">Blogs</a></li>
+                            <li class="nav-item"><a href="blog-grid-sidebar.php">Blogs</a></li>
                         </ul>
                     </li>
                 </ul>

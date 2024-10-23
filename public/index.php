@@ -586,36 +586,36 @@ $result = mysqli_query($conn, $query);
     const searchDropdown = document.getElementById("search-dropdown");
 
     searchInput.addEventListener("input", function() {
-        const query = searchInput.value;
+    const query = searchInput.value;
 
-        if (query.length > 0) {
-            fetch(`search.php?query=${encodeURIComponent(query)}`)
-                .then(response => response.json())
-                .then(data => {
-                    searchDropdown.innerHTML = ""; // Limpiar resultados anteriores
-                    if (data.length > 0) {
-                        const ul = document.createElement("ul");
-                        data.forEach(item => {
-                            const li = document.createElement("li");
-                            const a = document.createElement("a");
-                            a.href = item.link; // Enlace a la publicación o producto
-                            a.textContent = item.name; // Nombre del producto o publicación
-                            li.appendChild(a);
-                            ul.appendChild(li);
-                        });
-                        searchDropdown.appendChild(ul);
-                        searchDropdown.style.display = "block"; // Mostrar el dropdown
-                    } else {
-                        searchDropdown.style.display = "none"; // No hay resultados
-                    }
-                })
-                .catch(error => {
-                    console.error("Error fetching search results:", error);
-                });
-        } else {
-            searchDropdown.style.display = "none"; // Si el input está vacío, ocultar el dropdown
-        }
-    });
+    if (query.length > 0) {
+        fetch(`search.php?query=${encodeURIComponent(query)}`)
+            .then(response => response.json())
+            .then(data => {
+                searchDropdown.innerHTML = ""; // Limpiar resultados anteriores
+                if (data.length > 0) {
+                    const ul = document.createElement("ul");
+                    data.forEach(item => {
+                        const li = document.createElement("li");
+                        const a = document.createElement("a");
+                        a.href = item.link; // Enlace a la publicación o producto
+                        a.textContent = item.name; // Nombre del producto o publicación
+                        li.appendChild(a);
+                        ul.appendChild(li);
+                    });
+                    searchDropdown.appendChild(ul);
+                    searchDropdown.style.display = "block"; // Mostrar el dropdown
+                } else {
+                    searchDropdown.style.display = "none"; // No hay resultados
+                }
+            })
+            .catch(error => {
+                console.error("Error fetching search results:", error);
+            });
+    } else {
+        searchDropdown.style.display = "none"; // Si el input está vacío, ocultar el dropdown
+    }
+});
 
     // Ocultar el dropdown si se hace clic fuera de él
     document.addEventListener("click", function(event) {

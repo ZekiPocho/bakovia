@@ -35,7 +35,11 @@ include ('db.php');
     border: 1px solid #ccc; /* Borde gris */
     z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
     display: none; /* Ocultar por defecto */
-    width: 100%; /* Asegura que tenga el mismo ancho que el input */
+    width: 200px; /* Ajusta este valor según lo angosto que quieras */
+    /* O también puedes usar:
+    width: 70%;
+    min-width: 150px;
+    max-width: 300px; */
 }
 
 /* Estilo para los elementos de la lista desplegable */

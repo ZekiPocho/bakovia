@@ -7,7 +7,7 @@ if (isset($_GET['id_partida'])) {
     $id_partida = $_GET['id_partida'];
 
     // Consultar la base de datos para obtener los datos actualizados de la partida
-    $query = "SELECT puntaje_usuario1, puntaje_usuario2, hora_inicio, ronda FROM partida WHERE id_partida = ?";
+    $query = "SELECT * FROM partida WHERE id_partida = ?";
     
     $stmt = $conn->prepare($query);
     $stmt->bind_param('i', $id_partida);

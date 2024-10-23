@@ -375,7 +375,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     cargarPartida();
 
     // Cargar datos de la partida cada 5 segundos
-    setInterval(cargarPartida, 5000);
+    setInterval(cargarPartida, 1000);
 
     function cargarPartida() {
         fetch(`actualizar_partida.php?id_partida=${idPartida}`)

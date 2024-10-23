@@ -146,7 +146,7 @@ include ('db.php');
             <!-- PERFIL -->
             <?php
 session_start();
-include 'db_connection.php'; // Conexión a tu base de datos
+include 'db.php'; // Conexión a tu base de datos
 
 // Verificar si el usuario ha iniciado sesión
 if (isset($_SESSION['id_usuario'])) {

@@ -25,7 +25,7 @@ include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a l
     <link rel="stylesheet" href="assets/css/tiny-slider.css" />
     <link rel="stylesheet" href="assets/css/glightbox.min.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
-    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -390,6 +390,65 @@ function confirmDelete() {
             'source': 'youtube', //vimeo, youtube or local
             'width': 900,
             'autoplayVideos': true,
+        });
+    </script>
+     <script>
+        // Función para cargar las partidas en progreso
+        function cargarPartidas() {
+            $.ajax({
+                url: 'matches.php',  // Archivo PHP que devuelve las partidas
+                type: 'GET',         // Tipo de solicitud (GET)
+                success: function(data) {
+                    let partidasHtml = '';
+                    data.forEach(function(partida) {
+                        // Convertir la hora de inicio a un objeto Date
+                        const horaInicio = new Date(partida.hora_inicio); 
+                        const partidaId = `partida-${partida.id_partida}`; // ID único para cada cronómetro
+
+                        // Crear el HTML para la partida y su cronómetro
+                        partidasHtml += `<div>
+                            <p>Partida: ${partida.nombre_usuario1} vs ${partida.nombre_usuario2} - Estado: ${partida.estado}</p>
+                            <p>Tiempo transcurrido: <span id="${partidaId}"></span></p>
+                        </div>`;
+
+                        // Iniciar el cronómetro para cada partida
+                        setInterval(function() {
+                            actualizarCronometro(horaInicio, partidaId);
+                        }, 1000); // Actualiza cada segundo
+                    });
+
+                    // Actualizar el contenido de la sección de partidas
+                    $('#partidas-en-progreso').html(partidasHtml);
+                },
+                error: function(err) {
+                    console.error('Error al cargar las partidas:', err);
+                }
+            });
+        }
+
+        // Función para actualizar el cronómetro
+        function actualizarCronometro(horaInicio, partidaId) {
+            const ahora = new Date(); // Hora actual
+            const diferencia = Math.floor((ahora - horaInicio) / 1000); // Diferencia en segundos
+
+            // Cálculo de horas, minutos y segundos
+            const horas = Math.floor(diferencia / 3600);
+            const minutos = Math.floor((diferencia % 3600) / 60);
+            const segundos = diferencia % 60;
+
+            // Formato para el tiempo transcurrido
+            const tiempoTranscurrido = `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+
+            // Actualiza el contenido del cronómetro
+            document.getElementById(partidaId).innerText = tiempoTranscurrido;
+        }
+
+        // Cargar partidas cada 5 segundos
+        setInterval(cargarPartidas, 5000);
+
+        // Cargar partidas cuando la página se cargue
+        $(document).ready(function() {
+            cargarPartidas();
         });
     </script>
 </body>

@@ -58,7 +58,7 @@ include ('db.php');
 }
 
 #search-dropdown li a:hover {
-    color: #ECBE00; /* Color de fondo en hover */
+    color: #444; /* Color de fondo en hover */
 }
 </style>
 

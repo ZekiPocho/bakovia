@@ -86,7 +86,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         </ul>
       </li>
   </ul>
-    <form class="d-flex" action="search.php" method="GET">
+    <form class="d-flex" onsubmit="return showResults(event)">
     <div class="navbar-search search-style-5">
         <div class="navbar-search search-input">
             <input class="form-control me-2" type="search" name="query" placeholder="Buscar" aria-label="Search" required>
@@ -95,8 +95,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <button type="submit"><i class="lni lni-search-alt"></i></button>
         </div>
     </div>
+    <div id="search-results" class="search-dropdown" style="display: none;"></div>
     </form>
-    
 </div>
 <!-- carrito -->
     <div class="navbar-cart">

@@ -140,8 +140,7 @@ include ('db.php');
     </div>
     <!-- Aquí se muestra el dropdown de búsqueda -->
     <div id="search-dropdown" class="search-dropdown" style="display: none;"></div>
-</form>d="search-dropdown" class="search-dropdown" style="display: none;"></div>
-                </form>
+</form>
             </div>
             <!-- carrito -->
             <div class="navbar-cart">

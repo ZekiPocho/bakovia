@@ -143,7 +143,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
       </li>
   </ul>
     <form class="d-flex">
-    <div class="navbar-search search-style-5">
+    <div class="navbar-search search-style-5" style="position: relative;">
         <div class="navbar-search search-input">
             <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" id="search-input" oninput="showDropdown()">
         </div>
@@ -159,6 +159,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         </div>
     </div>
     </form>
+
 </div>
 <!-- carrito -->
     <div class="navbar-cart">

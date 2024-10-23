@@ -159,6 +159,8 @@ include ('db.php');
         </div>
     </div>
 </div>
+        </div>
+    </nav>
 </header>
 <!-- TERMINA HEADER Y NAVBAR PRO --> 
 

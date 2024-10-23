@@ -291,7 +291,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         <input type="number" style="width: 100px; height: 100px; font-size: xxx-large;align-content: center;" name="puntaje_jugador1" class="form-control" value="<?php echo htmlspecialchars($puntaje_jugador1); ?>">
                         </center>                    
                     </div>
-                    <button type="submit" class="btn btn-primary">Ajustar Puntaje</button>
                 </form>
             </div>
         </div>
@@ -354,9 +353,10 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                     <input type="hidden" name="id_partida" value="<?php echo htmlspecialchars($id_partida); ?>">
                     <input type="hidden" name="jugador" value="2">
                     <div class="mb-3">
-                        <input type="number" name="puntaje_jugador2" class="form-control" value="<?php echo htmlspecialchars($puntaje_jugador2); ?>">
+                        <center>
+                        <input type="number" style="width: 100px; height: 100px; font-size: xxx-large;align-content: center;" name="puntaje_jugador2" class="form-control" value="<?php echo htmlspecialchars($puntaje_jugador2); ?>">
+                        </center>                    
                     </div>
-                    <button type="submit" class="btn btn-primary">Ajustar Puntaje</button>
                 </form>
             </div>
         </div>

@@ -407,7 +407,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 }
     function verificarEstadoBoton() {
         // Suponiendo que `nombre_jugador2` es un valor que se actualiza dinámicamente
-        const nombreJugador2 = document.querySelector('#nombre-jugador2').textContent; // Modificar esto según el origen de nombre_jugador2
+        const nombreJugador2 = document.querySelector('#nombre_jugador2').textContent; // Modificar esto según el origen de nombre_jugador2
         
         const botonIniciar = document.getElementById('iniciar-btn');
         

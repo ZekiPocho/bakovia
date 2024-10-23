@@ -549,16 +549,44 @@ $result = mysqli_query($conn, $query);
             .then(response => response.json())
             .then(data => {
                 searchDropdown.innerHTML = ""; // Limpiar resultados anteriores
-                if (data.length > 0) {
+
+                if (data.productos.length > 0 || data.publicaciones.length > 0) {
                     const ul = document.createElement("ul");
-                    data.forEach(item => {
-                        const li = document.createElement("li");
-                        const a = document.createElement("a");
-                        a.href = item.link; // Enlace a la publicación o producto
-                        a.textContent = item.name; // Nombre del producto o publicación
-                        li.appendChild(a);
-                        ul.appendChild(li);
-                    });
+
+                    // Sección de Productos Encontrados
+                    if (data.productos.length > 0) {
+                        const productosHeader = document.createElement("li");
+                        productosHeader.textContent = "Productos Encontrados";
+                        productosHeader.style.fontWeight = "bold"; // Hacer el encabezado más visible
+                        ul.appendChild(productosHeader);
+
+                        data.productos.forEach(item => {
+                            const li = document.createElement("li");
+                            const a = document.createElement("a");
+                            a.href = item.link; // Enlace al producto
+                            a.textContent = item.name; // Nombre del producto
+                            li.appendChild(a);
+                            ul.appendChild(li);
+                        });
+                    }
+
+                    // Sección de Publicaciones Encontradas
+                    if (data.publicaciones.length > 0) {
+                        const publicacionesHeader = document.createElement("li");
+                        publicacionesHeader.textContent = "Publicaciones Encontradas";
+                        publicacionesHeader.style.fontWeight = "bold"; // Hacer el encabezado más visible
+                        ul.appendChild(publicacionesHeader);
+
+                        data.publicaciones.forEach(item => {
+                            const li = document.createElement("li");
+                            const a = document.createElement("a");
+                            a.href = item.link; // Enlace a la publicación
+                            a.textContent = item.name; // Nombre de la publicación
+                            li.appendChild(a);
+                            ul.appendChild(li);
+                        });
+                    }
+
                     searchDropdown.appendChild(ul);
                     searchDropdown.style.display = "block"; // Mostrar el dropdown
                 } else {
@@ -572,14 +600,6 @@ $result = mysqli_query($conn, $query);
         searchDropdown.style.display = "none"; // Si el input está vacío, ocultar el dropdown
     }
 });
-
-
-    // Ocultar el dropdown si se hace clic fuera de él
-    document.addEventListener("click", function(event) {
-        if (!searchInput.contains(event.target) && !searchDropdown.contains(event.target)) {
-            searchDropdown.style.display = "none"; // Ocultar si se hace clic fuera
-        }
-    });
 </script>
 
 

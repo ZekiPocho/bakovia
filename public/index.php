@@ -133,21 +133,16 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
       </li>
        </ul>
        <form class="d-flex">
-    <div class="navbar-search search-style-5" style="position: relative;">
+    <div class="navbar-search search-style-5">
         <div class="navbar-search search-input">
-            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" id="search-input" oninput="showDropdown()">
+            <input id="search-input" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
         </div>
         <div class="search-btn">
-            <button type="button" onclick="showDropdown()"><i class="lni lni-search-alt"></i></button>
-        </div>
-        <!-- Menú desplegable -->
-        <div class="search-dropdown" id="search-dropdown" style="display: none;">
-            <h5>Resultados</h5>
-            <ul id="search-results">
-                <!-- Resultados se insertarán aquí con JavaScript -->
-            </ul>
+            <button type="button"><i class="lni lni-search-alt"></i></button>
         </div>
     </div>
+    <!-- Aquí se muestra el dropdown de búsqueda -->
+    <div id="search-dropdown" class="search-dropdown" style="display: none;"></div>
 </form>
   
 
@@ -600,46 +595,53 @@ $result = mysqli_query($conn, $query);
     </script>
 
 
-<!-- Incluye jQuery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-function showDropdown() {
-    const input = document.getElementById('search-input').value;
-    const dropdown = document.getElementById('search-dropdown');
-    const results = document.getElementById('search-results');
+$(document).ready(function() {
+    $('#search-input').on('input', function() {
+        let query = $(this).val();
 
-    // Limpiar resultados anteriores
-    results.innerHTML = '';
+        // Si la consulta está vacía, limpiar el dropdown
+        if (query.length < 1) {
+            $('#search-dropdown').empty().hide();
+            return;
+        }
 
-    if (input.length > 0) {
-        dropdown.style.display = 'block'; // Muestra el menú desplegable
-
-        // Realizar una llamada AJAX a tu servidor
+        // Realizar la búsqueda a través de AJAX
         $.ajax({
-            url: 'search.php', // Archivo PHP que maneja la búsqueda
-            type: 'GET',
-            data: { query: input },
+            url: 'search.php',
+            method: 'GET',
+            data: { query: query },
+            dataType: 'json',
             success: function(data) {
-                const items = JSON.parse(data);
-                items.forEach(item => {
-                    const li = document.createElement('li');
-                    li.innerHTML = `<a href="${item.link}">${item.name}</a>`; // Enlace para cada resultado
-                    results.appendChild(li);
-                });
+                $('#search-dropdown').empty(); // Limpiar resultados previos
 
-                // Si no hay resultados
-                if (results.innerHTML === '') {
-                    results.innerHTML = '<li>No hay resultados</li>';
+                if (data.length > 0) {
+                    // Mostrar resultados
+                    data.forEach(function(item) {
+                        $('#search-dropdown').append(
+                            `<li><a href="${item.link}">${item.name} (${item.type})</a></li>`
+                        );
+                    });
+                    $('#search-dropdown').show(); // Mostrar el dropdown
+                } else {
+                    $('#search-dropdown').hide(); // Ocultar si no hay resultados
                 }
+            },
+            error: function(xhr, status, error) {
+                console.error("Error en la búsqueda: ", error);
             }
         });
-    } else {
-        dropdown.style.display = 'none'; // Oculta el menú si no hay entrada
-    }
-}
-</script>
+    });
 
+    // Ocultar el dropdown al hacer clic fuera
+    $(document).on('click', function(event) {
+        if (!$(event.target).closest('.navbar-search').length) {
+            $('#search-dropdown').hide();
+        }
+    });
+});
+</script>
 
 </body>
 

@@ -201,18 +201,7 @@ include ('db.php');
                 <div class="col-lg-4 col-12">
                     <div class="row">
                         <div class="col-lg-12 col-md-6 col-12 md-custom-padding">
-                            <!-- Start Small Banner -->
-                            <div class="hero-small-banner style2">
-                                <div class="content">
-                                    <h2>¡Publicaciones!</h2>
-                                    <p></p>
-                                    <div class="button">
-                                        <a class="btn" href="blog-grid-sidebar.php">Ver Publicaciones</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Small Banner -->
-                        </div>
+
                         <div class="col-lg-12 col-md-6 col-12">
                             <!-- Start Small Banner -->
                             <div class="hero-small-banner style2">
@@ -225,6 +214,17 @@ include ('db.php');
                                 </div>
                             </div>
                             <!-- Start Small Banner -->
+                            <div class="hero-small-banner style2">
+                                <div class="content">
+                                    <h2>¡Publicaciones!</h2>
+                                    <p></p>
+                                    <div class="button">
+                                        <a class="btn" href="blog-grid-sidebar.php">Ver Publicaciones</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Small Banner -->
+                        </div>
                         </div>
                     </div>
                 </div>

@@ -631,20 +631,18 @@ $(document).ready(function() {
                 // Mostrar productos
                 if (data.products.length > 0) {
                     data.products.forEach(function(product) {
-                        $('#product-results').append(
-                            `<li><a href="${product.link}">${product.name}</a></li>`
-                        );
-                    });
+    $('#product-results').append(
+        `<li><a href="${product.link}">${product.name}</a></li>`
+    );
+});
                 }
 
                 // Mostrar publicaciones
                 if (data.publications.length > 0) {
-                    data.publications.forEach(function(publication) {
-                        $('#publication-results').append(
-                            `<li><a href="${publication.link}">${publication.title}</a></li>`
-                        );
-                    });
-                }
+                    $('#publication-results').append(
+        `<li><a href="${publication.link}">${publication.title}</a></li>`
+    );
+});
 
                 // Mostrar u ocultar el dropdown según los resultados
                 if (data.products.length > 0 || data.publications.length > 0) {

@@ -22,9 +22,14 @@ include ('db.php');
     <link rel="stylesheet" href="assets/css/glightbox.min.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
 
-   <style>
+    <style>
 .navbar-search {
     position: relative; /* Para que el dropdown se posicione relativo a este contenedor */
+}
+
+.navbar-search input {
+    width: 100%; /* Asegúrate de que el input ocupa el 100% del contenedor */
+    box-sizing: border-box; /* Incluye padding y borde en el ancho total */
 }
 
 .search-dropdown {
@@ -65,7 +70,7 @@ include ('db.php');
 .search-dropdown ul li a:hover {
     color: #ff9800; /* Color al pasar el mouse */
 }
-    </style>
+</style>
 
 
 </head>

@@ -370,12 +370,15 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 <script>
     // ID de la partida en curso (lo obtienes desde PHP)
     const idPartida = "<?php echo $id_partida; ?>";
+    const nombreJugador2 = "<?php echo $nombre_jugador2; ?>";
+    const iniciarBtn = document.getElementById('iniciar-btn');
+    const finalizarBtn = document.getElementById('finalizar-btn');
 
     // Carga inicial de la partida
     cargarPartida();
 
     // Cargar datos de la partida cada 5 segundos
-    setInterval(cargarPartida, 1000);
+    setInterval(cargarPartida, 5000); // Cambiar a 5000 ms para evitar carga excesiva
 
     function cargarPartida() {
         fetch(`actualizar_partida.php?id_partida=${idPartida}`)
@@ -383,30 +386,27 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             .then(data => {
                 if (!data.error) {
                     // Actualizar información del jugador 1
-                    document.getElementById('puntaje_jugador1').value = data.puntaje_usuario1; // Input para puntaje
-                    document.getElementById('nombre_jugador1').textContent = data.nombre_jugador1; // Nombre del jugador
-                    document.getElementById('icono_jugador1').src = data.icono1; // Icono del jugador
-                    document.getElementById('faccion_jugador1').textContent = data.faccion1; // Facción del jugador
-                    document.getElementById('subfaccion_jugador1').textContent = data.subfaccion1; // Subfacción del jugador
+                    document.getElementById('puntaje_jugador1').value = data.puntaje_usuario1;
+                    document.getElementById('nombre_jugador1').textContent = data.nombre_jugador1;
+                    document.getElementById('icono_jugador1').src = data.icono1;
+                    document.getElementById('faccion_jugador1').textContent = data.faccion1;
+                    document.getElementById('subfaccion_jugador1').textContent = data.subfaccion1;
 
                     // Actualizar información del jugador 2
-                    document.getElementById('puntaje_jugador2').value = data.puntaje_usuario2; // Input para puntaje
-                    document.getElementById('nombre_jugador2').textContent = data.nombre_jugador2; // Nombre del jugador
-                    document.getElementById('icono_jugador2').src = data.icono2; // Icono del jugador
-                    document.getElementById('faccion_jugador2').textContent = data.faccion2; // Facción del jugador
-                    document.getElementById('subfaccion_jugador2').textContent = data.subfaccion2; // Subfacción del jugador
+                    document.getElementById('puntaje_jugador2').value = data.puntaje_usuario2;
+                    document.getElementById('nombre_jugador2').textContent = data.nombre_jugador2;
+                    document.getElementById('icono_jugador2').src = data.icono2;
+                    document.getElementById('faccion_jugador2').textContent = data.faccion2;
+                    document.getElementById('subfaccion_jugador2').textContent = data.subfaccion2;
 
                     // Actualizar información del juego
-                    document.getElementById('nombre_juego').textContent = data.nombre_juego; // Nombre del juego
-                    document.getElementById('puntos').textContent = `${data.puntos} Pts.`; // Puntos
-                    document.getElementById('ronda').value = data.ronda; // Input para puntaje
-                    document.getElementById('tiempo-transcurrido').textContent = data.tiempo_transcurrido; // Tiempo transcurrido
+                    document.getElementById('nombre_juego').textContent = data.nombre_juego;
+                    document.getElementById('puntos').textContent = `${data.puntos} Pts.`;
+                    document.getElementById('ronda').value = data.ronda;
+                    document.getElementById('tiempo-transcurrido').textContent = data.tiempo_transcurrido;
 
                     // Actualizar cronómetro (hora de inicio)
                     actualizarCronometro(data.hora_inicio, 'tiempo-transcurrido');
-
-                    // Verificar el estado del botón de iniciar
-                    verificarEstadoBoton(data.nombre_jugador2); // Pasar el nombre del jugador 2
                 } else {
                     console.error(data.error);
                 }
@@ -414,19 +414,106 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             .catch(error => console.error('Error al cargar la partida:', error));
     }
 
-    // Verificar el estado del botón constantemente
-    function verificarEstadoBoton(nombreJugador2) {
-        const iniciarBtn = document.getElementById('iniciar-btn');
-        
-        // Habilitar o deshabilitar el botón según el nombre del jugador 2
-        if (nombreJugador2 !== 'N/A') {
-            iniciarBtn.disabled = false; // Habilitar el botón si la condición se cumple
-        } else {
-            iniciarBtn.disabled = true; // Deshabilitar el botón si la condición no se cumple
-        }
+    function actualizarCronometro(horaInicio, elementoId) {
+        const inicio = new Date(`1970-01-01T${horaInicio}Z`); // Convertimos la hora de inicio a un objeto Date
+        const ahora = new Date(); // Hora actual
+        const diferencia = ahora - inicio; // Diferencia en milisegundos
+
+        // Convertimos la diferencia a horas, minutos y segundos
+        const horas = Math.floor(diferencia / 1000 / 60 / 60);
+        const minutos = Math.floor((diferencia / 1000 / 60) % 60);
+        const segundos = Math.floor((diferencia / 1000) % 60);
+
+        // Formateamos los valores a dos dígitos
+        const tiempoTranscurrido = `${String(horas).padStart(2, '0')}:${String(minutos).padStart(2, '0')}:${String(segundos).padStart(2, '0')}`;
+
+        // Actualizamos el DOM
+        document.getElementById(elementoId).textContent = tiempoTranscurrido;
     }
 
-    // ... el resto del código se mantiene igual
+    // Detectar cambios en los inputs de puntaje y actualizar la base de datos
+    document.querySelector('input[name="puntaje_jugador1"]').addEventListener('change', function() {
+        actualizarPuntaje(1, this.value);
+    });
+
+    document.querySelector('input[name="puntaje_jugador2"]').addEventListener('change', function() {
+        actualizarPuntaje(2, this.value);
+    });
+
+    // Función para actualizar el puntaje del jugador en la base de datos
+    function actualizarPuntaje(jugador, puntaje) {
+        const formData = new FormData();
+        formData.append('id_partida', idPartida);
+        formData.append('jugador', jugador);
+        formData.append('puntaje', puntaje);
+
+        fetch('../public/actualizar_partida.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log(`Puntaje del jugador ${jugador} actualizado correctamente.`);
+            } else {
+                console.error('Error al actualizar el puntaje:', data.error);
+            }
+        })
+        .catch(error => console.error('Error al actualizar el puntaje:', error));
+    }
+
+    // Verificar el estado del botón constantemente cada segundo
+    setInterval(verificarEstadoBoton, 1000);
+
+    // Función para verificar el estado del botón
+    function verificarEstadoBoton() {
+        iniciarBtn.disabled = (nombreJugador2 === 'N/A');
+    }
+
+    // Función para actualizar el estado de la partida
+    function actualizarEstadoPartida(nuevoEstado) {
+        fetch('actualizar_estado.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id_partida: idPartida,
+                estado: nuevoEstado
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                if (nuevoEstado === 'en progreso') {
+                    iniciarBtn.style.display = 'none'; // Ocultar botón de iniciar
+                    finalizarBtn.style.display = 'inline-block'; // Mostrar botón de finalizar
+                    alert('Partida en: PROGRESO');
+                } else if (nuevoEstado === 'finalizado') {
+                    finalizarBtn.disabled = true; // Deshabilitar el botón de finalizar
+                    alert('La partida ha sido finalizada.');
+                    window.location.href = 'matches.php'; // Redirigir al usuario a matches.php
+                }
+            } else {
+                alert('Error al actualizar el estado de la partida.');
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    // Al hacer clic en el botón de iniciar, cambiar el estado a 'en progreso'
+    iniciarBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        actualizarEstadoPartida('en progreso');
+    });
+
+    // Al hacer clic en el botón de finalizar, mostrar confirmación antes de cambiar el estado
+    finalizarBtn.addEventListener('click', function () {
+        const confirmacion = confirm("¿Estás seguro de que deseas finalizar la partida?");
+        if (confirmacion) {
+            actualizarEstadoPartida('finalizado');
+        }
+    });
 </script>
 
 

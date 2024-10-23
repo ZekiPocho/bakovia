@@ -16,9 +16,6 @@ $id_jugador2 = $data['nombre_jugador2'] ?? null;
 
 if (is_null($id_partida) || is_null($estado) || is_null($id_jugador1) || is_null($id_jugador2)) {
     echo json_encode(['success' => false, 'message' => 'Faltan datos requeridos.']);
-    console.log('idPartida:', idPartida);
-    console.log('nombre_jugador1:', nombre_jugador1);
-    console.log('nombre_jugador2:', nombre_jugador2);
     exit;
 }
 

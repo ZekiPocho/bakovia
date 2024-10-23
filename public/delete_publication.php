@@ -22,13 +22,19 @@ if (isset($_POST['id_publicacion'])) {
         $id_usuario_publicacion = $row['id_usuario'];
 
         if ($id_usuario_actual == $id_usuario_publicacion) {
-            // Eliminar la publicación
-            $sql_delete = "DELETE FROM publicaciones WHERE id_publicacion = $id_publicacion";
-            if ($conn->query($sql_delete)) {
-                header("Location: blog-grid-sidebar.php?success=deleted");
-                exit();
+            // Primero, eliminar los comentarios asociados a la publicación
+            $sql_delete_comments = "DELETE FROM comentarios WHERE id_publicacion = $id_publicacion";
+            if ($conn->query($sql_delete_comments)) {
+                // Luego, eliminar la publicación
+                $sql_delete_post = "DELETE FROM publicaciones WHERE id_publicacion = $id_publicacion";
+                if ($conn->query($sql_delete_post)) {
+                    header("Location: blog-grid-sidebar.php?success=deleted");
+                    exit();
+                } else {
+                    echo "Error al eliminar la publicación: " . $conn->error;
+                }
             } else {
-                echo "Error al eliminar la publicación: " . $conn->error;
+                echo "Error al eliminar los comentarios: " . $conn->error;
             }
         } else {
             echo "No tienes permiso para eliminar esta publicación.";

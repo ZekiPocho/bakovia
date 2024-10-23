@@ -35,14 +35,10 @@ include ('db.php');
     border: 1px solid #ccc; /* Borde gris */
     z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
     display: none; /* Ocultar por defecto */
-    width: 200px; /* Ajusta este valor según lo angosto que quieras */
-    /* O también puedes usar:
-    width: 70%;
-    min-width: 150px;
-    max-width: 300px; */
+    width: 100%; /* Ancho igual al contenedor de búsqueda */
+    max-width: 300px; /* Ancho máximo si es necesario */
 }
 
-/* Estilo para los elementos de la lista desplegable */
 #search-dropdown ul {
     list-style-type: none; /* Elimina los puntos de la lista */
     padding: 0; /* Sin padding */

@@ -290,7 +290,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                     </select>
                 </div>
                 <div class="mb-3">
-                    <select id="faccionSigmar" class="form-select" style="display:none;" onchange="mostrarFaccionSigmar()">
+                    <select id="faccionSigmar" name="faccion" class="form-select" style="display:none;" onchange="mostrarFaccionSigmar()">
                         <option value="" selected disabled>Selecciona una facción</option>
                         <!-- Facciones de Warhammer 40k -->
                         <option value="1" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/templarios.svg">Templarios Negros</option>

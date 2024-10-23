@@ -1,43 +1,25 @@
 <?php
-// Conexión a la base de datos
-require 'db_connection.php';
 
-// Obtener el término de búsqueda
-$query = isset($_GET['query']) ? trim($_GET['query']) : '';
+include "db.php";
 
-// Inicializar las variables
-$productos = [];
-$publicaciones = [];
+$query = $_GET['query'];
 
-// Realizar la búsqueda de productos
-if (!empty($query)) {
-    $queryEscaped = $conn->real_escape_string($query);
-    
-    // Buscar productos
-    $sqlProductos = "SELECT id_producto, nombre_producto, precio 
-                     FROM productos 
-                     WHERE nombre_producto LIKE '%$queryEscaped%' OR descripcion LIKE '%$queryEscaped%'";
-    $resultProductos = $conn->query($sqlProductos);
-    
-    if ($resultProductos->num_rows > 0) {
-        while ($row = $resultProductos->fetch_assoc()) {
-            $productos[] = $row;
-        }
-    }
+// Consulta a la base de datos para buscar productos y publicaciones
+$sql = "SELECT nombre_producto AS name, 'product' AS type, CONCAT('product-details.php?id=', id_producto) AS link FROM productos WHERE nombre_producto LIKE '%$query%'
+        UNION ALL
+        SELECT nombre_publicacion AS name, 'post' AS type, CONCAT('blog-single-sidebar.php?id=', id_publicacion) AS link FROM publicaciones WHERE nombre_publicacion LIKE '%$query%'";
 
-    // Buscar publicaciones
-    $sqlPublicaciones = "SELECT id_publicacion, titulo 
-                         FROM publicaciones 
-                         WHERE titulo LIKE '%$queryEscaped%' OR contenido LIKE '%$queryEscaped%'";
-    $resultPublicaciones = $conn->query($sqlPublicaciones);
-    
-    if ($resultPublicaciones->num_rows > 0) {
-        while ($row = $resultPublicaciones->fetch_assoc()) {
-            $publicaciones[] = $row;
-        }
+$result = $conn->query($sql);
+
+$items = [];
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        $items[] = $row;
     }
 }
 
-// Devolver resultados en formato JSON
-header('Content-Type: application/json');
-echo json_encode(['productos' => $productos, 'publicaciones' => $publicaciones]);
+// Devolver los resultados como JSON
+echo json_encode($items);
+
+$conn->close();
+?>

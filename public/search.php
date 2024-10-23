@@ -1,62 +1,47 @@
 <?php
-header('Content-Type: application/json');
+// Conectar a la base de datos
+include 'db.php';
 
-include "db.php";
+// Obtener el término de búsqueda desde el request
+$searchTerm = $_GET['search'];
 
-$query = $_GET['query'];
-
-// Preparar y ejecutar la consulta para productos
-$product_sql = "SELECT id_producto, nombre_producto FROM productos WHERE nombre_producto LIKE ?";
-$stmt = $conn->prepare($product_sql);
-$like_query = "%{$query}%";
-$stmt->bind_param("s", $like_query);
-$stmt->execute();
-$product_result = $stmt->get_result();
+// Realizar consultas a la base de datos
 $products = [];
+$publications = [];
 
-while ($row = $product_result->fetch_assoc()) {
+// Consulta para productos
+$productQuery = "SELECT id_producto, nombre_producto FROM productos WHERE nombre_producto LIKE ?";
+$stmt = $conn->prepare($productQuery);
+$likeTerm = "%" . $searchTerm . "%";
+$stmt->bind_param("s", $likeTerm);
+$stmt->execute();
+$result = $stmt->get_result();
+
+while ($row = $result->fetch_assoc()) {
     $products[] = [
         'id' => $row['id_producto'],
         'name' => $row['nombre_producto'],
-        'link' => "producto.php?id={$row['id_producto']}" // Ajusta la URL según tus necesidades
+        'link' => "producto.php?id=" . urlencode($row['id_producto']) // Genera el enlace
     ];
 }
 
-// Preparar y ejecutar la consulta para publicaciones
-$publication_sql = "SELECT id_publicacion, titulo FROM publicaciones WHERE titulo LIKE ?";
-$stmt = $conn->prepare($publication_sql);
-$stmt->bind_param("s", $like_query);
+// Consulta para publicaciones
+$publicationQuery = "SELECT id_publicacion, titulo FROM publicaciones WHERE titulo LIKE ?";
+$stmt = $conn->prepare($publicationQuery);
+$stmt->bind_param("s", $likeTerm);
 $stmt->execute();
-$publication_result = $stmt->get_result();
-$publications = [];
+$result = $stmt->get_result();
 
-while ($row = $publication_result->fetch_assoc()) {
+while ($row = $result->fetch_assoc()) {
     $publications[] = [
         'id' => $row['id_publicacion'],
         'title' => $row['titulo'],
-        'link' => "publicacion.php?id={$row['id_publicacion']}" // Ajusta la URL según tus necesidades
+        'link' => "publicacion.php?id=" . urlencode($row['id_publicacion']) // Genera el enlace
     ];
 }
 
-// Devolver resultados
+// Devolver resultados en formato JSON
 echo json_encode([
     'products' => $products,
     'publications' => $publications
 ]);
-
-// Genera las URLs correctas
-$products[] = [
-    'id' => $row['id_producto'],
-    'name' => $row['nombre_producto'],
-    'link' => "producto.php?id=" . urlencode($row['id_producto']) // Usar urlencode para asegurar que la URL es válida
-];
-
-$publications[] = [
-    'id' => $row['id_publicacion'],
-    'title' => $row['titulo'],
-    'link' => "publicacion.php?id=" . urlencode($row['id_publicacion']) // Igualmente para publicaciones
-];
-
-
-$conn->close();
-?>

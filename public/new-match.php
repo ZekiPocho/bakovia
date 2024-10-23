@@ -209,9 +209,9 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                     <select id="juego" name="juego" class="form-select" onchange="actualizarFormulario()">
                         <option value="" selected disabled>Selecciona un juego</option>
                         <option value="1">Warhammer 40k</option>
-                        <option value="ageofsigmar">Age of Sigmar</option>
-                        <option value="killteam">Kill Team</option>
-                        <option value="warcry">WarCry</option>
+                        <option value="2">Age of Sigmar</option>
+                        <option value="3">Kill Team</option>
+                        <option value="4">WarCry</option>
                     </select>
                 </div>
 
@@ -338,7 +338,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         puntosSelect.disabled = false;
         faccionSigmarSelect.disabled = true;  // Desactivar Sigmar
 
-    } else if (juego === 'ageofsigmar') {
+    } else if (juego === '2') {
         faccionSigmarSelect.style.display = 'block';
         faccion40kSelect.style.display = 'none';
         faccionSigmarSelect.disabled = false;

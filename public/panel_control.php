@@ -378,37 +378,38 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     setInterval(cargarPartida, 1000);
 
     function cargarPartida() {
-        fetch(`actualizar_partida.php?id_partida=${idPartida}`)
-            .then(response => response.json())
-            .then(data => {
-                if (!data.error) {
-                    // Actualizar información del jugador 1
-                    document.querySelector('input[name="puntaje_jugador1"]').value = data.puntaje_jugador1;
-                    document.querySelector('.team:nth-child(1) h4').textContent = data.nombre_jugador1;
-                    document.querySelector('.team:nth-child(1) img').src = data.icono1;
-                    document.querySelector('.team:nth-child(1) p').textContent = data.faccion1;
-                    document.querySelector('.team:nth-child(1) h3').textContent = data.subfaccion1;
+    fetch(`actualizar_partida.php?id_partida=${idPartida}`)
+        .then(response => response.json())
+        .then(data => {
+            if (!data.error) {
+                // Actualizar información del jugador 1
+                document.querySelector('input[name="puntaje_jugador1"]').value = data.puntaje_usuario1; // Asegúrate de que el nombre sea correcto
+                document.querySelector('.team:nth-child(1) h4').textContent = data.nombre_jugador1;
+                document.querySelector('.team:nth-child(1) img').src = data.icono1;
+                document.querySelector('.team:nth-child(1) p').textContent = data.faccion1;
+                document.querySelector('.team:nth-child(1) h3').textContent = data.subfaccion1;
 
-                    // Actualizar información del jugador 2
-                    document.querySelector('input[name="puntaje_jugador2"]').value = data.puntaje_jugador2;
-                    document.querySelector('.team:nth-child(3) h4').textContent = data.nombre_jugador2;
-                    document.querySelector('.team:nth-child(3) img').src = data.icono2;
-                    document.querySelector('.team:nth-child(3) p').textContent = data.faccion2;
-                    document.querySelector('.team:nth-child(3) h3').textContent = data.subfaccion2;
+                // Actualizar información del jugador 2
+                document.querySelector('input[name="puntaje_jugador2"]').value = data.puntaje_usuario2; // Asegúrate de que el nombre sea correcto
+                document.querySelector('.team:nth-child(3) h4').textContent = data.nombre_jugador2;
+                document.querySelector('.team:nth-child(3) img').src = data.icono2;
+                document.querySelector('.team:nth-child(3) p').textContent = data.faccion2;
+                document.querySelector('.team:nth-child(3) h3').textContent = data.subfaccion2;
 
-                    // Actualizar información del juego
-                    document.querySelector('.matches-div p:first-child').textContent = data.nombre_juego;
-                    document.querySelector('.matches-div p:nth-child(2)').textContent = `${data.puntos} Pts.`;
-                    document.getElementById('tiempo-transcurrido').textContent = data.tiempo_transcurrido;
+                // Actualizar información del juego
+                document.querySelector('.matches-div p:first-child').textContent = data.nombre_juego;
+                document.querySelector('.matches-div p:nth-child(2)').textContent = `${data.puntos} Pts.`;
+                document.getElementById('tiempo-transcurrido').textContent = data.tiempo_transcurrido;
 
-                    // Actualizar cronómetro (hora de inicio)
-                    actualizarCronometro(data.hora_inicio, 'tiempo-transcurrido');
-                } else {
-                    console.error(data.error);
-                }
-            })
-            .catch(error => console.error('Error al cargar la partida:', error));
-    }
+                // Actualizar cronómetro (hora de inicio)
+                actualizarCronometro(data.hora_inicio, 'tiempo-transcurrido');
+            } else {
+                console.error(data.error);
+            }
+        })
+        .catch(error => console.error('Error al cargar la partida:', error));
+}
+
 
     function actualizarCronometro(horaInicio, elementoId) {
         const inicio = new Date(`1970-01-01T${horaInicio}Z`); // Convertimos la hora de inicio a un objeto Date

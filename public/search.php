@@ -1,6 +1,6 @@
 <?php
 // Conexión a la base de datos
-require 'db_connection.php'; // Asegúrate de tener este archivo con la conexión a la base de datos
+require 'db.php'; // Asegúrate de tener este archivo con la conexión a la base de datos
 
 // Obtener el término de búsqueda
 $query = isset($_GET['query']) ? trim($_GET['query']) : '';

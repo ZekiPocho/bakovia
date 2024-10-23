@@ -15,7 +15,7 @@ $id_jugador2 = $data['id_jugador2'] ?? null;
 
 // Cambiar el estado de la partida
 $query = "UPDATE partida SET estado = '$estado' WHERE id_partida = $id_partida";
-$result = mysqli_query($conexion, $query);
+$result = mysqli_query($conn, $query);
 
 if ($result) {
     // Si la partida ha finalizado, actualizar la columna 'made' de ambos jugadores y eliminar la reserva vinculada
@@ -24,12 +24,12 @@ if ($result) {
         $query_jugador1 = "UPDATE usuarios SET made = 0 WHERE id_usuario = $id_jugador1";
         $query_jugador2 = "UPDATE usuarios SET made = 0 WHERE id_usuario = $id_jugador2";
         
-        $result_jugador1 = mysqli_query($conexion, $query_jugador1);
-        $result_jugador2 = mysqli_query($conexion, $query_jugador2);
+        $result_jugador1 = mysqli_query($conn, $query_jugador1);
+        $result_jugador2 = mysqli_query($conn, $query_jugador2);
 
         // Obtener el id_reserva desde la tabla partida
         $query_id_reserva = "SELECT id_reserva FROM partida WHERE id_partida = $id_partida";
-        $result_reserva = mysqli_query($conexion, $query_id_reserva);
+        $result_reserva = mysqli_query($conn, $query_id_reserva);
 
         if ($result_reserva) {
             $row_reserva = mysqli_fetch_assoc($result_reserva);
@@ -38,7 +38,7 @@ if ($result) {
             // Eliminar la reserva vinculada usando el id_reserva
             if ($id_reserva) {
                 $query_eliminar_reserva = "DELETE FROM reserva_mesa WHERE id_reserva = $id_reserva";
-                $result_eliminar_reserva = mysqli_query($conexion, $query_eliminar_reserva);
+                $result_eliminar_reserva = mysqli_query($conn, $query_eliminar_reserva);
             }
 
             // Verificar que ambos jugadores y la reserva se hayan actualizado correctamente
@@ -60,6 +60,6 @@ if ($result) {
     echo json_encode(['success' => false, 'message' => 'Error al actualizar la partida.']);
 }
 
-mysqli_close($conexion);
+mysqli_close($conn);
 ?>
 

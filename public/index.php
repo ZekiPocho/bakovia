@@ -33,17 +33,17 @@ include ('db.php');
     left: 0; /* Alineado a la izquierda del input */
     background-color: #171D25;
     border: 1px solid #6E869D;
-    max-height: 150px; /* Altura máxima */
+    max-height: 100px; /* Altura máxima reducida */
     overflow-y: auto; /* Permite desplazamiento si es necesario */
     width: 100%; /* Ancho igual al del input */
     z-index: 1000;
-    padding: 5px; /* Padding interno */
+    padding: 3px; /* Padding interno reducido */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra */
 }
 
 .search-dropdown h5 {
     margin: 0;
-    font-size: 14px; /* Tamaño de fuente */
+    font-size: 12px; /* Tamaño de fuente reducido */
 }
 
 .search-dropdown ul {
@@ -53,13 +53,13 @@ include ('db.php');
 }
 
 .search-dropdown ul li {
-    padding: 3px 0; /* Espaciado de los elementos */
+    padding: 2px 0; /* Espaciado de los elementos reducido */
 }
 
 .search-dropdown ul li a {
     text-decoration: none; /* Sin subrayado */
     color: #ECBE00; /* Color del texto */
-    font-size: 12px; /* Tamaño de fuente más pequeño */
+    font-size: 11px; /* Tamaño de fuente más pequeño */
 }
 
 .search-dropdown ul li a:hover {

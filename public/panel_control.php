@@ -411,10 +411,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         .catch(error => console.error('Error al cargar la partida:', error));
 }
     
-
-    // Verificar el estado del botón constantemente cada segundo
-    setInterval(verificarEstadoBoton, 1000);
-
     function actualizarCronometro(horaInicio, elementoId) {
         const inicio = new Date(`1970-01-01T${horaInicio}Z`); // Convertimos la hora de inicio a un objeto Date
         const ahora = new Date(); // Hora actual
@@ -491,6 +487,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
 });
 </script>
 <script>
+    // Verificar el estado del botón constantemente cada segundo
+    setInterval(verificarEstadoBoton, 1000);
 // Verificar si el juego tiene un segundo jugador asignado (habilitar botón de iniciar)
 const nombreJugador2 = "<?php echo $nombre_jugador2; ?>";
 const iniciarBtn = document.getElementById('iniciar-btn');

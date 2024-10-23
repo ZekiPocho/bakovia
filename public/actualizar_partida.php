@@ -1,37 +1,68 @@
 <?php
-// Incluir tu archivo de conexión a la base de datos
 include('../public/db.php');
 
-// Verificar si se ha recibido el ID de la partida
-if (isset($_GET['id_partida'])) {
+// Verificar la conexión
+if ($conexion->connect_error) {
+    die("Conexión fallida: " . $conexion->connect_error);
+}
+
+// Manejar la solicitud POST para actualizar los datos
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Obtener los datos enviados
+    $id_partida = $_POST['id_partida']; // ID de la partida
+    $puntaje_jugador1 = $_POST['puntaje_jugador1']; // Puntaje del jugador 1
+    $puntaje_jugador2 = $_POST['puntaje_jugador2']; // Puntaje del jugador 2
+
+    // Consulta para actualizar los datos de la partida
+    $query = "UPDATE partida SET puntaje_usuario1 = ?, puntaje_usuario2 = ? WHERE id_partida = ?";
+    $stmt = $conexion->prepare($query);
+    $stmt->bind_param("iii", $puntaje_jugador1, $puntaje_jugador2, $id_partida);
+
+    if ($stmt->execute()) {
+        // Si la actualización es exitosa, devuelve los datos actualizados
+        $response = [
+            'success' => true,
+            'id_partida' => $id_partida,
+            'puntaje_usuario1' => $puntaje_jugador1,
+            'puntaje_usuario2' => $puntaje_jugador2
+        ];
+    } else {
+        // Si hay un error, devuelve un mensaje de error
+        $response = [
+            'success' => false,
+            'error' => 'Error al actualizar la partida: ' . $stmt->error
+        ];
+    }
+    // Cierra la declaración
+    $stmt->close();
+} else {
+    // Manejar la solicitud GET para recibir los datos actuales de la partida
     $id_partida = $_GET['id_partida'];
-
-    // Consulta para obtener los datos de la partida
-    $query = "SELECT p.puntaje_usuario1, p.puntaje_usuario2, 
-                      j1.nombre AS nombre_jugador1, 
-                      j2.nombre AS nombre_jugador2, 
-                      f1.nombre AS faccion1, f1.subfaccion AS subfaccion1, f1.icono AS icono1,
-                      f2.nombre AS faccion2, f2.subfaccion AS subfaccion2, f2.icono AS icono2,
-                      p.nombre_juego, p.puntos, p.hora_inicio
-              FROM partida p
-              JOIN jugador j1 ON p.id_jugador1 = j1.id_jugador
-              JOIN jugador j2 ON p.id_jugador2 = j2.id_jugador
-              JOIN faccion f1 ON p.id_faccion_usuario1 = f1.id_faccion
-              JOIN faccion f2 ON p.id_faccion_usuario2 = f2.id_faccion
-              WHERE p.id_partida = ?";
-
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param('i', $id_partida);
+    $query = "SELECT * FROM partida WHERE id_partida = ?";
+    $stmt = $conexion->prepare($query);
+    $stmt->bind_param("i", $id_partida);
     $stmt->execute();
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
         $data = $result->fetch_assoc();
-        echo json_encode($data);
+        // Devuelve los datos de la partida como JSON
+        $response = [
+            'success' => true,
+            'data' => $data
+        ];
     } else {
-        echo json_encode(['error' => 'Partida no encontrada']);
+        $response = [
+            'success' => false,
+            'error' => 'Partida no encontrada.'
+        ];
     }
-} else {
-    echo json_encode(['error' => 'ID de partida no proporcionado']);
 }
+
+// Cierra la conexión
+$conexion->close();
+
+// Envía la respuesta como JSON
+header('Content-Type: application/json');
+echo json_encode($response);
 ?>

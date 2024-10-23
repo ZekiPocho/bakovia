@@ -9,7 +9,6 @@ $usuario_actual = $_SESSION['nombre_usuario']; // Esto depende de cómo guardes 
 unset($_SESSION['juego']);
 unset($_SESSION['puntos']);
 unset($_SESSION['faccion']);
-header('Content-Type: application/json');
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
@@ -288,7 +287,7 @@ if ($result->num_rows > 0) {
     echo "No hay partidas en progreso.";
     echo "<html><br></html>";
 }
-echo json_encode($partidas);
+
 $conn->close();
 ?>
 

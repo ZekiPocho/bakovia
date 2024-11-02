@@ -60,7 +60,7 @@ include ('db.php');
 #search-dropdown li a:hover {
     color: #aa8c13; /* Color de fondo en hover */
 }
-@media (max-width: 992px) {
+@media (max-width: 720px) {
     /*.navbar-toggler {
         order: 2; 
     }*/

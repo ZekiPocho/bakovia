@@ -224,53 +224,60 @@
                  </div>
                 <div class="col-lg-9 col-12">
                     <div class="product-grids-head">
-                    <?php
-include 'db.php'; // Conexión a la base de datos
+                        <?php
+// Número de productos por página
+$productosPorPagina = 12;
 
-// Obtener el valor del parámetro 'tag' de la URL
-$tag = isset($_GET['tag']) ? $_GET['tag'] : '';
+// Obtener el número total de productos
+$totalProductos = $conn->query("SELECT COUNT(*) AS total FROM productos")->fetch_assoc()['total'];
 
-// Construir la consulta SQL
-$sql = "SELECT * FROM productos";
-if ($tag) {
-    $sql .= " WHERE tipo = ?";
+// Calcular el número total de páginas
+$totalPaginas = ceil($totalProductos / $productosPorPagina);
+
+// Obtener el número de la página actual (de la URL, por ejemplo)
+$paginaActual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+
+// Calcular el límite para la consulta
+$limite = ($paginaActual - 1) * $productosPorPagina;
+
+// Función para obtener productos limitados
+function getLimitedProducts($conn, $limite, $productosPorPagina) {
+    $sql = "SELECT p.id_producto, p.nombre_producto, p.descripcion, p.precio, p.imagen_producto, p.imagen_producto2, p.tipo
+            FROM productos p
+            LIMIT $limite, $productosPorPagina";
+    return $conn->query($sql);
 }
 
-$stmt = $conn->prepare($sql);
-if ($tag) {
-    $stmt->bind_param("s", $tag);
-}
-$stmt->execute();
-$result = $stmt->get_result();
-
-// Mostrar los productos en la estructura HTML
-while ($producto = $result->fetch_assoc()) {
-    ?>
-    <div class="col-lg-4 col-md-6 col-12">
-        <!-- Start Single Product -->
-        <div class="single-product">
-            <div class="product-image">
-                <img src="<?php echo htmlspecialchars($producto['imagen_producto']); ?>" alt="<?php echo htmlspecialchars($producto['nombre_producto']); ?>">
-                <div class="button">
-                    <a href="product-details.php?id=<?php echo $producto['id_producto']; ?>" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
-                </div>
-            </div>
-            <div class="product-info">
-                <span class="category"><?php echo htmlspecialchars($producto['tipo']); ?></span>
-                <h4 class="title">
-                    <a href="product-details.php?id=<?php echo $producto['id_producto']; ?>"><?php echo htmlspecialchars($producto['nombre_producto']); ?></a>
-                </h4>
-                <p><?php echo htmlspecialchars($producto['descripcion']); ?></p>
-                <div class="price">
-                    <span>$<?php echo htmlspecialchars($producto['precio']); ?></span>
-                </div>
-            </div>
-        </div>
-        <!-- End Single Product -->
-    </div>
-    <?php
-}
+$productos = getLimitedProducts($conn, $limite, $productosPorPagina);
 ?>
+
+<!-- Inicia la sección de productos -->
+<div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-grid" role="tabpanel" aria-labelledby="nav-grid-tab">
+        <div class="row">
+            <?php while ($producto = $productos->fetch_assoc()): ?>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="single-product">
+                        <a href="product-details.php?id=<?= $producto['id_producto'] ?>" style="text-decoration: none; color: inherit;">
+                            <div class="product-image">
+                                <img src="<?= htmlspecialchars($producto['imagen_producto']) ?>" 
+                                     alt="<?= htmlspecialchars($producto['nombre_producto']) ?>" 
+                                     class="first-image">
+                                <img src="<?= htmlspecialchars($producto['imagen_producto2']) ?>" 
+                                     alt="<?= htmlspecialchars($producto['nombre_producto']) ?>" 
+                                     class="second-image">
+                            </div>
+                            <div class="product-info">
+                                <span class="category"><?= htmlspecialchars($producto['tipo']) ?></span>
+                                <span class="title"><?= htmlspecialchars($producto['nombre_producto']) ?></span>
+                                <div class="price">
+                                    <span>Bs. <?= number_format($producto['precio'], 2) ?></span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            <?php endwhile; ?>
         </div>
 
         <!-- Pagination -->

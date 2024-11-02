@@ -71,7 +71,6 @@ include ('db.php');
     
     .navbar-cart {
         order: 3; /* Coloca el ícono de perfil al final */
-        margin-top: 10px; /* Añade un espacio superior para separarlo */
     }
 }
 </style>

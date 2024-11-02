@@ -93,12 +93,14 @@ include ('db.php');
             <a class="navbar-brand" href="index.php">
                 <img src="assets/images/logo/mini.png" alt="Logo" width="5">
             </a>
+            <div class="col">
             <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="toggler-icon"></span>
                 <span class="toggler-icon"></span>
                 <span class="toggler-icon"></span>
             </button>
+            </div>
             
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -106,14 +108,14 @@ include ('db.php');
                         <a class="nav-link active" href="index.php">PRINCIPAL</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="product-grids.php">TIENDA</a>
+                        <a class="nav-link" href="product-grids.php">CATÁLOGO</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="collapse"
-                            data-bs-target="#submenu-1-3" aria-expanded="false">CATEGORÍAS</a>
+                            data-bs-target="#submenu-1-3" aria-expanded="false">OTROS</a>
                         <ul class="sub-menu collapse" id="submenu-1-3">
                             <li class="nav-item"><a class="dropdown-item" href="matches.php">Partidas</a></li>
-                            <li class="nav-item"><a class="dropdown-item" href="blog-grid-sidebar.php">Blogs</a></li>
+                            <li class="nav-item"><a class="dropdown-item" href="blog-grid-sidebar.php">Publicaciones</a></li>
                             <li class="nav-item"><a class="dropdown-item" href="about-us.php">¿Quiénes Somos?</a></li>
                             <li class="nav-item"><a class="dropdown-item" href="faq.php">Preguntas Frecuentes</a></li>
                         </ul>

@@ -168,12 +168,26 @@ include ('db.php');
             <!-- ÍCONO DE PERFIL EN PANTALLAS GRANDES -->
             <div class="navbar-cart ms-auto d-none d-lg-block">
                 <div class="cart-items">
-                    <a href="profile.php" class="main-btn" style=" margin-right: 30px;">
-                        <i class="lni lni-user"></i>
-                    </a>
+                    <?php
+                    // Verificar si hay una sesión activa
+                    session_start(); // Asegúrate de iniciar la sesión antes de usar $_SESSION
+
+                    // Comprobar si existe la sesión de la foto de perfil
+                    if (isset($_SESSION['foto_perfil']) && !empty($_SESSION['foto_perfil'])) {
+                        // Mostrar la foto de perfil
+                        $fotoPerfil = $_SESSION['foto_perfil'];
+                        echo '<a href="profile.php" class="main-btn" style="margin-right: 30px;">
+                                <img src="' . htmlspecialchars($fotoPerfil) . '" alt="Foto de perfil" style="width: 30px; height: 30px; border-radius: 50%;">
+                            </a>';
+                    } else {
+                        // Mostrar el ícono predeterminado
+                        echo '<a href="profile.php" class="main-btn" style="margin-right: 30px;">
+                                <i class="lni lni-user"></i>
+                            </a>';
+                    }
+                    ?>
                 </div>
             </div>
-
         </div>
     </nav>
 </header>
@@ -261,7 +275,8 @@ include("db.php");
 $query = "SELECT * FROM productos ORDER BY id_producto DESC LIMIT 4"; // Cambia 'id_producto' si el nombre es diferente
 $result = mysqli_query($conn, $query);
 ?>
-
+<br>
+<br>
 <!-- Start Trending Product Area -->
 <section class="trending-product section">
     <div class="container-sm">

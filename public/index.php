@@ -222,13 +222,11 @@ include ('db.php');
                         <!-- Start Small Banner: Partidas -->
                         <div class="hero-small-banner style2">
                             <div class="content">
-                                <h2>En Bakovia hay comida, amor y ¡GUERRA!</h2>
+                                <h2>En Bakovia hay comida, odio y ¡GUERRA!</h2><p></p>
                                 <br>
                                 <br>
                                 <br>
-                                <div class="button">
-                                    <a class="btn" href="matches.php">Partidas en Progreso</a>
-                                </div>
+                                    <a href="matches.php">Partidas en Progreso</a>
                             </div>
                         </div>
                         <!-- End Small Banner -->
@@ -236,11 +234,12 @@ include ('db.php');
                         <!-- Start Small Banner: Publicaciones -->
                         <div class="hero-small-banner style3">
                             <div class="content">
-                                <h2>¡Publicaciones!</h2>
+                                <h2>Conoce los rumores del Bunker...</h2>
                                 <p></p>
-                                <div class="button">
-                                    <a class="btn" href="blog-grid-sidebar.php">Ver Publicaciones</a>
-                                </div>
+                                <br>
+                                <br>
+                                <br>
+                                    <a href="blog-grid-sidebar.php">Explorar Publicaciones</a>
                             </div>
                         </div>
                         <!-- End Small Banner -->

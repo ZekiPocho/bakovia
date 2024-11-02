@@ -111,23 +111,25 @@ include ('db.php');
 
             <!-- ÍCONO DE PERFIL VISIBLE EN TODAS LAS PANTALLAS -->
             
-            <div class="navbar-cart d-lg-none">   
+            <div class="navbar-cart d-lg-none w-100">   
+                <div class="d-flex justify-content-between">
+                    <!-- BOTÓN DE MENÚ MÓVIL -->
                     <div class="icon">
-                    <button class="navbar-toggler mobile-menu-btn w-100 mt-2 mt-lg-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="toggler-icon"></span>
                             <span class="toggler-icon"></span>
                             <span class="toggler-icon"></span>
                         </button>
                     </div>
+                    <!-- ÍCONO DE PERFIL -->
                     <div class="cart-items">
                         <a href="profile.php" class="main-btn">
                             <i class="lni lni-user"></i>
                         </a>
                     </div>
+                </div>
             </div>
 
-            <!-- BOTÓN DE MENÚ MÓVIL -->
-            
 
             <!-- MENÚ DE NAVEGACIÓN -->
             <div class="collapse navbar-collapse mt-2 mt-lg-0" id="navbarSupportedContent">

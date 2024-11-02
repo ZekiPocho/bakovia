@@ -234,7 +234,7 @@ include ('db.php');
                         <!-- End Small Banner -->
 
                         <!-- Start Small Banner: Publicaciones -->
-                        <div class="hero-small-banner style2">
+                        <div class="hero-small-banner style3">
                             <div class="content">
                                 <h2>¡Publicaciones!</h2>
                                 <p></p>

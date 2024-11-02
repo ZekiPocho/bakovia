@@ -60,6 +60,20 @@ include ('db.php');
 #search-dropdown li a:hover {
     color: #aa8c13; /* Color de fondo en hover */
 }
+@media (max-width: 992px) {
+    .navbar-toggler {
+        order: 2; /* Asegura que el botón aparezca después del logo */
+    }
+    
+    .navbar-brand {
+        order: 1; /* Mantiene el logo en la parte superior */
+    }
+    
+    .navbar-cart {
+        order: 3; /* Coloca el ícono de perfil al final */
+        margin-top: 10px; /* Añade un espacio superior para separarlo */
+    }
+}
 </style>
 
 
@@ -93,14 +107,12 @@ include ('db.php');
             <a class="navbar-brand" href="index.php">
                 <img src="assets/images/logo/mini.png" alt="Logo" width="5">
             </a>
-            <div class="col">
-            <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            <button class="navbar-toggler mobile-menu-btn w-100 mt-2 mt-lg-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="toggler-icon"></span>
                 <span class="toggler-icon"></span>
                 <span class="toggler-icon"></span>
             </button>
-            </div>
             
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -137,7 +149,7 @@ include ('db.php');
             </div>
             
             <!-- PERFIL -->
-            <div class="navbar-cart">
+            <div class="navbar-cart ms-auto d-none d-lg-block">
                 <div class="cart-items">
                     <a href="profile.php" class="main-btn">
                         <i class="lni lni-user"></i>

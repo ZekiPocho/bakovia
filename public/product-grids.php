@@ -152,25 +152,18 @@ include("../public/db.php"); // Asegúrate de incluir el archivo de conexión a 
                             <h3>Todas las Categorías</h3>
                             <ul class="list">
                                 <li>
-                                    <a href="product-grids.html">Computers & Accessories </a><span>(1138)</span>
+                                    <a href="product-grids.html">Warhammer 40,000</a>
                                 </li>
                                 <li>
-                                    <a href="product-grids.html">Smartphones & Tablets</a><span>(2356)</span>
+                                    <a href="product-grids.html">Warhammer Age of Sigmar</a>
                                 </li>
                                 <li>
-                                    <a href="product-grids.html">TV, Video & Audio</a><span>(420)</span>
+                                    <a href="product-grids.html">Kill team</a>
+                                <li>
+                                    <a href="product-grids.html">WarCry</a>
                                 </li>
                                 <li>
-                                    <a href="product-grids.html">Cameras, Photo & Video</a><span>(874)</span>
-                                </li>
-                                <li>
-                                    <a href="product-grids.html">Headphones</a><span>(1239)</span>
-                                </li>
-                                <li>
-                                    <a href="product-grids.html">Wearable Electronics</a><span>(340)</span>
-                                </li>
-                                <li>
-                                    <a href="product-grids.html">Printers & Ink</a><span>(512)</span>
+                                    <a href="product-grids.html">Otros</a>
                                 </li>
                             </ul>
                         </div>

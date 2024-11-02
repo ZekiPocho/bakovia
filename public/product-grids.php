@@ -145,32 +145,7 @@
                             </form>
                         </div>
                         <!-- End Single Widget -->
-<!-- Start Single Widget -->
-<?php
-include ('db.php');
 
-// Obtener los tipos únicos (tags) de la tabla productos
-$query = "SELECT DISTINCT tipo FROM productos";
-$result = $conn->query($query);
-
-$tags = [];
-while ($row = $result->fetch_assoc()) {
-    $tags[] = $row['tipo'];
-}
-?>
-<div class="single-widget">
-    <h3>Todas las Categorías</h3>
-    <ul class="list">
-        <?php foreach ($tags as $tag): ?>
-            <li>
-                <a href="product-grid.php?filtro=<?= urlencode($tag) ?>">
-                    <?= htmlspecialchars($tag) ?>
-                </a>
-            </li>
-        <?php endforeach; ?>
-    </ul>
-</div>
-<!-- End Product Sidebar -->
 
                  </div>
                 <div class="col-lg-9 col-12">

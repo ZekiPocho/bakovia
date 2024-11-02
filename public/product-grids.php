@@ -146,7 +146,9 @@ include ('db.php')
                             </form>
                         </div>
                         <!-- End Single Widget -->
-                        <?php
+                        <!-- Start Single Widget -->
+                         
+<?php
 // Obtener los tipos únicos (tags) de la tabla productos
 $query = "SELECT DISTINCT tipo FROM productos";
 $result = $conexion->query($query);
@@ -171,6 +173,7 @@ while ($row = $result->fetch_assoc()) {
     </ul>
 </div>
 <!-- End Product Sidebar -->
+                    </div>
                     <!-- End Product Sidebar -->
                  </div>
                 <div class="col-lg-9 col-12">

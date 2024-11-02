@@ -225,7 +225,7 @@
                 <div class="col-lg-9 col-12">
                     <div class="product-grids-head">
                     <?php
-include 'db.php'; // Conexión a la base de datos
+include 'conn.php'; // Conexión a la base de datos
 
 // Obtener el valor del parámetro 'tag' de la URL
 $tag = isset($_GET['tag']) ? $_GET['tag'] : '';
@@ -233,7 +233,7 @@ $tag = isset($_GET['tag']) ? $_GET['tag'] : '';
 // Construir la consulta SQL
 $sql = "SELECT * FROM productos";
 if ($tag) {
-    $sql .= " WHERE juego = ?";
+    $sql .= " WHERE tipo = ?";
 }
 
 $stmt = $conn->prepare($sql);
@@ -256,7 +256,7 @@ while ($producto = $result->fetch_assoc()) {
                 </div>
             </div>
             <div class="product-info">
-                <span class="category"><?php echo htmlspecialchars($producto['juego']); ?></span>
+                <span class="category"><?php echo htmlspecialchars($producto['tipo']); ?></span>
                 <h4 class="title">
                     <a href="product-details.php?id=<?php echo $producto['id_producto']; ?>"><?php echo htmlspecialchars($producto['nombre_producto']); ?></a>
                 </h4>

@@ -225,7 +225,7 @@
                 <div class="col-lg-9 col-12">
                     <div class="product-grids-head">
                     <?php
-include 'conexion.php'; // Conexión a la base de datos
+include 'db.php'; // Conexión a la base de datos
 
 // Obtener el valor del parámetro 'tag' de la URL
 $tag = isset($_GET['tag']) ? $_GET['tag'] : '';
@@ -236,7 +236,7 @@ if ($tag) {
     $sql .= " WHERE juego = ?";
 }
 
-$stmt = $conexion->prepare($sql);
+$stmt = $conn->prepare($sql);
 if ($tag) {
     $stmt->bind_param("s", $tag);
 }

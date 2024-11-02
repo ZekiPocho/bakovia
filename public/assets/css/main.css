@@ -2806,8 +2806,8 @@ ol {
 }
 
 .navbar-nav .nav-item .sub-menu .nav-item a:hover {
-  color: #ECBE00
-;
+  color: #ECBE00;
+  background-color: transparent;
 }
 
 .navbar-nav .nav-item .sub-menu.left-menu {

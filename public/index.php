@@ -219,7 +219,7 @@ include ('db.php');
             <div class="col-lg-4 col-12">
                 <div class="row">
                     <div class="col-lg-12 col-md-6 col-12 md-custom-padding">
-                        <!-- Start Small Banner -->
+                        <!-- Start Small Banner: Partidas -->
                         <div class="hero-small-banner style2">
                             <div class="content">
                                 <h2>¡Partidas!</h2>
@@ -231,7 +231,7 @@ include ('db.php');
                         </div>
                         <!-- End Small Banner -->
 
-                        <!-- Start Small Banner -->
+                        <!-- Start Small Banner: Publicaciones -->
                         <div class="hero-small-banner style2">
                             <div class="content">
                                 <h2>¡Publicaciones!</h2>

@@ -154,7 +154,7 @@ include ('db.php');
                 <form class="d-flex">
                     <div class="navbar-search search-style-5">
                         <div class="search-input">
-                            <input id="search-input" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                            <input id="search-input" class="form-control me-2" type="search" placeholder="Buscar por palabra clave" aria-label="Search">
                         </div>
                         <div class="search-btn">
                             <button type="button"><i class="lni lni-search-alt"></i></button>

@@ -168,21 +168,8 @@ $total_paginas = ceil($total_publicaciones / $limite);
     <!-- Start Blog Singel Area -->
     <section class="section blog-section blog-list">
         <div class="container-sm">
-            <div class="container ">
-                <div class="row">
-                    <div class="col-lg-8 col-md-12 col-12">
-                        <h4><a aria-label="Toggle navigation" href="publicar-blog.php">Crear Blog <i class="lni lni-plus"></i></a></h4>
-                    </div>
-                    <div class="col">
-                    
-                    </div>
-                    <div class="col">
-                        
-                    </div>
-                </div>
-            </div>
             <div class="row">
-                <div class="col-lg-6 col-md-6 col-12">
+                <div class="col-lg-8 col-md-12 col-12">
                 <div class="row">
             <?php
             if ($result->num_rows > 0) {

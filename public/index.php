@@ -228,7 +228,7 @@ include ('db.php');
                                 <br>
                                 <br>
                                 <span></span>
-                                    <a href="matches.php">Partidas en Progreso</a>
+                                    <a href="matches.php">>Partidas en Progreso<</a>
                             </div>
                         </div>
                         <!-- End Small Banner -->
@@ -241,7 +241,7 @@ include ('db.php');
                                 <br>
                                 <br>
                                 <br>
-                                    <a href="blog-grid-sidebar.php">Explorar Publicaciones</a>
+                                    <a href="blog-grid-sidebar.php">>Explorar Publicaciones<</a>
                             </div>
                         </div>
                         <!-- End Small Banner -->

@@ -302,18 +302,23 @@ $result = mysqli_query($conn, $query);
                 <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Product -->
                     <div class="single-product">
-                        <div class="product-image">
-                            <img src="<?php echo $product['imagen_producto']; ?>" alt="<?php echo $product['nombre_producto']; ?>">
-                        </div>
-                        <div class="product-info">
-                            <span class="category"><?php echo $product['tipo']; ?></span>
-                            <h4 class="title">
-                                <a href="product-grids.php?id=<?php echo $product['id_producto']; ?>"><?php echo $product['nombre_producto']; ?></a>
-                            </h4>
-                            <div class="price">
-                                <span><?php echo $product['precio']; ?> Bs.</span> <!-- Ajusta el símbolo de la moneda según sea necesario -->
+                        <a href="product-details.php?id=<?= $producto['id_producto'] ?>" style="text-decoration: none; color: inherit;">
+                            <div class="product-image">
+                                <img src="<?= htmlspecialchars($producto['imagen_producto']) ?>" 
+                                     alt="<?= htmlspecialchars($producto['nombre_producto']) ?>" 
+                                     class="first-image">
+                                <img src="<?= htmlspecialchars($producto['imagen_producto2']) ?>" 
+                                     alt="<?= htmlspecialchars($producto['nombre_producto']) ?>" 
+                                     class="second-image">
                             </div>
-                        </div>
+                            <div class="product-info">
+                                <span class="category"><?= htmlspecialchars($producto['tipo']) ?></span>
+                                <span class="title"><?= htmlspecialchars($producto['nombre_producto']) ?></span>
+                                <div class="price">
+                                    <span>Bs. <?= number_format($producto['precio'], 2) ?></span>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                     <!-- End Single Product -->
                 </div>

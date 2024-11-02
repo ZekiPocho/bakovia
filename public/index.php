@@ -170,13 +170,12 @@ session_start();
             <div class="navbar-cart ms-auto d-none d-lg-block">
                 <div class="cart-items">
                     <?php
-
                     // Comprobar si existe la sesión de la foto de perfil
                     if (isset($_SESSION['foto_perfil']) && !empty($_SESSION['foto_perfil'])) {
                         // Mostrar la foto de perfil
                         $fotoPerfil = $_SESSION['foto_perfil'];
                         echo '<a href="profile.php" class="main-btn" style="margin-right: 30px;">
-                                <img src="' . htmlspecialchars($fotoPerfil) . '" alt="Foto de perfil" >
+                                <img src="' . htmlspecialchars($fotoPerfil) . '" alt="Foto de perfil" style="object-fit: cover;">
                             </a>';
                     } else {
                         // Mostrar el ícono predeterminado

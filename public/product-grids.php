@@ -194,7 +194,7 @@ if ($filtro) {
 
 // Obtener el número total de productos
 $totalProductosQuery = "SELECT COUNT(*) AS total FROM productos" . $whereClause;
-echo "Consulta total de productos: " . $totalProductosQuery; // Para depuración
+
 $totalProductos = $conn->query($totalProductosQuery)->fetch_assoc()['total'];
 
 // Calcular el número total de páginas

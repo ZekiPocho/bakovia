@@ -15,15 +15,21 @@ if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['clave']
         $email = $_POST['email'];
         $pass = sha1($_POST['clave']);
 
-        // Verificar si el correo o el nombre de usuario ya existen
+        // Verificar si el correo o el nombre de usuario ya existen y si la cuenta está verificada
         $checkUserQuery = $conn->prepare("SELECT * FROM usuarios WHERE nombre_usuario = ? OR correo = ?");
         $checkUserQuery->bind_param("ss", $name, $email);
         $checkUserQuery->execute();
         $result = $checkUserQuery->get_result();
 
         if ($result->num_rows > 0) {
-            // Si ya existe un usuario con ese nombre o correo
-            $mensaje = "<div class='alert alert-danger'>El nombre de usuario o correo ya está en uso. Por favor, elige otro.</div>";
+            $userData = $result->fetch_assoc();
+            if ($userData['verificado'] === 'no') {
+                // Si la cuenta existe pero no está verificada
+                $mensaje = "<div class='alert alert-warning'>Ya tienes una cuenta registrada, pero necesita ser verificada. Por favor, revisa tu correo electrónico para completarlo.</div>";
+            } else {
+                // Si la cuenta ya existe y está verificada
+                $mensaje = "<div class='alert alert-danger'>El nombre de usuario o correo ya está en uso. Por favor, elige otro.</div>";
+            }
         } else {
             // Incluir el archivo para enviar el correo solo si no hay errores
             include "mail_msg.php";

@@ -110,16 +110,20 @@ include ('db.php');
             </a>
 
             <!-- ÍCONO DE PERFIL VISIBLE EN TODAS LAS PANTALLAS -->
-            <div class="navbar-cart d-lg-none">
-                <button class="navbar-toggler mobile-menu-btn w-100 mt-2 mt-lg-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="toggler-icon"></span>
-                    <span class="toggler-icon"></span>
-                    <span class="toggler-icon"></span>
-                </button>
-                <div class="cart-items">
-                    <a href="profile.php" class="main-btn">
-                        <i class="lni lni-user"></i>
-                    </a>
+            <div class="navbar-cart d-md-none">   
+                <div class="row">
+                    <div class="icon col-6">
+                    <button class="navbar-toggler mobile-menu-btn w-100 mt-2 mt-lg-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                        </button>
+                    </div>
+                    <div class="cart-items col-6">
+                        <a href="profile.php" class="main-btn">
+                            <i class="lni lni-user"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
 

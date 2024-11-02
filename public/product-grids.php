@@ -1,7 +1,34 @@
-<?php
-include("../public/db.php"); // Asegúrate de incluir el archivo de conexión a la base de datos
-?>
 
+<?php
+include 'db.php'; // Conexión a la base de datos
+
+// Obtener el valor del parámetro 'tag' de la URL
+$tag = isset($_GET['tag']) ? $_GET['tag'] : '';
+
+// Construir la consulta SQL
+$sql = "SELECT * FROM productos";
+if ($tag) {
+    $sql .= " WHERE juego = ?";
+}
+
+$stmt = $conexion->prepare($sql);
+if ($tag) {
+    $stmt->bind_param("s", $tag);
+}
+$stmt->execute();
+$result = $stmt->get_result();
+
+// Mostrar los productos filtrados
+while ($producto = $result->fetch_assoc()) {
+    echo "<div class='single-product'>";
+    echo "<div class='product-image'><img src='" . htmlspecialchars($producto['imagen_producto']) . "' alt=''></div>";
+    echo "<div class='product-info'>";
+    echo "<h4 class='title'>" . htmlspecialchars($producto['nombre_producto']) . "</h4>";
+    echo "<p>" . htmlspecialchars($producto['descripcion']) . "</p>";
+    echo "<span class='price'>$" . htmlspecialchars($producto['precio']) . "</span>";
+    echo "</div></div>";
+}
+?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 

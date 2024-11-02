@@ -149,10 +149,41 @@ include ('db.php')
                         <!-- Start Single Widget -->
                          
 <?php
+// Obtener los tipos únicos (tags) de la tabla productos
+$query = "SELECT DISTINCT tipo FROM productos";
+$result = $conn->query($query);
+
+$tags = [];
+while ($row = $result->fetch_assoc()) {
+    $tags[] = $row['tipo'];
+}
+?>
+
+<!-- Start Single Widget -->
+<div class="single-widget">
+    <h3>Todas las Categorías</h3>
+    <ul class="list">
+        <?php foreach ($tags as $tag): ?>
+            <li>
+                <a href="product-grid.php?filtro=<?= urlencode($tag) ?>">
+                    <?= htmlspecialchars($tag) ?>
+                </a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</div>
+<!-- End Product Sidebar -->
+                    </div>
+                    <!-- End Product Sidebar -->
+                 </div>
+                <div class="col-lg-9 col-12">
+                    <div class="product-grids-head">
+                    <?php
+
 // Número de productos por página
 $productosPorPagina = 12;
 
-// Capturar el filtro de la URL
+// Obtener el número total de productos con el filtro
 $filtro = isset($_GET['filtro']) ? $_GET['filtro'] : null;
 $whereClause = "";
 if ($filtro) {
@@ -166,13 +197,13 @@ $totalProductos = $conn->query($totalProductosQuery)->fetch_assoc()['total'];
 // Calcular el número total de páginas
 $totalPaginas = ceil($totalProductos / $productosPorPagina);
 
-// Obtener el número de la página actual
+// Obtener el número de la página actual (de la URL, por ejemplo)
 $paginaActual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
 
 // Calcular el límite para la consulta
 $limite = ($paginaActual - 1) * $productosPorPagina;
 
-// Función para obtener productos limitados
+// Función para obtener productos limitados con filtro
 function getLimitedProducts($conn, $limite, $productosPorPagina, $whereClause) {
     $sql = "SELECT p.id_producto, p.nombre_producto, p.descripcion, p.precio, p.imagen_producto, p.imagen_producto2, p.tipo
             FROM productos p" . $whereClause . "

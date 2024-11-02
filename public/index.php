@@ -360,26 +360,22 @@ $result = mysqli_query($conn, $query);
                         $tag = $row['tag'];
                         
                         echo '
-                        <div class="col-lg-4 col-md-6 col-12">
-                            <!-- Start Single Blog -->
-                            <div class="single-blog">
-                                <div class="blog-img">
-                                    <a href="blog-single-sidebar.php?id='.$id_publicacion.'"> <!-- Enlace con el ID de la publicación -->
-                                        <img src="'.$imagen.'" alt="#" style="width: 370px; height: 215px; object-fit: cover;">
-                                    </a>
-                                </div>
-                                <div class="blog-content">
-                                    <a class="category" href="javascript:void(0)">'.$tag.'</a> <!-- Mostrar el tag -->
-                                    <h4>
-                                        <a href="blog-single-sidebar.php?id='.$id_publicacion.'">'.$titulo.'</a> <!-- Mostrar el título -->
-                                    </h4>
-                                    <div class="button">
-                                        <a href="blog-single-sidebar.php?id='.$id_publicacion.'" class="btn">Leer más</a>
-                                    </div>
-                                </div>
+                        <div class="col-lg-6 col-md-6 col-12">
+                        <!-- Start Single Blog -->
+                        <div class="single-blog">
+                            <div class="blog-img">
+                                <a href="blog-single-sidebar.php?id='.$id_publicacion.'">
+                                    <img src="'.$imagen.'" alt="#" style="max-width: 555px; max-height: 300px; object-fit: contain;">
+                                </a>
                             </div>
-                            <!-- End Single Blog -->
-                        </div>';
+                            <div class="blog-content">
+                                <a class="category" href="javascript:void(0)">'.$usuario.'</a>
+                                <h4><a href="blog-single-sidebar.php?id='.$id_publicacion.'">'.(strlen($titulo) > 75 ? substr($titulo, 0, 75) . '...' : $titulo).'</a></h4>
+                                <a class="category" href="javascript:void(0)"><i class="lni lni-tag"></i>'.$tag.'</a>
+                            </div>
+                        </div>
+                        <!-- End Single Blog -->
+                    </div>';
                     }
                 } else {
                     echo "No hay publicaciones disponibles.";

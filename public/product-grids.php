@@ -178,12 +178,23 @@ while ($row = $result->fetch_assoc()) {
                  </div>
                 <div class="col-lg-9 col-12">
                     <div class="product-grids-head">
-                        <?php
+                    <?php
+// Conexión a la base de datos (asegúrate de haberla establecido antes)
+$conn = new mysqli("localhost", "usuario", "contraseña", "bakoviadb");
+
 // Número de productos por página
 $productosPorPagina = 12;
 
+// Obtener el número total de productos con el filtro
+$filtro = isset($_GET['filtro']) ? $_GET['filtro'] : null;
+$whereClause = "";
+if ($filtro) {
+    $whereClause = " WHERE tipo = '" . $conn->real_escape_string($filtro) . "'";
+}
+
 // Obtener el número total de productos
-$totalProductos = $conn->query("SELECT COUNT(*) AS total FROM productos")->fetch_assoc()['total'];
+$totalProductosQuery = "SELECT COUNT(*) AS total FROM productos" . $whereClause;
+$totalProductos = $conn->query($totalProductosQuery)->fetch_assoc()['total'];
 
 // Calcular el número total de páginas
 $totalPaginas = ceil($totalProductos / $productosPorPagina);
@@ -194,15 +205,15 @@ $paginaActual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
 // Calcular el límite para la consulta
 $limite = ($paginaActual - 1) * $productosPorPagina;
 
-// Función para obtener productos limitados
-function getLimitedProducts($conn, $limite, $productosPorPagina) {
+// Función para obtener productos limitados con filtro
+function getLimitedProducts($conn, $limite, $productosPorPagina, $whereClause) {
     $sql = "SELECT p.id_producto, p.nombre_producto, p.descripcion, p.precio, p.imagen_producto, p.imagen_producto2, p.tipo
-            FROM productos p
+            FROM productos p" . $whereClause . "
             LIMIT $limite, $productosPorPagina";
     return $conn->query($sql);
 }
 
-$productos = getLimitedProducts($conn, $limite, $productosPorPagina);
+$productos = getLimitedProducts($conn, $limite, $productosPorPagina, $whereClause);
 ?>
 
 <!-- Inicia la sección de productos -->
@@ -233,29 +244,6 @@ $productos = getLimitedProducts($conn, $limite, $productosPorPagina);
                 </div>
             <?php endwhile; ?>
         </div>
-
-        <!-- Pagination -->
-        <div class="row">
-            <div class="col-12">
-                <div class="pagination left">
-                    <ul class="pagination-list">
-                        <?php for ($i = 1; $i <= $totalPaginas; $i++): ?>
-                            <li class="<?= ($i === $paginaActual) ? 'active' : '' ?>">
-                                <a href="?pagina=<?= $i ?>"><?= $i ?></a>
-                            </li>
-                        <?php endfor; ?>
-                        <?php if ($paginaActual < $totalPaginas): ?>
-                            <li>
-                                <a href="?pagina=<?= $paginaActual + 1 ?>">
-                                    <i class="lni lni-chevron-right"></i>
-                                </a>
-                            </li>
-                        <?php endif; ?>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!--/ End Pagination -->
     </div>
 </div>
 

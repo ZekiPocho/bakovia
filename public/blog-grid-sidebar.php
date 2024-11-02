@@ -322,7 +322,9 @@ $total_paginas = ceil($total_publicaciones / $limite);
                 </aside>
             </div>
         </div>
+        
     </section>
+    <!-- End Blog Singel Area -->
 
     <!-- Start Footer Area -->
     <footer class="footer">

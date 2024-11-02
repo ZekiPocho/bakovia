@@ -168,7 +168,7 @@ include ('db.php');
             <!-- ÍCONO DE PERFIL EN PANTALLAS GRANDES -->
             <div class="navbar-cart ms-auto d-none d-lg-block">
                 <div class="cart-items">
-                    <a href="profile.php" class="main-btn">
+                    <a href="profile.php" class="main-btn" style=" margin-right: 30px;">
                         <i class="lni lni-user"></i>
                     </a>
                 </div>

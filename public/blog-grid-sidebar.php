@@ -295,14 +295,9 @@ $total_paginas = ceil($total_publicaciones / $limite);
                         <!-- End Single Widget -->
                         <!-- Start Single Widget -->
                         <div class="widget popular-tag-widget">
-                            <h5 class="widget-title">Etiquetas</h5>
-                            <div class="tags">
-                                <a href="javascript:void(0)">#electronics</a>
-                                <a href="javascript:void(0)">#cpu</a>
-                                <a href="javascript:void(0)">#gadgets</a>
-                                <a href="javascript:void(0)">#wearables</a>
-                                <a href="javascript:void(0)">#smartphones</a>
-                            </div>
+                            <a href="publicar-blog.php">
+                            <h5 class="widget-title">CREAR PUBLICACIÓN</h5>
+                            </a>
                         </div>
                         <!-- End Single Widget -->
                     </div>

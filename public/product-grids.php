@@ -135,6 +135,8 @@ include("../public/db.php"); // Asegúrate de incluir el archivo de conexión a 
     <section class="product-grids section">
         <div class="container-sm">
             <div class="row">
+                 <div class="col-lg-3 col-12">
+                    <!-- Start Product Sidebar -->
                     <div class="product-sidebar">
                         <!-- Start Single Widget -->
                         <div class="single-widget search">
@@ -228,7 +230,7 @@ include("../public/db.php"); // Asegúrate de incluir el archivo de conexión a 
                         <!-- End Single Widget -->
                     </div>
                     <!-- End Product Sidebar -->
-                </div>
+                 </div>
                 <div class="col-lg-9 col-12">
                     <div class="product-grids-head">
                         <div class="product-grid-topbar">

@@ -293,7 +293,7 @@ $result = mysqli_query($conn, $query);
         <div class="row">
             <div class="col-12"> 
                 <div class="section-title">
-                    <h2>Productos Disponibles</h2>
+                    <a href="product-grids.php"><h2>Productos Disponibles</h2></a> 
                 </div>
             </div>
         </div>
@@ -392,7 +392,7 @@ $result = mysqli_query($conn, $query);
     <!-- End Blog Section Area -->
 
     <!-- Start Footer Area -->
-    <footer class="footer" style="border-top: solid 3px #6E869D;">
+    <footer class="footer" style="border-top: solid 5px #6E869D;">
         <!-- Start Footer Middle -->
         <div class="footer-middle">
             <div class="container">

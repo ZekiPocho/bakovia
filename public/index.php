@@ -222,9 +222,10 @@ include ('db.php');
                         <!-- Start Small Banner: Partidas -->
                         <div class="hero-small-banner style2">
                             <div class="content">
-                                <h2>En Bakovia hay comida, amor</h2><p></p>
-                                <h2>y </h2><h2 style="font-weight: bold;">¡GUERRA!</h2>
-                                <p></p>
+                                <h2>En Bakovia hay comida, amor y ¡GUERRA!</h2>
+                                <br>
+                                <br>
+                                <br>
                                 <div class="button">
                                     <a class="btn" href="matches.php">Partidas en Progreso</a>
                                 </div>

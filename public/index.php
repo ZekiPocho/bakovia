@@ -361,21 +361,21 @@ $result = mysqli_query($conn, $query);
                         
                         echo '
                         <div class="col-lg-4 col-md-6 col-12">
-                        <!-- Start Single Blog -->
-                        <div class="single-blog">
-                            <div class="blog-img">
-                                <a href="blog-single-sidebar.php?id='.$id_publicacion.'">
-                                    <img src="'.$imagen.'" alt="#" style="max-width: 555px; max-height: 300px; object-fit: contain;">
-                                </a>
+                            <!-- Start Single Blog -->
+                            <div class="single-blog">
+                                <div class="blog-img">
+                                    <a href="blog-single-sidebar.php?id='.$id_publicacion.'"> <!-- Enlace con el ID de la publicación -->
+                                        <img src="'.$imagen.'" alt="#" style="width: 370px; height: 215px; object-fit: cover;">
+                                    </a>
+                                </div>
+                                <div class="blog-content">
+                                    <h4><a href="blog-single-sidebar.php?id='.$id_publicacion.'">'.(strlen($titulo) > 75 ? substr($titulo, 0, 75) . '...' : $titulo).'</a></h4>
+                                    <br>
+                                    <a class="category" href="javascript:void(0)"><i class="lni lni-tag"></i>'.$tag.'</a>
+                                </div>
                             </div>
-                            <div class="blog-content">
-                                <h4><a href="blog-single-sidebar.php?id='.$id_publicacion.'">'.(strlen($titulo) > 75 ? substr($titulo, 0, 75) . '...' : $titulo).'</a></h4>
-                                <br>
-                                <a class="category" href="javascript:void(0)"><i class="lni lni-tag"></i>'.$tag.'</a>
-                            </div>
-                        </div>
-                        <!-- End Single Blog -->
-                    </div>';
+                            <!-- End Single Blog -->
+                        </div>';
                     }
                 } else {
                     echo "No hay publicaciones disponibles.";

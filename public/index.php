@@ -303,7 +303,7 @@ $result = mysqli_query($conn, $query);
                     <!-- Start Single Product -->
 
                     <div class="single-product">
-                        <a href="product-details.php?id=<?= $producto['id_producto'] ?>" style="text-decoration: none; color: inherit;">
+                        <a href="product-details.php?id=<?= $product['id_producto'] ?>" style="text-decoration: none; color: inherit;">
                             <div class="product-image">
                                 <img src="<?= htmlspecialchars($product['imagen_producto']) ?>" 
                                      alt="<?= htmlspecialchars($product['nombre_producto']) ?>" 

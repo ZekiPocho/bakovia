@@ -1,41 +1,3 @@
-
-<?php
-// Conexión a la base de datos
-$servername = "localhost";
-$username = "root";
-$password = ""; 
-$dbname = "bakoviadb";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Error de conexión: " . $conn->connect_error);
-}
-
-// Definir el número de publicaciones por página
-$limite = 8; // Número de publicaciones por página
-
-// Obtener el número de página actual
-$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-$offset = ($page - 1) * $limite; // Calcular el desplazamiento
-
-// Consulta para obtener las publicaciones
-$sql = "SELECT p.id_publicacion, p.titulo, p.contenido, p.imagen_publicacion, p.fecha_publicacion, p.tag, u.nombre_usuario 
-        FROM publicaciones p
-        JOIN usuarios u ON p.id_usuario = u.id_usuario
-        ORDER BY p.fecha_publicacion DESC
-        LIMIT $limite OFFSET $offset";
-
-$result = $conn->query($sql);
-
-// Consulta para contar el total de publicaciones
-$sql_total = "SELECT COUNT(*) AS total FROM publicaciones";
-$result_total = $conn->query($sql_total);
-$total_publicaciones = $result_total->fetch_assoc()['total'];
-
-// Calcular el número total de páginas
-$total_paginas = ceil($total_publicaciones / $limite);
-?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 
@@ -145,101 +107,11 @@ $total_paginas = ceil($total_publicaciones / $limite);
 </header>
 <!-- TERMINA HEADER Y NAVBAR PRO --> 
 
-    <!-- Start Breadcrumbs -->
-    <div class="breadcrumbs">
-        <div class="container-sm">
-            <div class="row align-items-center">
-                <div class="col-lg-6 col-md-6 col-12">
-                    <div class="breadcrumbs-content">
-                        <h1 class="page-title">PUBLICACIONES</h1>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-12">
-                    <ul class="breadcrumb-nav">
-                        <li><a href="index.php"><i class="lni lni-home"></i> INICIO</a></li>
-                        <li>PUBLICACIONES</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Breadcrumbs -->
-
     <!-- Start Blog Singel Area -->
-    <section class="section blog-section blog-list">
-        <div class="container-sm">
-            <div class="container ">
-                <div class="row">
-                    <div class="col">
-                        <h4><a aria-label="Toggle navigation" href="publicar-blog.php">Crear Blog <i class="lni lni-plus"></i></a></h4>
-                    </div>
-                    <div class="col">
-                    
-                    </div>
-                    <div class="col">
-                        
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-12">
-                <div class="row">
-            <?php
-            if ($result->num_rows > 0) {
-                // Mostrar cada publicación
-                while ($row = $result->fetch_assoc()) {
-                    $id_publicacion = $row['id_publicacion'];
-                    $titulo = $row['titulo'];
-                    $usuario = $row['nombre_usuario'];
-                    $imagen = !empty($row['imagen_publicacion']) ? $row['imagen_publicacion'] : 'https://via.placeholder.com/370x215'; 
-                    $tag = $row['tag'];
+    <h1>Resultados para: ""</h1>
+    <h1>Productos:</h1>
+    
 
-                    echo '
-                    <div class="col-lg-6 col-md-6 col-12">
-                        <!-- Start Single Blog -->
-                        <div class="single-blog">
-                            <div class="blog-img">
-                                <a href="blog-single-sidebar.php?id='.$id_publicacion.'">
-                                    <img src="'.$imagen.'" alt="#" style="max-width: 555px; max-height: 300px; object-fit: contain;">
-                                </a>
-                            </div>
-                            <div class="blog-content">
-                                <a class="category" href="javascript:void(0)">'.$usuario.'</a>
-                                <h4><a href="blog-single-sidebar.php?id='.$id_publicacion.'">'.(strlen($titulo) > 75 ? substr($titulo, 0, 75) . '...' : $titulo).'</a></h4>
-                                <br>
-                                <a class="category" href="javascript:void(0)"><i class="lni lni-tag"></i>'.$tag.'</a>
-                            </div>
-                        </div>
-                        <!-- End Single Blog -->
-                    </div>';
-                }
-            } else {
-                echo "No se encontraron publicaciones.";
-            }
-
-            // Paginación
-            echo '<div class="pagination left blog-grid-page">';
-            echo '<ul class="pagination-list">';
-            if ($page > 1) {
-                echo '<li><a href="?page='.($page - 1).'">Prev</a></li>';
-            }
-            for ($i = 1; $i <= $total_paginas; $i++) {
-                $active = $i == $page ? 'active' : '';
-                echo '<li class="'.$active.'"><a href="?page='.$i.'">'.$i.'</a></li>';
-            }
-            if ($page < $total_paginas) {
-                echo '<li><a href="?page='.($page + 1).'">Next</a></li>';
-            }
-            echo '</ul>';
-            echo '</div>';
-            ?>
-        </div>
-                    <!--/ End Pagination -->
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End Blog Singel Area -->
 
     <!-- Start Footer Area -->
     <footer class="footer">

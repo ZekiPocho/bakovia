@@ -203,10 +203,10 @@ include ('db.php');
                         <!-- Start Single Slider -->
                         <div class="single-slider" style="background-image: url(assets/images/hero/productos.png);">
                             <div class="content">
-                                <h1>EXPLORA NUESTRO CATALOGO</h1>
-                                <p>Variedad de productos para tus Hobbies favoritos</p>
+                                <h1>EXPLORA NUESTRO CATÁLOGO</h1>
+                                <p>¡Variedad de productos para tu hobby favorito!</p>
                                 <div class="button">
-                                    <a href="product-grids.php" class="btn">TIENDA</a>
+                                    <a href="product-grids.php" class="btn">Explorar</a>
                                 </div>
                             </div>
                         </div>

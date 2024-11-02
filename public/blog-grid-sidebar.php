@@ -149,7 +149,7 @@ $total_paginas = ceil($total_publicaciones / $limite);
     <div class="breadcrumbs">
         <div class="container-sm">
             <div class="row align-items-center">
-                <div class="col-lg-6 col-md-6 col-12">
+                <div class="col-lg-8 col-md-12 col-12">
                     <div class="breadcrumbs-content">
                         <h1 class="page-title">PUBLICACIONES</h1>
                     </div>

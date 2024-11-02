@@ -106,10 +106,13 @@
     </nav>
 </header>
 <!-- TERMINA HEADER Y NAVBAR PRO --> 
+<div class="container-sm">
+<h1>Resultados para: ""</h1>
+<h1>Productos:</h1>
+</div>
 
     <!-- Start Blog Singel Area -->
-    <h1>Resultados para: ""</h1>
-    <h1>Productos:</h1>
+    
     
 
 

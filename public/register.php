@@ -25,7 +25,7 @@ if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['clave']
             $userData = $result->fetch_assoc();
             if ($userData['verificado'] === 'no') {
                 // Si la cuenta existe pero no está verificada
-                $mensaje = "<div class='alert alert-warning'>Ya tienes una cuenta registrada, pero necesita ser verificada. Por favor, revisa tu correo electrónico para completarlo.</div>";
+                $mensaje = "<div class='alert alert-warning'>El correo ingresado ya fue registrado a una cuenta, pero necesita ser verificado. Por favor, revisa tu correo electrónico para completarlo.</div>";
             } else {
                 // Si la cuenta ya existe y está verificada
                 $mensaje = "<div class='alert alert-danger'>El nombre de usuario o correo ya está en uso. Por favor, elige otro.</div>";

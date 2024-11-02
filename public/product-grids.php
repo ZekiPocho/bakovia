@@ -137,8 +137,102 @@ include("../public/db.php"); // Asegúrate de incluir el archivo de conexión a 
             <div class="row">
 
     <!-- Product Sidebar section temporarily commented out 
-                 <div class="col-lg-3 col-12">
-                 </div>
+                <div class="col-lg-3 col-12">
+                    <!-- Start Product Sidebar -->
+                    <div class="product-sidebar">
+                        <!-- Start Single Widget -->
+                        <div class="single-widget search">
+                            <h3>Buscar Producto</h3>
+                            <form action="#">
+                                <input type="text" placeholder="Buscar">
+                                <button type="submit"><i class="lni lni-search-alt"></i></button>
+                            </form>
+                        </div>
+                        <!-- End Single Widget -->
+                        <!-- Start Single Widget -->
+                        <div class="single-widget">
+                            <h3>Todas las Categorías</h3>
+                            <ul class="list">
+                                <li>
+                                    <a href="product-grids.html">Computers & Accessories </a><span>(1138)</span>
+                                </li>
+                                <li>
+                                    <a href="product-grids.html">Smartphones & Tablets</a><span>(2356)</span>
+                                </li>
+                                <li>
+                                    <a href="product-grids.html">TV, Video & Audio</a><span>(420)</span>
+                                </li>
+                                <li>
+                                    <a href="product-grids.html">Cameras, Photo & Video</a><span>(874)</span>
+                                </li>
+                                <li>
+                                    <a href="product-grids.html">Headphones</a><span>(1239)</span>
+                                </li>
+                                <li>
+                                    <a href="product-grids.html">Wearable Electronics</a><span>(340)</span>
+                                </li>
+                                <li>
+                                    <a href="product-grids.html">Printers & Ink</a><span>(512)</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- End Single Widget -->
+                        <!-- Start Single Widget -->
+                        <div class="single-widget condition">
+                            <h3>Filter by Brand</h3>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault11">
+                                <label class="form-check-label" for="flexCheckDefault11">
+                                    Apple (254)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault22">
+                                <label class="form-check-label" for="flexCheckDefault22">
+                                    Bosh (39)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault33">
+                                <label class="form-check-label" for="flexCheckDefault33">
+                                    Canon Inc. (128)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault44">
+                                <label class="form-check-label" for="flexCheckDefault44">
+                                    Dell (310)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault55">
+                                <label class="form-check-label" for="flexCheckDefault55">
+                                    Hewlett-Packard (42)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault66">
+                                <label class="form-check-label" for="flexCheckDefault66">
+                                    Hitachi (217)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault77">
+                                <label class="form-check-label" for="flexCheckDefault77">
+                                    LG Electronics (310)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault88">
+                                <label class="form-check-label" for="flexCheckDefault88">
+                                    Panasonic (74)
+                                </label>
+                            </div>
+                        </div>
+                        <!-- End Single Widget -->
+                    </div>
+                    <!-- End Product Sidebar -->
+                </div>
      Aquí se puede agregar contenido relacionado con productos o filtros en el futuro -->
 
                 <div class="col-lg-9 col-12">

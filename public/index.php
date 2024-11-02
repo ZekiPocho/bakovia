@@ -99,58 +99,53 @@ include ('db.php');
                 <span class="toggler-icon"></span>
                 <span class="toggler-icon"></span>
             </button>
+            
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="active" aria-label="Toggle navigation" href="index.php">PRINCIPAL</a>
+                        <a class="nav-link active" href="index.php">PRINCIPAL</a>
                     </li>
                     <li class="nav-item">
-                        <a class="active" aria-label="Toggle navigation" href="product-grids.php">TIENDA</a>
+                        <a class="nav-link" href="product-grids.php">TIENDA</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-bs-toggle="collapse"
-                            data-bs-target="#submenu-1-3" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">CATEGORÍAS</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="collapse"
+                            data-bs-target="#submenu-1-3" aria-expanded="false">CATEGORÍAS</a>
                         <ul class="sub-menu collapse" id="submenu-1-3">
-                            <li class="nav-item"><a href="matches.php">Partidas</a></li>
-                            <li class="nav-item"><a href="blog-grid-sidebar.php">Blogs</a></li>
-                            <li class="nav-item"><a href="about-us.php">¿Quienes Somos?</a></li>
-                            <li class="nav-item"><a href="faq.php">Preguntas Frecuentes</a></li>
+                            <li class="nav-item"><a class="dropdown-item" href="matches.php">Partidas</a></li>
+                            <li class="nav-item"><a class="dropdown-item" href="blog-grid-sidebar.php">Blogs</a></li>
+                            <li class="nav-item"><a class="dropdown-item" href="about-us.php">¿Quiénes Somos?</a></li>
+                            <li class="nav-item"><a class="dropdown-item" href="faq.php">Preguntas Frecuentes</a></li>
                         </ul>
                     </li>
                 </ul>
+
                 <form class="d-flex">
-    <div class="navbar-search search-style-5">
-        <div class="navbar-search search-input">
-            <input id="search-input" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-        </div>
-        <div class="search-btn">
-            <button type="button"><i class="lni lni-search-alt"></i></button>
-                <!-- Aquí se muestra el dropdown de búsqueda -->
-    <div id="search-dropdown" class="search-dropdown" style="display: none;"></div>
-        </div>
-    </div>
-</form>
+                    <div class="navbar-search search-style-5">
+                        <div class="search-input">
+                            <input id="search-input" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                        </div>
+                        <div class="search-btn">
+                            <button type="button"><i class="lni lni-search-alt"></i></button>
+                        </div>
+                        <!-- Dropdown de búsqueda -->
+                        <div id="search-dropdown" class="search-dropdown" style="display: none;"></div>
+                    </div>
+                </form>
             </div>
             
-                </div>
-            </div>
             <!-- PERFIL -->
-            <div class="col-sm-auto">
-                <div class="navbar-cart">
-                    <div class="cart-items">
-                        <a href="profile.php" class="main-btn">
-                            <i class="lni lni-user"></i>
-                        </a>
-                    </div>
+            <div class="navbar-cart">
+                <div class="cart-items">
+                    <a href="profile.php" class="main-btn">
+                        <i class="lni lni-user"></i>
+                    </a>
                 </div>
             </div>
-    </div>
-</div>
         </div>
     </nav>
 </header>
-<!-- TERMINA HEADER Y NAVBAR PRO --> 
+<!-- TERMINA HEADER Y NAVBAR PRO -->
 
 
     <!-- Start Hero Area -->

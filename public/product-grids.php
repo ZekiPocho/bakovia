@@ -1,15 +1,4 @@
-<?php
-include ('db.php');
 
-// Obtener los tipos únicos (tags) de la tabla productos
-$query = "SELECT DISTINCT tipo FROM productos";
-$result = $conn->query($query);
-
-$tags = [];
-while ($row = $result->fetch_assoc()) {
-    $tags[] = $row['tipo'];
-}
-?>
 
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
@@ -157,6 +146,18 @@ while ($row = $result->fetch_assoc()) {
                         </div>
                         <!-- End Single Widget -->
 <!-- Start Single Widget -->
+<?php
+include ('db.php');
+
+// Obtener los tipos únicos (tags) de la tabla productos
+$query = "SELECT DISTINCT tipo FROM productos";
+$result = $conn->query($query);
+
+$tags = [];
+while ($row = $result->fetch_assoc()) {
+    $tags[] = $row['tipo'];
+}
+?>
 <div class="single-widget">
     <h3>Todas las Categorías</h3>
     <ul class="list">

@@ -178,12 +178,16 @@ while ($row = $result->fetch_assoc()) {
                  </div>
                 <div class="col-lg-9 col-12">
                     <div class="product-grids-head">
-                    <?php
 
+
+
+
+
+                    <?php
 // Número de productos por página
 $productosPorPagina = 12;
 
-// Obtener el número total de productos con el filtro
+// Capturar el filtro de la URL
 $filtro = isset($_GET['filtro']) ? $_GET['filtro'] : null;
 $whereClause = "";
 if ($filtro) {
@@ -197,13 +201,13 @@ $totalProductos = $conn->query($totalProductosQuery)->fetch_assoc()['total'];
 // Calcular el número total de páginas
 $totalPaginas = ceil($totalProductos / $productosPorPagina);
 
-// Obtener el número de la página actual (de la URL, por ejemplo)
+// Obtener el número de la página actual
 $paginaActual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
 
 // Calcular el límite para la consulta
 $limite = ($paginaActual - 1) * $productosPorPagina;
 
-// Función para obtener productos limitados con filtro
+// Función para obtener productos limitados
 function getLimitedProducts($conn, $limite, $productosPorPagina, $whereClause) {
     $sql = "SELECT p.id_producto, p.nombre_producto, p.descripcion, p.precio, p.imagen_producto, p.imagen_producto2, p.tipo
             FROM productos p" . $whereClause . "

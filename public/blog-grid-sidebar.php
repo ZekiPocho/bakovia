@@ -182,7 +182,7 @@ $total_paginas = ceil($total_publicaciones / $limite);
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-12 col-md-12 col-12">
+                <div class="col-lg-6 col-md-6 col-12">
                 <div class="row">
             <?php
             if ($result->num_rows > 0) {

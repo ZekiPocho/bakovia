@@ -146,28 +146,31 @@ include ('db.php')
                             </form>
                         </div>
                         <!-- End Single Widget -->
-                        <!-- Start Single Widget -->
-                         
-                        <div class="single-widget">
-                            <h3>Todas las Categorías</h3>
-                            <ul class="list">
-                                <li>
-                                    <a href="product-grids.html">Miniaturas</a>
-                                </li>
-                                <li>
-                                    <a href="product-grids.html">Pinturas</a>
-                                </li>
-                                <li>
-                                    <a href="product-grids.html">Suplementos</a>
-                                <li>
-                                    <a href="product-grids.html">Servicio</a>
-                                </li>
-                                <li>
-                                    <a href="product-grids.html">Otros</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                        <?php
+// Obtener los tipos únicos (tags) de la tabla productos
+$query = "SELECT DISTINCT tipo FROM productos";
+$result = $conexion->query($query);
+
+$tags = [];
+while ($row = $result->fetch_assoc()) {
+    $tags[] = $row['tipo'];
+}
+?>
+
+<!-- Start Single Widget -->
+<div class="single-widget">
+    <h3>Todas las Categorías</h3>
+    <ul class="list">
+        <?php foreach ($tags as $tag): ?>
+            <li>
+                <a href="product-grid.php?filtro=<?= urlencode($tag) ?>">
+                    <?= htmlspecialchars($tag) ?>
+                </a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</div>
+<!-- End Product Sidebar -->
                     <!-- End Product Sidebar -->
                  </div>
                 <div class="col-lg-9 col-12">

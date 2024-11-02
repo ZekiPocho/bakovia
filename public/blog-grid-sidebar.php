@@ -236,8 +236,7 @@ $total_paginas = ceil($total_publicaciones / $limite);
         </div>
                     <!--/ End Pagination -->
                 </div>
-            </div>
-            <aside class="col-lg-4 col-md-12 col-12">
+                <aside class="col-lg-4 col-md-12 col-12">
                     <div class="sidebar blog-grid-page">
                         <!-- Start Single Widget -->
                         <div class="widget search-widget">
@@ -324,11 +323,6 @@ $total_paginas = ceil($total_publicaciones / $limite);
             </div>
         </div>
     </section>
-    <!-- End Blog Singel Area -->
-        </div>
-        
-    </section>
-    <!-- End Blog Singel Area -->
 
     <!-- Start Footer Area -->
     <footer class="footer">

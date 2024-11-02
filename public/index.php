@@ -131,7 +131,7 @@ include ('db.php');
             </div>
 
             <!-- MENÚ DE NAVEGACIÓN -->
-            <div class="collapse navbar-collapse mt-2 mt-lg-0" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse mt-lg-0" id="navbarSupportedContent" style="margin-top: 50px;">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" href="index.php">PRINCIPAL</a>

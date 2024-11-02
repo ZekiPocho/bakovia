@@ -1,8 +1,10 @@
 <?php 
 session_start();
-if(isset($_SESSION['user'])){
+if (isset($_SESSION['user'])) {
     header("Location: ../public/profile.php");
+    exit(); // Detener la ejecución para evitar que continúe cargando
 }
+
 include "db.php"; // Asegúrate de que no haya espacios antes de esta línea
 
 $mensaje = "";
@@ -14,23 +16,35 @@ if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['clave']
         $pass = sha1($_POST['clave']);
         include "mail_msg.php"; // Incluir archivo para enviar el correo
 
-        if ($enviado) {
-            // Inserción en la base de datos si el correo fue enviado
-            $conn->query("INSERT INTO usuarios (nombre_usuario, correo, contrasena, verificado, token) 
-                          VALUES ('$name', '$email', '$pass', 'no', '$codigo')") 
-                          or die($conn->error);
-            
-            // Redirigir a la página de confirmación
-            header("Location: ./sent.html");
-            exit(); // Asegúrate de detener la ejecución después del header
+        // Verificar si el correo o el nombre de usuario ya existen
+        $checkUserQuery = $conn->prepare("SELECT * FROM usuarios WHERE nombre_usuario = ? OR correo = ?");
+        $checkUserQuery->bind_param("ss", $name, $email);
+        $checkUserQuery->execute();
+        $result = $checkUserQuery->get_result();
+
+        if ($result->num_rows > 0) {
+            // Si ya existe un usuario con ese nombre o correo
+            $mensaje = "<div class='alert alert-danger'>El nombre de usuario o correo ya está en uso. Por favor, elige otro.</div>";
         } else {
-            $mensaje = "Error al enviar el Email, intente nuevamente";
+            if ($enviado) {
+                // Inserción en la base de datos si el correo fue enviado y no existe duplicado
+                $conn->query("INSERT INTO usuarios (nombre_usuario, correo, contrasena, verificado, token) 
+                              VALUES ('$name', '$email', '$pass', 'no', '$codigo')") 
+                              or die($conn->error);
+                
+                // Redirigir a la página de confirmación
+                header("Location: ./sent.html");
+                exit(); // Asegúrate de detener la ejecución después del header
+            } else {
+                $mensaje = "Error al enviar el Email, intente nuevamente";
+            }
         }
     } else {
         $mensaje = "<div class='alert alert-danger'>Las contraseñas no coinciden</div>";
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">

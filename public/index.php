@@ -130,7 +130,6 @@ include ('db.php');
                 </div>
             </div>
 
-
             <!-- MENÚ DE NAVEGACIÓN -->
             <div class="collapse navbar-collapse mt-2 mt-lg-0" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">

@@ -3,21 +3,22 @@
 $codigo = rand(1000,9999);
 $destinatario = "user@example.com"; 
 $asunto = "Bakovia - Verificación de Correo Electrónico"; 
-$cuerpo = ' 
-<html> 
-<head> 
-        <meta charset="utf-8" />
-   <title>Gracias por registrarte!</title> 
-</head> 
-
+$cuerpo = '
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Gracias por registrarte!</title>
+</head>
 <body>
-<h1>Aqui está el código para tu verificación:</h1> 
+    <h1>Aqui está el código para tu verificación:</h1> 
 <p> 
 <h2>'.$codigo.'</h2>
 <p><a href="http://localhost/bakovia/public/confirm.php?email='.$email.'">Verificar cuenta</a></p>
 </p> 
-</body> 
-</html> 
+</body>
+</html>
 '; 
 
 //para el envío en formato HTML 

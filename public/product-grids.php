@@ -143,7 +143,7 @@ include("../public/db.php"); // Asegúrate de incluir el archivo de conexión a 
 
                 <div class="col-lg-9 col-12">
                     <div class="product-grids-head">
-                        <!--<div class="product-grid-topbar">
+                        <div class="product-grid-topbar">
                             <div class="row align-items-center">
                                 <div class="col-lg-7 col-md-8 col-12">
                                     <div class="product-sorting">
@@ -174,7 +174,7 @@ include("../public/db.php"); // Asegúrate de incluir el archivo de conexión a 
                                     </nav>
                                 </div>
                             </div>
-                        </div>-->
+                        </div>
                         <?php
 // Número de productos por página
 $productosPorPagina = 12;

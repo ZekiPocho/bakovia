@@ -69,7 +69,7 @@ include ('db.php');
         order: 1; /* Mantiene el logo en la parte superior */
     }
     
-    .navbar-mobile {
+    .navbar-cart {
         order: 2; /* Coloca el ícono de perfil al final */
     }
 }
@@ -110,23 +110,22 @@ include ('db.php');
             </a>
 
             <!-- ÍCONO DE PERFIL VISIBLE EN TODAS LAS PANTALLAS -->
-            <div class="navbar-mobile d-lg-none">   
-                <div class="row">
-                    <div class="icon col-6">
-                    <button class="navbar-toggler mobile-menu-btn w-100 mt-2 mt-lg-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="toggler-icon"></span>
-                            <span class="toggler-icon"></span>
-                            <span class="toggler-icon"></span>
-                        </button>
-                    </div>
-                    <div class="cart-items col-6">
-                        <a href="profile.php" class="main-btn">
-                            <i class="lni lni-user"></i>
-                        </a>
-                    </div>
+             <div class="row">
+                <div class="navbar-cart d-lg-none">   
+                        <div class="icon col-6">
+                        <button class="navbar-toggler mobile-menu-btn w-100 mt-2 mt-lg-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                            </button>
+                        </div>
+                        <div class="cart-items col-6">
+                            <a href="profile.php" class="main-btn">
+                                <i class="lni lni-user"></i>
+                            </a>
+                        </div>
                 </div>
             </div>
-
             <!-- BOTÓN DE MENÚ MÓVIL -->
             
 

@@ -179,9 +179,6 @@ while ($row = $result->fetch_assoc()) {
                 <div class="col-lg-9 col-12">
                     <div class="product-grids-head">
                     <?php
-// Conexión a la base de datos (asegúrate de haberla establecido antes)
-$conn = new mysqli("localhost", "usuario", "contraseña", "bakoviadb");
-
 // Número de productos por página
 $productosPorPagina = 12;
 

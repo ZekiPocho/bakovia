@@ -301,21 +301,22 @@ $result = mysqli_query($conn, $query);
             <?php while ($product = mysqli_fetch_assoc($result)): ?>
                 <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Product -->
+
                     <div class="single-product">
                         <a href="product-details.php?id=<?= $producto['id_producto'] ?>" style="text-decoration: none; color: inherit;">
                             <div class="product-image">
-                                <img src="<?= htmlspecialchars($producto['imagen_producto']) ?>" 
-                                     alt="<?= htmlspecialchars($producto['nombre_producto']) ?>" 
+                                <img src="<?= htmlspecialchars($product['imagen_producto']) ?>" 
+                                     alt="<?= htmlspecialchars($product['nombre_producto']) ?>" 
                                      class="first-image">
-                                <img src="<?= htmlspecialchars($producto['imagen_producto2']) ?>" 
-                                     alt="<?= htmlspecialchars($producto['nombre_producto']) ?>" 
+                                <img src="<?= htmlspecialchars($product['imagen_producto2']) ?>" 
+                                     alt="<?= htmlspecialchars($product['nombre_producto']) ?>" 
                                      class="second-image">
                             </div>
                             <div class="product-info">
-                                <span class="category"><?= htmlspecialchars($producto['tipo']) ?></span>
-                                <span class="title"><?= htmlspecialchars($producto['nombre_producto']) ?></span>
+                                <span class="category"><?= htmlspecialchars($product['tipo']) ?></span>
+                                <span class="title"><?= htmlspecialchars($product['nombre_producto']) ?></span>
                                 <div class="price">
-                                    <span>Bs. <?= number_format($producto['precio'], 2) ?></span>
+                                    <span>Bs. <?= number_format($product['precio'], 2) ?></span>
                                 </div>
                             </div>
                         </a>

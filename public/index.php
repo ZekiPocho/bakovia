@@ -182,76 +182,73 @@ include ('db.php');
 
 
     <!-- Start Hero Area -->
-    <section class="hero-area">
-        <div class="container-sm">
-            <div class="row">
-                <div class="col-lg-8 col-12 custom-padding-right">
-                    <div class="slider-head">
-                        <!-- Start Hero Slider -->
-                        <div class="hero-slider">
-                            <!-- Start Single Slider -->
-                            <div class="single-slider"
-                                style="background-image: url(assets/images/hero/hero.png);">
-                                <div class="content">
-                                    <p></p>
-                                    <!--<div class="button">
-                                        <a href="product-grids.php" class="btn">Shop Now</a>
-                                    </div>-->
-                                </div>
+<section class="hero-area">
+    <div class="container-sm">
+        <div class="row">
+            <div class="col-lg-8 col-12 custom-padding-right">
+                <div class="slider-head">
+                    <!-- Start Hero Slider -->
+                    <div class="hero-slider">
+                        <!-- Start Single Slider -->
+                        <div class="single-slider" style="background-image: url(assets/images/hero/hero.png);">
+                            <div class="content">
+                                <p></p>
+                                <!--<div class="button">
+                                    <a href="product-grids.php" class="btn">Shop Now</a>
+                                </div>-->
                             </div>
-                            <!-- End Single Slider -->
-                            <!-- Start Single Slider -->
-                            <div class="single-slider"
-                                style="background-image: url(assets/images/hero/productos.png);">
-                                <div class="content">
-                                    <h1>
-                                        EXPLORA NUESTRO CATALOGO
-                                    </h1>
-                                    <p>Variedad de productos para tus Hobbies favoritos</p>
-                                    <div class="button">
-                                        <a href="product-grids.php" class="btn">TIENDA</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Slider -->
                         </div>
-                        <!-- End Hero Slider -->
-                    </div>
-                </div>
-                <div class="col-lg-4 col-12">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-6 col-12 md-custom-padding">
+                        <!-- End Single Slider -->
 
-                        <div class="col-lg-12 col-md-6 col-12">
-                            <!-- Start Small Banner -->
-                            <div class="hero-small-banner style2">
-                                <div class="content">
-                                    <h2>¡Partidas!</h2>
-                                    <p></p>
-                                    <div class="button">
-                                        <a class="btn" href="matches.php">Ver Partidas en Progreso</a>
-                                    </div>
+                        <!-- Start Single Slider -->
+                        <div class="single-slider" style="background-image: url(assets/images/hero/productos.png);">
+                            <div class="content">
+                                <h1>EXPLORA NUESTRO CATALOGO</h1>
+                                <p>Variedad de productos para tus Hobbies favoritos</p>
+                                <div class="button">
+                                    <a href="product-grids.php" class="btn">TIENDA</a>
                                 </div>
                             </div>
-                            <!-- Start Small Banner -->
-                            <div class="hero-small-banner style2">
-                                <div class="content">
-                                    <h2>¡Publicaciones!</h2>
-                                    <p></p>
-                                    <div class="button">
-                                        <a class="btn" href="blog-grid-sidebar.php">Ver Publicaciones</a>
-                                    </div>
+                        </div>
+                        <!-- End Single Slider -->
+                    </div>
+                    <!-- End Hero Slider -->
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-12">
+                <div class="row">
+                    <div class="col-lg-12 col-md-6 col-12 md-custom-padding">
+                        <!-- Start Small Banner -->
+                        <div class="hero-small-banner style2">
+                            <div class="content">
+                                <h2>¡Partidas!</h2>
+                                <p></p>
+                                <div class="button">
+                                    <a class="btn" href="matches.php">Ver Partidas en Progreso</a>
                                 </div>
                             </div>
-                            <!-- End Small Banner -->
                         </div>
+                        <!-- End Small Banner -->
+
+                        <!-- Start Small Banner -->
+                        <div class="hero-small-banner style2">
+                            <div class="content">
+                                <h2>¡Publicaciones!</h2>
+                                <p></p>
+                                <div class="button">
+                                    <a class="btn" href="blog-grid-sidebar.php">Ver Publicaciones</a>
+                                </div>
+                            </div>
                         </div>
+                        <!-- End Small Banner -->
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- End Hero Area -->
+    </div>
+</section>
+<!-- End Hero Area -->
 
     <?php
 // Conexión a la base de datos

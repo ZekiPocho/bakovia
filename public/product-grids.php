@@ -11,7 +11,7 @@ if ($tag) {
     $sql .= " WHERE juego = ?";
 }
 
-$stmt = $conexion->prepare($sql);
+$stmt = $conn->prepare($sql);
 if ($tag) {
     $stmt->bind_param("s", $tag);
 }

@@ -129,7 +129,7 @@ session_start();
                     if (isset($_SESSION['foto_perfil']) && !empty($_SESSION['foto_perfil'])) {
                         // Mostrar la foto de perfil
                         $fotoPerfil = $_SESSION['foto_perfil'];
-                        echo '<a href="profile.php" style="margin-right: 30px;">
+                        echo '<a href="profile.php" ">
                                 <img src="' . htmlspecialchars($fotoPerfil) . '" alt="Foto de perfil" style="width: 40px; height: 40px; object-fit: cover; border-radius: 5px">
                             </a>';
                     } else {

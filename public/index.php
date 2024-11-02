@@ -428,12 +428,12 @@ $result = mysqli_query($conn, $query);
                                 <h3>INFORMACIÓN</h3>
                                 Nos encontramos en la avenida Arce, edificio Santa Isabel Nº 2529.
                                 Atendemos de lunes a viernes, desde las 16:00 hasta las 21:00,
-                                 y los sábados de 13:00 a 18:00
+                                 y los sábados de 13:00 a 18:00.
                             </div>
                             <!-- End Single Widget -->
                             
                         </div>
-                        <div class="col-lg-3 col-md-6 col-12">
+                        <div class="col-lg-3 col-md-6 col-12 mt-5">
                             <!--Single Widget-->
                             <div class="footer-logo">
                                     <a href="index.php">

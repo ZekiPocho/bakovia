@@ -328,7 +328,8 @@ $result = mysqli_query($conn, $query);
     </div>
 </section>
 <!-- End Trending Product Area -->
-
+<br>
+<br>
     <!-- Start Blog Section Area -->
     <section class="blog-section section">
         <div class="container-sm">
@@ -402,14 +403,9 @@ $result = mysqli_query($conn, $query);
                             <!-- Single Widget -->
                             <div class="single-footer f-contact">
                                 <h3>¿QUIÉNES SOMOS?</h3>
-                                <p class="phone">Phone: +1 (900) 33 169 7720</p>
-                                <ul>
-                                    <li><span>Monday-Friday: </span> 9.00 am - 8.00 pm</li>
-                                    <li><span>Saturday: </span> 10.00 am - 6.00 pm</li>
-                                </ul>
-                                <p class="mail">
-                                    <a href="mailto:support@shopgrids.com">support@shopgrids.com</a>
-                                </p>
+                                Bakovia nace del cariño y el querer enseñar, transmitir y divulgar el hobby que es Warhammer.
+                                Deja el mundo atrás, entra al Bunker y alejate de la maldad del mundo.
+                                
                             </div>
                             <!-- End Single Widget -->
                         </div>

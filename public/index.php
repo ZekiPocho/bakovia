@@ -187,7 +187,7 @@ session_start();
                         // Mostrar la foto de perfil
                         $fotoPerfil = $_SESSION['foto_perfil'];
                         echo '<a href="profile.php" style="margin-right: 30px;">
-                                <img src="' . htmlspecialchars($fotoPerfil) . '" alt="Foto de perfil" style="width: 40px; height: 40px; object-fit: cover; border-radius: 5px">
+                                <img src="' . htmlspecialchars($fotoPerfil) . '" alt="Foto de perfil" style="width: 40px; height: 40px; object-fit: cover; border-radius: 5px; border: solid 2px #ECBE00;">
                             </a>';
                     } else {
                         // Mostrar el ícono predeterminado

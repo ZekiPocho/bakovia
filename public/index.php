@@ -226,6 +226,8 @@ include ('db.php');
                                 <br>
                                 <br>
                                 <br>
+                                <br>
+                                <span></span>
                                     <a href="matches.php">Partidas en Progreso</a>
                             </div>
                         </div>
@@ -234,8 +236,8 @@ include ('db.php');
                         <!-- Start Small Banner: Publicaciones -->
                         <div class="hero-small-banner style3">
                             <div class="content">
-                                <h2>Conoce los rumores del Bunker...</h2>
-                                <p></p>
+                                <h2>Conoce los rumores del Bunker...</h2><p></p>
+                                <br>
                                 <br>
                                 <br>
                                 <br>

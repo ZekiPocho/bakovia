@@ -14,7 +14,6 @@ if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['clave']
         $name = $_POST['username'];
         $email = $_POST['email'];
         $pass = sha1($_POST['clave']);
-        include "mail_msg.php"; // Incluir archivo para enviar el correo
 
         // Verificar si el correo o el nombre de usuario ya existen
         $checkUserQuery = $conn->prepare("SELECT * FROM usuarios WHERE nombre_usuario = ? OR correo = ?");
@@ -26,8 +25,11 @@ if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['clave']
             // Si ya existe un usuario con ese nombre o correo
             $mensaje = "<div class='alert alert-danger'>El nombre de usuario o correo ya está en uso. Por favor, elige otro.</div>";
         } else {
+            // Incluir el archivo para enviar el correo solo si no hay errores
+            include "mail_msg.php";
+
             if ($enviado) {
-                // Inserción en la base de datos si el correo fue enviado y no existe duplicado
+                // Inserción en la base de datos si el correo fue enviado
                 $conn->query("INSERT INTO usuarios (nombre_usuario, correo, contrasena, verificado, token) 
                               VALUES ('$name', '$email', '$pass', 'no', '$codigo')") 
                               or die($conn->error);

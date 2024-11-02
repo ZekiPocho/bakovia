@@ -124,10 +124,22 @@ session_start();
                     </div>
                     <!-- ÍCONO DE PERFIL -->
                     <div class="cart-items">
-                        <a href="profile.php" class="main-btn">
-                            <i class="lni lni-user"></i>
-                        </a>
-                    </div>
+                    <?php
+                    // Comprobar si existe la sesión de la foto de perfil
+                    if (isset($_SESSION['foto_perfil']) && !empty($_SESSION['foto_perfil'])) {
+                        // Mostrar la foto de perfil
+                        $fotoPerfil = $_SESSION['foto_perfil'];
+                        echo '<a href="profile.php" style="margin-right: 30px;">
+                                <img src="' . htmlspecialchars($fotoPerfil) . '" alt="Foto de perfil" style="width: 40px; height: 40px; object-fit: cover; border-radius: 5px">
+                            </a>';
+                    } else {
+                        // Mostrar el ícono predeterminado
+                        echo '<a href="profile.php" class="main-btn" style="margin-right: 30px;">
+                                <i class="lni lni-user"></i>
+                            </a>';
+                    }
+                    ?>
+                </div>
                 </div>
             </div>
 

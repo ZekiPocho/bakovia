@@ -141,7 +141,7 @@ include("../public/db.php"); // Asegúrate de incluir el archivo de conexión a 
                  </div>
      Aquí se puede agregar contenido relacionado con productos o filtros en el futuro -->
 
-                <div class="col-12 col-12">
+                <div class="col-lg-9 col-12">
                     <div class="product-grids-head">
                         <!--<div class="product-grid-topbar">
                             <div class="row align-items-center">

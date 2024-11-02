@@ -1,5 +1,6 @@
 <?php
 include ('db.php');
+session_start();
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
@@ -169,8 +170,6 @@ include ('db.php');
             <div class="navbar-cart ms-auto d-none d-lg-block">
                 <div class="cart-items">
                     <?php
-                    // Verificar si hay una sesión activa
-                    session_start(); // Asegúrate de iniciar la sesión antes de usar $_SESSION
 
                     // Comprobar si existe la sesión de la foto de perfil
                     if (isset($_SESSION['foto_perfil']) && !empty($_SESSION['foto_perfil'])) {

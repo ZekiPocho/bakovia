@@ -170,7 +170,7 @@ $total_paginas = ceil($total_publicaciones / $limite);
         <div class="container-sm">
             <div class="container ">
                 <div class="row">
-                    <div class="col">
+                    <div class="col-lg-8 col-md-12 col-12">
                         <h4><a aria-label="Toggle navigation" href="publicar-blog.php">Crear Blog <i class="lni lni-plus"></i></a></h4>
                     </div>
                     <div class="col">

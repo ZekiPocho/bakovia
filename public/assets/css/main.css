@@ -2900,6 +2900,7 @@ ol {
   position: relative;
   overflow: hidden;
   border: solid 2px #6E869D;
+  border-radius: 5px;
 }
 
 .hero-area .slider-head:hover .tns-controls button:first-child {

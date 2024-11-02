@@ -392,7 +392,7 @@ $result = mysqli_query($conn, $query);
     <!-- End Blog Section Area -->
 
     <!-- Start Footer Area -->
-    <footer class="footer">
+    <footer class="footer" style="border-top: solid 3px #6E869D;">
         <!-- Start Footer Middle -->
         <div class="footer-middle">
             <div class="container">

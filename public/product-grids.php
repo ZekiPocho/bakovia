@@ -152,6 +152,9 @@ include ('db.php')
 // Obtener los tipos únicos (tags) de la tabla productos
 $query = "SELECT DISTINCT tipo FROM productos";
 $result = $conn->query($query);
+if ($result === false) {
+    die("Error en la consulta: " . $conn->error);
+}
 
 $tags = [];
 while ($row = $result->fetch_assoc()) {
@@ -165,7 +168,7 @@ while ($row = $result->fetch_assoc()) {
     <ul class="list">
         <?php foreach ($tags as $tag): ?>
             <li>
-                <a href="product-grid.php?filtro=<?= urlencode($tag) ?>">
+                <a href="product-grids.php?filtro=<?= urlencode($tag) ?>">
                     <?= htmlspecialchars($tag) ?>
                 </a>
             </li>
@@ -178,12 +181,7 @@ while ($row = $result->fetch_assoc()) {
                  </div>
                 <div class="col-lg-9 col-12">
                     <div class="product-grids-head">
-
-
-
-
-
-                    <?php
+<?php
 // Número de productos por página
 $productosPorPagina = 12;
 
@@ -196,6 +194,7 @@ if ($filtro) {
 
 // Obtener el número total de productos
 $totalProductosQuery = "SELECT COUNT(*) AS total FROM productos" . $whereClause;
+echo "Consulta total de productos: " . $totalProductosQuery; // Para depuración
 $totalProductos = $conn->query($totalProductosQuery)->fetch_assoc()['total'];
 
 // Calcular el número total de páginas

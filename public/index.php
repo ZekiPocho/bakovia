@@ -336,7 +336,7 @@ $result = mysqli_query($conn, $query);
             <div class="row">
                 <div class="col-12">
                     <div class="section-title">
-                    <a href="product-grids.php"><h2>> Últimas Publicaciones <</h2></a> 
+                    <a href="blog-grid-sidebar.php"><h2>> Últimas Publicaciones <</h2></a> 
                     </div>
                 </div>
             </div>

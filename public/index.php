@@ -110,6 +110,15 @@ include ('db.php');
                 <img src="assets/images/logo/mini.png" alt="Logo" width="5">
             </a>
 
+            <!-- ÍCONO DE PERFIL VISIBLE EN TODAS LAS PANTALLAS -->
+            <div class="navbar-cart d-lg-none">
+                <div class="cart-items">
+                    <a href="profile.php" class="main-btn">
+                        <i class="lni lni-user"></i>
+                    </a>
+                </div>
+            </div>
+
             <!-- BOTÓN DE MENÚ MÓVIL -->
             <button class="navbar-toggler mobile-menu-btn w-100 mt-2 mt-lg-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="toggler-icon"></span>
@@ -118,7 +127,7 @@ include ('db.php');
             </button>
 
             <!-- MENÚ DE NAVEGACIÓN -->
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse mt-2 mt-lg-0" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" href="index.php">PRINCIPAL</a>
@@ -152,7 +161,7 @@ include ('db.php');
                 </form>
             </div>
 
-            <!-- ÍCONO DE PERFIL -->
+            <!-- ÍCONO DE PERFIL EN PANTALLAS GRANDES -->
             <div class="navbar-cart ms-auto d-none d-lg-block">
                 <div class="cart-items">
                     <a href="profile.php" class="main-btn">

@@ -134,7 +134,7 @@ session_start();
                             </a>';
                     } else {
                         // Mostrar el ícono predeterminado
-                        echo '<a href="profile.php" class="main-btn" style="margin-right: 30px;">
+                        echo '<a href="profile.php" class="main-btn" ">
                                 <i class="lni lni-user"></i>
                             </a>';
                     }

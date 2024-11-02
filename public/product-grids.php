@@ -233,24 +233,6 @@ include("../public/db.php"); // Asegúrate de incluir el archivo de conexión a 
                  </div>
                 <div class="col-lg-9 col-12">
                     <div class="product-grids-head">
-                        <div class="product-grid-topbar">
-                            <div class="row align-items-center">
-                                <div class="col-lg-7 col-md-8 col-12">
-                                    <div class="product-sorting">
-                                        <label for="sorting">Sort by:</label>
-                                        <select class="form-control" id="sorting">
-                                            <option>Popularity</option>
-                                            <option>Low - High Price</option>
-                                            <option>High - Low Price</option>
-                                            <option>Average Rating</option>
-                                            <option>A - Z Order</option>
-                                            <option>Z - A Order</option>
-                                        </select>
-                                        <h3 class="total-show-product">Mostrando: <span>1 - 12 Productos</span></h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <?php
 // Número de productos por página
 $productosPorPagina = 12;

@@ -3,7 +3,7 @@ include ('db.php');
 
 // Obtener los tipos únicos (tags) de la tabla productos
 $query = "SELECT DISTINCT tipo FROM productos";
-$result = $conexion->query($query);
+$result = $conn->query($query);
 
 $tags = [];
 while ($row = $result->fetch_assoc()) {

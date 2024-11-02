@@ -1759,8 +1759,8 @@ ol {
 }
 
 .header .navbar-cart .cart-items .main-btn {
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
   line-height: 40px;
   display: inline-block;
   border-radius: 5px;

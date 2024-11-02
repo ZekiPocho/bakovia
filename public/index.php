@@ -369,7 +369,6 @@ $result = mysqli_query($conn, $query);
                                 </a>
                             </div>
                             <div class="blog-content">
-                                <a class="category" href="javascript:void(0)">'.$usuario.'</a>
                                 <h4><a href="blog-single-sidebar.php?id='.$id_publicacion.'">'.(strlen($titulo) > 75 ? substr($titulo, 0, 75) . '...' : $titulo).'</a></h4>
                                 <a class="category" href="javascript:void(0)"><i class="lni lni-tag"></i>'.$tag.'</a>
                             </div>

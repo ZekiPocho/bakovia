@@ -164,13 +164,13 @@ session_start();
                 </ul>
 
                 <!-- BARRA DE BÚSQUEDA -->
-                <form class="d-flex">
+                <form class="d-flex" action="search-results.php" method="GET">
                     <div class="navbar-search search-style-5">
                         <div class="search-input">
-                            <input id="search-input" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                            <input id="search-input" name="query" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
                         </div>
                         <div class="search-btn">
-                            <button type="button"><i class="lni lni-search-alt"></i></button>
+                            <button type="submit"><i class="lni lni-search-alt"></i></button>
                         </div>
                         <!-- Dropdown de búsqueda -->
                         <div id="search-dropdown" class="search-dropdown" style="display: none;"></div>
@@ -388,7 +388,7 @@ $result = mysqli_query($conn, $query);
         </div>
     </section>
     <br>
-    <br><br><br><br>
+    <br>
     <!-- End Blog Section Area -->
 
     <!-- Start Footer Area -->

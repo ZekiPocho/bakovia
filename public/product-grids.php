@@ -166,6 +166,9 @@ while ($row = $result->fetch_assoc()) {
 <div class="single-widget">
     <h3>Todas las Categorías</h3>
     <ul class="list">
+        <li>
+            <a href="product-grids.php">Todos</a>
+        </li>
         <?php foreach ($tags as $tag): ?>
             <li>
                 <a href="product-grids.php?filtro=<?= urlencode($tag) ?>">

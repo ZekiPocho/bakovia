@@ -1,5 +1,6 @@
-
-
+<?php
+include ('db.php')
+?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 
@@ -145,8 +146,29 @@
                             </form>
                         </div>
                         <!-- End Single Widget -->
-
-
+                        <!-- Start Single Widget -->
+                         
+                        <div class="single-widget">
+                            <h3>Todas las Categorías</h3>
+                            <ul class="list">
+                                <li>
+                                    <a href="product-grids.html">Miniaturas</a>
+                                </li>
+                                <li>
+                                    <a href="product-grids.html">Pinturas</a>
+                                </li>
+                                <li>
+                                    <a href="product-grids.html">Suplementos</a>
+                                <li>
+                                    <a href="product-grids.html">Servicio</a>
+                                </li>
+                                <li>
+                                    <a href="product-grids.html">Otros</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End Product Sidebar -->
                  </div>
                 <div class="col-lg-9 col-12">
                     <div class="product-grids-head">

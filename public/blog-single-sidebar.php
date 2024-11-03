@@ -2,7 +2,7 @@
 <?php
 // Verificar si el usuario autenticado es el autor del comentario
 include 'db.php'; 
-include '../src/validate_session.php';
+session_start();
 
 // Verificar si se ha enviado el comentario
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['comentar'])) {

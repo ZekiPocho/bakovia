@@ -62,50 +62,58 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['email']) && isset($_POST['clave'])) {
     
         $email = $_POST['email'];
-        $password = password_hash($_POST['clave'], PASSWORD_DEFAULT);
+        $password = $_POST['clave'];
 
-        // Consulta SQL para verificar el correo y la contraseña
+        // Consulta SQL para verificar el correo y obtener el hash de la contraseña
         $stmt = $conn->prepare("SELECT id_usuario, nombre_usuario, contrasena, correo, foto_perfil, 
                                    biografia, fecha_registro, verificado, army_showcase, army_desc, 
                                    rango_id, wins, loses, id_rol, token
                             FROM usuarios 
                             WHERE correo=? 
-                              AND contrasena=?  
                               AND verificado='si'");
-                $stmt->bind_param("ss", $email, $password);
-                $stmt->execute();
-                $res = $stmt->get_result();
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $res = $stmt->get_result();
+
         if ($res && mysqli_num_rows($res) > 0) {
             $userData = $res->fetch_assoc();
-            $_SESSION['user'] = $userData['correo'];
-            $_SESSION['nombre_usuario'] = $userData['nombre_usuario'];
-            $_SESSION['id_usuario'] = $userData['id_usuario'];
-            $_SESSION['foto_perfil'] = $userData['foto_perfil'];
-            $_SESSION['biografia'] = $userData['biografia'] ?? null;
-            $_SESSION['fecha_registro'] = $userData['fecha_registro'];
-            $_SESSION['army_showcase'] = $userData['army_showcase'];
-            $_SESSION['army_desc'] = $userData['army_desc'];
-            $_SESSION['rango_id'] = $userData['rango_id'];
-            $_SESSION['wins'] = $userData['wins'];
-            $_SESSION['loses'] = $userData['loses'];
-            $_SESSION['id_rol'] = $userData['id_rol'];
-            $_SESSION['token'] = $userData['token'];
-            if (isset($_POST['remember'])) {
-                // Generar cookies con duración de 30 días
-                setcookie('email', $email, time() + (86400 * 30), "/"); // 86400 = 1 día
-                setcookie('password', $password, time() + (86400 * 30), "/");
-            }
             
-            // Redirigir al usuario a la página principal
-            header("Location:../public/index.php");
-            exit();
+            // Verificar la contraseña con password_verify
+            if (password_verify($password, $userData['contrasena'])) {
+                $_SESSION['user'] = $userData['correo'];
+                $_SESSION['nombre_usuario'] = $userData['nombre_usuario'];
+                $_SESSION['id_usuario'] = $userData['id_usuario'];
+                $_SESSION['foto_perfil'] = $userData['foto_perfil'];
+                $_SESSION['biografia'] = $userData['biografia'] ?? null;
+                $_SESSION['fecha_registro'] = $userData['fecha_registro'];
+                $_SESSION['army_showcase'] = $userData['army_showcase'];
+                $_SESSION['army_desc'] = $userData['army_desc'];
+                $_SESSION['rango_id'] = $userData['rango_id'];
+                $_SESSION['wins'] = $userData['wins'];
+                $_SESSION['loses'] = $userData['loses'];
+                $_SESSION['id_rol'] = $userData['id_rol'];
+                $_SESSION['token'] = $userData['token'];
+
+                if (isset($_POST['remember'])) {
+                    // Generar cookies con duración de 30 días
+                    setcookie('email', $email, time() + (86400 * 30), "/"); // 86400 = 1 día
+                    setcookie('password', $userData['contrasena'], time() + (86400 * 30), "/");
+                }
+                
+                // Redirigir al usuario a la página principal
+                header("Location:../public/index.php");
+                exit();
+            } else {
+                $mensaje = "<div class='alert alert-danger'>El correo o la contraseña es incorrecto</div>";
+            }
         } else {
-            $mensaje="<div class='alert alert-danger'>El correo o la contraseña es incorrecto</div>";
+            $mensaje = "<div class='alert alert-danger'>El correo o la contraseña es incorrecto</div>";
         }
     } else {
-        $mensaje= "<div class='alert alert-danger'>Faltan datos en el formulario</div>";
+        $mensaje = "<div class='alert alert-danger'>Faltan datos en el formulario</div>";
     }
 }
+
 
 ?>
 

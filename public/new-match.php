@@ -153,8 +153,6 @@ require_once "../src/validate_session.php";
                         <option value="" selected disabled>Selecciona un juego</option>
                         <option value="1">Warhammer 40k</option>
                         <option value="2">Age of Sigmar</option>
-                        <option value="3">Kill Team</option>
-                        <option value="4">WarCry</option>
                     </select>
                 </div>
 

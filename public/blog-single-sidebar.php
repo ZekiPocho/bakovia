@@ -333,6 +333,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['comentar'])) {
                                 </div>
                             </form>
                         </div>
+                    <?php else: ?>
+                        <div class="comment-form">
+                            <h3 class="comment-reply-title">Deja un comentario</h3>
+                            <p class="text-muted">Por favor, <a href="login.php">inicia sesión</a> o <a href="register.php">regístrate</a> para poder publicar un comentario.</p>
+                        </div>
                     <?php endif; ?>
                 </div>
             </div>

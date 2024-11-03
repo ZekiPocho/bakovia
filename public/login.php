@@ -62,7 +62,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['email']) && isset($_POST['clave'])) {
     
         $email = $_POST['email'];
-        $password = sha1($_POST['clave']); 
+        $password = password_hash($_POST['clave'], PASSWORD_DEFAULT);
+
         // Consulta SQL para verificar el correo y la contraseña
         $stmt = $conn->prepare("SELECT id_usuario, nombre_usuario, contrasena, correo, foto_perfil, 
                                    biografia, fecha_registro, verificado, army_showcase, army_desc, 

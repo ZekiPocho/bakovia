@@ -13,7 +13,7 @@ if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['clave']
     if ($_POST['clave'] == $_POST['clave2']) {
         $name = $_POST['username'];
         $email = $_POST['email'];
-        $pass = sha1($_POST['clave']);
+        $pass = password_hash($_POST['clave'], PASSWORD_DEFAULT);
 
         // Verificar si el correo o el nombre de usuario ya existen y si la cuenta está verificada
         $checkUserQuery = $conn->prepare("SELECT * FROM usuarios WHERE nombre_usuario = ? OR correo = ?");

@@ -313,8 +313,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         <center>
                             <li><p>RANGO</p></li>
                             <li><img src="<?php echo $_SESSION['rango_id'] ?? 'https://via.placeholder.com/500'; ?>" alt="rango" style="width: 100px; height: 100px;"></li>
-                            <li><p><?php echo htmlspecialchars($_SESSION['nombre_rango'] ?? 'Nombre de rango'); ?></p></li>
-                            <br>
+                            <li style="border-bottom: solid 1px white"><p><?php echo htmlspecialchars($_SESSION['nombre_rango'] ?? 'Nombre de rango'); ?></p></li>
                             <li><p class="text-muted">MIEMBRO DESDE</p></li>
                             <li><p class="text-muted"><?php echo htmlspecialchars($_SESSION['fecha_registro']); ?></p></li>
                         </center>

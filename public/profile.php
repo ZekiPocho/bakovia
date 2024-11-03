@@ -142,7 +142,19 @@ function validateImageSize($file) {
     <link rel="stylesheet" href="assets/css/glightbox.min.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=logout" />
+    <style>
+        .medal-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%; /* Para que tenga forma de medalla */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
 
+        .medal-image:hover {
+            transform: scale(1.1); /* Agranda la imagen un 10% */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Efecto de sombra para dar realce */
+        }
+    </style>
 </head>
 
 <body>
@@ -310,13 +322,13 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             </div>
                 <div class="col profile-info mt-3 mt-md-0" style="margin-top: 20px">
                     <ul>
-                        <center>
-                            <li><p>RANGO</p></li>
-                            <li><img src="<?php echo $_SESSION['rango_id'] ?? 'https://via.placeholder.com/500'; ?>" alt="rango" style="width: 100px; height: 100px;"></li>
-                            <li style="text-decoration: underline;"><p><?php echo htmlspecialchars($_SESSION['nombre_rango'] ?? 'Nombre de rango'); ?></p></li>
-                            <li><p class="text-muted">MIEMBRO DESDE</p></li>
-                            <li><p class="text-muted"><?php echo htmlspecialchars($_SESSION['fecha_registro']); ?></p></li>
-                        </center>
+                    <center>
+                        <li><p>RANGO</p></li>
+                        <li><img class="medal-image" src="<?php echo $_SESSION['rango_id'] ?? 'https://via.placeholder.com/500'; ?>" alt="rango"></li>
+                        <li style="text-decoration: underline;"><p><?php echo htmlspecialchars($_SESSION['nombre_rango'] ?? 'Nombre de rango'); ?></p></li>
+                        <li><p class="text-muted">MIEMBRO DESDE</p></li>
+                        <li><p class="text-muted"><?php echo htmlspecialchars($_SESSION['fecha_registro']); ?></p></li>
+                    </center>
                     </ul>
                 </div>
         </div>

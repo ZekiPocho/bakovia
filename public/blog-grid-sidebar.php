@@ -237,7 +237,7 @@ $total_paginas = ceil($total_publicaciones / $limite);
                         <!-- Start Single Widget -->
                         <?php
 // Consulta para obtener un máximo de 3 publicaciones aleatorias
-$queryAleatorio = "SELECT id_publicacion, titulo, fecha, imagen FROM publicaciones ORDER BY RAND() LIMIT 3";
+$queryAleatorio = "SELECT id_publicacion, titulo, fecha_publicacion, imagen FROM publicaciones ORDER BY RAND() LIMIT 3";
 $resultadoAleatorio = $conn->query($queryAleatorio);
 ?>
                         <div class="widget popular-feeds">

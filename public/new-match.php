@@ -216,8 +216,8 @@ require_once "../src/validate_session.php";
                         <option value="" selected disabled>Selecciona una facción</option>
                         <!-- Facciones de Warhammer 40k -->
                         <option value="33" data-subfaccion="Grandes Alianzas" data-icon="../public/assets/images/icons/order.svg">Orden</option>
-                        <option value="34" data-subfaccion="Grandes Alianzas" data-icon="../public/assets/images/icons/muerte.svg">Muerte</option>
-                        <option value="35" data-subfaccion="Grandes Alianzas" data-icon="../public/assets/images/icons/caos.svg">Caos</option>
+                        <option value="34" data-subfaccion="Grandes Alianzas" data-icon="../public/assets/images/icons/death.svg">Muerte</option>
+                        <option value="35" data-subfaccion="Grandes Alianzas" data-icon="../public/assets/images/icons/chaos.svg">Caos</option>
                         <option value="36" data-subfaccion="Grandes Alianzas" data-icon="../public/assets/images/icons/destruction.svg">Destrucción</option>
                         <!-- Agrega el resto de las facciones aquí siguiendo el formato -->
                     </select>

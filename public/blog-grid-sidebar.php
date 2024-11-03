@@ -12,29 +12,38 @@ if ($conn->connect_error) {
     die("Error de conexión: " . $conn->connect_error);
 }
 
-// Definir el número de publicaciones por página
-$limite = 8; // Número de publicaciones por página
+// Número de publicaciones por página
+$publicacionesPorPagina = 10;
 
-// Obtener el número de página actual
-$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-$offset = ($page - 1) * $limite; // Calcular el desplazamiento
+// Capturar el filtro de la URL
+$filtro = isset($_GET['filtro']) ? $_GET['filtro'] : null;
+$whereClause = "";
+if ($filtro) {
+    $whereClause = " WHERE tag = '" . $conn->real_escape_string($filtro) . "'";
+}
 
-// Consulta para obtener las publicaciones
-$sql = "SELECT p.id_publicacion, p.titulo, p.contenido, p.imagen_publicacion, p.fecha_publicacion, p.tag, u.nombre_usuario 
-        FROM publicaciones p
-        JOIN usuarios u ON p.id_usuario = u.id_usuario
-        ORDER BY p.fecha_publicacion DESC
-        LIMIT $limite OFFSET $offset";
-
-$result = $conn->query($sql);
-
-// Consulta para contar el total de publicaciones
-$sql_total = "SELECT COUNT(*) AS total FROM publicaciones";
-$result_total = $conn->query($sql_total);
-$total_publicaciones = $result_total->fetch_assoc()['total'];
+// Obtener el número total de publicaciones para el filtro
+$totalPublicacionesQuery = "SELECT COUNT(*) AS total FROM publicaciones" . $whereClause;
+$totalPublicaciones = $conn->query($totalPublicacionesQuery)->fetch_assoc()['total'];
 
 // Calcular el número total de páginas
-$total_paginas = ceil($total_publicaciones / $limite);
+$totalPaginas = ceil($totalPublicaciones / $publicacionesPorPagina);
+
+// Obtener el número de la página actual
+$paginaActual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+
+// Calcular el límite para la consulta
+$limite = ($paginaActual - 1) * $publicacionesPorPagina;
+
+// Función para obtener publicaciones limitadas
+function getLimitedPublicaciones($conn, $limite, $publicacionesPorPagina, $whereClause) {
+    $sql = "SELECT id_publicacion, titulo, fecha, imagen
+            FROM publicaciones" . $whereClause . "
+            LIMIT $limite, $publicacionesPorPagina";
+    return $conn->query($sql);
+}
+
+$publicaciones = getLimitedPublicaciones($conn, $limite, $publicacionesPorPagina, $whereClause);
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
@@ -266,27 +275,40 @@ $resultadoAleatorio = $conn->query($queryAleatorio);
                             </div>
                         </div>
                         <!-- End Single Widget -->
+
+
+
+
                         <!-- Start Single Widget -->
-                        <div class="widget categories-widget">
-                            <h5 class="widget-title">Categorías</h5>
-                            <ul class="custom">
-                                <li>
-                                    <a href="javascript:void(0)">Editor's Choice</a><span>(24)</span>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">Electronics</a><span>(12)</span>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">Industrial Design</a><span>(5)</span>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">Secure Payments Online</a><span>(15)</span>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">Online Shopping</a><span>(7)</span>
-                                </li>
-                            </ul>
-                        </div>
+<?php
+// Consulta para obtener los tags únicos y contar las publicaciones de cada uno
+$query = "SELECT tag, COUNT(*) as total FROM publicaciones GROUP BY tag";
+$result = $conn->query($query);
+
+$tags = [];
+while ($row = $result->fetch_assoc()) {
+    $tags[] = $row;
+}
+?>
+
+
+
+<!--mostrar los tags en categorias-->
+<div class="widget categories-widget">
+    <h5 class="widget-title">Categorías</h5>
+    <ul class="custom">
+        <?php foreach ($tags as $tag): ?>
+            <li>
+                <a href="blog-grid-sidebar.php?filtro=<?= urlencode($tag['tag']) ?>">
+                    <?= htmlspecialchars($tag['tag']) ?>
+                </a>
+                <span>(<?= $tag['total'] ?>)</span>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</div>
+
+
                         <!-- End Single Widget -->
                         <!-- Start Single Widget -->
                         <div class="widget popular-tag-widget">

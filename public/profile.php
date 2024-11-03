@@ -288,7 +288,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     <div class="row">
         <div class="d-flex flex-wrap align-items-start">
             <div class="col-auto profile-img">
-                <img src="<?php echo $_SESSION['foto_perfil'] ?? 'https://via.placeholder.com/200'; ?>" alt="Foto de perfil" class="profile-img">
+                <img src="<?php echo $_SESSION['foto_perfil'] ?? 'https://via.placeholder.com/200'; ?>" alt="Foto de perfil" class="profile-img" loading="lazy">
             </div>
 
             <div class="col-7 profile-info-name">

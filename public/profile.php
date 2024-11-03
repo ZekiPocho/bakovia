@@ -146,15 +146,17 @@ function validateImageSize($file) {
     .medal-image {
     width: 100px;
     height: 100px;
+    -webkit-filter: drop-shadow(5px 5px 5px #222);
+    filter: drop-shadow(5px 5px 5px #222);
     transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
 }
 
-    .medal-image:hover {
-        /*border-radius: inherit;
-        transform: scale(1.1);*/
+   /*.medal-image:hover {
+        border-radius: inherit;
+        transform: scale(1.1);
         -webkit-filter: drop-shadow(5px 5px 5px #222);
         filter: drop-shadow(5px 5px 5px #222);
-    }
+    }*/
 
 
     </style>

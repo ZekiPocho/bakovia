@@ -146,8 +146,8 @@ function validateImageSize($file) {
     .medal-image {
     width: 100px;
     height: 100px;
-    -webkit-filter: drop-shadow(20px 20px 20px black);
-    filter: drop-shadow(20px 20px 20px black);
+    -webkit-filter: drop-shadow(10px 10px 10px black);
+    filter: drop-shadow(10px 10px 10px black);
     transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
 }
 

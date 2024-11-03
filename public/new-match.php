@@ -217,8 +217,10 @@ require_once "../src/validate_session.php";
                     <select id="faccionSigmar" name="faccion" class="form-select" disabled style="display:none;" onchange="mostrarFaccionSigmar()">
                         <option value="" selected disabled>Selecciona una facción</option>
                         <!-- Facciones de Warhammer 40k -->
-                        <option value="1" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/templarios.svg">Templarios Negros</option>
-                        <option value="2" data-subfaccion="Adeptus Astartes" data-icon="../public/assets/images/icons/sangrientos.svg">Ángeles Sangrientos</option>
+                        <option value="33" data-subfaccion="Grandes Alianzas" data-icon="../public/assets/images/icons/order.svg">Orden</option>
+                        <option value="34" data-subfaccion="Grandes Alianzas" data-icon="../public/assets/images/icons/muerte.svg">Muerte</option>
+                        <option value="35" data-subfaccion="Grandes Alianzas" data-icon="../public/assets/images/icons/caos.svg">Caos</option>
+                        <option value="36" data-subfaccion="Grandes Alianzas" data-icon="../public/assets/images/icons/destruction.svg">Destrucción</option>
                         <!-- Agrega el resto de las facciones aquí siguiendo el formato -->
                     </select>
                 </div>

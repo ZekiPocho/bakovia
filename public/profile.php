@@ -324,16 +324,17 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         <div class="col-md-8">
             <div class="profile-cards">
                 <div class="card mb-3">
-                    <img src="<?php echo $_SESSION['army_showcase'] ?? 'https://via.placeholder.com/400x200'; ?>" class="card-img-top" alt="Imagen ARMY SHOWCASE">
+                    <center><h5 class="card-title">ARMY SHOWCASE</h5></center>
+                    <img src="<?php echo $_SESSION['army_showcase'] ?? '../uploads/army/placeholder.png'; ?>" class="card-img-top" alt="Imagen ARMY SHOWCASE">
                     <div class="card-body">
-                        <h5 class="card-title">ARMY SHOWCASE</h5>
+                        
                         <p class="card-text"><?php echo htmlspecialchars($_SESSION['army_desc'] ?? 'Descripción breve de tu ejército.'); ?></p>
                     </div>
                 </div>
                 <div class="card">
                     <img src="<?php echo $_SESSION['otra_imagen'] ?? 'https://via.placeholder.com/400x200'; ?>" class="card-img-top" alt="Imagen 2">
                     <div class="card-body">
-                        <h5 class="card-title">Título de Sección 2</h5>
+                        <h5 class="card-title">PUBLICACIONES</h5>
                         <p class="card-text">Descripción breve de la sección 2.</p>
                     </div>
                 </div>

@@ -144,20 +144,37 @@ function validateImageSize($file) {
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=logout" />
     <style>
     .medal-container {
-    display: inline-block;
-    transition: transform 0.3s ease-in-out;
+        display: inline-block;
+        position: relative;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%; /* Solo aplica si la imagen necesita un contorno circular */
+        overflow: visible;
+        transition: transform 0.3s ease-in-out;
     }
 
     .medal-image {
         width: 100px;
         height: 100px;
         transition: transform 0.3s ease-in-out;
-        filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.3)); /* Aplica sombra basada en la forma de la imagen */
     }
 
     .medal-container:hover .medal-image {
-        transform: scale(1.1); /* Agranda la imagen un 10% */
+        transform: scale(1.1);
     }
+
+    .medal-container::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.6); /* Sombra más oscura */
+        pointer-events: none; /* Para que no interfiera con el hover */
+    }
+
 
     </style>
 </head>

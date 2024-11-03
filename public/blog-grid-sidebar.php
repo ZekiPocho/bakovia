@@ -235,38 +235,31 @@ $total_paginas = ceil($total_publicaciones / $limite);
                         </div>
                         <!-- End Single Widget -->
                         <!-- Start Single Widget -->
+                        <?php
+// Consulta para obtener un máximo de 3 publicaciones aleatorias
+$queryAleatorio = "SELECT id_publicacion, titulo, fecha, imagen FROM publicaciones ORDER BY RAND() LIMIT 3";
+$resultadoAleatorio = $conn->query($queryAleatorio);
+?>
                         <div class="widget popular-feeds">
                             <h5 class="widget-title">Te podría interesar</h5>
                             <div class="popular-feed-loop">
                                 <div class="single-popular-feed">
-                                    <div class="feed-desc">
-                                        <a class="feed-img" href="blog-single-sidebar.html">
-                                            <img src="https://via.placeholder.com/200x200" alt="#">
-                                        </a>
-                                        <h6 class="post-title"><a href="blog-single-sidebar.html">What information is
-                                                needed for shipping?</a></h6>
-                                        <span class="time"><i class="lni lni-calendar"></i> 05th Nov 2023</span>
-                                    </div>
-                                </div>
-                                <div class="single-popular-feed">
-                                    <div class="feed-desc">
-                                        <a class="feed-img" href="blog-single-sidebar.html">
-                                            <img src="https://via.placeholder.com/200x200" alt="#">
-                                        </a>
-                                        <h6 class="post-title"><a href="blog-single-sidebar.html">Interesting fact about
-                                                gaming consoles</a></h6>
-                                        <span class="time"><i class="lni lni-calendar"></i> 24th March 2023</span>
-                                    </div>
-                                </div>
-                                <div class="single-popular-feed">
-                                    <div class="feed-desc">
-                                        <a class="feed-img" href="blog-single-sidebar.html">
-                                            <img src="https://via.placeholder.com/200x200" alt="#">
-                                        </a>
-                                        <h6 class="post-title"><a href="blog-single-sidebar.html">Electronics,
-                                                instrumentation & control engineering </a></h6>
-                                        <span class="time"><i class="lni lni-calendar"></i> 30th Jan 2023</span>
-                                    </div>
+                                <?php while ($publicacion = $resultadoAleatorio->fetch_assoc()): ?>
+    <div class="feed-desc">
+        <a class="feed-img" href="blog-single-sidebar.php?id=<?= $publicacion['id_publicacion'] ?>">
+            <img src="<?= htmlspecialchars($publicacion['imagen']) ?>" alt="Imagen del blog" width="200" height="200">
+        </a>
+        <h6 class="post-title">
+            <a href="blog-single-sidebar.php?id=<?= $publicacion['id_publicacion'] ?>">
+                <?= htmlspecialchars($publicacion['titulo']) ?>
+            </a>
+        </h6>
+        <span class="time">
+            <i class="lni lni-calendar"></i>
+            <?= htmlspecialchars($publicacion['fecha']) ?>
+        </span>
+    </div>
+<?php endwhile; ?>
                                 </div>
                             </div>
                         </div>

@@ -223,7 +223,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['comentar'])) {
                                     </div>';
 
                                 // Mostrar el botón de "Eliminar" si el usuario autenticado es el autor de la publicación
-                                if ($_SESSION['id_usuario'] == $id_usuario_publicacion) {
+                                if (isset($_SESSION['id_usuario']) && $_SESSION['id_usuario'] == $id_usuario_publicacion) {
                                     echo '
                                     <form action="delete_publication.php" method="POST" onsubmit="return confirm(\'¿Estás seguro de que deseas eliminar esta publicación?\');">
                                         <input type="hidden" name="id_publicacion" value="' . $id_publicacion . '">
@@ -319,19 +319,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['comentar'])) {
                     </div>
 
                     <!-- Comment Form -->
-                    <div class="comment-form">
-                        <h3 class="comment-reply-title">Deja un comentario</h3>
-                        <form action="" method="POST">
-                            <input type="hidden" name="id_publicacion" value="<?php echo $id_publicacion; ?>">
-                            <div class="form-group">
-                                <textarea name="comentario" class="form-control" placeholder="Tu comentario" required></textarea>
-                            </div>
-                            <br>
-                            <div class="button">
-                                <button type="submit" name="comentar" class="btn btn-primary">Publicar comentario</button>
-                            </div>
-                        </form>
-                    </div>
+                    <?php if (isset($_SESSION['id_usuario'])): ?>
+                        <div class="comment-form">
+                            <h3 class="comment-reply-title">Deja un comentario</h3>
+                            <form action="" method="POST">
+                                <input type="hidden" name="id_publicacion" value="<?php echo $id_publicacion; ?>">
+                                <div class="form-group">
+                                    <textarea name="comentario" class="form-control" placeholder="Tu comentario" required></textarea>
+                                </div>
+                                <br>
+                                <div class="button">
+                                    <button type="submit" name="comentar" class="btn btn-primary">Publicar comentario</button>
+                                </div>
+                            </form>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

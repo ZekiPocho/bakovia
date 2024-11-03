@@ -293,7 +293,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 
                     // Si se encuentra el rango_id, buscar la información del rango
                     if ($rango_id) {
-                        $query_rango = "SELECT nombre, imagen FROM rangos WHERE id = ?";
+                        $query_rango = "SELECT nombre_rango, medalla_imagen FROM rangos WHERE id = ?";
                         $stmt_rango = $conn->prepare($query_rango);
                         $stmt_rango->bind_param("i", $rango_id);
                         $stmt_rango->execute();

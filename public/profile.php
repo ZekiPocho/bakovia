@@ -332,46 +332,42 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 </div>
                 <div class="card p-3">
                     
-                    <div class="card-body">
-                        <center><h5 class="card-title">PUBLICACIONES</h5></center>
-                        <?php
-                        $id_usuario = $_SESSION['id_usuario'];
-                        $query = $conn->prepare("SELECT * FROM publicaciones WHERE id_usuario = ?");
-                        $query->bind_param("i", $id_usuario);
-                        $query->execute();
-                        $result = $query->get_result();
-                        
-                        if ($result->num_rows > 0) {
-                            // Generar el HTML para cada publicación
-                            while ($row = $result->fetch_assoc()) {
-                                $id_publicacion = $row['id_publicacion'];
-                                $titulo = $row['titulo'];
-                                $imagen = !empty($row['imagen_publicacion']) ? $row['imagen_publicacion'] : 'https://via.placeholder.com/370x215'; // Placeholder si no hay imagen
-                                $tag = $row['tag'];
-                                
-                                echo '
-                                <div class="col-lg-4 col-md-6 col-12">
-                                    <!-- Start Single Blog -->
-                                    <div class="single-blog">
-                                        <div class="blog-img">
-                                            <a href="blog-single-sidebar.php?id='.$id_publicacion.'"> <!-- Enlace con el ID de la publicación -->
-                                                <img src="'.$imagen.'" alt="#" style="width: 370px; height: 215px; object-fit: cover;">
-                                            </a>
-                                        </div>
-                                        <div class="blog-content">
-                                            <h4><a href="blog-single-sidebar.php?id='.$id_publicacion.'">'.(strlen($titulo) > 75 ? substr($titulo, 0, 75) . '...' : $titulo).'</a></h4>
-                                            <br>
-                                            <a class="category" href="javascript:void(0)"><i class="lni lni-tag"></i>'.$tag.'</a>
-                                        </div>
-                                    </div>
-                                    <!-- End Single Blog -->
-                                </div>';
-                            }
-                        } else {
-                            echo "No hay publicaciones disponibles.";
-                        }
-                        ?>
+                <div class="card-body">
+    <center><h5 class="card-title">PUBLICACIONES</h5></center>
+    <div class="row">
+        <?php
+        $id_usuario = $_SESSION['id_usuario'];
+        $query = $conn->prepare("SELECT * FROM publicaciones WHERE id_usuario = ?");
+        $query->bind_param("i", $id_usuario);
+        $query->execute();
+        $result = $query->get_result();
+
+        if ($result->num_rows > 0) {
+            // Generar el HTML para cada publicación
+            while ($row = $result->fetch_assoc()) {
+                $id_publicacion = $row['id_publicacion'];
+                $titulo = $row['titulo'];
+                $imagen = !empty($row['imagen_publicacion']) ? $row['imagen_publicacion'] : 'https://via.placeholder.com/370x215'; // Placeholder si no hay imagen
+                $tag = $row['tag'];
+
+                echo '
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                    <div class="card h-100">
+                        <img src="'.$imagen.'" class="card-img-top" alt="Imagen de la publicación" style="height: 215px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="blog-single-sidebar.php?id='.$id_publicacion.'">'.(strlen($titulo) > 75 ? substr($titulo, 0, 75) . '...' : $titulo).'</a></h5>
+                            <p class="card-text"><a class="category" href="javascript:void(0)"><i class="lni lni-tag"></i> '.$tag.'</a></p>
+                        </div>
                     </div>
+                </div>';
+            }
+        } else {
+            echo '<div class="col-12"><p class="text-center">No hay publicaciones disponibles.</p></div>';
+        }
+        ?>
+    </div>
+</div>
+
                 </div>
             </div>
         </div>

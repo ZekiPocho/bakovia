@@ -278,19 +278,48 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 <div class="bio">
                     <p class="text-muted"><?php echo htmlspecialchars($_SESSION['biografia']); ?></p>
                 </div>
+                <?php
+                if (isset($_SESSION['id_usuario'])) {
+                    $user_id = $_SESSION['id_usuario'];
+                
+                    // Consulta para obtener el rango_id del usuario
+                    $query = "SELECT rango_id FROM usuarios WHERE id = ?";
+                    $stmt = $conn->prepare($query);
+                    $stmt->bind_param("i", $user_id);
+                    $stmt->execute();
+                    $stmt->bind_result($rango_id);
+                    $stmt->fetch();
+                    $stmt->close();
+                
+                    // Si se encuentra el rango_id, buscar la información del rango
+                    if ($rango_id) {
+                        $query_rango = "SELECT nombre, imagen FROM rangos WHERE id = ?";
+                        $stmt_rango = $conn->prepare($query_rango);
+                        $stmt_rango->bind_param("i", $rango_id);
+                        $stmt_rango->execute();
+                        $stmt_rango->bind_result($nombre_rango, $imagen_rango);
+                        $stmt_rango->fetch();
+                        $stmt_rango->close();
+                
+                        // Guardar la información en las variables de sesión
+                        $_SESSION['rango_id'] = $imagen_rango;
+                        $_SESSION['nombre_rango'] = $nombre_rango;
+                    }
+                }
+                ?>
             </div>
-            <div class="col profile-info mt-3 mt-md-0" style="margin-top: 20px">
-                <ul>
-                    <center>
-                        <li><p class="text-muted">RANGO</p></li>
-                        <li><img src="<?php echo $_SESSION['rango_id'] ?? 'https://via.placeholder.com/500'; ?>" alt="rango" style="width: 80px; height: 80px;"></li>
-                        <li><p class="text-muted"><?php echo htmlspecialchars($_SESSION['nombre_rango'] ?? 'Nombre de rango'); ?></p></li>
-                        <br>
-                        <li><p class="text-muted">MIEMBRO DESDE</p></li>
-                        <li><p class="text-muted"><?php echo htmlspecialchars($_SESSION['fecha_registro']); ?></p></li>
-                    </center>
-                </ul>
-            </div>
+                <div class="col profile-info mt-3 mt-md-0" style="margin-top: 20px">
+                    <ul>
+                        <center>
+                            <li><p class="text-muted">RANGO</p></li>
+                            <li><img src="<?php echo $_SESSION['rango_id'] ?? 'https://via.placeholder.com/500'; ?>" alt="rango" style="width: 80px; height: 80px;"></li>
+                            <li><p class="text-muted"><?php echo htmlspecialchars($_SESSION['nombre_rango'] ?? 'Nombre de rango'); ?></p></li>
+                            <br>
+                            <li><p class="text-muted">MIEMBRO DESDE</p></li>
+                            <li><p class="text-muted"><?php echo htmlspecialchars($_SESSION['fecha_registro']); ?></p></li>
+                        </center>
+                    </ul>
+                </div>
         </div>
     </div>
     <!-- ARMY SHOWCASE -->

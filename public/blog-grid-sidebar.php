@@ -243,8 +243,9 @@ $resultadoAleatorio = $conn->query($queryAleatorio);
                         <div class="widget popular-feeds">
                             <h5 class="widget-title">Te podría interesar</h5>
                             <div class="popular-feed-loop">
+                            <?php while ($publicacion = $resultadoAleatorio->fetch_assoc()): ?>
                                 <div class="single-popular-feed">
-                                <?php while ($publicacion = $resultadoAleatorio->fetch_assoc()): ?>
+                                
     <div class="feed-desc">
         <a class="feed-img" href="blog-single-sidebar.php?id=<?= $publicacion['id_publicacion'] ?>">
             <img src="<?= htmlspecialchars($publicacion['imagen_publicacion']) ?>" alt="Imagen del blog" width="200" height="200">
@@ -259,8 +260,9 @@ $resultadoAleatorio = $conn->query($queryAleatorio);
             <?= htmlspecialchars($publicacion['fecha_publicacion']) ?>
         </span>
     </div>
-<?php endwhile; ?>
+
                                 </div>
+                                <?php endwhile; ?>
                             </div>
                         </div>
                         <!-- End Single Widget -->

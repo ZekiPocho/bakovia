@@ -150,8 +150,8 @@ function validateImageSize($file) {
 }
 
     .medal-image:hover {
-        border-radius: inherit;
-        transform: scale(1.1); /* Agranda la imagen un 10% */
+        /*border-radius: inherit;
+        transform: scale(1.1);*/
         -webkit-filter: drop-shadow(5px 5px 5px #222);
         filter: drop-shadow(5px 5px 5px #222);
     }

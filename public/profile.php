@@ -325,7 +325,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <div class="profile-cards">
                 <div class="card mb-3 p-3">
                     <center><h5 class="card-title">ARMY SHOWCASE</h5></center>
-                    <img src="<?php echo $_SESSION['army_showcase'] ?? '../uploads/army/placeholder.png'; ?>" class="card-img-top" alt="Imagen ARMY SHOWCASE" style="max-width: 800px;max-height: 400px;object-fit: cover;border: solid 2px;border-radius: 5px;">
+                    <img src="<?php echo $_SESSION['army_showcase'] ?? '../uploads/army/placeholder.png'; ?>" class="card-img-top" alt="Imagen ARMY SHOWCASE" style="max-width: 800px;max-height: 400px;object-fit: cover;border: solid 2px;border-radius: 5px;" loading="lazy">
                     <div class="card-body">
                         <p class="card-text"><?php echo htmlspecialchars($_SESSION['army_desc'] ?? 'Descripción breve de tu Showcase.'); ?></p>
                     </div>
@@ -356,7 +356,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         <img src="'.$imagen.'" class="card-img-top" alt="Imagen de la publicación" style="height: 215px; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title"><a href="blog-single-sidebar.php?id='.$id_publicacion.'">'.(strlen($titulo) > 75 ? substr($titulo, 0, 75) . '...' : $titulo).'</a></h5>
-                            <p class="card-text"><a class="category" href="javascript:void(0)"><i class="lni lni-tag"></i> '.$tag.'</a></p>
                         </div>
                     </div>
                 </div>';

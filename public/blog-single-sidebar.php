@@ -296,7 +296,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['comentar'])) {
                                         <p>' . $texto_comentario . '</p>';
 
                                 // Mostrar el botón de eliminar si el usuario autenticado es el autor del comentario
-                                if ($_SESSION['id_usuario'] == $id_usuario_comentario) {
+
+                                if (isset($_SESSION['id_usuario']) && $_SESSION['id_usuario'] == $id_usuario_comentario) {
                                     echo '
                                     <form action="delete_comment.php" method="POST" onsubmit="return confirm(\'¿Estás seguro de que deseas eliminar este comentario?\');">
                                         <input type="hidden" name="id_comentario" value="' . $id_comentario . '">
@@ -304,6 +305,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['comentar'])) {
                                         <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                                     </form>';
                                 }
+
 
                                 echo '</div></li>';
                             }

@@ -325,7 +325,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <div class="profile-cards">
                 <div class="card mb-3 p-3">
                     <center><h5 class="card-title">ARMY SHOWCASE</h5></center>
-                    <img src="<?php echo $_SESSION['army_showcase'] ?? '../uploads/army/placeholder.png'; ?>" class="card-img-top" alt="Imagen ARMY SHOWCASE" style="border: solid 2px;border-radius: 5px;">
+                    <img src="<?php echo $_SESSION['army_showcase'] ?? '../uploads/army/placeholder.png'; ?>" class="card-img-top" alt="Imagen ARMY SHOWCASE" style="max-width: 800px;max-height: 400px;object-fit: cover;border: solid 2px;border-radius: 5px;">
                     <div class="card-body">
                         <p class="card-text"><?php echo htmlspecialchars($_SESSION['army_desc'] ?? 'Descripción breve de tu Showcase.'); ?></p>
                     </div>

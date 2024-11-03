@@ -143,6 +143,13 @@ function validateImageSize($file) {
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=logout" />
     <style>
+        html {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-contents: center;
+        height: 100%;
+        }
         #tilt {
         display: block;
         height: 200px;

@@ -12,38 +12,29 @@ if ($conn->connect_error) {
     die("Error de conexión: " . $conn->connect_error);
 }
 
-// Número de publicaciones por página
-$publicacionesPorPagina = 10;
+// Definir el número de publicaciones por página
+$limite = 8; // Número de publicaciones por página
 
-// Capturar el filtro de la URL
-$filtro = isset($_GET['filtro']) ? $_GET['filtro'] : null;
-$whereClause = "";
-if ($filtro) {
-    $whereClause = " WHERE tag = '" . $conn->real_escape_string($filtro) . "'";
-}
+// Obtener el número de página actual
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$offset = ($page - 1) * $limite; // Calcular el desplazamiento
 
-// Obtener el número total de publicaciones para el filtro
-$totalPublicacionesQuery = "SELECT COUNT(*) AS total FROM publicaciones" . $whereClause;
-$totalPublicaciones = $conn->query($totalPublicacionesQuery)->fetch_assoc()['total'];
+// Consulta para obtener las publicaciones
+$sql = "SELECT p.id_publicacion, p.titulo, p.contenido, p.imagen_publicacion, p.fecha_publicacion, p.tag, u.nombre_usuario 
+        FROM publicaciones p
+        JOIN usuarios u ON p.id_usuario = u.id_usuario
+        ORDER BY p.fecha_publicacion DESC
+        LIMIT $limite OFFSET $offset";
+
+$result = $conn->query($sql);
+
+// Consulta para contar el total de publicaciones
+$sql_total = "SELECT COUNT(*) AS total FROM publicaciones";
+$result_total = $conn->query($sql_total);
+$total_publicaciones = $result_total->fetch_assoc()['total'];
 
 // Calcular el número total de páginas
-$totalPaginas = ceil($totalPublicaciones / $publicacionesPorPagina);
-
-// Obtener el número de la página actual
-$paginaActual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
-
-// Calcular el límite para la consulta
-$limite = ($paginaActual - 1) * $publicacionesPorPagina;
-
-// Función para obtener publicaciones limitadas
-function getLimitedPublicaciones($conn, $limite, $publicacionesPorPagina, $whereClause) {
-    $sql = "SELECT id_publicacion, titulo, fecha, imagen
-            FROM publicaciones" . $whereClause . "
-            LIMIT $limite, $publicacionesPorPagina";
-    return $conn->query($sql);
-}
-
-$publicaciones = getLimitedPublicaciones($conn, $limite, $publicacionesPorPagina, $whereClause);
+$total_paginas = ceil($total_publicaciones / $limite);
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">

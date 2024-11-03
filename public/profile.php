@@ -143,20 +143,27 @@ function validateImageSize($file) {
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=logout" />
     <style>
-    .medal-image {
-    width: 100px;
-    height: 100px;
-    
-    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
-}
+        #tilt {
+        display: block;
+        height: 200px;
+        width: 300px;
+        background-color: grey;
+        margin: 0 auto;
+        transition: box-shadow 0.1s, transform 0.1s;
+        
+        /*
+            * Adding image to the background
+            * No relation to the hover effect.
+            */
+        background-image: url(http://unsplash.it/300/200);
+        background-size: 100%;
+        background-repeat: no-repeat;
+        }
 
-   .medal-image:hover {
-        transform: scale(1.1);
-        -webkit-filter: drop-shadow(10px 10px 10px black);
-        filter: drop-shadow(10px 10px 10px black);
-    }
-
-
+        #tilt:hover {
+        box-shadow: 0px 0px 30px rgba(0,0,0, 0.6);
+        cursor: pointer;
+        }
     </style>
 </head>
 
@@ -328,7 +335,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                     <center>
                         <li><p>RANGO</p></li>
                         <div class="medal-container">
-                            <img class="medal-image" src="<?php echo $_SESSION['rango_id'] ?? 'https://via.placeholder.com/500'; ?>" alt="rango">
+                            <img class="tilt" src="<?php echo $_SESSION['rango_id'] ?? 'https://via.placeholder.com/500'; ?>" alt="rango">
                         </div>
                         <li style="text-decoration: underline;"><p><?php echo htmlspecialchars($_SESSION['nombre_rango'] ?? 'Nombre de rango'); ?></p></li>
                         <li><p class="text-muted">MIEMBRO DESDE</p></li>
@@ -402,6 +409,66 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         </div>
     </div>
 </div>
+<script>
+    /* Store the element in el */
+let el = document.getElementById('tilt')
+
+/* Get the height and width of the element */
+const height = el.clientHeight
+const width = el.clientWidth
+
+/*
+  * Add a listener for mousemove event
+  * Which will trigger function 'handleMove'
+  * On mousemove
+  */
+el.addEventListener('mousemove', handleMove)
+
+/* Define function a */
+function handleMove(e) {
+  /*
+    * Get position of mouse cursor
+    * With respect to the element
+    * On mouseover
+    */
+  /* Store the x position */
+  const xVal = e.layerX
+  /* Store the y position */
+  const yVal = e.layerY
+  
+  /*
+    * Calculate rotation valuee along the Y-axis
+    * Here the multiplier 20 is to
+    * Control the rotation
+    * You can change the value and see the results
+    */
+  const yRotation = 20 * ((xVal - width / 2) / width)
+  
+  /* Calculate the rotation along the X-axis */
+  const xRotation = -20 * ((yVal - height / 2) / height)
+  
+  /* Generate string for CSS transform property */
+  const string = 'perspective(500px) scale(1.1) rotateX(' + xRotation + 'deg) rotateY(' + yRotation + 'deg)'
+  
+  /* Apply the calculated transformation */
+  el.style.transform = string
+}
+
+/* Add listener for mouseout event, remove the rotation */
+el.addEventListener('mouseout', function() {
+  el.style.transform = 'perspective(500px) scale(1) rotateX(0) rotateY(0)'
+})
+
+/* Add listener for mousedown event, to simulate click */
+el.addEventListener('mousedown', function() {
+  el.style.transform = 'perspective(500px) scale(0.9) rotateX(0) rotateY(0)'
+})
+
+/* Add listener for mouseup, simulate release of mouse click */
+el.addEventListener('mouseup', function() {
+  el.style.transform = 'perspective(500px) scale(1.1) rotateX(0) rotateY(0)'
+})
+</script>
   
     <!-- ========================= scroll-top ========================= -->
     <a href="#" class="scroll-top">

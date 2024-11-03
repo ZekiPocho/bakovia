@@ -4589,9 +4589,6 @@ blockquote span {
 .post-comments .comments-list li .comment-img {
   position: absolute;
   left: 30px;
-  width: 70px;
-  height: 70px;
-  overflow: hidden;
 }
 
 @media (max-width: 767px) {

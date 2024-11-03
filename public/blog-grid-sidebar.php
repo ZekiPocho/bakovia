@@ -299,7 +299,7 @@ while ($row = $result->fetch_assoc()) {
     <ul class="custom">
         <?php foreach ($tags as $tag): ?>
             <li>
-            <a href="product-grids.php">Todos</a>
+            <a href="blog-grid-sidebar.php">Todos</a>
             </li>
             <li>
                 <a href="blog-grid-sidebar.php?filtro=<?= urlencode($tag['tag']) ?>">

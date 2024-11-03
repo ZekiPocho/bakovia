@@ -19,10 +19,19 @@ $limite = 8; // Número de publicaciones por página
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $offset = ($page - 1) * $limite; // Calcular el desplazamiento
 
-// Consulta para obtener las publicaciones
+
+// Capturar el filtro de la URL
+$filtro = isset($_GET['filtro']) ? $_GET['filtro'] : null;
+$whereClause = "";
+if ($filtro) {
+    $whereClause = " WHERE p.tag = '" . $conn->real_escape_string($filtro) . "'";
+}
+
+// Actualizar la consulta principal para incluir el filtro
 $sql = "SELECT p.id_publicacion, p.titulo, p.contenido, p.imagen_publicacion, p.fecha_publicacion, p.tag, u.nombre_usuario 
         FROM publicaciones p
         JOIN usuarios u ON p.id_usuario = u.id_usuario
+        $whereClause
         ORDER BY p.fecha_publicacion DESC
         LIMIT $limite OFFSET $offset";
 

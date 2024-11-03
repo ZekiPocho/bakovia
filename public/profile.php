@@ -283,7 +283,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                     $user_id = $_SESSION['id_usuario'];
                 
                     // Consulta para obtener el rango_id del usuario
-                    $query = "SELECT rango_id FROM usuarios WHERE id = ?";
+                    $query = "SELECT rango_id FROM usuarios WHERE id_usuario = ?";
                     $stmt = $conn->prepare($query);
                     $stmt->bind_param("i", $user_id);
                     $stmt->execute();

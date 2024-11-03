@@ -346,9 +346,9 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                     <ul>
                     <center>
                         <li><p>RANGO</p></li>
-                        <li class="medal-container">
+                        <div class="medal-container">
                             <img class="medal-image" src="<?php echo $_SESSION['rango_id'] ?? 'https://via.placeholder.com/500'; ?>" alt="rango">
-                        </li>
+                        </div>
                         <li style="text-decoration: underline;"><p><?php echo htmlspecialchars($_SESSION['nombre_rango'] ?? 'Nombre de rango'); ?></p></li>
                         <li><p class="text-muted">MIEMBRO DESDE</p></li>
                         <li><p class="text-muted"><?php echo htmlspecialchars($_SESSION['fecha_registro']); ?></p></li>

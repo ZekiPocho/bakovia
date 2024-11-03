@@ -323,19 +323,17 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     <div class="row mt-4">
         <div class="col-md-8">
             <div class="profile-cards">
-                <div class="card mb-3">
+                <div class="card mb-3 p-3">
                     <center><h5 class="card-title">ARMY SHOWCASE</h5></center>
-                    <img src="<?php echo $_SESSION['army_showcase'] ?? '../uploads/army/placeholder.png'; ?>" class="card-img-top" alt="Imagen ARMY SHOWCASE">
+                    <img src="<?php echo $_SESSION['army_showcase'] ?? '../uploads/army/placeholder.png'; ?>" class="card-img-top" alt="Imagen ARMY SHOWCASE" style="border: solid 2px;border-radius: 5px;">
                     <div class="card-body">
-                        
-                        <p class="card-text"><?php echo htmlspecialchars($_SESSION['army_desc'] ?? 'Descripción breve de tu ejército.'); ?></p>
+                        <p class="card-text"><?php echo htmlspecialchars($_SESSION['army_desc'] ?? 'Descripción breve de tu Showcase.'); ?></p>
                     </div>
                 </div>
-                <div class="card">
-                    <img src="<?php echo $_SESSION['otra_imagen'] ?? 'https://via.placeholder.com/400x200'; ?>" class="card-img-top" alt="Imagen 2">
+                <div class="card p-3">
+                    
                     <div class="card-body">
-                        <h5 class="card-title">PUBLICACIONES</h5>
-                        <p class="card-text">Descripción breve de la sección 2.</p>
+                        <center><h5 class="card-title">PUBLICACIONES</h5></center>
                     </div>
                 </div>
             </div>

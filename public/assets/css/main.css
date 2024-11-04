@@ -2957,6 +2957,7 @@ ol {
 @media (max-width: 767px) {
   .hero-area .hero-slider .single-slider {
     position: relative;
+    background-size: contain;
   }
   .hero-area .hero-slider .single-slider::before {
     position: absolute;

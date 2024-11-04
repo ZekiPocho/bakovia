@@ -253,15 +253,12 @@ include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a l
                 Finalización: <?php echo htmlspecialchars(date("H:i", strtotime($hora_final))); ?>
             </p> <!-- Horas de inicio y finalización -->   
             <br>
-            <h3 style="font-size: 1.25rem;">Tiempo Transcurrido</h3> <!-- Reducido el tamaño de la fuente -->
-            <div id="tiempo-transcurrido" style="font-size: 1.2rem;">00:00:00</div> <!-- Tiempo transcurrido -->
-            <br>
 
                 <input type="hidden" name="id_partida" value="<?php echo htmlspecialchars($id_partida); ?>">
                 <div class="mb-3">
-                    <label for="rondas" class="form-label">Ronda Nº:</label>
+                    <h3 for="rondas">Ronda Nº:</h3>
                     <center>
-                    <input id="ronda" type="number" style="width: 50px;" name="rondas" class="form-control" value="<?php echo htmlspecialchars($ronda); ?>"> <!-- Cambia este valor al número de rondas actual -->
+                    <input id="ronda" type="number" style="width: 80px;" name="rondas" class="form-control" value="<?php echo htmlspecialchars($ronda); ?>"> <!-- Cambia este valor al número de rondas actual -->
                     </center>
                 </div>
                 <button type="button" id="iniciar-btn" class="btn btn-primary" disabled>

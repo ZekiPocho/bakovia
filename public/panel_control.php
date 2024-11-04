@@ -414,6 +414,7 @@ include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a l
     setInterval(verificarEstadoBoton, 1000);
 
     // Función para verificar el estado del botón
+
     function verificarEstadoBoton() {
         iniciarBtn.disabled = (nombreJugador2 === 'N/A');
     }

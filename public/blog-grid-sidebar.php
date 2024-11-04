@@ -205,7 +205,7 @@ $total_paginas = ceil($total_publicaciones / $limite);
                                 <h4><a href="blog-single-sidebar.php?id='.$id_publicacion.'">'.(strlen($titulo) > 75 ? substr($titulo, 0, 75) . '...' : $titulo).'</a></h4>
                                 <br>
                                 <a href="blog-grid-sidebar.php?filtro=<?= urlencode($tag) ?>">
-                                ' . <i class="lni lni-tag"></i><?= htmlspecialchars($tag) ?> . '
+                                ' . <i class="lni lni-tag"></i> . '<?= ' . htmlspecialchars($tag) . ' ?>
                                 </a>
                             </div>
                         </div>

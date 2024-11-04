@@ -1,3 +1,31 @@
+<?php
+// Conexión a la base de datos
+$conexion = new mysqli('localhost', 'usuario', 'contraseña', 'bakoviadb');
+
+if ($conexion->connect_error) {
+    die("Error de conexión: " . $conexion->connect_error);
+}
+
+// Obtener el término de búsqueda
+$query = isset($_GET['query']) ? $conexion->real_escape_string($_GET['query']) : '';
+
+// Consultar productos
+$sqlProductos = "SELECT id_producto, nombre_producto, descripcion, precio, imagen_producto 
+                 FROM productos 
+                 WHERE nombre_producto LIKE '%$query%' OR descripcion LIKE '%$query%'";
+
+$resultProductos = $conexion->query($sqlProductos);
+
+// Consultar publicaciones
+$sqlPublicaciones = "SELECT id_publicacion, titulo, contenido, imagen_publicacion, fecha_publicacion 
+                     FROM publicaciones 
+                     WHERE titulo LIKE '%$query%' OR contenido LIKE '%$query%'";
+
+$resultPublicaciones = $conexion->query($sqlPublicaciones);
+
+?>
+
+
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 

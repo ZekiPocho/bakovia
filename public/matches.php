@@ -298,7 +298,7 @@ if ($result->num_rows > 0) {
         ?>
         <!-- Aquí empieza el HTML para mostrar las partidas programadas -->
         <div class="match-entry mb-2 text-center">
-    <div class="row align-items-center">
+    <div class="row align-items-center player">
             <?php
             // Supongamos que $conn es tu conexión a la base de datos
             $nombre_usuario = $row['nombre_usuario1'];

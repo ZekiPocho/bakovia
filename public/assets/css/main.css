@@ -7168,6 +7168,19 @@ blockquote span {
     width: 100%; /* Botón ocupa el ancho total en móviles */
     margin-top: 10px; /* Añadir margen superior para separación */
   }
+  .player{
+    flex-direction: column;
+    
+  }
+  .player .col-2 {
+    
+    width:  auto;
+  }
+  .player img{
+    hwidth: 80%; /* Ajusta el tamaño para evitar desbordes */
+    height: auto; /* Mantiene la proporción de la imagen */
+    max-height: 50px; /* Límite de altura para que no sea muy grande */
+  }
 }
 
 /*======================================

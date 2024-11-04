@@ -100,7 +100,7 @@ $resultPublicaciones = $conexion->query($sqlPublicaciones);
         <p>No se encontraron publicaciones.</p>
     <?php endif; ?>
 
-</body>
+
 
 <!-- HEADER Y NAVBAR PRO -->
 <header class="header navbar-area">

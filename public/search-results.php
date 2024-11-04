@@ -136,7 +136,7 @@ $resultPublicaciones = $conexion->query($sqlPublicaciones);
 
 <div class="container-sm p-3">
     <h1>Resultados de búsqueda para "<?php echo htmlspecialchars($query); ?>"</h1>
-
+    <br>
     <!-- Sección de productos -->
     <h2>Productos encontrados:</h2>
     <div class="row">

@@ -400,7 +400,19 @@ if ($result->num_rows > 0) {
         </div>
         <div class="score"><?php echo $row['puntaje_usuario2']; ?></div>
         <div class="team">
-            <img src="<?php echo $row['icono2']; ?>" alt="Equipo 2" style="filter: opacity(<?php echo $row['nombre_usuario2'] !== 'N/A' ? '1' : '0.25'; ?>) <?php echo $row['nombre_usuario2'] !== 'N/A' ? 'none' : 'invert(100%)'; ?>;">
+        <?php
+            // Supongamos que $conn es tu conexión a la base de datos
+            $nombre_usuario = $row['nombre_usuario2'];
+            $query = "SELECT foto_perfil FROM usuarios WHERE nombre_usuario = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("s", $nombre_usuario);
+            $stmt->execute();
+            $stmt->bind_result($foto_perfil2);
+            $stmt->fetch();
+            $stmt->close();
+
+            ?>
+            <img src="<?php echo htmlspecialchars($foto_perfil2); ?>" alt="Equipo 2" style="filter: opacity(<?php echo $row['nombre_usuario2'] !== 'N/A' ? '1' : '0.25'; ?>) <?php echo $row['nombre_usuario2'] !== 'N/A' ? 'none' : 'invert(100%)'; ?>;">
             <div class="team-name"><?php echo $row['faccion2']; ?><br><?php echo $row['subfaccion2']; ?></div>
         </div>
     </div>

@@ -222,7 +222,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['comentar'])) {
                                     </div>
                                     
                                     <div class="detail-inner">
-                                        <p>' . $contenido . '</p>
+                                        ' . $contenido . '
                                     </div>';
 
                                 // Mostrar el botón de "Eliminar" si el usuario autenticado es el autor de la publicación

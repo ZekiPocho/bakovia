@@ -10,7 +10,7 @@ if ($conexion->connect_error) {
 $query = isset($_GET['query']) ? $conexion->real_escape_string($_GET['query']) : '';
 
 // Consultar productos
-$sqlProductos = "SELECT id_producto, nombre_producto, descripcion, precio, imagen_producto 
+$sqlProductos = "SELECT id_producto, nombre_producto, descripcion, precio, imagen_producto, tipo 
                  FROM productos 
                  WHERE nombre_producto LIKE '%$query%' OR descripcion LIKE '%$query%'";
 

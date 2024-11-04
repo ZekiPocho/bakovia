@@ -180,6 +180,8 @@ $total_paginas = ceil($total_publicaciones / $limite);
             <div class="row">
                 <div class="col-lg-8 col-md-12 col-12">
                 <div class="row">
+                
+                <a class="category" href="blog-grid-sidebar.php?filtro=<?= urlencode($tag[' .$tag. ']) ?>"><i class="lni lni-tag"></i><?= htmlspecialchars($tag[' .$tag. ']) ?></a>
             <?php
             if ($result->num_rows > 0) {
                 // Mostrar cada publicación
@@ -189,7 +191,7 @@ $total_paginas = ceil($total_publicaciones / $limite);
                     $usuario = $row['nombre_usuario'];
                     $imagen = !empty($row['imagen_publicacion']) ? $row['imagen_publicacion'] : 'https://via.placeholder.com/370x215'; 
                     $tag = $row['tag'];
-
+                    
                     echo '
                     <div class="col-lg-6 col-md-6 col-12">
                         <!-- Start Single Blog -->
@@ -203,7 +205,7 @@ $total_paginas = ceil($total_publicaciones / $limite);
                                 <a class="category" href="user_profile.php?usuario=' . urlencode($usuario) . '">' . htmlspecialchars($usuario) . '</a>
                                 <h4><a href="blog-single-sidebar.php?id='.$id_publicacion.'">'.(strlen($titulo) > 75 ? substr($titulo, 0, 75) . '...' : $titulo).'</a></h4>
                                 <br>
-                                <a class="category" href="blog-grid-sidebar.php?filtro=<?= urlencode($tag[' .$tag. ']) ?>"><?= htmlspecialchars($tag[' .$tag. ']) ?></a>
+                                <a class="category" href="blog-grid-sidebar.php?filtro=<?= urlencode($tag[' .$tag. ']) ?>"><?= htmlspecialchars($tag[' .$tag. ']) ?>'.$tag.'</a>
                             </div>
                         </div>
                         <!-- End Single Blog -->
@@ -303,7 +305,7 @@ while ($row = $result->fetch_assoc()) {
             </li>
             <li>
                 <a href="blog-grid-sidebar.php?filtro=<?= urlencode($tag['tag']) ?>">
-                    <?= htmlspecialchars($tag['tag']) ?>
+                <i class="lni lni-tag"></i><?= htmlspecialchars($tag['tag']) ?>
                 </a>
                 <span>(<?= $tag['total'] ?>)</span>
             </li>

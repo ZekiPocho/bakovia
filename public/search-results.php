@@ -149,34 +149,37 @@ $resultPublicaciones = $conexion->query($sqlPublicaciones);
 
 <h2>Publicaciones encontradas:</h2>
 <div class="row">
-    <?php if ($resultPublicaciones->num_rows > 0): ?>
-        <?php while ($publicacion = $resultPublicaciones->fetch_assoc()): ?>
+    <?php
+    if ($resultPublicaciones->num_rows > 0) {
+        // Generar el HTML para cada publicación
+        while ($publicacion = $resultPublicaciones->fetch_assoc()) {
+            $id_publicacion = $publicacion['id_publicacion'];
+            $titulo = $publicacion['titulo'];
+            $imagen = !empty($publicacion['imagen_publicacion']) ? $publicacion['imagen_publicacion'] : 'https://via.placeholder.com/370x215'; // Placeholder si no hay imagen
+            $tag = $publicacion['tag'];
+            
+            echo '
             <div class="col-lg-4 col-md-6 col-12">
                 <!-- Start Single Blog -->
-                <div style="backround-color:#6E869D">
+                <div class="single-blog">
                     <div class="blog-img">
-                        <a href="blog-single-sidebar.php?id=<?= $publicacion['id_publicacion'] ?>"> <!-- Enlace con el ID de la publicación -->
-                            <img src="<?= htmlspecialchars($publicacion['imagen_publicacion']) ?>" alt="#" style="width: 370px; height: 215px; object-fit: cover;">
+                        <a href="blog-single-sidebar.php?id='.$id_publicacion.'"> <!-- Enlace con el ID de la publicación -->
+                            <img src="'.$imagen.'" alt="#" style="width: 370px; height: 215px; object-fit: cover;">
                         </a>
                     </div>
                     <div class="blog-content">
-                        <h4>
-                            <a href="blog-single-sidebar.php?id=<?= $publicacion['id_publicacion'] ?>">
-                                <?= (strlen($publicacion['titulo']) > 75 ? substr(htmlspecialchars($publicacion['titulo']), 0, 75) . '...' : htmlspecialchars($publicacion['titulo'])) ?>
-                            </a>
-                        </h4>
+                        <h4><a href="blog-single-sidebar.php?id='.$id_publicacion.'">'.(strlen($titulo) > 75 ? substr($titulo, 0, 75) . '...' : $titulo).'</a></h4>
                         <br>
-                        <a class="category" href="javascript:void(0)">
-                            <i class="lni lni-tag"></i><?= htmlspecialchars($publicacion['tag']) ?>
-                        </a>
+                        <a class="category" href="javascript:void(0)"><i class="lni lni-tag"></i>'.$tag.'</a>
                     </div>
                 </div>
                 <!-- End Single Blog -->
-            </div>
-        <?php endwhile; ?>
-    <?php else: ?>
-        <p>No se encontraron publicaciones.</p>
-    <?php endif; ?>
+            </div>';
+        }
+    } else {
+        echo "No se encontraron publicaciones.";
+    }
+    ?>
 </div>
 </div>
 

@@ -205,7 +205,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['comentar'])) {
                                 <div class="main-content-head">
                                     <div class="meta-information">
                                         <ul class="meta-info">
-                                            <li><a href="user_profile.php?usuario=' . urlencode($nombre_usuario) . '">' . htmlspecialchars($nombre_usuario) . '</a></li>    
+                                            <li><a href="user_profile.php?usuario=' . urlencode($usuario) . '">' . htmlspecialchars($usuario) . '</a></li>    
                                             <li>'. $fecha .'</li>
                                         </ul>
                                         <h3 class="post-title">' . $titulo . '</h3>

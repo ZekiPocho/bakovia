@@ -196,6 +196,18 @@ session_start();
                             </a>';
                     }
                     ?>
+                    <?php
+                    // Comprobar si existe la sesión de la foto de perfil
+                    if (isset($_SESSION['rol']) === 1) {
+                        // Mostrar la foto de perfil
+                        echo '<a style="color: yellow;" href="../admin/admin-dashboard.php">ADMIN</a>'
+                    } else {
+                        // Mostrar el ícono predeterminado
+                        echo '<a href="profile.php" class="main-btn" style="margin-right: 30px;">
+                                <i class="lni lni-user"></i>
+                            </a>';
+                    }
+                    ?>
                 </div>
             </div>
         </div>

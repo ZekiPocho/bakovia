@@ -158,7 +158,7 @@ $resultPublicaciones = $conexion->query($sqlPublicaciones);
         <?php while ($publicacion = $resultPublicaciones->fetch_assoc()): ?>
             <div class="col-lg-4 col-md-6 col-12">
                 <!-- Start Single Blog -->
-                <div class="blog-section">
+                <div class="single-blog" style="backround-color:#6E869D">
                     <div class="blog-img">
                         <a href="blog-single-sidebar.php?id=<?= $publicacion['id_publicacion'] ?>"> <!-- Enlace con el ID de la publicación -->
                             <img src="<?= htmlspecialchars($publicacion['imagen_publicacion']) ?>" alt="#" style="width: 370px; height: 215px; object-fit: cover;">
@@ -183,12 +183,6 @@ $resultPublicaciones = $conexion->query($sqlPublicaciones);
         <p>No se encontraron publicaciones.</p>
     <?php endif; ?>
 </div>
-
-
-    <!-- Start Blog Singel Area -->
-    
-    
-
 
     <!-- Start Footer Area -->
     <footer class="footer">

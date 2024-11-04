@@ -52,20 +52,37 @@ $resultPublicaciones = $conexion->query($sqlPublicaciones);
     <h1>Resultados de búsqueda para "<?php echo htmlspecialchars($query); ?>"</h1>
 
     <h2>Productos encontrados:</h2>
+<div class="row">
     <?php if ($resultProductos->num_rows > 0): ?>
         <?php while ($producto = $resultProductos->fetch_assoc()): ?>
-            <div>
-                <h3><?php echo htmlspecialchars($producto['nombre_producto']); ?></h3>
-                <p><?php echo htmlspecialchars($producto['descripcion']); ?></p>
-                <p>Precio: $<?php echo number_format($producto['precio'], 2); ?></p>
-                <?php if ($producto['imagen_producto']): ?>
-                    <img src="ruta/a/imagenes/<?php echo htmlspecialchars($producto['imagen_producto']); ?>" alt="Imagen del producto">
-                <?php endif; ?>
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="single-product">
+                    <a href="product-details.php?id=<?= $producto['id_producto'] ?>" style="text-decoration: none; color: inherit;">
+                        <div class="product-image">
+                            <img src="<?= htmlspecialchars($producto['imagen_producto']) ?>" 
+                                 alt="<?= htmlspecialchars($producto['nombre_producto']) ?>" 
+                                 class="first-image">
+                            <?php if (!empty($producto['imagen_producto2'])): ?>
+                                <img src="<?= htmlspecialchars($producto['imagen_producto2']) ?>" 
+                                     alt="<?= htmlspecialchars($producto['nombre_producto']) ?>" 
+                                     class="second-image">
+                            <?php endif; ?>
+                        </div>
+                        <div class="product-info">
+                            <span class="category"><?= htmlspecialchars($producto['tipo']) ?></span>
+                            <span class="title"><?= htmlspecialchars($producto['nombre_producto']) ?></span>
+                            <div class="price">
+                                <span>Bs. <?= number_format($producto['precio'], 2) ?></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </div>
         <?php endwhile; ?>
     <?php else: ?>
         <p>No se encontraron productos.</p>
     <?php endif; ?>
+</div>
 
     <h2>Publicaciones encontradas:</h2>
     <?php if ($resultPublicaciones->num_rows > 0): ?>

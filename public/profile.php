@@ -325,6 +325,20 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             </div>
                 <div class="col profile-info mt-3 mt-md-0" style="margin-top: 20px">
                     <ul>
+                        <?php
+                        $fecha_registro = $_SESSION['fecha_registro'];
+                        $formatter = new IntlDateFormatter(
+                            'es_ES', // Código de idioma y país
+                            IntlDateFormatter::LONG, // Formato de fecha larga
+                            IntlDateFormatter::NONE, // Sin formato de hora
+                            null, // Usa la configuración de la zona horaria predeterminada
+                            IntlDateFormatter::GREGORIAN, // Tipo de calendario
+                            'd MMMM y' // Formato deseado: día, mes (nombre completo), año
+                        );
+                        
+                        // Formatear la fecha
+                        $formateada = $formatter->format(strtotime($fecha_registro));
+                        ?>
                     <center>
                         <li><p>RANGO</p></li>
                         <div class="medal-container">
@@ -332,7 +346,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         </div>
                         <li style="text-decoration: underline;"><p><?php echo htmlspecialchars($_SESSION['nombre_rango'] ?? 'Nombre de rango'); ?></p></li>
                         <li><p class="text-muted">MIEMBRO DESDE</p></li>
-                        <li><p class="text-muted"><?php echo htmlspecialchars(date("d F Y", strtotime($_SESSION['fecha_registro']))); ?></p></li>
+                        <li><p class="text-muted"><?php echo htmlspecialchars($formateada); ?></p></li>
                     </center>
                     </ul>
                 </div>

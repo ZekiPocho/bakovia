@@ -237,7 +237,9 @@ $conn->close();
             
         </div>
     </div>
-
+    <div id="matchesContainer">
+                        <!-- Aquí se cargarán las partidas programadas mediante AJAX -->
+                    </div>
     
             <!-- Columna de partidas abiertas para jugar -->
             <div class="col-xxl-6">
@@ -245,9 +247,7 @@ $conn->close();
                     <h3 style="border-bottom: solid 1px #6E869D;">¡A JUGAR!</h3>
                     <br>
                     
-                    <div id="matches-container">
-                        <!-- Aquí se cargarán las partidas programadas -->
-                    </div>
+                    
 
                     <script>
 $(document).ready(function() {

@@ -398,7 +398,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
         </div>
 
         <!-- Segunda columna (1 cuadro más largo) -->
-        <div class="col-md-4">
+        <!--<div class="col-md-4">
             <div class="card">
                 <img src="<?php echo $_SESSION['tercera_imagen'] ?? 'https://via.placeholder.com/400x400'; ?>" class="card-img-top" alt="Imagen 3">
                 <div class="card-body">
@@ -406,7 +406,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                     <p class="card-text">Descripción breve de la sección 3.</p>
                 </div>
             </div>
-        </div>
+        </div>-->
     </div>
 </div>
   

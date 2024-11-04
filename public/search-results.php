@@ -183,6 +183,7 @@ $resultPublicaciones = $conexion->query($sqlPublicaciones);
         <p>No se encontraron publicaciones.</p>
     <?php endif; ?>
 </div>
+</div>
 
     <!-- Start Footer Area -->
     <footer class="footer">

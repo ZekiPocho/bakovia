@@ -115,9 +115,57 @@ $resultPublicaciones = $conexion->query($sqlPublicaciones);
 </header>
 <!-- TERMINA HEADER Y NAVBAR PRO --> 
 <div class="container-sm">
-<h2>Resultados para: ""</h2>
-<h3>Productos:</h3>
-<h3>Blogs</h3>
+<body>
+    <h1>Resultados de búsqueda para "<?php echo htmlspecialchars($query); ?>"</h1>
+
+    <h2>Productos encontrados:</h2>
+<div class="row">
+    <?php if ($resultProductos->num_rows > 0): ?>
+        <?php while ($producto = $resultProductos->fetch_assoc()): ?>
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="single-product">
+                    <a href="product-details.php?id=<?= $producto['id_producto'] ?>" style="text-decoration: none; color: inherit;">
+                        <div class="product-image">
+                            <img src="<?= htmlspecialchars($producto['imagen_producto']) ?>" 
+                                 alt="<?= htmlspecialchars($producto['nombre_producto']) ?>" 
+                                 class="first-image">
+                            <?php if (!empty($producto['imagen_producto2'])): ?>
+                                <img src="<?= htmlspecialchars($producto['imagen_producto2']) ?>" 
+                                     alt="<?= htmlspecialchars($producto['nombre_producto']) ?>" 
+                                     class="second-image">
+                            <?php endif; ?>
+                        </div>
+                        <div class="product-info">
+                            <span class="category"><?= htmlspecialchars($producto['tipo']) ?></span>
+                            <span class="title"><?= htmlspecialchars($producto['nombre_producto']) ?></span>
+                            <div class="price">
+                                <span>Bs. <?= number_format($producto['precio'], 2) ?></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        <?php endwhile; ?>
+    <?php else: ?>
+        <p>No se encontraron productos.</p>
+    <?php endif; ?>
+</div>
+
+    <h2>Publicaciones encontradas:</h2>
+    <?php if ($resultPublicaciones->num_rows > 0): ?>
+        <?php while ($publicacion = $resultPublicaciones->fetch_assoc()): ?>
+            <div>
+                <h3><?php echo htmlspecialchars($publicacion['titulo']); ?></h3>
+                <p><?php echo htmlspecialchars($publicacion['contenido']); ?></p>
+                <p>Fecha: <?php echo htmlspecialchars($publicacion['fecha_publicacion']); ?></p>
+                <?php if ($publicacion['imagen_publicacion']): ?>
+                    <img src="ruta/a/imagenes/<?php echo htmlspecialchars($publicacion['imagen_publicacion']); ?>" alt="Imagen de la publicación">
+                <?php endif; ?>
+            </div>
+        <?php endwhile; ?>
+    <?php else: ?>
+        <p>No se encontraron publicaciones.</p>
+    <?php endif; ?>
 </div>
 
     <!-- Start Blog Singel Area -->

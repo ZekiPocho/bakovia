@@ -217,8 +217,8 @@ $conn->close();
                         <!-- Nombre del producto -->
                         <span style="font-size: 40px; padding-bottom: 10px;"><?php echo $nombre; ?></span>
                         <br>
-                        <p class="category">Juego: <a href="product-grids.php?filtro=<?= urlencode($juego) ?>"><?php echo $juego; ?></a>
-                        <p class="category">Tipo de Producto: <a href="javascript:void(0)"><?php echo $tipo; ?></a></p>
+                        <p class="category">Juego: <a href="javascript:void(0)"><?php echo $juego; ?></a></p>
+                        <p class="category">Tipo de Producto: <a href="product-grids.php?filtro=<?= urlencode($tipo) ?>"><?php echo $tipo; ?></a></p>
                         <!-- Precio -->
                         <h3 class="price">Bs. <?php echo $precio; ?></h3>
                         <!-- Disponibilidad -->

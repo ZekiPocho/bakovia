@@ -168,38 +168,40 @@ $resultPublicaciones = $conexion->query($sqlPublicaciones);
 
     <!-- Sección de publicaciones -->
     <h2>Publicaciones encontradas:</h2>
-    <div class="row">
-        <?php if ($resultPublicaciones->num_rows > 0): ?>
-            <?php while ($publicacion = $resultPublicaciones->fetch_assoc()): ?>
-                <?php 
-                    $id_publicacion = htmlspecialchars($publicacion['id_publicacion']);
-                    $titulo = htmlspecialchars($publicacion['titulo']);
-                    $imagen = !empty($publicacion['imagen_publicacion']) ? htmlspecialchars($publicacion['imagen_publicacion']) : 'https://via.placeholder.com/370x215';
-                    $tag = htmlspecialchars($publicacion['tag']);
-                ?>
-                <div class="col-lg-4 col-md-6 col-12">
-                    <!-- Start Single Blog -->
-                    <div class="single-blog">
-                        <div class="blog-img">
-                            <a href="blog-single-sidebar.php?id=<?= $id_publicacion ?>">
-                                <img src="<?= $imagen ?>" alt="Imagen de la publicación" style="width: 370px; height: 215px; object-fit: cover;">
-                            </a>
-                        </div>
-                        <div class="blog-content">
-                            <h4>
-                                <a href="blog-single-sidebar.php?id=<?= $id_publicacion ?>"><?= (strlen($titulo) > 75 ? substr($titulo, 0, 75) . '...' : $titulo) ?></a>
-                            </h4>
-                            <br>
-                            <a class="category" href="blog-grid-sidebar.php?filtro=<?= urlencode($tag) ?>"><i class="lni lni-tag"></i><?= $tag ?></a>
-                        </div>
+    <section class="section blog-section blog-list">
+                    <div class="row">
+                        <?php if ($resultPublicaciones->num_rows > 0): ?>
+                            <?php while ($publicacion = $resultPublicaciones->fetch_assoc()): ?>
+                                <?php 
+                                    $id_publicacion = htmlspecialchars($publicacion['id_publicacion']);
+                                    $titulo = htmlspecialchars($publicacion['titulo']);
+                                    $imagen = !empty($publicacion['imagen_publicacion']) ? htmlspecialchars($publicacion['imagen_publicacion']) : 'https://via.placeholder.com/370x215';
+                                    $tag = htmlspecialchars($publicacion['tag']);
+                                ?>
+                                <div class="col-lg-4 col-md-6 col-12">
+                                    <!-- Start Single Blog -->
+                                    <div class="single-blog">
+                                        <div class="blog-img">
+                                            <a href="blog-single-sidebar.php?id=<?= $id_publicacion ?>">
+                                                <img src="<?= $imagen ?>" alt="Imagen de la publicación" style="width: 370px; height: 215px; object-fit: cover;">
+                                            </a>
+                                        </div>
+                                        <div class="blog-content">
+                                            <h4>
+                                                <a href="blog-single-sidebar.php?id=<?= $id_publicacion ?>"><?= (strlen($titulo) > 75 ? substr($titulo, 0, 75) . '...' : $titulo) ?></a>
+                                            </h4>
+                                            <br>
+                                            <a class="category" href="blog-grid-sidebar.php?filtro=<?= urlencode($tag) ?>"><i class="lni lni-tag"></i><?= $tag ?></a>
+                                        </div>
+                                    </div>
+                                    <!-- End Single Blog -->
+                                </div>
+                            <?php endwhile; ?>
+                        <?php else: ?>
+                            <p>No se encontraron publicaciones.</p>
+                        <?php endif; ?>
                     </div>
-                    <!-- End Single Blog -->
-                </div>
-            <?php endwhile; ?>
-        <?php else: ?>
-            <p>No se encontraron publicaciones.</p>
-        <?php endif; ?>
-    </div>
+    </section>
 </div>
 
 

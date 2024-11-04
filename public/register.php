@@ -100,68 +100,106 @@ if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['clave']
 <!-- HEADER Y NAVBAR PRO -->
 <header class="header navbar-area">
     <nav class="navbar navbar-expand-lg">
-        <div class="container">
-            <a class="navbar-brand" href="index.php">
+        <div class="container d-flex flex-column flex-lg-row align-items-start align-items-lg-center">
+
+            <!-- LOGO CENTRADO EN MÓVILES -->
+            <a class="navbar-brand mx-auto mx-lg-0" href="index.php">
                 <img src="assets/images/logo/mini.png" alt="Logo" width="5">
             </a>
-            <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="toggler-icon"></span>
-                <span class="toggler-icon"></span>
-                <span class="toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <!-- ÍCONO DE PERFIL VISIBLE EN TODAS LAS PANTALLAS -->
+            
+            <div class="navbar-cart d-lg-none w-100">   
+                <div class="d-flex justify-content-between">
+                    <!-- BOTÓN DE MENÚ MÓVIL -->
+                    <div class="icon">
+                        <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="margin-top: 5px;">
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                        </button>
+                    </div>
+                    <!-- ÍCONO DE PERFIL -->
+                    <div class="cart-items">
+                    <?php
+                    // Comprobar si existe la sesión de la foto de perfil
+                    if (isset($_SESSION['foto_perfil']) && !empty($_SESSION['foto_perfil'])) {
+                        // Mostrar la foto de perfil
+                        $fotoPerfil = $_SESSION['foto_perfil'];
+                        echo '<a href="profile.php" ">
+                                <img src="' . htmlspecialchars($fotoPerfil) . '" alt="Foto de perfil" style="width: 40px; height: 40px; object-fit: cover; border-radius: 5px; border: solid 2px #ECBE00;">
+                            </a>';
+                    } else {
+                        // Mostrar el ícono predeterminado
+                        echo '<a href="profile.php" class="main-btn" ">
+                                <i class="lni lni-user"></i>
+                            </a>';
+                    }
+                    ?>
+                </div>
+                </div>
+            </div>
+
+            <!-- MENÚ DE NAVEGACIÓN -->
+            <div class="collapse navbar-collapse mt-lg-0" id="navbarSupportedContent" style="margin-top: 100px;">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="active" aria-label="Toggle navigation" href="index.php">PRINCIPAL</a>
+                        <a class="nav-link active" href="index.php">PRINCIPAL</a>
                     </li>
                     <li class="nav-item">
-                        <a class="active" aria-label="Toggle navigation" href="product-grids.php">TIENDA</a>
+                        <a class="nav-link" href="product-grids.php">CATÁLOGO</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-bs-toggle="collapse"
-                            data-bs-target="#submenu-1-3" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">CATEGORÍAS</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-1-3" aria-expanded="false">OTROS</a>
                         <ul class="sub-menu collapse" id="submenu-1-3">
-                            <li class="nav-item"><a href="matches.php">Partidas</a></li>
-                            <li class="nav-item"><a href="blog-grid-sidebar.php">Blogs</a></li>
-                            <li class="nav-item"><a href="about-us.php">¿Quienes Somos?</a></li>
-                            <li class="nav-item"><a href="faq.php">Preguntas Frecuentes</a></li>
+                            <li class="nav-item"><a class="dropdown-item" href="matches.php">Partidas</a></li>
+                            <li class="nav-item"><a class="dropdown-item" href="blog-grid-sidebar.php">Publicaciones</a></li>
+                            <li class="nav-item"><a class="dropdown-item" href="about-us.php">¿Quiénes Somos?</a></li>
+                            <li class="nav-item"><a class="dropdown-item" href="faq.php">Preguntas Frecuentes</a></li>
                         </ul>
                     </li>
                 </ul>
-                <form class="d-flex">
-    <div class="navbar-search search-style-5">
-        <div class="navbar-search search-input">
-            <input id="search-input" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-        </div>
-        <div class="search-btn">
-            <button type="button"><i class="lni lni-search-alt"></i></button>
-                <!-- Aquí se muestra el dropdown de búsqueda -->
-    <div id="search-dropdown" class="search-dropdown" style="display: none;"></div>
-        </div>
-    </div>
-</form>
-            </div>
-            
-                </div>
-            </div>
-            <!-- PERFIL -->
-            <div class="col-sm-auto">
-                <div class="navbar-cart">
-                    <div class="cart-items">
-                        <a href="profile.php" class="main-btn">
-                            <i class="lni lni-user"></i>
-                        </a>
+
+                <!-- BARRA DE BÚSQUEDA -->
+                <form class="d-flex" action="search-results.php" method="GET">
+                    <div class="navbar-search search-style-5">
+                        <div class="search-input">
+                            <input id="search-input" name="query" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                        </div>
+                        <div class="search-btn">
+                            <button type="submit"><i class="lni lni-search-alt"></i></button>
+                        </div>
+                        <!-- Dropdown de búsqueda -->
+                        <div id="search-dropdown" class="search-dropdown" style="display: none;"></div>
                     </div>
+                </form>
+            </div>
+
+            <!-- ÍCONO DE PERFIL EN PANTALLAS GRANDES -->
+            <div class="navbar-cart ms-auto d-none d-lg-block">
+                <div class="cart-items">
+                    <?php
+                    // Comprobar si existe la sesión de la foto de perfil
+                    if (isset($_SESSION['foto_perfil']) && !empty($_SESSION['foto_perfil'])) {
+                        // Mostrar la foto de perfil
+                        $fotoPerfil = $_SESSION['foto_perfil'];
+                        echo '<a href="profile.php" style="margin-right: 30px;">
+                                <img src="' . htmlspecialchars($fotoPerfil) . '" alt="Foto de perfil" style="width: 40px; height: 40px; object-fit: cover; border-radius: 5px; border: solid 2px #ECBE00;">
+                            </a>';
+                    } else {
+                        // Mostrar el ícono predeterminado
+                        echo '<a href="profile.php" class="main-btn" style="margin-right: 30px;">
+                                <i class="lni lni-user"></i>
+                            </a>';
+                    }
+                    ?>
                 </div>
             </div>
-    </div>
-</div>
         </div>
     </nav>
 </header>
-<!-- TERMINA HEADER Y NAVBAR PRO --> 
+
+<!-- TERMINA HEADER Y NAVBAR PRO -->
 
 
 

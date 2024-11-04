@@ -242,6 +242,11 @@ $total_paginas = ceil($total_publicaciones / $limite);
                 <aside class="col-lg-4 col-md-12 col-12">
                     <div class="sidebar blog-grid-page">
                         <!-- Start Single Widget -->
+                        <div class="widget popular-tag-widget">
+                            <a href="publicar-blog.php">
+                            <h5 class="widget-title">CREAR PUBLICACIÓN</h5>
+                            </a>
+                        </div>
                         <div class="widget search-widget">
                             <h5 class="widget-title">Busca en Publicaciones</h5>
                             <form action="#">
@@ -318,15 +323,6 @@ while ($row = $result->fetch_assoc()) {
     </ul>
 </div>
 
-
-                        <!-- End Single Widget -->
-                        <!-- Start Single Widget -->
-                        <div class="widget popular-tag-widget">
-                            <a href="publicar-blog.php">
-                            <h5 class="widget-title">CREAR PUBLICACIÓN</h5>
-                            </a>
-                        </div>
-                        <!-- End Single Widget -->
                     </div>
                 </aside>
             </div>

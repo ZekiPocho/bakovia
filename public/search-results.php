@@ -107,8 +107,9 @@
 </header>
 <!-- TERMINA HEADER Y NAVBAR PRO --> 
 <div class="container-sm">
-<h1>Resultados para: ""</h1>
-<h1>Productos:</h1>
+<h2>Resultados para: ""</h2>
+<h3>Productos:</h3>
+<h3>Blogs</h3>
 </div>
 
     <!-- Start Blog Singel Area -->

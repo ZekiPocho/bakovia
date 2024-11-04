@@ -130,7 +130,6 @@ $resultPublicaciones = $conexion->query($sqlPublicaciones);
                             <img src="<?= htmlspecialchars($producto['imagen_producto']) ?>" 
                                  alt="<?= htmlspecialchars($producto['nombre_producto']) ?>" 
                                  class="first-image">
-                            <?php endif; ?>
                         </div>
                         <div class="product-info">
                             <span class="category"><?= htmlspecialchars($producto['tipo']) ?></span>

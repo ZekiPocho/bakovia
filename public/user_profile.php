@@ -204,7 +204,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             $loses = $userData['loses'];
             $id_rol = $userData['id_rol'];
             $token = $userData['token'];
-
+        }
     }
     ?>
     <div class="container-sm p-3">

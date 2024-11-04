@@ -7164,7 +7164,6 @@ blockquote span {
     font-size: 12px;
   }
   .btn {
-    color: red;
     width: 100%; /* Botón ocupa el ancho total en móviles */
     margin-top: 10px; /* Añadir margen superior para separación */
   }

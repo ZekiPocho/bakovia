@@ -11,13 +11,23 @@ $data = json_decode(file_get_contents('php://input'), true);
 // Verifica que todos los datos necesarios estén presentes
 $id_partida = $data['id_partida'] ?? null;
 $estado = $data['estado'] ?? null;
-$id_jugador1 = $data['nombre_jugador1'] ?? null;
-$id_jugador2 = $data['nombre_jugador2'] ?? null;
+$id_jugador1 = $data['id_jugador1'] ?? null;
+$id_jugador2 = $data['id_jugador2'] ?? null;
 
 if (is_null($id_partida) || is_null($estado) || is_null($id_jugador1) || is_null($id_jugador2)) {
-    echo json_encode(['success' => false, 'message' => 'Faltan datos requeridos.']);
+    // Prepara un array con los datos requeridos
+    $missingData = [
+        'id_partida' => $id_partida,
+        'estado' => $estado,
+        'id_jugador1' => $id_jugador1,
+        'id_jugador2' => $id_jugador2
+    ];
+    
+    // Devuelve un JSON con el estado de éxito y los datos faltantes
+    echo json_encode(['success' => false, 'message' => 'Faltan datos requeridos.', 'missingData' => $missingData]);
     exit;
 }
+
 
 // Cambiar el estado de la partida
 $query = "UPDATE partida SET estado = '$estado' WHERE id_partida = $id_partida";

@@ -89,7 +89,7 @@ session_start();
       </p>
     <![endif]-->
 
-    <!-- Preloader -->
+    <!-- Preloader
     <div class="preloader">
         <div class="preloader-inner">
             <div class="preloader-icon">

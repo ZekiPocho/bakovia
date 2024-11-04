@@ -205,7 +205,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['comentar'])) {
                                 <div class="main-content-head">
                                     <div class="meta-information">
                                         <ul class="meta-info">
-                                                
+                                            <li><a href="user_profile.php?usuario=' . urlencode($nombre_usuario) . '">' . htmlspecialchars($nombre_usuario) . '</a></li>    
                                             <li>'. $fecha .'</li>
                                         </ul>
                                         <h3 class="post-title">' . $titulo . '</h3>
@@ -290,7 +290,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['comentar'])) {
                                     </div>
                                     <div class="comment-desc">
                                         <div class="desc-top">
-                                            <li><a href="user_profile.php?usuario=' . urlencode($nombre_usuario) . '">' . htmlspecialchars($nombre_usuario) . '</a></li>
+                                            <a href="user_profile.php?usuario=' . urlencode($nombre_usuario) . '">' . htmlspecialchars($nombre_usuario) . '</a>
                                             <span class="date">' . $fecha_comentario . '</span>
                                         </div>
                                         <p>' . $texto_comentario . '</p>';

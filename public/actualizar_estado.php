@@ -36,8 +36,8 @@ $result = mysqli_query($conn, $query);
 if ($result) {
     if ($estado === 'Finalizado') {
         // Actualizar la columna 'made' de ambos jugadores
-        $query_jugador1 = "UPDATE usuarios SET made = 0 WHERE nombre_usuario = '$id_jugador1'";
-        $query_jugador2 = "UPDATE usuarios SET made = 0 WHERE nombre_usuario = '$id_jugador2'";
+        $query_jugador1 = "UPDATE usuarios SET made = 0 WHERE id_usuario = '$id_jugador1'";
+        $query_jugador2 = "UPDATE usuarios SET made = 0 WHERE id_usuario = '$id_jugador2'";
         
         $result_jugador1 = mysqli_query($conn, $query_jugador1);
         $result_jugador2 = mysqli_query($conn, $query_jugador2);
@@ -61,18 +61,18 @@ if ($result) {
 
             if ($ganador) {
                 // Incrementar la columna 'wins' del ganador
-                $query_incrementar_wins = "UPDATE usuarios SET wins = wins + 1 WHERE nombre_usuario = '$ganador'";
+                $query_incrementar_wins = "UPDATE usuarios SET wins = wins + 1 WHERE id_usuario = '$ganador'";
                 mysqli_query($conn, $query_incrementar_wins);
 
                 // Determinar el perdedor
                 $perdedor = ($ganador === $id_jugador1) ? $id_jugador2 : $id_jugador1;
 
                 // Decrementar la columna 'wins' del perdedor
-                $query_decrementar_wins = "UPDATE usuarios SET wins = wins - 1 WHERE nombre_usuario = '$perdedor'";
+                $query_decrementar_wins = "UPDATE usuarios SET wins = wins - 1 WHERE id_usuario = '$perdedor'";
                 mysqli_query($conn, $query_decrementar_wins);
 
                 // Verificar el rango del ganador
-                $query_wins = "SELECT wins FROM usuarios WHERE nombre_usuario = '$ganador'";
+                $query_wins = "SELECT wins FROM usuarios WHERE id_usuario = '$ganador'";
                 $result_wins = mysqli_query($conn, $query_wins);
                 $row_wins = mysqli_fetch_assoc($result_wins);
                 $wins_actuales = $row_wins['wins'] ?? 0;
@@ -87,7 +87,7 @@ if ($result) {
 
                     if ($nuevo_rango_id) {
                         // Actualizar el rango del ganador
-                        $query_actualizar_rango = "UPDATE usuarios SET rango_id = $nuevo_rango_id WHERE nombre_usuario = '$ganador'";
+                        $query_actualizar_rango = "UPDATE usuarios SET rango_id = $nuevo_rango_id WHERE id_usuario = '$ganador'";
                         mysqli_query($conn, $query_actualizar_rango);
                     }
                 }

@@ -1,5 +1,5 @@
 <?php
-session_start(); // Asegúrate de iniciar la sesión si usas variables de sesión
+require_once("../src/validate_session.php");
 include("../public/db.php");
 
 // Verificar conexión

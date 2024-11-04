@@ -7130,7 +7130,6 @@ blockquote span {
     text-align: center;
   }
   .team img {
-    width: 80%; /* Ajusta el tamaño para evitar desbordes */
     height: auto; /* Mantiene la proporción de la imagen */
     max-height: 80px; /* Límite de altura para que no sea muy grande */
     filter: invert(100%);

@@ -2965,8 +2965,6 @@ ol {
     content: "";
     height: 100%;
     width: 100%;
-    background-color: #fff;
-    opacity: 0.5;
   }
 }
 
@@ -2980,7 +2978,6 @@ ol {
 @media (max-width: 767px) {
   .hero-area .hero-slider .single-slider {
     height: 350px;
-    margin-bottom: 12px;
   }
 }
 

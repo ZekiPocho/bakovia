@@ -386,6 +386,30 @@ include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a l
         .catch(error => console.error('Error al actualizar el puntaje:', error));
     }
 
+    document.querySelector('input[name="rondas"]').addEventListener('change', function () {
+        actualizarRonda(this.value);
+    });
+
+    function actualizarRonda(ronda) {
+        const formData = new FormData();
+        formData.append('id_partida', idPartida);
+        formData.append('ronda', ronda);
+
+        fetch('../public/actualizar_partida.php', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log('Ronda actualizada correctamente.');
+                } else {
+                    console.error('Error al actualizar la ronda:', data.error);
+                }
+            })
+            .catch(error => console.error('Error al actualizar la ronda:', error));
+    }
+
     // Verificar el estado del botón constantemente cada segundo
     setInterval(verificarEstadoBoton, 1000);
 

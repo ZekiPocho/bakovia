@@ -261,11 +261,11 @@ include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a l
                     <input id="ronda" type="number" style="width: 80px;" name="rondas" class="form-control" value="<?php echo htmlspecialchars($ronda); ?>"> <!-- Cambia este valor al número de rondas actual -->
                     </center>
                 </div>
-                <button type="button" id="iniciar-btn" class="btn btn-primary" disabled>
+                <button type="button" id="iniciar-btn" class="btn btn-primary" <?php echo ($partida_en_progreso === 'false') ? '' : 'disabled'; ?>>
                     INICIAR
                 </button>
                 <!-- Botón para finalizar la partida (inicialmente oculto) -->
-                <button type="button" id="finalizar-btn" class="btn btn-danger" style="display: none;">
+                <button type="button" id="finalizar-btn" class="btn btn-danger" style="display: <?php echo ($partida_en_progreso === 'true') ? 'block' : 'none'; ?>;">
                     FINALIZAR
                 </button>
                 
@@ -353,23 +353,6 @@ include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a l
             .catch(error => console.error('Error al cargar la partida:', error));
     }
 
-    function actualizarCronometro(horaInicio, elementoId) {
-        const inicio = new Date(`1970-01-01T${horaInicio}Z`); // Convertimos la hora de inicio a un objeto Date
-        const ahora = new Date(); // Hora actual
-        const diferencia = ahora - inicio; // Diferencia en milisegundos
-
-        // Convertimos la diferencia a horas, minutos y segundos
-        const horas = Math.floor(diferencia / 1000 / 60 / 60);
-        const minutos = Math.floor((diferencia / 1000 / 60) % 60);
-        const segundos = Math.floor((diferencia / 1000) % 60);
-
-        // Formateamos los valores a dos dígitos
-        const tiempoTranscurrido = `${String(horas).padStart(2, '0')}:${String(minutos).padStart(2, '0')}:${String(segundos).padStart(2, '0')}`;
-
-        // Actualizamos el DOM
-        document.getElementById(elementoId).textContent = tiempoTranscurrido;
-    }
-
     // Detectar cambios en los inputs de puntaje y actualizar la base de datos
     document.querySelector('input[name="puntaje_jugador1"]').addEventListener('change', function() {
         actualizarPuntaje(1, this.value);
@@ -401,19 +384,31 @@ include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a l
         .catch(error => console.error('Error al actualizar el puntaje:', error));
     }
 
-    // Verificar el estado del botón constantemente cada segundo
-    setInterval(verificarEstadoBoton, 1000);
+    document.addEventListener('DOMContentLoaded', function() {
+        const iniciarBtn = document.getElementById('iniciar-btn');
+        const finalizarBtn = document.getElementById('finalizar-btn');
 
-    // Función para verificar el estado del botón
-    function verificarEstadoBoton() {
-        iniciarBtn.disabled = (nombreJugador2 === 'N/A');
-    }
+        // Aquí puedes hacer más lógica si es necesario
+    });
+        // Verificar el estado del botón cada 5 segundos
+        setInterval(verificarEstadoBoton, 5000);
+
+        // Función para verificar el estado del botón
+        function verificarEstadoBoton() {
+        console.log('Valor de nombreJugador2:', nombreJugador2);
+        
+        if (nombreJugador2 !== null && nombreJugador2 !== undefined) {
+            iniciarBtn.disabled = (nombreJugador2 === 'N/A');
+        } else {
+            console.error('nombreJugador2 es null o undefined');
+        }
+        }
 
         // Al hacer clic en el botón de iniciar, cambiar el estado a 'en progreso'
-    iniciarBtn.addEventListener('click', function (e) {
+        iniciarBtn.addEventListener('click', function (e) {
         e.preventDefault();
         actualizarEstadoPartida('en progreso');
-    });
+        });
 
     // Función para actualizar el estado de la partida
     function actualizarEstadoPartida(nuevoEstado) {

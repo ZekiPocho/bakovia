@@ -294,7 +294,7 @@
     <!--/ End Faq Area -->
 
     <!-- Start Footer Area -->
-    <footer class="footer">
+    <footer class="footer" style="border-top: solid 5px #6E869D;">
         <!-- Start Footer Middle -->
         <div class="footer-middle">
             <div class="container">
@@ -305,27 +305,21 @@
                             <!-- Single Widget -->
                             <div class="single-footer f-contact">
                                 <h3>¿QUIÉNES SOMOS?</h3>
-                                <p class="phone">Phone: +1 (900) 33 169 7720</p>
-                                <ul>
-                                    <li><span>Monday-Friday: </span> 9.00 am - 8.00 pm</li>
-                                    <li><span>Saturday: </span> 10.00 am - 6.00 pm</li>
-                                </ul>
-                                <p class="mail">
-                                    <a href="mailto:support@shopgrids.com">support@shopgrids.com</a>
-                                </p>
+                                Bakovia nace del cariño y las ganas de compartir el hobby que amamos: ¡Warhammer! 
+                                Deja el mundo atrás, entra al Bunker y aléjate de la maldad del mundo.
+                                
                             </div>
                             <!-- End Single Widget -->
                         </div>
                         <div class="col-lg-3 col-md-6 col-12">
                             <!-- Single Widget -->
                             <div class="single-footer f-link">
-                                <h3>CATEGORÍAS</h3>
+                                <h3>PÁGINAS</h3>
                                 <ul>
-                                    <li><a href="javascript:void(0)">About Us</a></li>
-                                    <li><a href="javascript:void(0)">Contact Us</a></li>
-                                    <li><a href="javascript:void(0)">Downloads</a></li>
-                                    <li><a href="javascript:void(0)">Sitemap</a></li>
-                                    <li><a href="javascript:void(0)">FAQs Page</a></li>
+                                    <li><a href="matches.php">Partidas</a></li>
+                                    <li><a href="blog-grid-sidebar.php">Publicaciones</a></li>
+                                    <li><a href="about-us.php">¿Quiénes Somos?</a></li>
+                                    <li><a href="faq.php">Preguntas Frecuentes</a></li>
                                 </ul>
                             </div>
                             <!-- End Single Widget -->
@@ -334,18 +328,14 @@
                             <!-- Single Widget -->
                             <div class="single-footer f-link">
                                 <h3>INFORMACIÓN</h3>
-                                <ul>
-                                    <li><a href="javascript:void(0)">Computers & Accessories</a></li>
-                                    <li><a href="javascript:void(0)">Smartphones & Tablets</a></li>
-                                    <li><a href="javascript:void(0)">TV, Video & Audio</a></li>
-                                    <li><a href="javascript:void(0)">Cameras, Photo & Video</a></li>
-                                    <li><a href="javascript:void(0)">Headphones</a></li>
-                                </ul>
+                                Nos encontramos en la avenida Arce, edificio Santa Isabel Nº 2529.
+                                Atendemos de lunes a viernes, desde las 16:00 hasta las 21:00,
+                                 y los sábados de 13:00 a 18:00.
                             </div>
                             <!-- End Single Widget -->
                             
                         </div>
-                        <div class="col-lg-3 col-md-6 col-12">
+                        <div class="col-lg-3 col-md-6 col-12 mt-5">
                             <!--Single Widget-->
                             <div class="footer-logo">
                                     <a href="index.php">
@@ -361,6 +351,7 @@
         <!-- End Footer Middle -->
     </footer>
     <!--/ End Footer Area -->
+
 
     <!-- ========================= scroll-top ========================= -->
     <a href="#" class="scroll-top">

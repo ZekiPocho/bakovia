@@ -176,13 +176,6 @@ include ('db.php')
                     <!-- Start Product Sidebar -->
                     <div class="product-sidebar">
                         <!-- Start Single Widget -->
-                        <div class="single-widget search">
-                            <h3>Buscar Producto</h3>
-                            <form action="#">
-                                <input type="text" placeholder="Buscar">
-                                <button type="submit"><i class="lni lni-search-alt"></i></button>
-                            </form>
-                        </div>
                         <!-- End Single Widget -->
                         <!-- Start Single Widget -->
 <?php

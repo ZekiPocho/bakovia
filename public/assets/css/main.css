@@ -7183,6 +7183,7 @@ blockquote span {
     margin-top: 5px;
   }
   .player .col-7{
+    width: auto;
     margin-top: 5px;
   }
   .player img{

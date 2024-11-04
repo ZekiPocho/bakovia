@@ -269,10 +269,10 @@ include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a l
                     FINALIZAR
                 </button>
                 
-            <br>
             <form action="delete_match.php" method="POST" onsubmit="return confirmDelete();">
                 <input type="hidden" name="id_partida" value="<?php echo htmlspecialchars($id_partida); ?>">
                 <input type="hidden" name="id_reserva" value="<?php echo htmlspecialchars($id_reserva); ?>">
+                <br>
                 <button type="submit" class="btn btn-danger">BORRAR PARTIDA</button>
             </form>
         </div>
@@ -353,23 +353,6 @@ include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a l
             .catch(error => console.error('Error al cargar la partida:', error));
     }
 
-    function actualizarCronometro(horaInicio, elementoId) {
-        const inicio = new Date(`1970-01-01T${horaInicio}Z`); // Convertimos la hora de inicio a un objeto Date
-        const ahora = new Date(); // Hora actual
-        const diferencia = ahora - inicio; // Diferencia en milisegundos
-
-        // Convertimos la diferencia a horas, minutos y segundos
-        const horas = Math.floor(diferencia / 1000 / 60 / 60);
-        const minutos = Math.floor((diferencia / 1000 / 60) % 60);
-        const segundos = Math.floor((diferencia / 1000) % 60);
-
-        // Formateamos los valores a dos dígitos
-        const tiempoTranscurrido = `${String(horas).padStart(2, '0')}:${String(minutos).padStart(2, '0')}:${String(segundos).padStart(2, '0')}`;
-
-        // Actualizamos el DOM
-        document.getElementById(elementoId).textContent = tiempoTranscurrido;
-    }
-
     // Detectar cambios en los inputs de puntaje y actualizar la base de datos
     document.querySelector('input[name="puntaje_jugador1"]').addEventListener('change', function() {
         actualizarPuntaje(1, this.value);
@@ -378,6 +361,7 @@ include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a l
     document.querySelector('input[name="puntaje_jugador2"]').addEventListener('change', function() {
         actualizarPuntaje(2, this.value);
     });
+
 
     // Función para actualizar el puntaje del jugador en la base de datos
     function actualizarPuntaje(jugador, puntaje) {
@@ -399,6 +383,30 @@ include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a l
             }
         })
         .catch(error => console.error('Error al actualizar el puntaje:', error));
+    }
+
+    document.querySelector('input[name="rondas"]').addEventListener('change', function() {
+        actualizarRonda(this.value);
+    });
+
+    function actualizarRonda(ronda) {
+        const formData = new FormData();
+        formData.append('id_partida', idPartida);
+        formData.append('ronda', ronda);
+
+        fetch('../public/actualizar_partida.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log('Ronda actualizada correctamente.');
+            } else {
+                console.error('Error al actualizar la ronda:', data.error);
+            }
+        })
+        .catch(error => console.error('Error al actualizar la ronda:', error));
     }
 
     // Verificar el estado del botón constantemente cada segundo

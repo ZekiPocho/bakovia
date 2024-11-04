@@ -412,10 +412,16 @@ include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a l
         iniciarBtn.disabled = (nombreJugador2 === 'N/A');
     }
 
+        // Al hacer clic en el botón de iniciar, cambiar el estado a 'en progreso'
+    iniciarBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        actualizarEstadoPartida('en progreso');
+    });
+
     // Función para actualizar el estado de la partida
     function actualizarEstadoPartida(nuevoEstado) {
         fetch('actualizar_estado.php', {
-            method: 'GET',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -423,7 +429,7 @@ include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a l
                 id_partida: idPartida,
                 estado: nuevoEstado,
                 id_jugador1: nombre_jugador1,
-                id_jugador2: nombre_jugador2
+                id_jugador2: nombreJugador2
             })
         })
         .then(response => response.json())
@@ -444,12 +450,6 @@ include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a l
         })
         .catch(error => console.error('Error:', error));
     }
-
-    // Al hacer clic en el botón de iniciar, cambiar el estado a 'en progreso'
-    iniciarBtn.addEventListener('click', function (e) {
-        e.preventDefault();
-        actualizarEstadoPartida('en progreso');
-    });
 
     // Al hacer clic en el botón de finalizar, mostrar confirmación antes de cambiar el estado
     finalizarBtn.addEventListener('click', function () {

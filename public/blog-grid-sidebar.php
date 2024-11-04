@@ -191,23 +191,30 @@ $total_paginas = ceil($total_publicaciones / $limite);
                     $tag = $row['tag'];
 
                     echo '
-                    <div class="col-lg-6 col-md-6 col-12">
-                        <!-- Start Single Blog -->
-                        <div class="single-blog">
-                            <div class="blog-img">
-                                <a href="blog-single-sidebar.php?id='.$id_publicacion.'">
-                                    <img src="'.$imagen.'" alt="#" style="max-width: 555px; max-height: 300px; object-fit: contain;">
-                                </a>
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <!-- Start Single Blog -->
+                            <div class="single-blog">
+                                <div class="blog-img">
+                                    <a href="blog-single-sidebar.php?id=' . $id_publicacion . '">
+                                        <img src="' . htmlspecialchars($imagen) . '" alt="#" style="max-width: 555px; max-height: 300px; object-fit: contain;">
+                                    </a>
+                                </div>
+                                <div class="blog-content">
+                                    <a class="category" href="user_profile.php?usuario=' . urlencode($usuario) . '">' . htmlspecialchars($usuario) . '</a>
+                                    <h4>
+                                        <a href="blog-single-sidebar.php?id=' . $id_publicacion . '">' . 
+                                        (strlen($titulo) > 75 ? htmlspecialchars(substr($titulo, 0, 75)) . '...' : htmlspecialchars($titulo)) . 
+                                        '</a>
+                                    </h4>
+                                    <br>
+                                    <a href="blog-grid-sidebar.php?filtro=' . urlencode($tag) . '">
+                                        <i class="lni lni-tag"></i>' . htmlspecialchars($tag) . '
+                                    </a>
+                                </div>
                             </div>
-                            <div class="blog-content">
-                                <a class="category" href="user_profile.php?usuario=' . urlencode($usuario) . '">' . htmlspecialchars($usuario) . '</a>
-                                <h4><a href="blog-single-sidebar.php?id='.$id_publicacion.'">'.(strlen($titulo) > 75 ? substr($titulo, 0, 75) . '...' : $titulo).'</a></h4>
-                                <br>
-                                <a class="category" href="javascript:void(0)"><i class="lni lni-tag"></i>'.$tag.'</a>
-                            </div>
-                        </div>
-                        <!-- End Single Blog -->
-                    </div>';
+                            <!-- End Single Blog -->
+                        </div>';
+
                 }
             } else {
                 echo "No se encontraron publicaciones.";

@@ -216,17 +216,17 @@ $conn->close();
                 <br>
                 <select class="form-control" name="tag" id="tags" required>
                     <option value="" selected disabled>Selecciona Tag</option>
-                    <option value="miniaturas">Showcase Ejército</option>
-                    <option value="otros">Showcase Miniatura</option>
-                    <option value="ejercito">Pintura</option>
-                    <option value="tienda">Armado</option>
-                    <option value="juegos">Juegos</option>
-                    <option value="pintura">Lore</option>
-                    <option value="lore">Arte</option>
-                    <option value="noticias">Meme</option>
-                    <option value="noticias">Noticias</option>
-                    <option value="noticias">Discusiones</option>
-                    <option value="noticias">Otro</option>
+                    <option value="Showcase Ejército">Showcase Ejército</option>
+                    <option value="Showcase Miniatura">Showcase Miniatura</option>
+                    <option value="Pintura">Pintura</option>
+                    <option value="Armado">Armado</option>
+                    <option value="Juego">Juego</option>
+                    <option value="Lore">Lore</option>
+                    <option value="Arte/Dibujo">Arte/Dibujo</option>
+                    <option value="Meme">Meme</option>
+                    <option value="Noticias">Noticias</option>
+                    <option value="Discusiones">Discusiones</option>
+                    <option value="Otro">Otro</option>
                 </select>
             </div>
 

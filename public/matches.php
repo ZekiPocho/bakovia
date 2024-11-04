@@ -299,8 +299,20 @@ if ($result->num_rows > 0) {
         <!-- Aquí empieza el HTML para mostrar las partidas programadas -->
         <div class="match-entry mb-2 text-center">
     <div class="row align-items-center">
+            <?php
+            // Supongamos que $conn es tu conexión a la base de datos
+            $nombre_usuario = $row['nombre_usuario1'];
+            $query = "SELECT foto_perfil FROM usuarios WHERE nombre_usuario = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("s", $nombre_usuario);
+            $stmt->execute();
+            $stmt->bind_result($foto_perfil);
+            $stmt->fetch();
+            $stmt->close();
+
+            ?>
         <div class="col-2">
-            <img src="https://via.placeholder.com/50x50" alt="Foto de perfil" class="img-fluid">
+            <img src="<?php echo htmlspecialchars($foto_perfil); ?>" alt="Foto de perfil" class="img-fluid" style="object-fit: cover; border-radius: 5px; border: solid 2px #ECBE00;">
         </div>
         <div class="col-3">
             <span><a class="category" href="user_profile.php?usuario=<?php echo urlencode($row['nombre_usuario1']); ?>"><?php echo htmlspecialchars($row['nombre_usuario1']); ?></a></span>

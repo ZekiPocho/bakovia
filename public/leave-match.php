@@ -25,7 +25,7 @@ if ($id_partida > 0) {
     error_log("Estado de la partida: " . $estado);
 
     // Verificar si la partida está en progreso
-    if ($estado === 'en progreso') {
+    if ($estado === 'En progreso') {
         echo '<script type="text/javascript">
                 alert("La partida ya empezó.");
                 window.location.href = "matches.php";

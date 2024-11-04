@@ -1,6 +1,6 @@
 <?php
 // Conexión a la base de datos
-$conexion = new mysqli('localhost', 'usuario', 'contraseña', 'bakoviadb');
+$conexion = new mysqli('localhost', 'root', '', 'bakoviadb');
 
 if ($conexion->connect_error) {
     die("Error de conexión: " . $conexion->connect_error);

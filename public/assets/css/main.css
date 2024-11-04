@@ -147,7 +147,28 @@ h6 a {
 h1 {
   font-size: 50px;
 }
-
+@media (max-width: 767px) {
+  .hero-area .hero-slider .single-slider div {
+    max-height: 168px
+  }
+}
+@media (max-width: 767px) {
+  .hero-area .hero-slider .single-slider h1 {
+    
+    font-size: 15px;
+  }
+}
+@media (max-width: 767px) {
+  .hero-area .hero-slider .single-slider p {
+    
+    font-size: 10px;
+  }
+}
+@media (max-width: 767px) {
+  .hero-area .hero-slider .single-slider .button {
+    height: 5px
+  }
+}
 h2 {
   font-size: 40px;
 }

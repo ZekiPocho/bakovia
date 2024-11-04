@@ -246,7 +246,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['comentar'])) {
 
                     <!-- Comments Section -->
                     <div class="post-comments">
-                        <h3 class="comment-title"><span>Comentarios</span></h3>
+                        <h3 class="comment-title"><span>Comentarios (últimos primero)</span></h3>
                         <ul class="comments-list">
                         <?php
                         // Verificar si se ha enviado el comentario
@@ -294,7 +294,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['comentar'])) {
                                     <div class="comment-desc">
                                         <div class="desc-top">
                                             <a style="color: white;" href="user_profile.php?usuario=' . urlencode($nombre_usuario) . '">' . htmlspecialchars($nombre_usuario) . '</a>
-                                            <p></p>
                                             <span style="color: gray;">' . $fecha_comentario . '</span>
                                         </div>
                                         <p>' . $texto_comentario . '</p>';
@@ -307,7 +306,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['comentar'])) {
                                         <form action="delete_comment.php" method="POST" onsubmit="return confirm(\'¿Estás seguro de que deseas eliminar este comentario?\');">
                                             <input type="hidden" name="id_comentario" value="' . $id_comentario . '">
                                             <input type="hidden" name="id_publicacion" value="' . $id_publicacion . '">
-                                            <button type="submit" class="btn btn-secondary btn-sm" style="border: none; background-color: transparent; color: #6c757d; padding: 0; text-decoration: underline;">Eliminar</button>
+                                            <button type="submit" class="btn btn-secondary btn-sm" style="border: none; background-color: transparent; color: #6c757d; padding: 0; text-decoration: underline;">Eliminar comentario</button>
                                         </form>
                                     </div>';
                                 }

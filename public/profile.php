@@ -332,7 +332,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         </div>
                         <li style="text-decoration: underline;"><p><?php echo htmlspecialchars($_SESSION['nombre_rango'] ?? 'Nombre de rango'); ?></p></li>
                         <li><p class="text-muted">MIEMBRO DESDE</p></li>
-                        <li><p class="text-muted"><?php echo htmlspecialchars($_SESSION['fecha_registro']); ?></p></li>
+                        <li><p class="text-muted"><?php echo htmlspecialchars(date("d F Y", strtotime($_SESSION['fecha_registro']))); ?></p></li>
                     </center>
                     </ul>
                 </div>

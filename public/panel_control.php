@@ -1,6 +1,5 @@
 <?php
 require_once "../src/validate_session.php";
-
 include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a la base de datos
 
 
@@ -142,34 +141,34 @@ include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a l
 
         // Nueva consulta adaptada para obtener todos los datos de la partida, incluyendo id_reserva
         $query = "SELECT 
-                    j.nombre AS nombre_juego, 
-                    p.puntos AS puntos, 
-                    p.nombre_usuario1 AS nombre_jugador1, 
-                    u1.made AS made_usuario1, 
-                    p.nombre_usuario2 AS nombre_jugador2, 
-                    u2.made AS made_usuario2, 
-                    f1.nombre AS faccion1, 
-                    f1.subfaccion AS subfaccion1, 
-                    f1.icono AS icono1, 
-                    f2.nombre AS faccion2, 
-                    f2.subfaccion AS subfaccion2, 
-                    f2.icono AS icono2,
-                    h1.hora AS hora_inicio, 
-                    h2.hora AS hora_final,
-                    p.id_mesa AS id_mesa, 
-                    p.puntaje_usuario1 AS puntaje_jugador1, 
-                    p.puntaje_usuario2 AS puntaje_jugador2,
-                    p.id_reserva AS id_reserva,
-                    p.ronda as ronda -- Extraer id_reserva directamente de partida
-                FROM partida p
-                LEFT JOIN faccion f1 ON p.id_faccion_usuario1 = f1.id_faccion
-                LEFT JOIN faccion f2 ON p.id_faccion_usuario2 = f2.id_faccion
-                LEFT JOIN usuarios u1 ON p.nombre_usuario1 = u1.nombre_usuario
-                LEFT JOIN usuarios u2 ON p.nombre_usuario2 = u2.nombre_usuario
-                LEFT JOIN juego j ON p.id_juego = j.id_juego
-                LEFT JOIN horarios h1 ON p.hora_inicio = h1.id_hora
-                LEFT JOIN horarios h2 ON p.hora_final = h2.id_hora
-                WHERE p.id_partida = ?
+                        j.nombre AS nombre_juego, 
+                        p.puntos AS puntos, 
+                        p.nombre_usuario1 AS nombre_jugador1, 
+                        u1.made AS made_usuario1, 
+                        p.nombre_usuario2 AS nombre_jugador2, 
+                        u2.made AS made_usuario2, 
+                        f1.nombre AS faccion1, 
+                        f1.subfaccion AS subfaccion1, 
+                        f1.icono AS icono1, 
+                        f2.nombre AS faccion2, 
+                        f2.subfaccion AS subfaccion2, 
+                        f2.icono AS icono2,
+                        h1.hora AS hora_inicio, 
+                        h2.hora AS hora_final,
+                        p.id_mesa AS id_mesa, 
+                        p.puntaje_usuario1 AS puntaje_jugador1, 
+                        p.puntaje_usuario2 AS puntaje_jugador2,
+                        p.id_reserva AS id_reserva,
+                        p.ronda AS ronda -- Extraer ronda directamente de partida
+                    FROM partida p
+                    LEFT JOIN faccion f1 ON p.id_faccion_usuario1 = f1.id_faccion
+                    LEFT JOIN faccion f2 ON p.id_faccion_usuario2 = f2.id_faccion
+                    LEFT JOIN usuarios u1 ON p.nombre_usuario1 = u1.nombre_usuario
+                    LEFT JOIN usuarios u2 ON p.nombre_usuario2 = u2.nombre_usuario
+                    LEFT JOIN juego j ON p.id_juego = j.id_juego -- Aquí seleccionas el nombre del juego
+                    LEFT JOIN horarios h1 ON p.hora_inicio = h1.id_hora
+                    LEFT JOIN horarios h2 ON p.hora_final = h2.id_hora
+                    WHERE p.id_partida = ?; -- Se utiliza el id_partida para filtrar la consulta
                 "; // No es necesario unir con reserva_mesa aquí
         
         if ($stmt = $conn->prepare($query)) {
@@ -527,30 +526,6 @@ function confirmDelete() {
             });
         }
 
-        // Función para actualizar el cronómetro
-        function actualizarCronometro(horaInicio, partidaId) {
-            const ahora = new Date(); // Hora actual
-            const diferencia = Math.floor((ahora - horaInicio) / 1000); // Diferencia en segundos
-
-            // Cálculo de horas, minutos y segundos
-            const horas = Math.floor(diferencia / 3600);
-            const minutos = Math.floor((diferencia % 3600) / 60);
-            const segundos = diferencia % 60;
-
-            // Formato para el tiempo transcurrido
-            const tiempoTranscurrido = `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
-
-            // Actualiza el contenido del cronómetro
-            document.getElementById(partidaId).innerText = tiempoTranscurrido;
-        }
-
-        // Cargar partidas cada 5 segundos
-        setInterval(cargarPartidas, 5000);
-
-        // Cargar partidas cuando la página se cargue
-        $(document).ready(function() {
-            cargarPartidas();
-        });
     </script>
 </body>
 

@@ -118,6 +118,8 @@ $resultPublicaciones = $conexion->query($sqlPublicaciones);
 
 <div class="container">
     <div class="row">
+        <div>
+            <h2>Productos</h2>
         <!-- Mostrar productos -->
         <?php if ($resultProductos && $resultProductos->num_rows > 0): ?>
             <?php while ($producto = $resultProductos->fetch_assoc()): ?>
@@ -145,8 +147,10 @@ $resultPublicaciones = $conexion->query($sqlPublicaciones);
         <?php else: ?>
             <p>No se encontraron productos.</p>
         <?php endif; ?>
-
+        </div>
         <!-- Mostrar publicaciones -->
+         <div>
+            <h2>Publicaciones</h2>
         <?php if ($resultPublicaciones && $resultPublicaciones->num_rows > 0): ?>
             <?php while ($publicacion = $resultPublicaciones->fetch_assoc()): ?>
                 <div class="col-lg-6 col-md-6 col-12">
@@ -174,6 +178,7 @@ $resultPublicaciones = $conexion->query($sqlPublicaciones);
         <?php else: ?>
             <p>No se encontraron publicaciones.</p>
         <?php endif; ?>
+        </div>
     </div>
 </div>
 

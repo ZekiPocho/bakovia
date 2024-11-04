@@ -148,7 +148,6 @@ $resultPublicaciones = $conexion->query($sqlPublicaciones);
 </div>
 
 <h2>Publicaciones encontradas:</h2>
-<div class="row">
     <?php
     if ($resultPublicaciones->num_rows > 0) {
         // Generar el HTML para cada publicación
@@ -180,7 +179,6 @@ $resultPublicaciones = $conexion->query($sqlPublicaciones);
         echo "No se encontraron publicaciones.";
     }
     ?>
-</div>
 </div>
 
     <!-- Start Footer Area -->

@@ -116,13 +116,13 @@ include ('db.php')
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="breadcrumbs-content">
-                        <h1 class="page-title">TIENDA</h1>
+                        <h1 class="page-title">CATÁLOGO</h1>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
                     <ul class="breadcrumb-nav">
                         <li><a href="../admin/admin-products.php"><i class="lni lni-home"></i> ADMIN</a></li>
-                        <li>TIENDA</li>
+                        <li>CATÁLOGO</li>
                     </ul>
                 </div>
             </div>

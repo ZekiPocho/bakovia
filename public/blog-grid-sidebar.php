@@ -269,17 +269,13 @@ $resultadoAleatorio = $conn->query($queryAleatorio);
                                 
     <div class="feed-desc">
         <a class="feed-img" href="blog-single-sidebar.php?id=<?= $publicacion['id_publicacion'] ?>">
-            <img src="<?= htmlspecialchars($publicacion['imagen_publicacion']) ?>" alt="Imagen del blog" width="200" height="200">
+            <img src="<?= htmlspecialchars($publicacion['imagen_publicacion']) ?>" alt="Imagen del blog" width="200" height="200" style="object-fit: cover;">
         </a>
         <h6 class="post-title">
             <a href="blog-single-sidebar.php?id=<?= $publicacion['id_publicacion'] ?>">
                 <?= htmlspecialchars($publicacion['titulo']) ?>
             </a>
         </h6>
-        <span class="time">
-            <i class="lni lni-calendar"></i>
-            <?= htmlspecialchars($publicacion['fecha_publicacion']) ?>
-        </span>
     </div>
 
                                 </div>

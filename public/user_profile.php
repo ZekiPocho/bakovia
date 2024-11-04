@@ -229,7 +229,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 </div>
                 <?php
                 if (isset($id)) {
-                    $user_id = $id];
+                    $user_id = [$id];
                 
                     // Consulta para obtener el rango_id del usuario
                     $query = "SELECT rango_id FROM usuarios WHERE id_usuario = ?";

@@ -347,7 +347,7 @@ if ($result->num_rows > 0) {
             // Mostrar el botón solo si el usuario actual no es el usuario 1 y si la partida está abierta
             if ($usuario_actual === $row['nombre_usuario1'] && $row['made_usuario1'] == 1) {
                 if ($row['nombre_usuario2'] !== "N/A") {
-                    echo '<div class="row align-items-center">
+                    echo '<div class="row align-items-center player">
                             <div class="col-7">
                                 <span><a class="category" href="user_profile.php?usuario=' . urlencode($row['nombre_usuario2']) . '">' . htmlspecialchars($row['nombre_usuario2']) . '</a></span>
                             </div>
@@ -362,7 +362,7 @@ if ($result->num_rows > 0) {
                 // Verificar si el usuario en la sesión tiene made como 1
                 if ($row['made_usuario_sesion'] == 1) {
                     if ($row['nombre_usuario2'] !== "N/A") {
-                        echo '<div class="row align-items-center">
+                        echo '<div class="row align-items-center player">
                                 <div class="col-5">
                                     <span>' . htmlspecialchars($row["nombre_usuario2"]) . '</span>
                                 </div>

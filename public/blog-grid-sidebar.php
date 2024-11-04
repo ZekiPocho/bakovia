@@ -303,7 +303,7 @@ while ($row = $result->fetch_assoc()) {
             </li>
             <li>
                 <a href="blog-grid-sidebar.php?filtro=<?= urlencode($tag['tag']) ?>">
-                    <?= htmlspecialchars($tag['tag']) ?>
+                    <i class="lni lni-tag"></i><?= htmlspecialchars($tag['tag']) ?>
                 </a>
                 <span>(<?= $tag['total'] ?>)</span>
             </li>

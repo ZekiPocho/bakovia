@@ -4309,6 +4309,7 @@ ol {
 .blog-single .post-title {
   font-weight: 700;
   margin-bottom: 10px;
+  margin-top: 10px;
   line-height: 32px;
   display: inline-block;
 }

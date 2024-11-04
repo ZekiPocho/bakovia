@@ -327,7 +327,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['comentar'])) {
                     <!-- Comment Form -->
                     <?php if (isset($_SESSION['id_usuario'])): ?>
                         <div class="comment-form">
-                            <h3 class="comment-reply-title">Deja un comentario</h3>
+                            <h3 >Deja un comentario</h3>
                             <form action="" method="POST">
                                 <input type="hidden" name="id_publicacion" value="<?php echo $id_publicacion; ?>">
                                 <div class="form-group">

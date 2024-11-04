@@ -181,7 +181,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                                    rango_id, wins, loses, id_rol, token
                             FROM usuarios 
                             WHERE nombre_usuario=? ");
-        $stmt->bind_param("s", $email);
+        $stmt->bind_param("s", $_GET['usuario']);
         $stmt->execute();
         $res = $stmt->get_result();
 

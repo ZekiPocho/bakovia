@@ -48,26 +48,42 @@ $resultPublicaciones = $conexion->query($sqlPublicaciones);
     <link rel="stylesheet" href="assets/css/main.css" />
 
 </head>
-
 <body>
-    <!--[if lte IE 9]>
-      <p class="browserupgrade">
-        You are using an <strong>outdated</strong> browser. Please
-        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
-        your experience and security.
-      </p>
-    <![endif]-->
+    <h1>Resultados de búsqueda para "<?php echo htmlspecialchars($query); ?>"</h1>
 
-    <!-- Preloader -->
-    <div class="preloader">
-        <div class="preloader-inner">
-            <div class="preloader-icon">
-                <span></span>
-                <span></span>
+    <h2>Productos encontrados:</h2>
+    <?php if ($resultProductos->num_rows > 0): ?>
+        <?php while ($producto = $resultProductos->fetch_assoc()): ?>
+            <div>
+                <h3><?php echo htmlspecialchars($producto['nombre_producto']); ?></h3>
+                <p><?php echo htmlspecialchars($producto['descripcion']); ?></p>
+                <p>Precio: $<?php echo number_format($producto['precio'], 2); ?></p>
+                <?php if ($producto['imagen_producto']): ?>
+                    <img src="ruta/a/imagenes/<?php echo htmlspecialchars($producto['imagen_producto']); ?>" alt="Imagen del producto">
+                <?php endif; ?>
             </div>
-        </div>
-    </div>
-    <!-- /End Preloader -->
+        <?php endwhile; ?>
+    <?php else: ?>
+        <p>No se encontraron productos.</p>
+    <?php endif; ?>
+
+    <h2>Publicaciones encontradas:</h2>
+    <?php if ($resultPublicaciones->num_rows > 0): ?>
+        <?php while ($publicacion = $resultPublicaciones->fetch_assoc()): ?>
+            <div>
+                <h3><?php echo htmlspecialchars($publicacion['titulo']); ?></h3>
+                <p><?php echo htmlspecialchars($publicacion['contenido']); ?></p>
+                <p>Fecha: <?php echo htmlspecialchars($publicacion['fecha_publicacion']); ?></p>
+                <?php if ($publicacion['imagen_publicacion']): ?>
+                    <img src="ruta/a/imagenes/<?php echo htmlspecialchars($publicacion['imagen_publicacion']); ?>" alt="Imagen de la publicación">
+                <?php endif; ?>
+            </div>
+        <?php endwhile; ?>
+    <?php else: ?>
+        <p>No se encontraron publicaciones.</p>
+    <?php endif; ?>
+
+</body>
 
 <!-- HEADER Y NAVBAR PRO -->
 <header class="header navbar-area">

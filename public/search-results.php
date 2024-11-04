@@ -10,7 +10,7 @@ if ($conexion->connect_error) {
 $query = isset($_GET['query']) ? $conexion->real_escape_string($_GET['query']) : '';
 
 // Consultar productos
-$sqlProductos = "SELECT id_producto, nombre_producto, descripcion, precio, imagen_producto, tipo 
+$sqlProductos = "SELECT id_producto, nombre_producto, descripcion, precio, imagen_producto, imagen_producto2, tipo 
                  FROM productos 
                  WHERE nombre_producto LIKE '%$query%' OR descripcion LIKE '%$query%'";
 
@@ -134,7 +134,7 @@ $resultPublicaciones = $conexion->query($sqlPublicaciones);
 </header>
 <!-- TERMINA HEADER Y NAVBAR PRO --> 
 
-<div class="container-sm">
+<div class="container-sm p-3">
     <h1>Resultados de búsqueda para "<?php echo htmlspecialchars($query); ?>"</h1>
 
     <!-- Sección de productos -->
@@ -149,6 +149,10 @@ $resultPublicaciones = $conexion->query($sqlPublicaciones);
                                 <img src="<?= htmlspecialchars($producto['imagen_producto']) ?>" 
                                      alt="<?= htmlspecialchars($producto['nombre_producto']) ?>" 
                                      class="first-image">
+                                <img src="<?= htmlspecialchars($producto['imagen_producto2']) ?>" 
+                                     alt="<?= htmlspecialchars($producto['nombre_producto']) ?>" 
+                                     class="second-image">
+                                     
                             </div>
                             <div class="product-info">
                                 <span class="category"><?= htmlspecialchars($producto['tipo']) ?></span>

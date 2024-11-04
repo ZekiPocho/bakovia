@@ -317,7 +317,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['comentar'])) {
                                 echo '</div></li>';
                             }
                         } else {
-                            echo "<p>No hay comentarios aún. ¡Pero tú puedes ser el primero!</p>";
+                            echo "<p style='color:gray;'>No hay comentarios aún. ¡Pero tú puedes ser el primero!</p>";
                         }
 
                         $conn->close();

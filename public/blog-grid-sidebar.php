@@ -207,7 +207,7 @@ $total_paginas = ceil($total_publicaciones / $limite);
                                         '</a>
                                     </h4>
                                     <br>
-                                    <a href="blog-grid-sidebar.php?filtro=' . urlencode($tag) . '">
+                                    <a class="category" href="blog-grid-sidebar.php?filtro=' . urlencode($tag) . '">
                                         <i class="lni lni-tag"></i>' . htmlspecialchars($tag) . '
                                     </a>
                                 </div>

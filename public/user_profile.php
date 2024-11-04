@@ -263,7 +263,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         </div>
                         <li style="text-decoration: underline;"><p><?php echo htmlspecialchars($nombre_rango ?? 'Nombre de rango'); ?></p></li>
                         <li><p class="text-muted">MIEMBRO DESDE</p></li>
-                        <li><p class="text-muted"><?php echo htmlspecialchars($fecha); ?></p></li>
+                        <li><p class="text-muted"><?php echo htmlspecialchars($registro); ?></p></li>
                     </center>
                     </ul>
                 </div>

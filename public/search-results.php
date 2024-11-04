@@ -130,10 +130,6 @@ $resultPublicaciones = $conexion->query($sqlPublicaciones);
                             <img src="<?= htmlspecialchars($producto['imagen_producto']) ?>" 
                                  alt="<?= htmlspecialchars($producto['nombre_producto']) ?>" 
                                  class="first-image">
-                            <?php if (!empty($producto['imagen_producto2'])): ?>
-                                <img src="<?= htmlspecialchars($producto['imagen_producto2']) ?>" 
-                                     alt="<?= htmlspecialchars($producto['nombre_producto']) ?>" 
-                                     class="second-image">
                             <?php endif; ?>
                         </div>
                         <div class="product-info">
@@ -265,19 +261,5 @@ $resultPublicaciones = $conexion->query($sqlPublicaciones);
     <script src="assets/js/glightbox.min.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
-<script>
-    document.querySelectorAll('.product-image').forEach(function(productImage) {
-    const productImg = productImage.querySelector('.product-img');
-    const hoverImgUrl = productImg.getAttribute('data-hover');
-    
-    productImage.addEventListener('mouseenter', function() {
-        productImage.style.setProperty('--hover-image', `url(${hoverImgUrl})`);
-    });
 
-    productImage.addEventListener('mouseleave', function() {
-        productImage.style.setProperty('--hover-image', '');
-    });
-});
-
-</script>
 </html>

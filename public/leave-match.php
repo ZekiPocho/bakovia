@@ -11,7 +11,7 @@ $nombre_usuario = $_SESSION['nombre_usuario'];
 
 // Verificar si se ha proporcionado un ID de partida válido
 if ($id_partida > 0) {
-    // Consultar el estado de la partida
+    // Consultar el estado de la partida antes de realizar cualquier otra acción
     $sql_check_estado = "SELECT estado FROM partida WHERE id_partida = ?";
     $stmt_check_estado = $conn->prepare($sql_check_estado);
     $stmt_check_estado->bind_param("i", $id_partida);
@@ -57,4 +57,3 @@ if ($id_partida > 0) {
 
 $conn->close();
 ?>
-

@@ -390,26 +390,20 @@ include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a l
 
         // Aquí puedes hacer más lógica si es necesario
     });
-        // Verificar el estado del botón cada 5 segundos
-        setInterval(verificarEstadoBoton, 5000);
+    function verificarEstadoBoton() {
+        iniciarBtn.disabled = (nombreJugador2 === 'N/A');
+    }
 
-        // Función para verificar el estado del botón
-        function verificarEstadoBoton() {
-        console.log('Valor de nombreJugador2:', nombreJugador2);
-        
-        if (nombreJugador2 !== null && nombreJugador2 !== undefined) {
-            iniciarBtn.disabled = (nombreJugador2 === 'N/A');
-        } else {
-            console.error('nombreJugador2 es null o undefined');
-        }
-        }
+    // Llama a la función para establecer el estado del botón al cargar la página
+    document.addEventListener('DOMContentLoaded', function() {
+        verificarEstadoBoton(); // Verifica el estado del botón al cargar la página
+    });
 
-        // Al hacer clic en el botón de iniciar, cambiar el estado a 'en progreso'
-        iniciarBtn.addEventListener('click', function (e) {
+    // Al hacer clic en el botón de iniciar, cambiar el estado a 'en progreso'
+    iniciarBtn.addEventListener('click', function(e) {
         e.preventDefault();
         actualizarEstadoPartida('en progreso');
-        });
-
+    });
     // Función para actualizar el estado de la partida
     function actualizarEstadoPartida(nuevoEstado) {
         fetch('actualizar_estado.php', {

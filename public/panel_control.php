@@ -213,7 +213,7 @@ include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a l
         
     ?>
 
-<div class="container-sm mt-4">
+<div class="container-sm mt-4 p-3">
     <div class="row justify-content-center">
         <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4"> <!-- Columna para el Jugador 1 -->
             <div class="team">
@@ -242,16 +242,16 @@ include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a l
         <div class="middle-section text-center">
             <!-- Información del Juego -->
             <p style="font-size: 1.50rem;"><?php echo htmlspecialchars($nombre_juego); ?></p> <!-- Nombre del juego -->
-
+            <br>
             <!-- Puntos -->
             <p id="puntos" style="font-size: 1.2rem; filter: opacity(50%);"><?php echo htmlspecialchars($puntos); ?> Pts.</p> <!-- Puntos -->
             <br>
             <!-- Horarios -->
-            <h4 style="font-size: 1rem;">Horario:</h4>
+            <h4 style="font-size: 1rem;">Horario Reservado:</h4>
             <p style="font-size: 1rem;">
-                Inicio: <?php echo htmlspecialchars($hora_inicio); ?> <br>
-                Finalización: <?php echo htmlspecialchars($hora_final); ?>
-            </p> <!-- Horas de inicio y finalización -->    
+                Inicio: <?php echo htmlspecialchars(date("H:i", strtotime($hora_inicio))); ?> <br>
+                Finalización: <?php echo htmlspecialchars(date("H:i", strtotime($hora_final))); ?>
+            </p> <!-- Horas de inicio y finalización -->   
             <br>
             <h3 style="font-size: 1.25rem;">Tiempo Transcurrido</h3> <!-- Reducido el tamaño de la fuente -->
             <div id="tiempo-transcurrido" style="font-size: 1.2rem;">00:00:00</div> <!-- Tiempo transcurrido -->

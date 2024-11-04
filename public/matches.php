@@ -30,7 +30,7 @@ unset($_SESSION['faccion']);
     <link rel="stylesheet" href="assets/css/tiny-slider.css" />
     <link rel="stylesheet" href="assets/css/glightbox.min.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
 </head>
 
 <body>
@@ -233,89 +233,201 @@ if ($result->num_rows > 0) {
 
 $conn->close();
 ?>
+
+            
+        </div>
     </div>
-</div>
 
     
             <!-- Columna de partidas abiertas para jugar -->
-            <div id="matchesContainer" class="col-xxl-6">
+            <div class="col-xxl-6">
+                <div class="matches-div text-center">
+                    <h3 style="border-bottom: solid 1px #6E869D;">¡A JUGAR!</h3>
+                    <br>
+                    <?php
+include("../public/db.php");
+// Verificar conexión
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
-                    
-                    
-                    
+$id_usuario = $_SESSION['id_usuario']; // Obtener el ID del usuario de la sesión
 
-                    <script>
-$(document).ready(function() {
-    function fetchMatches() {
-        $.ajax({
-            url: 'fetch_matches.php', // Cambia esto por la ruta a tu nuevo archivo PHP
-            method: 'GET',
-            dataType: 'json',
-            success: function(data) {
-                $('#matchesContainer').empty(); // Limpia el contenedor antes de agregar nuevos datos
-                if (data.length > 0) {
-                    data.forEach(function(row) {
-                        $('#matchesContainer').append(`
-                        <div class="matches-div text-center">
-                            <h3 style="border-bottom: solid 1px #6E869D;">¡A JUGAR!</h3>
-                                <br>
-                                <div class="match-entry mb-2 text-center">
-                                    <div class="row align-items-center player">
-                                        <div class="col-2">
-                                            <img src="${row.foto_perfil_usuario1}" alt="Foto de perfil" class="img-fluid" style="object-fit: cover; border-radius: 5px; border: solid 2px #ECBE00;">
-                                        </div>
-                                        <div class="col-3">
-                                            <span><a class="category" href="user_profile.php?usuario=${encodeURIComponent(row.nombre_usuario1)}">${row.nombre_usuario1}</a></span>
-                                        </div>
-                                        <div class="col-2">
-                                            ${row.nombre_usuario2 !== 'N/A' ? '<img src="assets/images/matches/sword.png" alt="Icono de batalla" class="img-fluid" style="max-width: 25px;">' : '<h7>PARTIDA ABIERTA</h7>'}
-                                        </div>
-                                        <div class="col-5">
-                                            ${row.nombre_usuario2 !== 'N/A' ? `
-                                                <span><a class="category" href="user_profile.php?usuario=${encodeURIComponent(row.nombre_usuario2)}">${row.nombre_usuario2}</a></span>
-                                            ` : 'ESPERANDO'}
-                                        </div>
-                                    </div>
-                                    <div class="scoreboard">
-                                        <div class="team">
-                                            <img src="${row.icono1}" alt="Equipo 1">
-                                            <div class="team-name">${row.faccion1}<br>${row.subfaccion1}</div>
-                                        </div>
-                                        <div class="score">${row.puntaje_usuario1}</div>
-                                        <div class="middle-section">
-                                            <h1>${row.id_juego}</h1>
-                                            <h1>${row.puntos} Pts.</h1>
-                                            <div class="timer">${row.hora_inicio} - ${row.hora_final}</div>
-                                            <h1>MESA - ${row.id_mesa}</h1>
-                                        </div>
-                                        <div class="score">${row.puntaje_usuario2}</div>
-                                        <div class="team">
-                                            <img src="${row.icono2}" alt="Equipo 2">
-                                            <div class="team-name">${row.faccion2}<br>${row.subfaccion2}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                        </div>
-                        `);
-                    });
+// Consulta para obtener partidas programadas
+$sql = "SELECT 
+    p.id_partida, 
+    j.nombre AS id_juego, -- Nombre del juego en lugar del ID
+    p.puntos, 
+    p.nombre_usuario1, 
+    u1.made AS made_usuario1, 
+    p.nombre_usuario2, 
+    u2.made AS made_usuario2, 
+    f1.nombre AS faccion1, 
+    f1.subfaccion AS subfaccion1, 
+    f1.icono AS icono1, 
+    f2.nombre AS faccion2, 
+    f2.subfaccion AS subfaccion2, 
+    f2.icono AS icono2,
+    LEFT(h1.hora, 5) AS hora_inicio, -- Mostrar solo los primeros 5 caracteres
+    LEFT(h2.hora, 5) AS hora_final, -- Mostrar solo los primeros 5 caracteres
+    p.id_mesa, 
+    p.puntaje_usuario1, 
+    p.puntaje_usuario2,
+    u_made.made AS made_usuario_sesion -- Agregar made del usuario en la sesión
+FROM partida p
+JOIN faccion f1 ON p.id_faccion_usuario1 = f1.id_faccion
+JOIN faccion f2 ON p.id_faccion_usuario2 = f2.id_faccion
+LEFT JOIN usuarios u1 ON p.nombre_usuario1 = u1.nombre_usuario
+LEFT JOIN usuarios u2 ON p.nombre_usuario2 = u2.nombre_usuario
+LEFT JOIN usuarios u_made ON u_made.id_usuario = ? -- Unir por ID de usuario
+JOIN juego j ON p.id_juego = j.id_juego -- Unir con la tabla juego para obtener el nombre
+JOIN horarios h1 ON p.hora_inicio = h1.id_hora -- Unir con la tabla horarios para obtener la hora de inicio
+JOIN horarios h2 ON p.hora_final = h2.id_hora -- Unir con la tabla horarios para obtener la hora de finalización
+WHERE p.estado = 'programado'
+AND p.fecha = CURDATE()";
+
+
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $id_usuario); // Vincula el ID de usuario
+$stmt->execute();
+$result = $stmt->get_result();
+
+// Verificar y procesar los resultados
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        ?>
+        <!-- Aquí empieza el HTML para mostrar las partidas programadas -->
+        <div class="match-entry mb-2 text-center">
+    <div class="row align-items-center player">
+            <?php
+            // Supongamos que $conn es tu conexión a la base de datos
+            $nombre_usuario = $row['nombre_usuario1'];
+            $query = "SELECT foto_perfil FROM usuarios WHERE nombre_usuario = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("s", $nombre_usuario);
+            $stmt->execute();
+            $stmt->bind_result($foto_perfil);
+            $stmt->fetch();
+            $stmt->close();
+
+            ?>
+        <div class="col-2">
+            <img src="<?php echo htmlspecialchars($foto_perfil); ?>" alt="Foto de perfil" class="img-fluid" style="object-fit: cover; border-radius: 5px; border: solid 2px #ECBE00;">
+        </div>
+        <div class="col-3">
+            <span><a class="category" href="user_profile.php?usuario=<?php echo urlencode($row['nombre_usuario1']); ?>"><?php echo htmlspecialchars($row['nombre_usuario1']); ?></a></span>
+        </div>
+        <div class="col-2">
+            <?php
+            if ($usuario_actual === $row['nombre_usuario1'] && $row['made_usuario1'] == 1) {
+                echo '<a href="panel_control.php?id_partida=' . $row['id_partida'] . '" class="btn btn-primary">ADMIN</a>';
+            } else {
+                if ($row['nombre_usuario2'] !== "N/A") {
+                    echo '<img src="assets/images/matches/sword.png" alt="Icono de batalla" class="img-fluid" style="max-width: 25px;">';
                 } else {
-                    $('#matchesContainer').append("No hay partidas programadas.");
+                    echo '<h7>PARTIDA ABIERTA</h7>';
                 }
-            },
-            error: function(xhr, status, error) {
-                console.error(error);
-                $('#matchesContainer').append("Error al cargar las partidas.");
             }
-        });
-    }
+            ?>
+        </div>
+        <div class="col-5">
+            <?php
+            // Supongamos que $conn es tu conexión a la base de datos
+            $nombre_usuario = $row['nombre_usuario2'];
+            $query = "SELECT foto_perfil FROM usuarios WHERE nombre_usuario = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("s", $nombre_usuario);
+            $stmt->execute();
+            $stmt->bind_result($foto_perfil2);
+            $stmt->fetch();
+            $stmt->close();
 
-    // Llama a la función para obtener las partidas al cargar la página
-    fetchMatches();
-    
-    // Puedes configurar intervalos para refrescar las partidas
-    // setInterval(fetchMatches, 5000); // Por ejemplo, cada 5 segundos
-});
-</script>
+            ?>
+            <?php
+            // Mostrar el botón solo si el usuario actual no es el usuario 1 y si la partida está abierta
+            if ($usuario_actual === $row['nombre_usuario1'] && $row['made_usuario1'] == 1) {
+                if ($row['nombre_usuario2'] !== "N/A") {
+                    echo '<div class="row align-items-center player">
+                            <div class="col-7">
+                                <span><a class="category" href="user_profile.php?usuario=' . urlencode($row['nombre_usuario2']) . '">' . htmlspecialchars($row['nombre_usuario2']) . '</a></span>
+                            </div>
+                            <div class="col-5">
+                                <img src="' . htmlspecialchars($foto_perfil2) . '" alt="Foto de perfil" class="img-fluid" style="object-fit: cover; border-radius: 5px; border: solid 2px #ECBE00;">
+                            </div>
+                        </div>';
+                } else {
+                    echo 'ESPERANDO';
+                }
+            } else {
+                // Verificar si el usuario en la sesión tiene made como 1
+                if ($row['made_usuario_sesion'] == 1) {
+                    if ($row['nombre_usuario2'] !== "N/A") {
+                        echo '<div class="row align-items-center player">
+                                <div class="col-5">
+                                    <span>' . htmlspecialchars($row["nombre_usuario2"]) . '</span>
+                                </div>
+                                <div class="col-7">';
+                                
+                                // Comprobación para el botón de salir
+                                if ($usuario_actual === $row['nombre_usuario2'] && $row['made_usuario2'] == 1) {
+                                    echo '<a href="leave-match.php?id_partida=' . $row['id_partida'] . '" class="btn btn-danger">SALIR</a>';
+                                }
+
+                        echo '  </div>
+                            </div>';
+
+                        // Agregar enlace para que el usuario2 salga de la partida
+                        
+                    } else {
+                        echo '<form action="join-match.php" method="POST" style="display:inline;">
+                                <input type="hidden" name="id_partida" value="' . $row['id_partida'] . '">
+                                <div class="button">
+                                    <button class="btn" disabled>UNIRSE</button>
+                                </div>
+                              </form>';
+                    }
+                } else {
+                    echo '<form action="join-match.php" method="POST" style="display:inline;">
+                            <input type="hidden" name="id_partida" value="' . $row['id_partida'] . '">
+                            <div class="button">
+                                <button class="btn">UNIRSE</button>
+                            </div>
+                          </form>';
+                }
+            }
+            ?>
+        </div>
+    </div>
+    <div class="scoreboard">
+        <div class="team">
+            <img src="<?php echo $row['icono1']; ?>" alt="Equipo 1">
+            <div class="team-name"><?php echo $row['faccion1']; ?><br><?php echo $row['subfaccion1']; ?></div>
+        </div>
+        <div class="score"><?php echo $row['puntaje_usuario1']; ?></div>
+        <div class="middle-section">
+            <h1><?php echo $row['id_juego']; ?></h1>
+            <h1><?php echo $row['puntos']; ?> Pts.</h1>
+            <div class="timer"><?php echo $row['hora_inicio']; ?> - <?php echo $row['hora_final']; ?></div>
+            <h1>MESA - <?php echo $row['id_mesa']; ?></h1>
+        </div>
+        <div class="score"><?php echo $row['puntaje_usuario2']; ?></div>
+        <div class="team">
+            <img src="<?php echo $row['icono2']; ?>" alt="Equipo 2" style="filter: opacity(<?php echo $row['nombre_usuario2'] !== 'N/A' ? '1' : '0.25'; ?>) <?php echo $row['nombre_usuario2'] !== 'N/A' ? 'none' : 'invert(100%)'; ?>;">
+            <div class="team-name"><?php echo $row['faccion2']; ?><br><?php echo $row['subfaccion2']; ?></div>
+        </div>
+    </div>
+</div>
+
+        <!-- Aquí termina el HTML para mostrar las partidas programadas -->
+        <?php
+    }
+} else {
+    echo "No hay partidas programadas.";
+}
+
+$conn->close();
+?>
+
 
                     <!-- Botón para iniciar una nueva partida -->
                     <?php
@@ -365,6 +477,7 @@ $(document).ready(function() {
                     ?>
                 </div>
             </div>
+        </div>
     </div>
     
 

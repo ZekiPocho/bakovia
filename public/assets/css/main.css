@@ -7183,6 +7183,9 @@ blockquote span {
     width: auto;
     margin-top: 5px;
   }
+  .player .col-7{
+    margin-top: 5px;
+  }
   .player img{
     hwidth: 80%; /* Ajusta el tamaño para evitar desbordes */
     height: auto; /* Mantiene la proporción de la imagen */

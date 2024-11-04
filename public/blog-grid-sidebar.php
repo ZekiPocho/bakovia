@@ -243,9 +243,9 @@ $total_paginas = ceil($total_publicaciones / $limite);
                     <div class="sidebar blog-grid-page">
                         <!-- Start Single Widget -->
                         <div class="widget popular-tag-widget">
-                            <a href="publicar-blog.php">
-                            <h5 class="widget-title">CREAR PUBLICACIÓN</h5>
-                            </a>
+                            <div class="button">
+                                    <a href="publicar-blog.php" class="btn">CREAR PUBLICACIÓN</a>
+                            </div>
                         </div>
                         <div class="widget search-widget">
                             <h5 class="widget-title">Busca en Publicaciones</h5>

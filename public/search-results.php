@@ -152,38 +152,35 @@ $resultPublicaciones = $conexion->query($sqlPublicaciones);
 </div>
 
 <h2>Publicaciones encontradas:</h2>
-<div class="row">
-    <?php if ($resultBlogs->num_rows > 0): ?>
-        <?php while ($blog = $resultBlogs->fetch_assoc()): ?>
-            <div class="col-lg-6 col-md-6 col-12">
-                <!-- Start Single Blog -->
-                <div class="single-blog">
-                    <div class="blog-img">
-                        <a href="blog-single-sidebar.php?id=<?= $blog['id_publicacion'] ?>">
-                            <img src="<?= htmlspecialchars($blog['imagen_publicacion']) ?>" alt="#" style="max-width: 555px; max-height: 300px; object-fit: contain;">
-                        </a>
-                    </div>
-                    <div class="blog-content">
-                        <a class="category" href="javascript:void(0)">
-                            <?= htmlspecialchars($blog['nombre_usuario']) ?>
-                        </a>
-                        <h4>
-                            <a href="blog-single-sidebar.php?id=<?= $blog['id_publicacion'] ?>">
-                                <?= strlen($blog['titulo']) > 75 ? htmlspecialchars(substr($blog['titulo'], 0, 75)) . '...' : htmlspecialchars($blog['titulo']) ?>
+
+        <!-- Mostrar publicaciones -->
+        <?php if ($resultPublicaciones && $resultPublicaciones->num_rows > 0): ?>
+            <?php while ($publicacion = $resultPublicaciones->fetch_assoc()): ?>
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="single-blog">
+                        <div class="blog-img">
+                            <a href="blog-single-sidebar.php?id=<?= $publicacion['id_publicacion'] ?>">
+                                <img src="<?= htmlspecialchars($publicacion['imagen_publicacion']) ?>" alt="#" style="max-width: 555px; max-height: 300px; object-fit: contain;">
                             </a>
-                        </h4>
-                        <br>
-                        <a class="category" href="javascript:void(0)">
-                            <i class="lni lni-tag"></i><?= htmlspecialchars($blog['tag']) ?>
-                        </a>
+                        </div>
+                        <div class="blog-content">
+                            <a class="category" href="javascript:void(0)"><?= htmlspecialchars($publicacion['nombre_usuario']) ?></a>
+                            <h4>
+                                <a href="blog-single-sidebar.php?id=<?= $publicacion['id_publicacion'] ?>">
+                                    <?= strlen($publicacion['titulo']) > 75 ? htmlspecialchars(substr($publicacion['titulo'], 0, 75)) . '...' : htmlspecialchars($publicacion['titulo']) ?>
+                                </a>
+                            </h4>
+                            <br>
+                            <?php if (!empty($publicacion['tag'])): ?>
+                                <a class="category" href="javascript:void(0)"><i class="lni lni-tag"></i><?= htmlspecialchars($publicacion['tag']) ?></a>
+                            <?php endif; ?>
+                        </div>
                     </div>
                 </div>
-                <!-- End Single Blog -->
-            </div>
-        <?php endwhile; ?>
-    <?php else: ?>
-        <p>No se encontraron publicaciones.</p>
-    <?php endif; ?>
+            <?php endwhile; ?>
+        <?php else: ?>
+            <p>No se encontraron publicaciones.</p>
+        <?php endif; ?>
 </div>
 
     <!-- Start Blog Singel Area -->

@@ -11,7 +11,25 @@ $nombre_usuario = $_SESSION['nombre_usuario'];
 
 // Verificar si se ha proporcionado un ID de partida válido
 if ($id_partida > 0) {
-    // Actualizar la partida para cambiar el nombre y facción del usuario2
+    // Consultar el estado de la partida
+    $sql_check_estado = "SELECT estado FROM partida WHERE id_partida = ?";
+    $stmt_check_estado = $conn->prepare($sql_check_estado);
+    $stmt_check_estado->bind_param("i", $id_partida);
+    $stmt_check_estado->execute();
+    $stmt_check_estado->bind_result($estado);
+    $stmt_check_estado->fetch();
+    $stmt_check_estado->close();
+
+    // Verificar si la partida está en progreso
+    if ($estado === 'en progreso') {
+        echo '<script type="text/javascript">
+                alert("La partida ya empezó.");
+                window.location.href = "matches.php";
+              </script>';
+        exit; // Terminar el script después de mostrar la alerta
+    }
+
+    // Si la partida no está en progreso, proceder a actualizar
     $sql_update_partida = "UPDATE partida SET nombre_usuario2 = 'N/A', id_faccion_usuario2 = 31416 WHERE id_partida = ? AND nombre_usuario2 = ?";
     $stmt_update_partida = $conn->prepare($sql_update_partida);
     $stmt_update_partida->bind_param("is", $id_partida, $nombre_usuario); // Utiliza el nombre de usuario de la sesión
@@ -39,3 +57,4 @@ if ($id_partida > 0) {
 
 $conn->close();
 ?>
+

@@ -202,7 +202,6 @@ include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a l
                 $id_reserva = $partida['id_reserva'] ?? null; // Asignar id_reserva directamente de partida
                 $ronda = $partida['ronda'] ?? null; // Asignar id_reserva directamente de partida
                 $partida['estado_partida'] = $partida['estado']; // Suponiendo que el estado se llama 'estado' en la base de datos
-                echo json_encode($partida);
                 // Ahora puedes usar las variables para mostrar los datos en tu HTML
             } else {
                 echo "No se encontró la partida con el ID proporcionado.";
@@ -350,7 +349,7 @@ function cargarPartida() {
                 actualizarCronometro(data.hora_inicio, 'tiempo-transcurrido');
 
                 // Verificar el estado de la partida y actualizar botones
-                if (data.estado_partida === 'en_progreso') { // Ajusta según el valor que indique el estado en la base de datos
+                if (data.estado_partida === 'En_progreso') { // Ajusta según el valor que indique el estado en la base de datos
                     iniciarBtn.style.display = 'none'; // Ocultar botón de iniciar
                     finalizarBtn.style.display = 'inline-block'; // Mostrar botón de finalizar
                 } else {
@@ -419,15 +418,6 @@ function cargarPartida() {
             }
         })
         .catch(error => console.error('Error al actualizar la ronda:', error));
-    }
-
-    // Verificar el estado del botón constantemente cada segundo
-    setInterval(verificarEstadoBoton, 1000);
-
-    // Función para verificar el estado del botón
-    function verificarEstadoBoton() {
-        iniciarBtn.disabled = (nombreJugador2 === 'N/A');
-        iniciarBtn.enabled = (nombreJugador2 != 'N/A')
     }
 
         // Al hacer clic en el botón de iniciar, cambiar el estado a 'en progreso'

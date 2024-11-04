@@ -181,7 +181,6 @@ $total_paginas = ceil($total_publicaciones / $limite);
                 <div class="col-lg-8 col-md-12 col-12">
                 <div class="row">
                 
-                <a class="category" href="blog-grid-sidebar.php?filtro=<?= urlencode($tag[' .$tag. ']) ?>"><i class="lni lni-tag"></i><?= htmlspecialchars($tag[' .$tag. ']) ?></a>
             <?php
             if ($result->num_rows > 0) {
                 // Mostrar cada publicación
@@ -205,7 +204,9 @@ $total_paginas = ceil($total_publicaciones / $limite);
                                 <a class="category" href="user_profile.php?usuario=' . urlencode($usuario) . '">' . htmlspecialchars($usuario) . '</a>
                                 <h4><a href="blog-single-sidebar.php?id='.$id_publicacion.'">'.(strlen($titulo) > 75 ? substr($titulo, 0, 75) . '...' : $titulo).'</a></h4>
                                 <br>
-                                <a class="category" href="blog-grid-sidebar.php?filtro=<?= urlencode($tag[' .$tag. ']) ?>"><?= htmlspecialchars($tag[' .$tag. ']) ?>'.$tag.'</a>
+                                <a href="blog-grid-sidebar.php?filtro=<?= urlencode($tag) ?>">
+                                ' . <i class="lni lni-tag"></i><?= htmlspecialchars($tag) ?> . '
+                                </a>
                             </div>
                         </div>
                         <!-- End Single Blog -->

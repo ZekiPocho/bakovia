@@ -372,12 +372,15 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                 echo '
                 <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                     <div class="card h-100">
-                        <img src="'.$imagen.'" class="card-img-top" alt="Imagen de la publicación" style="height: 215px; object-fit: cover;">
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="blog-single-sidebar.php?id='.$id_publicacion.'">'.(strlen($titulo) > 75 ? substr($titulo, 0, 75) . '...' : $titulo).'</a></h5>
-                        </div>
+                        <a href="blog-single-sidebar.php?id='.$id_publicacion.'" style="text-decoration: none; color: inherit;">
+                            <img src="'.$imagen.'" class="card-img-top" alt="Imagen de la publicación" style="height: 215px; object-fit: cover;">
+                            <div class="card-body">
+                                <h6 class="card-title">'.(strlen($titulo) > 12 ? substr($titulo, 0, 12) . '...' : $titulo).'</h6>
+                            </div>
+                        </a>
                     </div>
                 </div>';
+
             }
         } else {
             echo '<div class="col-12"><p class="text-center">No hay publicaciones disponibles.</p></div>';

@@ -225,9 +225,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['comentar'])) {
                                 // Mostrar el botón de "Eliminar" si el usuario autenticado es el autor de la publicación
                                 if (isset($_SESSION['id_usuario']) && $_SESSION['id_usuario'] == $id_usuario_publicacion) {
                                     echo '
-                                    <form action="delete_publication.php" method="POST" onsubmit="return confirm(\'¿Estás seguro de que deseas eliminar esta publicación?\');">
+                                    <form action="delete_publication.php" method="POST" onsubmit="return confirm(\'¿Estás seguro de que deseas eliminar esta publicación?\');" style="border-top: solid 2px #6E869D;">
                                         <input type="hidden" name="id_publicacion" value="' . $id_publicacion . '">
-                                        <button type="submit" class="btn btn-danger">Eliminar publicación</button>
+                                        <button type="submit" class="btn btn-danger" style="margin: 10px;">Eliminar publicación</button>
                                     </form>';
                                 }
 

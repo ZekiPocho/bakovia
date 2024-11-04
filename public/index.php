@@ -198,7 +198,7 @@ session_start();
                     ?>
                     <?php
                     // Comprobar si existe la sesión de la foto de perfil
-                    if (isset($_SESSION['rol']) === 1) {
+                    if ($_SESSION['id_rol'] = 1) {
                         // Mostrar la foto de perfil
                         echo '<a style="color: yellow;" href="../admin/admin-dashboard.php">ADMIN</a>';
                     }

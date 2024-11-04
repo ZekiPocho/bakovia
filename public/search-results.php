@@ -157,25 +157,27 @@ $resultPublicaciones = $conexion->query($sqlPublicaciones);
         <?php if ($resultPublicaciones && $resultPublicaciones->num_rows > 0): ?>
             <?php while ($publicacion = $resultPublicaciones->fetch_assoc()): ?>
                 <div class="col-lg-6 col-md-6 col-12">
-                    <div class="single-blog">
-                        <div class="blog-img">
-                            <a href="blog-single-sidebar.php?id=<?= $publicacion['id_publicacion'] ?>">
-                                <img src="<?= htmlspecialchars($publicacion['imagen_publicacion']) ?>" alt="#" style="max-width: 555px; max-height: 300px; object-fit: contain;">
-                            </a>
-                        </div>
-                        <div class="blog-content">
-                            <a class="category" href="javascript:void(0)"><?= htmlspecialchars($publicacion['nombre_usuario']) ?></a>
-                            <h4>
-                                <a href="blog-single-sidebar.php?id=<?= $publicacion['id_publicacion'] ?>">
-                                    <?= strlen($publicacion['titulo']) > 75 ? htmlspecialchars(substr($publicacion['titulo'], 0, 75)) . '...' : htmlspecialchars($publicacion['titulo']) ?>
-                                </a>
-                            </h4>
-                            <br>
-                            <?php if (!empty($publicacion['tag'])): ?>
-                                <a class="category" href="javascript:void(0)"><i class="lni lni-tag"></i><?= htmlspecialchars($publicacion['tag']) ?></a>
-                            <?php endif; ?>
-                        </div>
-                    </div>
+                                                <!-- Start Single Blog -->
+                                                <div class="single-blog">
+                                <div class="blog-img">
+                                    <a href="blog-single-sidebar.php?id=' . $id_publicacion . '">
+                                        <img src="' . htmlspecialchars($imagen) . '" alt="#" style="max-width: 555px; max-height: 300px; object-fit: contain;">
+                                    </a>
+                                </div>
+                                <div class="blog-content">
+                                    <a class="category" href="user_profile.php?usuario=' . urlencode($usuario) . '">' . htmlspecialchars($usuario) . '</a>
+                                    <h4>
+                                        <a href="blog-single-sidebar.php?id=' . $id_publicacion . '">' . 
+                                        (strlen($titulo) > 75 ? htmlspecialchars(substr($titulo, 0, 75)) . '...' : htmlspecialchars($titulo)) . 
+                                        '</a>
+                                    </h4>
+                                    <br>
+                                    <a class="category" href="blog-grid-sidebar.php?filtro=' . urlencode($tag) . '">
+                                        <i class="lni lni-tag"></i>' . htmlspecialchars($tag) . '
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- End Single Blog -->
                 </div>
             <?php endwhile; ?>
         <?php else: ?>

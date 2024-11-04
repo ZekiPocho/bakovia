@@ -1,126 +1,6 @@
 <?php
-    require_once "../src/validate_session.php";
     include "db.php";
 ?>
-<?php
-
-// Verifica si el formulario fue enviado
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Obtener el ID de usuario
-    $userId = $_SESSION['id_usuario'];
-
-    // Consulta para obtener los datos actuales del usuario
-    $querySelect = "SELECT nombre_usuario, biografia, foto_perfil, army_showcase, army_desc FROM usuarios WHERE id_usuario = ?";
-    $stmtSelect = $conn->prepare($querySelect);
-    $stmtSelect->bind_param("i", $userId);
-    $stmtSelect->execute();
-    $stmtSelect->bind_result($currentUsername, $currentBio, $currentProfilePhotoPath, $currentArmyShowcasePath, $currentArmyDesc);
-    $stmtSelect->fetch();
-    $stmtSelect->close();
-
-    // Procesar datos del formulario y usar valores actuales si los campos están vacíos
-    $username = !empty(trim($_POST['username'])) ? trim($_POST['username']) : $currentUsername;
-    $bio = isset($_POST['bio']) && trim($_POST['bio']) !== '' ? trim($_POST['bio']) : $currentBio;
-    $description = isset($_POST['description1']) && trim($_POST['description1']) !== '' ? trim($_POST['description1']) : $currentArmyDesc;
-
-    // Validación de datos
-    $errors = [];
-    if (strlen($bio) > 640) {
-        $errors[] = "La biografía no puede exceder los 640 caracteres.";
-    }
-
-    // Inicializar rutas de las imágenes con los valores actuales
-    $targetProfileFile = $currentProfilePhotoPath;
-    $targetArmyFile = $currentArmyShowcasePath;
-
-    // Procesar imagen de perfil
-    if (isset($_FILES['profileImage']) && $_FILES['profileImage']['error'] === UPLOAD_ERR_OK) {
-        $profileImage = $_FILES['profileImage'];
-        if (validateImageSize($profileImage)) {
-            $uploadDirectory = '../uploads/user/';
-            $fileExtension = pathinfo($profileImage['name'], PATHINFO_EXTENSION);
-            $newProfileFileName = $userId . '.' . $fileExtension;
-            $targetProfileFile = $uploadDirectory . $newProfileFileName;
-
-            if (move_uploaded_file($profileImage['tmp_name'], $targetProfileFile)) {
-                $_SESSION['foto_perfil'] = $targetProfileFile; // Actualiza la sesión
-            } else {
-                $errors[] = "Error al subir la imagen de perfil.";
-            }
-        } else {
-            $errors[] = "La imagen de perfil es demasiado grande (máximo 5MB).";
-        }
-    }
-
-    // Procesar imagen de Army Showcase
-    if (isset($_FILES['armyShowcaseImage']) && $_FILES['armyShowcaseImage']['error'] === UPLOAD_ERR_OK) {
-        $armyShowcaseImage = $_FILES['armyShowcaseImage'];
-        if (validateImageSize($armyShowcaseImage)) {
-            $uploadArmyDirectory = '../uploads/army/';
-            $armyFileExtension = pathinfo($armyShowcaseImage['name'], PATHINFO_EXTENSION);
-            $newArmyFileName = $userId . '.' . $armyFileExtension;
-            $targetArmyFile = $uploadArmyDirectory . $newArmyFileName;
-
-            if (move_uploaded_file($armyShowcaseImage['tmp_name'], $targetArmyFile)) {
-                $_SESSION['army_showcase'] = $targetArmyFile; // Actualiza la sesión
-            } else {
-                $errors[] = "Error al subir la imagen de Army Showcase.";
-            }
-        } else {
-            $errors[] = "La imagen de Army Showcase es demasiado grande (máximo 5MB).";
-        }
-    }
-
-    // Guardar los cambios en la base de datos si no hay errores
-    if (empty($errors)) {
-        // Solo actualizar los campos que han cambiado
-        $query = "UPDATE usuarios SET nombre_usuario = ?, biografia = ?, army_desc = ?";
-        $params = [$username, $bio, $description];
-        $types = "sss";
-
-        if ($targetProfileFile !== $currentProfilePhotoPath) {
-            $query .= ", foto_perfil = ?";
-            $params[] = $targetProfileFile;
-            $types .= "s";
-        }
-
-        if ($targetArmyFile !== $currentArmyShowcasePath) {
-            $query .= ", army_showcase = ?";
-            $params[] = $targetArmyFile;
-            $types .= "s";
-        }
-
-        $query .= " WHERE id_usuario = ?";
-        $params[] = $userId;
-        $types .= "i";
-
-        $stmt = $conn->prepare($query);
-        if ($stmt === false) {
-            die('Error en la preparación de la consulta: ' . $conn->error);
-        }
-
-        $stmt->bind_param($types, ...$params);
-        $stmt->execute();
-        $stmt->close();
-
-        // Actualiza la sesión con los nuevos datos
-        $_SESSION['nombre_usuario'] = $username;
-        $_SESSION['biografia'] = $bio;
-        $_SESSION['army_desc'] = $description;
-
-        // Redirige a la misma página o a otra después de guardar
-        header('Location: profile.php');
-        exit;
-    }
-}
-
-// Función para validar el tamaño de la imagen
-function validateImageSize($file) {
-    return $file['size'] <= 5 * 1024 * 1024; // 5MB
-}
-?>
-
-
 <!DOCTYPE html>
 
 <html class="no-js" lang="zxx">  
@@ -240,7 +120,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     <div class="navbar-nav">
         <div class="nav-item">
             <a aria-label="Toggle navigation" href="logout.php">
-            CERRAR SESIÓN <span class="material-symbols-outlined">logout</span>
+            
             </a>
         </div>
     </div>

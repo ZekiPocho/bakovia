@@ -7173,8 +7173,16 @@ blockquote span {
     
   }
   .player .col-2 {
-    
+    margin-bottom: 5px;
     width:  auto;
+  }
+  .player .col-3{
+    width: auto;
+    margin-bottom: 5px;
+  }
+  .player .col-5{
+    width: auto;
+    margin-top: 5px;
   }
   .player img{
     hwidth: 80%; /* Ajusta el tamaño para evitar desbordes */

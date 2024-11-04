@@ -196,16 +196,22 @@ $total_paginas = ceil($total_publicaciones / $limite);
                         <!-- Start Single Blog -->
                         <div class="single-blog">
                             <div class="blog-img">
-                                <a href="blog-single-sidebar.php?id='.$id_publicacion.'">
-                                    <img src="'.$imagen.'" alt="#" style="max-width: 555px; max-height: 300px; object-fit: contain;">
+                                <a href="blog-single-sidebar.php?id=<?php echo $id_publicacion; ?>">
+                                    <img src="<?php echo htmlspecialchars($imagen); ?>" alt="#" style="max-width: 555px; max-height: 300px; object-fit: contain;">
                                 </a>
                             </div>
                             <div class="blog-content">
-                                <a class="category" href="user_profile.php?usuario=' . urlencode($usuario) . '">' . htmlspecialchars($usuario) . '</a>
-                                <h4><a href="blog-single-sidebar.php?id='.$id_publicacion.'">'.(strlen($titulo) > 75 ? substr($titulo, 0, 75) . '...' : $titulo).'</a></h4>
+                                <a class="category" href="user_profile.php?usuario=<?php echo urlencode($usuario); ?>">
+                                    <?php echo htmlspecialchars($usuario); ?>
+                                </a>
+                                <h4>
+                                    <a href="blog-single-sidebar.php?id=<?php echo $id_publicacion; ?>">
+                                        <?php echo (strlen($titulo) > 75 ? htmlspecialchars(substr($titulo, 0, 75)) . '...' : htmlspecialchars($titulo)); ?>
+                                    </a>
+                                </h4>
                                 <br>
-                                <a href="blog-grid-sidebar.php?filtro=<?= urlencode($tag) ?>">
-                                ' . <i class="lni lni-tag"></i> . '<?= ' . htmlspecialchars($tag) . ' ?>
+                                <a href="blog-grid-sidebar.php?filtro=<?php echo urlencode($tag); ?>">
+                                    <i class="lni lni-tag"></i> <?php echo htmlspecialchars($tag); ?>
                                 </a>
                             </div>
                         </div>

@@ -159,7 +159,6 @@ include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a l
                         p.puntaje_usuario1 AS puntaje_jugador1, 
                         p.puntaje_usuario2 AS puntaje_jugador2,
                         p.id_reserva AS id_reserva,
-                        p.estado AS estado,
                         p.ronda AS ronda -- Extraer ronda directamente de partida
                     FROM partida p
                     LEFT JOIN faccion f1 ON p.id_faccion_usuario1 = f1.id_faccion
@@ -201,7 +200,7 @@ include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a l
                 $puntaje_jugador2 = $partida['puntaje_jugador2'] ?? null;
                 $id_reserva = $partida['id_reserva'] ?? null; // Asignar id_reserva directamente de partida
                 $ronda = $partida['ronda'] ?? null; // Asignar id_reserva directamente de partida
-                $partida['estado_partida'] = $partida['estado']; // Suponiendo que el estado se llama 'estado' en la base de datos
+        
                 // Ahora puedes usar las variables para mostrar los datos en tu HTML
             } else {
                 echo "No se encontró la partida con el ID proporcionado.";
@@ -308,7 +307,7 @@ include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a l
 </div>
 
 <script>
-    // ID de la partida en curso (obtenido desde PHP)
+    // ID de la partida en curso (lo obtienes desde PHP)
     const idPartida = "<?php echo $id_partida; ?>";
     const nombreJugador2 = "<?php echo $nombre_jugador2; ?>";
     const iniciarBtn = document.getElementById('iniciar-btn');
@@ -318,7 +317,7 @@ include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a l
     cargarPartida();
 
     // Cargar datos de la partida cada 5 segundos
-    setInterval(cargarPartida, 5000); // Ajustado a 5000 ms
+    setInterval(cargarPartida, 5000); // Cambiar a 5000 ms para evitar carga excesiva
 
     function cargarPartida() {
         fetch(`actualizar_partida.php?id_partida=${idPartida}`)
@@ -347,22 +346,6 @@ include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a l
 
                     // Actualizar cronómetro (hora de inicio)
                     actualizarCronometro(data.hora_inicio, 'tiempo-transcurrido');
-
-                    // Verificar el estado de la partida y la participación del jugador 2
-                    if (data.nombre_jugador2 !== 'N/A') {
-                        iniciarBtn.disabled = false; // Habilitar botón de iniciar si hay un jugador 2
-                    } else {
-                        iniciarBtn.disabled = true; // Desactivar botón de iniciar si no hay jugador 2
-                    }
-
-                    // Controlar visibilidad de botones según el estado de la partida
-                    if (data.estado_partida === 'en_progreso') {
-                        iniciarBtn.style.display = 'none'; // Ocultar botón de iniciar
-                        finalizarBtn.style.display = 'inline-block'; // Mostrar botón de finalizar
-                    } else {
-                        iniciarBtn.style.display = 'inline-block'; // Mostrar botón de iniciar
-                        finalizarBtn.style.display = 'none'; // Ocultar botón de finalizar
-                    }
                 } else {
                     console.error(data.error);
                 }
@@ -370,12 +353,14 @@ include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a l
             .catch(error => console.error('Error al cargar la partida:', error));
     }
 
+
+
     // Detectar cambios en los inputs de puntaje y actualizar la base de datos
-    document.querySelector('input[name="puntaje_jugador1"]').addEventListener('change', function () {
+    document.querySelector('input[name="puntaje_jugador1"]').addEventListener('change', function() {
         actualizarPuntaje(1, this.value);
     });
 
-    document.querySelector('input[name="puntaje_jugador2"]').addEventListener('change', function () {
+    document.querySelector('input[name="puntaje_jugador2"]').addEventListener('change', function() {
         actualizarPuntaje(2, this.value);
     });
 
@@ -390,45 +375,29 @@ include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a l
             method: 'POST',
             body: formData
         })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    console.log(`Puntaje del jugador ${jugador} actualizado correctamente.`);
-                } else {
-                    console.error('Error al actualizar el puntaje:', data.error);
-                }
-            })
-            .catch(error => console.error('Error al actualizar el puntaje:', error));
-    }
-
-    document.querySelector('input[name="rondas"]').addEventListener('change', function () {
-        actualizarRonda(this.value);
-    });
-
-    function actualizarRonda(ronda) {
-        const formData = new FormData();
-        formData.append('id_partida', idPartida);
-        formData.append('ronda', ronda);
-
-        fetch('../public/actualizar_partida.php', {
-            method: 'POST',
-            body: formData
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log(`Puntaje del jugador ${jugador} actualizado correctamente.`);
+            } else {
+                console.error('Error al actualizar el puntaje:', data.error);
+            }
         })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    console.log('Ronda actualizada correctamente.');
-                } else {
-                    console.error('Error al actualizar la ronda:', data.error);
-                }
-            })
-            .catch(error => console.error('Error al actualizar la ronda:', error));
+        .catch(error => console.error('Error al actualizar el puntaje:', error));
     }
 
-    // Al hacer clic en el botón de iniciar, cambiar el estado a 'en progreso'
+    // Verificar el estado del botón constantemente cada segundo
+    setInterval(verificarEstadoBoton, 1000);
+
+    // Función para verificar el estado del botón
+    function verificarEstadoBoton() {
+        iniciarBtn.disabled = (nombreJugador2 === 'N/A');
+    }
+
+        // Al hacer clic en el botón de iniciar, cambiar el estado a 'en progreso'
     iniciarBtn.addEventListener('click', function (e) {
         e.preventDefault();
-        actualizarEstadoPartida('en_progreso');
+        actualizarEstadoPartida('en progreso');
     });
 
     // Función para actualizar el estado de la partida
@@ -441,27 +410,27 @@ include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a l
             body: JSON.stringify({
                 id_partida: idPartida,
                 estado: nuevoEstado,
-                id_jugador1: "<?php echo $nombre_jugador1; ?>",
+                id_jugador1: nombre_jugador1,
                 id_jugador2: nombreJugador2
             })
         })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    if (nuevoEstado === 'en progreso') {
-                        iniciarBtn.style.display = 'none'; // Ocultar botón de iniciar
-                        finalizarBtn.style.display = 'inline-block'; // Mostrar botón de finalizar
-                        alert('Partida en: PROGRESO');
-                    } else if (nuevoEstado === 'finalizado') {
-                        finalizarBtn.disabled = true; // Deshabilitar el botón de finalizar
-                        alert('La partida ha sido finalizada.');
-                        window.location.href = 'matches.php'; // Redirigir al usuario a matches.php
-                    }
-                } else {
-                    alert('Error al actualizar el estado de la partida.');
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                if (nuevoEstado === 'en progreso') {
+                    iniciarBtn.style.display = 'none'; // Ocultar botón de iniciar
+                    finalizarBtn.style.display = 'inline-block'; // Mostrar botón de finalizar
+                    alert('Partida en: PROGRESO');
+                } else if (nuevoEstado === 'finalizado') {
+                    finalizarBtn.disabled = true; // Deshabilitar el botón de finalizar
+                    alert('La partida ha sido finalizada.');
+                    window.location.href = 'matches.php'; // Redirigir al usuario a matches.php
                 }
-            })
-            .catch(error => console.error('Error:', error));
+            } else {
+                alert('Error al actualizar el estado de la partida.');
+            }
+        })
+        .catch(error => console.error('Error:', error));
     }
 
     // Al hacer clic en el botón de finalizar, mostrar confirmación antes de cambiar el estado
@@ -473,12 +442,13 @@ include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a l
     });
 </script>
 
-<script>
-    function confirmDelete() {
-        return confirm("¿Estás seguro de que deseas borrar la partida?");
-    }
-</script>
 
+
+<script>
+function confirmDelete() {
+    return confirm("¿Estás seguro de que deseas borrar la partida?");
+}
+</script>
 
     
 

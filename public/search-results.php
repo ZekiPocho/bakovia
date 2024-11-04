@@ -48,6 +48,25 @@ $resultPublicaciones = $conexion->query($sqlPublicaciones);
     <link rel="stylesheet" href="assets/css/main.css" />
 
 </head>
+<body>
+    <!--[if lte IE 9]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif]-->
+
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-icon">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <!-- /End Preloader -->
 
 <!-- HEADER Y NAVBAR PRO -->
 <header class="header navbar-area">

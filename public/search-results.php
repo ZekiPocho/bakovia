@@ -177,27 +177,6 @@ $resultPublicaciones = $conexion->query($sqlPublicaciones);
     <br>
     <!-- Sección de productos -->
     <h2>Productos encontrados:</h2>
-<div class="row">
-    <?php if ($resultProductos->num_rows > 0): ?>
-        <?php while ($producto = $resultProductos->fetch_assoc()): ?>
-            <div class="col-lg-4 col-md-6 col-12">
-                <div class="single-product">
-                    <a href="product-details.php?id=<?= $producto['id_producto'] ?>" style="text-decoration: none; color: inherit;">
-                        <div class="product-image">
-                            <img src="<?= htmlspecialchars($producto['imagen_producto']) ?>" 
-                                 alt="<?= htmlspecialchars($producto['nombre_producto']) ?>" 
-                                 class="first-image">
-                            <?php if (!empty($producto['imagen_producto2'])): ?>
-                                <img src="<?= htmlspecialchars($producto['imagen_producto2']) ?>" 
-                                     alt="<?= htmlspecialchars($producto['nombre_producto']) ?>" 
-                                     class="second-image">
-                            <?php endif; ?>
-                        </div>
-                        <div class="product-info">
-                            <span class="category"><?= htmlspecialchars($producto['tipo']) ?></span>
-                            <span class="title"><?= htmlspecialchars($producto['nombre_producto']) ?></span>
-                            <div class="price">
-                                <span>Bs. <?= number_format($producto['precio'], 2) ?></span>
     <div class="row">
         <?php if ($resultProductos->num_rows > 0): ?>
             <?php while ($producto = $resultProductos->fetch_assoc()): ?>

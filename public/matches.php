@@ -332,17 +332,29 @@ if ($result->num_rows > 0) {
         </div>
         <div class="col-5">
             <?php
+            // Supongamos que $conn es tu conexión a la base de datos
+            $nombre_usuario = $row['nombre_usuario2'];
+            $query = "SELECT foto_perfil FROM usuarios WHERE nombre_usuario = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("s", $nombre_usuario);
+            $stmt->execute();
+            $stmt->bind_result($foto_perfil2);
+            $stmt->fetch();
+            $stmt->close();
+
+            ?>
+            <?php
             // Mostrar el botón solo si el usuario actual no es el usuario 1 y si la partida está abierta
             if ($usuario_actual === $row['nombre_usuario1'] && $row['made_usuario1'] == 1) {
                 if ($row['nombre_usuario2'] !== "N/A") {
                     echo '<div class="row align-items-center">
                             <div class="col-7">
-                                <span>' . htmlspecialchars($row["nombre_usuario2"]) . '</span>
+                                <span><a class="category" href="user_profile.php?usuario=' . urlencode($row['nombre_usuario2']) . '">' . htmlspecialchars($row['nombre_usuario2']) . '</a></span>
                             </div>
                             <div class="col-5">
-                                <img src="https://via.placeholder.com/50x50" alt="Foto de perfil" class="img-fluid">
+                                <img src="' . htmlspecialchars($foto_perfil2) . '" alt="Foto de perfil" class="img-fluid" style="object-fit: cover; border-radius: 5px; border: solid 2px #ECBE00;">
                             </div>
-                          </div>';
+                        </div>';
                 } else {
                     echo 'ESPERANDO';
                 }
@@ -400,19 +412,7 @@ if ($result->num_rows > 0) {
         </div>
         <div class="score"><?php echo $row['puntaje_usuario2']; ?></div>
         <div class="team">
-        <?php
-            // Supongamos que $conn es tu conexión a la base de datos
-            $nombre_usuario = $row['nombre_usuario2'];
-            $query = "SELECT foto_perfil FROM usuarios WHERE nombre_usuario = ?";
-            $stmt = $conn->prepare($query);
-            $stmt->bind_param("s", $nombre_usuario);
-            $stmt->execute();
-            $stmt->bind_result($foto_perfil2);
-            $stmt->fetch();
-            $stmt->close();
-
-            ?>
-            <img src="<?php echo htmlspecialchars($foto_perfil2); ?>" alt="Equipo 2" style="filter: opacity(<?php echo $row['nombre_usuario2'] !== 'N/A' ? '1' : '0.25'; ?>) <?php echo $row['nombre_usuario2'] !== 'N/A' ? 'none' : 'invert(100%)'; ?>;">
+            <img src="<?php echo $row['icono2']; ?>" alt="Equipo 2" style="filter: opacity(<?php echo $row['nombre_usuario2'] !== 'N/A' ? '1' : '0.25'; ?>) <?php echo $row['nombre_usuario2'] !== 'N/A' ? 'none' : 'invert(100%)'; ?>;">
             <div class="team-name"><?php echo $row['faccion2']; ?><br><?php echo $row['subfaccion2']; ?></div>
         </div>
     </div>

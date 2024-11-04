@@ -151,31 +151,65 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     <!-- End Breadcrumbs -->
     <br>
     <br>
+    <?php
+    
+    if (isset($_GET['usuario'])) {
+    
+        $email = $_POST['email'];
+        $password = $_POST['clave'];
 
+        // Consulta SQL para verificar el correo y obtener el hash de la contraseña
+        $stmt = $conn->prepare("SELECT id_usuario, nombre_usuario, contrasena, correo, foto_perfil, 
+                                   biografia, fecha_registro, verificado, army_showcase, army_desc, 
+                                   rango_id, wins, loses, id_rol, token
+                            FROM usuarios 
+                            WHERE nombre_usuario=? ");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $res = $stmt->get_result();
 
+        if ($res && mysqli_num_rows($res) > 0) {
+            $userData = $res->fetch_assoc();
+            
+            $mail = $userData['correo'];
+            $nombre = $userData['nombre_usuario'];
+            $id = $userData['id_usuario'];
+            $foto_perfil = $userData['foto_perfil'];
+            $bio = $userData['biografia'] ?? null;
+            $registro = $userData['fecha_registro'];
+            $army = $userData['army_showcase'];
+            $army_desc = $userData['army_desc'];
+            $rango = $userData['rango_id'];
+            $wins = $userData['wins'];
+            $loses = $userData['loses'];
+            $id_rol = $userData['id_rol'];
+            $token = $userData['token'];
+
+    }
+    ?>
     <div class="container-sm p-3">
     <div class="row">
         <div class="d-flex flex-wrap align-items-start">
             <div class="col-auto profile-img">
-                <img src="<?php echo $_SESSION['foto_perfil'] ?? 'https://via.placeholder.com/200'; ?>" alt="Foto de perfil" class="profile-img" loading="lazy">
+                <img src="<?php echo $foto_perfil ?? 'https://via.placeholder.com/200'; ?>" alt="Foto de perfil" class="profile-img" loading="lazy">
             </div>
 
             <div class="col-7 profile-info-name">
                 <a href="edit-profile.php" style="text-decoration: none;"
                    onmouseover="this.style.textDecoration='underline';"
                    onmouseout="this.style.textDecoration='none';">
-                    <h2><?php echo htmlspecialchars($_SESSION['nombre_usuario']); ?>
+                    <h2><?php echo htmlspecialchars($nombre); ?>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" transform="rotate(0 0 0)">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M19.3028 3.7801C18.4241 2.90142 16.9995 2.90142 16.1208 3.7801L14.3498 5.5511C14.3442 5.55633 14.3387 5.56166 14.3333 5.5671C14.3279 5.57253 14.3225 5.57803 14.3173 5.58359L5.83373 14.0672C5.57259 14.3283 5.37974 14.6497 5.27221 15.003L4.05205 19.0121C3.9714 19.2771 4.04336 19.565 4.23922 19.7608C4.43508 19.9567 4.72294 20.0287 4.98792 19.948L8.99703 18.7279C9.35035 18.6203 9.67176 18.4275 9.93291 18.1663L20.22 7.87928C21.0986 7.0006 21.0986 5.57598 20.22 4.6973L19.3028 3.7801ZM14.8639 7.15833L6.89439 15.1278C6.80735 15.2149 6.74306 15.322 6.70722 15.4398L5.8965 18.1036L8.56029 17.2928C8.67806 17.257 8.7852 17.1927 8.87225 17.1057L16.8417 9.13619L14.8639 7.15833ZM17.9024 8.07553L19.1593 6.81862C19.4522 6.52572 19.4522 6.05085 19.1593 5.75796L18.2421 4.84076C17.9492 4.54787 17.4743 4.54787 17.1814 4.84076L15.9245 6.09767L17.9024 8.07553Z" fill="#ffffff"/>
                         </svg>
                     </h2>
                 </a>
                 <div class="bio">
-                    <p class="text-muted"><?php echo htmlspecialchars($_SESSION['biografia']); ?></p>
+                    <p class="text-muted"><?php echo htmlspecialchars($bio); ?></p>
                 </div>
                 <?php
-                if (isset($_SESSION['id_usuario'])) {
-                    $user_id = $_SESSION['id_usuario'];
+                if (isset($id)) {
+                    $user_id = $id];
                 
                     // Consulta para obtener el rango_id del usuario
                     $query = "SELECT rango_id FROM usuarios WHERE id_usuario = ?";
@@ -197,8 +231,8 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                         $stmt_rango->close();
                 
                         // Guardar la información en las variables de sesión
-                        $_SESSION['rango_id'] = $imagen_rango;
-                        $_SESSION['nombre_rango'] = $nombre_rango;
+                        $rango = $imagen_rango;
+                        $nombre_rango = $nombre_rango;
                     }
                 }
                 ?>
@@ -208,11 +242,11 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
                     <center>
                         <li><p>RANGO</p></li>
                         <div class="medal-container">
-                            <img class="medal-image" src="<?php echo $_SESSION['rango_id'] ?? 'https://via.placeholder.com/500'; ?>" alt="rango">
+                            <img class="medal-image" src="<?php echo $rango ?? 'https://via.placeholder.com/500'; ?>" alt="rango">
                         </div>
-                        <li style="text-decoration: underline;"><p><?php echo htmlspecialchars($_SESSION['nombre_rango'] ?? 'Nombre de rango'); ?></p></li>
+                        <li style="text-decoration: underline;"><p><?php echo htmlspecialchars($nombre_rango ?? 'Nombre de rango'); ?></p></li>
                         <li><p class="text-muted">MIEMBRO DESDE</p></li>
-                        <li><p class="text-muted"><?php echo htmlspecialchars($_SESSION['fecha_registro']); ?></p></li>
+                        <li><p class="text-muted"><?php echo htmlspecialchars($fecha); ?></p></li>
                     </center>
                     </ul>
                 </div>
@@ -224,9 +258,9 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
             <div class="profile-cards">
                 <div class="card mb-3 p-3">
                     <center><h5 class="card-title">ARMY SHOWCASE</h5></center>
-                    <img src="<?php echo $_SESSION['army_showcase'] ?? '../uploads/army/placeholder.png'; ?>" class="card-img-top" alt="Imagen ARMY SHOWCASE" style="max-width: 800px;max-height: 400px;object-fit: cover;border: solid 2px;border-radius: 5px;" loading="lazy">
+                    <img src="<?php echo $army ?? '../uploads/army/placeholder.png'; ?>" class="card-img-top" alt="Imagen ARMY SHOWCASE" style="max-width: 800px;max-height: 400px;object-fit: cover;border: solid 2px;border-radius: 5px;" loading="lazy">
                     <div class="card-body">
-                        <p class="card-text"><?php echo htmlspecialchars($_SESSION['army_desc'] ?? 'Descripción breve de tu Showcase.'); ?></p>
+                        <p class="card-text"><?php echo htmlspecialchars($army_desc ?? 'Descripción breve de tu Showcase.'); ?></p>
                     </div>
                 </div>
                 <div class="card p-3">
@@ -235,7 +269,7 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     <center><h5 class="card-title">PUBLICACIONES</h5></center>
     <div class="row">
         <?php
-        $id_usuario = $_SESSION['id_usuario'];
+        $id_usuario = $id;
         $query = $conn->prepare("SELECT * FROM publicaciones WHERE id_usuario = ?");
         $query->bind_param("i", $id_usuario);
         $query->execute();

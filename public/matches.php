@@ -33,76 +33,6 @@ unset($_SESSION['faccion']);
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
-
-<script>
-$(document).ready(function() {
-    function fetchMatches() {
-        $.ajax({
-            url: 'fetch_matches.php', // Cambia esto por la ruta a tu nuevo archivo PHP
-            method: 'GET',
-            dataType: 'json',
-            success: function(data) {
-                $('#matchesContainer').empty(); // Limpia el contenedor antes de agregar nuevos datos
-                if (data.length > 0) {
-                    data.forEach(function(row) {
-                        $('#matchesContainer').append(`
-                            <div class="match-entry mb-2 text-center">
-                                <div class="row align-items-center player">
-                                    <div class="col-2">
-                                        <img src="${row.foto_perfil_usuario1}" alt="Foto de perfil" class="img-fluid" style="object-fit: cover; border-radius: 5px; border: solid 2px #ECBE00;">
-                                    </div>
-                                    <div class="col-3">
-                                        <span><a class="category" href="user_profile.php?usuario=${encodeURIComponent(row.nombre_usuario1)}">${row.nombre_usuario1}</a></span>
-                                    </div>
-                                    <div class="col-2">
-                                        ${row.nombre_usuario2 !== 'N/A' ? '<img src="assets/images/matches/sword.png" alt="Icono de batalla" class="img-fluid" style="max-width: 25px;">' : '<h7>PARTIDA ABIERTA</h7>'}
-                                    </div>
-                                    <div class="col-5">
-                                        ${row.nombre_usuario2 !== 'N/A' ? `
-                                            <span><a class="category" href="user_profile.php?usuario=${encodeURIComponent(row.nombre_usuario2)}">${row.nombre_usuario2}</a></span>
-                                        ` : 'ESPERANDO'}
-                                    </div>
-                                </div>
-                                <div class="scoreboard">
-                                    <div class="team">
-                                        <img src="${row.icono1}" alt="Equipo 1">
-                                        <div class="team-name">${row.faccion1}<br>${row.subfaccion1}</div>
-                                    </div>
-                                    <div class="score">${row.puntaje_usuario1}</div>
-                                    <div class="middle-section">
-                                        <h1>${row.id_juego}</h1>
-                                        <h1>${row.puntos} Pts.</h1>
-                                        <div class="timer">${row.hora_inicio} - ${row.hora_final}</div>
-                                        <h1>MESA - ${row.id_mesa}</h1>
-                                    </div>
-                                    <div class="score">${row.puntaje_usuario2}</div>
-                                    <div class="team">
-                                        <img src="${row.icono2}" alt="Equipo 2">
-                                        <div class="team-name">${row.faccion2}<br>${row.subfaccion2}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        `);
-                    });
-                } else {
-                    $('#matchesContainer').append("No hay partidas programadas.");
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error(error);
-                $('#matchesContainer').append("Error al cargar las partidas.");
-            }
-        });
-    }
-
-    // Llama a la función para obtener las partidas al cargar la página
-    fetchMatches();
-    
-    // Puedes configurar intervalos para refrescar las partidas
-    // setInterval(fetchMatches, 5000); // Por ejemplo, cada 5 segundos
-});
-</script>
-
 <body>
     <!--[if lte IE 9]>
       <p class="browserupgrade">
@@ -318,6 +248,75 @@ $conn->close();
                     <div id="matches-container">
                         <!-- Aquí se cargarán las partidas programadas -->
                     </div>
+
+                    <script>
+$(document).ready(function() {
+    function fetchMatches() {
+        $.ajax({
+            url: 'fetch_matches.php', // Cambia esto por la ruta a tu nuevo archivo PHP
+            method: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                $('#matchesContainer').empty(); // Limpia el contenedor antes de agregar nuevos datos
+                if (data.length > 0) {
+                    data.forEach(function(row) {
+                        $('#matchesContainer').append(`
+                            <div class="match-entry mb-2 text-center">
+                                <div class="row align-items-center player">
+                                    <div class="col-2">
+                                        <img src="${row.foto_perfil_usuario1}" alt="Foto de perfil" class="img-fluid" style="object-fit: cover; border-radius: 5px; border: solid 2px #ECBE00;">
+                                    </div>
+                                    <div class="col-3">
+                                        <span><a class="category" href="user_profile.php?usuario=${encodeURIComponent(row.nombre_usuario1)}">${row.nombre_usuario1}</a></span>
+                                    </div>
+                                    <div class="col-2">
+                                        ${row.nombre_usuario2 !== 'N/A' ? '<img src="assets/images/matches/sword.png" alt="Icono de batalla" class="img-fluid" style="max-width: 25px;">' : '<h7>PARTIDA ABIERTA</h7>'}
+                                    </div>
+                                    <div class="col-5">
+                                        ${row.nombre_usuario2 !== 'N/A' ? `
+                                            <span><a class="category" href="user_profile.php?usuario=${encodeURIComponent(row.nombre_usuario2)}">${row.nombre_usuario2}</a></span>
+                                        ` : 'ESPERANDO'}
+                                    </div>
+                                </div>
+                                <div class="scoreboard">
+                                    <div class="team">
+                                        <img src="${row.icono1}" alt="Equipo 1">
+                                        <div class="team-name">${row.faccion1}<br>${row.subfaccion1}</div>
+                                    </div>
+                                    <div class="score">${row.puntaje_usuario1}</div>
+                                    <div class="middle-section">
+                                        <h1>${row.id_juego}</h1>
+                                        <h1>${row.puntos} Pts.</h1>
+                                        <div class="timer">${row.hora_inicio} - ${row.hora_final}</div>
+                                        <h1>MESA - ${row.id_mesa}</h1>
+                                    </div>
+                                    <div class="score">${row.puntaje_usuario2}</div>
+                                    <div class="team">
+                                        <img src="${row.icono2}" alt="Equipo 2">
+                                        <div class="team-name">${row.faccion2}<br>${row.subfaccion2}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        `);
+                    });
+                } else {
+                    $('#matchesContainer').append("No hay partidas programadas.");
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+                $('#matchesContainer').append("Error al cargar las partidas.");
+            }
+        });
+    }
+
+    // Llama a la función para obtener las partidas al cargar la página
+    fetchMatches();
+    
+    // Puedes configurar intervalos para refrescar las partidas
+    // setInterval(fetchMatches, 5000); // Por ejemplo, cada 5 segundos
+});
+</script>
 
                     <!-- Botón para iniciar una nueva partida -->
                     <?php

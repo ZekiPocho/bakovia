@@ -308,71 +308,76 @@ include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a l
 </div>
 
 <script>
-    // ID de la partida en curso (lo obtienes desde PHP)
+    // ID de la partida en curso (obtenido desde PHP)
     const idPartida = "<?php echo $id_partida; ?>";
-const nombreJugador2 = "<?php echo $nombre_jugador2; ?>";
-const iniciarBtn = document.getElementById('iniciar-btn');
-const finalizarBtn = document.getElementById('finalizar-btn');
+    const nombreJugador2 = "<?php echo $nombre_jugador2; ?>";
+    const iniciarBtn = document.getElementById('iniciar-btn');
+    const finalizarBtn = document.getElementById('finalizar-btn');
 
-// Carga inicial de la partida
-cargarPartida();
+    // Carga inicial de la partida
+    cargarPartida();
 
-// Cargar datos de la partida cada 5 segundos
-setInterval(cargarPartida, 5000); // Cambiar a 5000 ms para evitar carga excesiva
+    // Cargar datos de la partida cada 5 segundos
+    setInterval(cargarPartida, 5000); // Ajustado a 5000 ms
 
-function cargarPartida() {
-    fetch(`actualizar_partida.php?id_partida=${idPartida}`)
-        .then(response => response.json())
-        .then(data => {
-            if (!data.error) {
-                // Actualizar información del jugador 1
-                document.getElementById('puntaje_jugador1').value = data.puntaje_usuario1;
-                document.getElementById('nombre_jugador1').textContent = data.nombre_jugador1;
-                document.getElementById('icono_jugador1').src = data.icono1;
-                document.getElementById('faccion_jugador1').textContent = data.faccion1;
-                document.getElementById('subfaccion_jugador1').textContent = data.subfaccion1;
+    function cargarPartida() {
+        fetch(`actualizar_partida.php?id_partida=${idPartida}`)
+            .then(response => response.json())
+            .then(data => {
+                if (!data.error) {
+                    // Actualizar información del jugador 1
+                    document.getElementById('puntaje_jugador1').value = data.puntaje_usuario1;
+                    document.getElementById('nombre_jugador1').textContent = data.nombre_jugador1;
+                    document.getElementById('icono_jugador1').src = data.icono1;
+                    document.getElementById('faccion_jugador1').textContent = data.faccion1;
+                    document.getElementById('subfaccion_jugador1').textContent = data.subfaccion1;
 
-                // Actualizar información del jugador 2
-                document.getElementById('puntaje_jugador2').value = data.puntaje_usuario2;
-                document.getElementById('nombre_jugador2').textContent = data.nombre_jugador2;
-                document.getElementById('icono_jugador2').src = data.icono2;
-                document.getElementById('faccion_jugador2').textContent = data.faccion2;
-                document.getElementById('subfaccion_jugador2').textContent = data.subfaccion2;
+                    // Actualizar información del jugador 2
+                    document.getElementById('puntaje_jugador2').value = data.puntaje_usuario2;
+                    document.getElementById('nombre_jugador2').textContent = data.nombre_jugador2;
+                    document.getElementById('icono_jugador2').src = data.icono2;
+                    document.getElementById('faccion_jugador2').textContent = data.faccion2;
+                    document.getElementById('subfaccion_jugador2').textContent = data.subfaccion2;
 
-                // Actualizar información del juego
-                document.getElementById('nombre_juego').textContent = data.nombre_juego;
-                document.getElementById('puntos').textContent = `${data.puntos} Pts.`;
-                document.getElementById('ronda').value = data.ronda;
-                document.getElementById('tiempo-transcurrido').textContent = data.tiempo_transcurrido;
+                    // Actualizar información del juego
+                    document.getElementById('nombre_juego').textContent = data.nombre_juego;
+                    document.getElementById('puntos').textContent = `${data.puntos} Pts.`;
+                    document.getElementById('ronda').value = data.ronda;
+                    document.getElementById('tiempo-transcurrido').textContent = data.tiempo_transcurrido;
 
-                // Actualizar cronómetro (hora de inicio)
-                actualizarCronometro(data.hora_inicio, 'tiempo-transcurrido');
+                    // Actualizar cronómetro (hora de inicio)
+                    actualizarCronometro(data.hora_inicio, 'tiempo-transcurrido');
 
-                // Verificar el estado de la partida y actualizar botones
-                if (data.estado_partida === 'En_progreso') { // Ajusta según el valor que indique el estado en la base de datos
-                    iniciarBtn.style.display = 'none'; // Ocultar botón de iniciar
-                    finalizarBtn.style.display = 'inline-block'; // Mostrar botón de finalizar
+                    // Verificar el estado de la partida y la participación del jugador 2
+                    if (data.nombre_jugador2 !== 'N/A') {
+                        iniciarBtn.disabled = false; // Habilitar botón de iniciar si hay un jugador 2
+                    } else {
+                        iniciarBtn.disabled = true; // Desactivar botón de iniciar si no hay jugador 2
+                    }
+
+                    // Controlar visibilidad de botones según el estado de la partida
+                    if (data.estado_partida === 'en_progreso') {
+                        iniciarBtn.style.display = 'none'; // Ocultar botón de iniciar
+                        finalizarBtn.style.display = 'inline-block'; // Mostrar botón de finalizar
+                    } else {
+                        iniciarBtn.style.display = 'inline-block'; // Mostrar botón de iniciar
+                        finalizarBtn.style.display = 'none'; // Ocultar botón de finalizar
+                    }
                 } else {
-                    iniciarBtn.style.display = 'inline-block'; // Mostrar botón de iniciar
-                    finalizarBtn.style.display = 'none'; // Ocultar botón de finalizar
+                    console.error(data.error);
                 }
-            } else {
-                console.error(data.error);
-            }
-        })
-        .catch(error => console.error('Error al cargar la partida:', error));
-}
-
+            })
+            .catch(error => console.error('Error al cargar la partida:', error));
+    }
 
     // Detectar cambios en los inputs de puntaje y actualizar la base de datos
-    document.querySelector('input[name="puntaje_jugador1"]').addEventListener('change', function() {
+    document.querySelector('input[name="puntaje_jugador1"]').addEventListener('change', function () {
         actualizarPuntaje(1, this.value);
     });
 
-    document.querySelector('input[name="puntaje_jugador2"]').addEventListener('change', function() {
+    document.querySelector('input[name="puntaje_jugador2"]').addEventListener('change', function () {
         actualizarPuntaje(2, this.value);
     });
-
 
     // Función para actualizar el puntaje del jugador en la base de datos
     function actualizarPuntaje(jugador, puntaje) {
@@ -385,18 +390,18 @@ function cargarPartida() {
             method: 'POST',
             body: formData
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                console.log(`Puntaje del jugador ${jugador} actualizado correctamente.`);
-            } else {
-                console.error('Error al actualizar el puntaje:', data.error);
-            }
-        })
-        .catch(error => console.error('Error al actualizar el puntaje:', error));
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log(`Puntaje del jugador ${jugador} actualizado correctamente.`);
+                } else {
+                    console.error('Error al actualizar el puntaje:', data.error);
+                }
+            })
+            .catch(error => console.error('Error al actualizar el puntaje:', error));
     }
 
-    document.querySelector('input[name="rondas"]').addEventListener('change', function() {
+    document.querySelector('input[name="rondas"]').addEventListener('change', function () {
         actualizarRonda(this.value);
     });
 
@@ -409,21 +414,21 @@ function cargarPartida() {
             method: 'POST',
             body: formData
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                console.log('Ronda actualizada correctamente.');
-            } else {
-                console.error('Error al actualizar la ronda:', data.error);
-            }
-        })
-        .catch(error => console.error('Error al actualizar la ronda:', error));
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log('Ronda actualizada correctamente.');
+                } else {
+                    console.error('Error al actualizar la ronda:', data.error);
+                }
+            })
+            .catch(error => console.error('Error al actualizar la ronda:', error));
     }
 
-        // Al hacer clic en el botón de iniciar, cambiar el estado a 'en progreso'
+    // Al hacer clic en el botón de iniciar, cambiar el estado a 'en progreso'
     iniciarBtn.addEventListener('click', function (e) {
         e.preventDefault();
-        actualizarEstadoPartida('en progreso');
+        actualizarEstadoPartida('en_progreso');
     });
 
     // Función para actualizar el estado de la partida
@@ -436,27 +441,27 @@ function cargarPartida() {
             body: JSON.stringify({
                 id_partida: idPartida,
                 estado: nuevoEstado,
-                id_jugador1: nombre_jugador1,
+                id_jugador1: "<?php echo $nombre_jugador1; ?>",
                 id_jugador2: nombreJugador2
             })
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                if (nuevoEstado === 'en progreso') {
-                    iniciarBtn.style.display = 'none'; // Ocultar botón de iniciar
-                    finalizarBtn.style.display = 'inline-block'; // Mostrar botón de finalizar
-                    alert('Partida en: PROGRESO');
-                } else if (nuevoEstado === 'finalizado') {
-                    finalizarBtn.disabled = true; // Deshabilitar el botón de finalizar
-                    alert('La partida ha sido finalizada.');
-                    window.location.href = 'matches.php'; // Redirigir al usuario a matches.php
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    if (nuevoEstado === 'en progreso') {
+                        iniciarBtn.style.display = 'none'; // Ocultar botón de iniciar
+                        finalizarBtn.style.display = 'inline-block'; // Mostrar botón de finalizar
+                        alert('Partida en: PROGRESO');
+                    } else if (nuevoEstado === 'finalizado') {
+                        finalizarBtn.disabled = true; // Deshabilitar el botón de finalizar
+                        alert('La partida ha sido finalizada.');
+                        window.location.href = 'matches.php'; // Redirigir al usuario a matches.php
+                    }
+                } else {
+                    alert('Error al actualizar el estado de la partida.');
                 }
-            } else {
-                alert('Error al actualizar el estado de la partida.');
-            }
-        })
-        .catch(error => console.error('Error:', error));
+            })
+            .catch(error => console.error('Error:', error));
     }
 
     // Al hacer clic en el botón de finalizar, mostrar confirmación antes de cambiar el estado
@@ -468,13 +473,12 @@ function cargarPartida() {
     });
 </script>
 
-
-
 <script>
-function confirmDelete() {
-    return confirm("¿Estás seguro de que deseas borrar la partida?");
-}
+    function confirmDelete() {
+        return confirm("¿Estás seguro de que deseas borrar la partida?");
+    }
 </script>
+
 
     
 

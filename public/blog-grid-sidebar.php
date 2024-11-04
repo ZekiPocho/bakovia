@@ -180,7 +180,6 @@ $total_paginas = ceil($total_publicaciones / $limite);
             <div class="row">
                 <div class="col-lg-8 col-md-12 col-12">
                 <div class="row">
-                
             <?php
             if ($result->num_rows > 0) {
                 // Mostrar cada publicación
@@ -190,29 +189,21 @@ $total_paginas = ceil($total_publicaciones / $limite);
                     $usuario = $row['nombre_usuario'];
                     $imagen = !empty($row['imagen_publicacion']) ? $row['imagen_publicacion'] : 'https://via.placeholder.com/370x215'; 
                     $tag = $row['tag'];
-                    
+
                     echo '
                     <div class="col-lg-6 col-md-6 col-12">
                         <!-- Start Single Blog -->
                         <div class="single-blog">
                             <div class="blog-img">
-                                <a href="blog-single-sidebar.php?id=<?php echo $id_publicacion; ?>">
-                                    <img src="<?php echo htmlspecialchars($imagen); ?>" alt="#" style="max-width: 555px; max-height: 300px; object-fit: contain;">
+                                <a href="blog-single-sidebar.php?id='.$id_publicacion.'">
+                                    <img src="'.$imagen.'" alt="#" style="max-width: 555px; max-height: 300px; object-fit: contain;">
                                 </a>
                             </div>
                             <div class="blog-content">
-                                <a class="category" href="user_profile.php?usuario=<?php echo urlencode($usuario); ?>">
-                                    <?php echo htmlspecialchars($usuario); ?>
-                                </a>
-                                <h4>
-                                    <a href="blog-single-sidebar.php?id=<?php echo $id_publicacion; ?>">
-                                        <?php echo (strlen($titulo) > 75 ? htmlspecialchars(substr($titulo, 0, 75)) . '...' : htmlspecialchars($titulo)); ?>
-                                    </a>
-                                </h4>
+                                <a class="category" href="user_profile.php?usuario=' . urlencode($usuario) . '">' . htmlspecialchars($usuario) . '</a>
+                                <h4><a href="blog-single-sidebar.php?id='.$id_publicacion.'">'.(strlen($titulo) > 75 ? substr($titulo, 0, 75) . '...' : $titulo).'</a></h4>
                                 <br>
-                                <a href="blog-grid-sidebar.php?filtro=<?php echo urlencode($tag); ?>">
-                                    <i class="lni lni-tag"></i> <?php echo htmlspecialchars($tag); ?>
-                                </a>
+                                <a class="category" href="javascript:void(0)"><i class="lni lni-tag"></i>'.$tag.'</a>
                             </div>
                         </div>
                         <!-- End Single Blog -->
@@ -312,7 +303,7 @@ while ($row = $result->fetch_assoc()) {
             </li>
             <li>
                 <a href="blog-grid-sidebar.php?filtro=<?= urlencode($tag['tag']) ?>">
-                <i class="lni lni-tag"></i><?= htmlspecialchars($tag['tag']) ?>
+                    <?= htmlspecialchars($tag['tag']) ?>
                 </a>
                 <span>(<?= $tag['total'] ?>)</span>
             </li>

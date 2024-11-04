@@ -147,7 +147,6 @@ include ('db.php')
                         </div>
                         <!-- End Single Widget -->
                         <!-- Start Single Widget -->
-                         
 <?php
 // Obtener los tipos únicos (tags) de la tabla productos
 $query = "SELECT DISTINCT tipo FROM productos";

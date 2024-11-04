@@ -286,12 +286,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['comentar'])) {
                                 echo '
                                 <li class="comment-item">
                                     <div class="comment-img">
-                                        <img src="' . $foto_perfil . '" alt="img" style="border-radius: 5px; border: solid 1px #6E869D;">
+                                        <img src="' . $foto_perfil . '" alt="img" style="border-radius: 5px; border: solid 1px #6E869D">
                                     </div>
                                     <div class="comment-desc">
                                         <div class="desc-top">
                                             <h6>' . $nombre_usuario . '</h6>
-                                            <span class="muted-text">' . $fecha_comentario . '</span>
+                                            <span class="date">' . $fecha_comentario . '</span>
                                         </div>
                                         <p>' . $texto_comentario . '</p>';
 

@@ -200,7 +200,7 @@ $conn->close();
                 <div class="col-lg-6 col-md-12 col-12">
                     <div class="product-images">
                         <main id="gallery">
-                            <div class="main-img" style="width: 500px; height: 350px; overflow: hidden;">
+                            <div class="main-img" style="height: 350px; overflow: hidden;">
                                 <!-- Imagen principal del producto -->
                                 <img src="<?php echo $imagen1; ?>" id="current" alt="<?php echo $nombre; ?>" style="width: 100%; height: 100%; object-fit: scale-down; background-color: white;" onclick="openFullscreen(this.src)">
                             </div>

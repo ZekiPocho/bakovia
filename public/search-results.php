@@ -133,7 +133,7 @@ $resultPublicaciones = $conexion->query($sqlPublicaciones);
     </nav>
 </header>
 <!-- TERMINA HEADER Y NAVBAR PRO --> 
-<body>
+
 <div class="container-sm">
 
     <h1>Resultados de búsqueda para "<?php echo htmlspecialchars($query); ?>"</h1>

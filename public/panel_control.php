@@ -241,7 +241,7 @@ include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a l
     <div class="matches-div text-center">
         <div class="middle-section text-center">
             <!-- Información del Juego -->
-            <p id="nombre_juego" style="font-size: 1.2rem; filter: opacity(50%);"><?php echo htmlspecialchars($nombre_juego); ?> Pts.</p> <!-- Puntos -->
+            <p id="puntos" style="font-size: 1.2rem; filter: opacity(50%);"><?php echo htmlspecialchars($nombre_juego); ?> Pts.</p> <!-- Puntos -->
 
             <!-- Puntos -->
             <p id="puntos" style="font-size: 1.2rem; filter: opacity(50%);"><?php echo htmlspecialchars($puntos); ?> Pts.</p> <!-- Puntos -->

@@ -303,8 +303,7 @@ if ($result->num_rows > 0) {
             <img src="https://via.placeholder.com/50x50" alt="Foto de perfil" class="img-fluid">
         </div>
         <div class="col-3">
-            <span></span>
-            <span><a class="category" href="user_profile.php?usuario='<?php echo $row['nombre_usuario1']; ?>'"><?php echo $row['nombre_usuario1']; ?></a></span>
+            <span><a class="category" href="user_profile.php?usuario=<?php echo urlencode($row['nombre_usuario1']); ?>"><?php echo htmlspecialchars($row['nombre_usuario1']); ?></a></span>
         </div>
         <div class="col-2">
             <?php

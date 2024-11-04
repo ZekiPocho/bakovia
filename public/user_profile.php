@@ -1,5 +1,25 @@
 <?php
     include "db.php";
+// Iniciar la sesión
+session_start();
+
+// Verificar si el nombre de usuario de la sesión y el parámetro GET existen
+if (isset($_SESSION['nombre_usuario']) && isset($_GET['usuario'])) {
+    $nombreUsuarioSesion = $_SESSION['nombre_usuario'];
+    $nombreUsuarioGET = $_GET['usuario'];
+
+    // Verificar si los datos son idénticos
+    if ($nombreUsuarioGET === $nombreUsuarioSesion) {
+        // Redirigir a profile.php si son idénticos
+        header("Location: profile.php");
+        exit();
+    } 
+    // Si no son idénticos, permite el acceso al contenido de la página
+} else {
+    // Mensaje o acción si la sesión o el parámetro GET no están definidos
+    echo "<p>Error: Sesión no iniciada o nombre de usuario no proporcionado.</p>";
+}
+
 ?>
 <!DOCTYPE html>
 

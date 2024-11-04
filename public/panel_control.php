@@ -415,7 +415,7 @@ include '../public/db.php'; // Asegúrate de incluir tu archivo de conexión a l
     // Función para actualizar el estado de la partida
     function actualizarEstadoPartida(nuevoEstado) {
         fetch('actualizar_estado.php', {
-            method: 'POST',
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
             },

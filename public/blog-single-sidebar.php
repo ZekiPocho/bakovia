@@ -353,7 +353,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['comentar'])) {
 </section>
 
     <!-- End Blog Singel Area -->
-
+<br>
+<br>
     <!-- Start Footer Area -->
     <footer class="footer">
         <!-- Start Footer Middle -->

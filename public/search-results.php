@@ -114,8 +114,9 @@ $resultPublicaciones = $conexion->query($sqlPublicaciones);
     </nav>
 </header>
 <!-- TERMINA HEADER Y NAVBAR PRO --> 
-<div class="container-sm">
 <body>
+<div class="container-sm">
+
     <h1>Resultados de búsqueda para "<?php echo htmlspecialchars($query); ?>"</h1>
 
     <h2>Productos encontrados:</h2>
@@ -157,7 +158,7 @@ $resultPublicaciones = $conexion->query($sqlPublicaciones);
         <?php while ($publicacion = $resultPublicaciones->fetch_assoc()): ?>
             <div class="col-lg-4 col-md-6 col-12">
                 <!-- Start Single Blog -->
-                <div class=".blog-section .single-blog">
+                <div class="single-blog">
                     <div class="blog-img">
                         <a href="blog-single-sidebar.php?id=<?= $publicacion['id_publicacion'] ?>"> <!-- Enlace con el ID de la publicación -->
                             <img src="<?= htmlspecialchars($publicacion['imagen_publicacion']) ?>" alt="#" style="width: 370px; height: 215px; object-fit: cover;">

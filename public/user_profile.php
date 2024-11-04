@@ -175,9 +175,6 @@ aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle 
     
     if (isset($_GET['usuario'])) {
     
-        $email = $_POST['email'];
-        $password = $_POST['clave'];
-
         // Consulta SQL para verificar el correo y obtener el hash de la contraseña
         $stmt = $conn->prepare("SELECT id_usuario, nombre_usuario, contrasena, correo, foto_perfil, 
                                    biografia, fecha_registro, verificado, army_showcase, army_desc, 

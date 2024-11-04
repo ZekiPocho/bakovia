@@ -4577,7 +4577,7 @@ blockquote span {
   position: relative;
   font-size: 14px;
   border-radius: 4px;
-  border: 1px solid #eee;
+  border: 1px solid #6E869D;
 }
 
 @media (max-width: 767px) {

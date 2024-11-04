@@ -293,8 +293,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['comentar'])) {
                                     </div>
                                     <div class="comment-desc">
                                         <div class="desc-top">
-                                            <a href="user_profile.php?usuario=' . urlencode($nombre_usuario) . '">' . htmlspecialchars($nombre_usuario) . '</a>
-                                            <span class="date">' . $fecha_comentario . '</span>
+                                            <a style="color: white;" href="user_profile.php?usuario=' . urlencode($nombre_usuario) . '">' . htmlspecialchars($nombre_usuario) . '</a>
+                                            <p></p>
+                                            <span style="color: gray;">' . $fecha_comentario . '</span>
                                         </div>
                                         <p>' . $texto_comentario . '</p>';
 
@@ -302,12 +303,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['comentar'])) {
 
                                 if (isset($_SESSION['id_usuario']) && $_SESSION['id_usuario'] == $id_usuario_comentario) {
                                     echo '
-                                    <form action="delete_comment.php" method="POST" onsubmit="return confirm(\'¿Estás seguro de que deseas eliminar este comentario?\');">
-                                        <input type="hidden" name="id_comentario" value="' . $id_comentario . '">
-                                        <input type="hidden" name="id_publicacion" value="' . $id_publicacion . '">
-                                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                                    </form>';
+                                    <div style="text-align: right;">
+                                        <form action="delete_comment.php" method="POST" onsubmit="return confirm(\'¿Estás seguro de que deseas eliminar este comentario?\');">
+                                            <input type="hidden" name="id_comentario" value="' . $id_comentario . '">
+                                            <input type="hidden" name="id_publicacion" value="' . $id_publicacion . '">
+                                            <button type="submit" class="btn btn-secondary btn-sm" style="border: none; background-color: transparent; color: #6c757d; padding: 0; text-decoration: underline;">Eliminar</button>
+                                        </form>
+                                    </div>';
                                 }
+                                
 
 
                                 echo '</div></li>';

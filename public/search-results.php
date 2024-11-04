@@ -152,37 +152,36 @@ $resultPublicaciones = $conexion->query($sqlPublicaciones);
 </div>
 
 <h2>Publicaciones encontradas:</h2>
-
-        <!-- Mostrar publicaciones -->
-        <?php if ($resultPublicaciones && $resultPublicaciones->num_rows > 0): ?>
-            <?php while ($publicacion = $resultPublicaciones->fetch_assoc()): ?>
-                <div class="col-lg-6 col-md-6 col-12">
-                                                <!-- Start Single Blog -->
-                                                <div class="single-blog">
-                                <div class="blog-img">
-                                    <a href="blog-single-sidebar.php?id=' . $id_publicacion . '">
-                                        <img src="' . htmlspecialchars($imagen) . '" alt="#" style="max-width: 555px; max-height: 300px; object-fit: contain;">
-                                    </a>
-                                </div>
-                                <div class="blog-content">
-                                    <a class="category" href="user_profile.php?usuario=' . urlencode($usuario) . '">' . htmlspecialchars($usuario) . '</a>
-                                    <h4>
-                                        <a href="blog-single-sidebar.php?id=' . $id_publicacion . '">' . 
-                                        (strlen($titulo) > 75 ? htmlspecialchars(substr($titulo, 0, 75)) . '...' : htmlspecialchars($titulo)) . 
-                                        '</a>
-                                    </h4>
-                                    <br>
-                                    <a class="category" href="blog-grid-sidebar.php?filtro=' . urlencode($tag) . '">
-                                        <i class="lni lni-tag"></i>' . htmlspecialchars($tag) . '
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- End Single Blog -->
+<div class="row">
+    <?php if ($resultPublicaciones->num_rows > 0): ?>
+        <?php while ($publicacion = $resultPublicaciones->fetch_assoc()): ?>
+            <div class="col-lg-4 col-md-6 col-12">
+                <!-- Start Single Blog -->
+                <div class="single-blog">
+                    <div class="blog-img">
+                        <a href="blog-single-sidebar.php?id=<?= $publicacion['id_publicacion'] ?>"> <!-- Enlace con el ID de la publicación -->
+                            <img src="<?= htmlspecialchars($publicacion['imagen_publicacion']) ?>" alt="#" style="width: 370px; height: 215px; object-fit: cover;">
+                        </a>
+                    </div>
+                    <div class="blog-content">
+                        <h4>
+                            <a href="blog-single-sidebar.php?id=<?= $publicacion['id_publicacion'] ?>">
+                                <?= (strlen($publicacion['titulo']) > 75 ? substr(htmlspecialchars($publicacion['titulo']), 0, 75) . '...' : htmlspecialchars($publicacion['titulo'])) ?>
+                            </a>
+                        </h4>
+                        <br>
+                        <a class="category" href="javascript:void(0)">
+                            <i class="lni lni-tag"></i><?= htmlspecialchars($publicacion['tag']) ?>
+                        </a>
+                    </div>
                 </div>
-            <?php endwhile; ?>
-        <?php else: ?>
-            <p>No se encontraron publicaciones.</p>
-        <?php endif; ?>
+                <!-- End Single Blog -->
+            </div>
+        <?php endwhile; ?>
+    <?php else: ?>
+        <p>No se encontraron publicaciones.</p>
+    <?php endif; ?>
+</div>
 </div>
 
     <!-- Start Blog Singel Area -->

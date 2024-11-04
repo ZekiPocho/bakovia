@@ -308,9 +308,6 @@ $result = mysqli_query($conn, $query);
                                 <img src="<?= htmlspecialchars($product['imagen_producto']) ?>" 
                                      alt="<?= htmlspecialchars($product['nombre_producto']) ?>" 
                                      class="first-image">
-                                <img src="<?= htmlspecialchars($product['imagen_producto2']) ?>" 
-                                     alt="<?= htmlspecialchars($product['nombre_producto']) ?>" 
-                                     class="second-image">
                             </div>
                             <div class="product-info">
                                 <span class="category"><?= htmlspecialchars($product['tipo']) ?></span>

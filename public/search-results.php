@@ -151,16 +151,34 @@ $resultPublicaciones = $conexion->query($sqlPublicaciones);
     <?php endif; ?>
 </div>
 
-    <h2>Publicaciones encontradas:</h2>
-    <?php if ($resultPublicaciones->num_rows > 0): ?>
-        <?php while ($publicacion = $resultPublicaciones->fetch_assoc()): ?>
-            <div>
-                <h3><?php echo htmlspecialchars($publicacion['titulo']); ?></h3>
-                <p><?php echo htmlspecialchars($publicacion['contenido']); ?></p>
-                <p>Fecha: <?php echo htmlspecialchars($publicacion['fecha_publicacion']); ?></p>
-                <?php if ($publicacion['imagen_publicacion']): ?>
-                    <img src="ruta/a/imagenes/<?php echo htmlspecialchars($publicacion['imagen_publicacion']); ?>" alt="Imagen de la publicación">
-                <?php endif; ?>
+<h2>Publicaciones encontradas:</h2>
+<div class="row">
+    <?php if ($resultBlogs->num_rows > 0): ?>
+        <?php while ($blog = $resultBlogs->fetch_assoc()): ?>
+            <div class="col-lg-6 col-md-6 col-12">
+                <!-- Start Single Blog -->
+                <div class="single-blog">
+                    <div class="blog-img">
+                        <a href="blog-single-sidebar.php?id=<?= $blog['id_publicacion'] ?>">
+                            <img src="<?= htmlspecialchars($blog['imagen_publicacion']) ?>" alt="#" style="max-width: 555px; max-height: 300px; object-fit: contain;">
+                        </a>
+                    </div>
+                    <div class="blog-content">
+                        <a class="category" href="javascript:void(0)">
+                            <?= htmlspecialchars($blog['nombre_usuario']) ?>
+                        </a>
+                        <h4>
+                            <a href="blog-single-sidebar.php?id=<?= $blog['id_publicacion'] ?>">
+                                <?= strlen($blog['titulo']) > 75 ? htmlspecialchars(substr($blog['titulo'], 0, 75)) . '...' : htmlspecialchars($blog['titulo']) ?>
+                            </a>
+                        </h4>
+                        <br>
+                        <a class="category" href="javascript:void(0)">
+                            <i class="lni lni-tag"></i><?= htmlspecialchars($blog['tag']) ?>
+                        </a>
+                    </div>
+                </div>
+                <!-- End Single Blog -->
             </div>
         <?php endwhile; ?>
     <?php else: ?>

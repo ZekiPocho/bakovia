@@ -210,8 +210,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['comentar'])) {
                                         </ul>
                                         <h3 class="post-title">' . $titulo . '</h3>
                                         <ul class="meta-info">
-                                            <li><a href="javascript:void(0)"><i class="lni lni-tag"></i>' . $tag . '</a></li>
+                                            <li><a href="blog-grid-sidebar.php?filtro=' . urlencode($tag) . '">
+                                        <i class="lni lni-tag"></i>' . htmlspecialchars($tag) . '
+                                    </a></li>
                                         </ul>
+                                        
                                     </div>
                                     
                                     <div class="post-thumbnils text-center">
